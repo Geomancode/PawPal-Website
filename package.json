@@ -9,6 +9,7 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@stripe/stripe-js": "^9.0.1",
     "framer-motion": "^12.36.0",
     "lucide-react": "^0.577.0",
     "maplibre-gl": "^5.20.1",
@@ -16,6 +17,7 @@
     "react": "19.2.3",
     "react-dom": "19.2.3",
     "react-globe.gl": "^2.37.0",
+    "stripe": "^21.0.1",
     "three": "^0.183.2"
   },
   "devDependencies": {
