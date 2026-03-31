@@ -1,13 +1,66 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Link from "next/link";
 import { useState } from "react";
-import { ArrowRight, Mail, Lock, User, Eye, EyeOff } from "lucide-react";
+import { ArrowRight, Mail, Lock, User, Eye, EyeOff, AlertCircle, CheckCircle } from "lucide-react";
+import { useAuth } from "@/components/AuthProvider";
+import { useRouter } from "next/navigation";
 
 export default function AuthPage() {
+  const { signIn, signUp, user } = useAuth();
+  const router = useRouter();
   const [isLogin, setIsLogin] = useState(true);
   const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [success, setSuccess] = useState<string | null>(null);
+
+  // Form fields
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [fullName, setFullName] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+
+  // If already logged in, redirect home
+  if (user) {
+    router.replace("/");
+    return null;
+  }
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError(null);
+    setSuccess(null);
+
+    // Client-side validation
+    if (!email.includes("@")) { setError("Please enter a valid email."); return; }
+    if (password.length < 6) { setError("Password must be at least 6 characters."); return; }
+    if (!isLogin && password !== confirmPassword) { setError("Passwords do not match."); return; }
+
+    setLoading(true);
+
+    if (isLogin) {
+      const { error } = await signIn(email, password);
+      if (error) {
+        setError(error);
+      } else {
+        router.push("/");
+      }
+    } else {
+      const { error, needsConfirm } = await signUp(email, password, fullName || undefined);
+      if (error) {
+        setError(error);
+      } else if (needsConfirm) {
+        setSuccess("Account created! Please check your email to confirm, then sign in.");
+        setIsLogin(true);
+        setPassword("");
+      } else {
+        router.push("/");
+      }
+    }
+
+    setLoading(false);
+  };
 
   return (
     <div className="min-h-screen flex items-center justify-center px-4 pt-20 pb-10 bg-[#fffdf9]">
@@ -24,7 +77,7 @@ export default function AuthPage() {
         className="w-full max-w-md"
       >
         {/* Card */}
-        <div className="glass rounded-3xl p-8 border border-gray-100 shadow-xl">
+        <div className="bg-white/60 backdrop-blur-xl rounded-3xl p-8 border border-gray-100 shadow-xl">
           {/* Logo */}
           <div className="text-center mb-8">
             <div className="text-4xl mb-2">🐾</div>
@@ -39,7 +92,7 @@ export default function AuthPage() {
           {/* Toggle */}
           <div className="flex gap-1 bg-gray-100 rounded-full p-1 mb-6">
             <button
-              onClick={() => setIsLogin(true)}
+              onClick={() => { setIsLogin(true); setError(null); }}
               className={`flex-1 py-2 rounded-full text-sm font-semibold transition-all ${
                 isLogin ? "bg-white text-gray-900 shadow-sm" : "text-gray-500 hover:text-gray-700"
               }`}
@@ -47,7 +100,7 @@ export default function AuthPage() {
               Sign In
             </button>
             <button
-              onClick={() => setIsLogin(false)}
+              onClick={() => { setIsLogin(false); setError(null); }}
               className={`flex-1 py-2 rounded-full text-sm font-semibold transition-all ${
                 !isLogin ? "bg-white text-gray-900 shadow-sm" : "text-gray-500 hover:text-gray-700"
               }`}
@@ -56,20 +109,44 @@ export default function AuthPage() {
             </button>
           </div>
 
+          {/* Error/Success banners */}
+          {error && (
+            <motion.div
+              initial={{ opacity: 0, y: -5 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="flex items-center gap-2 bg-red-50 border border-red-200 text-red-700 text-sm px-4 py-3 rounded-xl mb-4"
+            >
+              <AlertCircle className="w-4 h-4 shrink-0" />
+              {error}
+            </motion.div>
+          )}
+          {success && (
+            <motion.div
+              initial={{ opacity: 0, y: -5 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="flex items-center gap-2 bg-emerald-50 border border-emerald-200 text-emerald-700 text-sm px-4 py-3 rounded-xl mb-4"
+            >
+              <CheckCircle className="w-4 h-4 shrink-0" />
+              {success}
+            </motion.div>
+          )}
+
           {/* Form */}
-          <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
+          <form className="space-y-4" onSubmit={handleSubmit}>
             {!isLogin && (
               <motion.div
                 initial={{ opacity: 0, height: 0 }}
                 animate={{ opacity: 1, height: "auto" }}
                 exit={{ opacity: 0, height: 0 }}
               >
-                <label className="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Display Name</label>
                 <div className="relative">
                   <User className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
                   <input
                     type="text"
-                    placeholder="Your name"
+                    value={fullName}
+                    onChange={(e) => setFullName(e.target.value)}
+                    placeholder="Your name (optional)"
                     className="w-full pl-10 pr-4 py-3 rounded-xl bg-gray-50 border border-gray-200 text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-transparent transition-all text-sm"
                   />
                 </div>
@@ -82,7 +159,10 @@ export default function AuthPage() {
                 <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
                 <input
                   type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   placeholder="you@example.com"
+                  required
                   className="w-full pl-10 pr-4 py-3 rounded-xl bg-gray-50 border border-gray-200 text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-transparent transition-all text-sm"
                 />
               </div>
@@ -94,7 +174,10 @@ export default function AuthPage() {
                 <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
                 <input
                   type={showPassword ? "text" : "password"}
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                   placeholder="••••••••"
+                  required
                   className="w-full pl-10 pr-12 py-3 rounded-xl bg-gray-50 border border-gray-200 text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-transparent transition-all text-sm"
                 />
                 <button
@@ -107,18 +190,39 @@ export default function AuthPage() {
               </div>
             </div>
 
-            {isLogin && (
-              <div className="text-right">
-                <a href="#" className="text-xs text-amber-600 hover:text-amber-700 font-medium">Forgot password?</a>
-              </div>
+            {!isLogin && (
+              <motion.div
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: "auto" }}
+              >
+                <label className="block text-sm font-medium text-gray-700 mb-1">Confirm Password</label>
+                <div className="relative">
+                  <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+                  <input
+                    type="password"
+                    value={confirmPassword}
+                    onChange={(e) => setConfirmPassword(e.target.value)}
+                    placeholder="••••••••"
+                    required
+                    className="w-full pl-10 pr-4 py-3 rounded-xl bg-gray-50 border border-gray-200 text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-transparent transition-all text-sm"
+                  />
+                </div>
+              </motion.div>
             )}
 
             <button
               type="submit"
-              className="w-full flex items-center justify-center gap-2 bg-amber-500 hover:bg-amber-600 text-white py-3.5 rounded-xl font-bold text-sm transition-all shadow-[0_4px_15px_rgba(245,158,11,0.35)] hover:shadow-[0_6px_20px_rgba(245,158,11,0.5)] hover:-translate-y-0.5"
+              disabled={loading}
+              className="w-full flex items-center justify-center gap-2 bg-amber-500 hover:bg-amber-600 disabled:bg-amber-300 text-white py-3.5 rounded-xl font-bold text-sm transition-all shadow-[0_4px_15px_rgba(245,158,11,0.35)] hover:shadow-[0_6px_20px_rgba(245,158,11,0.5)] hover:-translate-y-0.5 disabled:hover:translate-y-0"
             >
-              {isLogin ? "Sign In" : "Create Account"}
-              <ArrowRight className="w-4 h-4" />
+              {loading ? (
+                <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+              ) : (
+                <>
+                  {isLogin ? "Sign In" : "Create Account"}
+                  <ArrowRight className="w-4 h-4" />
+                </>
+              )}
             </button>
           </form>
 
