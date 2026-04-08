@@ -1,38 +1,48 @@
-name: Quality Gate
+name: PawPal Website Quality Gate
 
 on:
+  pull_request:
+    branches: [main]
   push:
-      branches: [ main ]
-        pull_request:
-            branches: [ main ]
+    branches: [main]
 
-            jobs:
-              build:
-                  runs-on: ubuntu-latest
-                      steps:
-                            - uses: actions/checkout@v4
-                                  - uses: actions/setup-node@v4
-                                          with:
-                                                    node-version: '20'
-                                                              cache: 'npm'
+jobs:
+  nextjs-build:
+    name: Next.js Build Check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
 
-                                                                          - name: Install dependencies
-                                                                                  run: npm install
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
 
-                                                                                              - name: Build Check
-                                                                                                      run: npm run build
-                                                                                                      
-                                                                                                            - name: Block Raw REST URLs
-                                                                                                                    run: |
-                                                                                                                              if grep -r "supabase.co/rest/v1" .; then
-                                                                                                                                          echo "Error: Raw REST URL detected!"
-                                                                                                                                                      exit 1
-                                                                                                                                                                fi
-                                                                                                                                                                
-                                                                                                                                                                      - name: Check for Secret Leaks
-                                                                                                                                                                              run: |
-                                                                                                                                                                                        if grep -rnE "SUPABASE_SERVICE_ROLE_KEY" .; then
-                                                                                                                                                                                                    echo "Error: Potential secret leak detected!"
-                                                                                                                                                                                                                exit 1
-                                                                                                                                                                                                                          fi
-                                                                                                                                                                                                                          
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build verification (MUST pass)
+        run: npm run build
+        env:
+          NEXT_PUBLIC_SUPABASE_URL: https://placeholder.supabase.co
+          NEXT_PUBLIC_SUPABASE_ANON_KEY: placeholder-key
+
+      - name: Check for raw REST URL usage
+        run: |
+          VIOLATIONS=$(grep -rn 'supabase\.co/rest/v1' src/ --include="*.ts" --include="*.tsx" || true)
+          if [ -n "$VIOLATIONS" ]; then
+            echo "❌ BLOCKED: Raw Supabase REST URL found. Use supabase-js client instead."
+            echo "$VIOLATIONS"
+            exit 1
+          fi
+          echo "✅ No raw REST URL usage."
+
+      - name: Check for exposed secrets
+        run: |
+          SECRETS=$(grep -rn 'SUPABASE_SERVICE_ROLE\|sk_live_\|sk_test_' src/ --include="*.ts" --include="*.tsx" || true)
+          if [ -n "$SECRETS" ]; then
+            echo "❌ BLOCKED: Possible server secret exposed in client code."
+            echo "$SECRETS"
+            exit 1
+          fi
+          echo "✅ No exposed secrets."
