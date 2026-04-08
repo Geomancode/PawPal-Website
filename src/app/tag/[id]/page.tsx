@@ -1,4 +1,4 @@
-import { supabase } from "@/lib/supabase";
+import { supabaseServer as supabase } from "@/lib/supabaseServer";
 import { notFound } from "next/navigation";
 import TagPageClient from "./TagPageClient";
 

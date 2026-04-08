@@ -1,0 +1,39 @@
+# PawPal Website — AI Coding Rules
+# This file is read by Cursor AI to enforce project conventions.
+# See DEVELOPER_GUIDE.md at the monorepo root for the complete reference.
+
+## Architecture
+- This is a **Next.js 16** app using the App Router with React 19 and TypeScript.
+- Pages are Server Components by default. Add `'use client'` only when needed.
+- Extract interactive parts to separate client components (e.g., `HomeClientParts.tsx`).
+
+## Supabase Client Usage (CRITICAL)
+- **Server Components / API Routes**: Use `supabaseServer` from `@/lib/supabaseServer`.
+- **Client Components**: Use `supabase` from `@/lib/supabase`.
+- NEVER use raw `fetch()` with Supabase REST URL. Always use the Supabase JS client.
+- NEVER construct SQL queries via string concatenation.
+
+## Styling
+- Use **Tailwind CSS v4** for styling. No inline styles unless absolutely necessary.
+- Follow the existing design system: warm colors (`amber`, `emerald`), glassmorphism, rounded corners.
+- Background: `bg-[#fffdf9]`, text: `text-gray-800`.
+
+## Components
+- Animations use `framer-motion`. Prefer `motion.div` with fade/slide variants.
+- Icons use `lucide-react`. Do not mix icon libraries.
+- 3D Globe uses `react-globe.gl` + `three`. Heavy — only load on globe pages.
+
+## Security
+- API keys go in `.env.local` (git-ignored). Access via `process.env.NEXT_PUBLIC_*`.
+- NEVER expose server-side secrets to client components.
+- `.env.local` is already in `.gitignore`.
+
+## SEO
+- Every page must have a `<title>` and meta description.
+- Use semantic HTML (`<section>`, `<article>`, `<nav>`).
+- Single `<h1>` per page.
+
+## Performance
+- Prefer Server Components for static content (zero JS shipped to browser).
+- Lazy-load heavy components (Globe, Maps) with `dynamic()`.
+- Images: use `next/image` for optimization.

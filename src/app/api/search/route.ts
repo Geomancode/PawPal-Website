@@ -1,10 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
+import { supabaseServer as supabase } from "@/lib/supabaseServer";
 
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY!;
 const GEMINI_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`;
-
-const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL!;
-const SUPABASE_KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
 
 async function geminiChat(prompt: string): Promise<string | null> {
   try {
@@ -24,28 +22,24 @@ async function geminiChat(prompt: string): Promise<string | null> {
   }
 }
 
-async function searchSupabase(table: string, query: string, fields: string) {
-  const url = `${SUPABASE_URL}/rest/v1/${table}?select=${fields}&or=(title.ilike.%25${encodeURIComponent(query)}%25,quest_type.ilike.%25${encodeURIComponent(query)}%25)&limit=10`;
-  const res = await fetch(url, {
-    headers: {
-      apikey: SUPABASE_KEY,
-      Authorization: `Bearer ${SUPABASE_KEY}`,
-    },
-  });
-  if (!res.ok) return [];
-  return res.json();
+async function searchSupabase(query: string) {
+  const { data, error } = await supabase
+    .from("quests")
+    .select("id,title,quest_type,status,reward_type,lat,lng")
+    .or(`title.ilike.%${query}%,quest_type.ilike.%${query}%`)
+    .limit(10);
+  if (error) return [];
+  return data ?? [];
 }
 
 async function searchPlaces(query: string) {
-  const url = `${SUPABASE_URL}/rest/v1/places?select=id,name,place_type,lat,lng,city,rating_avg&or=(name.ilike.%25${encodeURIComponent(query)}%25,place_type.ilike.%25${encodeURIComponent(query)}%25,city.ilike.%25${encodeURIComponent(query)}%25)&limit=10`;
-  const res = await fetch(url, {
-    headers: {
-      apikey: SUPABASE_KEY,
-      Authorization: `Bearer ${SUPABASE_KEY}`,
-    },
-  });
-  if (!res.ok) return [];
-  return res.json();
+  const { data, error } = await supabase
+    .from("places")
+    .select("id,name,place_type,lat,lng,city,rating_avg")
+    .or(`name.ilike.%${query}%,place_type.ilike.%${query}%,city.ilike.%${query}%`)
+    .limit(10);
+  if (error) return [];
+  return data ?? [];
 }
 
 export async function POST(req: NextRequest) {
@@ -89,9 +83,9 @@ Reply ONLY as compact JSON:
 
   // Phase 2: Based on intent, fetch data or generate AI response
   if (intent === "search_missions") {
-    const quests = await searchSupabase("quests", keywords, "id,title,quest_type,status,reward_type,lat,lng");
+    const quests = await searchSupabase(keywords);
     // Also try broader text search with original query
-    const quests2 = keywords !== q ? await searchSupabase("quests", q, "id,title,quest_type,status,reward_type,lat,lng") : [];
+    const quests2 = keywords !== q ? await searchSupabase(q) : [];
     const all = dedup([...quests, ...quests2]);
     return NextResponse.json({ intent, results: all, aiMessage: all.length > 0 ? `Found ${all.length} mission(s) matching "${q}".` : `No missions found for "${q}". Try a broader search!` });
   }

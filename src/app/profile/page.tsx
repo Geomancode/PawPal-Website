@@ -28,14 +28,26 @@ interface Profile {
 interface Pet {
   id: string;
   name: string;
+  species_group: string;
   breed: string | null;
-  age: number | null;
+  birth_date: string | null;
   avatar_url: string | null;
   social_traits: Record<string, any> | null;
   blood_type: string | null;
   owner_contact: string | null;
   nfc_tag_uid: string | null;
   created_at: string;
+}
+
+/** Compute age in years from an ISO date string. */
+function computeAge(birthDate: string | null): number | null {
+  if (!birthDate) return null;
+  const birth = new Date(birthDate);
+  const now = new Date();
+  let age = now.getFullYear() - birth.getFullYear();
+  const m = now.getMonth() - birth.getMonth();
+  if (m < 0 || (m === 0 && now.getDate() < birth.getDate())) age--;
+  return age >= 0 ? age : null;
 }
 
 /* ── Trust Level Config ── */
@@ -145,6 +157,7 @@ export default function ProfilePage() {
     const { data, error } = await supabase.from("pets").insert({
       owner_id: user.id,
       name: petName.trim(),
+      species_group: petSpecies,
       breed: petBreed.trim() || null,
       blood_type: (petBloodType && petBloodType !== "Unknown") ? petBloodType : null,
       owner_contact: petContact.trim() || null,
@@ -473,9 +486,9 @@ export default function ProfilePage() {
                           {pet.breed && (
                             <span className="text-xs bg-gray-50 text-gray-600 px-2 py-0.5 rounded-full">{pet.breed}</span>
                           )}
-                          {pet.age != null && (
+                          {computeAge(pet.birth_date) != null && (
                             <span className="text-xs bg-gray-50 text-gray-600 px-2 py-0.5 rounded-full">
-                              {pet.age} yr{pet.age !== 1 ? "s" : ""}
+                              {computeAge(pet.birth_date)} yr{computeAge(pet.birth_date) !== 1 ? "s" : ""}
                             </span>
                           )}
                           {pet.blood_type && (

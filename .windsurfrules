@@ -1,0 +1,10 @@
+# PawPal Website Coding Rules
+# Read DEVELOPER_GUIDE.md in parent directory for complete documentation.
+#
+# Architecture: Next.js 16 App Router. Server Components default. 'use client' only when needed.
+# Supabase: Server → supabaseServer.ts, Client → supabase.ts. NEVER raw fetch.
+# Styling: Tailwind CSS v4. Palette: amber/emerald, bg-[#fffdf9].
+# Animations: framer-motion. Icons: lucide-react. 3D: react-globe.gl.
+# SEO: title + meta + single h1 + semantic HTML on every page.
+# Security: .env.local for secrets. Never expose server keys to client.
+# Quality: npm run build must pass with 0 errors.
