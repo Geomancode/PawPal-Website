@@ -1,0 +1,38 @@
+name: Quality Gate
+
+on:
+  push:
+      branches: [ main ]
+        pull_request:
+            branches: [ main ]
+
+            jobs:
+              build:
+                  runs-on: ubuntu-latest
+                      steps:
+                            - uses: actions/checkout@v4
+                                  - uses: actions/setup-node@v4
+                                          with:
+                                                    node-version: '20'
+                                                              cache: 'npm'
+
+                                                                          - name: Install dependencies
+                                                                                  run: npm install
+
+                                                                                              - name: Build Check
+                                                                                                      run: npm run build
+                                                                                                      
+                                                                                                            - name: Block Raw REST URLs
+                                                                                                                    run: |
+                                                                                                                              if grep -r "supabase.co/rest/v1" .; then
+                                                                                                                                          echo "Error: Raw REST URL detected!"
+                                                                                                                                                      exit 1
+                                                                                                                                                                fi
+                                                                                                                                                                
+                                                                                                                                                                      - name: Check for Secret Leaks
+                                                                                                                                                                              run: |
+                                                                                                                                                                                        if grep -rnE "SUPABASE_SERVICE_ROLE_KEY" .; then
+                                                                                                                                                                                                    echo "Error: Potential secret leak detected!"
+                                                                                                                                                                                                                exit 1
+                                                                                                                                                                                                                          fi
+                                                                                                                                                                                                                          
