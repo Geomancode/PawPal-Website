@@ -6,8 +6,8 @@ import "maplibre-gl/dist/maplibre-gl.css";
 import WeatherTicker from "./WeatherTicker";
 import { fetchQuests, Quest } from "@/lib/fetchQuests";
 import { fetchPlaces, Place } from "@/lib/fetchPlaces";
-import { Search, Sparkles, X, MapPin, Navigation } from "lucide-react";
 import GlobeTutorial from "./GlobeTutorial";
+import ChatBottomSheet from "./ChatBottomSheet";
 
 /* ── Quest type → emoji mapping ── */
 const QUEST_EMOJI: Record<string, string> = {
@@ -42,32 +42,18 @@ function createMarkerEl(emoji: string, color: string): HTMLElement {
   return el;
 }
 
-/* ── Search Result Types ── */
-interface SearchResponse {
-  intent: string;
-  results: any[];
-  aiMessage: string;
-}
-
 /* ─────────────────────────────────────────
    Component
    ───────────────────────────────────────── */
 export default function MapGlobeComponent() {
   const mapContainer = useRef<HTMLDivElement>(null);
   const mapRef = useRef<maplibregl.Map | null>(null);
-  const [searchQuery, setSearchQuery] = useState("");
   const [showQuests, setShowQuests] = useState(true);
   const [showPlaces, setShowPlaces] = useState(true);
   const [quests, setQuests] = useState<Quest[]>([]);
   const [places, setPlaces] = useState<Place[]>([]);
   const questMarkersRef = useRef<maplibregl.Marker[]>([]);
   const placeMarkersRef = useRef<maplibregl.Marker[]>([]);
-
-  // AI Search state
-  const [searching, setSearching] = useState(false);
-  const [searchResult, setSearchResult] = useState<SearchResponse | null>(null);
-  const [showPanel, setShowPanel] = useState(false);
-  const searchMarkersRef = useRef<maplibregl.Marker[]>([]);
 
   /* ── Load data from Supabase ── */
   useEffect(() => {
@@ -209,56 +195,7 @@ export default function MapGlobeComponent() {
     });
   }, [places, showPlaces]);
 
-  /* ── AI Search handler ── */
-  const handleSearch = async () => {
-    if (!searchQuery.trim()) return;
-    setSearching(true);
-    setSearchResult(null);
-    setShowPanel(true);
 
-    // Clear previous search markers
-    searchMarkersRef.current.forEach((m) => m.remove());
-    searchMarkersRef.current = [];
-
-    try {
-      const res = await fetch("/api/search", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ query: searchQuery }),
-      });
-      const data: SearchResponse = await res.json();
-      setSearchResult(data);
-
-      // If results have lat/lng, add markers and fly to first one
-      if (data.results?.length > 0 && mapRef.current) {
-        const map = mapRef.current;
-        const first = data.results[0];
-
-        data.results.forEach((r: any) => {
-          if (r.lat == null || r.lng == null) return;
-          const el = createMarkerEl("⭐", "#8b5cf6");
-          const popup = new maplibregl.Popup({ offset: 20, closeButton: false })
-            .setHTML(`<div style="font-family:system-ui;min-width:140px"><div style="font-weight:700;font-size:13px">⭐ ${r.title || r.name}</div><div style="font-size:11px;color:#666;margin-top:2px">${r.quest_type || r.place_type || ""}</div></div>`);
-          const marker = new maplibregl.Marker({ element: el }).setLngLat([r.lng, r.lat]).setPopup(popup).addTo(map);
-          searchMarkersRef.current.push(marker);
-        });
-
-        if (first.lat && first.lng) {
-          map.flyTo({ center: [first.lng, first.lat], zoom: 14, duration: 2000 });
-        }
-      }
-    } catch {
-      setSearchResult({ intent: "error", results: [], aiMessage: "Sorry, something went wrong. Please try again!" });
-    }
-
-    setSearching(false);
-  };
-
-  const closePanel = () => {
-    setShowPanel(false);
-    searchMarkersRef.current.forEach((m) => m.remove());
-    searchMarkersRef.current = [];
-  };
 
   return (
     <div className="relative w-full h-screen overflow-hidden">
@@ -275,90 +212,8 @@ export default function MapGlobeComponent() {
         </button>
       </div>
 
-      {/* AI Search Panel (results) */}
-      {showPanel && searchResult && (
-        <div className="absolute top-[130px] left-4 z-40 w-80 max-h-[60vh] bg-white/95 backdrop-blur-xl rounded-2xl shadow-2xl border border-gray-100 overflow-hidden flex flex-col">
-          {/* Panel header */}
-          <div className="flex items-center justify-between px-4 py-3 border-b border-gray-100 bg-gradient-to-r from-violet-50 to-amber-50">
-            <div className="flex items-center gap-2">
-              <Sparkles className="w-4 h-4 text-violet-500" />
-              <span className="text-sm font-bold text-gray-800">PawPal AI</span>
-            </div>
-            <button onClick={closePanel} className="text-gray-400 hover:text-gray-600"><X className="w-4 h-4" /></button>
-          </div>
-
-          {/* AI message */}
-          <div className="px-4 py-3 text-sm text-gray-700 leading-relaxed border-b border-gray-50 bg-gray-50/50">
-            {searchResult.aiMessage}
-          </div>
-
-          {/* Search results list */}
-          {searchResult.results.length > 0 && (
-            <div className="overflow-y-auto flex-1">
-              {searchResult.results.map((r: any, i: number) => (
-                <button
-                  key={r.id || i}
-                  onClick={() => {
-                    if (r.lat && r.lng && mapRef.current) {
-                      mapRef.current.flyTo({ center: [r.lng, r.lat], zoom: 15, duration: 1500 });
-                    }
-                  }}
-                  className="w-full flex items-start gap-3 px-4 py-3 hover:bg-amber-50 transition-colors text-left border-b border-gray-50 last:border-0"
-                >
-                  <div className="w-8 h-8 rounded-lg bg-violet-100 flex items-center justify-center text-sm shrink-0 mt-0.5">
-                    {r.quest_type ? (QUEST_EMOJI[r.quest_type] || "🐾") : (PLACE_EMOJI[r.place_type] || "📍")}
-                  </div>
-                  <div className="min-w-0">
-                    <p className="text-sm font-semibold text-gray-800 truncate">{r.title || r.name}</p>
-                    <p className="text-xs text-gray-400 truncate">{r.quest_type || r.place_type}{r.city ? ` · ${r.city}` : ""}</p>
-                  </div>
-                  {r.lat && r.lng && <Navigation className="w-3.5 h-3.5 text-gray-300 shrink-0 mt-1 ml-auto" />}
-                </button>
-              ))}
-            </div>
-          )}
-        </div>
-      )}
-
-      {/* Bottom search bar */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-30 w-full max-w-xl px-4">
-        <form
-          id="globe-search"
-          onSubmit={(e) => { e.preventDefault(); handleSearch(); }}
-          style={{
-            background: "rgba(255,255,255,0.95)",
-            backdropFilter: "blur(20px)",
-            WebkitBackdropFilter: "blur(20px)",
-            border: "1px solid rgba(0,0,0,0.06)",
-            borderRadius: "28px",
-            padding: "8px 8px 8px 20px",
-            display: "flex",
-            alignItems: "center",
-            gap: "10px",
-            boxShadow: "0 4px 30px rgba(0,0,0,0.12)",
-          }}
-        >
-          <Sparkles className="w-4 h-4 text-violet-400 shrink-0" />
-          <input
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="Ask AI or search missions, places, pets…"
-            className="flex-1 bg-transparent text-gray-700 placeholder-gray-400 outline-none text-sm font-light"
-          />
-          <button
-            type="submit"
-            disabled={searching}
-            className="bg-gradient-to-r from-amber-500 to-violet-500 hover:from-amber-600 hover:to-violet-600 disabled:opacity-50 text-white px-5 py-2 rounded-full text-xs font-semibold transition-all shadow-sm flex items-center gap-1.5"
-          >
-            {searching ? (
-              <div className="w-3.5 h-3.5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-            ) : (
-              <Search className="w-3.5 h-3.5" />
-            )}
-            {searching ? "Thinking…" : "Search"}
-          </button>
-        </form>
-      </div>
+      {/* AI Chat Bottom Sheet */}
+      <ChatBottomSheet mapRef={mapRef} />
 
       {/* Tutorial overlay for first-time visitors */}
       <GlobeTutorial />
