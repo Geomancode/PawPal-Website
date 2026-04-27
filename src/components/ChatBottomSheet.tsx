@@ -10,7 +10,16 @@ import {
 } from "react";
 import { Sparkles, Search, X, ChevronDown } from "lucide-react";
 import ChatBubble, { type ChatMessageData } from "./ChatBubble";
+import { useAuth } from "./AuthProvider";
 import type maplibregl from "maplibre-gl";
+
+// ── Species emoji map ────────────────────────────────────────────────────────
+
+const SPECIES_EMOJI: Record<string, string> = {
+  canine: "🐕", feline: "🐱", lagomorph: "🐰",
+  bird: "🦜", reptile: "🦎", fish: "🐠",
+  small_mammal: "🐹",
+};
 
 // ── Types ────────────────────────────────────────────────────────────────────
 
@@ -108,10 +117,13 @@ function createSearchMarker(
 // ── Component ────────────────────────────────────────────────────────────────
 
 export default function ChatBottomSheet({ mapRef }: ChatBottomSheetProps) {
+  const { user } = useAuth();
   const [snap, setSnap] = useState<SnapPoint>("peek");
   const [messages, setMessages] = useState<ChatMessageData[]>([]);
   const [input, setInput] = useState("");
   const [isStreaming, setIsStreaming] = useState(false);
+  const [activePetName, setActivePetName] = useState<string | null>(null);
+  const [activePetSpecies, setActivePetSpecies] = useState<string | null>(null);
 
   const sheetRef = useRef<HTMLDivElement>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -208,7 +220,7 @@ export default function ChatBottomSheet({ mapRef }: ChatBottomSheetProps) {
     [mapRef, clearSearchMarkers]
   );
 
-  // ── Send message to AI Agent ─────────────────────────────────────────────
+  // ── Send message: Smart Map Search (primary) + AI Chat (secondary) ──────
 
   const sendMessage = useCallback(
     async (text: string) => {
@@ -226,16 +238,77 @@ export default function ChatBottomSheet({ mapRef }: ChatBottomSheetProps) {
       setIsStreaming(true);
       if (snap === "peek") setSnap("half");
 
-      // Build history for API (only user + assistant text messages)
-      const history = [...messages, userMsg]
-        .filter((m) => m.role === "user" || m.role === "assistant")
-        .map((m) => ({ role: m.role as "user" | "assistant", content: m.content }));
-
       try {
+        // ── Phase A: Smart Map Search (no subscription required) ──────
+        const searchResp = await fetch("/api/map-search", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ query: text.trim() }),
+        });
+
+        if (searchResp.ok) {
+          const searchData = await searchResp.json();
+          const results = (searchData.results ?? []) as Array<{
+            originalName: string; localizedName?: string;
+            lat: number; lng: number; zoom: number;
+            description?: string; relevance: string;
+            relevanceReason?: string; source: string;
+            rating?: number; questType?: string;
+          }>;
+
+          if (results.length > 0) {
+            // Add pins to map
+            const map = mapRef.current;
+            if (map) {
+              const maplibre = await import("maplibre-gl");
+              clearSearchMarkers();
+              results.forEach((r) => {
+                const emoji = r.source === "quest" ? "🐾" : r.rating ? "⭐" : "📍";
+                const color = r.source === "quest" ? "#f59e0b" : "#8b5cf6";
+                const displayName = r.localizedName ?? r.originalName;
+                const marker = createSearchMarker(maplibre, emoji, color, map, r.lng, r.lat, displayName);
+                searchMarkersRef.current.push(marker);
+              });
+              map.flyTo({ center: [results[0].lng, results[0].lat], zoom: results[0].zoom ?? 13, duration: 2000 });
+            }
+
+            // Build summary
+            const places = results.filter((r) => r.source !== "quest");
+            const quests = results.filter((r) => r.source === "quest");
+            let summary = "";
+            if (places.length > 0) {
+              summary += `📍 Found ${places.length} place${places.length > 1 ? "s" : ""}:\n`;
+              places.slice(0, 5).forEach((r) => {
+                const name = r.localizedName ?? r.originalName;
+                const rating = r.rating ? ` ⭐${r.rating.toFixed(1)}` : "";
+                summary += `• ${name}${rating}\n`;
+              });
+              if (places.length > 5) summary += `  ...and ${places.length - 5} more on the map\n`;
+            }
+            if (quests.length > 0) {
+              summary += `\n🐾 Found ${quests.length} community quest${quests.length > 1 ? "s" : ""}:\n`;
+              quests.slice(0, 3).forEach((r) => { summary += `• ${r.originalName}\n`; });
+            }
+            summary += "\nTap a pin on the map to see details!";
+
+            setMessages((prev) => [...prev, {
+              id: `search_${Date.now()}`, role: "assistant",
+              content: summary, timestamp: Date.now(),
+            }]);
+            setIsStreaming(false);
+            return; // Done — search handled it
+          }
+        }
+
+        // ── Phase B: No map results → fall through to AI Agent (subscribers) ──
+        const history = [...messages, userMsg]
+          .filter((m) => m.role === "user" || m.role === "assistant")
+          .map((m) => ({ role: m.role as "user" | "assistant", content: m.content }));
+
         const response = await fetch("/api/ai-agent", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ message: text.trim(), history }),
+          body: JSON.stringify({ message: text.trim(), history, userId: user?.id ?? null }),
         });
 
         if (!response.ok || !response.body) {
@@ -264,6 +337,12 @@ export default function ChatBottomSheet({ mapRef }: ChatBottomSheetProps) {
             switch (event.type) {
               case "thinking":
                 // Thinking indicator handled by isStreaming state
+                break;
+
+              case "persona":
+                // A pet "picked up the phone" — update header
+                setActivePetName(event.data.petName as string);
+                setActivePetSpecies(event.data.speciesGroup as string);
                 break;
 
               case "tool_call":
@@ -348,7 +427,7 @@ export default function ChatBottomSheet({ mapRef }: ChatBottomSheetProps) {
         setIsStreaming(false);
       }
     },
-    [isStreaming, messages, snap, addMarkersFromResults]
+    [isStreaming, messages, snap, addMarkersFromResults, clearSearchMarkers, mapRef, user]
   );
 
   // ── Keyboard handler ─────────────────────────────────────────────────────
@@ -455,10 +534,14 @@ export default function ChatBottomSheet({ mapRef }: ChatBottomSheetProps) {
           <div className="flex items-center justify-between px-4 pb-2">
             <div className="flex items-center gap-2">
               <div className="w-6 h-6 rounded-full bg-gradient-to-br from-violet-500 to-amber-400 flex items-center justify-center">
-                <Sparkles className="w-3 h-3 text-white" />
+                {activePetSpecies ? (
+                  <span className="text-sm">{SPECIES_EMOJI[activePetSpecies] ?? "🐾"}</span>
+                ) : (
+                  <Sparkles className="w-3 h-3 text-white" />
+                )}
               </div>
               <span className="text-sm font-bold text-gray-800">
-                PawPal AI
+                {activePetName ?? "PawPal AI"}
               </span>
             </div>
             <div className="flex items-center gap-1">

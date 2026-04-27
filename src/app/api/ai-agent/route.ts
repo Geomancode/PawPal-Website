@@ -1,16 +1,20 @@
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-// PawPal Web AI Agent — API Route (SSE streaming)
+// PawPal Web AI Agent — API Route (SSE streaming + Persona + Memory)
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 //
 // POST /api/ai-agent
-// Body: { message: string, history?: { role: string, content: string }[] }
+// Body: { message, history?, userId? }
 // Response: text/event-stream (SSE)
 //
-// Mirrors Flutter's agent_service.dart tool-call loop but for the web.
+// When userId is provided:
+//   → Load pets → pick random sibling → inject persona + memories
+// When no userId:
+//   → Use fallback PawPal identity
 
 import { NextRequest } from "next/server";
 import { GoogleGenAI, createPartFromFunctionResponse } from "@google/genai";
-import { PAWPAL_WEB_SYSTEM_PROMPT } from "./systemPrompt";
+import { PLATFORM_KNOWLEDGE_PROMPT, FALLBACK_IDENTITY_PROMPT } from "./systemPrompt";
+import { loadUserPets, pickRandom, recallMemories, buildPersonaPrompt } from "./personaEngine";
 import { toolDeclarations, executeTool } from "./tools";
 
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY!;
@@ -34,6 +38,7 @@ export async function POST(req: NextRequest) {
     const body = await req.json();
     const message: string = body.message;
     const history: HistoryMessage[] = body.history ?? [];
+    const userId: string | null = body.userId ?? null;
 
     if (!message || typeof message !== "string" || !message.trim()) {
       return new Response(
@@ -53,6 +58,57 @@ export async function POST(req: NextRequest) {
         };
 
         try {
+          // ── Subscription gate ─────────────────────────────────────
+          if (!userId) {
+            send("error", { message: "🔒 Please sign in to use PawPal AI." });
+            return;
+          }
+
+          // Check subscription tier
+          const { data: profile } = await (await import("@/lib/supabaseServer")).supabaseServer
+            .from("profiles")
+            .select("subscription_tier")
+            .eq("id", userId)
+            .single();
+
+          const tier = (profile?.subscription_tier as string) ?? "free";
+          if (tier === "free") {
+            send("error", {
+              message: "🐾 PawPal AI is a subscriber-only feature!\n\nUpgrade to Basic or Pro to unlock your pet's digital companion. 💬",
+            });
+            return;
+          }
+
+          // ── Build system prompt (persona or fallback) ──────────────
+          let systemPrompt: string;
+          let activePetName: string | null = null;
+          let activePetSpecies: string | null = null;
+
+          const pets = await loadUserPets(userId);
+          if (pets.length > 0) {
+            const activePet = pickRandom(pets);
+            activePetName = activePet.petName;
+            activePetSpecies = activePet.speciesGroup;
+
+            const memories = await recallMemories(activePet.petId);
+            const personaPrompt = buildPersonaPrompt(activePet, pets, memories);
+            systemPrompt = `${personaPrompt}\n\n${PLATFORM_KNOWLEDGE_PROMPT}`;
+
+            // Tell the UI which pet "picked up the phone"
+            send("persona", {
+              petName: activePet.petName,
+              speciesGroup: activePet.speciesGroup,
+              status: activePet.status,
+              siblingCount: pets.length,
+              memoriesRecalled: memories.length,
+            });
+          } else {
+            // Subscriber but no pets — use "PawPal" identity
+            activePetName = "PawPal";
+            send("persona", { petName: "PawPal", speciesGroup: null, status: "alive", siblingCount: 0, memoriesRecalled: 0 });
+            systemPrompt = `${FALLBACK_IDENTITY_PROMPT}\n\n${PLATFORM_KNOWLEDGE_PROMPT}`;
+          }
+
           // ── Initialize Gemini ────────────────────────────────────────
           const ai = new GoogleGenAI({ apiKey: GEMINI_API_KEY });
 
@@ -64,7 +120,7 @@ export async function POST(req: NextRequest) {
 
           const chatConfig = {
             config: {
-              systemInstruction: PAWPAL_WEB_SYSTEM_PROMPT,
+              systemInstruction: systemPrompt,
               tools: [{ functionDeclarations: toolDeclarations }],
               temperature: 0.7,
               maxOutputTokens: 2048,

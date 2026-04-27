@@ -18,21 +18,21 @@ const fadeUp = (delay = 0) => ({
 /* ── Team Data ── */
 const TEAM = [
   {
-    name: "Co-Founder 1",
+    name: "Sean Li",
     role: "CEO & Product",
     emoji: "🧑‍💼",
     color: "from-amber-400 to-orange-500",
     quote: "Every pet deserves to be found, loved, and connected.",
   },
   {
-    name: "Co-Founder 2",
+    name: "Thomas Vermeersch",
     role: "CTO & Engineering",
     emoji: "👨‍💻",
     color: "from-blue-400 to-indigo-500",
     quote: "Technology should bring pets and people closer together.",
   },
   {
-    name: "Co-Founder 3",
+    name: "Emma De Vos",
     role: "Design & Community",
     emoji: "🎨",
     color: "from-emerald-400 to-teal-500",

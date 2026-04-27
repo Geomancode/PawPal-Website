@@ -215,6 +215,7 @@ export default function StorePage() {
   const [category, setCategory] = useState<Category>("all");
   const [search, setSearch] = useState("");
   const [cartOpen, setCartOpen] = useState(false);
+  const [toast, setToast] = useState<string | null>(null);
 
   useEffect(() => { setCart(loadCart()); }, []);
   useEffect(() => { saveCart(cart); }, [cart]);
@@ -227,6 +228,8 @@ export default function StorePage() {
       }
       return [...prev, { product, quantity: 1 }];
     });
+    setToast(`✓ ${product.name} added to cart`);
+    setTimeout(() => setToast(null), 2500);
   }, []);
 
   const updateQuantity = useCallback((id: string, qty: number) => {
@@ -386,6 +389,21 @@ export default function StorePage() {
           router.push("/store/checkout");
         }}
       />
+
+      {/* ===== ADD-TO-CART TOAST ===== */}
+      <AnimatePresence>
+        {toast && (
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 40 }}
+            className="fixed bottom-28 left-1/2 -translate-x-1/2 z-50 bg-gray-900 text-white px-6 py-3 rounded-full shadow-2xl text-sm font-medium flex items-center gap-2"
+          >
+            <span className="text-emerald-400 text-base">🛒</span>
+            {toast}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
