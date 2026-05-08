@@ -1,0 +1,16 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appID": "8NQHH2K35D.com.pawpal.neumann2026",
+        "paths": [
+          "/tag/*",
+          "/post/*",
+          "/user/*",
+          "/group/*"
+        ]
+      }
+    ]
+  }
+}

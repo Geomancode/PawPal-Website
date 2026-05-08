@@ -1,0 +1,10 @@
+[{
+  "relation": ["delegate_permission/common.handle_all_urls"],
+  "target": {
+    "namespace": "android_app",
+    "package_name": "com.pawpal.pawpal",
+    "sha256_cert_fingerprints": [
+      "62:82:5B:94:1C:0F:5F:FB:A1:7B:33:62:14:25:CC:05:F3:47:40:DE:A4:38:6D:06:AE:4E:DC:F6:19:D4:A4:4C"
+    ]
+  }
+}]
