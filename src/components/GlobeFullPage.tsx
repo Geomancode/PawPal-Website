@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 import maplibregl from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
 import WeatherTicker from "./WeatherTicker";
@@ -55,6 +55,32 @@ export default function MapGlobeComponent() {
   const questMarkersRef = useRef<maplibregl.Marker[]>([]);
   const placeMarkersRef = useRef<maplibregl.Marker[]>([]);
 
+  /* ── Map center state for WeatherTicker ── */
+  const [mapCenter, setMapCenter] = useState<{ lat: number; lng: number } | null>(null);
+  const [userLocation, setUserLocation] = useState<{ lat: number; lng: number } | null>(null);
+  const isDraggingRef = useRef(false);
+
+  /* ── Update map center on drag end (debounced via ticker) ── */
+  const updateMapCenter = useCallback(() => {
+    const map = mapRef.current;
+    if (!map) return;
+    const center = map.getCenter();
+    setMapCenter({ lat: center.lat, lng: center.lng });
+  }, []);
+
+  /* ── Recenter map to user location ── */
+  const handleRecenterRequest = useCallback(() => {
+    const map = mapRef.current;
+    if (!map || !userLocation) return;
+    map.flyTo({
+      center: [userLocation.lng, userLocation.lat],
+      zoom: 11,
+      duration: 1500,
+      essential: true,
+    });
+    setMapCenter(null); // Reset to user location mode
+  }, [userLocation]);
+
   /* ── Load data from Supabase ── */
   useEffect(() => {
     fetchQuests().then(setQuests);
@@ -64,6 +90,9 @@ export default function MapGlobeComponent() {
   /* ── Initialize MapLibre ── */
   useEffect(() => {
     if (!mapContainer.current || mapRef.current) return;
+
+    // Get user location for initial center
+    const defaultCenter: [number, number] = [3.72, 51.05]; // Ghent
 
     const map = new maplibregl.Map({
       container: mapContainer.current,
@@ -81,7 +110,7 @@ export default function MapGlobeComponent() {
         },
         layers: [{ id: "carto-tiles", type: "raster", source: "carto", minzoom: 0, maxzoom: 20 }],
       },
-      center: [3.72, 51.05],
+      center: defaultCenter,
       zoom: 11,
       pitch: 30,
       maxPitch: 85,
@@ -89,6 +118,23 @@ export default function MapGlobeComponent() {
     });
 
     mapRef.current = map;
+
+    // Try to center on user location
+    if ("geolocation" in navigator) {
+      navigator.geolocation.getCurrentPosition(
+        (pos) => {
+          const coords = { lat: pos.coords.latitude, lng: pos.coords.longitude };
+          setUserLocation(coords);
+          map.flyTo({ center: [coords.lng, coords.lat], zoom: 11, duration: 1000 });
+        },
+        () => {
+          setUserLocation({ lat: defaultCenter[1], lng: defaultCenter[0] });
+        },
+        { timeout: 8000 }
+      );
+    } else {
+      setUserLocation({ lat: defaultCenter[1], lng: defaultCenter[0] });
+    }
 
     map.scrollZoom.disable();
     const container = mapContainer.current;
@@ -119,10 +165,33 @@ export default function MapGlobeComponent() {
       let lastCenter: { lng: number; lat: number } | null = null;
       let lastDragTime = 0;
 
-      map.on("dragstart", () => { isInteracting = true; velocityLng = 0; velocityLat = 0; lastCenter = map.getCenter(); lastDragTime = performance.now(); });
-      map.on("drag", () => { const now = performance.now(); const dt = now - lastDragTime; if (dt > 0 && lastCenter) { const c = map.getCenter(); velocityLng = ((c.lng - lastCenter.lng) / dt) * 16; velocityLat = ((c.lat - lastCenter.lat) / dt) * 16; lastCenter = c; lastDragTime = now; } });
+      map.on("dragstart", () => {
+        isInteracting = true;
+        isDraggingRef.current = true;
+        velocityLng = 0;
+        velocityLat = 0;
+        lastCenter = map.getCenter();
+        lastDragTime = performance.now();
+      });
+
+      map.on("drag", () => {
+        const now = performance.now();
+        const dt = now - lastDragTime;
+        if (dt > 0 && lastCenter) {
+          const c = map.getCenter();
+          velocityLng = ((c.lng - lastCenter.lng) / dt) * 16;
+          velocityLat = ((c.lat - lastCenter.lat) / dt) * 16;
+          lastCenter = c;
+          lastDragTime = now;
+        }
+      });
+
       map.on("dragend", () => {
         isInteracting = false;
+        isDraggingRef.current = false;
+        // Update weather for new center position
+        updateMapCenter();
+
         const friction = 0.94;
         function decelerate() {
           if (isInteracting) return;
@@ -142,6 +211,13 @@ export default function MapGlobeComponent() {
       map.on("touchstart", () => { isInteracting = true; });
       map.on("touchend", () => { isInteracting = false; });
 
+      // Also update weather after zoom (map center might shift slightly)
+      map.on("zoomend", () => {
+        if (!isDraggingRef.current) {
+          updateMapCenter();
+        }
+      });
+
       function spinGlobe() {
         if (!isInteracting && Math.abs(velocityLng) < 0.001 && map.getZoom() < 6) {
           const center = map.getCenter();
@@ -156,7 +232,7 @@ export default function MapGlobeComponent() {
     map.addControl(new maplibregl.NavigationControl(), "bottom-right");
 
     return () => { container.removeEventListener("wheel", onWheel); map.remove(); mapRef.current = null; };
-  }, []);
+  }, [updateMapCenter]);
 
   /* ── Render Quest markers ── */
   useEffect(() => {
@@ -199,7 +275,10 @@ export default function MapGlobeComponent() {
 
   return (
     <div className="relative w-full h-screen overflow-hidden">
-      <WeatherTicker />
+      <WeatherTicker
+        mapCenter={mapCenter}
+        onRecenterRequest={handleRecenterRequest}
+      />
       <div ref={mapContainer} id="globe-map" className="absolute inset-0 w-full h-full" />
 
       {/* Layer Toggle */}
