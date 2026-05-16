@@ -12,8 +12,8 @@ const FOOTER_NAV = {
   ],
   Community: [
     { label: "About Us", href: "/about" },
-    { label: "Missions", href: "/globe" },
-    { label: "Guilds", href: "#" },
+    { label: "NFC Tags", href: "/store" },
+    { label: "Local Network", href: "#" },
   ],
   Support: [
     { label: "Help Center", href: "#" },
@@ -41,7 +41,7 @@ export default function Footer() {
               <PawPalLogo iconSize={28} fontSize={20} variant="dark" />
             </div>
             <p className="text-sm leading-relaxed max-w-xs mb-6">
-              The smart map for pet lovers. Discover missions, adopt animals, and connect with a global community that cares.
+              Enhancing the bond between you and your pet — with gamified walks, NFC safety tags, and a trusted local community.
             </p>
             <div className="flex gap-3">
               {SOCIALS.map((s) => (

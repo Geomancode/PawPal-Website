@@ -24,7 +24,7 @@ export default function Home() {
               <FadeIn delay={0.1}>
                 <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass w-fit">
                   <span className="flex w-2 h-2 rounded-full bg-[#F59E0B] animate-pulse" />
-                  <span className="text-sm font-medium text-[#F59E0B]">Next Gen Pet Community</span>
+                  <span className="text-sm font-medium text-[#F59E0B]">Smart Pet Life Platform</span>
                 </div>
               </FadeIn>
 
@@ -34,7 +34,7 @@ export default function Home() {
               {/* Description */}
               <FadeIn delay={0.9}>
                 <p className="text-lg lg:text-xl text-[#64748B] max-w-lg leading-relaxed">
-                  Discover real-time pet missions, adopt animals globally, or simply walk your dog with a community that cares.
+                  PawPal enhances the bond between you and your pet — with gamified walks, fog-of-war maps, NFC safety tags, an AI assistant, and a trusted local community — all built for pet lovers.
                 </p>
               </FadeIn>
 
@@ -57,10 +57,10 @@ export default function Home() {
       <section className="py-14 bg-white/60">
         <div className="max-w-5xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
           {[
-            { value: "10K+", label: "Pet Lovers" },
-            { value: "50+", label: "Countries" },
-            { value: "5K+", label: "Missions Completed" },
-            { value: "2K+", label: "Pets Adopted" },
+            { value: "58%", label: "Belgian Pet Households" },
+            { value: "€122", label: "Monthly Pet Spending" },
+            { value: "2M+", label: "Dogs in Belgium" },
+            { value: "5", label: "Languages Supported" },
           ].map((s, i) => (
             <AnimatedCounter key={i} value={s.value} label={s.label} delay={i * 0.1} />
           ))}
@@ -71,12 +71,12 @@ export default function Home() {
       <section id="features" className="py-20 max-w-6xl mx-auto px-4">
         <FadeInView>
           <h2 className="text-3xl md:text-4xl font-bold text-center text-[#2D3748] mb-4 font-brand">
-            Why PawPal?
+            Two Modes, One Platform
           </h2>
         </FadeInView>
         <FadeInView delay={0.1}>
           <p className="text-center text-[#64748B] max-w-xl mx-auto mb-12">
-            Everything you need to keep your furry (or scaly) friends happy and connected.
+            Solo Mode for your daily walks and pet management. Community Mode for local connections and mutual help.
           </p>
         </FadeInView>
 
@@ -102,12 +102,12 @@ export default function Home() {
         <div className="max-w-3xl mx-auto text-center px-4 relative z-10">
           <FadeInView>
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 font-brand">
-              Ready to Join the Pack?
+              🇧🇪 Born in Ghent, Built for Pet Lovers
             </h2>
           </FadeInView>
           <FadeInView delay={0.1}>
             <p className="text-white/60 mb-10 text-lg">
-              Download PawPal today and start connecting with pet lovers worldwide.
+              Built by a Ghent University team. GDPR-first design, EU-hosted data, 5 languages ready. Download PawPal and start your journey.
             </p>
           </FadeInView>
           <BottomCTA />

@@ -25,9 +25,9 @@ const wordVariants = {
 };
 
 export function AnimatedHeadline() {
-  const line1 = "Every Pet Deserves a";
+  const line1 = "Every Moment with Your Pet,";
   const line1Words = line1.split(" ");
-  const line2 = "Connected Life";
+  const line2 = "Made Smarter";
   const line2Words = line2.split(" ");
   let wordIndex = 0;
 
@@ -256,9 +256,9 @@ export function HeroCTA() {
 /* ── Hero trust badges — staggered entry ── */
 export function HeroBadges() {
   const badges = [
-    { icon: MapPin, color: "text-[#F59E0B]", label: "Live Missions" },
-    { icon: Search, color: "text-[#10B981]", label: "AI Pet ID" },
-    { icon: ShieldCheck, color: "text-[#4A90D9]", label: "Safe Network" },
+    { icon: MapPin, color: "text-[#F59E0B]", label: "Gamified Walks" },
+    { icon: Search, color: "text-[#10B981]", label: "AI Pet Assistant" },
+    { icon: ShieldCheck, color: "text-[#4A90D9]", label: "NFC Safety Tags" },
   ];
 
   return (
@@ -343,67 +343,61 @@ export function BottomCTA() {
 export function BentoFeatureGrid() {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 auto-rows-[minmax(180px,auto)]">
-      {/* Card 1: Global Map — Large spanning 2 rows */}
+      {/* Card 1: Fog-of-War Map — the #1 differentiator, spanning 2 rows */}
       <SpotlightCard className="glass rounded-2xl border border-gray-100 hover:border-[#4A90D9]/30 transition-all duration-300 hover:shadow-xl group cursor-default bento-glow lg:row-span-2 p-8 flex flex-col justify-between">
         <div>
+          <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#4A90D9]/8 text-[10px] font-bold text-[#4A90D9] uppercase tracking-wider mb-4">Solo Mode</div>
           <div className="w-14 h-14 rounded-2xl flex items-center justify-center bg-[#4A90D9]/10 text-[#4A90D9] mb-5 group-hover:scale-110 transition-transform duration-300">
             <GlobeIcon className="w-7 h-7" />
           </div>
-          <h3 className="text-xl font-bold text-[#2D3748] mb-3">Global Map</h3>
+          <h3 className="text-xl font-bold text-[#2D3748] mb-3">Fog-of-War Map</h3>
           <p className="text-[#64748B] text-sm leading-relaxed">
-            See live missions around the world on our interactive 3D globe. Track pet activities, find nearby shelters, and discover rescue events in real-time.
+            Your city is hidden under fog. Every walk reveals new hexagonal tiles on the map. Explore parks, streets, and neighborhoods to uncover your world — one step at a time.
           </p>
         </div>
-        {/* Mini globe visual */}
+        {/* Hex grid visual */}
         <div className="mt-6 relative h-32 rounded-xl bg-gradient-to-br from-[#4A90D9]/5 to-[#10B981]/5 overflow-hidden flex items-center justify-center">
-          <div className="w-20 h-20 rounded-full bg-gradient-to-br from-[#4A90D9]/20 to-[#10B981]/10 blob-animate-2 flex items-center justify-center">
-            <GlobeIcon className="w-10 h-10 text-[#4A90D9]/40" />
+          <div className="grid grid-cols-5 gap-1">
+            {[...Array(15)].map((_, i) => (
+              <div
+                key={i}
+                className={`w-5 h-5 rounded-sm transition-all duration-500 ${
+                  i % 3 === 0 ? "bg-[#F59E0B]/30" : i % 4 === 0 ? "bg-[#4A90D9]/20" : "bg-[#2D3748]/8"
+                }`}
+                style={{ animationDelay: `${i * 0.15}s` }}
+              />
+            ))}
           </div>
-          {/* Floating dots */}
-          {[...Array(5)].map((_, i) => (
-            <div
-              key={i}
-              className="absolute w-2 h-2 rounded-full bg-[#F59E0B]/60 blob-animate-1"
-              style={{
-                top: `${20 + i * 15}%`,
-                left: `${15 + i * 18}%`,
-                animationDelay: `${i * 0.7}s`,
-              }}
-            />
-          ))}
+          <div className="absolute bottom-2 right-3 text-[10px] font-bold text-[#4A90D9]/60">H3 Hex Grid</div>
         </div>
       </SpotlightCard>
 
-      {/* Card 2: Adopt & Rescue */}
-      <SpotlightCard className="glass rounded-2xl border border-gray-100 hover:border-rose-200 transition-all duration-300 hover:shadow-xl group cursor-default bento-glow p-7 flex flex-col justify-between">
+      {/* Card 2: NFC Safety Tags — cold-start product */}
+      <SpotlightCard className="glass rounded-2xl border border-gray-100 hover:border-[#F59E0B]/30 transition-all duration-300 hover:shadow-xl group cursor-default bento-glow p-7 flex flex-col justify-between">
         <div>
-          <div className="w-12 h-12 rounded-xl flex items-center justify-center bg-rose-50 text-rose-500 mb-4 group-hover:scale-110 transition-transform duration-300">
-            <Heart className="w-6 h-6" />
+          <div className="w-12 h-12 rounded-xl flex items-center justify-center bg-[#F59E0B]/10 text-[#F59E0B] mb-4 group-hover:scale-110 transition-transform duration-300">
+            <ShieldCheck className="w-6 h-6" />
           </div>
-          <h3 className="text-lg font-bold text-[#2D3748] mb-2">Adopt & Rescue</h3>
+          <h3 className="text-lg font-bold text-[#2D3748] mb-2">NFC Safety Tags</h3>
           <p className="text-[#64748B] text-sm leading-relaxed">
-            Find pets near you who need a loving home. Every click saves a life.
+            €19 smart tags replace static dog tags. Anyone can scan to see your pet&apos;s profile — no app needed. Privacy-first: owner info hidden until lost mode.
           </p>
         </div>
-        {/* Mini heart badges */}
-        <div className="flex gap-2 mt-4">
-          {["🐕", "🐈", "🐇"].map((e, i) => (
-            <div key={i} className="w-10 h-10 rounded-full bg-rose-50 flex items-center justify-center text-lg hover:scale-110 transition-transform">
-              {e}
-            </div>
-          ))}
+        <div className="flex items-center gap-2 mt-4 px-3 py-2 rounded-lg bg-[#F59E0B]/5 text-[#F59E0B] text-xs font-medium">
+          ⚡ Scan → pawpal.be/tag — zero-download rescue
         </div>
       </SpotlightCard>
 
-      {/* Card 3: Community */}
+      {/* Card 3: Local Community */}
       <SpotlightCard className="glass rounded-2xl border border-gray-100 hover:border-[#10B981]/30 transition-all duration-300 hover:shadow-xl group cursor-default bento-glow p-7 flex flex-col justify-between">
         <div>
+          <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#10B981]/8 text-[10px] font-bold text-[#10B981] uppercase tracking-wider mb-4">Community Mode</div>
           <div className="w-12 h-12 rounded-xl flex items-center justify-center bg-[#10B981]/10 text-[#10B981] mb-4 group-hover:scale-110 transition-transform duration-300">
             <Users className="w-6 h-6" />
           </div>
-          <h3 className="text-lg font-bold text-[#2D3748] mb-2">Community</h3>
+          <h3 className="text-lg font-bold text-[#2D3748] mb-2">Local Pet Network</h3>
           <p className="text-[#64748B] text-sm leading-relaxed">
-            Connect with local pet owners, walkers, and sitters in your area.
+            Find nearby dog walkers, request help, share lost-pet alerts, and build trust through verified interactions in your neighborhood.
           </p>
         </div>
         {/* User stack */}
@@ -417,31 +411,26 @@ export function BentoFeatureGrid() {
               {String.fromCharCode(65 + i)}
             </div>
           ))}
-          <div className="w-9 h-9 rounded-full border-2 border-white bg-gray-100 flex items-center justify-center text-[#64748B] text-xs font-bold" style={{ zIndex: 0 }}>
-            +2K
-          </div>
         </div>
       </SpotlightCard>
 
-      {/* Card 4: AI Pet ID — wide spanning 2 cols */}
+      {/* Card 4: PawPoints + AI — wide spanning 2 cols */}
       <SpotlightCard className="glass rounded-2xl border border-gray-100 hover:border-[#F59E0B]/30 transition-all duration-300 hover:shadow-xl group cursor-default bento-glow lg:col-span-2 p-7 flex flex-col md:flex-row gap-6 items-center">
         <div className="flex-1">
           <div className="w-12 h-12 rounded-xl flex items-center justify-center bg-[#F59E0B]/10 text-[#F59E0B] mb-4 group-hover:scale-110 transition-transform duration-300">
             <Sparkles className="w-6 h-6" />
           </div>
-          <h3 className="text-lg font-bold text-[#2D3748] mb-2">AI Pet ID</h3>
+          <h3 className="text-lg font-bold text-[#2D3748] mb-2">PawPoints & AI Assistant</h3>
           <p className="text-[#64748B] text-sm leading-relaxed">
-            Point your camera at any animal and let our AI identify breed, age, health status and more. Powered by Google Gemini.
+            Earn points for every walk, exploration, and community contribution. Redeem for real products and Premium perks. Plus, AI-powered breed ID, behavior tips, and care advice — powered by Gemini.
           </p>
         </div>
-        {/* AI scan visual */}
-        <div className="w-full md:w-48 h-28 rounded-xl bg-gradient-to-br from-[#F59E0B]/5 to-[#4A90D9]/5 flex items-center justify-center relative overflow-hidden">
-          <div className="text-4xl">🐕</div>
-          {/* Scanning line */}
-          <div className="absolute inset-x-0 h-px bg-gradient-to-r from-transparent via-[#F59E0B]/60 to-transparent blob-animate-1" style={{ top: "50%" }} />
-          <div className="absolute top-2 right-2 px-2 py-0.5 bg-[#10B981]/15 text-[#10B981] text-[10px] font-bold rounded-full">
-            98% match
-          </div>
+        {/* Points visual */}
+        <div className="w-full md:w-48 h-28 rounded-xl bg-gradient-to-br from-[#F59E0B]/5 to-[#4A90D9]/5 flex flex-col items-center justify-center relative overflow-hidden gap-1">
+          <div className="text-2xl">🏆</div>
+          <div className="text-lg font-bold text-[#F59E0B]">+150 pts</div>
+          <div className="text-[10px] text-[#64748B]">Daily walk completed!</div>
+          <div className="absolute inset-x-0 h-px bg-gradient-to-r from-transparent via-[#F59E0B]/40 to-transparent blob-animate-1" style={{ bottom: "20%" }} />
         </div>
       </SpotlightCard>
     </div>
@@ -453,14 +442,14 @@ export function BentoFeatureGrid() {
    ═══════════════════════════════════════════════════════════════ */
 
 const TRUST_ITEMS = [
-  { emoji: "🌍", label: "Global Coverage" },
-  { emoji: "🔒", label: "End-to-End Encrypted" },
+  { emoji: "🇧🇪", label: "Born in Ghent, Belgium" },
+  { emoji: "🔒", label: "GDPR-First Design" },
   { emoji: "🤖", label: "Powered by Gemini AI" },
   { emoji: "📡", label: "Real-Time GPS Tracking" },
-  { emoji: "🏥", label: "Vet Network Partner" },
-  { emoji: "🐾", label: "10,000+ Pet Lovers" },
+  { emoji: "🗺️", label: "Fog-of-War Map Engine" },
+  { emoji: "🐾", label: "PawPoints Rewards" },
   { emoji: "⚡", label: "NFC Smart Tags" },
-  { emoji: "🏆", label: "Award-Winning Design" },
+  { emoji: "🌍", label: "5 Languages Supported" },
 ];
 
 export function TrustMarquee() {
