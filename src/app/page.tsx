@@ -25,7 +25,8 @@ export default function Home() {
               </div>
 
               <h1 className="text-5xl lg:text-7xl font-bold tracking-tight leading-tight text-[#2D3748] font-brand">
-                Every Pet Deserves a<br />
+                Every Pet Deserves a{" "}
+                <br className="hidden lg:block" />
                 <span className="text-gradient">Connected Life</span>
               </h1>
 
