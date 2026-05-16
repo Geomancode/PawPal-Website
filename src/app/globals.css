@@ -5,23 +5,26 @@
   --font-mono: ui-monospace, "Cascadia Code", "Fira Code", monospace;
   --font-brand: "Baloo 2", "Comfortaa", "Nunito", system-ui, sans-serif;
 
-  /* ── Brand Color Palette (from brand_system.html) ── */
+  /* ── Refined Color Palette (Pawlace-inspired warm tones) ── */
   --color-brand-blue: #4A90D9;       /* Trust Blue — Logo route · Map · Navigation · Links */
   --color-brand-blue-dark: #3B7BD4;  /* Deeper Blue — Gradients */
-  --color-brand-amber: #F59E0B;      /* Amber — Primary CTA · Waypoint · Highlights */
+  --color-brand-amber: #F5A623;      /* Warm Amber — Primary CTA (slightly warmer than #F59E0B) */
   --color-brand-green: #10B981;      /* Emerald — Success · Online · Verified */
-  --color-brand-orange: #F97316;     /* Orange — Accent · Notifications · Badges */
-  --color-brand-cream: #FFFDF9;      /* Warm Cream — Page Background */
+  --color-brand-orange: #E8824C;     /* Warm Terracotta — Accent · Warm & approachable */
+  --color-brand-cream: #FFF8F0;      /* Warm Cream — Page Background (warmer) */
   --color-brand-surface: #FFFFFF;    /* White — Card Surface · Inputs */
-  --color-brand-slate: #2D3748;      /* Dark Slate — Body Text · Headings */
-  --color-brand-muted: #64748B;      /* Muted — Secondary text */
+  --color-brand-slate: #1E293B;      /* Deeper Slate — Body Text · Headings (higher contrast) */
+  --color-brand-muted: #6B7B8D;      /* Warm Muted — Secondary text */
+  --color-brand-sand: #F5E6D3;       /* Sand — Soft accent backgrounds */
+  --color-brand-blush: #FFE8D6;      /* Blush — Warm highlight bg */
+  --color-brand-sky: #E0F2FE;        /* Sky — Cool accent backgrounds */
 }
 
 :root {
   --background: var(--color-brand-cream);
   --foreground: var(--color-brand-slate);
   --primary: var(--color-brand-amber);
-  --primary-glow: rgba(245, 158, 11, 0.4);
+  --primary-glow: rgba(245, 166, 35, 0.35);
 }
 
 body {
@@ -31,21 +34,21 @@ body {
   overflow-x: hidden;
 }
 
-/* Glassmorphism 亮色版本 */
+/* ── Refined Glassmorphism — warmer tint ── */
 .glass {
-  background: rgba(255, 255, 255, 0.6);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(0, 0, 0, 0.05);
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  background: rgba(255, 252, 245, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(245, 166, 35, 0.08);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.03);
 }
 
-/* Brand gradient text — Amber to Blue (warm → trust) */
+/* Brand gradient text — Amber to Orange (warm family) */
 .text-gradient {
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  background-image: linear-gradient(135deg, var(--color-brand-amber), var(--color-brand-blue));
+  background-image: linear-gradient(135deg, var(--color-brand-amber), var(--color-brand-orange));
 }
 
 /* Brand font utility */
@@ -100,7 +103,7 @@ body {
   background-image: linear-gradient(
     135deg,
     var(--color-brand-amber),
-    var(--color-brand-blue),
+    var(--color-brand-orange),
     var(--color-brand-amber)
   );
   background-size: 200% 200%;
@@ -114,7 +117,7 @@ body {
   inset: 0;
   z-index: 9999;
   pointer-events: none;
-  opacity: 0.018;
+  opacity: 0.015;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   background-repeat: repeat;
   background-size: 256px 256px;
@@ -126,7 +129,7 @@ body {
   top: 0;
   left: 0;
   height: 3px;
-  background: linear-gradient(90deg, var(--color-brand-amber), var(--color-brand-blue));
+  background: linear-gradient(90deg, var(--color-brand-amber), var(--color-brand-orange));
   z-index: 100;
   transform-origin: left;
   border-radius: 0 2px 2px 0;
@@ -157,7 +160,7 @@ body {
   inset: -1px;
   border-radius: 1.25rem;
   padding: 1px;
-  background: linear-gradient(135deg, transparent, rgba(74, 144, 217, 0.15), transparent);
+  background: linear-gradient(135deg, transparent, rgba(245, 166, 35, 0.15), transparent);
   mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   mask-composite: exclude;
   -webkit-mask-composite: xor;
@@ -175,7 +178,7 @@ body {
   width: 260px;
   height: 520px;
   border-radius: 40px;
-  border: 6px solid #2D3748;
+  border: 6px solid #1E293B;
   background: #1a1a2e;
   box-shadow:
     0 20px 60px rgba(0,0,0,0.15),
@@ -191,7 +194,7 @@ body {
   transform: translateX(-50%);
   width: 100px;
   height: 24px;
-  background: #2D3748;
+  background: #1E293B;
   border-radius: 0 0 16px 16px;
   z-index: 10;
 }
@@ -211,3 +214,21 @@ body {
   50% { transform: translateY(-60px) translateX(-15px); }
 }
 
+/* ═══════ Pet Doodle Decorations ═══════ */
+@keyframes doodle-float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-12px) rotate(5deg); }
+}
+
+@keyframes doodle-float-alt {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-8px) rotate(-4deg); }
+}
+
+.doodle-float {
+  animation: doodle-float 6s ease-in-out infinite;
+}
+
+.doodle-float-alt {
+  animation: doodle-float-alt 8s ease-in-out infinite;
+}

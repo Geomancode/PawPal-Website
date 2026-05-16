@@ -84,7 +84,7 @@ export default function Navbar() {
                     className={`relative px-3 py-2 rounded-md transition-colors font-medium ${
                       isActive
                         ? "text-[#4A90D9] font-semibold"
-                        : "text-[#64748B] hover:text-[#4A90D9]"
+                        : "text-[#6B7B8D] hover:text-[#4A90D9]"
                     }`}
                   >
                     {link.label}
@@ -113,7 +113,7 @@ export default function Navbar() {
                   onClick={() => setShowDropdown(!showDropdown)}
                   className="flex items-center gap-2 px-4 py-2 rounded-full bg-amber-50 hover:bg-amber-100 border border-amber-200 transition-all"
                 >
-                  <div className="w-7 h-7 rounded-full bg-[#F59E0B] flex items-center justify-center text-white text-xs font-bold">
+                  <div className="w-7 h-7 rounded-full bg-[#F5A623] flex items-center justify-center text-white text-xs font-bold">
                     {displayName.charAt(0).toUpperCase()}
                   </div>
                   <span className="text-sm font-semibold text-amber-700 max-w-[100px] truncate">{displayName}</span>
@@ -129,13 +129,13 @@ export default function Navbar() {
                       className="absolute right-0 mt-2 w-56 bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden py-1"
                     >
                       <div className="px-4 py-3 border-b border-gray-100">
-                        <p className="text-sm font-semibold text-[#2D3748] truncate">{displayName}</p>
-                        <p className="text-xs text-[#64748B] truncate">{user.email}</p>
+                        <p className="text-sm font-semibold text-[#1E293B] truncate">{displayName}</p>
+                        <p className="text-xs text-[#6B7B8D] truncate">{user.email}</p>
                       </div>
                       <Link
                         href="/profile"
                         onClick={() => setShowDropdown(false)}
-                        className="w-full flex items-center gap-2 px-4 py-3 text-sm text-[#2D3748] hover:bg-amber-50 transition-colors"
+                        className="w-full flex items-center gap-2 px-4 py-3 text-sm text-[#1E293B] hover:bg-amber-50 transition-colors"
                       >
                         <UserCircle className="w-4 h-4" />
                         My Profile
@@ -155,8 +155,8 @@ export default function Navbar() {
               /* Not logged in: Sign In button — Amber CTA */
               <Link href="/auth" className={`px-6 py-2 rounded-full font-bold transition-all border inline-block ${
                 pathname === "/auth"
-                  ? "bg-[#F59E0B] text-white border-[#F59E0B]"
-                  : "bg-amber-50 hover:bg-amber-100 text-amber-700 border-amber-200 hover:border-[#F59E0B] hover:shadow-[0_0_15px_rgba(245,158,11,0.2)]"
+                  ? "bg-[#F5A623] text-white border-[#F5A623]"
+                  : "bg-amber-50 hover:bg-amber-100 text-amber-700 border-amber-200 hover:border-[#F5A623] hover:shadow-[0_0_15px_rgba(245,158,11,0.2)]"
               }`}>
                 Sign In
               </Link>
@@ -164,7 +164,7 @@ export default function Navbar() {
           </div>
 
           <div className="md:hidden">
-            <button onClick={() => setIsOpen(!isOpen)} className="text-[#64748B] hover:text-[#4A90D9]">
+            <button onClick={() => setIsOpen(!isOpen)} className="text-[#6B7B8D] hover:text-[#4A90D9]">
               {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
           </div>
@@ -188,7 +188,7 @@ export default function Navbar() {
                     key={link.href}
                     href={link.href}
                     className={`block px-3 py-2 rounded-md text-base font-medium ${
-                      isActive ? "text-[#4A90D9] font-semibold" : "text-[#64748B] hover:text-[#4A90D9]"
+                      isActive ? "text-[#4A90D9] font-semibold" : "text-[#6B7B8D] hover:text-[#4A90D9]"
                     }`}
                     onClick={() => setIsOpen(false)}
                   >
@@ -198,8 +198,8 @@ export default function Navbar() {
               })}
               {user ? (
                 <>
-                  <div className="flex items-center gap-2 px-3 py-2 text-sm text-[#2D3748] border-t border-gray-100 mt-2 pt-3">
-                    <div className="w-7 h-7 rounded-full bg-[#F59E0B] flex items-center justify-center text-white text-xs font-bold">
+                  <div className="flex items-center gap-2 px-3 py-2 text-sm text-[#1E293B] border-t border-gray-100 mt-2 pt-3">
+                    <div className="w-7 h-7 rounded-full bg-[#F5A623] flex items-center justify-center text-white text-xs font-bold">
                       {displayName.charAt(0).toUpperCase()}
                     </div>
                     <span className="font-semibold truncate">{displayName}</span>
@@ -207,7 +207,7 @@ export default function Navbar() {
                   <Link
                     href="/profile"
                     onClick={() => setIsOpen(false)}
-                    className="flex items-center gap-2 w-full px-3 py-2 text-sm text-[#2D3748] hover:bg-amber-50 rounded-md"
+                    className="flex items-center gap-2 w-full px-3 py-2 text-sm text-[#1E293B] hover:bg-amber-50 rounded-md"
                   >
                     <UserCircle className="w-4 h-4" />
                     My Profile
@@ -221,7 +221,7 @@ export default function Navbar() {
                   </button>
                 </>
               ) : (
-                <Link href="/auth" className="block px-3 py-2 rounded-md text-base font-medium text-[#64748B] hover:text-[#4A90D9]" onClick={() => setIsOpen(false)}>
+                <Link href="/auth" className="block px-3 py-2 rounded-md text-base font-medium text-[#6B7B8D] hover:text-[#4A90D9]" onClick={() => setIsOpen(false)}>
                   Sign In
                 </Link>
               )}

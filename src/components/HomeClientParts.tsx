@@ -32,7 +32,7 @@ export function AnimatedHeadline() {
   let wordIndex = 0;
 
   return (
-    <h1 className="text-5xl lg:text-7xl font-bold tracking-tight leading-tight text-[#2D3748] font-brand">
+    <h1 className="text-5xl lg:text-7xl font-bold tracking-tight leading-tight text-[#1E293B] font-brand">
       {line1Words.map((word, i) => (
         <motion.span
           key={`l1-${i}`}
@@ -69,16 +69,16 @@ export function AnimatedHeadline() {
    PHASE 1 — Effect #2: Animated Counter (count up on scroll)
    ═══════════════════════════════════════════════════════════════ */
 
-function parseStatValue(value: string): { num: number; suffix: string } {
-  const match = value.match(/^([\d.]+)(.*)$/);
-  if (match) return { num: parseFloat(match[1]), suffix: match[2] };
-  return { num: 0, suffix: value };
+function parseStatValue(value: string): { prefix: string; num: number; suffix: string } {
+  const match = value.match(/^([^\d]*)([\d.]+)(.*)$/);
+  if (match) return { prefix: match[1], num: parseFloat(match[2]), suffix: match[3] };
+  return { prefix: "", num: 0, suffix: value };
 }
 
 export function AnimatedCounter({ value, label, delay = 0 }: { value: string; label: string; delay?: number }) {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-50px" });
-  const { num, suffix } = parseStatValue(value);
+  const { prefix, num, suffix } = parseStatValue(value);
   const [displayNum, setDisplayNum] = useState(0);
 
   useEffect(() => {
@@ -107,12 +107,12 @@ export function AnimatedCounter({ value, label, delay = 0 }: { value: string; la
     >
       <div className="text-3xl md:text-4xl font-extrabold text-gradient-animated font-brand tabular-nums">
         {isInView ? (
-          <>{num % 1 === 0 ? displayNum : displayNum.toFixed(1)}{suffix}</>
+          <>{prefix}{num % 1 === 0 ? displayNum : displayNum.toFixed(1)}{suffix}</>
         ) : (
-          <>0{suffix}</>
+          <>{prefix}0{suffix}</>
         )}
       </div>
-      <div className="text-sm text-[#64748B] mt-1 font-medium">{label}</div>
+      <div className="text-sm text-[#6B7B8D] mt-1 font-medium">{label}</div>
     </motion.div>
   );
 }
@@ -182,7 +182,7 @@ export function HeroBlobs() {
   return (
     <div className="absolute top-0 left-0 w-full h-full overflow-hidden -z-10">
       {/* Amber blob — top left */}
-      <div className="absolute top-[-8%] left-[-8%] w-[40%] h-[40%] rounded-full bg-[#F59E0B]/15 blur-[120px] blob-animate-1" />
+      <div className="absolute top-[-8%] left-[-8%] w-[40%] h-[40%] rounded-full bg-[#F5A623]/15 blur-[120px] blob-animate-1" />
       {/* Blue blob — bottom right */}
       <div className="absolute bottom-[-8%] right-[-8%] w-[35%] h-[35%] rounded-full bg-[#4A90D9]/12 blur-[120px] blob-animate-2" />
       {/* Emerald blob — center (very subtle) */}
@@ -236,7 +236,7 @@ export function HeroCTA() {
       <motion.button
         whileHover={{ scale: 1.03, y: -2 }}
         whileTap={{ scale: 0.98 }}
-        className="flex items-center justify-center gap-2 bg-[#F59E0B] hover:bg-[#E8930A] text-white px-8 py-4 rounded-full font-bold text-lg transition-colors shadow-[0_4px_20px_rgba(245,158,11,0.35)] hover:shadow-[0_8px_30px_rgba(245,158,11,0.5)]"
+        className="flex items-center justify-center gap-2 bg-[#F5A623] hover:bg-[#E8930A] text-white px-8 py-4 rounded-full font-bold text-lg transition-colors shadow-[0_4px_20px_rgba(245,158,11,0.35)] hover:shadow-[0_8px_30px_rgba(245,158,11,0.5)]"
       >
         Download App
         <ArrowRight className="w-5 h-5" />
@@ -256,7 +256,7 @@ export function HeroCTA() {
 /* ── Hero trust badges — staggered entry ── */
 export function HeroBadges() {
   const badges = [
-    { icon: MapPin, color: "text-[#F59E0B]", label: "Gamified Walks" },
+    { icon: MapPin, color: "text-[#F5A623]", label: "Gamified Walks" },
     { icon: Search, color: "text-[#10B981]", label: "AI Pet Assistant" },
     { icon: ShieldCheck, color: "text-[#4A90D9]", label: "NFC Safety Tags" },
   ];
@@ -271,7 +271,7 @@ export function HeroBadges() {
       {badges.map((t, i) => (
         <motion.div
           key={i}
-          className="flex items-center gap-2 text-[#64748B]"
+          className="flex items-center gap-2 text-[#6B7B8D]"
           initial={{ opacity: 0, x: -10 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 1.4 + i * 0.12 }}
@@ -302,7 +302,7 @@ export function GlobeSection() {
         animate={{ opacity: [0, 1, 1, 0.6, 1] }}
         transition={{ delay: 1.5, duration: 3, repeat: Infinity, repeatDelay: 4 }}
       >
-        Drag to spin · Click a label to explore
+        Drag to spin · Click to explore
       </motion.div>
     </motion.div>
   );
@@ -317,7 +317,7 @@ export function BottomCTA() {
         <motion.button
           whileHover={{ scale: 1.03 }}
           whileTap={{ scale: 0.98 }}
-          className="bg-[#F59E0B] hover:bg-[#E8930A] text-white px-8 py-4 rounded-full font-bold text-lg transition-colors shadow-[0_4px_20px_rgba(245,158,11,0.35)]"
+          className="bg-[#F5A623] hover:bg-[#E8930A] text-white px-8 py-4 rounded-full font-bold text-lg transition-colors shadow-[0_4px_20px_rgba(245,158,11,0.35)]"
         >
           Get PawPal Free
         </motion.button>
@@ -350,8 +350,8 @@ export function BentoFeatureGrid() {
           <div className="w-14 h-14 rounded-2xl flex items-center justify-center bg-[#4A90D9]/10 text-[#4A90D9] mb-5 group-hover:scale-110 transition-transform duration-300">
             <GlobeIcon className="w-7 h-7" />
           </div>
-          <h3 className="text-xl font-bold text-[#2D3748] mb-3">Fog-of-War Map</h3>
-          <p className="text-[#64748B] text-sm leading-relaxed">
+          <h3 className="text-xl font-bold text-[#1E293B] mb-3">Fog-of-War Map</h3>
+          <p className="text-[#6B7B8D] text-sm leading-relaxed">
             Your city is hidden under fog. Every walk reveals new hexagonal tiles on the map. Explore parks, streets, and neighborhoods to uncover your world — one step at a time.
           </p>
         </div>
@@ -362,7 +362,7 @@ export function BentoFeatureGrid() {
               <div
                 key={i}
                 className={`w-5 h-5 rounded-sm transition-all duration-500 ${
-                  i % 3 === 0 ? "bg-[#F59E0B]/30" : i % 4 === 0 ? "bg-[#4A90D9]/20" : "bg-[#2D3748]/8"
+                  i % 3 === 0 ? "bg-[#F5A623]/30" : i % 4 === 0 ? "bg-[#4A90D9]/20" : "bg-[#1E293B]/8"
                 }`}
                 style={{ animationDelay: `${i * 0.15}s` }}
               />
@@ -373,17 +373,17 @@ export function BentoFeatureGrid() {
       </SpotlightCard>
 
       {/* Card 2: NFC Safety Tags — cold-start product */}
-      <SpotlightCard className="glass rounded-2xl border border-gray-100 hover:border-[#F59E0B]/30 transition-all duration-300 hover:shadow-xl group cursor-default bento-glow p-7 flex flex-col justify-between">
+      <SpotlightCard className="glass rounded-2xl border border-gray-100 hover:border-[#F5A623]/30 transition-all duration-300 hover:shadow-xl group cursor-default bento-glow p-7 flex flex-col justify-between">
         <div>
-          <div className="w-12 h-12 rounded-xl flex items-center justify-center bg-[#F59E0B]/10 text-[#F59E0B] mb-4 group-hover:scale-110 transition-transform duration-300">
+          <div className="w-12 h-12 rounded-xl flex items-center justify-center bg-[#F5A623]/10 text-[#F5A623] mb-4 group-hover:scale-110 transition-transform duration-300">
             <ShieldCheck className="w-6 h-6" />
           </div>
-          <h3 className="text-lg font-bold text-[#2D3748] mb-2">NFC Safety Tags</h3>
-          <p className="text-[#64748B] text-sm leading-relaxed">
+          <h3 className="text-lg font-bold text-[#1E293B] mb-2">NFC Safety Tags</h3>
+          <p className="text-[#6B7B8D] text-sm leading-relaxed">
             €19 smart tags replace static dog tags. Anyone can scan to see your pet&apos;s profile — no app needed. Privacy-first: owner info hidden until lost mode.
           </p>
         </div>
-        <div className="flex items-center gap-2 mt-4 px-3 py-2 rounded-lg bg-[#F59E0B]/5 text-[#F59E0B] text-xs font-medium">
+        <div className="flex items-center gap-2 mt-4 px-3 py-2 rounded-lg bg-[#F5A623]/5 text-[#F5A623] text-xs font-medium">
           ⚡ Scan → pawpal.be/tag — zero-download rescue
         </div>
       </SpotlightCard>
@@ -395,14 +395,14 @@ export function BentoFeatureGrid() {
           <div className="w-12 h-12 rounded-xl flex items-center justify-center bg-[#10B981]/10 text-[#10B981] mb-4 group-hover:scale-110 transition-transform duration-300">
             <Users className="w-6 h-6" />
           </div>
-          <h3 className="text-lg font-bold text-[#2D3748] mb-2">Local Pet Network</h3>
-          <p className="text-[#64748B] text-sm leading-relaxed">
+          <h3 className="text-lg font-bold text-[#1E293B] mb-2">Local Pet Network</h3>
+          <p className="text-[#6B7B8D] text-sm leading-relaxed">
             Find nearby dog walkers, request help, share lost-pet alerts, and build trust through verified interactions in your neighborhood.
           </p>
         </div>
         {/* User stack */}
         <div className="flex -space-x-2 mt-4">
-          {["#4A90D9", "#F59E0B", "#10B981", "#F97316", "#E11D48"].map((c, i) => (
+          {["#4A90D9", "#F5A623", "#10B981", "#F97316", "#E11D48"].map((c, i) => (
             <div
               key={i}
               className="w-9 h-9 rounded-full border-2 border-white flex items-center justify-center text-white text-xs font-bold"
@@ -415,22 +415,22 @@ export function BentoFeatureGrid() {
       </SpotlightCard>
 
       {/* Card 4: PawPoints + AI — wide spanning 2 cols */}
-      <SpotlightCard className="glass rounded-2xl border border-gray-100 hover:border-[#F59E0B]/30 transition-all duration-300 hover:shadow-xl group cursor-default bento-glow lg:col-span-2 p-7 flex flex-col md:flex-row gap-6 items-center">
+      <SpotlightCard className="glass rounded-2xl border border-gray-100 hover:border-[#F5A623]/30 transition-all duration-300 hover:shadow-xl group cursor-default bento-glow lg:col-span-2 p-7 flex flex-col md:flex-row gap-6 items-center">
         <div className="flex-1">
-          <div className="w-12 h-12 rounded-xl flex items-center justify-center bg-[#F59E0B]/10 text-[#F59E0B] mb-4 group-hover:scale-110 transition-transform duration-300">
+          <div className="w-12 h-12 rounded-xl flex items-center justify-center bg-[#F5A623]/10 text-[#F5A623] mb-4 group-hover:scale-110 transition-transform duration-300">
             <Sparkles className="w-6 h-6" />
           </div>
-          <h3 className="text-lg font-bold text-[#2D3748] mb-2">PawPoints & AI Assistant</h3>
-          <p className="text-[#64748B] text-sm leading-relaxed">
+          <h3 className="text-lg font-bold text-[#1E293B] mb-2">PawPoints & AI Assistant</h3>
+          <p className="text-[#6B7B8D] text-sm leading-relaxed">
             Earn points for every walk, exploration, and community contribution. Redeem for real products and Premium perks. Plus, AI-powered breed ID, behavior tips, and care advice — powered by Gemini.
           </p>
         </div>
         {/* Points visual */}
-        <div className="w-full md:w-48 h-28 rounded-xl bg-gradient-to-br from-[#F59E0B]/5 to-[#4A90D9]/5 flex flex-col items-center justify-center relative overflow-hidden gap-1">
+        <div className="w-full md:w-48 h-28 rounded-xl bg-gradient-to-br from-[#F5A623]/5 to-[#4A90D9]/5 flex flex-col items-center justify-center relative overflow-hidden gap-1">
           <div className="text-2xl">🏆</div>
-          <div className="text-lg font-bold text-[#F59E0B]">+150 pts</div>
-          <div className="text-[10px] text-[#64748B]">Daily walk completed!</div>
-          <div className="absolute inset-x-0 h-px bg-gradient-to-r from-transparent via-[#F59E0B]/40 to-transparent blob-animate-1" style={{ bottom: "20%" }} />
+          <div className="text-lg font-bold text-[#F5A623]">+150 pts</div>
+          <div className="text-[10px] text-[#6B7B8D]">Daily walk completed!</div>
+          <div className="absolute inset-x-0 h-px bg-gradient-to-r from-transparent via-[#F5A623]/40 to-transparent blob-animate-1" style={{ bottom: "20%" }} />
         </div>
       </SpotlightCard>
     </div>
@@ -467,7 +467,7 @@ export function TrustMarquee() {
             className="flex items-center gap-2.5 px-6 py-3 mx-2 rounded-full glass border border-gray-100 hover:border-[#4A90D9]/20 transition-all hover:shadow-sm whitespace-nowrap"
           >
             <span className="text-lg">{item.emoji}</span>
-            <span className="text-sm font-medium text-[#2D3748]">{item.label}</span>
+            <span className="text-sm font-medium text-[#1E293B]">{item.label}</span>
           </div>
         ))}
       </div>
@@ -488,22 +488,22 @@ export function AppShowcase() {
           <Smartphone className="w-4 h-4" />
           Available on iOS & Android
         </div>
-        <h2 className="text-3xl md:text-4xl font-bold text-[#2D3748] font-brand">
+        <h2 className="text-3xl md:text-4xl font-bold text-[#1E293B] font-brand">
           Your Pet's World,{" "}
           <span className="text-gradient-animated">In Your Pocket</span>
         </h2>
-        <p className="text-[#64748B] text-lg leading-relaxed max-w-md">
+        <p className="text-[#6B7B8D] text-lg leading-relaxed max-w-md">
           Track walks, discover missions, connect with your community, and keep your pet's health records — all in one beautiful app.
         </p>
         <div className="space-y-3">
           {[
-            { icon: MapPin, text: "Real-time walk tracking with route history", color: "text-[#F59E0B]" },
+            { icon: MapPin, text: "Real-time walk tracking with route history", color: "text-[#F5A623]" },
             { icon: ShieldCheck, text: "NFC smart tags for instant pet profiles", color: "text-[#4A90D9]" },
             { icon: Sparkles, text: "AI-powered breed & health analysis", color: "text-[#10B981]" },
           ].map((f, i) => (
             <motion.div
               key={i}
-              className="flex items-center gap-3 text-[#2D3748]"
+              className="flex items-center gap-3 text-[#1E293B]"
               initial={{ opacity: 0, x: -15 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
@@ -525,11 +525,11 @@ export function AppShowcase() {
             whileHover={{ y: -8 }}
             transition={{ type: "spring", stiffness: 200 }}
           >
-            <div className="w-full h-full bg-gradient-to-b from-[#4A90D9]/10 via-[#FFFDF9] to-[#F59E0B]/10 flex flex-col items-center justify-center gap-3 p-6">
-              <div className="w-16 h-16 rounded-2xl bg-[#F59E0B]/15 flex items-center justify-center">
-                <MapPin className="w-8 h-8 text-[#F59E0B]" />
+            <div className="w-full h-full bg-gradient-to-b from-[#4A90D9]/10 via-[#FFFDF9] to-[#F5A623]/10 flex flex-col items-center justify-center gap-3 p-6">
+              <div className="w-16 h-16 rounded-2xl bg-[#F5A623]/15 flex items-center justify-center">
+                <MapPin className="w-8 h-8 text-[#F5A623]" />
               </div>
-              <div className="text-[#2D3748] font-bold text-sm">Walk Mode</div>
+              <div className="text-[#1E293B] font-bold text-sm">Walk Mode</div>
               <div className="w-full h-24 rounded-xl bg-[#4A90D9]/5 mt-2 flex items-center justify-center">
                 <div className="w-16 h-16 rounded-full bg-[#4A90D9]/10 blob-animate-2 flex items-center justify-center">
                   <GlobeIcon className="w-8 h-8 text-[#4A90D9]/40" />
@@ -537,7 +537,7 @@ export function AppShowcase() {
               </div>
               <div className="flex gap-2 mt-2 w-full">
                 <div className="flex-1 h-8 rounded-lg bg-[#10B981]/10" />
-                <div className="flex-1 h-8 rounded-lg bg-[#F59E0B]/10" />
+                <div className="flex-1 h-8 rounded-lg bg-[#F5A623]/10" />
               </div>
               <div className="w-full h-6 rounded-lg bg-gray-100 mt-1" />
               <div className="w-3/4 h-6 rounded-lg bg-gray-50" />
@@ -551,12 +551,12 @@ export function AppShowcase() {
             whileHover={{ y: -8 }}
             transition={{ type: "spring", stiffness: 200 }}
           >
-            <div className="w-full h-full bg-gradient-to-b from-[#F59E0B]/10 via-[#FFFDF9] to-[#10B981]/10 flex flex-col items-center justify-center gap-3 p-6">
+            <div className="w-full h-full bg-gradient-to-b from-[#F5A623]/10 via-[#FFFDF9] to-[#10B981]/10 flex flex-col items-center justify-center gap-3 p-6">
               <div className="w-16 h-16 rounded-2xl bg-[#10B981]/15 flex items-center justify-center">
                 <Sparkles className="w-8 h-8 text-[#10B981]" />
               </div>
-              <div className="text-[#2D3748] font-bold text-sm">AI Pet ID</div>
-              <div className="w-full h-28 rounded-xl bg-[#F59E0B]/5 mt-2 flex items-center justify-center text-3xl">
+              <div className="text-[#1E293B] font-bold text-sm">AI Pet ID</div>
+              <div className="w-full h-28 rounded-xl bg-[#F5A623]/5 mt-2 flex items-center justify-center text-3xl">
                 🐕
               </div>
               <div className="w-full px-3 py-2 rounded-lg bg-[#10B981]/8 text-[#10B981] text-xs font-medium text-center">
@@ -570,7 +570,7 @@ export function AppShowcase() {
 
         {/* Floating badges around phones */}
         <motion.div
-          className="absolute -top-4 -left-6 px-3 py-1.5 rounded-full bg-white shadow-lg border border-gray-100 text-xs font-medium text-[#2D3748] flex items-center gap-1.5"
+          className="absolute -top-4 -left-6 px-3 py-1.5 rounded-full bg-white shadow-lg border border-gray-100 text-xs font-medium text-[#1E293B] flex items-center gap-1.5"
           animate={{ y: [0, -6, 0] }}
           transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
         >
@@ -578,7 +578,7 @@ export function AppShowcase() {
           GPS Active
         </motion.div>
         <motion.div
-          className="absolute -bottom-2 -right-4 px-3 py-1.5 rounded-full bg-white shadow-lg border border-gray-100 text-xs font-medium text-[#2D3748] flex items-center gap-1.5"
+          className="absolute -bottom-2 -right-4 px-3 py-1.5 rounded-full bg-white shadow-lg border border-gray-100 text-xs font-medium text-[#1E293B] flex items-center gap-1.5"
           animate={{ y: [0, 6, 0] }}
           transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1 }}
         >

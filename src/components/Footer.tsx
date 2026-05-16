@@ -31,7 +31,7 @@ const SOCIALS = [
 
 export default function Footer() {
   return (
-    <footer className="bg-[#2D3748] text-gray-400">
+    <footer className="bg-[#1E293B] text-gray-400">
       {/* Main grid */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
         <div className="grid grid-cols-2 md:grid-cols-5 gap-10">
@@ -49,7 +49,7 @@ export default function Footer() {
                   key={s.label}
                   href={s.href}
                   aria-label={s.label}
-                  className="w-9 h-9 rounded-full bg-gray-700 hover:bg-[#F59E0B] flex items-center justify-center transition-colors group"
+                  className="w-9 h-9 rounded-full bg-gray-700 hover:bg-[#F5A623] flex items-center justify-center transition-colors group"
                 >
                   <s.icon className="w-4 h-4 text-gray-400 group-hover:text-white transition-colors" />
                 </a>
@@ -66,7 +66,7 @@ export default function Footer() {
                   <li key={link.label}>
                     <Link
                       href={link.href}
-                      className="text-sm hover:text-[#F59E0B] transition-colors"
+                      className="text-sm hover:text-[#F5A623] transition-colors"
                     >
                       {link.label}
                     </Link>
