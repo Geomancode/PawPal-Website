@@ -131,3 +131,83 @@ body {
   transform-origin: left;
   border-radius: 0 2px 2px 0;
 }
+
+/* ═══════ Phase 2: Marquee infinite scroll ═══════ */
+@keyframes marquee-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.marquee-track {
+  animation: marquee-scroll 30s linear infinite;
+}
+
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+/* ═══════ Phase 2: Bento card glow border ═══════ */
+.bento-glow {
+  position: relative;
+}
+
+.bento-glow::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: 1.25rem;
+  padding: 1px;
+  background: linear-gradient(135deg, transparent, rgba(74, 144, 217, 0.15), transparent);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  -webkit-mask-composite: xor;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.bento-glow:hover::before {
+  opacity: 1;
+}
+
+/* ═══════ Phase 2: Phone mockup ═══════ */
+.phone-mockup {
+  position: relative;
+  width: 260px;
+  height: 520px;
+  border-radius: 40px;
+  border: 6px solid #2D3748;
+  background: #1a1a2e;
+  box-shadow:
+    0 20px 60px rgba(0,0,0,0.15),
+    inset 0 0 0 2px rgba(255,255,255,0.05);
+  overflow: hidden;
+}
+
+.phone-mockup::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 24px;
+  background: #2D3748;
+  border-radius: 0 0 16px 16px;
+  z-index: 10;
+}
+
+/* ═══════ Phase 3: Floating particles ═══════ */
+@keyframes float-particle {
+  0%, 100% { transform: translateY(0) translateX(0); opacity: 0; }
+  10% { opacity: 0.6; }
+  90% { opacity: 0.6; }
+  50% { transform: translateY(-80px) translateX(20px); }
+}
+
+@keyframes float-particle-alt {
+  0%, 100% { transform: translateY(0) translateX(0); opacity: 0; }
+  10% { opacity: 0.4; }
+  90% { opacity: 0.4; }
+  50% { transform: translateY(-60px) translateX(-15px); }
+}
+

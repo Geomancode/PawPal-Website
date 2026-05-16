@@ -1,7 +1,7 @@
-import { Heart, Globe as GlobeIcon, Users, Sparkles } from "lucide-react";
 import {
   FadeIn, FadeInView, HeroCTA, HeroBadges, GlobeSection, BottomCTA,
   AnimatedHeadline, AnimatedCounter, SpotlightCard, ScrollProgress, HeroBlobs,
+  BentoFeatureGrid, TrustMarquee, AppShowcase, FloatingParticles, MagneticButton,
 } from "@/components/HomeClientParts";
 
 export default function Home() {
@@ -48,8 +48,13 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ===== TRUST MARQUEE — Phase 2 ===== */}
+      <section className="border-y border-gray-100 bg-white/40">
+        <TrustMarquee />
+      </section>
+
       {/* ===== STATS BAR — Animated Counters ===== */}
-      <section className="py-12 border-y border-gray-100 bg-white/60">
+      <section className="py-14 bg-white/60">
         <div className="max-w-5xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
           {[
             { value: "10K+", label: "Pet Lovers" },
@@ -62,7 +67,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ===== FEATURES GRID — Spotlight Cards ===== */}
+      {/* ===== FEATURES — Bento Grid (Phase 2) ===== */}
       <section id="features" className="py-20 max-w-6xl mx-auto px-4">
         <FadeInView>
           <h2 className="text-3xl md:text-4xl font-bold text-center text-[#2D3748] mb-4 font-brand">
@@ -75,37 +80,33 @@ export default function Home() {
           </p>
         </FadeInView>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {[
-            { icon: GlobeIcon, title: "Global Map", desc: "See live missions around the world on our interactive 3D globe.", color: "bg-[#4A90D9]/10 text-[#4A90D9]" },
-            { icon: Heart, title: "Adopt & Rescue", desc: "Find pets near you who need a loving home. Every click saves a life.", color: "bg-rose-50 text-rose-500" },
-            { icon: Users, title: "Community", desc: "Connect with local pet owners, walkers, and sitters in your area.", color: "bg-[#10B981]/10 text-[#10B981]" },
-            { icon: Sparkles, title: "AI Pet ID", desc: "Point your camera at any animal and let our AI identify breed, age, and more.", color: "bg-[#F59E0B]/10 text-[#F59E0B]" },
-          ].map((f, i) => (
-            <SpotlightCard key={i} className="glass p-6 rounded-2xl border border-gray-100 hover:border-[#4A90D9]/30 transition-all duration-300 hover:shadow-lg group cursor-default">
-              <div className={`w-12 h-12 rounded-xl flex items-center justify-center ${f.color} mb-4 group-hover:scale-110 transition-transform duration-300`}>
-                <f.icon className="w-6 h-6" />
-              </div>
-              <h3 className="text-lg font-bold text-[#2D3748] mb-2">{f.title}</h3>
-              <p className="text-[#64748B] text-sm leading-relaxed">{f.desc}</p>
-            </SpotlightCard>
-          ))}
+        <BentoFeatureGrid />
+      </section>
+
+      {/* ===== APP SHOWCASE — Phone Mockups (Phase 2) ===== */}
+      <section className="py-20 bg-gradient-to-b from-white/40 to-[#FFFDF9]">
+        <div className="max-w-6xl mx-auto px-4">
+          <AppShowcase />
         </div>
       </section>
 
-      {/* ===== CTA SECTION ===== */}
-      <section className="relative py-20 bg-gradient-to-r from-[#F59E0B]/8 to-[#4A90D9]/8 overflow-hidden">
-        {/* Subtle animated blob in CTA */}
-        <div className="absolute top-[20%] left-[60%] w-[30%] h-[60%] rounded-full bg-[#4A90D9]/5 blur-[80px] blob-animate-3" />
+      {/* ===== CTA SECTION — With Floating Particles (Phase 3) ===== */}
+      <section className="relative py-24 bg-gradient-to-br from-[#2D3748] to-[#1a202c] overflow-hidden">
+        {/* Floating particles */}
+        <FloatingParticles />
+
+        {/* Subtle gradient blobs */}
+        <div className="absolute top-[10%] left-[20%] w-[40%] h-[50%] rounded-full bg-[#4A90D9]/8 blur-[120px]" />
+        <div className="absolute bottom-[10%] right-[15%] w-[30%] h-[40%] rounded-full bg-[#F59E0B]/6 blur-[100px]" />
 
         <div className="max-w-3xl mx-auto text-center px-4 relative z-10">
           <FadeInView>
-            <h2 className="text-3xl md:text-4xl font-bold text-[#2D3748] mb-4 font-brand">
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 font-brand">
               Ready to Join the Pack?
             </h2>
           </FadeInView>
           <FadeInView delay={0.1}>
-            <p className="text-[#64748B] mb-8 text-lg">
+            <p className="text-white/60 mb-10 text-lg">
               Download PawPal today and start connecting with pet lovers worldwide.
             </p>
           </FadeInView>
