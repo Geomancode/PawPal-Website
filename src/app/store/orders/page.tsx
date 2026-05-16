@@ -10,7 +10,7 @@ import {
 import { Order, loadOrders } from "../storeData";
 
 const STATUS_CONFIG: Record<string, { color: string; bg: string; icon: typeof Clock; label: string }> = {
-  processing: { color: "text-amber-600", bg: "bg-amber-50 border-amber-200", icon: Clock, label: "Processing" },
+  processing: { color: "text-[#E8824C]", bg: "bg-amber-50 border-amber-200", icon: Clock, label: "Processing" },
   shipped: { color: "text-blue-600", bg: "bg-blue-50 border-blue-200", icon: Truck, label: "Shipped" },
   delivered: { color: "text-emerald-600", bg: "bg-emerald-50 border-emerald-200", icon: CheckCircle2, label: "Delivered" },
 };
@@ -34,10 +34,10 @@ function OrderCard({ order }: { order: Order }) {
       {/* Header Row */}
       <button
         onClick={() => setExpanded(!expanded)}
-        className="w-full px-6 py-5 flex items-center gap-4 cursor-pointer hover:bg-gray-50/50 transition-colors"
+        className="w-full px-6 py-5 flex items-center gap-4 cursor-pointer hover:bg-[#FFF8F0]/50 transition-colors"
       >
         <div className="w-12 h-12 rounded-xl bg-amber-50 flex items-center justify-center shrink-0">
-          <Package className="w-6 h-6 text-amber-500" />
+          <Package className="w-6 h-6 text-[#F5A623]" />
         </div>
 
         <div className="flex-1 text-left min-w-0">
@@ -89,11 +89,11 @@ function OrderCard({ order }: { order: Order }) {
               {/* Items */}
               <div>
                 <h4 className="font-semibold text-gray-700 text-sm mb-2 flex items-center gap-1">
-                  <ShoppingBag className="w-4 h-4 text-amber-500" /> Items
+                  <ShoppingBag className="w-4 h-4 text-[#F5A623]" /> Items
                 </h4>
                 <div className="space-y-2">
                   {order.items.map((item) => (
-                    <div key={item.product.id} className="flex items-center gap-3 p-3 rounded-lg bg-gray-50">
+                    <div key={item.product.id} className="flex items-center gap-3 p-3 rounded-lg bg-[#FFF8F0]">
                       <span className="text-2xl">{item.product.image}</span>
                       <div className="flex-1 min-w-0">
                         <p className="text-sm font-medium text-gray-700 truncate">{item.product.name}</p>
@@ -107,15 +107,15 @@ function OrderCard({ order }: { order: Order }) {
 
               {/* Shipping & Payment */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div className="p-3 rounded-xl bg-gray-50">
-                  <h4 className="font-semibold text-gray-700 text-sm mb-1 flex items-center gap-1"><MapPin className="w-3.5 h-3.5 text-amber-500" /> Shipping</h4>
+                <div className="p-3 rounded-xl bg-[#FFF8F0]">
+                  <h4 className="font-semibold text-gray-700 text-sm mb-1 flex items-center gap-1"><MapPin className="w-3.5 h-3.5 text-[#F5A623]" /> Shipping</h4>
                   <p className="text-xs text-gray-600">{order.shipping.fullName}</p>
                   <p className="text-xs text-gray-500">{order.shipping.address}</p>
                   <p className="text-xs text-gray-500">{order.shipping.city}, {order.shipping.zipCode}</p>
                   <p className="text-xs text-gray-500">{order.shipping.country}</p>
                 </div>
-                <div className="p-3 rounded-xl bg-gray-50">
-                  <h4 className="font-semibold text-gray-700 text-sm mb-1 flex items-center gap-1"><CreditCard className="w-3.5 h-3.5 text-amber-500" /> Payment</h4>
+                <div className="p-3 rounded-xl bg-[#FFF8F0]">
+                  <h4 className="font-semibold text-gray-700 text-sm mb-1 flex items-center gap-1"><CreditCard className="w-3.5 h-3.5 text-[#F5A623]" /> Payment</h4>
                   <p className="text-xs text-gray-600">{order.payment.brand} ending in ****{order.payment.last4}</p>
                   <div className="mt-2 space-y-0.5">
                     <p className="text-xs text-gray-500 flex justify-between"><span>Subtotal</span><span>€{order.subtotal.toFixed(2)}</span></p>
@@ -141,18 +141,18 @@ export default function OrdersPage() {
   useEffect(() => { setOrders(loadOrders()); }, []);
 
   return (
-    <div className="min-h-screen bg-[#fffdf9] pt-28 pb-20">
+    <div className="min-h-screen bg-[#FFF8F0] pt-28 pb-20">
       <div className="max-w-3xl mx-auto px-4">
         <button
           onClick={() => router.push("/store")}
-          className="flex items-center gap-1 text-gray-500 hover:text-amber-600 mb-6 transition-colors cursor-pointer"
+          className="flex items-center gap-1 text-gray-500 hover:text-[#E8824C] mb-6 transition-colors cursor-pointer"
         >
           <ArrowLeft className="w-4 h-4" /> Back to Store
         </button>
 
         <div className="flex items-center justify-between mb-8">
           <h1 className="text-3xl font-bold text-gray-900 flex items-center gap-3">
-            <Package className="w-7 h-7 text-amber-500" /> My Orders
+            <Package className="w-7 h-7 text-[#F5A623]" /> My Orders
           </h1>
           <span className="text-sm text-gray-400">{orders.length} order{orders.length !== 1 ? "s" : ""}</span>
         </div>
@@ -165,7 +165,7 @@ export default function OrdersPage() {
             <motion.button
               whileTap={{ scale: 0.97 }}
               onClick={() => router.push("/store")}
-              className="px-8 py-3 bg-amber-500 hover:bg-amber-600 text-white rounded-full font-bold transition-all shadow-lg cursor-pointer"
+              className="px-8 py-3 bg-[#F5A623] hover:bg-[#E8824C] text-white rounded-full font-bold transition-all shadow-lg cursor-pointer"
             >
               Browse Products
             </motion.button>

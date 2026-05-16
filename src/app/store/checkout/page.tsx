@@ -28,7 +28,7 @@ function StepIndicator({ current }: { current: number }) {
         return (
           <div key={step.id} className="flex items-center gap-2">
             <div className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all ${
-              active ? "bg-amber-500 text-white shadow-md" : done ? "bg-emerald-100 text-emerald-700" : "bg-gray-100 text-gray-400"
+              active ? "bg-[#F5A623] text-white shadow-md" : done ? "bg-emerald-100 text-emerald-700" : "bg-gray-100 text-gray-400"
             }`}>
               <step.icon className="w-4 h-4" />
               <span className="hidden sm:inline">{step.label}</span>
@@ -70,7 +70,7 @@ function OrderSummary({ items }: { items: CartItem[] }) {
   return (
     <div className="glass rounded-2xl p-6 border border-gray-100">
       <h3 className="font-bold text-gray-800 mb-4 flex items-center gap-2">
-        <Package className="w-4 h-4 text-amber-500" /> Order Summary
+        <Package className="w-4 h-4 text-[#F5A623]" /> Order Summary
       </h3>
       <div className="space-y-3 mb-4 max-h-48 overflow-y-auto">
         {items.map((item) => (
@@ -154,12 +154,12 @@ export default function CheckoutPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#fffdf9] pt-28 pb-20">
+    <div className="min-h-screen bg-[#FFF8F0] pt-28 pb-20">
       <div className="max-w-5xl mx-auto px-4">
         {/* Back button */}
         <button
           onClick={() => step === 1 ? router.push("/store") : setStep(step - 1)}
-          className="flex items-center gap-1 text-gray-500 hover:text-amber-600 mb-6 transition-colors cursor-pointer"
+          className="flex items-center gap-1 text-gray-500 hover:text-[#E8824C] mb-6 transition-colors cursor-pointer"
         >
           <ArrowLeft className="w-4 h-4" /> {step === 1 ? "Back to Store" : "Back"}
         </button>
@@ -180,7 +180,7 @@ export default function CheckoutPage() {
                   className="glass rounded-2xl p-8 border border-gray-100"
                 >
                   <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2">
-                    <MapPin className="w-5 h-5 text-amber-500" /> Shipping Information
+                    <MapPin className="w-5 h-5 text-[#F5A623]" /> Shipping Information
                   </h2>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div className="sm:col-span-2">
@@ -208,7 +208,7 @@ export default function CheckoutPage() {
                     disabled={!canProceedShipping}
                     onClick={() => setStep(2)}
                     className={`mt-6 w-full py-3.5 rounded-full font-bold text-lg flex items-center justify-center gap-2 transition-all cursor-pointer ${
-                      canProceedShipping ? "bg-amber-500 hover:bg-amber-600 text-white shadow-lg" : "bg-gray-200 text-gray-400 cursor-not-allowed"
+                      canProceedShipping ? "bg-[#F5A623] hover:bg-[#E8824C] text-white shadow-lg" : "bg-gray-200 text-gray-400 cursor-not-allowed"
                     }`}
                   >
                     Review Order <ArrowRight className="w-5 h-5" />
@@ -226,12 +226,12 @@ export default function CheckoutPage() {
                   className="glass rounded-2xl p-8 border border-gray-100"
                 >
                   <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2">
-                    <Package className="w-5 h-5 text-amber-500" /> Review Your Order
+                    <Package className="w-5 h-5 text-[#F5A623]" /> Review Your Order
                   </h2>
 
                   {/* Shipping summary */}
-                  <div className="mb-6 p-4 rounded-xl bg-gray-50 border border-gray-100">
-                    <h4 className="font-semibold text-gray-700 flex items-center gap-2 mb-2"><MapPin className="w-4 h-4 text-amber-500" /> Shipping To</h4>
+                  <div className="mb-6 p-4 rounded-xl bg-[#FFF8F0] border border-gray-100">
+                    <h4 className="font-semibold text-gray-700 flex items-center gap-2 mb-2"><MapPin className="w-4 h-4 text-[#F5A623]" /> Shipping To</h4>
                     <p className="text-sm text-gray-600">{shipping.fullName}</p>
                     <p className="text-sm text-gray-500">{shipping.address}</p>
                     <p className="text-sm text-gray-500">{shipping.city}, {shipping.zipCode}, {shipping.country}</p>
@@ -240,10 +240,10 @@ export default function CheckoutPage() {
 
                   {/* Items */}
                   <div className="mb-6">
-                    <h4 className="font-semibold text-gray-700 flex items-center gap-2 mb-3"><Package className="w-4 h-4 text-amber-500" /> Items ({cart.length})</h4>
+                    <h4 className="font-semibold text-gray-700 flex items-center gap-2 mb-3"><Package className="w-4 h-4 text-[#F5A623]" /> Items ({cart.length})</h4>
                     <div className="space-y-2">
                       {cart.map((item) => (
-                        <div key={item.product.id} className="flex items-center gap-3 p-3 rounded-lg bg-gray-50">
+                        <div key={item.product.id} className="flex items-center gap-3 p-3 rounded-lg bg-[#FFF8F0]">
                           <span className="text-2xl">{item.product.image}</span>
                           <div className="flex-1">
                             <p className="text-sm font-medium text-gray-700">{item.product.name}</p>

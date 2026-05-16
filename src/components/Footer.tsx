@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { Heart, Github, Twitter, Instagram, Mail } from "lucide-react";
 import PawPalLogo from "./PawPalLogo";
+import { DoodlePaw, DoodleDog } from "./PetDoodles";
 
 const FOOTER_NAV = {
   Product: [
@@ -31,7 +32,10 @@ const SOCIALS = [
 
 export default function Footer() {
   return (
-    <footer className="bg-[#1E293B] text-gray-400">
+    <footer className="relative bg-[#1A1D23] text-gray-400 overflow-hidden">
+      {/* Decorative doodles */}
+      <div className="absolute top-8 right-12 w-20 h-20 text-white/[0.03] hidden lg:block"><DoodleDog className="w-full h-full" /></div>
+      <div className="absolute bottom-16 left-10 w-14 h-14 text-white/[0.03] hidden lg:block"><DoodlePaw className="w-full h-full" /></div>
       {/* Main grid */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
         <div className="grid grid-cols-2 md:grid-cols-5 gap-10">

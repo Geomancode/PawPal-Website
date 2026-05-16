@@ -11,6 +11,7 @@ import {
   PRODUCTS, CATEGORIES, Product, CartItem, Category,
   loadCart, saveCart,
 } from "./storeData";
+import { DoodleBowl, DoodlePaw, DoodleBone } from "@/components/PetDoodles";
 
 // ─── Product Card ──────────────────────────────────────
 function ProductCard({
@@ -21,7 +22,7 @@ function ProductCard({
 }) {
   const badgeColor: Record<string, string> = {
     New: "bg-emerald-500",
-    "Best Seller": "bg-amber-500",
+    "Best Seller": "bg-[#F5A623]",
     Sale: "bg-rose-500",
   };
 
@@ -32,7 +33,7 @@ function ProductCard({
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, scale: 0.95 }}
       whileHover={{ y: -6 }}
-      className="group relative glass rounded-2xl border border-gray-100 hover:border-amber-300/50 overflow-hidden transition-shadow hover:shadow-xl"
+      className="group relative glass rounded-2xl border border-[#F5E6D3]/60 hover:border-amber-300/50 overflow-hidden transition-shadow hover:shadow-xl"
     >
       {product.badge && (
         <span className={`absolute top-3 left-3 z-10 px-2.5 py-1 rounded-full text-xs font-bold text-white ${badgeColor[product.badge]}`}>
@@ -51,23 +52,23 @@ function ProductCard({
           {Array.from({ length: 5 }).map((_, i) => (
             <Star key={i} className={`w-3.5 h-3.5 ${i < Math.floor(product.rating) ? "fill-amber-400 text-amber-400" : "text-gray-200"}`} />
           ))}
-          <span className="text-xs text-gray-400 ml-1">({product.reviewCount})</span>
+          <span className="text-xs text-[#6B7B8D]/70 ml-1">({product.reviewCount})</span>
         </div>
 
-        <h3 className="font-bold text-gray-800 mb-1 group-hover:text-amber-600 transition-colors">{product.name}</h3>
-        <p className="text-sm text-gray-500 line-clamp-2 mb-3">{product.description}</p>
+        <h3 className="font-bold text-[#1E293B] mb-1 group-hover:text-[#E8824C] transition-colors">{product.name}</h3>
+        <p className="text-sm text-[#6B7B8D] line-clamp-2 mb-3">{product.description}</p>
 
         <div className="flex items-center justify-between">
           <div className="flex items-baseline gap-2">
-            <span className="text-xl font-extrabold text-gray-900">€{product.price.toFixed(2)}</span>
+            <span className="text-xl font-extrabold text-[#1E293B]">€{product.price.toFixed(2)}</span>
             {product.originalPrice && (
-              <span className="text-sm text-gray-400 line-through">€{product.originalPrice.toFixed(2)}</span>
+              <span className="text-sm text-[#6B7B8D]/70 line-through">€{product.originalPrice.toFixed(2)}</span>
             )}
           </div>
           <motion.button
             whileTap={{ scale: 0.9 }}
             onClick={() => onAdd(product)}
-            className="flex items-center gap-1.5 bg-amber-500 hover:bg-amber-600 text-white px-4 py-2 rounded-full text-sm font-bold transition-colors shadow-md hover:shadow-lg cursor-pointer"
+            className="flex items-center gap-1.5 bg-[#F5A623] hover:bg-[#E8824C] text-white px-4 py-2 rounded-full text-sm font-bold transition-colors shadow-md hover:shadow-lg cursor-pointer"
           >
             <Plus className="w-4 h-4" /> Add
           </motion.button>
@@ -113,7 +114,7 @@ function CartDrawer({
             {/* Header */}
             <div className="flex items-center justify-between px-6 py-5 border-b">
               <h2 className="text-xl font-bold flex items-center gap-2">
-                <ShoppingCart className="w-5 h-5 text-amber-500" />
+                <ShoppingCart className="w-5 h-5 text-[#F5A623]" />
                 Your Cart ({items.length})
               </h2>
               <button onClick={onClose} className="p-2 hover:bg-gray-100 rounded-full transition-colors cursor-pointer">
@@ -126,7 +127,7 @@ function CartDrawer({
               {items.length === 0 ? (
                 <div className="flex flex-col items-center justify-center h-full text-center">
                   <ShoppingCart className="w-16 h-16 text-gray-200 mb-4" />
-                  <p className="text-gray-400 font-medium">Your cart is empty</p>
+                  <p className="text-[#6B7B8D]/70 font-medium">Your cart is empty</p>
                   <p className="text-sm text-gray-300 mt-1">Browse products and add items to get started</p>
                 </div>
               ) : (
@@ -138,14 +139,14 @@ function CartDrawer({
                       initial={{ opacity: 0, x: 20 }}
                       animate={{ opacity: 1, x: 0 }}
                       exit={{ opacity: 0, x: -20 }}
-                      className="flex gap-4 p-3 rounded-xl bg-gray-50 border border-gray-100"
+                      className="flex gap-4 p-3 rounded-xl bg-[#FFF8F0] border border-[#F5E6D3]/60"
                     >
                       <div className="w-16 h-16 rounded-lg bg-white flex items-center justify-center text-3xl shrink-0">
                         {item.product.image}
                       </div>
                       <div className="flex-1 min-w-0">
-                        <h4 className="font-semibold text-sm text-gray-800 truncate">{item.product.name}</h4>
-                        <p className="text-amber-600 font-bold text-sm mt-0.5">€{item.product.price.toFixed(2)}</p>
+                        <h4 className="font-semibold text-sm text-[#1E293B] truncate">{item.product.name}</h4>
+                        <p className="text-[#E8824C] font-bold text-sm mt-0.5">€{item.product.price.toFixed(2)}</p>
                         <div className="flex items-center gap-2 mt-2">
                           <button
                             onClick={() => onUpdate(item.product.id, item.quantity - 1)}
@@ -177,15 +178,15 @@ function CartDrawer({
             {/* Footer */}
             {items.length > 0 && (
               <div className="border-t px-6 py-5 space-y-3">
-                <div className="flex justify-between text-sm text-gray-500">
+                <div className="flex justify-between text-sm text-[#6B7B8D]">
                   <span>Subtotal</span><span>€{subtotal.toFixed(2)}</span>
                 </div>
-                <div className="flex justify-between text-sm text-gray-500">
+                <div className="flex justify-between text-sm text-[#6B7B8D]">
                   <span>Shipping</span>
                   <span>{shipping === 0 ? <span className="text-emerald-500 font-medium">Free</span> : `€${shipping.toFixed(2)}`}</span>
                 </div>
                 {subtotal < 50 && (
-                  <p className="text-xs text-amber-600 bg-amber-50 px-3 py-2 rounded-lg">
+                  <p className="text-xs text-[#E8824C] bg-[#FFF4E8] px-3 py-2 rounded-lg">
                     🚚 Add €{(50 - subtotal).toFixed(2)} more for free shipping!
                   </p>
                 )}
@@ -195,7 +196,7 @@ function CartDrawer({
                 <motion.button
                   whileTap={{ scale: 0.97 }}
                   onClick={onCheckout}
-                  className="w-full bg-amber-500 hover:bg-amber-600 text-white py-3.5 rounded-full font-bold text-lg transition-colors flex items-center justify-center gap-2 shadow-lg cursor-pointer"
+                  className="w-full bg-[#F5A623] hover:bg-[#E8824C] text-white py-3.5 rounded-full font-bold text-lg transition-colors flex items-center justify-center gap-2 shadow-lg cursor-pointer"
                 >
                   Proceed to Checkout <ArrowRight className="w-5 h-5" />
                 </motion.button>
@@ -253,27 +254,30 @@ export default function StorePage() {
   const totalItems = cart.reduce((s, i) => s + i.quantity, 0);
 
   return (
-    <div className="relative w-full min-h-screen bg-[#fffdf9]">
+    <div className="relative w-full min-h-screen bg-[#FFF8F0]">
       {/* ===== HERO ===== */}
       <section className="relative pt-28 pb-16 overflow-hidden">
         <div className="absolute inset-0 -z-10">
-          <div className="absolute top-[-10%] right-[-10%] w-[50%] h-[50%] rounded-full bg-amber-100/50 blur-[120px]" />
-          <div className="absolute bottom-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-emerald-100/40 blur-[100px]" />
+          <div className="absolute top-[-10%] right-[-10%] w-[50%] h-[50%] rounded-full bg-[#FFF4E8]/50 blur-[120px]" />
+          <div className="absolute bottom-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-[#E0F2FE]/40 blur-[100px]" />
         </div>
+        {/* Pet doodles */}
+        <div className="absolute top-[20%] right-[5%] w-20 h-12 text-[#F5A623]/12 doodle-float hidden lg:block"><DoodleBowl className="w-full h-full" /></div>
+        <div className="absolute bottom-[10%] left-[3%] w-14 h-14 text-[#E8824C]/10 doodle-float-alt hidden lg:block" style={{ animationDelay: '2s' }}><DoodlePaw className="w-full h-full" /></div>
         <div className="max-w-7xl mx-auto px-4 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass mb-6"
           >
-            <Package className="w-4 h-4 text-amber-500" />
-            <span className="text-sm font-medium text-amber-600">PawPal Shop</span>
+            <Package className="w-4 h-4 text-[#F5A623]" />
+            <span className="text-sm font-medium text-[#E8824C]">PawPal Shop</span>
           </motion.div>
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="text-4xl md:text-6xl font-bold tracking-tight text-gray-900 mb-4"
+            className="text-4xl md:text-6xl font-bold tracking-tight text-[#1E293B] mb-4"
           >
             Everything Your Pet{" "}
             <span className="text-gradient">Needs</span>
@@ -282,7 +286,7 @@ export default function StorePage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="text-lg text-gray-500 max-w-xl mx-auto mb-8"
+            className="text-lg text-[#6B7B8D] max-w-xl mx-auto mb-8"
           >
             Premium food, toys, accessories, and health products — curated with love.
           </motion.p>
@@ -294,7 +298,7 @@ export default function StorePage() {
             transition={{ delay: 0.3 }}
             className="max-w-lg mx-auto relative mb-4"
           >
-            <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-[#6B7B8D]/70" />
             <input
               value={search}
               onChange={(e) => setSearch(e.target.value)}
@@ -308,8 +312,8 @@ export default function StorePage() {
       {/* ===== CATEGORY TABS ===== */}
       <section className="max-w-7xl mx-auto px-4 pb-6">
         <div className="flex items-center gap-2 mb-2">
-          <SlidersHorizontal className="w-4 h-4 text-gray-400" />
-          <span className="text-sm font-medium text-gray-400">Filter by category</span>
+          <SlidersHorizontal className="w-4 h-4 text-[#6B7B8D]/70" />
+          <span className="text-sm font-medium text-[#6B7B8D]/70">Filter by category</span>
         </div>
         <div className="flex gap-2 flex-wrap">
           {CATEGORIES.map((cat) => (
@@ -319,8 +323,8 @@ export default function StorePage() {
               onClick={() => setCategory(cat.key)}
               className={`px-5 py-2.5 rounded-full font-medium text-sm transition-all cursor-pointer ${
                 category === cat.key
-                  ? "bg-amber-500 text-white shadow-md shadow-amber-200"
-                  : "glass text-gray-600 hover:text-amber-600 border border-gray-100"
+                  ? "bg-[#F5A623] text-white shadow-md shadow-amber-200"
+                  : "glass text-gray-600 hover:text-[#E8824C] border border-[#F5E6D3]/60"
               }`}
             >
               {cat.icon} {cat.label}
@@ -332,10 +336,10 @@ export default function StorePage() {
       {/* ===== PRODUCT GRID ===== */}
       <section className="max-w-7xl mx-auto px-4 pb-20">
         <div className="flex items-center justify-between mb-6">
-          <p className="text-sm text-gray-400">{filtered.length} product{filtered.length !== 1 ? "s" : ""}</p>
+          <p className="text-sm text-[#6B7B8D]/70">{filtered.length} product{filtered.length !== 1 ? "s" : ""}</p>
           <button
             onClick={() => router.push("/store/orders")}
-            className="flex items-center gap-1 text-sm text-amber-600 hover:text-amber-700 font-medium transition-colors cursor-pointer"
+            className="flex items-center gap-1 text-sm text-[#E8824C] hover:text-amber-700 font-medium transition-colors cursor-pointer"
           >
             My Orders <ChevronRight className="w-4 h-4" />
           </button>
@@ -352,7 +356,7 @@ export default function StorePage() {
         {filtered.length === 0 && (
           <div className="text-center py-20">
             <Search className="w-12 h-12 text-gray-200 mx-auto mb-3" />
-            <p className="text-gray-400 font-medium">No products found</p>
+            <p className="text-[#6B7B8D]/70 font-medium">No products found</p>
             <p className="text-sm text-gray-300 mt-1">Try adjusting your search or category filter</p>
           </div>
         )}
@@ -363,7 +367,7 @@ export default function StorePage() {
         onClick={() => setCartOpen(true)}
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
-        className="fixed bottom-8 right-8 z-40 bg-amber-500 hover:bg-amber-600 text-white w-16 h-16 rounded-full shadow-2xl shadow-amber-300/40 flex items-center justify-center transition-colors cursor-pointer"
+        className="fixed bottom-8 right-8 z-40 bg-[#F5A623] hover:bg-[#E8824C] text-white w-16 h-16 rounded-full shadow-2xl shadow-amber-300/40 flex items-center justify-center transition-colors cursor-pointer"
       >
         <ShoppingCart className="w-6 h-6" />
         {totalItems > 0 && (

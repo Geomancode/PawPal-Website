@@ -83,8 +83,8 @@ export default function Navbar() {
                     href={link.href}
                     className={`relative px-3 py-2 rounded-md transition-colors font-medium ${
                       isActive
-                        ? "text-[#4A90D9] font-semibold"
-                        : "text-[#6B7B8D] hover:text-[#4A90D9]"
+                        ? "text-[#F5A623] font-semibold"
+                        : "text-[#6B7B8D] hover:text-[#F5A623]"
                     }`}
                   >
                     {link.label}
@@ -92,7 +92,7 @@ export default function Navbar() {
                     {isActive && (
                       <motion.span
                         layoutId="nav-active"
-                        className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-[#4A90D9]"
+                        className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-[#F5A623]"
                         transition={{ type: "spring", stiffness: 300, damping: 30 }}
                       />
                     )}
@@ -164,7 +164,7 @@ export default function Navbar() {
           </div>
 
           <div className="md:hidden">
-            <button onClick={() => setIsOpen(!isOpen)} className="text-[#6B7B8D] hover:text-[#4A90D9]">
+            <button onClick={() => setIsOpen(!isOpen)} className="text-[#6B7B8D] hover:text-[#F5A623]">
               {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
           </div>
@@ -188,7 +188,7 @@ export default function Navbar() {
                     key={link.href}
                     href={link.href}
                     className={`block px-3 py-2 rounded-md text-base font-medium ${
-                      isActive ? "text-[#4A90D9] font-semibold" : "text-[#6B7B8D] hover:text-[#4A90D9]"
+                      isActive ? "text-[#F5A623] font-semibold" : "text-[#6B7B8D] hover:text-[#F5A623]"
                     }`}
                     onClick={() => setIsOpen(false)}
                   >
