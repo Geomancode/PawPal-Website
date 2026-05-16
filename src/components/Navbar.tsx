@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import { Menu, X, LogOut, UserCircle } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
 import { useAuth } from "./AuthProvider";
@@ -18,10 +18,18 @@ const NAV_LINKS = [
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const pathname = usePathname();
   const router = useRouter();
   const { user, loading, signOut } = useAuth();
+
+  // Phase 1 Effect #5: Scroll-aware navbar
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   // Close dropdown on outside click
   useEffect(() => {
@@ -43,12 +51,25 @@ export default function Navbar() {
   const displayName = user?.user_metadata?.display_name || user?.email?.split("@")[0] || "User";
 
   return (
-    <nav className="fixed top-0 w-full z-50 bg-white/60 backdrop-blur-xl border-b-0 border-white/5">
+    <motion.nav
+      className={`fixed top-0 w-full z-50 transition-all duration-500 ${
+        scrolled
+          ? "bg-white/80 backdrop-blur-2xl shadow-[0_1px_3px_rgba(0,0,0,0.05)] border-b border-gray-100/50"
+          : "bg-white/40 backdrop-blur-xl border-b-0"
+      }`}
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20">
+        <div className={`flex items-center justify-between transition-all duration-500 ${scrolled ? "h-16" : "h-20"}`}>
           {/* Logo — real Tracker icon + wordmark */}
           <Link href="/" className="flex items-center hover:opacity-80 transition-opacity">
-            <PawPalLogo iconSize={32} fontSize={22} variant="light" />
+            <PawPalLogo
+              iconSize={scrolled ? 28 : 32}
+              fontSize={scrolled ? 20 : 22}
+              variant="light"
+            />
           </Link>
           
           {/* Desktop nav */}
@@ -60,13 +81,21 @@ export default function Navbar() {
                   <Link
                     key={link.href}
                     href={link.href}
-                    className={`px-3 py-2 rounded-md transition-colors font-medium ${
+                    className={`relative px-3 py-2 rounded-md transition-colors font-medium ${
                       isActive
                         ? "text-[#4A90D9] font-semibold"
                         : "text-[#64748B] hover:text-[#4A90D9]"
                     }`}
                   >
                     {link.label}
+                    {/* Active indicator dot */}
+                    {isActive && (
+                      <motion.span
+                        layoutId="nav-active"
+                        className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-[#4A90D9]"
+                        transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                      />
+                    )}
                   </Link>
                 );
               })}
@@ -90,33 +119,37 @@ export default function Navbar() {
                   <span className="text-sm font-semibold text-amber-700 max-w-[100px] truncate">{displayName}</span>
                 </button>
 
-                {showDropdown && (
-                  <motion.div
-                    initial={{ opacity: 0, y: -5, scale: 0.95 }}
-                    animate={{ opacity: 1, y: 0, scale: 1 }}
-                    className="absolute right-0 mt-2 w-56 bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden py-1"
-                  >
-                    <div className="px-4 py-3 border-b border-gray-100">
-                      <p className="text-sm font-semibold text-[#2D3748] truncate">{displayName}</p>
-                      <p className="text-xs text-[#64748B] truncate">{user.email}</p>
-                    </div>
-                    <Link
-                      href="/profile"
-                      onClick={() => setShowDropdown(false)}
-                      className="w-full flex items-center gap-2 px-4 py-3 text-sm text-[#2D3748] hover:bg-amber-50 transition-colors"
+                <AnimatePresence>
+                  {showDropdown && (
+                    <motion.div
+                      initial={{ opacity: 0, y: -8, scale: 0.95 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      exit={{ opacity: 0, y: -8, scale: 0.95 }}
+                      transition={{ duration: 0.2 }}
+                      className="absolute right-0 mt-2 w-56 bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden py-1"
                     >
-                      <UserCircle className="w-4 h-4" />
-                      My Profile
-                    </Link>
-                    <button
-                      onClick={handleSignOut}
-                      className="w-full flex items-center gap-2 px-4 py-3 text-sm text-red-600 hover:bg-red-50 transition-colors"
-                    >
-                      <LogOut className="w-4 h-4" />
-                      Sign Out
-                    </button>
-                  </motion.div>
-                )}
+                      <div className="px-4 py-3 border-b border-gray-100">
+                        <p className="text-sm font-semibold text-[#2D3748] truncate">{displayName}</p>
+                        <p className="text-xs text-[#64748B] truncate">{user.email}</p>
+                      </div>
+                      <Link
+                        href="/profile"
+                        onClick={() => setShowDropdown(false)}
+                        className="w-full flex items-center gap-2 px-4 py-3 text-sm text-[#2D3748] hover:bg-amber-50 transition-colors"
+                      >
+                        <UserCircle className="w-4 h-4" />
+                        My Profile
+                      </Link>
+                      <button
+                        onClick={handleSignOut}
+                        className="w-full flex items-center gap-2 px-4 py-3 text-sm text-red-600 hover:bg-red-50 transition-colors"
+                      >
+                        <LogOut className="w-4 h-4" />
+                        Sign Out
+                      </button>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
             ) : (
               /* Not logged in: Sign In button — Amber CTA */
@@ -139,60 +172,63 @@ export default function Navbar() {
       </div>
 
       {/* Mobile menu */}
-      {isOpen && (
-        <motion.div 
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="md:hidden bg-white/80 backdrop-blur-xl"
-        >
-          <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-            {NAV_LINKS.map((link) => {
-              const isActive = pathname === link.href;
-              return (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className={`block px-3 py-2 rounded-md text-base font-medium ${
-                    isActive ? "text-[#4A90D9] font-semibold" : "text-[#64748B] hover:text-[#4A90D9]"
-                  }`}
-                  onClick={() => setIsOpen(false)}
-                >
-                  {link.label}
-                </Link>
-              );
-            })}
-            {user ? (
-              <>
-                <div className="flex items-center gap-2 px-3 py-2 text-sm text-[#2D3748] border-t border-gray-100 mt-2 pt-3">
-                  <div className="w-7 h-7 rounded-full bg-[#F59E0B] flex items-center justify-center text-white text-xs font-bold">
-                    {displayName.charAt(0).toUpperCase()}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div 
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            className="md:hidden bg-white/90 backdrop-blur-2xl overflow-hidden"
+          >
+            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+              {NAV_LINKS.map((link) => {
+                const isActive = pathname === link.href;
+                return (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    className={`block px-3 py-2 rounded-md text-base font-medium ${
+                      isActive ? "text-[#4A90D9] font-semibold" : "text-[#64748B] hover:text-[#4A90D9]"
+                    }`}
+                    onClick={() => setIsOpen(false)}
+                  >
+                    {link.label}
+                  </Link>
+                );
+              })}
+              {user ? (
+                <>
+                  <div className="flex items-center gap-2 px-3 py-2 text-sm text-[#2D3748] border-t border-gray-100 mt-2 pt-3">
+                    <div className="w-7 h-7 rounded-full bg-[#F59E0B] flex items-center justify-center text-white text-xs font-bold">
+                      {displayName.charAt(0).toUpperCase()}
+                    </div>
+                    <span className="font-semibold truncate">{displayName}</span>
                   </div>
-                  <span className="font-semibold truncate">{displayName}</span>
-                </div>
-                <Link
-                  href="/profile"
-                  onClick={() => setIsOpen(false)}
-                  className="flex items-center gap-2 w-full px-3 py-2 text-sm text-[#2D3748] hover:bg-amber-50 rounded-md"
-                >
-                  <UserCircle className="w-4 h-4" />
-                  My Profile
+                  <Link
+                    href="/profile"
+                    onClick={() => setIsOpen(false)}
+                    className="flex items-center gap-2 w-full px-3 py-2 text-sm text-[#2D3748] hover:bg-amber-50 rounded-md"
+                  >
+                    <UserCircle className="w-4 h-4" />
+                    My Profile
+                  </Link>
+                  <button
+                    onClick={() => { setIsOpen(false); handleSignOut(); }}
+                    className="flex items-center gap-2 w-full px-3 py-2 text-sm text-red-600 hover:bg-red-50 rounded-md"
+                  >
+                    <LogOut className="w-4 h-4" />
+                    Sign Out
+                  </button>
+                </>
+              ) : (
+                <Link href="/auth" className="block px-3 py-2 rounded-md text-base font-medium text-[#64748B] hover:text-[#4A90D9]" onClick={() => setIsOpen(false)}>
+                  Sign In
                 </Link>
-                <button
-                  onClick={() => { setIsOpen(false); handleSignOut(); }}
-                  className="flex items-center gap-2 w-full px-3 py-2 text-sm text-red-600 hover:bg-red-50 rounded-md"
-                >
-                  <LogOut className="w-4 h-4" />
-                  Sign Out
-                </button>
-              </>
-            ) : (
-              <Link href="/auth" className="block px-3 py-2 rounded-md text-base font-medium text-[#64748B] hover:text-[#4A90D9]" onClick={() => setIsOpen(false)}>
-                Sign In
-              </Link>
-            )}
-          </div>
-        </motion.div>
-      )}
-    </nav>
+              )}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.nav>
   );
 }

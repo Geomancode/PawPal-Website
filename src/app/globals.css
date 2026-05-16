@@ -52,3 +52,82 @@ body {
 .font-brand {
   font-family: var(--font-brand);
 }
+
+/* ── Phase 1: Animated background blobs ── */
+@keyframes blob-drift-1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  25% { transform: translate(30px, -20px) scale(1.05); }
+  50% { transform: translate(-10px, 20px) scale(0.95); }
+  75% { transform: translate(20px, 10px) scale(1.02); }
+}
+
+@keyframes blob-drift-2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  25% { transform: translate(-20px, 15px) scale(0.97); }
+  50% { transform: translate(25px, -10px) scale(1.04); }
+  75% { transform: translate(-15px, -20px) scale(1.01); }
+}
+
+@keyframes blob-drift-3 {
+  0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.4; }
+  33% { transform: translate(15px, 25px) scale(1.06); opacity: 0.6; }
+  66% { transform: translate(-20px, -15px) scale(0.96); opacity: 0.35; }
+}
+
+.blob-animate-1 {
+  animation: blob-drift-1 12s ease-in-out infinite;
+}
+
+.blob-animate-2 {
+  animation: blob-drift-2 15s ease-in-out infinite;
+}
+
+.blob-animate-3 {
+  animation: blob-drift-3 18s ease-in-out infinite;
+}
+
+/* ── Phase 1: Shimmer effect for gradient text ── */
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.text-gradient-animated {
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-image: linear-gradient(
+    135deg,
+    var(--color-brand-amber),
+    var(--color-brand-blue),
+    var(--color-brand-amber)
+  );
+  background-size: 200% 200%;
+  animation: gradient-shift 6s ease-in-out infinite;
+}
+
+/* ── Phase 1: Noise texture overlay ── */
+.noise-overlay::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.018;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px 256px;
+}
+
+/* ── Phase 1: Scroll progress bar ── */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--color-brand-amber), var(--color-brand-blue));
+  z-index: 100;
+  transform-origin: left;
+  border-radius: 0 2px 2px 0;
+}
