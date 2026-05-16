@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { Globe2, Heart, Github, Twitter, Instagram, Mail } from "lucide-react";
+import { Heart, Github, Twitter, Instagram, Mail } from "lucide-react";
+import PawPalLogo from "./PawPalLogo";
 
 const FOOTER_NAV = {
   Product: [
@@ -30,15 +31,14 @@ const SOCIALS = [
 
 export default function Footer() {
   return (
-    <footer className="bg-gray-900 text-gray-400">
+    <footer className="bg-[#2D3748] text-gray-400">
       {/* Main grid */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
         <div className="grid grid-cols-2 md:grid-cols-5 gap-10">
-          {/* Brand column */}
+          {/* Brand column — using real logo (dark variant) */}
           <div className="col-span-2">
-            <div className="flex items-center gap-2 mb-4">
-              <Globe2 className="w-7 h-7 text-amber-500" />
-              <span className="text-xl font-bold text-white tracking-tight">PawPal<span className="text-amber-500">.</span></span>
+            <div className="mb-4">
+              <PawPalLogo iconSize={28} fontSize={20} variant="dark" />
             </div>
             <p className="text-sm leading-relaxed max-w-xs mb-6">
               The smart map for pet lovers. Discover missions, adopt animals, and connect with a global community that cares.
@@ -49,7 +49,7 @@ export default function Footer() {
                   key={s.label}
                   href={s.href}
                   aria-label={s.label}
-                  className="w-9 h-9 rounded-full bg-gray-800 hover:bg-amber-500 flex items-center justify-center transition-colors group"
+                  className="w-9 h-9 rounded-full bg-gray-700 hover:bg-[#F59E0B] flex items-center justify-center transition-colors group"
                 >
                   <s.icon className="w-4 h-4 text-gray-400 group-hover:text-white transition-colors" />
                 </a>
@@ -66,7 +66,7 @@ export default function Footer() {
                   <li key={link.label}>
                     <Link
                       href={link.href}
-                      className="text-sm hover:text-amber-400 transition-colors"
+                      className="text-sm hover:text-[#F59E0B] transition-colors"
                     >
                       {link.label}
                     </Link>
@@ -79,7 +79,7 @@ export default function Footer() {
       </div>
 
       {/* Bottom bar */}
-      <div className="border-t border-gray-800">
+      <div className="border-t border-gray-700">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex flex-col sm:flex-row items-center justify-between gap-3">
           <p className="text-xs">
             © {new Date().getFullYear()} PawPal. All rights reserved.

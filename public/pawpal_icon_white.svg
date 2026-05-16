@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="500" height="500">
+  <title>PawPal Icon — White (for dark backgrounds)</title>
+  <path d="M 160 380 V 160 A 80 80 0 0 1 240 80 H 260 A 80 80 0 0 1 340 160 V 200 A 80 80 0 0 1 260 280 H 160"
+        fill="none" stroke="#FFFFFF" stroke-width="50" stroke-linecap="round"/>
+  <circle cx="160" cy="280" r="25" fill="#F59E0B"/>
+  <circle cx="160" cy="380" r="25" fill="#FFFFFF" opacity="0.5"/>
+</svg>

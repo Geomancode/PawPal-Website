@@ -3,12 +3,24 @@
 @theme {
   --font-sans: "Inter", system-ui, -apple-system, sans-serif;
   --font-mono: ui-monospace, "Cascadia Code", "Fira Code", monospace;
+  --font-brand: "Baloo 2", "Comfortaa", "Nunito", system-ui, sans-serif;
+
+  /* ── Brand Color Palette (from brand_system.html) ── */
+  --color-brand-blue: #4A90D9;       /* Trust Blue — Logo route · Map · Navigation · Links */
+  --color-brand-blue-dark: #3B7BD4;  /* Deeper Blue — Gradients */
+  --color-brand-amber: #F59E0B;      /* Amber — Primary CTA · Waypoint · Highlights */
+  --color-brand-green: #10B981;      /* Emerald — Success · Online · Verified */
+  --color-brand-orange: #F97316;     /* Orange — Accent · Notifications · Badges */
+  --color-brand-cream: #FFFDF9;      /* Warm Cream — Page Background */
+  --color-brand-surface: #FFFFFF;    /* White — Card Surface · Inputs */
+  --color-brand-slate: #2D3748;      /* Dark Slate — Body Text · Headings */
+  --color-brand-muted: #64748B;      /* Muted — Secondary text */
 }
 
 :root {
-  --background: #fffdf9; /* 温暖舒适的米白背景 */
-  --foreground: #2d3748; /* 深灰偏暖文字 */
-  --primary: #f59e0b; /* 活力暖橙或芒果黄 */
+  --background: var(--color-brand-cream);
+  --foreground: var(--color-brand-slate);
+  --primary: var(--color-brand-amber);
   --primary-glow: rgba(245, 158, 11, 0.4);
 }
 
@@ -28,9 +40,15 @@ body {
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
 }
 
+/* Brand gradient text — Amber to Blue (warm → trust) */
 .text-gradient {
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  background-image: linear-gradient(90deg, #f59e0b, #10b981); /* 橙绿相间，充满自然与宠物活力 */
+  background-image: linear-gradient(135deg, var(--color-brand-amber), var(--color-brand-blue));
+}
+
+/* Brand font utility */
+.font-brand {
+  font-family: var(--font-brand);
 }
