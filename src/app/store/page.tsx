@@ -32,18 +32,22 @@ function ProductCard({
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, scale: 0.95 }}
-      whileHover={{ y: -6 }}
-      className="group relative glass rounded-2xl border border-[#F5E6D3]/60 hover:border-amber-300/50 overflow-hidden transition-shadow hover:shadow-xl"
+      whileHover={{ y: -8 }}
+      className="group relative bg-[#FFFCF5]/80 backdrop-blur-sm rounded-[24px] border border-[#F5E6D3]/50 hover:border-[#F5A623]/30 overflow-hidden transition-all duration-300 hover:shadow-[0_12px_40px_rgba(245,166,35,0.12)]"
     >
       {product.badge && (
-        <span className={`absolute top-3 left-3 z-10 px-2.5 py-1 rounded-full text-xs font-bold text-white ${badgeColor[product.badge]}`}>
+        <span className={`absolute top-4 left-4 z-10 px-3 py-1 rounded-full text-xs font-bold text-white shadow-md ${badgeColor[product.badge]}`}>
           {product.badge}
         </span>
       )}
 
-      {/* Image area */}
-      <div className="relative h-48 flex items-center justify-center bg-gradient-to-b from-gray-50 to-white group-hover:from-amber-50/50 transition-colors">
-        <span className="text-7xl group-hover:scale-110 transition-transform duration-300">{product.image}</span>
+      {/* Image area — PawView inspired: larger, warm gradient, hover color shift */}
+      <div className="relative h-56 flex items-center justify-center bg-gradient-to-b from-[#FFF4E8]/60 via-white to-[#FFFCF5] group-hover:from-[#FFF4E8] group-hover:via-[#FFF8F0] transition-colors duration-500">
+        <span className="text-8xl group-hover:scale-110 transition-transform duration-500 ease-out drop-shadow-sm">{product.image}</span>
+        {/* Subtle decorative circle behind product */}
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+          <div className="w-32 h-32 rounded-full bg-[#F5A623]/[0.04] group-hover:bg-[#F5A623]/[0.08] group-hover:scale-110 transition-all duration-500" />
+        </div>
       </div>
 
       {/* Info */}
@@ -56,7 +60,7 @@ function ProductCard({
         </div>
 
         <h3 className="font-bold text-[#1E293B] mb-1 group-hover:text-[#E8824C] transition-colors">{product.name}</h3>
-        <p className="text-sm text-[#6B7B8D] line-clamp-2 mb-3">{product.description}</p>
+        <p className="text-sm text-[#6B7B8D] line-clamp-2 mb-4">{product.description}</p>
 
         <div className="flex items-center justify-between">
           <div className="flex items-baseline gap-2">
@@ -68,7 +72,7 @@ function ProductCard({
           <motion.button
             whileTap={{ scale: 0.9 }}
             onClick={() => onAdd(product)}
-            className="flex items-center gap-1.5 bg-[#F5A623] hover:bg-[#E8824C] text-white px-4 py-2 rounded-full text-sm font-bold transition-colors shadow-md hover:shadow-lg cursor-pointer"
+            className="flex items-center gap-1.5 bg-[#F5A623] hover:bg-[#E8824C] text-white px-5 py-2.5 rounded-full text-sm font-bold transition-colors shadow-lg shadow-[#F5A623]/15 hover:shadow-[#E8824C]/20 cursor-pointer"
           >
             <Plus className="w-4 h-4" /> Add
           </motion.button>
@@ -303,19 +307,20 @@ export default function StorePage() {
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search products..."
-              className="w-full pl-12 pr-4 py-3.5 rounded-full glass border border-gray-200 focus:border-amber-400 focus:outline-none focus:ring-2 focus:ring-amber-200 transition-all text-gray-700"
+              className="w-full pl-12 pr-4 py-3.5 rounded-full bg-white/70 backdrop-blur-sm border border-[#F5E6D3]/60 focus:border-[#F5A623] focus:outline-none focus:ring-2 focus:ring-[#F5A623]/20 transition-all text-[#1E293B] placeholder:text-[#6B7B8D]/50"
             />
           </motion.div>
         </div>
       </section>
 
-      {/* ===== CATEGORY TABS ===== */}
-      <section className="max-w-7xl mx-auto px-4 pb-6">
+      {/* ===== CATEGORY TABS + PRODUCT GRID ===== */}
+      <section className="bg-[#FFF4E8]/30 py-8">
+        <div className="max-w-7xl mx-auto px-4">
         <div className="flex items-center gap-2 mb-2">
           <SlidersHorizontal className="w-4 h-4 text-[#6B7B8D]/70" />
           <span className="text-sm font-medium text-[#6B7B8D]/70">Filter by category</span>
         </div>
-        <div className="flex gap-2 flex-wrap">
+        <div className="flex gap-2 flex-wrap mb-8">
           {CATEGORIES.map((cat) => (
             <motion.button
               key={cat.key}
@@ -323,18 +328,14 @@ export default function StorePage() {
               onClick={() => setCategory(cat.key)}
               className={`px-5 py-2.5 rounded-full font-medium text-sm transition-all cursor-pointer ${
                 category === cat.key
-                  ? "bg-[#F5A623] text-white shadow-md shadow-amber-200"
-                  : "glass text-gray-600 hover:text-[#E8824C] border border-[#F5E6D3]/60"
+                  ? "bg-[#F5A623] text-white shadow-lg shadow-[#F5A623]/20"
+                  : "bg-white/80 text-[#1E293B] hover:text-[#E8824C] border border-[#F5E6D3]/60 hover:border-[#F5A623]/40"
               }`}
             >
               {cat.icon} {cat.label}
             </motion.button>
           ))}
         </div>
-      </section>
-
-      {/* ===== PRODUCT GRID ===== */}
-      <section className="max-w-7xl mx-auto px-4 pb-20">
         <div className="flex items-center justify-between mb-6">
           <p className="text-sm text-[#6B7B8D]/70">{filtered.length} product{filtered.length !== 1 ? "s" : ""}</p>
           <button
@@ -360,6 +361,7 @@ export default function StorePage() {
             <p className="text-sm text-gray-300 mt-1">Try adjusting your search or category filter</p>
           </div>
         )}
+        </div>
       </section>
 
       {/* ===== FLOATING CART BUTTON ===== */}

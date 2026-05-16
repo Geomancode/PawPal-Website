@@ -480,110 +480,125 @@ export function TrustMarquee() {
    ═══════════════════════════════════════════════════════════════ */
 
 export function AppShowcase() {
+  const features = [
+    { icon: MapPin, title: "Walk Tracking", desc: "Fog-of-war maps & gamified routes", color: "bg-[#F5A623]/12 text-[#F5A623]" },
+    { icon: ShieldCheck, title: "NFC Safety Tags", desc: "Instant pet profiles for finders", color: "bg-[#4A90D9]/12 text-[#4A90D9]" },
+    { icon: Sparkles, title: "AI Assistant", desc: "Breed analysis & health insights", color: "bg-[#10B981]/12 text-[#10B981]" },
+    { icon: Users, title: "Community", desc: "Local pet lovers & mutual help", color: "bg-[#E8824C]/12 text-[#E8824C]" },
+  ];
+
   return (
-    <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
-      {/* Left: Text */}
-      <FadeInView className="flex-1 space-y-6">
-        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#4A90D9]/8 text-[#4A90D9] text-sm font-medium">
-          <Smartphone className="w-4 h-4" />
-          Available on iOS & Android
-        </div>
-        <h2 className="text-3xl md:text-4xl font-bold text-[#1E293B] font-brand">
-          Your Pet's World,{" "}
-          <span className="text-gradient-animated">In Your Pocket</span>
-        </h2>
-        <p className="text-[#6B7B8D] text-lg leading-relaxed max-w-md">
-          Track walks, discover missions, connect with your community, and keep your pet's health records — all in one beautiful app.
-        </p>
-        <div className="space-y-3">
-          {[
-            { icon: MapPin, text: "Real-time walk tracking with route history", color: "text-[#F5A623]" },
-            { icon: ShieldCheck, text: "NFC smart tags for instant pet profiles", color: "text-[#4A90D9]" },
-            { icon: Sparkles, text: "AI-powered breed & health analysis", color: "text-[#10B981]" },
-          ].map((f, i) => (
-            <motion.div
-              key={i}
-              className="flex items-center gap-3 text-[#1E293B]"
-              initial={{ opacity: 0, x: -15 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2 + i * 0.1 }}
-            >
-              <f.icon className={`w-5 h-5 ${f.color} shrink-0`} />
-              <span className="text-sm">{f.text}</span>
-            </motion.div>
-          ))}
-        </div>
-      </FadeInView>
+    <div className="relative">
+      {/* PawView-inspired large rounded container */}
+      <FadeInView>
+        <div className="relative bg-gradient-to-br from-[#FFF4E8] via-[#FFFCF5] to-[#F0F4F8] rounded-[32px] overflow-hidden border border-[#F5E6D3]/40 shadow-[0_8px_40px_rgba(0,0,0,0.06)]">
+          {/* Decorative doodle elements — PawView style sparkle/star decorations */}
+          <svg className="absolute top-6 left-8 w-10 h-10 text-[#F5A623]/20 hidden lg:block" viewBox="0 0 40 40" fill="none">
+            <path d="M20 2v8M20 30v8M2 20h8M30 20h8M8 8l5 5M27 27l5 5M8 32l5-5M27 13l5-5" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+          </svg>
+          <svg className="absolute top-12 left-20 w-5 h-5 text-[#E8824C]/25 hidden lg:block" viewBox="0 0 20 20" fill="currentColor">
+            <path d="M10 0l2.5 7.5H20l-6 4.5 2.5 7.5L10 15l-6.5 4.5L6 12 0 7.5h7.5z"/>
+          </svg>
 
-      {/* Right: Phone mockups */}
-      <FadeInView delay={0.2} className="relative">
-        <div className="flex gap-5 items-center">
-          {/* Phone 1 — primary */}
-          <motion.div
-            className="phone-mockup"
-            whileHover={{ y: -8 }}
-            transition={{ type: "spring", stiffness: 200 }}
-          >
-            <div className="w-full h-full bg-gradient-to-b from-[#4A90D9]/10 via-[#FFFDF9] to-[#F5A623]/10 flex flex-col items-center justify-center gap-3 p-6">
-              <div className="w-16 h-16 rounded-2xl bg-[#F5A623]/15 flex items-center justify-center">
-                <MapPin className="w-8 h-8 text-[#F5A623]" />
+          <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-0">
+            {/* Left: Text content */}
+            <div className="flex-1 p-8 lg:p-12 space-y-6">
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#F5A623]/10 text-[#E8824C] text-sm font-semibold">
+                <Smartphone className="w-4 h-4" />
+                Your All-in-One Pet Care Solution
               </div>
-              <div className="text-[#1E293B] font-bold text-sm">Walk Mode</div>
-              <div className="w-full h-24 rounded-xl bg-[#4A90D9]/5 mt-2 flex items-center justify-center">
-                <div className="w-16 h-16 rounded-full bg-[#4A90D9]/10 blob-animate-2 flex items-center justify-center">
-                  <GlobeIcon className="w-8 h-8 text-[#4A90D9]/40" />
-                </div>
+              <h2 className="text-3xl md:text-4xl font-bold text-[#1E293B] font-brand leading-tight">
+                Your Pet&apos;s World,{" "}
+                <span className="text-gradient-animated">In Your Pocket</span>
+              </h2>
+              <p className="text-[#6B7B8D] text-lg leading-relaxed max-w-md">
+                All-in-one app for pet safety, gamified walks, health logging, and community connection. Available on iOS & Android.
+              </p>
+
+              {/* Feature chips — PawView-inspired grid */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                {features.map((f, i) => (
+                  <motion.div
+                    key={i}
+                    className="flex items-center gap-3 px-4 py-3 rounded-2xl bg-white/60 backdrop-blur-sm border border-white/80 hover:shadow-md transition-all"
+                    initial={{ opacity: 0, y: 12 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.2 + i * 0.08 }}
+                  >
+                    <div className={`w-10 h-10 rounded-xl ${f.color} flex items-center justify-center shrink-0`}>
+                      <f.icon className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <div className="text-sm font-bold text-[#1E293B]">{f.title}</div>
+                      <div className="text-xs text-[#6B7B8D]">{f.desc}</div>
+                    </div>
+                  </motion.div>
+                ))}
               </div>
-              <div className="flex gap-2 mt-2 w-full">
-                <div className="flex-1 h-8 rounded-lg bg-[#10B981]/10" />
-                <div className="flex-1 h-8 rounded-lg bg-[#F5A623]/10" />
+
+              {/* Download CTA */}
+              <div className="flex gap-3 pt-2">
+                <motion.a
+                  href="#"
+                  whileHover={{ scale: 1.03 }}
+                  whileTap={{ scale: 0.97 }}
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#F5A623] hover:bg-[#E8824C] text-white font-bold text-sm transition-colors shadow-lg shadow-[#F5A623]/20"
+                >
+                  <Smartphone className="w-4 h-4" /> Download App
+                </motion.a>
+                <motion.a
+                  href="/about"
+                  whileHover={{ scale: 1.03 }}
+                  whileTap={{ scale: 0.97 }}
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white border border-[#F5E6D3] text-[#1E293B] font-bold text-sm hover:border-[#F5A623] transition-colors"
+                >
+                  Learn More
+                </motion.a>
               </div>
-              <div className="w-full h-6 rounded-lg bg-gray-100 mt-1" />
-              <div className="w-3/4 h-6 rounded-lg bg-gray-50" />
             </div>
-          </motion.div>
 
-          {/* Phone 2 — offset */}
-          <motion.div
-            className="phone-mockup hidden md:block"
-            style={{ marginTop: "40px" }}
-            whileHover={{ y: -8 }}
-            transition={{ type: "spring", stiffness: 200 }}
-          >
-            <div className="w-full h-full bg-gradient-to-b from-[#F5A623]/10 via-[#FFFDF9] to-[#10B981]/10 flex flex-col items-center justify-center gap-3 p-6">
-              <div className="w-16 h-16 rounded-2xl bg-[#10B981]/15 flex items-center justify-center">
-                <Sparkles className="w-8 h-8 text-[#10B981]" />
-              </div>
-              <div className="text-[#1E293B] font-bold text-sm">AI Pet ID</div>
-              <div className="w-full h-28 rounded-xl bg-[#F5A623]/5 mt-2 flex items-center justify-center text-3xl">
-                🐕
-              </div>
-              <div className="w-full px-3 py-2 rounded-lg bg-[#10B981]/8 text-[#10B981] text-xs font-medium text-center">
-                Golden Retriever · 98% match
-              </div>
-              <div className="w-full h-6 rounded-lg bg-gray-100 mt-1" />
-              <div className="w-2/3 h-6 rounded-lg bg-gray-50" />
+            {/* Right: App mockup image with pet photo blend */}
+            <div className="relative flex-1 flex items-center justify-center p-4 lg:p-0">
+              {/* App mockup image */}
+              <motion.div
+                className="relative z-10"
+                whileHover={{ y: -8 }}
+                transition={{ type: "spring", stiffness: 200 }}
+              >
+                <img
+                  src="/images/app-mockup.png"
+                  alt="PawPal App Interface"
+                  className="w-[280px] lg:w-[320px] drop-shadow-2xl"
+                />
+              </motion.div>
+
+              {/* Floating status badges */}
+              <motion.div
+                className="absolute top-8 right-4 lg:right-8 px-3 py-2 rounded-2xl bg-white/90 backdrop-blur-sm shadow-lg border border-[#F5E6D3]/60 text-xs font-semibold text-[#1E293B] flex items-center gap-2 z-20"
+                animate={{ y: [0, -6, 0] }}
+                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+              >
+                <span className="w-2 h-2 rounded-full bg-[#10B981] animate-pulse" />
+                GPS Active
+              </motion.div>
+              <motion.div
+                className="absolute bottom-12 left-2 lg:left-4 px-3 py-2 rounded-2xl bg-white/90 backdrop-blur-sm shadow-lg border border-[#F5E6D3]/60 text-xs font-semibold text-[#1E293B] flex items-center gap-2 z-20"
+                animate={{ y: [0, 6, 0] }}
+                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+              >
+                🐾 3.2km walked today
+              </motion.div>
+              <motion.div
+                className="absolute top-1/2 right-0 lg:right-2 px-3 py-2 rounded-2xl bg-[#F5A623]/10 backdrop-blur-sm shadow-md border border-[#F5A623]/20 text-xs font-semibold text-[#E8824C] flex items-center gap-2 z-20"
+                animate={{ y: [0, -4, 0] }}
+                transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+              >
+                <Sparkles className="w-3 h-3" /> AI Ready
+              </motion.div>
             </div>
-          </motion.div>
+          </div>
         </div>
-
-        {/* Floating badges around phones */}
-        <motion.div
-          className="absolute -top-4 -left-6 px-3 py-1.5 rounded-full bg-white shadow-lg border border-gray-100 text-xs font-medium text-[#1E293B] flex items-center gap-1.5"
-          animate={{ y: [0, -6, 0] }}
-          transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-        >
-          <span className="w-2 h-2 rounded-full bg-[#10B981]" />
-          GPS Active
-        </motion.div>
-        <motion.div
-          className="absolute -bottom-2 -right-4 px-3 py-1.5 rounded-full bg-white shadow-lg border border-gray-100 text-xs font-medium text-[#1E293B] flex items-center gap-1.5"
-          animate={{ y: [0, 6, 0] }}
-          transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-        >
-          🐾 3.2km walked
-        </motion.div>
       </FadeInView>
     </div>
   );

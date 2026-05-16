@@ -132,7 +132,8 @@ export default function Home() {
       </section>
 
       {/* ===== FEATURES — Bento Grid ===== */}
-      <section id="features" className="relative py-20 max-w-6xl mx-auto px-4">
+      <section id="features" className="relative py-20 bg-[#FFF4E8]/40">
+        <div className="max-w-6xl mx-auto px-4 relative">
         {/* Decorative doodles */}
         <div className="absolute top-10 right-0 w-24 h-24 text-[#F5A623]/8 doodle-float-alt hidden lg:block">
           <DoodleDog className="w-full h-full" />
@@ -153,6 +154,7 @@ export default function Home() {
         </FadeInView>
 
         <BentoFeatureGrid />
+        </div>
       </section>
 
       {/* ===== APP SHOWCASE ===== */}
