@@ -1,11 +1,8 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Providers from "@/components/Providers";
 import ConditionalFooter from "@/components/ConditionalFooter";
-
-const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "PawPal - The Smart Map for Pets",
@@ -19,7 +16,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.className} antialiased min-h-screen bg-[#fffdf9] text-gray-800 selection:bg-amber-400/30`}>
+      <body className="min-h-screen bg-paw-canvas text-paw-ink antialiased selection:bg-paw-primary/20">
         <Providers>
           <Navbar />
           <main>{children}</main>

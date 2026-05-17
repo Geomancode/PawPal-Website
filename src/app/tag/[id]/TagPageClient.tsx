@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Heart, Phone, Droplets, Shield, Award, MapPin, Calendar, PawPrint } from "lucide-react";
+import { Heart, Phone, Droplets, Shield, Award, Calendar, PawPrint } from "lucide-react";
 
 interface TagPageClientProps {
   pet: {
@@ -10,7 +10,13 @@ interface TagPageClientProps {
     breed: string | null;
     age: number | null;
     avatar_url: string | null;
-    social_traits: Record<string, any> | null;
+    social_traits: {
+      health_badges?: string[];
+      social_tags?: string[];
+      quirk?: string;
+      achievements?: string[];
+      [key: string]: unknown;
+    } | null;
     blood_type: string | null;
     owner_contact: string | null;
     created_at: string;
@@ -21,12 +27,6 @@ interface TagPageClientProps {
     avatar_url: string | null;
   } | null;
 }
-
-const SPECIES_EMOJI: Record<string, string> = {
-  canine: "🐕", feline: "🐈", lagomorph: "🐰", bird: "🦜",
-  reptile: "🦎", amphibian: "🐸", fish: "🐠", small_mammal: "🐹",
-  insect: "🦋", arachnid: "🕷️", equine: "🐴", exotic_wild: "🦊",
-};
 
 export default function TagPageClient({ pet, owner }: TagPageClientProps) {
   const healthBadges: string[] = pet.social_traits?.health_badges ?? [];
@@ -53,6 +53,7 @@ export default function TagPageClient({ pet, owner }: TagPageClientProps) {
             {/* Avatar */}
             <div className="w-20 h-20 rounded-full bg-white/30 border-4 border-white mx-auto flex items-center justify-center text-4xl shadow-lg">
               {pet.avatar_url ? (
+                // eslint-disable-next-line @next/next/no-img-element
                 <img src={pet.avatar_url} alt={pet.name} className="w-full h-full rounded-full object-cover" />
               ) : (
                 emoji

@@ -217,7 +217,13 @@ export default function StorePage() {
   const [cartOpen, setCartOpen] = useState(false);
   const [toast, setToast] = useState<string | null>(null);
 
-  useEffect(() => { setCart(loadCart()); }, []);
+  useEffect(() => {
+    let cancelled = false;
+    queueMicrotask(() => {
+      if (!cancelled) setCart(loadCart());
+    });
+    return () => { cancelled = true; };
+  }, []);
   useEffect(() => { saveCart(cart); }, [cart]);
 
   const addToCart = useCallback((product: Product) => {

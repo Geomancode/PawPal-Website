@@ -45,11 +45,35 @@ const PASTEL_COLORS = [
   "#f3d1dc", "#bde0fe", "#c1fba4", "#ffc6ff", "#caffbf",
 ];
 
+type PetLabel = (typeof PET_LABELS)[number];
+
+interface CountryFeature {
+  properties?: {
+    MAPCOLOR7?: number;
+  };
+  geometry?: unknown;
+}
+
+interface GlobeControls {
+  enableZoom: boolean;
+  autoRotate: boolean;
+  autoRotateSpeed: number;
+  enableDamping: boolean;
+  dampingFactor: number;
+}
+
+interface GlobeRef {
+  controls: () => GlobeControls | undefined;
+  pointOfView: (view: { altitude: number }) => void;
+  camera: () => THREE.Camera;
+  getGlobeRadius: () => number;
+}
+
 export default function GlobeComponent() {
-  const globeEl = useRef<any>(null);
-  const labelElements = useRef<Map<HTMLElement, any>>(new Map());
+  const globeEl = useRef<GlobeRef | null>(null);
+  const labelElements = useRef<Map<HTMLElement, PetLabel>>(new Map());
   const [dimensions, setDimensions] = useState({ width: 600, height: 600 });
-  const [countries, setCountries] = useState<any[]>([]);
+  const [countries, setCountries] = useState<CountryFeature[]>([]);
 
   const handleLabelClick = useCallback(() => {
     window.location.href = "/globe";
@@ -69,8 +93,15 @@ export default function GlobeComponent() {
   useEffect(() => {
     fetch("https://raw.githubusercontent.com/nvkelso/natural-earth-vector/master/geojson/ne_110m_admin_0_countries.geojson")
       .then((r) => r.json())
-      .then((data) => {
-        setCountries(data.features || []);
+      .then((data: unknown) => {
+        if (
+          typeof data === "object" &&
+          data !== null &&
+          "features" in data &&
+          Array.isArray((data as { features?: unknown }).features)
+        ) {
+          setCountries((data as { features: CountryFeature[] }).features);
+        }
       })
       .catch(() => {
         // fallback: show globe without countries
@@ -147,7 +178,7 @@ export default function GlobeComponent() {
         ref={globeEl}
         width={dimensions.width}
         height={dimensions.height}
-        globeImageUrl={null as any}
+        globeImageUrl={null}
         showGlobe={true}
         globeMaterial={globeMaterial}
         backgroundColor="rgba(0,0,0,0)"
@@ -156,8 +187,8 @@ export default function GlobeComponent() {
         showGraticules={false}
         // Hex polygons for countries — cartoonish look
         hexPolygonsData={countries}
-        hexPolygonGeoJsonGeometry={"geometry" as any}
-        hexPolygonColor={(d: any) => {
+        hexPolygonGeoJsonGeometry="geometry"
+        hexPolygonColor={(d: CountryFeature) => {
           const idx = (d?.properties?.MAPCOLOR7 || 0) % PASTEL_COLORS.length;
           return PASTEL_COLORS[idx];
         }}
@@ -169,7 +200,7 @@ export default function GlobeComponent() {
         htmlLat="lat"
         htmlLng="lng"
         htmlAltitude={0.05}
-        htmlElement={(d: any) => {
+        htmlElement={(d: PetLabel) => {
           const el = document.createElement("div");
           el.style.transition = "opacity 0.25s ease";
           el.innerHTML = `

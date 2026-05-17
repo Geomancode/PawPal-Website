@@ -138,7 +138,13 @@ export default function OrdersPage() {
   const router = useRouter();
   const [orders, setOrders] = useState<Order[]>([]);
 
-  useEffect(() => { setOrders(loadOrders()); }, []);
+  useEffect(() => {
+    let cancelled = false;
+    queueMicrotask(() => {
+      if (!cancelled) setOrders(loadOrders());
+    });
+    return () => { cancelled = true; };
+  }, []);
 
   return (
     <div className="min-h-screen bg-[#fffdf9] pt-28 pb-20">

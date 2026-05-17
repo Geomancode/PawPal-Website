@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import {
-  UserCircle, MapPin, Shield, Award, PawPrint, Edit3, Save,
+  MapPin, Shield, Award, PawPrint, Edit3, Save,
   X, Plus, Calendar, Droplets, Nfc, Star, ChevronRight, Loader2, Smartphone,
 } from "lucide-react";
 import { useAuth } from "@/components/AuthProvider";
@@ -25,6 +25,14 @@ interface Profile {
   created_at: string;
 }
 
+interface PetSocialTraits {
+  social_tags?: string[];
+  health_badges?: string[];
+  quirk?: string;
+  achievements?: string[];
+  [key: string]: unknown;
+}
+
 interface Pet {
   id: string;
   name: string;
@@ -32,7 +40,7 @@ interface Pet {
   breed: string | null;
   birth_date: string | null;
   avatar_url: string | null;
-  social_traits: Record<string, any> | null;
+  social_traits: PetSocialTraits | null;
   blood_type: string | null;
   owner_contact: string | null;
   nfc_tag_uid: string | null;
@@ -150,7 +158,7 @@ export default function ProfilePage() {
     if (!user || !petName.trim()) return;
     setAddingPet(true);
 
-    const traitsMap: Record<string, any> = {};
+    const traitsMap: PetSocialTraits = {};
     if (petSocialTags.length > 0) traitsMap.social_tags = petSocialTags;
     if (petHealthBadges.length > 0) traitsMap.health_badges = petHealthBadges;
 
@@ -217,6 +225,7 @@ export default function ProfilePage() {
             <div className="-mt-12 mb-4 flex items-end justify-between">
               <div className="w-24 h-24 rounded-2xl bg-white border-4 border-white shadow-lg flex items-center justify-center text-4xl overflow-hidden">
                 {profile.avatar_url ? (
+                  // eslint-disable-next-line @next/next/no-img-element
                   <img src={profile.avatar_url} alt="" className="w-full h-full object-cover" />
                 ) : (
                   <div className="w-full h-full bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center text-white text-3xl font-bold">
@@ -465,6 +474,7 @@ export default function ProfilePage() {
                       {/* Pet avatar */}
                       <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-amber-100 to-orange-100 flex items-center justify-center text-2xl shrink-0 overflow-hidden">
                         {pet.avatar_url ? (
+                          // eslint-disable-next-line @next/next/no-img-element
                           <img src={pet.avatar_url} alt={pet.name} className="w-full h-full object-cover" />
                         ) : "🐾"}
                       </div>

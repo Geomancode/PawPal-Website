@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useRouter } from "next/navigation";
 import {
   ArrowLeft, ArrowRight, Package, MapPin, CreditCard,
-  CheckCircle2, Truck, ShieldCheck, Lock, Loader2, ExternalLink,
+  Truck, ShieldCheck, Lock, Loader2, ExternalLink,
 } from "lucide-react";
 import {
   CartItem, ShippingInfo,
@@ -112,11 +112,16 @@ export default function CheckoutPage() {
   });
 
   useEffect(() => {
-    const loaded = loadCart();
-    if (loaded.length === 0) {
-      router.push("/store");
-    }
-    setCart(loaded);
+    let cancelled = false;
+    queueMicrotask(() => {
+      const loaded = loadCart();
+      if (cancelled) return;
+      if (loaded.length === 0) {
+        router.push("/store");
+      }
+      setCart(loaded);
+    });
+    return () => { cancelled = true; };
   }, [router]);
 
   const subtotal = cart.reduce((s, i) => s + i.product.price * i.quantity, 0);

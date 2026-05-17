@@ -81,14 +81,10 @@ export async function POST(req: NextRequest) {
 
           // ── Build system prompt (persona or fallback) ──────────────
           let systemPrompt: string;
-          let activePetName: string | null = null;
-          let activePetSpecies: string | null = null;
 
           const pets = await loadUserPets(userId);
           if (pets.length > 0) {
             const activePet = pickRandom(pets);
-            activePetName = activePet.petName;
-            activePetSpecies = activePet.speciesGroup;
 
             const memories = await recallMemories(activePet.petId);
             const personaPrompt = buildPersonaPrompt(activePet, pets, memories);
@@ -104,7 +100,6 @@ export async function POST(req: NextRequest) {
             });
           } else {
             // Subscriber but no pets — use "PawPal" identity
-            activePetName = "PawPal";
             send("persona", { petName: "PawPal", speciesGroup: null, status: "alive", siblingCount: 0, memoriesRecalled: 0 });
             systemPrompt = `${FALLBACK_IDENTITY_PROMPT}\n\n${PLATFORM_KNOWLEDGE_PROMPT}`;
           }

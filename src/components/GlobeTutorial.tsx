@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback, useRef } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ChevronRight, ChevronLeft, Sparkles } from "lucide-react";
 import { useAuth } from "./AuthProvider";
@@ -71,7 +71,6 @@ export default function GlobeTutorial() {
   const [visible, setVisible] = useState(false);
   const [step, setStep] = useState(0);
   const [targetRect, setTargetRect] = useState<DOMRect | null>(null);
-  const rafRef = useRef<number>(0);
 
   // Decide whether to show
   useEffect(() => {
@@ -92,12 +91,16 @@ export default function GlobeTutorial() {
 
   useEffect(() => {
     if (!visible) return;
-    measureTarget();
+    const frame = requestAnimationFrame(measureTarget);
     const onResize = () => measureTarget();
     window.addEventListener("resize", onResize);
     // Re-measure periodically in case of layout shifts
     const interval = setInterval(measureTarget, 500);
-    return () => { window.removeEventListener("resize", onResize); clearInterval(interval); };
+    return () => {
+      cancelAnimationFrame(frame);
+      window.removeEventListener("resize", onResize);
+      clearInterval(interval);
+    };
   }, [visible, step, measureTarget]);
 
   const dismiss = () => {

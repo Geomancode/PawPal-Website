@@ -5,6 +5,8 @@ import { useRouter } from "next/navigation";
 import Globe from "@/components/Globe";
 import { ArrowRight, MapPin, Search, ShieldCheck } from "lucide-react";
 import { ReactNode } from "react";
+import Badge from "@/components/ui/Badge";
+import { buttonClassName } from "@/components/ui/Button";
 
 /* ── Animated wrapper (client-only) ── */
 export function FadeIn({ children, delay = 0, className = "" }: { children: ReactNode; delay?: number; className?: string }) {
@@ -39,13 +41,13 @@ export function HeroCTA() {
   const router = useRouter();
   return (
     <div className="flex flex-col sm:flex-row gap-4 pt-2">
-      <button className="flex items-center justify-center gap-2 bg-amber-500 hover:bg-amber-600 text-white px-8 py-4 rounded-full font-bold text-lg transition-all shadow-[0_4px_20px_rgba(245,158,11,0.35)] hover:shadow-[0_8px_30px_rgba(245,158,11,0.5)] hover:-translate-y-0.5">
+      <button className={buttonClassName({ variant: "primary", size: "lg", className: "w-full sm:w-auto" })}>
         Download App
         <ArrowRight className="w-5 h-5" />
       </button>
       <button
         onClick={() => router.push("/globe")}
-        className="flex items-center justify-center gap-2 glass hover:bg-white/70 text-amber-700 px-8 py-4 rounded-full font-bold text-lg transition-all border border-amber-200"
+        className={buttonClassName({ variant: "secondary", size: "lg", className: "w-full sm:w-auto" })}
       >
         Explore Globe
       </button>
@@ -56,16 +58,16 @@ export function HeroCTA() {
 /* ── Hero trust badges ── */
 export function HeroBadges() {
   return (
-    <div className="flex items-center gap-8 pt-4">
+    <div className="flex flex-wrap items-center gap-3 pt-2">
       {[
-        { icon: MapPin, color: "text-amber-500", label: "Live Missions" },
-        { icon: Search, color: "text-emerald-500", label: "AI Pet ID" },
-        { icon: ShieldCheck, color: "text-blue-500", label: "Safe Network" },
+        { icon: MapPin, tone: "accent" as const, label: "Live Missions" },
+        { icon: Search, tone: "success" as const, label: "AI Pet ID" },
+        { icon: ShieldCheck, tone: "primary" as const, label: "Safe Network" },
       ].map((t, i) => (
-        <div key={i} className="flex items-center gap-2 text-gray-500">
-          <t.icon className={`w-5 h-5 ${t.color}`} />
-          <span className="text-sm font-medium">{t.label}</span>
-        </div>
+        <Badge key={i} tone={t.tone} className="py-1.5">
+          <t.icon className="w-4 h-4" />
+          {t.label}
+        </Badge>
       ))}
     </div>
   );
@@ -83,7 +85,7 @@ export function GlobeSection() {
       <div className="absolute inset-0 flex items-center justify-center pointer-events-auto">
         <Globe />
       </div>
-      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 glass px-4 py-1.5 rounded-full text-xs text-amber-600 animate-pulse pointer-events-none font-medium">
+      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 glass px-4 py-1.5 rounded-paw-md text-xs text-paw-primary pointer-events-none font-bold">
         Drag to spin · Click a label to explore
       </div>
     </motion.div>
@@ -95,14 +97,14 @@ export function BottomCTA() {
   const router = useRouter();
   return (
     <div className="flex flex-col sm:flex-row gap-4 justify-center">
-      <button className="bg-amber-500 hover:bg-amber-600 text-white px-8 py-4 rounded-full font-bold text-lg transition-all shadow-[0_4px_20px_rgba(245,158,11,0.35)] hover:-translate-y-0.5">
+      <button className={buttonClassName({ variant: "primary", size: "lg" })}>
         Get PawPal Free
       </button>
       <button
         onClick={() => router.push("/globe")}
-        className="glass hover:bg-white/70 text-amber-700 px-8 py-4 rounded-full font-bold text-lg transition-all border border-amber-200"
+        className={buttonClassName({ variant: "secondary", size: "lg" })}
       >
-        Explore the Globe →
+        Explore the Globe
       </button>
     </div>
   );

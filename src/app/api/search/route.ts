@@ -120,10 +120,10 @@ Answer in the same language the user used:`
   return NextResponse.json({ intent, results: [], aiMessage: aiAnswer || "Hi! 🐾 Try searching for pet missions, places, or ask me any pet question!" });
 }
 
-function dedup(arr: any[]) {
+function dedup<T extends { id: string | number }>(arr: T[]): T[] {
   const seen = new Set<string>();
   return arr.filter((item) => {
-    const key = item.id;
+    const key = String(item.id);
     if (seen.has(key)) return false;
     seen.add(key);
     return true;

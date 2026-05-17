@@ -23,6 +23,10 @@ const PLACE_EMOJI: Record<string, string> = {
   zoo: "🦁", wildlife_centre: "🦅", other: "📍",
 };
 
+type MapWithSky = maplibregl.Map & {
+  setSky?: (sky: { "atmosphere-blend": number }) => void;
+};
+
 /* ── Marker badge style ── */
 function createMarkerEl(emoji: string, color: string): HTMLElement {
   const el = document.createElement("div");
@@ -111,7 +115,7 @@ export default function MapGlobeComponent() {
 
     map.on("style.load", () => {
       map.setProjection({ type: "globe" });
-      try { map.setSky({ "atmosphere-blend": 0.8 } as any); } catch { /* ok */ }
+      try { (map as MapWithSky).setSky?.({ "atmosphere-blend": 0.8 }); } catch { /* ok */ }
 
       let isInteracting = false;
       let velocityLng = 0;

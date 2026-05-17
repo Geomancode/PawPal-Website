@@ -21,14 +21,12 @@ function SuccessContent() {
   const searchParams = useSearchParams();
   const sessionId = searchParams.get("session_id");
   const [session, setSession] = useState<StripeSession | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(() => Boolean(sessionId));
+  const [error, setError] = useState(() => sessionId ? "" : "No session ID found");
   const [orderId] = useState(() => generateOrderId());
 
   useEffect(() => {
     if (!sessionId) {
-      setError("No session ID found");
-      setLoading(false);
       return;
     }
 

@@ -3,13 +3,78 @@
 @theme {
   --font-sans: "Inter", system-ui, -apple-system, sans-serif;
   --font-mono: ui-monospace, "Cascadia Code", "Fira Code", monospace;
+
+  --color-paw-primary: #2f8fff;
+  --color-paw-primary-hover: #1f7ae5;
+  --color-paw-primary-soft: #eaf4ff;
+  --color-paw-accent: #ff7a59;
+  --color-paw-accent-hover: #ef6444;
+  --color-paw-accent-soft: #fff0ea;
+  --color-paw-success: #16a679;
+  --color-paw-success-soft: #e7f8f1;
+  --color-paw-warning: #f5a524;
+  --color-paw-warning-soft: #fff6e3;
+  --color-paw-danger: #e54864;
+  --color-paw-danger-soft: #ffecef;
+  --color-paw-canvas: #f8fafc;
+  --color-paw-warm-canvas: #fffdf8;
+  --color-paw-panel: #ffffff;
+  --color-paw-panel-subtle: #f3f6fa;
+  --color-paw-ink: #111827;
+  --color-paw-body: #334155;
+  --color-paw-muted: #64748b;
+  --color-paw-border: #e2e8f0;
+
+  --radius-paw-xs: 6px;
+  --radius-paw-sm: 8px;
+  --radius-paw-md: 12px;
+  --radius-paw-lg: 16px;
+  --radius-paw-xl: 20px;
+
+  --shadow-paw-panel: 0 12px 32px rgba(15, 23, 42, 0.08);
+  --shadow-paw-floating: 0 18px 48px rgba(15, 23, 42, 0.14);
+  --shadow-paw-action: 0 10px 24px rgba(47, 143, 255, 0.22);
 }
 
 :root {
-  --background: #fffdf9; /* 温暖舒适的米白背景 */
-  --foreground: #2d3748; /* 深灰偏暖文字 */
-  --primary: #f59e0b; /* 活力暖橙或芒果黄 */
-  --primary-glow: rgba(245, 158, 11, 0.4);
+  --background: #f8fafc;
+  --foreground: #111827;
+  --primary: #2f8fff;
+  --primary-glow: rgba(47, 143, 255, 0.28);
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-paw-primary: #68adff;
+    --color-paw-primary-hover: #8dc2ff;
+    --color-paw-primary-soft: #143557;
+    --color-paw-accent: #ff9a7f;
+    --color-paw-accent-hover: #ffb39d;
+    --color-paw-accent-soft: #46251d;
+    --color-paw-success: #5ce0b5;
+    --color-paw-success-soft: #123d31;
+    --color-paw-warning: #ffc35a;
+    --color-paw-warning-soft: #493316;
+    --color-paw-danger: #ff7a91;
+    --color-paw-danger-soft: #4f1e29;
+    --color-paw-canvas: #0f172a;
+    --color-paw-warm-canvas: #111827;
+    --color-paw-panel: #111827;
+    --color-paw-panel-subtle: #1e293b;
+    --color-paw-ink: #f8fafc;
+    --color-paw-body: #cbd5e1;
+    --color-paw-muted: #94a3b8;
+    --color-paw-border: #334155;
+    --background: #0f172a;
+    --foreground: #f8fafc;
+    --primary: #68adff;
+    --primary-glow: rgba(104, 173, 255, 0.24);
+    --shadow-paw-panel: 0 12px 32px rgba(0, 0, 0, 0.32);
+    --shadow-paw-floating: 0 18px 48px rgba(0, 0, 0, 0.42);
+    --shadow-paw-action: 0 10px 24px rgba(104, 173, 255, 0.20);
+    color-scheme: dark;
+  }
 }
 
 body {
@@ -17,20 +82,94 @@ body {
   color: var(--foreground);
   /* Font is set by Inter className from layout.tsx — no override here */
   overflow-x: hidden;
+  letter-spacing: 0;
 }
 
-/* Glassmorphism 亮色版本 */
 .glass {
-  background: rgba(255, 255, 255, 0.6);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(0, 0, 0, 0.05);
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  background: color-mix(in srgb, var(--color-paw-panel) 82%, transparent);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid color-mix(in srgb, var(--color-paw-border) 90%, transparent);
+  box-shadow: var(--shadow-paw-panel);
+}
+
+.paw-page {
+  background:
+    linear-gradient(180deg, rgba(234, 244, 255, 0.64), rgba(248, 250, 252, 0) 360px),
+    var(--background);
+}
+
+.paw-section {
+  width: 100%;
+  max-width: 80rem;
+  margin-inline: auto;
+  padding-inline: 1rem;
+}
+
+@media (min-width: 640px) {
+  .paw-section {
+    padding-inline: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .paw-section {
+    padding-inline: 2rem;
+  }
 }
 
 .text-gradient {
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  background-image: linear-gradient(90deg, #f59e0b, #10b981); /* 橙绿相间，充满自然与宠物活力 */
+  background-image: linear-gradient(90deg, #2f8fff, #ff7a59);
+}
+
+@media (prefers-color-scheme: dark) {
+  /* Temporary compatibility layer for older pages that still use raw Tailwind colors. */
+  .bg-white,
+  .bg-gray-50,
+  .bg-gray-100,
+  [class~="bg-[#fffdf9]"] {
+    background-color: var(--color-paw-panel) !important;
+  }
+
+  .text-gray-900,
+  .text-gray-800,
+  .text-slate-800 {
+    color: var(--color-paw-ink) !important;
+  }
+
+  .text-gray-700,
+  .text-gray-600,
+  .text-slate-700 {
+    color: var(--color-paw-body) !important;
+  }
+
+  .text-gray-500,
+  .text-gray-400,
+  .text-slate-400 {
+    color: var(--color-paw-muted) !important;
+  }
+
+  .border-gray-50,
+  .border-gray-100,
+  .border-gray-200,
+  .border-slate-200 {
+    border-color: var(--color-paw-border) !important;
+  }
+
+  .hover\:bg-gray-50:hover,
+  .hover\:bg-gray-100:hover,
+  .hover\:bg-slate-100:hover {
+    background-color: var(--color-paw-panel-subtle) !important;
+  }
+
+  .shadow-sm,
+  .shadow-md,
+  .shadow-lg,
+  .shadow-xl,
+  .shadow-2xl {
+    box-shadow: var(--shadow-paw-panel) !important;
+  }
 }
