@@ -300,7 +300,7 @@ export default function ChatBottomSheet({ mapRef }: ChatBottomSheetProps) {
           }
         }
 
-        // ── Phase B: No map results → fall through to AI Agent (subscribers) ──
+        // ── Phase B: No map results → AI chat (free Q&A for all, tools for subscribers) ──
         const history = [...messages, userMsg]
           .filter((m) => m.role === "user" || m.role === "assistant")
           .map((m) => ({ role: m.role as "user" | "assistant", content: m.content }));
