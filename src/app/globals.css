@@ -11,7 +11,7 @@
   --color-brand-amber: #F5A623;      /* Warm Amber — Primary CTA (slightly warmer than #F59E0B) */
   --color-brand-green: #10B981;      /* Emerald — Success · Online · Verified */
   --color-brand-orange: #E8824C;     /* Warm Terracotta — Accent · Warm & approachable */
-  --color-brand-cream: #FFF8F0;      /* Warm Cream — Page Background (warmer) */
+  --color-brand-cream: #F7F8FA;      /* Light Gray-White — Clean Page Background */
   --color-brand-surface: #FFFFFF;    /* White — Card Surface · Inputs */
   --color-brand-slate: #1E293B;      /* Deeper Slate — Body Text · Headings (higher contrast) */
   --color-brand-muted: #6B7B8D;      /* Warm Muted — Secondary text */
@@ -30,16 +30,28 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  /* Font is set by Inter className from layout.tsx — no override here */
   overflow-x: hidden;
 }
 
-/* ── Refined Glassmorphism — warmer tint ── */
+/* ── Dense pet doodle tiling background ── */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.032;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400' viewBox='0 0 400 400' fill='none' stroke='%236B7B8D' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3C!-- Dog --%3E%3Cg transform='translate(20,20) scale(0.6)'%3E%3Cpath d='M25 45c0-12 8-20 20-20s20 8 20 20'/%3E%3Ccircle cx='37' cy='20' r='2'/%3E%3Ccircle cx='53' cy='20' r='2'/%3E%3Cpath d='M42 24c2 2 6 2 8 0'/%3E%3Cpath d='M45 8c-12-4-20 4-22 12'/%3E%3Cpath d='M45 8c12-4 20 4 22 12'/%3E%3Cpath d='M22 16c-4-10 0-20 4-22'/%3E%3Cpath d='M68 16c4-10 0-20-4-22'/%3E%3C/g%3E%3C!-- Cat --%3E%3Cg transform='translate(140,30) scale(0.55)'%3E%3Cpath d='M30 55c0-10 7-18 17-18s17 8 17 18'/%3E%3Ccircle cx='40' cy='32' r='2'/%3E%3Ccircle cx='54' cy='32' r='2'/%3E%3Cpath d='M44 36c1.5 2 5 2 6.5 0'/%3E%3Cpath d='M33 28l-7-18'/%3E%3Cpath d='M61 28l7-18'/%3E%3Cpath d='M26 10c2.5 4 7 12 7 18'/%3E%3Cpath d='M68 10c-2.5 4-7 12-7 18'/%3E%3Cline x1='35' y1='35' x2='22' y2='33'/%3E%3Cline x1='59' y1='35' x2='72' y2='33'/%3E%3Cpath d='M64 55c7 2 13-2 17-7'/%3E%3C/g%3E%3C!-- Bone --%3E%3Cg transform='translate(260,15) scale(0.5)'%3E%3Cpath d='M20 18c-4-7-15-5-15 4s10 11 15 4'/%3E%3Cpath d='M60 18c4-7 15-5 15 4s-10 11-15 4'/%3E%3Cpath d='M20 22h40'/%3E%3Cpath d='M20 28c-4 7-15 5-15-4'/%3E%3Cpath d='M60 28c4 7 15 5 15-4'/%3E%3Cpath d='M20 28h40'/%3E%3C/g%3E%3C!-- Paw --%3E%3Cg transform='translate(340,80) scale(0.45)'%3E%3Cellipse cx='35' cy='42' rx='12' ry='10'/%3E%3Cellipse cx='20' cy='28' rx='5' ry='7' transform='rotate(-15 20 28)'/%3E%3Cellipse cx='50' cy='28' rx='5' ry='7' transform='rotate(15 50 28)'/%3E%3Cellipse cx='30' cy='22' rx='4.5' ry='6' transform='rotate(-5 30 22)'/%3E%3Cellipse cx='42' cy='22' rx='4.5' ry='6' transform='rotate(5 42 22)'/%3E%3C/g%3E%3C!-- Bowl --%3E%3Cg transform='translate(40,110) scale(0.55)'%3E%3Cpath d='M15 25c0 15 12 22 30 22s30-7 30-22'/%3E%3Cellipse cx='45' cy='25' rx='30' ry='8'/%3E%3Cellipse cx='45' cy='15' rx='18' ry='5' fill='%236B7B8D' opacity='0.15'/%3E%3C/g%3E%3C!-- Parrot --%3E%3Cg transform='translate(170,120) scale(0.55)'%3E%3Cellipse cx='35' cy='25' rx='12' ry='14'/%3E%3Ccircle cx='30' cy='20' r='2'/%3E%3Cpath d='M35 22c3-2 6 0 5 3l-5 2'/%3E%3Cpath d='M35 40c-2 15-1 22 0 25'/%3E%3Cpath d='M38 40c2 15 1 22 0 25'/%3E%3Cpath d='M23 15c-8-5-10-12-5-14'/%3E%3Cpath d='M46 30c8 2 12 0 14-3'/%3E%3C/g%3E%3C!-- Heart --%3E%3Cg transform='translate(290,110) scale(0.45)'%3E%3Cpath d='M35 55 C35 55 10 35 10 20 C10 10 20 5 28 12 L35 20 L42 12 C50 5 60 10 60 20 C60 35 35 55 35 55Z'/%3E%3C/g%3E%3C!-- Fish --%3E%3Cg transform='translate(50,210) scale(0.5)'%3E%3Cellipse cx='40' cy='25' rx='20' ry='12'/%3E%3Ccircle cx='50' cy='22' r='2.5'/%3E%3Cpath d='M18 25c-10-8-15-4-15 0s5 8 15 0'/%3E%3Cpath d='M35 18c3-2 6-2 8 0'/%3E%3C/g%3E%3C!-- Lizard/Reptile --%3E%3Cg transform='translate(160,220) scale(0.5)'%3E%3Cellipse cx='30' cy='22' rx='10' ry='7'/%3E%3Ccircle cx='25' cy='19' r='1.8'/%3E%3Ccircle cx='35' cy='19' r='1.8'/%3E%3Cpath d='M40 22c15 2 30 5 45 0'/%3E%3Cpath d='M85 22c5 5 8 3 10 0'/%3E%3Cpath d='M50 20c-3-8-8-5-5 0'/%3E%3Cpath d='M65 18c-3-8-8-5-5 0'/%3E%3Cpath d='M50 24c-3 8-8 5-5 0'/%3E%3Cpath d='M65 26c-3 8-8 5-5 0'/%3E%3C/g%3E%3C!-- Ball --%3E%3Cg transform='translate(310,200) scale(0.45)'%3E%3Ccircle cx='30' cy='30' r='18'/%3E%3Cpath d='M18 18c8 8 16 16 24 24'/%3E%3Cpath d='M42 18c-8 8-16 16-24 24'/%3E%3C/g%3E%3C!-- Hamster --%3E%3Cg transform='translate(30,310) scale(0.5)'%3E%3Cellipse cx='30' cy='30' rx='16' ry='14'/%3E%3Ccircle cx='24' cy='26' r='2'/%3E%3Ccircle cx='36' cy='26' r='2'/%3E%3Cpath d='M28 31c1 1.5 3 1.5 4 0'/%3E%3Ccircle cx='20' cy='32' r='5' opacity='0.2' fill='%236B7B8D'/%3E%3Ccircle cx='40' cy='32' r='5' opacity='0.2' fill='%236B7B8D'/%3E%3Cpath d='M20 16c-4-6-2-12 2-12'/%3E%3Cpath d='M40 16c4-6 2-12-2-12'/%3E%3C/g%3E%3C!-- Leash --%3E%3Cg transform='translate(150,320) scale(0.5)'%3E%3Cpath d='M20 10c0 5 3 8 8 8h15c5 0 8 3 8 8v20'/%3E%3Ccircle cx='20' cy='8' r='5'/%3E%3Cpath d='M48 46c2 5 6 5 8 0'/%3E%3C/g%3E%3C!-- Star --%3E%3Cg transform='translate(270,310) scale(0.4)'%3E%3Cpath d='M30 5l7 20h22l-17 13 7 20-19-13-19 13 7-20L1 25h22z'/%3E%3C/g%3E%3C!-- Collar --%3E%3Cg transform='translate(340,310) scale(0.5)'%3E%3Cellipse cx='30' cy='25' rx='22' ry='10'/%3E%3Ccircle cx='30' cy='35' r='4'/%3E%3Crect x='25' y='20' width='10' height='5' rx='2'/%3E%3C/g%3E%3C!-- Bird small --%3E%3Cg transform='translate(80,170) scale(0.4)'%3E%3Cpath d='M30 35c-10 0-18-8-15-18 2-6 8-10 15-10s13 4 15 10c3 10-5 18-15 18z'/%3E%3Ccircle cx='25' cy='20' r='2'/%3E%3Cpath d='M32 23l5-2 5 3'/%3E%3Cpath d='M25 35c-3 5-2 12 0 15'/%3E%3Cpath d='M35 35c3 5 2 12 0 15'/%3E%3C/g%3E%3C!-- Tiny paw prints scattered --%3E%3Cg transform='translate(360,170) scale(0.3)'%3E%3Cellipse cx='20' cy='30' rx='8' ry='6'/%3E%3Ccircle cx='12' cy='20' r='3.5'/%3E%3Ccircle cx='28' cy='20' r='3.5'/%3E%3Ccircle cx='17' cy='15' r='3'/%3E%3Ccircle cx='24' cy='15' r='3'/%3E%3C/g%3E%3Cg transform='translate(220,280) scale(0.3)'%3E%3Cellipse cx='20' cy='30' rx='8' ry='6'/%3E%3Ccircle cx='12' cy='20' r='3.5'/%3E%3Ccircle cx='28' cy='20' r='3.5'/%3E%3Ccircle cx='17' cy='15' r='3'/%3E%3Ccircle cx='24' cy='15' r='3'/%3E%3C/g%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 400px 400px;
+}
+
+/* ── Refined Glassmorphism — neutral tint ── */
 .glass {
-  background: rgba(255, 252, 245, 0.7);
+  background: rgba(255, 255, 255, 0.72);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(245, 166, 35, 0.08);
+  border: 1px solid rgba(0, 0, 0, 0.04);
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.03);
 }
 

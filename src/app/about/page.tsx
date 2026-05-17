@@ -91,7 +91,7 @@ const TIMELINE = [
 
 export default function About() {
   return (
-    <div className="relative w-full overflow-hidden bg-[#FFF8F0]">
+    <div className="relative w-full overflow-hidden bg-[#F7F8FA]">
       {/* ===== HERO ===== */}
       <section className="relative pt-28 pb-20 overflow-hidden">
         {/* Background decoration */}
@@ -105,7 +105,7 @@ export default function About() {
 
         <div className="max-w-4xl mx-auto px-4 text-center">
           <motion.div {...fadeUp()}>
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#FFFCF5]/70 backdrop-blur-sm border border-[#F5E6D3] mb-6">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#F9FAFB]/70 backdrop-blur-sm border border-[#F5E6D3] mb-6">
               <PawPrint className="w-4 h-4 text-[#F5A623]" />
               <span className="text-sm font-semibold text-[#E8824C]">Our Story</span>
             </div>
@@ -141,7 +141,7 @@ export default function About() {
       </section>
 
       {/* ===== MISSION STATEMENT ===== */}
-      <section className="py-16 bg-[#FFFCF5]/70 border-y border-[#F5E6D3]/60">
+      <section className="py-16 bg-[#F9FAFB]/70 border-y border-[#F5E6D3]/60">
         <div className="max-w-3xl mx-auto px-4 text-center">
           <motion.div {...fadeUp()}>
             <p className="text-2xl md:text-3xl font-bold text-[#1E293B] leading-snug">
@@ -177,7 +177,7 @@ export default function About() {
       </section>
 
       {/* ===== VALUES ===== */}
-      <section className="relative py-20 bg-gradient-to-b from-[#FFF4E8]/50 to-[#FFF8F0]">
+      <section className="relative py-20 bg-gradient-to-b from-[#FFF4E8]/50 to-[#F7F8FA]">
         <div className="absolute top-12 left-6 w-20 h-20 text-[#F5A623]/8 doodle-float hidden lg:block"><DoodleDog className="w-full h-full" /></div>
         <div className="absolute bottom-10 right-8 w-14 h-14 text-[#E8824C]/8 doodle-float-alt hidden lg:block" style={{ animationDelay: '3s' }}><DoodleHeart className="w-full h-full" /></div>
         <div className="max-w-6xl mx-auto px-4">
@@ -189,7 +189,7 @@ export default function About() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
             {VALUES.map((v, i) => (
               <motion.div key={i} {...fadeUp(i * 0.06)}
-                className="bg-[#FFFCF5]/80 backdrop-blur-sm rounded-2xl border border-[#F5E6D3]/60 p-6 hover:border-[#F5A623]/30 transition-all">
+                className="bg-[#F9FAFB]/80 backdrop-blur-sm rounded-2xl border border-[#F5E6D3]/60 p-6 hover:border-[#F5A623]/30 transition-all">
                 <v.icon className="w-8 h-8 text-[#F5A623] mb-3" />
                 <h3 className="text-base font-bold text-[#1E293B] mb-1">{v.title}</h3>
                 <p className="text-sm text-[#6B7B8D] leading-relaxed">{v.desc}</p>
@@ -250,7 +250,7 @@ export default function About() {
       </section>
 
       {/* ===== TIMELINE ===== */}
-      <section className="py-20 bg-[#FFFCF5]/70 border-y border-[#F5E6D3]/60">
+      <section className="py-20 bg-[#F9FAFB]/70 border-y border-[#F5E6D3]/60">
         <div className="max-w-3xl mx-auto px-4">
           <motion.div {...fadeUp()} className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-[#1E293B] mb-3">Our Journey</h2>
@@ -294,7 +294,7 @@ export default function About() {
                 Download App <ArrowRight className="w-5 h-5" />
               </button>
               <Link href="/globe"
-                className="flex items-center gap-2 bg-white hover:bg-[#FFF8F0] text-amber-700 px-8 py-4 rounded-full font-bold text-lg transition-all border border-[#F5A623]/30">
+                className="flex items-center gap-2 bg-white hover:bg-[#F7F8FA] text-amber-700 px-8 py-4 rounded-full font-bold text-lg transition-all border border-[#F5A623]/30">
                 Explore Globe
               </Link>
             </div>

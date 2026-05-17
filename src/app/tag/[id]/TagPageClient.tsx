@@ -37,7 +37,7 @@ export default function TagPageClient({ pet, owner }: TagPageClientProps) {
   const emoji = "🐾";
 
   return (
-    <div className="relative min-h-screen bg-gradient-to-b from-[#FFF8F0] to-[#FFFCF5] flex items-center justify-center px-4 py-12 overflow-hidden">
+    <div className="relative min-h-screen bg-gradient-to-b from-[#F7F8FA] to-[#F9FAFB] flex items-center justify-center px-4 py-12 overflow-hidden">
       {/* Pet doodles */}
       <div className="absolute top-[10%] right-[8%] w-16 h-16 text-[#F5A623]/10 doodle-float hidden md:block"><DoodlePaw className="w-full h-full" /></div>
       <div className="absolute bottom-[15%] left-[8%] w-12 h-12 text-[#E8824C]/8 doodle-float-alt hidden md:block" style={{ animationDelay: '2s' }}><DoodleHeart className="w-full h-full" /></div>
@@ -48,7 +48,7 @@ export default function TagPageClient({ pet, owner }: TagPageClientProps) {
         className="w-full max-w-sm"
       >
         {/* Card */}
-        <div className="bg-[#FFFCF5]/80 backdrop-blur-xl rounded-3xl shadow-xl border border-[#F5E6D3]/60 overflow-hidden">
+        <div className="bg-[#F9FAFB]/80 backdrop-blur-xl rounded-3xl shadow-xl border border-[#F5E6D3]/60 overflow-hidden">
           {/* Header gradient */}
           <div className="bg-gradient-to-r from-[#F5A623] to-[#E8824C] px-6 py-8 text-center relative">
             <div className="absolute top-3 right-3 bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full">

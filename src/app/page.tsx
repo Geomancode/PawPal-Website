@@ -62,7 +62,7 @@ const DoodleBone = ({ className = "" }: { className?: string }) => (
 
 export default function Home() {
   return (
-    <div className="relative w-full overflow-hidden bg-[#FFF8F0] noise-overlay">
+    <div className="relative w-full overflow-hidden bg-[#F7F8FA] noise-overlay">
       {/* Scroll progress bar at top */}
       <ScrollProgress />
 
@@ -113,12 +113,12 @@ export default function Home() {
       </section>
 
       {/* ===== TRUST MARQUEE ===== */}
-      <section className="border-y border-[#F5E6D3] bg-[#FFFCF5]">
+      <section className="border-y border-[#F5E6D3] bg-[#F9FAFB]">
         <TrustMarquee />
       </section>
 
       {/* ===== STATS BAR ===== */}
-      <section className="py-14 bg-gradient-to-b from-[#FFFCF5] to-[#FFF8F0]">
+      <section className="py-14 bg-gradient-to-b from-[#F9FAFB] to-[#F7F8FA]">
         <div className="max-w-5xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
           {[
             { value: "58%", label: "Belgian Pet Households" },
@@ -158,7 +158,7 @@ export default function Home() {
       </section>
 
       {/* ===== APP SHOWCASE ===== */}
-      <section className="py-20 bg-gradient-to-b from-[#FFF8F0] to-[#FFF4E8]">
+      <section className="py-20 bg-gradient-to-b from-[#F7F8FA] to-[#FFF4E8]">
         <div className="max-w-6xl mx-auto px-4">
           <AppShowcase />
         </div>

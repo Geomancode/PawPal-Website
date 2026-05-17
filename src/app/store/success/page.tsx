@@ -80,7 +80,7 @@ function SuccessContent() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-[#FFF8F0] flex items-center justify-center">
+      <div className="min-h-screen bg-[#F7F8FA] flex items-center justify-center">
         <motion.div
           animate={{ rotate: 360 }}
           transition={{ repeat: Infinity, duration: 1, ease: "linear" }}
@@ -93,7 +93,7 @@ function SuccessContent() {
 
   if (error) {
     return (
-      <div className="min-h-screen bg-[#FFF8F0] pt-28 flex items-center justify-center">
+      <div className="min-h-screen bg-[#F7F8FA] pt-28 flex items-center justify-center">
         <div className="glass rounded-2xl p-10 text-center max-w-md">
           <p className="text-red-500 font-medium mb-4">⚠️ {error}</p>
           <button
@@ -108,7 +108,7 @@ function SuccessContent() {
   }
 
   return (
-    <div className="min-h-screen bg-[#FFF8F0] pt-28 pb-20">
+    <div className="min-h-screen bg-[#F7F8FA] pt-28 pb-20">
       <div className="max-w-2xl mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
@@ -127,7 +127,7 @@ function SuccessContent() {
           <h2 className="text-3xl font-bold text-gray-900 mb-2">Payment Successful! 🎉</h2>
           <p className="text-gray-500 mb-2">Thank you for your purchase</p>
 
-          <p className="text-sm bg-[#FFF8F0] inline-block px-4 py-2 rounded-full font-mono font-bold text-[#E8824C] mb-4">
+          <p className="text-sm bg-[#F7F8FA] inline-block px-4 py-2 rounded-full font-mono font-bold text-[#E8824C] mb-4">
             Order #{orderId}
           </p>
 
@@ -142,7 +142,7 @@ function SuccessContent() {
 
               {/* Items */}
               {session.line_items && session.line_items.length > 0 && (
-                <div className="p-4 rounded-xl bg-[#FFF8F0] border border-gray-100">
+                <div className="p-4 rounded-xl bg-[#F7F8FA] border border-gray-100">
                   <h4 className="font-semibold text-gray-700 flex items-center gap-2 mb-3">
                     <Package className="w-4 h-4 text-[#F5A623]" /> Items
                   </h4>
@@ -193,7 +193,7 @@ export default function SuccessPage() {
   return (
     <Suspense
       fallback={
-        <div className="min-h-screen bg-[#FFF8F0] flex items-center justify-center">
+        <div className="min-h-screen bg-[#F7F8FA] flex items-center justify-center">
           <Loader2 className="w-8 h-8 text-[#F5A623] animate-spin" />
         </div>
       }

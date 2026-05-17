@@ -521,7 +521,7 @@ export function AppShowcase() {
     <div className="space-y-20">
       {/* ══════ SECTION 1: Hero App Overview ══════ */}
       <FadeInView>
-        <div className="relative bg-gradient-to-br from-[#FFF4E8] via-[#FFFCF5] to-[#F0F4F8] rounded-[32px] overflow-hidden border border-[#F5E6D3]/40 shadow-[0_8px_40px_rgba(0,0,0,0.06)]">
+        <div className="relative bg-gradient-to-br from-[#FFF4E8] via-[#F9FAFB] to-[#F0F4F8] rounded-[32px] overflow-hidden border border-[#F5E6D3]/40 shadow-[0_8px_40px_rgba(0,0,0,0.06)]">
           {/* Decorative sparkle elements */}
           <svg className="absolute top-6 left-8 w-10 h-10 text-[#F5A623]/20 hidden lg:block" viewBox="0 0 40 40" fill="none">
             <path d="M20 2v8M20 30v8M2 20h8M30 20h8M8 8l5 5M27 27l5 5M8 32l5-5M27 13l5-5" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>

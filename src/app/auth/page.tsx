@@ -64,7 +64,7 @@ export default function AuthPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-4 pt-20 pb-10 bg-[#FFF8F0]">
+    <div className="min-h-screen flex items-center justify-center px-4 pt-20 pb-10 bg-[#F7F8FA]">
       {/* Soft background blobs */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden -z-10">
         <div className="absolute top-[10%] right-[10%] w-[30%] h-[30%] rounded-full bg-[#FFF4E8]/50 blur-[100px]" />
@@ -82,7 +82,7 @@ export default function AuthPage() {
         className="w-full max-w-md"
       >
         {/* Card */}
-        <div className="bg-[#FFFCF5]/70 backdrop-blur-xl rounded-3xl p-8 border border-[#F5E6D3]/60 shadow-xl">
+        <div className="bg-[#F9FAFB]/70 backdrop-blur-xl rounded-3xl p-8 border border-[#F5E6D3]/60 shadow-xl">
           {/* Logo */}
           <div className="text-center mb-8">
             <div className="text-4xl mb-2">🐾</div>
@@ -152,7 +152,7 @@ export default function AuthPage() {
                     value={fullName}
                     onChange={(e) => setFullName(e.target.value)}
                     placeholder="Your name (optional)"
-                    className="w-full pl-10 pr-4 py-3 rounded-xl bg-[#FFF8F0] border border-gray-200 text-[#1E293B] placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-transparent transition-all text-sm"
+                    className="w-full pl-10 pr-4 py-3 rounded-xl bg-[#F7F8FA] border border-gray-200 text-[#1E293B] placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-transparent transition-all text-sm"
                   />
                 </div>
               </motion.div>
@@ -168,7 +168,7 @@ export default function AuthPage() {
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="you@example.com"
                   required
-                  className="w-full pl-10 pr-4 py-3 rounded-xl bg-[#FFF8F0] border border-gray-200 text-[#1E293B] placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-transparent transition-all text-sm"
+                  className="w-full pl-10 pr-4 py-3 rounded-xl bg-[#F7F8FA] border border-gray-200 text-[#1E293B] placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-transparent transition-all text-sm"
                 />
               </div>
             </div>
@@ -183,7 +183,7 @@ export default function AuthPage() {
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="••••••••"
                   required
-                  className="w-full pl-10 pr-12 py-3 rounded-xl bg-[#FFF8F0] border border-gray-200 text-[#1E293B] placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-transparent transition-all text-sm"
+                  className="w-full pl-10 pr-12 py-3 rounded-xl bg-[#F7F8FA] border border-gray-200 text-[#1E293B] placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-transparent transition-all text-sm"
                 />
                 <button
                   type="button"
@@ -209,7 +209,7 @@ export default function AuthPage() {
                     onChange={(e) => setConfirmPassword(e.target.value)}
                     placeholder="••••••••"
                     required
-                    className="w-full pl-10 pr-4 py-3 rounded-xl bg-[#FFF8F0] border border-gray-200 text-[#1E293B] placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-transparent transition-all text-sm"
+                    className="w-full pl-10 pr-4 py-3 rounded-xl bg-[#F7F8FA] border border-gray-200 text-[#1E293B] placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-transparent transition-all text-sm"
                   />
                 </div>
               </motion.div>

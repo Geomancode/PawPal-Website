@@ -33,7 +33,7 @@ function ProductCard({
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, scale: 0.95 }}
       whileHover={{ y: -8 }}
-      className="group relative bg-[#FFFCF5]/80 backdrop-blur-sm rounded-[24px] border border-[#F5E6D3]/50 hover:border-[#F5A623]/30 overflow-hidden transition-all duration-300 hover:shadow-[0_12px_40px_rgba(245,166,35,0.12)]"
+      className="group relative bg-[#F9FAFB]/80 backdrop-blur-sm rounded-[24px] border border-[#F5E6D3]/50 hover:border-[#F5A623]/30 overflow-hidden transition-all duration-300 hover:shadow-[0_12px_40px_rgba(245,166,35,0.12)]"
     >
       {product.badge && (
         <span className={`absolute top-4 left-4 z-10 px-3 py-1 rounded-full text-xs font-bold text-white shadow-md ${badgeColor[product.badge]}`}>
@@ -42,7 +42,7 @@ function ProductCard({
       )}
 
       {/* Image area — PawView inspired: larger, warm gradient, hover color shift */}
-      <div className="relative h-56 flex items-center justify-center bg-gradient-to-b from-[#FFF4E8]/60 via-white to-[#FFFCF5] group-hover:from-[#FFF4E8] group-hover:via-[#FFF8F0] transition-colors duration-500">
+      <div className="relative h-56 flex items-center justify-center bg-gradient-to-b from-[#FFF4E8]/60 via-white to-[#F9FAFB] group-hover:from-[#FFF4E8] group-hover:via-[#F7F8FA] transition-colors duration-500">
         <span className="text-8xl group-hover:scale-110 transition-transform duration-500 ease-out drop-shadow-sm">{product.image}</span>
         {/* Subtle decorative circle behind product */}
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
@@ -143,7 +143,7 @@ function CartDrawer({
                       initial={{ opacity: 0, x: 20 }}
                       animate={{ opacity: 1, x: 0 }}
                       exit={{ opacity: 0, x: -20 }}
-                      className="flex gap-4 p-3 rounded-xl bg-[#FFF8F0] border border-[#F5E6D3]/60"
+                      className="flex gap-4 p-3 rounded-xl bg-[#F7F8FA] border border-[#F5E6D3]/60"
                     >
                       <div className="w-16 h-16 rounded-lg bg-white flex items-center justify-center text-3xl shrink-0">
                         {item.product.image}
@@ -258,7 +258,7 @@ export default function StorePage() {
   const totalItems = cart.reduce((s, i) => s + i.quantity, 0);
 
   return (
-    <div className="relative w-full min-h-screen bg-[#FFF8F0]">
+    <div className="relative w-full min-h-screen bg-[#F7F8FA]">
       {/* ===== HERO ===== */}
       <section className="relative pt-28 pb-16 overflow-hidden">
         <div className="absolute inset-0 -z-10">

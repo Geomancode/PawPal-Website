@@ -28,10 +28,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.className} ${baloo2.variable} antialiased min-h-screen bg-[#fffdf9] text-[#2D3748] selection:bg-amber-400/30`}>
+      <body className={`${inter.className} ${baloo2.variable} antialiased min-h-screen bg-[#F7F8FA] text-[#2D3748] selection:bg-amber-400/30`}>
         <Providers>
           <Navbar />
-          <main>{children}</main>
+          <main className="relative z-[1]">{children}</main>
           <ConditionalFooter />
         </Providers>
       </body>

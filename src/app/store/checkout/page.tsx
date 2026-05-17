@@ -154,7 +154,7 @@ export default function CheckoutPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#FFF8F0] pt-28 pb-20">
+    <div className="min-h-screen bg-[#F7F8FA] pt-28 pb-20">
       <div className="max-w-5xl mx-auto px-4">
         {/* Back button */}
         <button
@@ -230,7 +230,7 @@ export default function CheckoutPage() {
                   </h2>
 
                   {/* Shipping summary */}
-                  <div className="mb-6 p-4 rounded-xl bg-[#FFF8F0] border border-gray-100">
+                  <div className="mb-6 p-4 rounded-xl bg-[#F7F8FA] border border-gray-100">
                     <h4 className="font-semibold text-gray-700 flex items-center gap-2 mb-2"><MapPin className="w-4 h-4 text-[#F5A623]" /> Shipping To</h4>
                     <p className="text-sm text-gray-600">{shipping.fullName}</p>
                     <p className="text-sm text-gray-500">{shipping.address}</p>
@@ -243,7 +243,7 @@ export default function CheckoutPage() {
                     <h4 className="font-semibold text-gray-700 flex items-center gap-2 mb-3"><Package className="w-4 h-4 text-[#F5A623]" /> Items ({cart.length})</h4>
                     <div className="space-y-2">
                       {cart.map((item) => (
-                        <div key={item.product.id} className="flex items-center gap-3 p-3 rounded-lg bg-[#FFF8F0]">
+                        <div key={item.product.id} className="flex items-center gap-3 p-3 rounded-lg bg-[#F7F8FA]">
                           <span className="text-2xl">{item.product.image}</span>
                           <div className="flex-1">
                             <p className="text-sm font-medium text-gray-700">{item.product.name}</p>

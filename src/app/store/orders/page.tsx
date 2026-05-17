@@ -34,7 +34,7 @@ function OrderCard({ order }: { order: Order }) {
       {/* Header Row */}
       <button
         onClick={() => setExpanded(!expanded)}
-        className="w-full px-6 py-5 flex items-center gap-4 cursor-pointer hover:bg-[#FFF8F0]/50 transition-colors"
+        className="w-full px-6 py-5 flex items-center gap-4 cursor-pointer hover:bg-[#F7F8FA]/50 transition-colors"
       >
         <div className="w-12 h-12 rounded-xl bg-amber-50 flex items-center justify-center shrink-0">
           <Package className="w-6 h-6 text-[#F5A623]" />
@@ -93,7 +93,7 @@ function OrderCard({ order }: { order: Order }) {
                 </h4>
                 <div className="space-y-2">
                   {order.items.map((item) => (
-                    <div key={item.product.id} className="flex items-center gap-3 p-3 rounded-lg bg-[#FFF8F0]">
+                    <div key={item.product.id} className="flex items-center gap-3 p-3 rounded-lg bg-[#F7F8FA]">
                       <span className="text-2xl">{item.product.image}</span>
                       <div className="flex-1 min-w-0">
                         <p className="text-sm font-medium text-gray-700 truncate">{item.product.name}</p>
@@ -107,14 +107,14 @@ function OrderCard({ order }: { order: Order }) {
 
               {/* Shipping & Payment */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div className="p-3 rounded-xl bg-[#FFF8F0]">
+                <div className="p-3 rounded-xl bg-[#F7F8FA]">
                   <h4 className="font-semibold text-gray-700 text-sm mb-1 flex items-center gap-1"><MapPin className="w-3.5 h-3.5 text-[#F5A623]" /> Shipping</h4>
                   <p className="text-xs text-gray-600">{order.shipping.fullName}</p>
                   <p className="text-xs text-gray-500">{order.shipping.address}</p>
                   <p className="text-xs text-gray-500">{order.shipping.city}, {order.shipping.zipCode}</p>
                   <p className="text-xs text-gray-500">{order.shipping.country}</p>
                 </div>
-                <div className="p-3 rounded-xl bg-[#FFF8F0]">
+                <div className="p-3 rounded-xl bg-[#F7F8FA]">
                   <h4 className="font-semibold text-gray-700 text-sm mb-1 flex items-center gap-1"><CreditCard className="w-3.5 h-3.5 text-[#F5A623]" /> Payment</h4>
                   <p className="text-xs text-gray-600">{order.payment.brand} ending in ****{order.payment.last4}</p>
                   <div className="mt-2 space-y-0.5">
@@ -141,7 +141,7 @@ export default function OrdersPage() {
   useEffect(() => { setOrders(loadOrders()); }, []);
 
   return (
-    <div className="min-h-screen bg-[#FFF8F0] pt-28 pb-20">
+    <div className="min-h-screen bg-[#F7F8FA] pt-28 pb-20">
       <div className="max-w-3xl mx-auto px-4">
         <button
           onClick={() => router.push("/store")}

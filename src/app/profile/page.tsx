@@ -181,7 +181,7 @@ export default function ProfilePage() {
 
   if (authLoading || loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-[#FFF8F0] pt-20">
+      <div className="min-h-screen flex items-center justify-center bg-[#F7F8FA] pt-20">
         <Loader2 className="w-8 h-8 text-[#F5A623] animate-spin" />
       </div>
     );
@@ -193,7 +193,7 @@ export default function ProfilePage() {
   const memberSince = new Date(profile.created_at).toLocaleDateString("en-US", { year: "numeric", month: "long" });
 
   return (
-    <div className="relative min-h-screen bg-gradient-to-b from-[#FFF8F0] to-[#FFFCF5] pt-24 pb-16 overflow-hidden">
+    <div className="relative min-h-screen bg-gradient-to-b from-[#F7F8FA] to-[#F9FAFB] pt-24 pb-16 overflow-hidden">
       {/* Pet doodles */}
       <div className="absolute top-28 right-[5%] w-16 h-16 text-[#F5A623]/10 doodle-float hidden lg:block"><DoodlePaw className="w-full h-full" /></div>
       <div className="absolute top-[40%] left-[3%] w-14 h-14 text-[#E8824C]/8 doodle-float-alt hidden lg:block" style={{ animationDelay: '2s' }}><DoodleCat className="w-full h-full" /></div>
@@ -232,7 +232,7 @@ export default function ProfilePage() {
               {!editing && (
                 <button
                   onClick={() => setEditing(true)}
-                  className="flex items-center gap-1.5 px-4 py-2 bg-[#FFF8F0] hover:bg-gray-100 text-gray-600 rounded-xl text-sm font-medium transition-all border border-gray-200"
+                  className="flex items-center gap-1.5 px-4 py-2 bg-[#F7F8FA] hover:bg-gray-100 text-gray-600 rounded-xl text-sm font-medium transition-all border border-gray-200"
                 >
                   <Edit3 className="w-3.5 h-3.5" /> Edit Profile
                 </button>
@@ -246,17 +246,17 @@ export default function ProfilePage() {
                   <div>
                     <label className="text-xs font-bold text-[#6B7B8D]/70 uppercase tracking-wider">Display Name</label>
                     <input value={editName} onChange={(e) => setEditName(e.target.value)} placeholder="Your display name"
-                      className="mt-1 w-full px-4 py-2.5 bg-[#FFF8F0] border border-gray-200 rounded-xl text-sm outline-none focus:border-amber-400 focus:ring-2 focus:ring-amber-100 transition-all" />
+                      className="mt-1 w-full px-4 py-2.5 bg-[#F7F8FA] border border-gray-200 rounded-xl text-sm outline-none focus:border-amber-400 focus:ring-2 focus:ring-amber-100 transition-all" />
                   </div>
                   <div>
                     <label className="text-xs font-bold text-[#6B7B8D]/70 uppercase tracking-wider">Bio</label>
                     <textarea value={editBio} onChange={(e) => setEditBio(e.target.value)} placeholder="Tell others about yourself…" rows={3}
-                      className="mt-1 w-full px-4 py-2.5 bg-[#FFF8F0] border border-gray-200 rounded-xl text-sm outline-none focus:border-amber-400 focus:ring-2 focus:ring-amber-100 transition-all resize-none" />
+                      className="mt-1 w-full px-4 py-2.5 bg-[#F7F8FA] border border-gray-200 rounded-xl text-sm outline-none focus:border-amber-400 focus:ring-2 focus:ring-amber-100 transition-all resize-none" />
                   </div>
                   <div>
                     <label className="text-xs font-bold text-[#6B7B8D]/70 uppercase tracking-wider">City</label>
                     <input value={editCity} onChange={(e) => setEditCity(e.target.value)} placeholder="e.g. Ghent"
-                      className="mt-1 w-full px-4 py-2.5 bg-[#FFF8F0] border border-gray-200 rounded-xl text-sm outline-none focus:border-amber-400 focus:ring-2 focus:ring-amber-100 transition-all" />
+                      className="mt-1 w-full px-4 py-2.5 bg-[#F7F8FA] border border-gray-200 rounded-xl text-sm outline-none focus:border-amber-400 focus:ring-2 focus:ring-amber-100 transition-all" />
                   </div>
                   <div className="flex gap-2 pt-1">
                     <button onClick={handleSave} disabled={saving}
@@ -278,7 +278,7 @@ export default function ProfilePage() {
 
                   <div className="flex flex-wrap items-center gap-3 mt-4">
                     {profile.location_city && (
-                      <span className="flex items-center gap-1 text-xs text-[#6B7B8D] bg-[#FFF8F0] px-3 py-1.5 rounded-full">
+                      <span className="flex items-center gap-1 text-xs text-[#6B7B8D] bg-[#F7F8FA] px-3 py-1.5 rounded-full">
                         <MapPin className="w-3 h-3" /> {profile.location_city}
                       </span>
                     )}
@@ -288,7 +288,7 @@ export default function ProfilePage() {
                     <span className="flex items-center gap-1 text-xs text-[#E8824C] bg-[#FFF4E8] px-3 py-1.5 rounded-full font-semibold">
                       <PawPrint className="w-3 h-3" /> {profile.paw_points} Paw Points
                     </span>
-                    <span className="flex items-center gap-1 text-xs text-[#6B7B8D] bg-[#FFF8F0] px-3 py-1.5 rounded-full">
+                    <span className="flex items-center gap-1 text-xs text-[#6B7B8D] bg-[#F7F8FA] px-3 py-1.5 rounded-full">
                       <Calendar className="w-3 h-3" /> Since {memberSince}
                     </span>
                   </div>
@@ -347,7 +347,7 @@ export default function ProfilePage() {
                   <div>
                     <label className="text-xs font-bold text-[#6B7B8D]/70 uppercase tracking-wider">Pet Name *</label>
                     <input value={petName} onChange={(e) => setPetName(e.target.value)} placeholder="e.g. Luna"
-                      className="mt-1 w-full px-4 py-2.5 bg-[#FFF8F0] border border-gray-200 rounded-xl text-sm outline-none focus:border-amber-400 focus:ring-2 focus:ring-amber-100 transition-all" />
+                      className="mt-1 w-full px-4 py-2.5 bg-[#F7F8FA] border border-gray-200 rounded-xl text-sm outline-none focus:border-amber-400 focus:ring-2 focus:ring-amber-100 transition-all" />
                   </div>
 
                   {/* Species */}
@@ -359,7 +359,7 @@ export default function ProfilePage() {
                           className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium transition-all border ${
                             petSpecies === s.id
                               ? "bg-[#F5A623] text-white border-amber-500"
-                              : "bg-[#FFF8F0] text-gray-600 border-gray-200 hover:border-amber-300"
+                              : "bg-[#F7F8FA] text-gray-600 border-gray-200 hover:border-amber-300"
                           }`}>
                           <span>{s.emoji}</span> {s.label}
                         </button>
@@ -372,12 +372,12 @@ export default function ProfilePage() {
                     <div>
                       <label className="text-xs font-bold text-[#6B7B8D]/70 uppercase tracking-wider">Breed</label>
                       <input value={petBreed} onChange={(e) => setPetBreed(e.target.value)} placeholder="e.g. Golden Retriever"
-                        className="mt-1 w-full px-4 py-2.5 bg-[#FFF8F0] border border-gray-200 rounded-xl text-sm outline-none focus:border-amber-400 focus:ring-2 focus:ring-amber-100 transition-all" />
+                        className="mt-1 w-full px-4 py-2.5 bg-[#F7F8FA] border border-gray-200 rounded-xl text-sm outline-none focus:border-amber-400 focus:ring-2 focus:ring-amber-100 transition-all" />
                     </div>
                     <div>
                       <label className="text-xs font-bold text-[#6B7B8D]/70 uppercase tracking-wider">Blood Type</label>
                       <select value={petBloodType} onChange={(e) => setPetBloodType(e.target.value)}
-                        className="mt-1 w-full px-4 py-2.5 bg-[#FFF8F0] border border-gray-200 rounded-xl text-sm outline-none focus:border-amber-400 focus:ring-2 focus:ring-amber-100 transition-all">
+                        className="mt-1 w-full px-4 py-2.5 bg-[#F7F8FA] border border-gray-200 rounded-xl text-sm outline-none focus:border-amber-400 focus:ring-2 focus:ring-amber-100 transition-all">
                         <option value="">Select...</option>
                         {BLOOD_TYPES.map((t) => <option key={t} value={t}>{t}</option>)}
                       </select>
@@ -388,7 +388,7 @@ export default function ProfilePage() {
                   <div>
                     <label className="text-xs font-bold text-[#6B7B8D]/70 uppercase tracking-wider">Owner Contact (phone / email)</label>
                     <input value={petContact} onChange={(e) => setPetContact(e.target.value)} placeholder="e.g. +32 412 345 678"
-                      className="mt-1 w-full px-4 py-2.5 bg-[#FFF8F0] border border-gray-200 rounded-xl text-sm outline-none focus:border-amber-400 focus:ring-2 focus:ring-amber-100 transition-all" />
+                      className="mt-1 w-full px-4 py-2.5 bg-[#F7F8FA] border border-gray-200 rounded-xl text-sm outline-none focus:border-amber-400 focus:ring-2 focus:ring-amber-100 transition-all" />
                   </div>
 
                   {/* Social Tags */}
@@ -489,10 +489,10 @@ export default function ProfilePage() {
 
                         <div className="flex flex-wrap items-center gap-2 mt-2">
                           {pet.breed && (
-                            <span className="text-xs bg-[#FFF8F0] text-gray-600 px-2 py-0.5 rounded-full">{pet.breed}</span>
+                            <span className="text-xs bg-[#F7F8FA] text-gray-600 px-2 py-0.5 rounded-full">{pet.breed}</span>
                           )}
                           {computeAge(pet.birth_date) != null && (
-                            <span className="text-xs bg-[#FFF8F0] text-gray-600 px-2 py-0.5 rounded-full">
+                            <span className="text-xs bg-[#F7F8FA] text-gray-600 px-2 py-0.5 rounded-full">
                               {computeAge(pet.birth_date)} yr{computeAge(pet.birth_date) !== 1 ? "s" : ""}
                             </span>
                           )}
