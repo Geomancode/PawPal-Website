@@ -31,7 +31,7 @@ export default function RootLayout({
       <body className={`${inter.className} ${baloo2.variable} antialiased min-h-screen bg-[#F7F8FA] text-[#2D3748] selection:bg-amber-400/30`}>
         <Providers>
           <Navbar />
-          <main className="relative z-[1]">{children}</main>
+          <main>{children}</main>
           <ConditionalFooter />
         </Providers>
       </body>
