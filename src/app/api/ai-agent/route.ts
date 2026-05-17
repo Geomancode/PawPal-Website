@@ -13,7 +13,7 @@
 
 import { NextRequest } from "next/server";
 import { GoogleGenAI, createPartFromFunctionResponse } from "@google/genai";
-import { PLATFORM_KNOWLEDGE_PROMPT, FALLBACK_IDENTITY_PROMPT } from "./systemPrompt";
+import { PLATFORM_KNOWLEDGE_PROMPT, FALLBACK_IDENTITY_PROMPT, FREE_TIER_QA_PROMPT } from "./systemPrompt";
 import { loadUserPets, pickRandom, recallMemories, buildPersonaPrompt } from "./personaEngine";
 import { toolDeclarations, executeTool } from "./tools";
 
@@ -58,24 +58,67 @@ export async function POST(req: NextRequest) {
         };
 
         try {
-          // ── Subscription gate ─────────────────────────────────────
-          if (!userId) {
-            send("error", { message: "🔒 Please sign in to use PawPal AI." });
-            return;
+          // ── Determine subscription tier ────────────────────────────
+          let tier = "free";
+
+          if (userId) {
+            const { data: profile } = await (await import("@/lib/supabaseServer")).supabaseServer
+              .from("profiles")
+              .select("subscription_tier")
+              .eq("id", userId)
+              .single();
+            tier = (profile?.subscription_tier as string) ?? "free";
           }
 
-          // Check subscription tier
-          const { data: profile } = await (await import("@/lib/supabaseServer")).supabaseServer
-            .from("profiles")
-            .select("subscription_tier")
-            .eq("id", userId)
-            .single();
+          // ── Free tier / not logged in → lightweight Q&A (no tools, no persona) ──
+          if (!userId || tier === "free") {
+            send("thinking", {});
+            send("persona", { petName: "PawPal", speciesGroup: null, status: "alive", siblingCount: 0, memoriesRecalled: 0 });
 
-          const tier = (profile?.subscription_tier as string) ?? "free";
-          if (tier === "free") {
-            send("error", {
-              message: "🐾 PawPal AI is a subscriber-only feature!\n\nUpgrade to Basic or Pro to unlock your pet's digital companion. 💬",
-            });
+            const freeAi = new GoogleGenAI({ apiKey: GEMINI_API_KEY });
+            const MODELS = ["gemini-2.5-flash", "gemini-2.0-flash", "gemini-2.0-flash-lite"];
+            let freeResp;
+            let freeErr: unknown = null;
+
+            const freeHistory = history.map((m) => ({
+              role: m.role === "assistant" ? "model" as const : "user" as const,
+              parts: [{ text: m.content }],
+            }));
+
+            for (const model of MODELS) {
+              try {
+                const freeChat = freeAi.chats.create({
+                  model,
+                  config: {
+                    systemInstruction: FREE_TIER_QA_PROMPT,
+                    temperature: 0.7,
+                    maxOutputTokens: 512,
+                  },
+                  history: freeHistory.length > 0 ? freeHistory : undefined,
+                });
+                freeResp = await freeChat.sendMessage({ message: message.trim() });
+                freeErr = null;
+                break;
+              } catch (e) {
+                freeErr = e;
+                const msg = e instanceof Error ? e.message : String(e);
+                if (!msg.includes("503") && !msg.includes("UNAVAILABLE") && !msg.includes("RESOURCE_EXHAUSTED")) break;
+              }
+            }
+
+            if (freeErr || !freeResp) {
+              send("error", { message: "🔄 Service temporarily busy. Please try again!" });
+            } else {
+              const text = freeResp.text ?? "";
+              if (text) {
+                // Append a subtle upsell hint for free users
+                const upsellHint = !userId
+                  ? "\n\n💡 _Sign in to unlock map search with AI pins!_"
+                  : "\n\n✨ _Upgrade to Pro for personalized AI with your pet's personality!_";
+                send("text", { content: text + upsellHint });
+              }
+            }
+            send("done", {});
             return;
           }
 
