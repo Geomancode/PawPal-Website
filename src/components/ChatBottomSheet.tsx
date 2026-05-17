@@ -300,7 +300,7 @@ export default function ChatBottomSheet({ mapRef }: ChatBottomSheetProps) {
           }
         }
 
-        // ── Phase B: No map results → fall through to AI Agent (subscribers) ──
+        // ── Phase B: No map results → AI chat (free Q&A for all, tools for subscribers) ──
         const history = [...messages, userMsg]
           .filter((m) => m.role === "user" || m.role === "assistant")
           .map((m) => ({ role: m.role as "user" | "assistant", content: m.content }));
@@ -573,17 +573,35 @@ export default function ChatBottomSheet({ mapRef }: ChatBottomSheetProps) {
             style={{ minHeight: 0 }}
           >
             {messages.length === 0 && !isStreaming && (
-              <div className="flex flex-col items-center justify-center h-full text-center py-8">
+              <div className="flex flex-col items-center justify-center h-full text-center py-6">
                 <div className="w-12 h-12 rounded-full bg-gradient-to-br from-violet-100 to-amber-100 flex items-center justify-center mb-3">
                   <Sparkles className="w-5 h-5 text-violet-400" />
                 </div>
                 <p className="text-sm font-medium text-gray-600 mb-1">
-                  Ask me anything about pets
+                  Search & ask in any language
                 </p>
-                <p className="text-xs text-gray-400 max-w-[240px]">
-                  Find vets, check food safety, explore breeds, or discover
-                  missions on the map
+                <p className="text-xs text-gray-400 max-w-[260px] mb-4">
+                  Find vets, check food safety, explore breeds — or just chat about pets 🐾
                 </p>
+                {/* Quick suggestion chips */}
+                <div className="flex flex-wrap justify-center gap-1.5 max-w-[320px]">
+                  {[
+                    "Find a vet nearby",
+                    "附近宠物店",
+                    "Is chocolate safe for dogs?",
+                    "Dierenarts Gent",
+                    "Golden Retriever info",
+                    "遥歩任务",
+                  ].map((chip) => (
+                    <button
+                      key={chip}
+                      onClick={() => { setInput(chip); sendMessage(chip); }}
+                      className="px-2.5 py-1 text-[11px] rounded-full bg-violet-50 text-violet-600 hover:bg-violet-100 transition-colors border border-violet-100 whitespace-nowrap"
+                    >
+                      {chip}
+                    </button>
+                  ))}
+                </div>
               </div>
             )}
 
@@ -639,7 +657,7 @@ export default function ChatBottomSheet({ mapRef }: ChatBottomSheetProps) {
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={handleKeyDown}
             onFocus={handleInputFocus}
-            placeholder="Ask PawPal AI anything…"
+            placeholder="Search or ask anything · 搜索 · Zoek · Chercher…"
             disabled={isStreaming}
             className="flex-1 bg-transparent text-gray-700 placeholder-gray-400 outline-none text-sm font-light min-w-0 disabled:opacity-50"
           />

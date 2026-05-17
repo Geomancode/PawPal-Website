@@ -5,6 +5,7 @@ import { useState } from "react";
 import { ArrowRight, Mail, Lock, User, Eye, EyeOff, AlertCircle, CheckCircle } from "lucide-react";
 import { useAuth } from "@/components/AuthProvider";
 import { useRouter } from "next/navigation";
+import { DoodleDog, DoodlePaw, DoodleHeart } from "@/components/PetDoodles";
 
 export default function AuthPage() {
   const { signIn, signUp, user } = useAuth();
@@ -63,12 +64,16 @@ export default function AuthPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-4 pt-20 pb-10 bg-[#fffdf9]">
+    <div className="min-h-screen flex items-center justify-center px-4 pt-20 pb-10 bg-[#F7F8FA]">
       {/* Soft background blobs */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden -z-10">
-        <div className="absolute top-[10%] right-[10%] w-[30%] h-[30%] rounded-full bg-amber-100/50 blur-[100px]" />
-        <div className="absolute bottom-[10%] left-[10%] w-[25%] h-[25%] rounded-full bg-emerald-100/40 blur-[100px]" />
+        <div className="absolute top-[10%] right-[10%] w-[30%] h-[30%] rounded-full bg-[#FFF4E8]/50 blur-[100px]" />
+        <div className="absolute bottom-[10%] left-[10%] w-[25%] h-[25%] rounded-full bg-[#E0F2FE]/40 blur-[100px]" />
       </div>
+      {/* Pet doodles */}
+      <div className="absolute top-[15%] left-[8%] w-24 h-24 text-[#F5A623]/8 doodle-float hidden lg:block"><DoodleDog className="w-full h-full" /></div>
+      <div className="absolute bottom-[20%] right-[10%] w-16 h-16 text-[#E8824C]/8 doodle-float-alt hidden lg:block" style={{ animationDelay: '2s' }}><DoodlePaw className="w-full h-full" /></div>
+      <div className="absolute top-[60%] left-[5%] w-12 h-12 text-[#F5A623]/6 doodle-float hidden lg:block" style={{ animationDelay: '4s' }}><DoodleHeart className="w-full h-full" /></div>
 
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -77,14 +82,14 @@ export default function AuthPage() {
         className="w-full max-w-md"
       >
         {/* Card */}
-        <div className="bg-white/60 backdrop-blur-xl rounded-3xl p-8 border border-gray-100 shadow-xl">
+        <div className="bg-[#F9FAFB]/70 backdrop-blur-xl rounded-3xl p-8 border border-[#F5E6D3]/60 shadow-xl">
           {/* Logo */}
           <div className="text-center mb-8">
             <div className="text-4xl mb-2">🐾</div>
-            <h1 className="text-2xl font-bold text-gray-900">
+            <h1 className="text-2xl font-bold text-[#1E293B]">
               {isLogin ? "Welcome Back" : "Join PawPal"}
             </h1>
-            <p className="text-gray-500 text-sm mt-1">
+            <p className="text-[#6B7B8D] text-sm mt-1">
               {isLogin ? "Sign in to continue your journey" : "Create your account and start helping pets"}
             </p>
           </div>
@@ -94,7 +99,7 @@ export default function AuthPage() {
             <button
               onClick={() => { setIsLogin(true); setError(null); }}
               className={`flex-1 py-2 rounded-full text-sm font-semibold transition-all ${
-                isLogin ? "bg-white text-gray-900 shadow-sm" : "text-gray-500 hover:text-gray-700"
+                isLogin ? "bg-white text-[#1E293B] shadow-sm" : "text-[#6B7B8D] hover:text-gray-700"
               }`}
             >
               Sign In
@@ -102,7 +107,7 @@ export default function AuthPage() {
             <button
               onClick={() => { setIsLogin(false); setError(null); }}
               className={`flex-1 py-2 rounded-full text-sm font-semibold transition-all ${
-                !isLogin ? "bg-white text-gray-900 shadow-sm" : "text-gray-500 hover:text-gray-700"
+                !isLogin ? "bg-white text-[#1E293B] shadow-sm" : "text-[#6B7B8D] hover:text-gray-700"
               }`}
             >
               Sign Up
@@ -141,13 +146,13 @@ export default function AuthPage() {
               >
                 <label className="block text-sm font-medium text-gray-700 mb-1">Display Name</label>
                 <div className="relative">
-                  <User className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+                  <User className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#6B7B8D]/70" />
                   <input
                     type="text"
                     value={fullName}
                     onChange={(e) => setFullName(e.target.value)}
                     placeholder="Your name (optional)"
-                    className="w-full pl-10 pr-4 py-3 rounded-xl bg-gray-50 border border-gray-200 text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-transparent transition-all text-sm"
+                    className="w-full pl-10 pr-4 py-3 rounded-xl bg-[#F7F8FA] border border-gray-200 text-[#1E293B] placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-transparent transition-all text-sm"
                   />
                 </div>
               </motion.div>
@@ -156,14 +161,14 @@ export default function AuthPage() {
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
               <div className="relative">
-                <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+                <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#6B7B8D]/70" />
                 <input
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="you@example.com"
                   required
-                  className="w-full pl-10 pr-4 py-3 rounded-xl bg-gray-50 border border-gray-200 text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-transparent transition-all text-sm"
+                  className="w-full pl-10 pr-4 py-3 rounded-xl bg-[#F7F8FA] border border-gray-200 text-[#1E293B] placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-transparent transition-all text-sm"
                 />
               </div>
             </div>
@@ -171,19 +176,19 @@ export default function AuthPage() {
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Password</label>
               <div className="relative">
-                <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+                <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#6B7B8D]/70" />
                 <input
                   type={showPassword ? "text" : "password"}
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="••••••••"
                   required
-                  className="w-full pl-10 pr-12 py-3 rounded-xl bg-gray-50 border border-gray-200 text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-transparent transition-all text-sm"
+                  className="w-full pl-10 pr-12 py-3 rounded-xl bg-[#F7F8FA] border border-gray-200 text-[#1E293B] placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-transparent transition-all text-sm"
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-[#6B7B8D]/70 hover:text-gray-600"
                 >
                   {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                 </button>
@@ -197,14 +202,14 @@ export default function AuthPage() {
               >
                 <label className="block text-sm font-medium text-gray-700 mb-1">Confirm Password</label>
                 <div className="relative">
-                  <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+                  <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#6B7B8D]/70" />
                   <input
                     type="password"
                     value={confirmPassword}
                     onChange={(e) => setConfirmPassword(e.target.value)}
                     placeholder="••••••••"
                     required
-                    className="w-full pl-10 pr-4 py-3 rounded-xl bg-gray-50 border border-gray-200 text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-transparent transition-all text-sm"
+                    className="w-full pl-10 pr-4 py-3 rounded-xl bg-[#F7F8FA] border border-gray-200 text-[#1E293B] placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-transparent transition-all text-sm"
                   />
                 </div>
               </motion.div>
@@ -213,7 +218,7 @@ export default function AuthPage() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full flex items-center justify-center gap-2 bg-amber-500 hover:bg-amber-600 disabled:bg-amber-300 text-white py-3.5 rounded-xl font-bold text-sm transition-all shadow-[0_4px_15px_rgba(245,158,11,0.35)] hover:shadow-[0_6px_20px_rgba(245,158,11,0.5)] hover:-translate-y-0.5 disabled:hover:translate-y-0"
+              className="w-full flex items-center justify-center gap-2 bg-[#F5A623] hover:bg-[#E8824C] disabled:bg-amber-300 text-white py-3.5 rounded-xl font-bold text-sm transition-all shadow-[0_4px_15px_rgba(245,158,11,0.35)] hover:shadow-[0_6px_20px_rgba(245,158,11,0.5)] hover:-translate-y-0.5 disabled:hover:translate-y-0"
             >
               {loading ? (
                 <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
@@ -229,7 +234,7 @@ export default function AuthPage() {
           {/* Divider */}
           <div className="flex items-center gap-4 my-6">
             <div className="flex-1 h-px bg-gray-200" />
-            <span className="text-xs text-gray-400">or continue with</span>
+            <span className="text-xs text-[#6B7B8D]/70">or continue with</span>
             <div className="flex-1 h-px bg-gray-200" />
           </div>
 
@@ -254,10 +259,10 @@ export default function AuthPage() {
         </div>
 
         {/* Footer text */}
-        <p className="text-center text-xs text-gray-400 mt-6">
+        <p className="text-center text-xs text-[#6B7B8D]/70 mt-6">
           By continuing, you agree to PawPal&apos;s{" "}
-          <a href="#" className="text-amber-600 hover:underline">Terms</a> and{" "}
-          <a href="#" className="text-amber-600 hover:underline">Privacy Policy</a>
+          <a href="#" className="text-[#E8824C] hover:underline">Terms</a> and{" "}
+          <a href="#" className="text-[#E8824C] hover:underline">Privacy Policy</a>
         </p>
       </motion.div>
     </div>

@@ -8,228 +8,137 @@ const GlobeT = dynamic(() => import("react-globe.gl").then((m) => m.default), {
   ssr: false,
 });
 
-// 25 pet labels
-const PET_LABELS = [
-  { lat: 48.86, lng: 2.35, emoji: "🐩", name: "Paris Poodle" },
-  { lat: 51.51, lng: -0.13, emoji: "🐕", name: "London Corgi" },
-  { lat: 40.71, lng: -74.01, emoji: "🐱", name: "NYC Cat" },
-  { lat: 35.68, lng: 139.69, emoji: "🐕‍🦺", name: "Tokyo Shiba" },
-  { lat: -33.87, lng: 151.21, emoji: "🐨", name: "Sydney Koala" },
-  { lat: 55.75, lng: 37.62, emoji: "🐻", name: "Moscow Bear" },
-  { lat: -22.91, lng: -43.17, emoji: "🦜", name: "Rio Parrot" },
-  { lat: 30.04, lng: 31.24, emoji: "🐪", name: "Cairo Camel" },
-  { lat: 1.35, lng: 103.82, emoji: "🐒", name: "Singapore Monkey" },
-  { lat: 19.43, lng: -99.13, emoji: "🦎", name: "Mexico Iguana" },
-  { lat: -34.60, lng: -58.38, emoji: "🐧", name: "BA Penguin" },
-  { lat: 28.61, lng: 77.21, emoji: "🐘", name: "Delhi Elephant" },
-  { lat: 37.57, lng: 126.98, emoji: "🐕", name: "Seoul Jindo" },
-  { lat: 52.52, lng: 13.41, emoji: "🦔", name: "Berlin Hedgehog" },
-  { lat: 41.90, lng: 12.50, emoji: "🐈", name: "Rome Cat" },
-  { lat: -1.29, lng: 36.82, emoji: "🦁", name: "Nairobi Lion" },
-  { lat: 59.33, lng: 18.07, emoji: "🐻‍❄️", name: "Stockholm Bear" },
-  { lat: 31.23, lng: 121.47, emoji: "🐼", name: "Shanghai Panda" },
-  { lat: -33.93, lng: 18.42, emoji: "🐧", name: "Cape Penguin" },
-  { lat: 64.15, lng: -21.94, emoji: "🐋", name: "Iceland Whale" },
-  { lat: 13.76, lng: 100.50, emoji: "🐘", name: "Bangkok Elephant" },
-  { lat: 43.65, lng: -79.38, emoji: "🦫", name: "Toronto Beaver" },
-  { lat: -37.81, lng: 144.96, emoji: "🦘", name: "Melbourne Roo" },
-  { lat: 25.20, lng: 55.27, emoji: "🐫", name: "Dubai Camel" },
-  { lat: 35.69, lng: 51.39, emoji: "🐈", name: "Tehran Persian Cat" },
+// Warm, friendly pastel palette — illustrated map style
+const COUNTRY_COLORS = [
+  "#FFDAB9", // peach puff
+  "#B5EAD7", // mint green
+  "#FFD6A5", // light apricot
+  "#C1E1C1", // pistachio
+  "#FFC3A0", // melon
+  "#A7D8DE", // soft teal
+  "#FFE5B4", // papaya whip
+  "#D4A5A5", // dusty rose
+  "#98D8C8", // aqua mint
+  "#F7DC6F", // soft gold
+  "#AED9E0", // powder blue
+  "#FAD02C", // warm yellow
+  "#C5CAE9", // lavender blue
+  "#FFAB91", // light coral
+  "#A5D6A7", // soft green
+  "#F8C8DC", // baby pink
+  "#D1C4E9", // light purple
+  "#FFE0B2", // warm sand
+  "#B2EBF2", // light cyan
+  "#DCEDC1", // lime cream
 ];
-
-// Pastel colors for countries
-const PASTEL_COLORS = [
-  "#a8e6cf", "#dcedc1", "#ffd3b6", "#ffaaa5", "#ff8b94",
-  "#b5ead7", "#c7ceea", "#e2f0cb", "#ffdac1", "#f0e6ef",
-  "#d4f0f0", "#cce2cb", "#fcf6bd", "#d0e8f2", "#e8d5b7",
-  "#f3d1dc", "#bde0fe", "#c1fba4", "#ffc6ff", "#caffbf",
-];
-
-type PetLabel = (typeof PET_LABELS)[number];
-
-interface CountryFeature {
-  properties?: {
-    MAPCOLOR7?: number;
-  };
-  geometry?: unknown;
-}
-
-interface GlobeControls {
-  enableZoom: boolean;
-  autoRotate: boolean;
-  autoRotateSpeed: number;
-  enableDamping: boolean;
-  dampingFactor: number;
-}
-
-interface GlobeRef {
-  controls: () => GlobeControls | undefined;
-  pointOfView: (view: { altitude: number }) => void;
-  camera: () => THREE.Camera;
-  getGlobeRadius: () => number;
-}
 
 export default function GlobeComponent() {
-  const globeEl = useRef<GlobeRef | null>(null);
-  const labelElements = useRef<Map<HTMLElement, PetLabel>>(new Map());
-  const [dimensions, setDimensions] = useState({ width: 600, height: 600 });
-  const [countries, setCountries] = useState<CountryFeature[]>([]);
+  const globeEl = useRef<any>(null);
+  const [dimensions, setDimensions] = useState({ width: 620, height: 620 });
+  const [countries, setCountries] = useState<any[]>([]);
 
-  const handleLabelClick = useCallback(() => {
-    window.location.href = "/globe";
-  }, []);
-
-  // Globe material — light pastel blue for oceans
+  // Globe material — warm cream ocean, bright and friendly
   const globeMaterial = useMemo(() => {
     const mat = new THREE.MeshPhongMaterial();
-    mat.color = new THREE.Color("#dbeafe"); // pastel blue ocean
-    mat.emissive = new THREE.Color("#dbeafe");
-    mat.emissiveIntensity = 0.15;
-    mat.shininess = 5;
+    mat.color = new THREE.Color("#E8F4FD");       // soft sky-blue ocean
+    mat.emissive = new THREE.Color("#E8F4FD");
+    mat.emissiveIntensity = 0.35;
+    mat.shininess = 25;
+    mat.specular = new THREE.Color("#FFFFFF");
     return mat;
+  }, []);
+
+  // Stable color function — assign color by country index
+  const getCountryColor = useCallback((feat: any) => {
+    const idx = (feat?.properties?.MAPCOLOR7 ?? 0) % COUNTRY_COLORS.length;
+    return COUNTRY_COLORS[idx];
   }, []);
 
   // Fetch world GeoJSON data
   useEffect(() => {
     fetch("https://raw.githubusercontent.com/nvkelso/natural-earth-vector/master/geojson/ne_110m_admin_0_countries.geojson")
       .then((r) => r.json())
-      .then((data: unknown) => {
-        if (
-          typeof data === "object" &&
-          data !== null &&
-          "features" in data &&
-          Array.isArray((data as { features?: unknown }).features)
-        ) {
-          setCountries((data as { features: CountryFeature[] }).features);
-        }
+      .then((data) => {
+        setCountries(data.features || []);
       })
-      .catch(() => {
-        // fallback: show globe without countries
-      });
+      .catch(() => {});
   }, []);
 
+  // Responsive sizing — bigger globe
   useEffect(() => {
     const updateSize = () => {
-      const s = Math.min(window.innerWidth * 0.45, 600);
+      const s = Math.min(window.innerWidth * 0.5, 680);
       setDimensions({ width: s, height: s });
     };
     updateSize();
     window.addEventListener("resize", updateSize);
-
-    if (!globeEl.current) return;
-    const globe = globeEl.current;
-
-    // Disable zoom, only allow drag-rotate
-    const controls = globe.controls();
-    if (controls) {
-      controls.enableZoom = false;
-      controls.autoRotate = true;
-      controls.autoRotateSpeed = 0.6;
-      controls.enableDamping = true;
-      controls.dampingFactor = 0.1;
-    }
-    globe.pointOfView({ altitude: 2.2 });
-
-    // Label visibility — check dot product with camera
-    let running = true;
-    const checkVisibility = () => {
-      if (!running || !globeEl.current) return;
-      try {
-        const camera = globeEl.current.camera();
-        const cameraPos = camera.position.clone().normalize();
-        const R = globeEl.current.getGlobeRadius();
-
-        labelElements.current.forEach((data, el) => {
-          const phi = (90 - data.lat) * (Math.PI / 180);
-          const theta = (90 - data.lng) * (Math.PI / 180);
-          const x = R * Math.sin(phi) * Math.cos(theta);
-          const y = R * Math.cos(phi);
-          const z = R * Math.sin(phi) * Math.sin(theta);
-          const labelDir = new THREE.Vector3(x, y, z).normalize();
-          const dot = labelDir.dot(cameraPos);
-
-          if (dot < 0.15) {
-            el.style.opacity = "0";
-            el.style.pointerEvents = "none";
-          } else {
-            const fade = Math.min(1, (dot - 0.15) / 0.25);
-            el.style.opacity = String(fade);
-            el.style.pointerEvents = "auto";
-          }
-        });
-      } catch {
-        // ignore
-      }
-      requestAnimationFrame(checkVisibility);
-    };
-
-    const timeout = setTimeout(() => requestAnimationFrame(checkVisibility), 1500);
-
-    return () => {
-      running = false;
-      window.removeEventListener("resize", updateSize);
-      clearTimeout(timeout);
-    };
+    return () => window.removeEventListener("resize", updateSize);
   }, []);
 
+  // Globe controls — set up after mount + ensure rotation
+  useEffect(() => {
+    if (!globeEl.current) return;
+
+    // Small delay to ensure globe internals are ready
+    const timer = setTimeout(() => {
+      const globe = globeEl.current;
+      if (!globe) return;
+
+      // Camera position — slightly closer for bigger appearance
+      globe.pointOfView({ altitude: 1.8 });
+
+      // Controls
+      const controls = globe.controls();
+      if (controls) {
+        controls.enableZoom = false;       // disable scroll zoom
+        controls.autoRotate = true;        // auto-rotate
+        controls.autoRotateSpeed = 0.5;    // gentle rotation
+        controls.enableDamping = true;
+        controls.dampingFactor = 0.1;
+        controls.minPolarAngle = Math.PI / 3.5;   // limit vertical drag
+        controls.maxPolarAngle = Math.PI - Math.PI / 3.5;
+      }
+
+      // Inject bright lighting into the scene
+      const scene = globe.scene();
+      if (scene) {
+        // Remove default dim lights and add bright ones
+        const ambient = new THREE.AmbientLight(0xFFFFFF, 2.0);
+        scene.add(ambient);
+        const sunLight = new THREE.DirectionalLight(0xFFF8F0, 1.0);
+        sunLight.position.set(5, 3, 5);
+        scene.add(sunLight);
+        const fillLight = new THREE.DirectionalLight(0xE8F4FD, 0.5);
+        fillLight.position.set(-3, -2, -3);
+        scene.add(fillLight);
+      }
+    }, 300);
+
+    return () => clearTimeout(timer);
+  }, [countries]); // re-run when countries load
+
   return (
-    <div className="flex items-center justify-center cursor-grab active:cursor-grabbing">
+    <div className="flex items-center justify-center cursor-grab active:cursor-grabbing select-none">
       <GlobeT
         ref={globeEl}
         width={dimensions.width}
         height={dimensions.height}
-        globeImageUrl={null}
+        globeImageUrl={null as any}
         showGlobe={true}
         globeMaterial={globeMaterial}
         backgroundColor="rgba(0,0,0,0)"
-        atmosphereColor="#93c5fd"
-        atmosphereAltitude={0.12}
+        atmosphereColor="#F5C97F"
+        atmosphereAltitude={0.18}
         showGraticules={false}
-        // Hex polygons for countries — cartoonish look
-        hexPolygonsData={countries}
-        hexPolygonGeoJsonGeometry="geometry"
-        hexPolygonColor={(d: CountryFeature) => {
-          const idx = (d?.properties?.MAPCOLOR7 || 0) % PASTEL_COLORS.length;
-          return PASTEL_COLORS[idx];
-        }}
-        hexPolygonResolution={3}
-        hexPolygonMargin={0.4}
-        hexPolygonAltitude={0.005}
-        // Pet labels
-        htmlElementsData={PET_LABELS}
-        htmlLat="lat"
-        htmlLng="lng"
-        htmlAltitude={0.05}
-        htmlElement={(d: PetLabel) => {
-          const el = document.createElement("div");
-          el.style.transition = "opacity 0.25s ease";
-          el.innerHTML = `
-            <div style="
-              display: flex;
-              align-items: center;
-              justify-content: center;
-              width: 38px;
-              height: 44px;
-              background: linear-gradient(135deg, #fbbf24, #f59e0b);
-              clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-              font-size: 18px;
-              cursor: pointer;
-              filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
-              transition: transform 0.2s ease;
-            "
-            onmouseover="this.style.transform='scale(1.3)'"
-            onmouseout="this.style.transform='scale(1)'"
-            title="${d.name}"
-            >
-              ${d.emoji}
-            </div>
-          `;
-          el.style.pointerEvents = "auto";
-          el.style.cursor = "pointer";
-          el.addEventListener("click", () => handleLabelClick());
-          labelElements.current.set(el, d);
-          return el;
-        }}
+        /* ─── Solid polygon countries — cute illustrated map ─── */
+        polygonsData={countries}
+        polygonGeoJsonGeometry="geometry"
+        polygonCapColor={getCountryColor}
+        polygonSideColor={() => "rgba(200, 180, 160, 0.15)"}
+        polygonStrokeColor={() => "#FFFFFF"}
+        polygonAltitude={0.012}
+        polygonLabel={(d: any) => null}
+        animateIn={true}
       />
     </div>
   );

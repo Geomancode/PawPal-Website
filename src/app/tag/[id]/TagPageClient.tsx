@@ -1,7 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Heart, Phone, Droplets, Shield, Award, Calendar, PawPrint } from "lucide-react";
+import { Heart, Phone, Droplets, Shield, Award, MapPin, Calendar, PawPrint } from "lucide-react";
+import { DoodlePaw, DoodleHeart } from "@/components/PetDoodles";
 
 interface TagPageClientProps {
   pet: {
@@ -10,13 +11,7 @@ interface TagPageClientProps {
     breed: string | null;
     age: number | null;
     avatar_url: string | null;
-    social_traits: {
-      health_badges?: string[];
-      social_tags?: string[];
-      quirk?: string;
-      achievements?: string[];
-      [key: string]: unknown;
-    } | null;
+    social_traits: Record<string, any> | null;
     blood_type: string | null;
     owner_contact: string | null;
     created_at: string;
@@ -28,6 +23,12 @@ interface TagPageClientProps {
   } | null;
 }
 
+const SPECIES_EMOJI: Record<string, string> = {
+  canine: "🐕", feline: "🐈", lagomorph: "🐰", bird: "🦜",
+  reptile: "🦎", amphibian: "🐸", fish: "🐠", small_mammal: "🐹",
+  insect: "🦋", arachnid: "🕷️", equine: "🐴", exotic_wild: "🦊",
+};
+
 export default function TagPageClient({ pet, owner }: TagPageClientProps) {
   const healthBadges: string[] = pet.social_traits?.health_badges ?? [];
   const socialTags: string[] = pet.social_traits?.social_tags ?? [];
@@ -36,7 +37,10 @@ export default function TagPageClient({ pet, owner }: TagPageClientProps) {
   const emoji = "🐾";
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-amber-50 to-white flex items-center justify-center px-4 py-12">
+    <div className="relative min-h-screen bg-gradient-to-b from-[#F7F8FA] to-[#F9FAFB] flex items-center justify-center px-4 py-12 overflow-hidden">
+      {/* Pet doodles */}
+      <div className="absolute top-[10%] right-[8%] w-16 h-16 text-[#F5A623]/10 doodle-float hidden md:block"><DoodlePaw className="w-full h-full" /></div>
+      <div className="absolute bottom-[15%] left-[8%] w-12 h-12 text-[#E8824C]/8 doodle-float-alt hidden md:block" style={{ animationDelay: '2s' }}><DoodleHeart className="w-full h-full" /></div>
       <motion.div
         initial={{ opacity: 0, y: 20, scale: 0.95 }}
         animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -44,16 +48,15 @@ export default function TagPageClient({ pet, owner }: TagPageClientProps) {
         className="w-full max-w-sm"
       >
         {/* Card */}
-        <div className="bg-white rounded-3xl shadow-xl border border-gray-100 overflow-hidden">
+        <div className="bg-[#F9FAFB]/80 backdrop-blur-xl rounded-3xl shadow-xl border border-[#F5E6D3]/60 overflow-hidden">
           {/* Header gradient */}
-          <div className="bg-gradient-to-r from-amber-400 to-orange-400 px-6 py-8 text-center relative">
+          <div className="bg-gradient-to-r from-[#F5A623] to-[#E8824C] px-6 py-8 text-center relative">
             <div className="absolute top-3 right-3 bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full">
               <span className="text-xs text-white font-bold">PawPal Tag</span>
             </div>
             {/* Avatar */}
             <div className="w-20 h-20 rounded-full bg-white/30 border-4 border-white mx-auto flex items-center justify-center text-4xl shadow-lg">
               {pet.avatar_url ? (
-                // eslint-disable-next-line @next/next/no-img-element
                 <img src={pet.avatar_url} alt={pet.name} className="w-full h-full rounded-full object-cover" />
               ) : (
                 emoji
@@ -152,7 +155,7 @@ export default function TagPageClient({ pet, owner }: TagPageClientProps) {
           </div>
 
           {/* Footer */}
-          <div className="bg-gray-50 px-6 py-3 flex items-center justify-between">
+          <div className="bg-[#FFF4E8] px-6 py-3 flex items-center justify-between">
             <div className="flex items-center gap-1.5 text-xs text-gray-400">
               <PawPrint className="w-3 h-3" />
               <span>PawPal</span>
