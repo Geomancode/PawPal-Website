@@ -8,12 +8,12 @@ const GlobeT = dynamic(() => import("react-globe.gl").then((m) => m.default), {
   ssr: false,
 });
 
-// Pastel colors for countries
+// Bright, warm pastel colors — Pawlace-inspired
 const PASTEL_COLORS = [
-  "#a8e6cf", "#dcedc1", "#ffd3b6", "#ffaaa5", "#ff8b94",
-  "#b5ead7", "#c7ceea", "#e2f0cb", "#ffdac1", "#f0e6ef",
-  "#d4f0f0", "#cce2cb", "#fcf6bd", "#d0e8f2", "#e8d5b7",
-  "#f3d1dc", "#bde0fe", "#c1fba4", "#ffc6ff", "#caffbf",
+  "#FFE0B2", "#FFCC80", "#FFD54F", "#FFF9C4", "#DCEDC8",
+  "#C8E6C9", "#B2DFDB", "#B3E5FC", "#BBDEFB", "#D1C4E9",
+  "#F8BBD0", "#FFCDD2", "#FFE082", "#E6EE9C", "#80DEEA",
+  "#A5D6A7", "#EF9A9A", "#CE93D8", "#90CAF9", "#FFF59D",
 ];
 
 export default function GlobeComponent() {
@@ -21,13 +21,14 @@ export default function GlobeComponent() {
   const [dimensions, setDimensions] = useState({ width: 600, height: 600 });
   const [countries, setCountries] = useState<any[]>([]);
 
-  // Globe material — light pastel blue for oceans
+  // Globe material — warm cream for oceans, strong emissive to prevent dark look
   const globeMaterial = useMemo(() => {
     const mat = new THREE.MeshPhongMaterial();
-    mat.color = new THREE.Color("#dbeafe"); // pastel blue ocean
-    mat.emissive = new THREE.Color("#dbeafe");
-    mat.emissiveIntensity = 0.15;
-    mat.shininess = 5;
+    mat.color = new THREE.Color("#FFF8F0");       // warm cream ocean
+    mat.emissive = new THREE.Color("#FFF4E8");     // warm emissive glow
+    mat.emissiveIntensity = 0.4;                   // strong glow to avoid dark
+    mat.shininess = 15;
+    mat.specular = new THREE.Color("#FFFFFF");
     return mat;
   }, []);
 
@@ -65,6 +66,16 @@ export default function GlobeComponent() {
     }
     globe.pointOfView({ altitude: 2.2 });
 
+    // Inject extra light to brighten the globe
+    const scene = globe.scene();
+    if (scene) {
+      const ambientLight = new THREE.AmbientLight(0xFFF8F0, 1.8);
+      scene.add(ambientLight);
+      const dirLight = new THREE.DirectionalLight(0xFFFFFF, 0.8);
+      dirLight.position.set(5, 3, 5);
+      scene.add(dirLight);
+    }
+
     return () => {
       window.removeEventListener("resize", updateSize);
     };
@@ -80,10 +91,10 @@ export default function GlobeComponent() {
         showGlobe={true}
         globeMaterial={globeMaterial}
         backgroundColor="rgba(0,0,0,0)"
-        atmosphereColor="#93c5fd"
-        atmosphereAltitude={0.12}
+        atmosphereColor="#F5A623"
+        atmosphereAltitude={0.15}
         showGraticules={false}
-        // Hex polygons for countries — cartoonish look
+        // Hex polygons for countries — bright friendly look
         hexPolygonsData={countries}
         hexPolygonGeoJsonGeometry={"geometry" as any}
         hexPolygonColor={(d: any) => {
@@ -91,8 +102,8 @@ export default function GlobeComponent() {
           return PASTEL_COLORS[idx];
         }}
         hexPolygonResolution={3}
-        hexPolygonMargin={0.4}
-        hexPolygonAltitude={0.005}
+        hexPolygonMargin={0.3}
+        hexPolygonAltitude={0.008}
       />
     </div>
   );
