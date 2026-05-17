@@ -487,12 +487,42 @@ export function AppShowcase() {
     { icon: Users, title: "Community", desc: "Local pet lovers & mutual help", color: "bg-[#E8824C]/12 text-[#E8824C]" },
   ];
 
+  const thoughtfulFeatures = [
+    {
+      title: "Walk & Explore",
+      desc: "Gamified walks with fog-of-war maps, real-time tracking, route history, and PawPoints rewards. Every step counts!",
+      mockups: ["/images/mockup-walk.png", "/images/app-mockup.png"],
+      color: "from-[#F5A623]",
+      iconColor: "text-[#F5A623]",
+      bgColor: "bg-[#F5A623]/5",
+      borderColor: "border-[#F5A623]/20",
+    },
+    {
+      title: "Smart Safety",
+      desc: "NFC tags turn any collar into a smart ID. Finders scan — no app needed — and instantly see your pet's profile and your contact info.",
+      mockups: ["/images/mockup-nfc.png", "/images/mockup-profile.png"],
+      color: "from-[#4A90D9]",
+      iconColor: "text-[#4A90D9]",
+      bgColor: "bg-[#4A90D9]/5",
+      borderColor: "border-[#4A90D9]/20",
+    },
+    {
+      title: "AI & Community",
+      desc: "AI-powered breed ID, health advice, and behavior analysis. Plus a trusted local network of pet lovers for walks, sitting, and emergencies.",
+      mockups: ["/images/mockup-ai.png", "/images/mockup-community.png"],
+      color: "from-[#10B981]",
+      iconColor: "text-[#10B981]",
+      bgColor: "bg-[#10B981]/5",
+      borderColor: "border-[#10B981]/20",
+    },
+  ];
+
   return (
-    <div className="relative">
-      {/* PawView-inspired large rounded container */}
+    <div className="space-y-20">
+      {/* ══════ SECTION 1: Hero App Overview ══════ */}
       <FadeInView>
         <div className="relative bg-gradient-to-br from-[#FFF4E8] via-[#FFFCF5] to-[#F0F4F8] rounded-[32px] overflow-hidden border border-[#F5E6D3]/40 shadow-[0_8px_40px_rgba(0,0,0,0.06)]">
-          {/* Decorative doodle elements — PawView style sparkle/star decorations */}
+          {/* Decorative sparkle elements */}
           <svg className="absolute top-6 left-8 w-10 h-10 text-[#F5A623]/20 hidden lg:block" viewBox="0 0 40 40" fill="none">
             <path d="M20 2v8M20 30v8M2 20h8M30 20h8M8 8l5 5M27 27l5 5M8 32l5-5M27 13l5-5" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
           </svg>
@@ -515,7 +545,7 @@ export function AppShowcase() {
                 All-in-one app for pet safety, gamified walks, health logging, and community connection. Available on iOS & Android.
               </p>
 
-              {/* Feature chips — PawView-inspired grid */}
+              {/* Feature chips */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {features.map((f, i) => (
                   <motion.div
@@ -558,9 +588,8 @@ export function AppShowcase() {
               </div>
             </div>
 
-            {/* Right: App mockup image with pet photo blend */}
-            <div className="relative flex-1 flex items-center justify-center p-4 lg:p-0">
-              {/* App mockup image */}
+            {/* Right: App mockup image */}
+            <div className="relative flex-1 flex items-center justify-center p-4 lg:p-8">
               <motion.div
                 className="relative z-10"
                 whileHover={{ y: -8 }}
@@ -569,11 +598,11 @@ export function AppShowcase() {
                 <img
                   src="/images/app-mockup.png"
                   alt="PawPal App Interface"
-                  className="w-[280px] lg:w-[320px] drop-shadow-2xl"
+                  className="w-[260px] lg:w-[300px] drop-shadow-2xl"
                 />
               </motion.div>
 
-              {/* Floating status badges */}
+              {/* Floating badges */}
               <motion.div
                 className="absolute top-8 right-4 lg:right-8 px-3 py-2 rounded-2xl bg-white/90 backdrop-blur-sm shadow-lg border border-[#F5E6D3]/60 text-xs font-semibold text-[#1E293B] flex items-center gap-2 z-20"
                 animate={{ y: [0, -6, 0] }}
@@ -589,17 +618,56 @@ export function AppShowcase() {
               >
                 🐾 3.2km walked today
               </motion.div>
-              <motion.div
-                className="absolute top-1/2 right-0 lg:right-2 px-3 py-2 rounded-2xl bg-[#F5A623]/10 backdrop-blur-sm shadow-md border border-[#F5A623]/20 text-xs font-semibold text-[#E8824C] flex items-center gap-2 z-20"
-                animate={{ y: [0, -4, 0] }}
-                transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-              >
-                <Sparkles className="w-3 h-3" /> AI Ready
-              </motion.div>
             </div>
           </div>
         </div>
       </FadeInView>
+
+      {/* ══════ SECTION 2: 3 Powerful Features — PawView-inspired ══════ */}
+      <div>
+        <FadeInView>
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-[#1E293B] font-brand mb-3">
+              3 Powerful Features
+            </h2>
+            <p className="text-[#6B7B8D] max-w-lg mx-auto">
+              That make pet life smarter, safer, and more fun
+            </p>
+          </div>
+        </FadeInView>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {thoughtfulFeatures.map((feature, i) => (
+            <FadeInView key={i} delay={i * 0.15}>
+              <div className={`relative rounded-[28px] ${feature.bgColor} border ${feature.borderColor} p-6 pb-4 overflow-hidden h-full flex flex-col`}>
+                {/* Phone mockups */}
+                <div className="flex justify-center gap-3 mb-6">
+                  {feature.mockups.map((src, j) => (
+                    <motion.img
+                      key={j}
+                      src={src}
+                      alt={`${feature.title} screenshot ${j + 1}`}
+                      className="w-[120px] md:w-[110px] lg:w-[130px] rounded-2xl shadow-lg object-contain"
+                      style={{ marginTop: j % 2 === 1 ? "16px" : "0px" }}
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: j % 2 === 1 ? 16 : 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: 0.3 + j * 0.1 }}
+                      whileHover={{ y: (j % 2 === 1 ? 16 : 0) - 6, scale: 1.03 }}
+                    />
+                  ))}
+                </div>
+
+                {/* Text */}
+                <div className="text-center mt-auto">
+                  <h3 className="text-lg font-bold text-[#1E293B] mb-2">{feature.title}</h3>
+                  <p className="text-sm text-[#6B7B8D] leading-relaxed">{feature.desc}</p>
+                </div>
+              </div>
+            </FadeInView>
+          ))}
+        </div>
+      </div>
     </div>
   );
 }
