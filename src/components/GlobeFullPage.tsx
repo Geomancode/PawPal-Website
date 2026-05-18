@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState, useCallback } from "react";
+import { useEffect, useRef, useState, useCallback, useMemo } from "react";
 import maplibregl from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
 import WeatherTicker from "./WeatherTicker";
@@ -15,6 +15,17 @@ const QUEST_EMOJI: Record<string, string> = {
   skill: "🛠️", transport: "🚗", foster: "🏠", vet_accompany: "🏥",
 };
 
+const QUEST_LABEL: Record<string, string> = {
+  walk: "Walk help",
+  care: "Care need",
+  knowledge: "Advice",
+  share: "Share",
+  skill: "Skill help",
+  transport: "Transport",
+  foster: "Foster",
+  vet_accompany: "Vet buddy",
+};
+
 /* ── Place type → emoji mapping ── */
 const PLACE_EMOJI: Record<string, string> = {
   vet: "🏥", groomer: "✂️", pet_shop: "🛒", park: "🌳",
@@ -27,23 +38,85 @@ type MapWithSky = maplibregl.Map & {
   setSky?: (sky: { "atmosphere-blend": number }) => void;
 };
 
+const DEFAULT_USER_LOCATION = { lat: 51.05, lng: 3.72 };
+const NEARBY_RADIUS_KM = 15;
+
 /* ── Marker badge style ── */
-function createMarkerEl(emoji: string, color: string): HTMLElement {
+function createMarkerEl(emoji: string, color: string, label?: string): HTMLElement {
   const el = document.createElement("div");
   el.style.cssText = `
-    width: 36px; height: 36px;
-    background: ${color};
-    border: 2px solid white;
-    border-radius: 50%;
+    min-width: 36px; height: 36px;
+    background: ${label ? "rgba(255,255,255,0.94)" : color};
+    border: 2px solid ${label ? color : "white"};
+    border-radius: 999px;
     display: flex; align-items: center; justify-content: center;
+    gap: 6px;
     font-size: 18px; cursor: pointer;
+    padding: ${label ? "0 10px 0 6px" : "0"};
     box-shadow: 0 2px 8px rgba(0,0,0,0.3);
     transition: transform 0.15s;
+    color: #1f2937;
+    white-space: nowrap;
   `;
-  el.textContent = emoji;
+  const icon = document.createElement("span");
+  icon.style.cssText = `
+    width: ${label ? "24px" : "32px"};
+    height: ${label ? "24px" : "32px"};
+    border-radius: 50%;
+    background: ${color};
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    flex: 0 0 auto;
+  `;
+  icon.textContent = emoji;
+  el.appendChild(icon);
+
+  if (label) {
+    const text = document.createElement("span");
+    text.style.cssText = `
+      max-width: 112px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      font-size: 12px;
+      font-weight: 800;
+    `;
+    text.textContent = label;
+    el.appendChild(text);
+  }
+
   el.onmouseenter = () => { el.style.transform = "scale(1.3)"; };
   el.onmouseleave = () => { el.style.transform = "scale(1)"; };
   return el;
+}
+
+function createPopupContent(
+  title: string,
+  rows: Array<{ label?: string; value: string }>
+): HTMLElement {
+  const wrapper = document.createElement("div");
+  wrapper.style.fontFamily = "system-ui";
+  wrapper.style.minWidth = "160px";
+
+  const heading = document.createElement("div");
+  heading.style.fontWeight = "700";
+  heading.style.fontSize = "14px";
+  heading.style.marginBottom = "4px";
+  heading.textContent = title;
+  wrapper.appendChild(heading);
+
+  rows.forEach((row) => {
+    if (!row.value) return;
+    const item = document.createElement("div");
+    item.style.fontSize = "12px";
+    item.style.color = "#666";
+    item.style.marginBottom = "2px";
+    item.textContent = row.label ? `${row.label}: ${row.value}` : row.value;
+    wrapper.appendChild(item);
+  });
+
+  return wrapper;
 }
 
 /* ─────────────────────────────────────────
@@ -56,21 +129,60 @@ export default function MapGlobeComponent() {
   const [showPlaces, setShowPlaces] = useState(true);
   const [quests, setQuests] = useState<Quest[]>([]);
   const [places, setPlaces] = useState<Place[]>([]);
+  const [nearbyLoading, setNearbyLoading] = useState(true);
+  const [nearbyCenter, setNearbyCenter] = useState<{ lat: number; lng: number }>(DEFAULT_USER_LOCATION);
   const questMarkersRef = useRef<maplibregl.Marker[]>([]);
   const placeMarkersRef = useRef<maplibregl.Marker[]>([]);
+  const refreshTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   /* ── Map center state for WeatherTicker ── */
   const [mapCenter, setMapCenter] = useState<{ lat: number; lng: number } | null>(null);
-  const [userLocation, setUserLocation] = useState<{ lat: number; lng: number } | null>(null);
+  const [userLocation, setUserLocation] = useState<{ lat: number; lng: number } | null>(DEFAULT_USER_LOCATION);
   const isDraggingRef = useRef(false);
+
+  const nearbyQuestTags = useMemo(() => {
+    const counts = new Map<string, number>();
+    quests.forEach((quest) => {
+      counts.set(quest.quest_type, (counts.get(quest.quest_type) ?? 0) + 1);
+    });
+    return Array.from(counts.entries())
+      .map(([type, count]) => ({
+        type,
+        count,
+        emoji: QUEST_EMOJI[type] ?? "🐾",
+        label: QUEST_LABEL[type] ?? type.replace(/_/g, " "),
+      }))
+      .sort((a, b) => b.count - a.count);
+  }, [quests]);
+
+  const loadNearbyData = useCallback(async (center: { lat: number; lng: number }) => {
+    setNearbyLoading(true);
+    const [questRows, placeRows] = await Promise.all([
+      fetchQuests({ ...center, radiusKm: NEARBY_RADIUS_KM, limit: 80 }),
+      fetchPlaces({ ...center, radiusKm: NEARBY_RADIUS_KM, limit: 120 }),
+    ]);
+    setQuests(questRows);
+    setPlaces(placeRows);
+    setNearbyCenter(center);
+    setNearbyLoading(false);
+  }, []);
+
+  const scheduleNearbyRefresh = useCallback((center: { lat: number; lng: number }) => {
+    if (refreshTimerRef.current) clearTimeout(refreshTimerRef.current);
+    refreshTimerRef.current = setTimeout(() => {
+      void loadNearbyData(center);
+    }, 450);
+  }, [loadNearbyData]);
 
   /* ── Update map center on drag end (debounced via ticker) ── */
   const updateMapCenter = useCallback(() => {
     const map = mapRef.current;
     if (!map) return;
     const center = map.getCenter();
-    setMapCenter({ lat: center.lat, lng: center.lng });
-  }, []);
+    const nextCenter = { lat: center.lat, lng: center.lng };
+    setMapCenter(nextCenter);
+    scheduleNearbyRefresh(nextCenter);
+  }, [scheduleNearbyRefresh]);
 
   /* ── Recenter map to user location ── */
   const handleRecenterRequest = useCallback(() => {
@@ -85,18 +197,20 @@ export default function MapGlobeComponent() {
     setMapCenter(null); // Reset to user location mode
   }, [userLocation]);
 
-  /* ── Load data from Supabase ── */
+  /* ── Load initial nearby data from Supabase ── */
   useEffect(() => {
-    fetchQuests().then(setQuests);
-    fetchPlaces().then(setPlaces);
-  }, []);
+    scheduleNearbyRefresh(DEFAULT_USER_LOCATION);
+    return () => {
+      if (refreshTimerRef.current) clearTimeout(refreshTimerRef.current);
+    };
+  }, [scheduleNearbyRefresh]);
 
   /* ── Initialize MapLibre ── */
   useEffect(() => {
     if (!mapContainer.current || mapRef.current) return;
 
     // Get user location for initial center
-    const defaultCenter: [number, number] = [3.72, 51.05]; // Ghent
+    const defaultCenter: [number, number] = [DEFAULT_USER_LOCATION.lng, DEFAULT_USER_LOCATION.lat];
 
     const map = new maplibregl.Map({
       container: mapContainer.current,
@@ -129,15 +243,15 @@ export default function MapGlobeComponent() {
         (pos) => {
           const coords = { lat: pos.coords.latitude, lng: pos.coords.longitude };
           setUserLocation(coords);
+          setMapCenter(coords);
+          void loadNearbyData(coords);
           map.flyTo({ center: [coords.lng, coords.lat], zoom: 11, duration: 1000 });
         },
         () => {
-          setUserLocation({ lat: defaultCenter[1], lng: defaultCenter[0] });
+          setUserLocation(DEFAULT_USER_LOCATION);
         },
         { timeout: 8000 }
       );
-    } else {
-      setUserLocation({ lat: defaultCenter[1], lng: defaultCenter[0] });
     }
 
     map.scrollZoom.disable();
@@ -236,7 +350,7 @@ export default function MapGlobeComponent() {
     map.addControl(new maplibregl.NavigationControl(), "bottom-right");
 
     return () => { container.removeEventListener("wheel", onWheel); map.remove(); mapRef.current = null; };
-  }, [updateMapCenter]);
+  }, [loadNearbyData, updateMapCenter]);
 
   /* ── Render Quest markers ── */
   useEffect(() => {
@@ -248,9 +362,16 @@ export default function MapGlobeComponent() {
     quests.forEach((q) => {
       if (q.lat == null || q.lng == null) return;
       const emoji = QUEST_EMOJI[q.quest_type] || "🐾";
-      const el = createMarkerEl(emoji, "#f59e0b");
+      const label = QUEST_LABEL[q.quest_type] ?? q.quest_type.replace(/_/g, " ");
+      const distance = q.distance_km != null ? `${q.distance_km.toFixed(1)} km away` : "";
+      const el = createMarkerEl(emoji, "#f59e0b", label);
       const popup = new maplibregl.Popup({ offset: 20, closeButton: false })
-        .setHTML(`<div style="font-family:system-ui;min-width:160px"><div style="font-weight:700;font-size:14px;margin-bottom:4px">${emoji} ${q.title || "Mission"}</div><div style="font-size:12px;color:#666;margin-bottom:2px">Type: <b>${q.quest_type}</b></div><div style="font-size:12px;color:#666;margin-bottom:2px">Status: <b>${q.status}</b></div><div style="font-size:12px;color:#666">Reward: <b>${q.reward_type || "none"}</b></div></div>`);
+        .setDOMContent(createPopupContent(`${emoji} ${q.title || "Mission"}`, [
+          { label: "Need", value: label },
+          { label: "Status", value: q.status },
+          { label: "Distance", value: distance },
+          { label: "Reward", value: q.reward_type || "none" },
+        ]));
       const marker = new maplibregl.Marker({ element: el }).setLngLat([q.lng, q.lat]).setPopup(popup).addTo(map);
       questMarkersRef.current.push(marker);
     });
@@ -268,14 +389,18 @@ export default function MapGlobeComponent() {
       const emoji = PLACE_EMOJI[p.place_type] || "📍";
       const el = createMarkerEl(emoji, "#3b82f6");
       const ratingStr = p.rating_avg != null ? `⭐ ${Number(p.rating_avg).toFixed(1)}` : "";
+      const distance = p.distance_km != null ? `${p.distance_km.toFixed(1)} km away` : "";
       const popup = new maplibregl.Popup({ offset: 20, closeButton: false })
-        .setHTML(`<div style="font-family:system-ui;min-width:160px"><div style="font-weight:700;font-size:14px;margin-bottom:4px">${emoji} ${p.name}</div><div style="font-size:12px;color:#666;margin-bottom:2px">Type: <b>${p.place_type}</b></div>${p.city ? `<div style="font-size:12px;color:#666;margin-bottom:2px">📍 ${p.city}</div>` : ""}${ratingStr ? `<div style="font-size:12px;color:#666">${ratingStr}</div>` : ""}</div>`);
+        .setDOMContent(createPopupContent(`${emoji} ${p.name}`, [
+          { label: "Type", value: p.place_type },
+          { value: p.city ? `📍 ${p.city}` : "" },
+          { label: "Distance", value: distance },
+          { value: ratingStr },
+        ]));
       const marker = new maplibregl.Marker({ element: el }).setLngLat([p.lng, p.lat]).setPopup(popup).addTo(map);
       placeMarkersRef.current.push(marker);
     });
   }, [places, showPlaces]);
-
-
 
   return (
     <div className="relative w-full h-screen overflow-hidden">
@@ -284,6 +409,36 @@ export default function MapGlobeComponent() {
         onRecenterRequest={handleRecenterRequest}
       />
       <div ref={mapContainer} id="globe-map" className="absolute inset-0 w-full h-full" />
+
+      {/* Nearby need tags */}
+      <div className="absolute top-[222px] left-4 z-40 w-[min(320px,calc(100vw-2rem))] rounded-2xl border border-white/60 bg-white/85 p-3 shadow-lg backdrop-blur-md sm:top-[130px]">
+        <div className="mb-2 flex items-center justify-between gap-3">
+          <div>
+            <p className="text-xs font-black uppercase tracking-[0.16em] text-amber-600">Nearby needs</p>
+            <p className="text-[11px] font-medium text-gray-500">
+              {nearbyCenter.lat.toFixed(3)}, {nearbyCenter.lng.toFixed(3)} · {NEARBY_RADIUS_KM} km
+            </p>
+          </div>
+          <span className="rounded-full bg-amber-100 px-2 py-1 text-[11px] font-black text-amber-700">
+            {nearbyLoading ? "..." : quests.length}
+          </span>
+        </div>
+        {nearbyQuestTags.length > 0 ? (
+          <div className="flex flex-wrap gap-1.5">
+            {nearbyQuestTags.slice(0, 6).map((tag) => (
+              <span key={tag.type} className="inline-flex items-center gap-1 rounded-full border border-amber-200 bg-amber-50 px-2.5 py-1 text-[11px] font-bold text-gray-700">
+                <span>{tag.emoji}</span>
+                <span>{tag.label}</span>
+                <span className="text-amber-700">{tag.count}</span>
+              </span>
+            ))}
+          </div>
+        ) : (
+          <p className="text-xs font-medium text-gray-500">
+            {nearbyLoading ? "Loading nearby needs..." : "No open needs in this area yet."}
+          </p>
+        )}
+      </div>
 
       {/* Layer Toggle */}
       <div id="globe-layers" className="absolute top-[130px] right-4 z-40 flex flex-col gap-2">

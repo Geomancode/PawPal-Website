@@ -1,0 +1,12 @@
+{
+  "activeVersion": "2026-05-18-photo-led",
+  "currentManifest": "/assets/store-products/current/manifest.json",
+  "versionManifest": "/assets/store-products/versions/2026-05-18-photo-led/manifest.json",
+  "replacementPolicy": "Replace files under current with the same relative paths for quick swaps, or add a new versions/<date-or-slug> folder and update activeVersion/current when approving a full refresh.",
+  "products": [
+    "water-bottle",
+    "waste-bags",
+    "poop-scooper",
+    "smart-tag"
+  ]
+}

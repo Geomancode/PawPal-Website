@@ -1,10 +1,10 @@
 "use client";
 
 import { useState, useEffect, Suspense } from "react";
-import { motion } from "framer-motion";
 import { useRouter, useSearchParams } from "next/navigation";
-import { CheckCircle2, Package, ArrowRight, Loader2 } from "lucide-react";
+import { CheckCircle2, Package, ArrowRight, Loader2, AlertTriangle, Receipt } from "lucide-react";
 import { saveOrder, saveCart, generateOrderId, loadCart } from "../storeData";
+import { Badge, Button, Card } from "@/components/ui";
 
 interface StripeSession {
   id: string;
@@ -14,6 +14,17 @@ interface StripeSession {
   currency: string;
   metadata: Record<string, string>;
   line_items: { name: string; quantity: number; amount: number }[];
+}
+
+function LoadingState() {
+  return (
+    <div className="flex min-h-screen items-center justify-center bg-paw-page text-paw-ink">
+      <div className="flex flex-col items-center gap-4">
+        <Loader2 className="h-8 w-8 animate-spin text-paw-primary" aria-hidden="true" />
+        <p className="text-sm font-bold text-paw-muted">Confirming your payment...</p>
+      </div>
+    </div>
+  );
 }
 
 function SuccessContent() {
@@ -38,7 +49,6 @@ function SuccessContent() {
         } else {
           setSession(data);
 
-          // Save order to localStorage
           const cart = loadCart();
           if (cart.length > 0) {
             const subtotal = cart.reduce((s, i) => s + i.product.price * i.quantity, 0);
@@ -77,111 +87,87 @@ function SuccessContent() {
   }, [sessionId, orderId]);
 
   if (loading) {
-    return (
-      <div className="min-h-screen bg-[#F7F8FA] flex items-center justify-center">
-        <motion.div
-          animate={{ rotate: 360 }}
-          transition={{ repeat: Infinity, duration: 1, ease: "linear" }}
-        >
-          <Loader2 className="w-8 h-8 text-[#F5A623]" />
-        </motion.div>
-      </div>
-    );
+    return <LoadingState />;
   }
 
   if (error) {
     return (
-      <div className="min-h-screen bg-[#F7F8FA] pt-28 flex items-center justify-center">
-        <div className="glass rounded-2xl p-10 text-center max-w-md">
-          <p className="text-red-500 font-medium mb-4">⚠️ {error}</p>
-          <button
-            onClick={() => router.push("/store")}
-            className="px-6 py-3 bg-[#F5A623] text-white rounded-full font-bold cursor-pointer"
-          >
+      <div className="flex min-h-screen items-center justify-center bg-paw-page px-4 pt-24 text-paw-ink">
+        <Card className="w-full max-w-md p-8 text-center">
+          <div className="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-paw-md bg-paw-danger-soft text-paw-danger">
+            <AlertTriangle className="h-7 w-7" aria-hidden="true" />
+          </div>
+          <Badge tone="danger" className="mb-3">Checkout status</Badge>
+          <h1 className="text-2xl font-extrabold text-paw-ink">We could not verify this payment</h1>
+          <p className="mt-3 text-sm leading-6 text-paw-body">{error}</p>
+          <Button type="button" onClick={() => router.push("/store")} className="mt-6">
             Back to Store
-          </button>
-        </div>
+          </Button>
+        </Card>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-[#F7F8FA] pt-28 pb-20">
-      <div className="max-w-2xl mx-auto px-4">
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          className="glass rounded-2xl p-10 border border-gray-100 text-center"
-        >
-          <motion.div
-            initial={{ scale: 0 }}
-            animate={{ scale: 1 }}
-            transition={{ type: "spring", damping: 12, delay: 0.2 }}
-            className="w-24 h-24 mx-auto mb-6 rounded-full bg-emerald-100 flex items-center justify-center"
-          >
-            <CheckCircle2 className="w-12 h-12 text-emerald-500" />
-          </motion.div>
+    <div className="min-h-screen bg-paw-page pt-28 pb-20 text-paw-ink">
+      <div className="mx-auto max-w-2xl px-4">
+        <Card className="p-8 text-center sm:p-10">
+          <div className="mx-auto mb-6 flex h-24 w-24 items-center justify-center rounded-full bg-paw-success-soft text-paw-success">
+            <CheckCircle2 className="h-12 w-12" aria-hidden="true" />
+          </div>
 
-          <h2 className="text-3xl font-bold text-gray-900 mb-2">Payment Successful! 🎉</h2>
-          <p className="text-gray-500 mb-2">Thank you for your purchase</p>
+          <Badge tone="success" className="mb-3">Payment confirmed</Badge>
+          <h1 className="text-3xl font-extrabold text-paw-ink">Payment successful</h1>
+          <p className="mt-2 text-paw-body">Thank you for your PawPal purchase.</p>
 
-          <p className="text-sm bg-[#F7F8FA] inline-block px-4 py-2 rounded-full font-mono font-bold text-[#E8824C] mb-4">
+          <div className="mt-5 inline-flex items-center gap-2 rounded-paw-md border border-paw-primary/20 bg-paw-primary-soft px-4 py-2 font-mono text-sm font-extrabold text-paw-primary">
+            <Receipt className="h-4 w-4" aria-hidden="true" />
             Order #{orderId}
-          </p>
+          </div>
 
           {session && (
-            <div className="text-left mt-6 space-y-4">
-              {/* Amount */}
-              <div className="p-4 rounded-xl bg-emerald-50 border border-emerald-100 text-center">
-                <p className="text-sm text-emerald-700">
-                  💳 Paid <strong>€{((session.amount_total || 0) / 100).toFixed(2)}</strong> via Stripe
+            <div className="mt-7 space-y-4 text-left">
+              <div className="rounded-paw-md border border-paw-success/20 bg-paw-success-soft p-4 text-center">
+                <p className="text-sm text-paw-success">
+                  Paid <strong>€{((session.amount_total || 0) / 100).toFixed(2)}</strong> via Stripe
                 </p>
               </div>
 
-              {/* Items */}
               {session.line_items && session.line_items.length > 0 && (
-                <div className="p-4 rounded-xl bg-[#F7F8FA] border border-gray-100">
-                  <h4 className="font-semibold text-gray-700 flex items-center gap-2 mb-3">
-                    <Package className="w-4 h-4 text-[#F5A623]" /> Items
-                  </h4>
+                <div className="rounded-paw-md border border-paw-border bg-paw-panel-subtle p-4">
+                  <h2 className="mb-3 flex items-center gap-2 text-sm font-extrabold text-paw-ink">
+                    <Package className="h-4 w-4 text-paw-primary" aria-hidden="true" />
+                    Items
+                  </h2>
                   <div className="space-y-2">
-                    {session.line_items.map((item, i) => (
-                      <div key={i} className="flex justify-between text-sm">
-                        <span className="text-gray-600">{item.name} × {item.quantity}</span>
-                        <span className="font-bold text-gray-700">€{(item.amount / 100).toFixed(2)}</span>
+                    {session.line_items.map((item, index) => (
+                      <div key={`${item.name}-${index}`} className="flex justify-between gap-3 text-sm">
+                        <span className="text-paw-body">{item.name} × {item.quantity}</span>
+                        <span className="font-extrabold text-paw-ink">€{(item.amount / 100).toFixed(2)}</span>
                       </div>
                     ))}
                   </div>
                 </div>
               )}
 
-              {/* Confirmation email */}
-              <div className="p-4 rounded-xl bg-amber-50 border border-amber-100">
-                <p className="text-sm text-amber-700">
-                  📧 Receipt sent to <strong>{session.customer_email}</strong>.
-                  Your order will ship within 1–2 business days.
+              <div className="rounded-paw-md border border-paw-warning/20 bg-paw-warning-soft p-4">
+                <p className="text-sm leading-6 text-paw-warning">
+                  Receipt sent to <strong>{session.customer_email}</strong>. Your order will ship within 1-2 business days.
                 </p>
               </div>
             </div>
           )}
 
-          <div className="flex flex-col sm:flex-row gap-3 justify-center mt-8">
-            <motion.button
-              whileTap={{ scale: 0.97 }}
-              onClick={() => router.push("/store/orders")}
-              className="px-8 py-3 bg-[#F5A623] hover:bg-[#E8824C] text-white rounded-full font-bold transition-all shadow-lg cursor-pointer flex items-center justify-center gap-2"
-            >
-              View My Orders <ArrowRight className="w-4 h-4" />
-            </motion.button>
-            <motion.button
-              whileTap={{ scale: 0.97 }}
-              onClick={() => router.push("/store")}
-              className="px-8 py-3 glass hover:bg-white/70 text-gray-700 rounded-full font-bold transition-all border border-gray-200 cursor-pointer"
-            >
+          <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
+            <Button type="button" onClick={() => router.push("/store/orders")}>
+              View My Orders
+              <ArrowRight className="h-4 w-4" aria-hidden="true" />
+            </Button>
+            <Button type="button" variant="secondary" onClick={() => router.push("/store")}>
               Continue Shopping
-            </motion.button>
+            </Button>
           </div>
-        </motion.div>
+        </Card>
       </div>
     </div>
   );
@@ -189,13 +175,7 @@ function SuccessContent() {
 
 export default function SuccessPage() {
   return (
-    <Suspense
-      fallback={
-        <div className="min-h-screen bg-[#F7F8FA] flex items-center justify-center">
-          <Loader2 className="w-8 h-8 text-[#F5A623] animate-spin" />
-        </div>
-      }
-    >
+    <Suspense fallback={<LoadingState />}>
       <SuccessContent />
     </Suspense>
   );

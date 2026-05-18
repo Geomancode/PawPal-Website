@@ -39,16 +39,16 @@ export default function PawPalLogo({
         <path
           d="M 160 380 V 160 A 80 80 0 0 1 240 80 H 260 A 80 80 0 0 1 340 160 V 200 A 80 80 0 0 1 260 280 H 160"
           fill="none"
-          stroke={isLight ? "#4A90D9" : "#FFFFFF"}
+          stroke={isLight ? "var(--color-paw-trust)" : "#FFFFFF"}
           strokeWidth="50"
           strokeLinecap="round"
         />
-        <circle cx="160" cy="280" r="25" fill="#F59E0B" />
+        <circle cx="160" cy="280" r="25" fill="var(--color-paw-primary)" />
         <circle
           cx="160"
           cy="380"
           r="25"
-          fill={isLight ? "#2D3748" : "rgba(255,255,255,0.4)"}
+          fill={isLight ? "var(--color-paw-ink)" : "rgba(255,255,255,0.4)"}
         />
       </svg>
 
@@ -58,8 +58,8 @@ export default function PawPalLogo({
           className="font-brand font-extrabold tracking-tight leading-none"
           style={{ fontSize }}
         >
-          <span style={{ color: isLight ? "#2D3748" : "#FFFFFF" }}>Paw</span>
-          <span style={{ color: "#F59E0B" }}>Pal</span>
+          <span style={{ color: isLight ? "var(--color-paw-ink)" : "#FFFFFF" }}>Paw</span>
+          <span style={{ color: "var(--color-paw-primary)" }}>Pal</span>
         </span>
       )}
     </span>

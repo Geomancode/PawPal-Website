@@ -11,6 +11,7 @@ import {
   CartItem, ShippingInfo,
   loadCart,
 } from "../storeData";
+import ProductVisual from "../ProductVisual";
 
 const STEPS = [
   { id: 1, label: "Shipping", icon: MapPin },
@@ -28,13 +29,13 @@ function StepIndicator({ current }: { current: number }) {
         return (
           <div key={step.id} className="flex items-center gap-2">
             <div className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all ${
-              active ? "bg-[#F5A623] text-white shadow-md" : done ? "bg-emerald-100 text-emerald-700" : "bg-gray-100 text-gray-400"
+              active ? "bg-paw-primary text-white shadow-paw-action" : done ? "bg-paw-success-soft text-paw-success" : "bg-paw-panel-subtle text-paw-muted"
             }`}>
               <step.icon className="w-4 h-4" />
               <span className="hidden sm:inline">{step.label}</span>
             </div>
             {i < STEPS.length - 1 && (
-              <div className={`w-8 h-0.5 ${done ? "bg-emerald-300" : "bg-gray-200"}`} />
+              <div className={`h-0.5 w-8 ${done ? "bg-paw-success" : "bg-paw-border"}`} />
             )}
           </div>
         );
@@ -50,14 +51,14 @@ function Field({ label, value, onChange, placeholder, type = "text", required = 
 }) {
   return (
     <div>
-      <label className="block text-sm font-medium text-gray-700 mb-1.5">{label}{required && <span className="text-rose-400">*</span>}</label>
+      <label className="mb-1.5 block text-sm font-bold text-paw-ink">{label}{required && <span className="text-paw-danger">*</span>}</label>
       <input
         type={type}
         value={value}
         onChange={(e) => onChange(e.target.value)}
         placeholder={placeholder}
         required={required}
-        className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-amber-400 focus:outline-none focus:ring-2 focus:ring-amber-200 transition-all bg-white text-gray-800"
+        className="w-full rounded-paw-md border border-paw-border bg-paw-panel px-4 py-3 text-paw-ink transition-all focus:border-paw-trust focus:outline-none focus:ring-4 focus:ring-paw-trust/20"
       />
     </div>
   );
@@ -68,33 +69,33 @@ function OrderSummary({ items }: { items: CartItem[] }) {
   const subtotal = items.reduce((s, i) => s + i.product.price * i.quantity, 0);
 
   return (
-    <div className="glass rounded-2xl p-6 border border-gray-100">
-      <h3 className="font-bold text-gray-800 mb-4 flex items-center gap-2">
-        <Package className="w-4 h-4 text-[#F5A623]" /> Order Summary
+    <div className="rounded-paw-lg border border-paw-border bg-paw-panel/80 p-6 shadow-paw-panel backdrop-blur-sm">
+      <h3 className="mb-4 flex items-center gap-2 font-extrabold text-paw-ink">
+        <Package className="h-4 w-4 text-paw-primary" /> Order Summary
       </h3>
       <div className="space-y-3 mb-4 max-h-48 overflow-y-auto">
         {items.map((item) => (
           <div key={item.product.id} className="flex items-center gap-3">
-            <span className="text-2xl">{item.product.image}</span>
+            <ProductVisual product={item.product} size="sm" />
             <div className="flex-1 min-w-0">
-              <p className="text-sm font-medium text-gray-700 truncate">{item.product.name}</p>
-              <p className="text-xs text-gray-400">Qty: {item.quantity}</p>
+              <p className="truncate text-sm font-bold text-paw-ink">{item.product.name}</p>
+              <p className="text-xs text-paw-muted">Qty: {item.quantity}</p>
             </div>
-            <span className="text-sm font-bold text-gray-700">€{(item.product.price * item.quantity).toFixed(2)}</span>
+            <span className="text-sm font-extrabold text-paw-ink">€{(item.product.price * item.quantity).toFixed(2)}</span>
           </div>
         ))}
       </div>
-      <div className="border-t pt-3 space-y-2">
-        <div className="flex justify-between text-sm text-gray-500"><span>Subtotal</span><span>€{subtotal.toFixed(2)}</span></div>
-        <div className="flex justify-between text-sm text-gray-500">
+      <div className="space-y-2 border-t border-paw-border pt-3">
+        <div className="flex justify-between text-sm text-paw-body"><span>Subtotal</span><span>€{subtotal.toFixed(2)}</span></div>
+        <div className="flex justify-between text-sm text-paw-body">
           <span>Shipping</span>
-          <span className="text-emerald-500 font-medium">Free</span>
+          <span className="font-bold text-paw-success">Free</span>
         </div>
-        <div className="flex justify-between text-lg font-extrabold pt-2 border-t"><span>Total</span><span>€{subtotal.toFixed(2)}</span></div>
+        <div className="flex justify-between border-t border-paw-border pt-2 text-lg font-extrabold text-paw-ink"><span>Total</span><span>€{subtotal.toFixed(2)}</span></div>
       </div>
-      <div className="mt-4 p-3 rounded-lg bg-blue-50 border border-blue-100 flex items-center gap-2">
-        <ShieldCheck className="w-4 h-4 text-blue-500 shrink-0" />
-        <p className="text-xs text-blue-600">Secured by <strong>Stripe</strong></p>
+      <div className="mt-4 flex items-center gap-2 rounded-paw-sm border border-paw-trust/20 bg-paw-trust-soft p-3">
+        <ShieldCheck className="h-4 w-4 shrink-0 text-paw-trust" />
+        <p className="text-xs text-paw-trust">Secured by <strong>Stripe</strong></p>
       </div>
     </div>
   );
@@ -140,6 +141,8 @@ export default function CheckoutPage() {
             price: i.product.price,
             quantity: i.quantity,
             image: i.product.image,
+            imageUrl: i.product.imageUrl,
+            currency: i.product.currency,
           })),
           shipping,
         }),
@@ -159,15 +162,23 @@ export default function CheckoutPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#F7F8FA] pt-28 pb-20">
+    <div className="min-h-screen bg-paw-page pt-28 pb-20 text-paw-ink">
       <div className="max-w-5xl mx-auto px-4">
         {/* Back button */}
         <button
           onClick={() => step === 1 ? router.push("/store") : setStep(step - 1)}
-          className="flex items-center gap-1 text-gray-500 hover:text-[#E8824C] mb-6 transition-colors cursor-pointer"
+          className="mb-6 flex cursor-pointer items-center gap-1 text-paw-muted transition-colors hover:text-paw-primary"
         >
           <ArrowLeft className="w-4 h-4" /> {step === 1 ? "Back to Store" : "Back"}
         </button>
+
+        <div className="mb-8">
+          <p className="text-sm font-bold uppercase tracking-[0.18em] text-paw-primary">PawPal Shop</p>
+          <h1 className="mt-2 text-3xl font-extrabold text-paw-ink sm:text-4xl">Secure checkout</h1>
+          <p className="mt-3 max-w-2xl text-sm leading-6 text-paw-body sm:text-base">
+            Confirm delivery details, review your pet essentials, and finish with Stripe-secured payment.
+          </p>
+        </div>
 
         <StepIndicator current={step} />
 
@@ -182,10 +193,10 @@ export default function CheckoutPage() {
                   initial={{ opacity: 0, x: 30 }}
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -30 }}
-                  className="glass rounded-2xl p-8 border border-gray-100"
+                  className="rounded-paw-lg border border-paw-border bg-paw-panel/80 p-8 shadow-paw-panel backdrop-blur-sm"
                 >
-                  <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2">
-                    <MapPin className="w-5 h-5 text-[#F5A623]" /> Shipping Information
+                  <h2 className="mb-6 flex items-center gap-2 text-2xl font-extrabold text-paw-ink">
+                    <MapPin className="h-5 w-5 text-paw-primary" /> Shipping Information
                   </h2>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div className="sm:col-span-2">
@@ -203,17 +214,17 @@ export default function CheckoutPage() {
                     </div>
                   </div>
 
-                  <div className="flex items-center gap-3 mt-6 p-4 rounded-xl bg-emerald-50 border border-emerald-100">
-                    <Truck className="w-5 h-5 text-emerald-500 shrink-0" />
-                    <p className="text-sm text-emerald-700">Free shipping on all orders. Estimated delivery: 3–5 business days.</p>
+                  <div className="mt-6 flex items-center gap-3 rounded-paw-md border border-paw-success/20 bg-paw-success-soft p-4">
+                    <Truck className="h-5 w-5 shrink-0 text-paw-success" />
+                    <p className="text-sm text-paw-body">Free shipping on all orders. Estimated delivery: 3-5 business days.</p>
                   </div>
 
                   <motion.button
                     whileTap={{ scale: 0.97 }}
                     disabled={!canProceedShipping}
                     onClick={() => setStep(2)}
-                    className={`mt-6 w-full py-3.5 rounded-full font-bold text-lg flex items-center justify-center gap-2 transition-all cursor-pointer ${
-                      canProceedShipping ? "bg-[#F5A623] hover:bg-[#E8824C] text-white shadow-lg" : "bg-gray-200 text-gray-400 cursor-not-allowed"
+                    className={`mt-6 flex w-full cursor-pointer items-center justify-center gap-2 rounded-paw-lg py-3.5 text-lg font-bold transition-all ${
+                      canProceedShipping ? "bg-paw-primary text-white shadow-paw-action hover:bg-paw-primary-hover" : "cursor-not-allowed bg-paw-panel-subtle text-paw-muted"
                     }`}
                   >
                     Review Order <ArrowRight className="w-5 h-5" />
@@ -228,31 +239,31 @@ export default function CheckoutPage() {
                   initial={{ opacity: 0, x: 30 }}
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -30 }}
-                  className="glass rounded-2xl p-8 border border-gray-100"
+                  className="rounded-paw-lg border border-paw-border bg-paw-panel/80 p-8 shadow-paw-panel backdrop-blur-sm"
                 >
-                  <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2">
-                    <Package className="w-5 h-5 text-[#F5A623]" /> Review Your Order
+                  <h2 className="mb-6 flex items-center gap-2 text-2xl font-extrabold text-paw-ink">
+                    <Package className="h-5 w-5 text-paw-primary" /> Review Your Order
                   </h2>
 
                   {/* Shipping summary */}
-                  <div className="mb-6 p-4 rounded-xl bg-[#F7F8FA] border border-gray-100">
-                    <h4 className="font-semibold text-gray-700 flex items-center gap-2 mb-2"><MapPin className="w-4 h-4 text-[#F5A623]" /> Shipping To</h4>
-                    <p className="text-sm text-gray-600">{shipping.fullName}</p>
-                    <p className="text-sm text-gray-500">{shipping.address}</p>
-                    <p className="text-sm text-gray-500">{shipping.city}, {shipping.zipCode}, {shipping.country}</p>
-                    <p className="text-sm text-gray-500">{shipping.email} · {shipping.phone}</p>
+                  <div className="mb-6 rounded-paw-md border border-paw-border bg-paw-panel-subtle p-4">
+                    <h4 className="mb-2 flex items-center gap-2 font-bold text-paw-ink"><MapPin className="h-4 w-4 text-paw-primary" /> Shipping To</h4>
+                    <p className="text-sm text-paw-body">{shipping.fullName}</p>
+                    <p className="text-sm text-paw-muted">{shipping.address}</p>
+                    <p className="text-sm text-paw-muted">{shipping.city}, {shipping.zipCode}, {shipping.country}</p>
+                    <p className="text-sm text-paw-muted">{shipping.email} · {shipping.phone}</p>
                   </div>
 
                   {/* Items */}
                   <div className="mb-6">
-                    <h4 className="font-semibold text-gray-700 flex items-center gap-2 mb-3"><Package className="w-4 h-4 text-[#F5A623]" /> Items ({cart.length})</h4>
+                    <h4 className="mb-3 flex items-center gap-2 font-bold text-paw-ink"><Package className="h-4 w-4 text-paw-primary" /> Items ({cart.length})</h4>
                     <div className="space-y-2">
                       {cart.map((item) => (
-                        <div key={item.product.id} className="flex items-center gap-3 p-3 rounded-lg bg-[#F7F8FA]">
-                          <span className="text-2xl">{item.product.image}</span>
+                        <div key={item.product.id} className="flex items-center gap-3 rounded-paw-sm bg-paw-panel-subtle p-3">
+                          <ProductVisual product={item.product} size="sm" />
                           <div className="flex-1">
-                            <p className="text-sm font-medium text-gray-700">{item.product.name}</p>
-                            <p className="text-xs text-gray-400">Qty: {item.quantity}</p>
+                            <p className="text-sm font-bold text-paw-ink">{item.product.name}</p>
+                            <p className="text-xs text-paw-muted">Qty: {item.quantity}</p>
                           </div>
                           <span className="font-bold text-sm">€{(item.product.price * item.quantity).toFixed(2)}</span>
                         </div>
@@ -261,10 +272,10 @@ export default function CheckoutPage() {
                   </div>
 
                   {/* Total */}
-                  <div className="border-t pt-4 space-y-2 mb-6">
-                    <div className="flex justify-between text-sm text-gray-500"><span>Subtotal</span><span>€{subtotal.toFixed(2)}</span></div>
-                    <div className="flex justify-between text-sm text-gray-500"><span>Shipping</span><span className="text-emerald-500 font-medium">Free</span></div>
-                    <div className="flex justify-between text-xl font-extrabold pt-2 border-t"><span>Total</span><span>€{subtotal.toFixed(2)}</span></div>
+                  <div className="mb-6 space-y-2 border-t border-paw-border pt-4">
+                    <div className="flex justify-between text-sm text-paw-body"><span>Subtotal</span><span>€{subtotal.toFixed(2)}</span></div>
+                    <div className="flex justify-between text-sm text-paw-body"><span>Shipping</span><span className="font-bold text-paw-success">Free</span></div>
+                    <div className="flex justify-between border-t border-paw-border pt-2 text-xl font-extrabold text-paw-ink"><span>Total</span><span>€{subtotal.toFixed(2)}</span></div>
                   </div>
 
                   {/* Stripe Pay Button */}
@@ -294,7 +305,7 @@ export default function CheckoutPage() {
                       )}
                     </motion.button>
 
-                    <div className="flex items-center justify-center gap-2 text-xs text-gray-400">
+                    <div className="flex items-center justify-center gap-2 text-xs text-paw-muted">
                       <ShieldCheck className="w-3.5 h-3.5" />
                       <span>Secure payment powered by Stripe · PCI DSS Level 1 certified</span>
                     </div>
@@ -302,7 +313,7 @@ export default function CheckoutPage() {
                     {/* Stripe badge */}
                     <div className="flex items-center justify-center gap-4 pt-2">
                       {["Visa", "Mastercard", "Amex", "Apple Pay"].map((brand) => (
-                        <span key={brand} className="text-xs font-medium text-gray-300 px-2 py-1 rounded border border-gray-100">{brand}</span>
+                        <span key={brand} className="rounded border border-paw-border px-2 py-1 text-xs font-medium text-paw-muted">{brand}</span>
                       ))}
                     </div>
                   </div>

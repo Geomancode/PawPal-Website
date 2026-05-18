@@ -8,6 +8,28 @@ const GlobeT = dynamic(() => import("react-globe.gl").then((m) => m.default), {
   ssr: false,
 });
 
+interface CountryFeature {
+  properties?: {
+    MAPCOLOR7?: number;
+  };
+  geometry?: unknown;
+}
+
+interface GlobeControls {
+  enableZoom: boolean;
+  autoRotate: boolean;
+  autoRotateSpeed: number;
+  enableDamping: boolean;
+  dampingFactor: number;
+  minPolarAngle?: number;
+  maxPolarAngle?: number;
+}
+
+interface GlobeRef {
+  controls: () => GlobeControls | undefined;
+  pointOfView: (view: { altitude: number }) => void;
+}
+
 // Warm, friendly pastel palette — illustrated map style
 const COUNTRY_COLORS = [
   "#FFDAB9", // peach puff
@@ -33,23 +55,22 @@ const COUNTRY_COLORS = [
 ];
 
 export default function GlobeComponent() {
-  const globeEl = useRef<any>(null);
+  const globeEl = useRef<GlobeRef | null>(null);
   const [dimensions, setDimensions] = useState({ width: 620, height: 620 });
-  const [countries, setCountries] = useState<any[]>([]);
+  const [countries, setCountries] = useState<CountryFeature[]>([]);
 
   // Globe material — warm cream ocean, bright and friendly
   const globeMaterial = useMemo(() => {
     const mat = new THREE.MeshPhongMaterial();
-    mat.color = new THREE.Color("#E8F4FD");       // soft sky-blue ocean
+    mat.color = new THREE.Color("#E8F4FD");
     mat.emissive = new THREE.Color("#E8F4FD");
     mat.emissiveIntensity = 0.35;
     mat.shininess = 25;
-    mat.specular = new THREE.Color("#FFFFFF");
     return mat;
   }, []);
 
   // Stable color function — assign color by country index
-  const getCountryColor = useCallback((feat: any) => {
+  const getCountryColor = useCallback((feat: CountryFeature) => {
     const idx = (feat?.properties?.MAPCOLOR7 ?? 0) % COUNTRY_COLORS.length;
     return COUNTRY_COLORS[idx];
   }, []);
@@ -58,8 +79,15 @@ export default function GlobeComponent() {
   useEffect(() => {
     fetch("https://raw.githubusercontent.com/nvkelso/natural-earth-vector/master/geojson/ne_110m_admin_0_countries.geojson")
       .then((r) => r.json())
-      .then((data) => {
-        setCountries(data.features || []);
+      .then((data: unknown) => {
+        if (
+          typeof data === "object" &&
+          data !== null &&
+          "features" in data &&
+          Array.isArray((data as { features?: unknown }).features)
+        ) {
+          setCountries((data as { features: CountryFeature[] }).features);
+        }
       })
       .catch(() => {});
   }, []);
@@ -99,19 +127,6 @@ export default function GlobeComponent() {
         controls.maxPolarAngle = Math.PI - Math.PI / 3.5;
       }
 
-      // Inject bright lighting into the scene
-      const scene = globe.scene();
-      if (scene) {
-        // Remove default dim lights and add bright ones
-        const ambient = new THREE.AmbientLight(0xFFFFFF, 2.0);
-        scene.add(ambient);
-        const sunLight = new THREE.DirectionalLight(0xFFF8F0, 1.0);
-        sunLight.position.set(5, 3, 5);
-        scene.add(sunLight);
-        const fillLight = new THREE.DirectionalLight(0xE8F4FD, 0.5);
-        fillLight.position.set(-3, -2, -3);
-        scene.add(fillLight);
-      }
     }, 300);
 
     return () => clearTimeout(timer);
@@ -123,7 +138,7 @@ export default function GlobeComponent() {
         ref={globeEl}
         width={dimensions.width}
         height={dimensions.height}
-        globeImageUrl={null as any}
+        globeImageUrl={null}
         showGlobe={true}
         globeMaterial={globeMaterial}
         backgroundColor="rgba(0,0,0,0)"
@@ -137,7 +152,7 @@ export default function GlobeComponent() {
         polygonSideColor={() => "rgba(200, 180, 160, 0.15)"}
         polygonStrokeColor={() => "#FFFFFF"}
         polygonAltitude={0.012}
-        polygonLabel={(d: any) => null}
+        polygonLabel={() => null}
         animateIn={true}
       />
     </div>

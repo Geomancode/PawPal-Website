@@ -1,8 +1,17 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Heart, Phone, Droplets, Shield, Award, MapPin, Calendar, PawPrint } from "lucide-react";
+import Image from "next/image";
+import { Heart, Phone, Droplets, Shield, Award, Calendar, PawPrint } from "lucide-react";
 import { DoodlePaw, DoodleHeart } from "@/components/PetDoodles";
+
+type PetSocialTraits = {
+  health_badges?: string[];
+  social_tags?: string[];
+  quirk?: string;
+  achievements?: string[];
+  [key: string]: unknown;
+};
 
 interface TagPageClientProps {
   pet: {
@@ -11,7 +20,7 @@ interface TagPageClientProps {
     breed: string | null;
     age: number | null;
     avatar_url: string | null;
-    social_traits: Record<string, any> | null;
+    social_traits: PetSocialTraits | null;
     blood_type: string | null;
     owner_contact: string | null;
     created_at: string;
@@ -23,12 +32,6 @@ interface TagPageClientProps {
   } | null;
 }
 
-const SPECIES_EMOJI: Record<string, string> = {
-  canine: "🐕", feline: "🐈", lagomorph: "🐰", bird: "🦜",
-  reptile: "🦎", amphibian: "🐸", fish: "🐠", small_mammal: "🐹",
-  insect: "🦋", arachnid: "🕷️", equine: "🐴", exotic_wild: "🦊",
-};
-
 export default function TagPageClient({ pet, owner }: TagPageClientProps) {
   const healthBadges: string[] = pet.social_traits?.health_badges ?? [];
   const socialTags: string[] = pet.social_traits?.social_tags ?? [];
@@ -37,10 +40,10 @@ export default function TagPageClient({ pet, owner }: TagPageClientProps) {
   const emoji = "🐾";
 
   return (
-    <div className="relative min-h-screen bg-gradient-to-b from-[#F7F8FA] to-[#F9FAFB] flex items-center justify-center px-4 py-12 overflow-hidden">
+    <div className="relative flex min-h-screen items-center justify-center overflow-hidden bg-gradient-to-b from-paw-page to-paw-panel-subtle px-4 py-12 text-paw-ink">
       {/* Pet doodles */}
-      <div className="absolute top-[10%] right-[8%] w-16 h-16 text-[#F5A623]/10 doodle-float hidden md:block"><DoodlePaw className="w-full h-full" /></div>
-      <div className="absolute bottom-[15%] left-[8%] w-12 h-12 text-[#E8824C]/8 doodle-float-alt hidden md:block" style={{ animationDelay: '2s' }}><DoodleHeart className="w-full h-full" /></div>
+      <div className="absolute top-[10%] right-[8%] hidden h-16 w-16 text-paw-primary/10 doodle-float md:block"><DoodlePaw className="h-full w-full" /></div>
+      <div className="absolute bottom-[15%] left-[8%] hidden h-12 w-12 text-paw-primary/10 doodle-float-alt md:block" style={{ animationDelay: "2s" }}><DoodleHeart className="h-full w-full" /></div>
       <motion.div
         initial={{ opacity: 0, y: 20, scale: 0.95 }}
         animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -48,16 +51,23 @@ export default function TagPageClient({ pet, owner }: TagPageClientProps) {
         className="w-full max-w-sm"
       >
         {/* Card */}
-        <div className="bg-[#F9FAFB]/80 backdrop-blur-xl rounded-3xl shadow-xl border border-[#F5E6D3]/60 overflow-hidden">
+        <div className="overflow-hidden rounded-paw-lg border border-paw-border bg-paw-panel/85 shadow-paw-panel backdrop-blur-xl">
           {/* Header gradient */}
-          <div className="bg-gradient-to-r from-[#F5A623] to-[#E8824C] px-6 py-8 text-center relative">
-            <div className="absolute top-3 right-3 bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full">
+          <div className="relative bg-gradient-to-r from-paw-primary to-paw-primary-hover px-6 py-8 text-center">
+            <div className="absolute top-3 right-3 rounded-paw-sm bg-white/20 px-3 py-1 backdrop-blur-sm">
               <span className="text-xs text-white font-bold">PawPal Tag</span>
             </div>
             {/* Avatar */}
-            <div className="w-20 h-20 rounded-full bg-white/30 border-4 border-white mx-auto flex items-center justify-center text-4xl shadow-lg">
+            <div className="relative mx-auto flex h-20 w-20 items-center justify-center overflow-hidden rounded-paw-lg border-4 border-white bg-white/30 text-4xl shadow-lg">
               {pet.avatar_url ? (
-                <img src={pet.avatar_url} alt={pet.name} className="w-full h-full rounded-full object-cover" />
+                <Image
+                  src={pet.avatar_url}
+                  alt={pet.name}
+                  fill
+                  sizes="80px"
+                  unoptimized
+                  className="object-cover"
+                />
               ) : (
                 emoji
               )}
@@ -67,25 +77,25 @@ export default function TagPageClient({ pet, owner }: TagPageClientProps) {
           </div>
 
           {/* Info */}
-          <div className="px-6 py-5 space-y-4">
+          <div className="space-y-4 px-6 py-5">
             {/* Breed / Age row */}
             <div className="flex gap-3">
               {pet.breed && (
-                <div className="flex-1 bg-amber-50 rounded-xl px-3 py-2.5 text-center">
-                  <p className="text-[10px] text-gray-400 uppercase tracking-wider font-bold">Breed</p>
-                  <p className="text-sm font-semibold text-gray-800 mt-0.5">{pet.breed}</p>
+                <div className="flex-1 rounded-paw-md bg-paw-primary-soft px-3 py-2.5 text-center">
+                  <p className="text-[10px] font-bold uppercase tracking-wider text-paw-muted">Breed</p>
+                  <p className="mt-0.5 text-sm font-semibold text-paw-ink">{pet.breed}</p>
                 </div>
               )}
               {pet.age != null && (
-                <div className="flex-1 bg-amber-50 rounded-xl px-3 py-2.5 text-center">
-                  <p className="text-[10px] text-gray-400 uppercase tracking-wider font-bold">Age</p>
-                  <p className="text-sm font-semibold text-gray-800 mt-0.5">{pet.age} year{pet.age !== 1 ? "s" : ""}</p>
+                <div className="flex-1 rounded-paw-md bg-paw-primary-soft px-3 py-2.5 text-center">
+                  <p className="text-[10px] font-bold uppercase tracking-wider text-paw-muted">Age</p>
+                  <p className="mt-0.5 text-sm font-semibold text-paw-ink">{pet.age} year{pet.age !== 1 ? "s" : ""}</p>
                 </div>
               )}
               {pet.blood_type && (
-                <div className="flex-1 bg-red-50 rounded-xl px-3 py-2.5 text-center">
-                  <p className="text-[10px] text-gray-400 uppercase tracking-wider font-bold">Blood</p>
-                  <p className="text-sm font-semibold text-red-600 mt-0.5 flex items-center justify-center gap-1">
+                <div className="flex-1 rounded-paw-md bg-paw-danger-soft px-3 py-2.5 text-center">
+                  <p className="text-[10px] font-bold uppercase tracking-wider text-paw-muted">Blood</p>
+                  <p className="mt-0.5 flex items-center justify-center gap-1 text-sm font-semibold text-paw-danger">
                     <Droplets className="w-3 h-3" /> {pet.blood_type}
                   </p>
                 </div>
@@ -95,12 +105,12 @@ export default function TagPageClient({ pet, owner }: TagPageClientProps) {
             {/* Health badges */}
             {healthBadges.length > 0 && (
               <div>
-                <p className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2 flex items-center gap-1">
+                <p className="mb-2 flex items-center gap-1 text-xs font-bold uppercase tracking-wider text-paw-muted">
                   <Shield className="w-3 h-3" /> Health & Care
                 </p>
                 <div className="flex flex-wrap gap-1.5">
                   {healthBadges.map((b) => (
-                    <span key={b} className="bg-emerald-50 text-emerald-700 text-xs px-2.5 py-1 rounded-full font-medium border border-emerald-100">{b}</span>
+                    <span key={b} className="rounded-paw-sm border border-paw-success/20 bg-paw-success-soft px-2.5 py-1 text-xs font-medium text-paw-success">{b}</span>
                   ))}
                 </div>
               </div>
@@ -109,12 +119,12 @@ export default function TagPageClient({ pet, owner }: TagPageClientProps) {
             {/* Social tags */}
             {socialTags.length > 0 && (
               <div>
-                <p className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2 flex items-center gap-1">
+                <p className="mb-2 flex items-center gap-1 text-xs font-bold uppercase tracking-wider text-paw-muted">
                   <Heart className="w-3 h-3" /> Personality
                 </p>
                 <div className="flex flex-wrap gap-1.5">
                   {socialTags.map((t) => (
-                    <span key={t} className="bg-violet-50 text-violet-700 text-xs px-2.5 py-1 rounded-full font-medium border border-violet-100">{t}</span>
+                    <span key={t} className="rounded-paw-sm border border-paw-trust/20 bg-paw-trust-soft px-2.5 py-1 text-xs font-medium text-paw-trust">{t}</span>
                   ))}
                 </div>
               </div>
@@ -123,12 +133,12 @@ export default function TagPageClient({ pet, owner }: TagPageClientProps) {
             {/* Achievements */}
             {achievements.length > 0 && (
               <div>
-                <p className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2 flex items-center gap-1">
+                <p className="mb-2 flex items-center gap-1 text-xs font-bold uppercase tracking-wider text-paw-muted">
                   <Award className="w-3 h-3" /> Achievements
                 </p>
                 <div className="flex flex-wrap gap-1.5">
                   {achievements.map((a) => (
-                    <span key={a} className="bg-amber-50 text-amber-700 text-xs px-2.5 py-1 rounded-full font-medium border border-amber-100">🏅 {a}</span>
+                    <span key={a} className="rounded-paw-sm border border-paw-primary/20 bg-paw-primary-soft px-2.5 py-1 text-xs font-medium text-paw-primary">🏅 {a}</span>
                   ))}
                 </div>
               </div>
@@ -136,15 +146,15 @@ export default function TagPageClient({ pet, owner }: TagPageClientProps) {
 
             {/* Owner info */}
             {(owner || pet.owner_contact) && (
-              <div className="border-t border-gray-100 pt-4 mt-4">
-                <p className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Owner</p>
+              <div className="mt-4 border-t border-paw-border pt-4">
+                <p className="mb-2 text-xs font-bold uppercase tracking-wider text-paw-muted">Owner</p>
                 {owner && (
-                  <p className="text-sm font-semibold text-gray-800">{owner.display_name || owner.username}</p>
+                  <p className="text-sm font-semibold text-paw-ink">{owner.display_name || owner.username}</p>
                 )}
                 {pet.owner_contact && (
                   <a
                     href={pet.owner_contact.includes("@") ? `mailto:${pet.owner_contact}` : `tel:${pet.owner_contact}`}
-                    className="inline-flex items-center gap-1.5 mt-2 bg-amber-500 hover:bg-amber-600 text-white px-4 py-2 rounded-full text-sm font-bold transition-all shadow-sm"
+                    className="mt-2 inline-flex items-center gap-1.5 rounded-paw-md bg-paw-primary px-4 py-2 text-sm font-bold text-white shadow-paw-action transition-all hover:bg-paw-primary-hover"
                   >
                     <Phone className="w-3.5 h-3.5" />
                     Contact Owner
@@ -155,12 +165,12 @@ export default function TagPageClient({ pet, owner }: TagPageClientProps) {
           </div>
 
           {/* Footer */}
-          <div className="bg-[#FFF4E8] px-6 py-3 flex items-center justify-between">
-            <div className="flex items-center gap-1.5 text-xs text-gray-400">
+          <div className="flex items-center justify-between bg-paw-primary-soft px-6 py-3">
+            <div className="flex items-center gap-1.5 text-xs text-paw-muted">
               <PawPrint className="w-3 h-3" />
               <span>PawPal</span>
             </div>
-            <div className="flex items-center gap-1 text-xs text-gray-400">
+            <div className="flex items-center gap-1 text-xs text-paw-muted">
               <Calendar className="w-3 h-3" />
               <span>Since {new Date(pet.created_at).toLocaleDateString()}</span>
             </div>
@@ -168,7 +178,7 @@ export default function TagPageClient({ pet, owner }: TagPageClientProps) {
         </div>
 
         {/* CTA */}
-        <p className="text-center text-xs text-gray-400 mt-6">
+        <p className="mt-6 text-center text-xs text-paw-muted">
           Scanned a PawPal NFC tag? Download the app to create your pet&apos;s profile!
         </p>
       </motion.div>

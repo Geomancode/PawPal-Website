@@ -1,9 +1,10 @@
 "use client";
 
 import { motion, useMotionValue, useTransform, useSpring, useScroll, useInView } from "framer-motion";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import Globe from "@/components/Globe";
-import { ArrowRight, MapPin, Search, ShieldCheck, Heart, Globe as GlobeIcon, Users, Sparkles, Smartphone } from "lucide-react";
+import { ArrowRight, MapPin, Search, ShieldCheck, Globe as GlobeIcon, Users, Sparkles, Smartphone } from "lucide-react";
 import { ReactNode, useRef, useEffect, useState, useCallback, MouseEvent as ReactMouseEvent } from "react";
 
 /* ═══════════════════════════════════════════════════════════════
@@ -32,7 +33,7 @@ export function AnimatedHeadline() {
   let wordIndex = 0;
 
   return (
-    <h1 className="text-5xl lg:text-7xl font-bold tracking-tight leading-tight text-[#1E293B] font-brand">
+    <h1 className="font-brand text-5xl font-bold leading-tight tracking-tight text-paw-ink lg:text-7xl">
       {line1Words.map((word, i) => (
         <motion.span
           key={`l1-${i}`}
@@ -112,7 +113,7 @@ export function AnimatedCounter({ value, label, delay = 0 }: { value: string; la
           <>{prefix}0{suffix}</>
         )}
       </div>
-      <div className="text-sm text-[#6B7B8D] mt-1 font-medium">{label}</div>
+      <div className="mt-1 text-sm font-medium text-paw-muted">{label}</div>
     </motion.div>
   );
 }
@@ -181,12 +182,12 @@ export function ScrollProgress() {
 export function HeroBlobs() {
   return (
     <div className="absolute top-0 left-0 w-full h-full overflow-hidden -z-10">
-      {/* Amber blob — top left */}
-      <div className="absolute top-[-8%] left-[-8%] w-[40%] h-[40%] rounded-full bg-[#F5A623]/15 blur-[120px] blob-animate-1" />
-      {/* Blue blob — bottom right */}
-      <div className="absolute bottom-[-8%] right-[-8%] w-[35%] h-[35%] rounded-full bg-[#4A90D9]/12 blur-[120px] blob-animate-2" />
+      {/* Coral blob — top left */}
+      <div className="absolute top-[-8%] left-[-8%] h-[40%] w-[40%] rounded-full bg-paw-primary/18 blur-[120px] blob-animate-1" />
+      {/* Trust-blue blob — bottom right */}
+      <div className="absolute bottom-[-8%] right-[-8%] h-[35%] w-[35%] rounded-full bg-paw-trust/10 blur-[120px] blob-animate-2" />
       {/* Emerald blob — center (very subtle) */}
-      <div className="absolute top-[40%] left-[50%] w-[25%] h-[25%] rounded-full bg-[#10B981]/6 blur-[100px] blob-animate-3" />
+      <div className="absolute top-[40%] left-[50%] h-[25%] w-[25%] rounded-full bg-paw-success/8 blur-[100px] blob-animate-3" />
     </div>
   );
 }
@@ -236,7 +237,7 @@ export function HeroCTA() {
       <motion.button
         whileHover={{ scale: 1.03, y: -2 }}
         whileTap={{ scale: 0.98 }}
-        className="flex items-center justify-center gap-2 bg-[#F5A623] hover:bg-[#E8930A] text-white px-8 py-4 rounded-full font-bold text-lg transition-colors shadow-[0_4px_20px_rgba(245,158,11,0.35)] hover:shadow-[0_8px_30px_rgba(245,158,11,0.5)]"
+        className="flex items-center justify-center gap-2 rounded-paw-lg bg-paw-primary px-8 py-4 text-lg font-bold text-white shadow-paw-action transition-colors hover:bg-paw-primary-hover"
       >
         Download App
         <ArrowRight className="w-5 h-5" />
@@ -245,7 +246,7 @@ export function HeroCTA() {
         whileHover={{ scale: 1.03, y: -2 }}
         whileTap={{ scale: 0.98 }}
         onClick={() => router.push("/globe")}
-        className="flex items-center justify-center gap-2 glass hover:bg-white/70 text-[#4A90D9] px-8 py-4 rounded-full font-bold text-lg transition-colors border border-[#4A90D9]/20 hover:border-[#4A90D9]/40"
+        className="glass flex items-center justify-center gap-2 rounded-paw-lg border border-paw-trust/20 px-8 py-4 text-lg font-bold text-paw-trust transition-colors hover:border-paw-trust/40 hover:bg-white/70"
       >
         Explore Globe
       </motion.button>
@@ -256,9 +257,9 @@ export function HeroCTA() {
 /* ── Hero trust badges — staggered entry ── */
 export function HeroBadges() {
   const badges = [
-    { icon: MapPin, color: "text-[#F5A623]", label: "Gamified Walks" },
-    { icon: Search, color: "text-[#10B981]", label: "AI Pet Assistant" },
-    { icon: ShieldCheck, color: "text-[#4A90D9]", label: "NFC Safety Tags" },
+    { icon: MapPin, color: "text-paw-primary", label: "Gamified Walks" },
+    { icon: Search, color: "text-paw-success", label: "AI Pet Assistant" },
+    { icon: ShieldCheck, color: "text-paw-trust", label: "NFC Safety Tags" },
   ];
 
   return (
@@ -271,7 +272,7 @@ export function HeroBadges() {
       {badges.map((t, i) => (
         <motion.div
           key={i}
-          className="flex items-center gap-2 text-[#6B7B8D]"
+          className="flex items-center gap-2 text-paw-muted"
           initial={{ opacity: 0, x: -10 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 1.4 + i * 0.12 }}
@@ -297,7 +298,7 @@ export function GlobeSection() {
         <Globe />
       </div>
       <motion.div
-        className="absolute bottom-6 left-1/2 -translate-x-1/2 glass px-4 py-1.5 rounded-full text-xs text-[#4A90D9] pointer-events-none font-medium"
+        className="glass pointer-events-none absolute bottom-6 left-1/2 -translate-x-1/2 rounded-paw-md px-4 py-1.5 text-xs font-medium text-paw-trust"
         initial={{ opacity: 0 }}
         animate={{ opacity: [0, 1, 1, 0.6, 1] }}
         transition={{ delay: 1.5, duration: 3, repeat: Infinity, repeatDelay: 4 }}
@@ -317,7 +318,7 @@ export function BottomCTA() {
         <motion.button
           whileHover={{ scale: 1.03 }}
           whileTap={{ scale: 0.98 }}
-          className="bg-[#F5A623] hover:bg-[#E8930A] text-white px-8 py-4 rounded-full font-bold text-lg transition-colors shadow-[0_4px_20px_rgba(245,158,11,0.35)]"
+          className="rounded-paw-lg bg-paw-primary px-8 py-4 text-lg font-bold text-white shadow-paw-action transition-colors hover:bg-paw-primary-hover"
         >
           Get PawPal Free
         </motion.button>
@@ -327,7 +328,7 @@ export function BottomCTA() {
           whileHover={{ scale: 1.03 }}
           whileTap={{ scale: 0.98 }}
           onClick={() => router.push("/globe")}
-          className="glass hover:bg-white/70 text-[#4A90D9] px-8 py-4 rounded-full font-bold text-lg transition-colors border border-[#4A90D9]/20 hover:border-[#4A90D9]/40"
+          className="glass rounded-paw-lg border border-paw-trust/20 px-8 py-4 text-lg font-bold text-paw-trust transition-colors hover:border-paw-trust/40 hover:bg-white/70"
         >
           Explore the Globe →
         </motion.button>
@@ -344,65 +345,65 @@ export function BentoFeatureGrid() {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 auto-rows-[minmax(180px,auto)]">
       {/* Card 1: Fog-of-War Map — the #1 differentiator, spanning 2 rows */}
-      <SpotlightCard className="glass rounded-2xl border border-gray-100 hover:border-[#4A90D9]/30 transition-all duration-300 hover:shadow-xl group cursor-default bento-glow lg:row-span-2 p-8 flex flex-col justify-between">
+      <SpotlightCard className="glass rounded-2xl border border-paw-border transition-all duration-300 hover:border-paw-trust/30 hover:shadow-xl group cursor-default bento-glow lg:row-span-2 p-8 flex flex-col justify-between">
         <div>
-          <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#4A90D9]/8 text-[10px] font-bold text-[#4A90D9] uppercase tracking-wider mb-4">Solo Mode</div>
-          <div className="w-14 h-14 rounded-2xl flex items-center justify-center bg-[#4A90D9]/10 text-[#4A90D9] mb-5 group-hover:scale-110 transition-transform duration-300">
+          <div className="mb-4 inline-flex items-center gap-1.5 rounded-paw-sm bg-paw-trust-soft px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-paw-trust">Solo Mode</div>
+          <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-paw-lg bg-paw-trust-soft text-paw-trust transition-transform duration-300 group-hover:scale-110">
             <GlobeIcon className="w-7 h-7" />
           </div>
-          <h3 className="text-xl font-bold text-[#1E293B] mb-3">Fog-of-War Map</h3>
-          <p className="text-[#6B7B8D] text-sm leading-relaxed">
+          <h3 className="mb-3 text-xl font-bold text-paw-ink">Fog-of-War Map</h3>
+          <p className="text-sm leading-relaxed text-paw-body">
             Your city is hidden under fog. Every walk reveals new hexagonal tiles on the map. Explore parks, streets, and neighborhoods to uncover your world — one step at a time.
           </p>
         </div>
         {/* Hex grid visual */}
-        <div className="mt-6 relative h-32 rounded-xl bg-gradient-to-br from-[#4A90D9]/5 to-[#10B981]/5 overflow-hidden flex items-center justify-center">
+        <div className="relative mt-6 flex h-32 items-center justify-center overflow-hidden rounded-paw-md bg-gradient-to-br from-paw-trust-soft to-paw-success-soft">
           <div className="grid grid-cols-5 gap-1">
             {[...Array(15)].map((_, i) => (
               <div
                 key={i}
                 className={`w-5 h-5 rounded-sm transition-all duration-500 ${
-                  i % 3 === 0 ? "bg-[#F5A623]/30" : i % 4 === 0 ? "bg-[#4A90D9]/20" : "bg-[#1E293B]/8"
+                  i % 3 === 0 ? "bg-paw-primary/30" : i % 4 === 0 ? "bg-paw-trust/20" : "bg-paw-ink/8"
                 }`}
                 style={{ animationDelay: `${i * 0.15}s` }}
               />
             ))}
           </div>
-          <div className="absolute bottom-2 right-3 text-[10px] font-bold text-[#4A90D9]/60">H3 Hex Grid</div>
+          <div className="absolute bottom-2 right-3 text-[10px] font-bold text-paw-trust/70">H3 Hex Grid</div>
         </div>
       </SpotlightCard>
 
       {/* Card 2: NFC Safety Tags — cold-start product */}
-      <SpotlightCard className="glass rounded-2xl border border-gray-100 hover:border-[#F5A623]/30 transition-all duration-300 hover:shadow-xl group cursor-default bento-glow p-7 flex flex-col justify-between">
+      <SpotlightCard className="glass rounded-2xl border border-paw-border transition-all duration-300 hover:border-paw-primary/30 hover:shadow-xl group cursor-default bento-glow p-7 flex flex-col justify-between">
         <div>
-          <div className="w-12 h-12 rounded-xl flex items-center justify-center bg-[#F5A623]/10 text-[#F5A623] mb-4 group-hover:scale-110 transition-transform duration-300">
+          <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-paw-md bg-paw-primary-soft text-paw-primary transition-transform duration-300 group-hover:scale-110">
             <ShieldCheck className="w-6 h-6" />
           </div>
-          <h3 className="text-lg font-bold text-[#1E293B] mb-2">NFC Safety Tags</h3>
-          <p className="text-[#6B7B8D] text-sm leading-relaxed">
+          <h3 className="mb-2 text-lg font-bold text-paw-ink">NFC Safety Tags</h3>
+          <p className="text-sm leading-relaxed text-paw-body">
             €19 smart tags replace static dog tags. Anyone can scan to see your pet&apos;s profile — no app needed. Privacy-first: owner info hidden until lost mode.
           </p>
         </div>
-        <div className="flex items-center gap-2 mt-4 px-3 py-2 rounded-lg bg-[#F5A623]/5 text-[#F5A623] text-xs font-medium">
+        <div className="mt-4 flex items-center gap-2 rounded-paw-sm bg-paw-primary-soft px-3 py-2 text-xs font-medium text-paw-primary">
           ⚡ Scan → pawpal.be/tag — zero-download rescue
         </div>
       </SpotlightCard>
 
       {/* Card 3: Local Community */}
-      <SpotlightCard className="glass rounded-2xl border border-gray-100 hover:border-[#10B981]/30 transition-all duration-300 hover:shadow-xl group cursor-default bento-glow p-7 flex flex-col justify-between">
+      <SpotlightCard className="glass rounded-2xl border border-paw-border transition-all duration-300 hover:border-paw-success/30 hover:shadow-xl group cursor-default bento-glow p-7 flex flex-col justify-between">
         <div>
           <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#10B981]/8 text-[10px] font-bold text-[#10B981] uppercase tracking-wider mb-4">Community Mode</div>
           <div className="w-12 h-12 rounded-xl flex items-center justify-center bg-[#10B981]/10 text-[#10B981] mb-4 group-hover:scale-110 transition-transform duration-300">
             <Users className="w-6 h-6" />
           </div>
-          <h3 className="text-lg font-bold text-[#1E293B] mb-2">Local Pet Network</h3>
-          <p className="text-[#6B7B8D] text-sm leading-relaxed">
+          <h3 className="mb-2 text-lg font-bold text-paw-ink">Local Pet Network</h3>
+          <p className="text-sm leading-relaxed text-paw-body">
             Find nearby dog walkers, request help, share lost-pet alerts, and build trust through verified interactions in your neighborhood.
           </p>
         </div>
         {/* User stack */}
         <div className="flex -space-x-2 mt-4">
-          {["#4A90D9", "#F5A623", "#10B981", "#F97316", "#E11D48"].map((c, i) => (
+          {["#FF7A59", "#2F8FFF", "#16A679", "#F5A524", "#E54864"].map((c, i) => (
             <div
               key={i}
               className="w-9 h-9 rounded-full border-2 border-white flex items-center justify-center text-white text-xs font-bold"
@@ -415,22 +416,22 @@ export function BentoFeatureGrid() {
       </SpotlightCard>
 
       {/* Card 4: PawPoints + AI — wide spanning 2 cols */}
-      <SpotlightCard className="glass rounded-2xl border border-gray-100 hover:border-[#F5A623]/30 transition-all duration-300 hover:shadow-xl group cursor-default bento-glow lg:col-span-2 p-7 flex flex-col md:flex-row gap-6 items-center">
+      <SpotlightCard className="glass rounded-2xl border border-paw-border transition-all duration-300 hover:border-paw-primary/30 hover:shadow-xl group cursor-default bento-glow lg:col-span-2 p-7 flex flex-col md:flex-row gap-6 items-center">
         <div className="flex-1">
-          <div className="w-12 h-12 rounded-xl flex items-center justify-center bg-[#F5A623]/10 text-[#F5A623] mb-4 group-hover:scale-110 transition-transform duration-300">
+          <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-paw-md bg-paw-primary-soft text-paw-primary transition-transform duration-300 group-hover:scale-110">
             <Sparkles className="w-6 h-6" />
           </div>
-          <h3 className="text-lg font-bold text-[#1E293B] mb-2">PawPoints & AI Assistant</h3>
-          <p className="text-[#6B7B8D] text-sm leading-relaxed">
+          <h3 className="mb-2 text-lg font-bold text-paw-ink">PawPoints & AI Assistant</h3>
+          <p className="text-sm leading-relaxed text-paw-body">
             Earn points for every walk, exploration, and community contribution. Redeem for real products and Premium perks. Plus, AI-powered breed ID, behavior tips, and care advice — powered by Gemini.
           </p>
         </div>
         {/* Points visual */}
-        <div className="w-full md:w-48 h-28 rounded-xl bg-gradient-to-br from-[#F5A623]/5 to-[#4A90D9]/5 flex flex-col items-center justify-center relative overflow-hidden gap-1">
+        <div className="relative flex h-28 w-full flex-col items-center justify-center gap-1 overflow-hidden rounded-paw-md bg-gradient-to-br from-paw-primary-soft to-paw-trust-soft md:w-48">
           <div className="text-2xl">🏆</div>
-          <div className="text-lg font-bold text-[#F5A623]">+150 pts</div>
-          <div className="text-[10px] text-[#6B7B8D]">Daily walk completed!</div>
-          <div className="absolute inset-x-0 h-px bg-gradient-to-r from-transparent via-[#F5A623]/40 to-transparent blob-animate-1" style={{ bottom: "20%" }} />
+          <div className="text-lg font-bold text-paw-primary">+150 pts</div>
+          <div className="text-[10px] text-paw-muted">Daily walk completed!</div>
+          <div className="absolute inset-x-0 h-px bg-gradient-to-r from-transparent via-paw-primary/40 to-transparent blob-animate-1" style={{ bottom: "20%" }} />
         </div>
       </SpotlightCard>
     </div>
@@ -456,18 +457,18 @@ export function TrustMarquee() {
   return (
     <div className="relative overflow-hidden py-6">
       {/* Fade edges */}
-      <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-[#FFFDF9] to-transparent z-10" />
-      <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-[#FFFDF9] to-transparent z-10" />
+      <div className="absolute bottom-0 left-0 top-0 z-10 w-20 bg-gradient-to-r from-paw-panel-subtle to-transparent" />
+      <div className="absolute bottom-0 right-0 top-0 z-10 w-20 bg-gradient-to-l from-paw-panel-subtle to-transparent" />
 
       <div className="flex marquee-track" style={{ width: "max-content" }}>
         {/* Duplicate items for seamless loop */}
         {[...TRUST_ITEMS, ...TRUST_ITEMS].map((item, i) => (
           <div
             key={i}
-            className="flex items-center gap-2.5 px-6 py-3 mx-2 rounded-full glass border border-gray-100 hover:border-[#4A90D9]/20 transition-all hover:shadow-sm whitespace-nowrap"
+            className="glass mx-2 flex items-center gap-2.5 whitespace-nowrap rounded-paw-lg border border-paw-border px-6 py-3 transition-all hover:border-paw-primary/25 hover:shadow-sm"
           >
             <span className="text-lg">{item.emoji}</span>
-            <span className="text-sm font-medium text-[#1E293B]">{item.label}</span>
+            <span className="text-sm font-medium text-paw-ink">{item.label}</span>
           </div>
         ))}
       </div>
@@ -481,10 +482,10 @@ export function TrustMarquee() {
 
 export function AppShowcase() {
   const features = [
-    { icon: MapPin, title: "Walk Tracking", desc: "Fog-of-war maps & gamified routes", color: "bg-[#F5A623]/12 text-[#F5A623]" },
-    { icon: ShieldCheck, title: "NFC Safety Tags", desc: "Instant pet profiles for finders", color: "bg-[#4A90D9]/12 text-[#4A90D9]" },
-    { icon: Sparkles, title: "AI Assistant", desc: "Breed analysis & health insights", color: "bg-[#10B981]/12 text-[#10B981]" },
-    { icon: Users, title: "Community", desc: "Local pet lovers & mutual help", color: "bg-[#E8824C]/12 text-[#E8824C]" },
+    { icon: MapPin, title: "Walk Tracking", desc: "Fog-of-war maps & gamified routes", color: "bg-paw-primary-soft text-paw-primary" },
+    { icon: ShieldCheck, title: "NFC Safety Tags", desc: "Instant pet profiles for finders", color: "bg-paw-trust-soft text-paw-trust" },
+    { icon: Sparkles, title: "AI Assistant", desc: "Breed analysis & health insights", color: "bg-paw-success-soft text-paw-success" },
+    { icon: Users, title: "Community", desc: "Local pet lovers & mutual help", color: "bg-paw-primary-soft text-paw-primary" },
   ];
 
   const thoughtfulFeatures = [
@@ -492,28 +493,28 @@ export function AppShowcase() {
       title: "Walk & Explore",
       desc: "Gamified walks with fog-of-war maps, real-time tracking, route history, and PawPoints rewards. Every step counts!",
       mockups: ["/images/mockup-walk.png", "/images/app-mockup.png"],
-      color: "from-[#F5A623]",
-      iconColor: "text-[#F5A623]",
-      bgColor: "bg-[#F5A623]/5",
-      borderColor: "border-[#F5A623]/20",
+      color: "from-paw-primary",
+      iconColor: "text-paw-primary",
+      bgColor: "bg-paw-primary-soft",
+      borderColor: "border-paw-primary/20",
     },
     {
       title: "Smart Safety",
       desc: "NFC tags turn any collar into a smart ID. Finders scan — no app needed — and instantly see your pet's profile and your contact info.",
       mockups: ["/images/mockup-nfc.png", "/images/mockup-profile.png"],
-      color: "from-[#4A90D9]",
-      iconColor: "text-[#4A90D9]",
-      bgColor: "bg-[#4A90D9]/5",
-      borderColor: "border-[#4A90D9]/20",
+      color: "from-paw-trust",
+      iconColor: "text-paw-trust",
+      bgColor: "bg-paw-trust-soft",
+      borderColor: "border-paw-trust/20",
     },
     {
       title: "AI & Community",
       desc: "AI-powered breed ID, health advice, and behavior analysis. Plus a trusted local network of pet lovers for walks, sitting, and emergencies.",
       mockups: ["/images/mockup-ai.png", "/images/mockup-community.png"],
-      color: "from-[#10B981]",
-      iconColor: "text-[#10B981]",
-      bgColor: "bg-[#10B981]/5",
-      borderColor: "border-[#10B981]/20",
+      color: "from-paw-success",
+      iconColor: "text-paw-success",
+      bgColor: "bg-paw-success-soft",
+      borderColor: "border-paw-success/20",
     },
   ];
 
@@ -521,27 +522,27 @@ export function AppShowcase() {
     <div className="space-y-20">
       {/* ══════ SECTION 1: Hero App Overview ══════ */}
       <FadeInView>
-        <div className="relative bg-gradient-to-br from-[#FFF4E8] via-[#F9FAFB] to-[#F0F4F8] rounded-[32px] overflow-hidden border border-[#F5E6D3]/40 shadow-[0_8px_40px_rgba(0,0,0,0.06)]">
+        <div className="relative overflow-hidden rounded-[32px] border border-paw-primary/20 bg-gradient-to-br from-paw-primary-soft via-paw-panel-subtle to-paw-trust-soft shadow-paw-panel">
           {/* Decorative sparkle elements */}
-          <svg className="absolute top-6 left-8 w-10 h-10 text-[#F5A623]/20 hidden lg:block" viewBox="0 0 40 40" fill="none">
+          <svg className="absolute top-6 left-8 hidden h-10 w-10 text-paw-primary/25 lg:block" viewBox="0 0 40 40" fill="none">
             <path d="M20 2v8M20 30v8M2 20h8M30 20h8M8 8l5 5M27 27l5 5M8 32l5-5M27 13l5-5" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
           </svg>
-          <svg className="absolute top-12 left-20 w-5 h-5 text-[#E8824C]/25 hidden lg:block" viewBox="0 0 20 20" fill="currentColor">
+          <svg className="absolute top-12 left-20 hidden h-5 w-5 text-paw-primary/30 lg:block" viewBox="0 0 20 20" fill="currentColor">
             <path d="M10 0l2.5 7.5H20l-6 4.5 2.5 7.5L10 15l-6.5 4.5L6 12 0 7.5h7.5z"/>
           </svg>
 
           <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-0">
             {/* Left: Text content */}
             <div className="flex-1 p-8 lg:p-12 space-y-6">
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#F5A623]/10 text-[#E8824C] text-sm font-semibold">
+              <div className="inline-flex items-center gap-2 rounded-paw-md bg-paw-primary-soft px-3 py-1.5 text-sm font-semibold text-paw-primary">
                 <Smartphone className="w-4 h-4" />
                 Your All-in-One Pet Care Solution
               </div>
-              <h2 className="text-3xl md:text-4xl font-bold text-[#1E293B] font-brand leading-tight">
+              <h2 className="font-brand text-3xl font-bold leading-tight text-paw-ink md:text-4xl">
                 Your Pet&apos;s World,{" "}
                 <span className="text-gradient-animated">In Your Pocket</span>
               </h2>
-              <p className="text-[#6B7B8D] text-lg leading-relaxed max-w-md">
+              <p className="max-w-md text-lg leading-relaxed text-paw-body">
                 All-in-one app for pet safety, gamified walks, health logging, and community connection. Available on iOS & Android.
               </p>
 
@@ -560,8 +561,8 @@ export function AppShowcase() {
                       <f.icon className="w-5 h-5" />
                     </div>
                     <div>
-                      <div className="text-sm font-bold text-[#1E293B]">{f.title}</div>
-                      <div className="text-xs text-[#6B7B8D]">{f.desc}</div>
+                      <div className="text-sm font-bold text-paw-ink">{f.title}</div>
+                      <div className="text-xs text-paw-muted">{f.desc}</div>
                     </div>
                   </motion.div>
                 ))}
@@ -573,7 +574,7 @@ export function AppShowcase() {
                   href="#"
                   whileHover={{ scale: 1.03 }}
                   whileTap={{ scale: 0.97 }}
-                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#F5A623] hover:bg-[#E8824C] text-white font-bold text-sm transition-colors shadow-lg shadow-[#F5A623]/20"
+                  className="inline-flex items-center gap-2 rounded-paw-md bg-paw-primary px-6 py-3 text-sm font-bold text-white shadow-paw-action transition-colors hover:bg-paw-primary-hover"
                 >
                   <Smartphone className="w-4 h-4" /> Download App
                 </motion.a>
@@ -581,7 +582,7 @@ export function AppShowcase() {
                   href="/about"
                   whileHover={{ scale: 1.03 }}
                   whileTap={{ scale: 0.97 }}
-                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white border border-[#F5E6D3] text-[#1E293B] font-bold text-sm hover:border-[#F5A623] transition-colors"
+                  className="inline-flex items-center gap-2 rounded-paw-md border border-paw-border bg-paw-panel px-6 py-3 text-sm font-bold text-paw-ink transition-colors hover:border-paw-primary"
                 >
                   Learn More
                 </motion.a>
@@ -595,24 +596,28 @@ export function AppShowcase() {
                 whileHover={{ y: -8 }}
                 transition={{ type: "spring", stiffness: 200 }}
               >
-                <img
+                <Image
                   src="/images/app-mockup.png"
                   alt="PawPal App Interface"
-                  className="w-[260px] lg:w-[300px] drop-shadow-2xl"
+                  width={300}
+                  height={620}
+                  sizes="(min-width: 1024px) 300px, 260px"
+                  priority
+                  className="w-[260px] lg:w-[300px] h-auto drop-shadow-2xl"
                 />
               </motion.div>
 
               {/* Floating badges */}
               <motion.div
-                className="absolute top-8 right-4 lg:right-8 px-3 py-2 rounded-2xl bg-white/90 backdrop-blur-sm shadow-lg border border-[#F5E6D3]/60 text-xs font-semibold text-[#1E293B] flex items-center gap-2 z-20"
+                className="absolute right-4 top-8 z-20 flex items-center gap-2 rounded-paw-lg border border-paw-border bg-paw-panel/90 px-3 py-2 text-xs font-semibold text-paw-ink shadow-lg backdrop-blur-sm lg:right-8"
                 animate={{ y: [0, -6, 0] }}
                 transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
               >
-                <span className="w-2 h-2 rounded-full bg-[#10B981] animate-pulse" />
+                <span className="h-2 w-2 animate-pulse rounded-full bg-paw-success" />
                 GPS Active
               </motion.div>
               <motion.div
-                className="absolute bottom-12 left-2 lg:left-4 px-3 py-2 rounded-2xl bg-white/90 backdrop-blur-sm shadow-lg border border-[#F5E6D3]/60 text-xs font-semibold text-[#1E293B] flex items-center gap-2 z-20"
+                className="absolute bottom-12 left-2 z-20 flex items-center gap-2 rounded-paw-lg border border-paw-border bg-paw-panel/90 px-3 py-2 text-xs font-semibold text-paw-ink shadow-lg backdrop-blur-sm lg:left-4"
                 animate={{ y: [0, 6, 0] }}
                 transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1 }}
               >
@@ -627,10 +632,10 @@ export function AppShowcase() {
       <div>
         <FadeInView>
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-[#1E293B] font-brand mb-3">
+            <h2 className="mb-3 font-brand text-3xl font-bold text-paw-ink md:text-4xl">
               3 Powerful Features
             </h2>
-            <p className="text-[#6B7B8D] max-w-lg mx-auto">
+            <p className="mx-auto max-w-lg text-paw-body">
               That make pet life smarter, safer, and more fun
             </p>
           </div>
@@ -660,8 +665,8 @@ export function AppShowcase() {
 
                 {/* Text */}
                 <div className="text-center mt-auto">
-                  <h3 className="text-lg font-bold text-[#1E293B] mb-2">{feature.title}</h3>
-                  <p className="text-sm text-[#6B7B8D] leading-relaxed">{feature.desc}</p>
+                  <h3 className="mb-2 text-lg font-bold text-paw-ink">{feature.title}</h3>
+                  <p className="text-sm leading-relaxed text-paw-body">{feature.desc}</p>
                 </div>
               </div>
             </FadeInView>
@@ -750,4 +755,3 @@ export function MagneticButton({ children }: { children: ReactNode }) {
     </motion.div>
   );
 }
-

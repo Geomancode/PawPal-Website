@@ -3,8 +3,8 @@
 import { useEffect, useState, useCallback, useRef } from "react";
 import {
   CloudRain, Wind, Thermometer, MapPin, Droplets, Sun,
-  CloudSnow, Cloud, CloudLightning, CloudFog, Sunrise,
-  Eye, Navigation, Dog, RefreshCw,
+  CloudSnow, Cloud, CloudLightning, CloudFog,
+  Navigation, Dog, RefreshCw,
 } from "lucide-react";
 
 /* ── WMO Weather Code → Icon + Label ── */

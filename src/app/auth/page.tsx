@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ArrowRight, Mail, Lock, User, Eye, EyeOff, AlertCircle, CheckCircle } from "lucide-react";
 import { useAuth } from "@/components/AuthProvider";
 import { useRouter } from "next/navigation";
@@ -22,11 +22,10 @@ export default function AuthPage() {
   const [fullName, setFullName] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
-  // If already logged in, redirect home
-  if (user) {
-    router.replace("/");
-    return null;
-  }
+  // If already logged in, go straight to the usable account surface.
+  useEffect(() => {
+    if (user) router.replace("/profile");
+  }, [user, router]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -45,7 +44,7 @@ export default function AuthPage() {
       if (error) {
         setError(error);
       } else {
-        router.push("/");
+        router.push("/profile");
       }
     } else {
       const { error, needsConfirm } = await signUp(email, password, fullName || undefined);
@@ -56,7 +55,7 @@ export default function AuthPage() {
         setIsLogin(true);
         setPassword("");
       } else {
-        router.push("/");
+        router.push("/profile");
       }
     }
 

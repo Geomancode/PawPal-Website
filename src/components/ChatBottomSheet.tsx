@@ -102,11 +102,17 @@ function createSearchMarker(
     el.style.transform = "scale(1)";
   };
 
-  const popup = new maplibre.Popup({ offset: 20, closeButton: false }).setHTML(
-    `<div style="font-family:system-ui;min-width:140px">
-      <div style="font-weight:700;font-size:13px">${emoji} ${title}</div>
-    </div>`
-  );
+  const popupContent = document.createElement("div");
+  popupContent.style.fontFamily = "system-ui";
+  popupContent.style.minWidth = "140px";
+
+  const popupTitle = document.createElement("div");
+  popupTitle.style.fontWeight = "700";
+  popupTitle.style.fontSize = "13px";
+  popupTitle.textContent = `${emoji} ${title}`;
+  popupContent.appendChild(popupTitle);
+
+  const popup = new maplibre.Popup({ offset: 20, closeButton: false }).setDOMContent(popupContent);
 
   return new maplibre.Marker({ element: el })
     .setLngLat([lng, lat])
@@ -117,7 +123,7 @@ function createSearchMarker(
 // ── Component ────────────────────────────────────────────────────────────────
 
 export default function ChatBottomSheet({ mapRef }: ChatBottomSheetProps) {
-  const { user } = useAuth();
+  const { session } = useAuth();
   const [snap, setSnap] = useState<SnapPoint>("peek");
   const [messages, setMessages] = useState<ChatMessageData[]>([]);
   const [input, setInput] = useState("");
@@ -240,10 +246,15 @@ export default function ChatBottomSheet({ mapRef }: ChatBottomSheetProps) {
 
       try {
         // ── Phase A: Smart Map Search (no subscription required) ──────
+        const currentCenter = mapRef.current?.getCenter();
         const searchResp = await fetch("/api/map-search", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ query: text.trim() }),
+          body: JSON.stringify({
+            query: text.trim(),
+            lat: currentCenter?.lat,
+            lng: currentCenter?.lng,
+          }),
         });
 
         if (searchResp.ok) {
@@ -307,8 +318,11 @@ export default function ChatBottomSheet({ mapRef }: ChatBottomSheetProps) {
 
         const response = await fetch("/api/ai-agent", {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ message: text.trim(), history, userId: user?.id ?? null }),
+          headers: {
+            "Content-Type": "application/json",
+            ...(session?.access_token ? { Authorization: `Bearer ${session.access_token}` } : {}),
+          },
+          body: JSON.stringify({ message: text.trim(), history }),
         });
 
         if (!response.ok || !response.body) {
@@ -427,7 +441,7 @@ export default function ChatBottomSheet({ mapRef }: ChatBottomSheetProps) {
         setIsStreaming(false);
       }
     },
-    [isStreaming, messages, snap, addMarkersFromResults, clearSearchMarkers, mapRef, user]
+    [isStreaming, messages, snap, addMarkersFromResults, clearSearchMarkers, mapRef, session]
   );
 
   // ── Keyboard handler ─────────────────────────────────────────────────────

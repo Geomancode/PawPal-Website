@@ -14,19 +14,37 @@ export async function POST(req: NextRequest) {
 
     // Build line items for Stripe Checkout
     const lineItems: Stripe.Checkout.SessionCreateParams.LineItem[] = items.map(
-      (item: { name: string; price: number; quantity: number; image: string }) => ({
-        price_data: {
-          currency: "eur",
-          product_data: {
-            name: item.name,
+      (item: {
+        name: string;
+        price: number;
+        quantity: number;
+        image?: string;
+        imageUrl?: string;
+        currency?: string;
+      }) => {
+        const imageUrl =
+          typeof item.imageUrl === "string" && /^https?:\/\//.test(item.imageUrl)
+            ? item.imageUrl
+            : undefined;
+
+        return {
+          price_data: {
+            currency: (item.currency || "eur").toLowerCase(),
+            product_data: {
+              name: item.name,
+              images: imageUrl ? [imageUrl] : undefined,
+            },
+            unit_amount: Math.round(item.price * 100), // Stripe uses cents
           },
-          unit_amount: Math.round(item.price * 100), // Stripe uses cents
-        },
-        quantity: item.quantity,
-      })
+          quantity: item.quantity,
+        };
+      },
     );
 
-    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
+    const baseUrl =
+      process.env.NEXT_PUBLIC_BASE_URL ||
+      req.headers.get("origin") ||
+      "http://localhost:3000";
 
     const session = await stripe.checkout.sessions.create({
       // Card (Visa/MC/Amex + Apple Pay + Google Pay), Bancontact (Belgium),

@@ -3,22 +3,37 @@
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 //
 // POST /api/ai-agent
-// Body: { message, history?, userId? }
+// Body: { message, history? }
+// Optional auth: Authorization: Bearer <Supabase access token>
 // Response: text/event-stream (SSE)
 //
-// When userId is provided:
+// When a verified user session is provided:
 //   → Load pets → pick random sibling → inject persona + memories
-// When no userId:
+// When no verified session exists:
 //   → Use fallback PawPal identity
 
 import { NextRequest } from "next/server";
 import { GoogleGenAI, createPartFromFunctionResponse } from "@google/genai";
+import { supabaseServer } from "@/lib/supabaseServer";
 import { PLATFORM_KNOWLEDGE_PROMPT, FALLBACK_IDENTITY_PROMPT, FREE_TIER_QA_PROMPT } from "./systemPrompt";
 import { loadUserPets, pickRandom, recallMemories, buildPersonaPrompt } from "./personaEngine";
 import { toolDeclarations, executeTool } from "./tools";
 
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY!;
 const MAX_TOOL_LOOPS = 6;
+const MAX_MESSAGE_CHARS = 1200;
+const MAX_HISTORY_MESSAGES = 12;
+const MAX_HISTORY_CONTENT_CHARS = 1000;
+const RATE_WINDOW_MS = 60_000;
+const ANON_RATE_LIMIT = 6;
+const USER_RATE_LIMIT = 18;
+
+interface RateBucket {
+  count: number;
+  resetAt: number;
+}
+
+const rateBuckets = new Map<string, RateBucket>();
 
 // Tool display labels (for UI badges)
 const TOOL_LABELS: Record<string, string> = {
@@ -33,17 +48,90 @@ interface HistoryMessage {
   content: string;
 }
 
+function sanitizeHistory(raw: unknown): HistoryMessage[] {
+  if (!Array.isArray(raw)) return [];
+  return raw
+    .filter((m): m is HistoryMessage => {
+      if (!m || typeof m !== "object") return false;
+      const candidate = m as Partial<HistoryMessage>;
+      return (
+        (candidate.role === "user" || candidate.role === "assistant") &&
+        typeof candidate.content === "string" &&
+        candidate.content.trim().length > 0
+      );
+    })
+    .slice(-MAX_HISTORY_MESSAGES)
+    .map((m) => ({
+      role: m.role,
+      content: m.content.trim().slice(0, MAX_HISTORY_CONTENT_CHARS),
+    }));
+}
+
+function getBearerToken(req: NextRequest): string | null {
+  const auth = req.headers.get("authorization") ?? "";
+  if (!auth.toLowerCase().startsWith("bearer ")) return null;
+  const token = auth.slice(7).trim();
+  return token || null;
+}
+
+function getClientIp(req: NextRequest): string {
+  const forwarded = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim();
+  return forwarded || req.headers.get("x-real-ip") || "unknown";
+}
+
+function takeRateLimit(key: string, limit: number): boolean {
+  const now = Date.now();
+  const current = rateBuckets.get(key);
+  if (!current || current.resetAt <= now) {
+    rateBuckets.set(key, { count: 1, resetAt: now + RATE_WINDOW_MS });
+    return true;
+  }
+  if (current.count >= limit) return false;
+  current.count += 1;
+  return true;
+}
+
+async function resolveUserId(req: NextRequest): Promise<{ userId: string | null; invalidToken: boolean }> {
+  const token = getBearerToken(req);
+  if (!token) return { userId: null, invalidToken: false };
+  const { data, error } = await supabaseServer.auth.getUser(token);
+  if (error) return { userId: null, invalidToken: true };
+  return { userId: data.user?.id ?? null, invalidToken: false };
+}
+
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const message: string = body.message;
-    const history: HistoryMessage[] = body.history ?? [];
-    const userId: string | null = body.userId ?? null;
+    const message = typeof body.message === "string" ? body.message.trim() : "";
+    const history = sanitizeHistory(body.history);
 
-    if (!message || typeof message !== "string" || !message.trim()) {
+    if (!message) {
       return new Response(
         JSON.stringify({ error: "Empty message" }),
         { status: 400, headers: { "Content-Type": "application/json" } }
+      );
+    }
+
+    if (message.length > MAX_MESSAGE_CHARS) {
+      return new Response(
+        JSON.stringify({ error: `Message is too long. Keep it under ${MAX_MESSAGE_CHARS} characters.` }),
+        { status: 413, headers: { "Content-Type": "application/json" } }
+      );
+    }
+
+    const { userId, invalidToken } = await resolveUserId(req);
+    if (invalidToken) {
+      return new Response(
+        JSON.stringify({ error: "Invalid session" }),
+        { status: 401, headers: { "Content-Type": "application/json" } }
+      );
+    }
+
+    const rateKey = userId ? `user:${userId}` : `ip:${getClientIp(req)}`;
+    if (!takeRateLimit(rateKey, userId ? USER_RATE_LIMIT : ANON_RATE_LIMIT)) {
+      return new Response(
+        JSON.stringify({ error: "Too many AI requests. Please wait a minute and try again." }),
+        { status: 429, headers: { "Content-Type": "application/json" } }
       );
     }
 
@@ -62,7 +150,7 @@ export async function POST(req: NextRequest) {
           let tier = "free";
 
           if (userId) {
-            const { data: profile } = await (await import("@/lib/supabaseServer")).supabaseServer
+            const { data: profile } = await supabaseServer
               .from("profiles")
               .select("subscription_tier")
               .eq("id", userId)
@@ -96,7 +184,7 @@ export async function POST(req: NextRequest) {
                   },
                   history: freeHistory.length > 0 ? freeHistory : undefined,
                 });
-                freeResp = await freeChat.sendMessage({ message: message.trim() });
+                freeResp = await freeChat.sendMessage({ message });
                 freeErr = null;
                 break;
               } catch (e) {
@@ -177,7 +265,7 @@ export async function POST(req: NextRequest) {
           for (const model of MODELS) {
             try {
               chat = ai.chats.create({ model, ...chatConfig });
-              response = await chat.sendMessage({ message: message.trim() });
+              response = await chat.sendMessage({ message });
               lastErr = null;
               break; // Success — stop trying models
             } catch (modelErr) {

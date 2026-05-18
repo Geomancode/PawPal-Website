@@ -4,15 +4,37 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useRouter } from "next/navigation";
 import {
-  ArrowLeft, Package, ChevronDown, ChevronUp, MapPin,
-  CreditCard, Clock, Truck, CheckCircle2, ShoppingBag,
+  ArrowLeft,
+  Package,
+  ChevronDown,
+  ChevronUp,
+  MapPin,
+  CreditCard,
+  Clock,
+  Truck,
+  CheckCircle2,
+  ShoppingBag,
 } from "lucide-react";
 import { Order, loadOrders } from "../storeData";
+import ProductVisual from "../ProductVisual";
+import { Badge, Button, Card, EmptyState } from "@/components/ui";
 
-const STATUS_CONFIG: Record<string, { color: string; bg: string; icon: typeof Clock; label: string }> = {
-  processing: { color: "text-[#E8824C]", bg: "bg-amber-50 border-amber-200", icon: Clock, label: "Processing" },
-  shipped: { color: "text-blue-600", bg: "bg-blue-50 border-blue-200", icon: Truck, label: "Shipped" },
-  delivered: { color: "text-emerald-600", bg: "bg-emerald-50 border-emerald-200", icon: CheckCircle2, label: "Delivered" },
+type OrderStatus = Order["status"];
+
+const STATUS_CONFIG: Record<
+  OrderStatus,
+  { tone: "warning" | "trust" | "success"; icon: typeof Clock; label: string }
+> = {
+  processing: { tone: "warning", icon: Clock, label: "Processing" },
+  shipped: { tone: "trust", icon: Truck, label: "Shipped" },
+  delivered: { tone: "success", icon: CheckCircle2, label: "Delivered" },
+};
+
+const PROGRESS_STEPS = ["Order Placed", "Processing", "Shipped", "Delivered"];
+const STATUS_INDEX: Record<OrderStatus, number> = {
+  processing: 1,
+  shipped: 2,
+  delivered: 3,
 };
 
 function OrderCard({ order }: { order: Order }) {
@@ -23,117 +45,130 @@ function OrderCard({ order }: { order: Order }) {
   const dateStr = date.toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" });
   const timeStr = date.toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit" });
   const itemCount = order.items.reduce((s, i) => s + i.quantity, 0);
+  const currentStatusIndex = STATUS_INDEX[order.status] ?? STATUS_INDEX.processing;
 
   return (
-    <motion.div
-      layout
-      initial={{ opacity: 0, y: 10 }}
-      animate={{ opacity: 1, y: 0 }}
-      className="glass rounded-2xl border border-gray-100 overflow-hidden hover:border-amber-200 transition-colors"
-    >
-      {/* Header Row */}
-      <button
-        onClick={() => setExpanded(!expanded)}
-        className="w-full px-6 py-5 flex items-center gap-4 cursor-pointer hover:bg-[#F7F8FA]/50 transition-colors"
-      >
-        <div className="w-12 h-12 rounded-xl bg-amber-50 flex items-center justify-center shrink-0">
-          <Package className="w-6 h-6 text-[#F5A623]" />
-        </div>
-
-        <div className="flex-1 text-left min-w-0">
-          <div className="flex items-center gap-2 flex-wrap">
-            <p className="font-bold text-gray-800 font-mono text-sm">{order.id}</p>
-            <span className={`inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-semibold border ${status.bg} ${status.color}`}>
-              <StatusIcon className="w-3 h-3" /> {status.label}
-            </span>
+    <motion.div layout initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
+      <Card className="overflow-hidden transition-colors hover:border-paw-primary/35">
+        <button
+          onClick={() => setExpanded(!expanded)}
+          className="flex w-full cursor-pointer items-center gap-4 px-5 py-5 text-left transition-colors hover:bg-paw-panel-subtle sm:px-6"
+          aria-expanded={expanded}
+        >
+          <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-paw-md bg-paw-primary-soft text-paw-primary">
+            <Package className="h-6 w-6" aria-hidden="true" />
           </div>
-          <p className="text-sm text-gray-500 mt-0.5">{dateStr} at {timeStr} · {itemCount} item{itemCount !== 1 ? "s" : ""}</p>
-        </div>
 
-        <div className="text-right shrink-0">
-          <p className="font-extrabold text-gray-800">€{order.total.toFixed(2)}</p>
-        </div>
-
-        <div className="shrink-0 ml-2">
-          {expanded ? <ChevronUp className="w-5 h-5 text-gray-400" /> : <ChevronDown className="w-5 h-5 text-gray-400" />}
-        </div>
-      </button>
-
-      {/* Expanded Detail */}
-      <AnimatePresence>
-        {expanded && (
-          <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.25 }}
-            className="overflow-hidden"
-          >
-            <div className="px-6 pb-6 space-y-4 border-t border-gray-100 pt-4">
-              {/* Order progress bar */}
-              <div className="flex items-center gap-2 flex-wrap">
-                {[
-                  { label: "Order Placed", done: true },
-                  { label: "Processing", done: order.status !== "processing" || true },
-                  { label: "Shipped", done: order.status === "shipped" || order.status === "delivered" },
-                  { label: "Delivered", done: order.status === "delivered" },
-                ].map((s, i) => (
-                  <div key={i} className="flex items-center gap-2">
-                    <div className={`w-3 h-3 rounded-full ${s.done ? "bg-emerald-400" : "bg-gray-200"}`} />
-                    <span className={`text-xs font-medium ${s.done ? "text-emerald-600" : "text-gray-400"}`}>{s.label}</span>
-                    {i < 3 && <div className={`w-6 h-0.5 ${s.done ? "bg-emerald-300" : "bg-gray-200"}`} />}
-                  </div>
-                ))}
-              </div>
-
-              {/* Items */}
-              <div>
-                <h4 className="font-semibold text-gray-700 text-sm mb-2 flex items-center gap-1">
-                  <ShoppingBag className="w-4 h-4 text-[#F5A623]" /> Items
-                </h4>
-                <div className="space-y-2">
-                  {order.items.map((item) => (
-                    <div key={item.product.id} className="flex items-center gap-3 p-3 rounded-lg bg-[#F7F8FA]">
-                      <span className="text-2xl">{item.product.image}</span>
-                      <div className="flex-1 min-w-0">
-                        <p className="text-sm font-medium text-gray-700 truncate">{item.product.name}</p>
-                        <p className="text-xs text-gray-400">€{item.product.price.toFixed(2)} × {item.quantity}</p>
-                      </div>
-                      <span className="font-bold text-sm text-gray-700">€{(item.product.price * item.quantity).toFixed(2)}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Shipping & Payment */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div className="p-3 rounded-xl bg-[#F7F8FA]">
-                  <h4 className="font-semibold text-gray-700 text-sm mb-1 flex items-center gap-1"><MapPin className="w-3.5 h-3.5 text-[#F5A623]" /> Shipping</h4>
-                  <p className="text-xs text-gray-600">{order.shipping.fullName}</p>
-                  <p className="text-xs text-gray-500">{order.shipping.address}</p>
-                  <p className="text-xs text-gray-500">{order.shipping.city}, {order.shipping.zipCode}</p>
-                  <p className="text-xs text-gray-500">{order.shipping.country}</p>
-                </div>
-                <div className="p-3 rounded-xl bg-[#F7F8FA]">
-                  <h4 className="font-semibold text-gray-700 text-sm mb-1 flex items-center gap-1"><CreditCard className="w-3.5 h-3.5 text-[#F5A623]" /> Payment</h4>
-                  <p className="text-xs text-gray-600">{order.payment.brand} ending in ****{order.payment.last4}</p>
-                  <div className="mt-2 space-y-0.5">
-                    <p className="text-xs text-gray-500 flex justify-between"><span>Subtotal</span><span>€{order.subtotal.toFixed(2)}</span></p>
-                    <p className="text-xs text-gray-500 flex justify-between"><span>Shipping</span><span>{order.shippingCost === 0 ? "Free" : `€${order.shippingCost.toFixed(2)}`}</span></p>
-                    <p className="text-xs text-gray-500 flex justify-between"><span>Tax</span><span>€{order.tax.toFixed(2)}</span></p>
-                    <p className="text-xs text-gray-800 font-bold flex justify-between pt-1 border-t"><span>Total</span><span>€{order.total.toFixed(2)}</span></p>
-                  </div>
-                </div>
-              </div>
+          <div className="min-w-0 flex-1">
+            <div className="flex flex-wrap items-center gap-2">
+              <p className="font-mono text-sm font-bold text-paw-ink">{order.id}</p>
+              <Badge tone={status.tone}>
+                <StatusIcon className="h-3 w-3" aria-hidden="true" />
+                {status.label}
+              </Badge>
             </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+            <p className="mt-1 text-sm text-paw-muted">
+              {dateStr} at {timeStr} · {itemCount} item{itemCount !== 1 ? "s" : ""}
+            </p>
+          </div>
+
+          <div className="shrink-0 text-right">
+            <p className="font-extrabold text-paw-ink">€{order.total.toFixed(2)}</p>
+          </div>
+
+          {expanded ? (
+            <ChevronUp className="h-5 w-5 shrink-0 text-paw-muted" aria-hidden="true" />
+          ) : (
+            <ChevronDown className="h-5 w-5 shrink-0 text-paw-muted" aria-hidden="true" />
+          )}
+        </button>
+
+        <AnimatePresence>
+          {expanded && (
+            <motion.div
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: "auto", opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{ duration: 0.25 }}
+              className="overflow-hidden"
+            >
+              <div className="space-y-5 border-t border-paw-border px-5 pb-6 pt-5 sm:px-6">
+                <div className="flex flex-wrap items-center gap-2">
+                  {PROGRESS_STEPS.map((label, index) => {
+                    const done = index <= currentStatusIndex;
+                    return (
+                      <div key={label} className="flex items-center gap-2">
+                        <div className={`h-3 w-3 rounded-full ${done ? "bg-paw-success" : "bg-paw-border"}`} />
+                        <span className={`text-xs font-bold ${done ? "text-paw-success" : "text-paw-muted"}`}>
+                          {label}
+                        </span>
+                        {index < PROGRESS_STEPS.length - 1 && (
+                          <div className={`h-0.5 w-6 ${done ? "bg-paw-success/40" : "bg-paw-border"}`} />
+                        )}
+                      </div>
+                    );
+                  })}
+                </div>
+
+                <div>
+                  <h4 className="mb-2 flex items-center gap-1.5 text-sm font-bold text-paw-ink">
+                    <ShoppingBag className="h-4 w-4 text-paw-primary" aria-hidden="true" />
+                    Items
+                  </h4>
+                  <div className="space-y-2">
+                    {order.items.map((item) => (
+                      <div key={item.product.id} className="flex items-center gap-3 rounded-paw-sm bg-paw-panel-subtle p-3">
+                        <ProductVisual product={item.product} size="sm" />
+                        <div className="min-w-0 flex-1">
+                          <p className="truncate text-sm font-bold text-paw-ink">{item.product.name}</p>
+                          <p className="text-xs text-paw-muted">€{item.product.price.toFixed(2)} × {item.quantity}</p>
+                        </div>
+                        <span className="text-sm font-extrabold text-paw-ink">
+                          €{(item.product.price * item.quantity).toFixed(2)}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                  <div className="rounded-paw-md border border-paw-border bg-paw-panel-subtle p-4">
+                    <h4 className="mb-2 flex items-center gap-1.5 text-sm font-bold text-paw-ink">
+                      <MapPin className="h-4 w-4 text-paw-primary" aria-hidden="true" />
+                      Shipping
+                    </h4>
+                    <p className="text-xs font-bold text-paw-body">{order.shipping.fullName}</p>
+                    <p className="text-xs text-paw-muted">{order.shipping.address}</p>
+                    <p className="text-xs text-paw-muted">{order.shipping.city}, {order.shipping.zipCode}</p>
+                    <p className="text-xs text-paw-muted">{order.shipping.country}</p>
+                  </div>
+                  <div className="rounded-paw-md border border-paw-border bg-paw-panel-subtle p-4">
+                    <h4 className="mb-2 flex items-center gap-1.5 text-sm font-bold text-paw-ink">
+                      <CreditCard className="h-4 w-4 text-paw-primary" aria-hidden="true" />
+                      Payment
+                    </h4>
+                    <p className="text-xs font-bold text-paw-body">
+                      {order.payment.brand} ending in ****{order.payment.last4}
+                    </p>
+                    <div className="mt-3 space-y-1.5">
+                      <p className="flex justify-between text-xs text-paw-muted"><span>Subtotal</span><span>€{order.subtotal.toFixed(2)}</span></p>
+                      <p className="flex justify-between text-xs text-paw-muted"><span>Shipping</span><span>{order.shippingCost === 0 ? "Free" : `€${order.shippingCost.toFixed(2)}`}</span></p>
+                      <p className="flex justify-between text-xs text-paw-muted"><span>Tax</span><span>€{order.tax.toFixed(2)}</span></p>
+                      <p className="flex justify-between border-t border-paw-border pt-2 text-xs font-extrabold text-paw-ink">
+                        <span>Total</span><span>€{order.total.toFixed(2)}</span>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </Card>
     </motion.div>
   );
 }
 
-// ─── Orders Page ───────────────────────────────────────
 export default function OrdersPage() {
   const router = useRouter();
   const [orders, setOrders] = useState<Order[]>([]);
@@ -147,35 +182,43 @@ export default function OrdersPage() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#F7F8FA] pt-28 pb-20">
-      <div className="max-w-3xl mx-auto px-4">
-        <button
+    <div className="min-h-screen bg-paw-page pt-28 pb-20 text-paw-ink">
+      <div className="mx-auto max-w-3xl px-4">
+        <Button
+          type="button"
+          variant="ghost"
+          size="sm"
           onClick={() => router.push("/store")}
-          className="flex items-center gap-1 text-gray-500 hover:text-[#E8824C] mb-6 transition-colors cursor-pointer"
+          className="mb-6 -ml-2 text-paw-muted hover:text-paw-primary"
         >
-          <ArrowLeft className="w-4 h-4" /> Back to Store
-        </button>
+          <ArrowLeft className="h-4 w-4" aria-hidden="true" />
+          Back to Store
+        </Button>
 
-        <div className="flex items-center justify-between mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 flex items-center gap-3">
-            <Package className="w-7 h-7 text-[#F5A623]" /> My Orders
-          </h1>
-          <span className="text-sm text-gray-400">{orders.length} order{orders.length !== 1 ? "s" : ""}</span>
+        <div className="mb-8 flex items-end justify-between gap-4">
+          <div>
+            <Badge tone="primary" className="mb-3">Purchase history</Badge>
+            <h1 className="flex items-center gap-3 text-3xl font-extrabold text-paw-ink">
+              <Package className="h-7 w-7 text-paw-primary" aria-hidden="true" />
+              My Orders
+            </h1>
+          </div>
+          <span className="text-sm font-bold text-paw-muted">
+            {orders.length} order{orders.length !== 1 ? "s" : ""}
+          </span>
         </div>
 
         {orders.length === 0 ? (
-          <div className="text-center py-20 glass rounded-2xl border border-gray-100">
-            <ShoppingBag className="w-16 h-16 text-gray-200 mx-auto mb-4" />
-            <h3 className="text-lg font-bold text-gray-400 mb-2">No orders yet</h3>
-            <p className="text-sm text-gray-300 mb-6">Start shopping and your orders will appear here</p>
-            <motion.button
-              whileTap={{ scale: 0.97 }}
-              onClick={() => router.push("/store")}
-              className="px-8 py-3 bg-[#F5A623] hover:bg-[#E8824C] text-white rounded-full font-bold transition-all shadow-lg cursor-pointer"
-            >
-              Browse Products
-            </motion.button>
-          </div>
+          <EmptyState
+            icon={ShoppingBag}
+            title="No orders yet"
+            description="Start shopping and your orders will appear here."
+            action={
+              <Button type="button" onClick={() => router.push("/store")}>
+                Browse Products
+              </Button>
+            }
+          />
         ) : (
           <div className="space-y-4">
             {orders.map((order) => (

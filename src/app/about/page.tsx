@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import {
   Globe, Heart, Shield, Users, MapPin, Sparkles, Nfc, PawPrint,
-  Smartphone, Map, Award, ArrowRight, Mail, Brain,
+  Smartphone, Map, ArrowRight, Mail,
 } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";

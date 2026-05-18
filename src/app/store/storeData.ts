@@ -2,20 +2,31 @@
 // PawPal Store — Data Types & Test Product Catalog
 // ============================================================================
 
+import { supabase } from "@/lib/supabase";
+
 export type Category = "all" | "food" | "toys" | "accessories" | "health";
+export type ProductBadge = "New" | "Best Seller" | "Sale";
 
 export interface Product {
   id: string;
+  slug?: string;
+  sku?: string;
   name: string;
   description: string;
+  details?: string;
   price: number;
   originalPrice?: number;
+  currency?: string;
   category: Category;
-  image: string;       // emoji for demo
+  image: string;       // emoji fallback when no product image URL exists
+  imageUrl?: string;
   rating: number;
   reviewCount: number;
-  badge?: "New" | "Best Seller" | "Sale";
+  badge?: ProductBadge;
   inStock: boolean;
+  stockQuantity?: number;
+  published?: boolean;
+  tags?: string[];
 }
 
 export interface CartItem {
@@ -212,6 +223,117 @@ export const PRODUCTS: Product[] = [
     inStock: true,
   },
 ];
+
+export type ProductRow = {
+  id: string;
+  slug?: string | null;
+  sku?: string | null;
+  name: string;
+  description?: string | null;
+  details?: string | null;
+  price: number | string;
+  original_price?: number | string | null;
+  currency?: string | null;
+  category: string;
+  image_url?: string | null;
+  rating?: number | string | null;
+  review_count?: number | string | null;
+  badge?: ProductBadge | null;
+  in_stock?: boolean | null;
+  stock_quantity?: number | null;
+  published?: boolean | null;
+  tags?: string[] | null;
+};
+
+export const PRODUCT_SELECT = [
+  "id",
+  "slug",
+  "sku",
+  "name",
+  "description",
+  "details",
+  "price",
+  "original_price",
+  "currency",
+  "category",
+  "image_url",
+  "rating",
+  "review_count",
+  "badge",
+  "in_stock",
+  "stock_quantity",
+  "published",
+  "tags",
+  "sort_order",
+  "created_at",
+].join(",");
+
+export function isCatalogImageUrl(value?: string | null): value is string {
+  if (!value) return false;
+  return /^(https?:\/\/|\/|data:image\/)/.test(value.trim());
+}
+
+export function productFromRow(row: ProductRow): Product {
+  const image = row.image_url?.trim() || "📦";
+  const hasImageUrl = isCatalogImageUrl(image);
+  const category = CATEGORIES.some((item) => item.key === row.category)
+    ? (row.category as Category)
+    : "accessories";
+
+  return {
+    id: row.id,
+    slug: row.slug ?? undefined,
+    sku: row.sku ?? undefined,
+    name: row.name,
+    description: row.description ?? "",
+    details: row.details ?? undefined,
+    price: Number(row.price) || 0,
+    originalPrice:
+      row.original_price === null || row.original_price === undefined
+        ? undefined
+        : Number(row.original_price),
+    currency: row.currency ?? "EUR",
+    category,
+    image: hasImageUrl ? "📦" : image,
+    imageUrl: hasImageUrl ? image : undefined,
+    rating: Number(row.rating ?? 0),
+    reviewCount: Number(row.review_count ?? 0),
+    badge: row.badge ?? undefined,
+    inStock: row.in_stock ?? true,
+    stockQuantity: row.stock_quantity ?? undefined,
+    published: row.published ?? true,
+    tags: row.tags ?? [],
+  };
+}
+
+export async function fetchCatalogProducts(): Promise<Product[]> {
+  const { data, error } = await supabase
+    .from("products")
+    .select(PRODUCT_SELECT)
+    .eq("published", true)
+    .order("sort_order", { ascending: true })
+    .order("created_at", { ascending: false });
+
+  if (error) throw error;
+  return (data ?? []).map((row) => productFromRow(row as unknown as ProductRow));
+}
+
+export async function checkStoreAdmin(): Promise<boolean> {
+  const { data, error } = await supabase.rpc("is_store_admin");
+  if (error) return false;
+  return Boolean(data);
+}
+
+export function formatPrice(product: Product): string {
+  const symbol = product.currency === "EUR" || !product.currency ? "€" : `${product.currency} `;
+  return `${symbol}${product.price.toFixed(2)}`;
+}
+
+export function formatOptionalPrice(product: Product): string | undefined {
+  if (typeof product.originalPrice !== "number") return undefined;
+  const symbol = product.currency === "EUR" || !product.currency ? "€" : `${product.currency} `;
+  return `${symbol}${product.originalPrice.toFixed(2)}`;
+}
 
 // ── localStorage helpers ─────────────────────────────────
 const CART_KEY = "pawpal_cart";

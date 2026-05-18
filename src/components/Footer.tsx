@@ -32,19 +32,20 @@ const SOCIALS = [
 
 export default function Footer() {
   return (
-    <footer className="relative bg-[#1A1D23] text-gray-400 overflow-hidden">
+    <footer className="relative overflow-hidden bg-[#111827] text-slate-300">
+      <div className="h-1 bg-gradient-to-r from-paw-primary via-paw-warning to-paw-trust" />
       {/* Decorative doodles */}
-      <div className="absolute top-8 right-12 w-20 h-20 text-white/[0.03] hidden lg:block"><DoodleDog className="w-full h-full" /></div>
-      <div className="absolute bottom-16 left-10 w-14 h-14 text-white/[0.03] hidden lg:block"><DoodlePaw className="w-full h-full" /></div>
+      <div className="absolute top-8 right-12 hidden h-20 w-20 text-paw-primary/[0.05] lg:block"><DoodleDog className="h-full w-full" /></div>
+      <div className="absolute bottom-16 left-10 hidden h-14 w-14 text-paw-trust/[0.05] lg:block"><DoodlePaw className="h-full w-full" /></div>
       {/* Main grid */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-10">
+      <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-2 gap-10 md:grid-cols-5">
           {/* Brand column — using real logo (dark variant) */}
           <div className="col-span-2">
             <div className="mb-4">
               <PawPalLogo iconSize={28} fontSize={20} variant="dark" />
             </div>
-            <p className="text-sm leading-relaxed max-w-xs mb-6">
+            <p className="mb-6 max-w-xs text-sm leading-relaxed text-slate-300/82">
               Enhancing the bond between you and your pet — with gamified walks, NFC safety tags, and a trusted local community.
             </p>
             <div className="flex gap-3">
@@ -53,9 +54,9 @@ export default function Footer() {
                   key={s.label}
                   href={s.href}
                   aria-label={s.label}
-                  className="w-9 h-9 rounded-full bg-gray-700 hover:bg-[#F5A623] flex items-center justify-center transition-colors group"
+                  className="group flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-white/[0.07] transition-colors hover:border-paw-primary/40 hover:bg-paw-primary"
                 >
-                  <s.icon className="w-4 h-4 text-gray-400 group-hover:text-white transition-colors" />
+                  <s.icon className="h-4 w-4 text-slate-300 transition-colors group-hover:text-white" />
                 </a>
               ))}
             </div>
@@ -64,13 +65,13 @@ export default function Footer() {
           {/* Link columns */}
           {Object.entries(FOOTER_NAV).map(([title, links]) => (
             <div key={title}>
-              <h4 className="text-sm font-semibold text-white uppercase tracking-wider mb-4">{title}</h4>
+              <h4 className="mb-4 text-sm font-semibold uppercase tracking-wider text-white">{title}</h4>
               <ul className="space-y-2.5">
                 {links.map((link) => (
                   <li key={link.label}>
                     <Link
                       href={link.href}
-                      className="text-sm hover:text-[#F5A623] transition-colors"
+                      className="text-sm text-slate-300/82 transition-colors hover:text-paw-primary"
                     >
                       {link.label}
                     </Link>
@@ -83,13 +84,13 @@ export default function Footer() {
       </div>
 
       {/* Bottom bar */}
-      <div className="border-t border-gray-700">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex flex-col sm:flex-row items-center justify-between gap-3">
-          <p className="text-xs">
+      <div className="border-t border-white/10">
+        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-4 py-5 sm:flex-row sm:px-6 lg:px-8">
+          <p className="text-xs text-slate-400">
             © {new Date().getFullYear()} PawPal. All rights reserved.
           </p>
-          <p className="text-xs flex items-center gap-1">
-            Made with <Heart className="w-3 h-3 text-red-400 fill-red-400" /> for every paw
+          <p className="flex items-center gap-1 text-xs text-slate-400">
+            Made with <Heart className="h-3 w-3 fill-paw-primary text-paw-primary" /> for every paw
           </p>
         </div>
       </div>

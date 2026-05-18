@@ -1,7 +1,7 @@
 import {
   FadeIn, FadeInView, HeroCTA, HeroBadges, GlobeSection, BottomCTA,
-  AnimatedHeadline, AnimatedCounter, SpotlightCard, ScrollProgress, HeroBlobs,
-  BentoFeatureGrid, TrustMarquee, AppShowcase, FloatingParticles, MagneticButton,
+  AnimatedHeadline, AnimatedCounter, ScrollProgress, HeroBlobs,
+  BentoFeatureGrid, TrustMarquee, AppShowcase, FloatingParticles,
 } from "@/components/HomeClientParts";
 
 /* ── Inline SVG Pet Doodles (Pawlace-inspired line art) ── */
@@ -62,7 +62,7 @@ const DoodleBone = ({ className = "" }: { className?: string }) => (
 
 export default function Home() {
   return (
-    <div className="relative w-full overflow-hidden bg-[#F7F8FA] noise-overlay">
+    <div className="noise-overlay relative w-full overflow-hidden bg-paw-page text-paw-ink">
       {/* Scroll progress bar at top */}
       <ScrollProgress />
 
@@ -72,10 +72,10 @@ export default function Home() {
         <HeroBlobs />
 
         {/* Pet doodle decorations */}
-        <div className="absolute top-[15%] right-[5%] w-16 h-16 text-[#F5A623]/15 doodle-float hidden lg:block" style={{ animationDelay: "0s" }}>
+        <div className="absolute top-[15%] right-[5%] hidden h-16 w-16 text-paw-primary/15 doodle-float lg:block" style={{ animationDelay: "0s" }}>
           <DoodlePaw className="w-full h-full" />
         </div>
-        <div className="absolute bottom-[20%] left-[3%] w-20 h-20 text-[#E8824C]/10 doodle-float-alt hidden lg:block" style={{ animationDelay: "2s" }}>
+        <div className="absolute bottom-[20%] left-[3%] hidden h-20 w-20 text-paw-primary/10 doodle-float-alt lg:block" style={{ animationDelay: "2s" }}>
           <DoodleBone className="w-full h-full" />
         </div>
 
@@ -86,9 +86,9 @@ export default function Home() {
             <FadeIn className="w-full lg:w-1/2 flex flex-col justify-center space-y-7 z-10">
               {/* Badge */}
               <FadeIn delay={0.1}>
-                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass w-fit">
-                  <span className="flex w-2 h-2 rounded-full bg-[#F5A623] animate-pulse" />
-                  <span className="text-sm font-medium text-[#E8824C]">Smart Pet Life Platform</span>
+                <div className="inline-flex w-fit items-center gap-2 rounded-paw-md border border-paw-primary/20 bg-paw-primary-soft px-4 py-2">
+                  <span className="flex h-2 w-2 animate-pulse rounded-full bg-paw-primary" />
+                  <span className="text-sm font-bold text-paw-primary">Smart Pet Life Platform</span>
                 </div>
               </FadeIn>
 
@@ -97,7 +97,7 @@ export default function Home() {
 
               {/* Description */}
               <FadeIn delay={0.9}>
-                <p className="text-lg lg:text-xl text-[#6B7B8D] max-w-lg leading-relaxed">
+                <p className="max-w-lg text-lg leading-relaxed text-paw-body lg:text-xl">
                   PawPal enhances the bond between you and your pet — with gamified walks, fog-of-war maps, NFC safety tags, an AI assistant, and a trusted local community — all built for pet lovers.
                 </p>
               </FadeIn>
@@ -113,12 +113,12 @@ export default function Home() {
       </section>
 
       {/* ===== TRUST MARQUEE ===== */}
-      <section className="border-y border-[#F5E6D3] bg-[#F9FAFB]">
+      <section className="border-y border-paw-border bg-paw-panel-subtle">
         <TrustMarquee />
       </section>
 
       {/* ===== STATS BAR ===== */}
-      <section className="py-14 bg-gradient-to-b from-[#F9FAFB] to-[#F7F8FA]">
+      <section className="bg-gradient-to-b from-paw-panel-subtle to-paw-page py-14">
         <div className="max-w-5xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
           {[
             { value: "58%", label: "Belgian Pet Households" },
@@ -132,23 +132,23 @@ export default function Home() {
       </section>
 
       {/* ===== FEATURES — Bento Grid ===== */}
-      <section id="features" className="relative py-20 bg-[#FFF4E8]/40">
+      <section id="features" className="relative bg-paw-primary-soft/45 py-20">
         <div className="max-w-6xl mx-auto px-4 relative">
         {/* Decorative doodles */}
-        <div className="absolute top-10 right-0 w-24 h-24 text-[#F5A623]/8 doodle-float-alt hidden lg:block">
+        <div className="absolute top-10 right-0 hidden h-24 w-24 text-paw-primary/10 doodle-float-alt lg:block">
           <DoodleDog className="w-full h-full" />
         </div>
-        <div className="absolute bottom-10 left-0 w-20 h-20 text-[#4A90D9]/8 doodle-float hidden lg:block" style={{ animationDelay: "3s" }}>
+        <div className="absolute bottom-10 left-0 hidden h-20 w-20 text-paw-trust/10 doodle-float lg:block" style={{ animationDelay: "3s" }}>
           <DoodleCat className="w-full h-full" />
         </div>
 
         <FadeInView>
-          <h2 className="text-3xl md:text-4xl font-bold text-center text-[#1E293B] mb-4 font-brand">
+          <h2 className="mb-4 text-center font-brand text-3xl font-bold text-paw-ink md:text-4xl">
             Two Modes, One Platform
           </h2>
         </FadeInView>
         <FadeInView delay={0.1}>
-          <p className="text-center text-[#6B7B8D] max-w-xl mx-auto mb-12">
+          <p className="mx-auto mb-12 max-w-xl text-center text-paw-body">
             Solo Mode for your daily walks and pet management. Community Mode for local connections and mutual help.
           </p>
         </FadeInView>
@@ -158,7 +158,7 @@ export default function Home() {
       </section>
 
       {/* ===== APP SHOWCASE ===== */}
-      <section className="py-20 bg-gradient-to-b from-[#F7F8FA] to-[#FFF4E8]">
+      <section className="bg-gradient-to-b from-paw-page to-paw-primary-soft py-20">
         <div className="max-w-6xl mx-auto px-4">
           <AppShowcase />
         </div>
@@ -170,8 +170,8 @@ export default function Home() {
         <FloatingParticles />
 
         {/* Subtle gradient blobs */}
-        <div className="absolute top-[10%] left-[20%] w-[40%] h-[50%] rounded-full bg-[#F5A623]/8 blur-[120px]" />
-        <div className="absolute bottom-[10%] right-[15%] w-[30%] h-[40%] rounded-full bg-[#E8824C]/6 blur-[100px]" />
+        <div className="absolute top-[10%] left-[20%] h-[50%] w-[40%] rounded-full bg-paw-primary/10 blur-[120px]" />
+        <div className="absolute bottom-[10%] right-[15%] h-[40%] w-[30%] rounded-full bg-paw-primary/8 blur-[100px]" />
 
         {/* Pet doodle in dark section */}
         <div className="absolute top-[15%] right-[8%] w-20 h-20 text-white/5 doodle-float hidden lg:block">

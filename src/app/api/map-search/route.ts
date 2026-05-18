@@ -20,12 +20,24 @@
 import { NextRequest, NextResponse } from "next/server";
 import { supabaseServer } from "@/lib/supabaseServer";
 
-const GEMINI_API_KEY = process.env.GEMINI_API_KEY!;
+const GEMINI_API_KEY = process.env.GEMINI_API_KEY || "";
 const GOOGLE_PLACES_KEY = process.env.NEXT_PUBLIC_GOOGLE_MAPS_KEY || process.env.GOOGLE_PLACES_API_KEY || "";
 
-const GEMINI_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_API_KEY}`;
+const GEMINI_URL = GEMINI_API_KEY
+  ? `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_API_KEY}`
+  : "";
 const PLACES_URL = "https://places.googleapis.com/v1/places:searchText";
 const OVERPASS_URL = "https://overpass-api.de/api/interpreter";
+const MAX_QUERY_CHARS = 240;
+const SEARCH_RATE_WINDOW_MS = 60_000;
+const SEARCH_RATE_LIMIT = 12;
+
+interface SearchRateBucket {
+  count: number;
+  resetAt: number;
+}
+
+const searchRateBuckets = new Map<string, SearchRateBucket>();
 
 // ── Types ────────────────────────────────────────────────────────────────────
 
@@ -57,6 +69,23 @@ interface Intent {
   zoom: number;
 }
 
+function getClientIp(req: NextRequest): string {
+  const forwarded = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim();
+  return forwarded || req.headers.get("x-real-ip") || "unknown";
+}
+
+function takeSearchRateLimit(key: string): boolean {
+  const now = Date.now();
+  const current = searchRateBuckets.get(key);
+  if (!current || current.resetAt <= now) {
+    searchRateBuckets.set(key, { count: 1, resetAt: now + SEARCH_RATE_WINDOW_MS });
+    return true;
+  }
+  if (current.count >= SEARCH_RATE_LIMIT) return false;
+  current.count += 1;
+  return true;
+}
+
 // ── Language map (26 languages) ──────────────────────────────────────────────
 
 const LANG_NAMES: Record<string, string> = {
@@ -84,12 +113,26 @@ const QUEST_EMOJI: Record<string, string> = {
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const query: string = body.query?.trim() ?? "";
+    const query = typeof body.query === "string" ? body.query.trim() : "";
     const userLat: number | null = body.lat ?? null;
     const userLng: number | null = body.lng ?? null;
 
     if (!query) {
       return NextResponse.json({ results: [] });
+    }
+
+    if (query.length > MAX_QUERY_CHARS) {
+      return NextResponse.json(
+        { results: [], error: `Search query is too long. Keep it under ${MAX_QUERY_CHARS} characters.` },
+        { status: 413 }
+      );
+    }
+
+    if (!takeSearchRateLimit(`ip:${getClientIp(req)}`)) {
+      return NextResponse.json(
+        { results: [], error: "Too many map searches. Please wait a minute and try again." },
+        { status: 429 }
+      );
     }
 
     // Phase 1: Intent extraction
@@ -202,6 +245,41 @@ Return ONLY compact JSON (no markdown):
     }
   } catch (e) {
     console.error("[map-search] Intent extraction failed:", e);
+  }
+
+  return fallbackIntent(query);
+}
+
+function fallbackIntent(query: string): Intent {
+  const q = query.toLowerCase();
+  const includesAny = (needles: string[]) => needles.some((needle) => q.includes(needle));
+
+  const questMatches: Array<{ type: string; words: string[] }> = [
+    { type: "walk", words: ["walk", "walking", "dog walker", "遛狗", "散步", "uitlaten", "promener"] },
+    { type: "care", words: ["care", "feed", "medicine", "照顾", "喂", "护理", "zorg", "soin"] },
+    { type: "foster", words: ["foster", "boarding", "寄养", "寄宿", "opvang", "garde"] },
+    { type: "transport", words: ["transport", "ride", "drive", "接送", "运输", "vervoer", "transport"] },
+    { type: "vet_accompany", words: ["vet accompany", "vet buddy", "陪诊", "兽医陪同", "dierenarts mee", "vétérinaire accompagner"] },
+    { type: "knowledge", words: ["advice", "question", "knowledge", "建议", "咨询", "advies", "conseil"] },
+    { type: "share", words: ["share", "borrow", "lend", "分享", "借", "delen", "prêter"] },
+    { type: "skill", words: ["groom", "training", "skill", "技能", "训练", "verzorging", "dressage"] },
+  ];
+
+  const matchedQuest = questMatches.find((item) => includesAny(item.words));
+  const asksForNeed = includesAny(["need", "help", "mission", "quest", "需求", "求助", "帮忙", "任务", "hulp", "aide"]);
+  if (matchedQuest || asksForNeed) {
+    return {
+      userLanguage: includesAny(["需求", "求助", "帮忙", "任务", "遛狗", "寄养"]) ? "zh" : "en",
+      searchType: "missions",
+      questType: matchedQuest?.type ?? "",
+      city: "",
+      osmKey: "",
+      osmValue: "",
+      specificFilter: query,
+      googleTextQuery: query,
+      fallbackQuery: query,
+      zoom: 14,
+    };
   }
 
   return {
@@ -506,6 +584,7 @@ async function nominatimSearch(query: string, zoom: number): Promise<SearchResul
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 async function geminiPostRaw(prompt: string, maxTokens: number): Promise<string | null> {
+  if (!GEMINI_URL) return null;
   try {
     const resp = await fetch(GEMINI_URL, {
       method: "POST",

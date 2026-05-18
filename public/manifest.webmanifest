@@ -1,0 +1,18 @@
+{
+  "name": "PawPal",
+  "short_name": "PawPal",
+  "description": "PawPal pet profiles, nearby needs, and smart map.",
+  "start_url": "/profile",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#F7F8FA",
+  "theme_color": "#F5A623",
+  "icons": [
+    {
+      "src": "/pawpal_icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
