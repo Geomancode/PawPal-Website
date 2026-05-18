@@ -1,0 +1,199 @@
+{
+  "generatedAt": "2026-05-18",
+  "status": "draft-temp",
+  "assetCount": 19,
+  "displaySpec": "1200x1200 WebP draft images for store/catalog display",
+  "assets": [
+    {
+      "product": "water_bottle",
+      "file": "water-bottle/hero.webp",
+      "path": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/public/assets/tmp-product-assets/2026-05-18/water-bottle/hero.webp",
+      "label": "Water bottle hero",
+      "altText": "Portable pet water bottle in three colorways with English product benefits.",
+      "size": "1200x1200",
+      "format": "webp",
+      "bytes": 53748
+    },
+    {
+      "product": "water_bottle",
+      "file": "water-bottle/wide-bowl.webp",
+      "path": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/public/assets/tmp-product-assets/2026-05-18/water-bottle/wide-bowl.webp",
+      "label": "Wide drinking bowl",
+      "altText": "Pet water bottle showing a wide drinking bowl and English feature copy.",
+      "size": "1200x1200",
+      "format": "webp",
+      "bytes": 61662
+    },
+    {
+      "product": "water_bottle",
+      "file": "water-bottle/twist-lock.webp",
+      "path": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/public/assets/tmp-product-assets/2026-05-18/water-bottle/twist-lock.webp",
+      "label": "Twist lock detail",
+      "altText": "Close-up of the twist-lock mechanism with English instructions.",
+      "size": "1200x1200",
+      "format": "webp",
+      "bytes": 48124
+    },
+    {
+      "product": "water_bottle",
+      "file": "water-bottle/treat-storage.webp",
+      "path": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/public/assets/tmp-product-assets/2026-05-18/water-bottle/treat-storage.webp",
+      "label": "Treat storage detail",
+      "altText": "Pet water bottle with snack storage and English feature copy.",
+      "size": "1200x1200",
+      "format": "webp",
+      "bytes": 73528
+    },
+    {
+      "product": "water_bottle",
+      "file": "water-bottle/product-orange.webp",
+      "path": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/public/assets/tmp-product-assets/2026-05-18/water-bottle/product-orange.webp",
+      "label": "Orange bottle",
+      "altText": "Clean product photo of the portable pet water bottle in orange.",
+      "size": "1200x1200",
+      "format": "webp",
+      "bytes": 35390
+    },
+    {
+      "product": "water_bottle",
+      "file": "water-bottle/product-mist.webp",
+      "path": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/public/assets/tmp-product-assets/2026-05-18/water-bottle/product-mist.webp",
+      "label": "Mist bottle",
+      "altText": "Clean product photo of the portable pet water bottle in mist gray.",
+      "size": "1200x1200",
+      "format": "webp",
+      "bytes": 31984
+    },
+    {
+      "product": "water_bottle",
+      "file": "water-bottle/product-purple.webp",
+      "path": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/public/assets/tmp-product-assets/2026-05-18/water-bottle/product-purple.webp",
+      "label": "Purple bottle",
+      "altText": "Clean product photo of the portable pet water bottle in purple.",
+      "size": "1200x1200",
+      "format": "webp",
+      "bytes": 34438
+    },
+    {
+      "product": "waste_bags",
+      "file": "waste-bags/hero.webp",
+      "path": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/public/assets/tmp-product-assets/2026-05-18/waste-bags/hero.webp",
+      "label": "Waste bag hero",
+      "altText": "Eco waste bag refill roll on a clean English product card.",
+      "size": "1200x1200",
+      "format": "webp",
+      "bytes": 55882
+    },
+    {
+      "product": "waste_bags",
+      "file": "waste-bags/product-roll.webp",
+      "path": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/public/assets/tmp-product-assets/2026-05-18/waste-bags/product-roll.webp",
+      "label": "Waste bag roll product",
+      "altText": "Clean catalog display of a green pet waste bag refill roll.",
+      "size": "1200x1200",
+      "format": "webp",
+      "bytes": 57226
+    },
+    {
+      "product": "poop_scooper",
+      "file": "poop-scooper/hero.webp",
+      "path": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/public/assets/tmp-product-assets/2026-05-18/poop-scooper/hero.webp",
+      "label": "Poop scooper hero",
+      "altText": "Portable poop scooper with English product benefits for no-touch cleanup.",
+      "size": "1200x1200",
+      "format": "webp",
+      "bytes": 88116
+    },
+    {
+      "product": "poop_scooper",
+      "file": "poop-scooper/walk-essential.webp",
+      "path": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/public/assets/tmp-product-assets/2026-05-18/poop-scooper/walk-essential.webp",
+      "label": "Walk essential detail",
+      "altText": "Portable poop scooper shown with packaging and English walk essentials copy.",
+      "size": "1200x1200",
+      "format": "webp",
+      "bytes": 66382
+    },
+    {
+      "product": "poop_scooper",
+      "file": "poop-scooper/no-touch.webp",
+      "path": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/public/assets/tmp-product-assets/2026-05-18/poop-scooper/no-touch.webp",
+      "label": "No-touch cleanup detail",
+      "altText": "Portable poop scooper with English no-touch cleanup copy.",
+      "size": "1200x1200",
+      "format": "webp",
+      "bytes": 62738
+    },
+    {
+      "product": "poop_scooper",
+      "file": "poop-scooper/kit-layout.webp",
+      "path": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/public/assets/tmp-product-assets/2026-05-18/poop-scooper/kit-layout.webp",
+      "label": "Kit layout",
+      "altText": "Portable poop scooper kit layout with box, claw and waste bag capsule.",
+      "size": "1200x1200",
+      "format": "webp",
+      "bytes": 128728
+    },
+    {
+      "product": "poop_scooper",
+      "file": "poop-scooper/product-blue.webp",
+      "path": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/public/assets/tmp-product-assets/2026-05-18/poop-scooper/product-blue.webp",
+      "label": "Blue scooper",
+      "altText": "Clean catalog image for the portable poop scooper in blue.",
+      "size": "1200x1200",
+      "format": "webp",
+      "bytes": 33570
+    },
+    {
+      "product": "poop_scooper",
+      "file": "poop-scooper/product-box-set.webp",
+      "path": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/public/assets/tmp-product-assets/2026-05-18/poop-scooper/product-box-set.webp",
+      "label": "Box set",
+      "altText": "Clean catalog image for the portable poop scooper box set.",
+      "size": "1200x1200",
+      "format": "webp",
+      "bytes": 129296
+    },
+    {
+      "product": "poop_scooper",
+      "file": "poop-scooper/product-red.webp",
+      "path": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/public/assets/tmp-product-assets/2026-05-18/poop-scooper/product-red.webp",
+      "label": "Red scooper",
+      "altText": "Clean catalog image for the portable poop scooper in red.",
+      "size": "1200x1200",
+      "format": "webp",
+      "bytes": 63938
+    },
+    {
+      "product": "smart_tag",
+      "file": "smart-tag/hero.webp",
+      "path": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/public/assets/tmp-product-assets/2026-05-18/smart-tag/hero.webp",
+      "label": "Smart tag hero",
+      "altText": "Smart pet ID tag hero image with English NFC profile benefits.",
+      "size": "1200x1200",
+      "format": "webp",
+      "bytes": 73556
+    },
+    {
+      "product": "smart_tag",
+      "file": "smart-tag/product-silver.webp",
+      "path": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/public/assets/tmp-product-assets/2026-05-18/smart-tag/product-silver.webp",
+      "label": "Silver smart tag",
+      "altText": "Silver PawPal smart pet ID tag with keychain.",
+      "size": "1200x1200",
+      "format": "webp",
+      "bytes": 100574
+    },
+    {
+      "product": "smart_tag",
+      "file": "smart-tag/product-yellow.webp",
+      "path": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/public/assets/tmp-product-assets/2026-05-18/smart-tag/product-yellow.webp",
+      "label": "Yellow smart tag",
+      "altText": "Yellow PawPal smart pet ID tag with keychain.",
+      "size": "1200x1200",
+      "format": "webp",
+      "bytes": 79372
+    }
+  ],
+  "previewContactSheet": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/public/assets/tmp-product-assets/2026-05-18/preview-contact-sheet.jpg"
+}

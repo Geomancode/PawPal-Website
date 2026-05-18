@@ -1,0 +1,171 @@
+{
+  "generatedAt": "2026-05-18",
+  "status": "draft-temp-v3-photo-led",
+  "approach": "No forced cutouts. Real product photos are preserved, enhanced, and placed into a unified PawPal promotional system.",
+  "displaySpec": "1800x1800 WebP photo-led promotional assets",
+  "styleTokens": {
+    "canvas": "#F8FAFC",
+    "warmCanvas": "#FFFDF8",
+    "panel": "#FFFFFF",
+    "panelSubtle": "#F3F6FA",
+    "ink": "#111827",
+    "body": "#334155",
+    "muted": "#64748B",
+    "border": "#E2E8F0",
+    "coral": "#FF7A59",
+    "coralSoft": "#FFF0EA",
+    "blue": "#2F8FFF",
+    "blueSoft": "#EAF4FF",
+    "green": "#16A679",
+    "greenSoft": "#E7F8F1",
+    "amber": "#F5A524",
+    "amberSoft": "#FFF6E3"
+  },
+  "assetCount": 13,
+  "previewContactSheet": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/public/assets/tmp-product-assets/2026-05-18-v3-photo-led/preview-contact-sheet.jpg",
+  "assets": [
+    {
+      "product": "water_bottle",
+      "kind": "hero",
+      "file": "water-bottle/hero.webp",
+      "path": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/public/assets/tmp-product-assets/2026-05-18-v3-photo-led/water-bottle/hero.webp",
+      "altText": "Three real portable pet water bottle colorways in PawPal promotional layout.",
+      "source": "cup5,cup6,cup7",
+      "size": "1800x1800",
+      "format": "webp",
+      "bytes": 95244
+    },
+    {
+      "product": "water_bottle",
+      "kind": "catalog",
+      "file": "water-bottle/orange.webp",
+      "path": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/public/assets/tmp-product-assets/2026-05-18-v3-photo-led/water-bottle/orange.webp",
+      "altText": "Orange Water Bottle real product photo in PawPal promotional layout.",
+      "source": "cup5.jpg",
+      "size": "1800x1800",
+      "format": "webp",
+      "bytes": 96552
+    },
+    {
+      "product": "water_bottle",
+      "kind": "catalog",
+      "file": "water-bottle/mist.webp",
+      "path": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/public/assets/tmp-product-assets/2026-05-18-v3-photo-led/water-bottle/mist.webp",
+      "altText": "Mist Water Bottle real product photo in PawPal promotional layout.",
+      "source": "cup6.jpg",
+      "size": "1800x1800",
+      "format": "webp",
+      "bytes": 89598
+    },
+    {
+      "product": "water_bottle",
+      "kind": "catalog",
+      "file": "water-bottle/purple.webp",
+      "path": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/public/assets/tmp-product-assets/2026-05-18-v3-photo-led/water-bottle/purple.webp",
+      "altText": "Purple Water Bottle real product photo in PawPal promotional layout.",
+      "source": "cup7.jpg",
+      "size": "1800x1800",
+      "format": "webp",
+      "bytes": 94418
+    },
+    {
+      "product": "waste_bags",
+      "kind": "hero",
+      "file": "waste-bags/hero.webp",
+      "path": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/public/assets/tmp-product-assets/2026-05-18-v3-photo-led/waste-bags/hero.webp",
+      "altText": "Real green waste bag roll close-up in PawPal promotional layout.",
+      "source": "plasticbag.jpg",
+      "size": "1800x1800",
+      "format": "webp",
+      "bytes": 153846
+    },
+    {
+      "product": "waste_bags",
+      "kind": "catalog",
+      "file": "waste-bags/roll-closeup.webp",
+      "path": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/public/assets/tmp-product-assets/2026-05-18-v3-photo-led/waste-bags/roll-closeup.webp",
+      "altText": "Close-up photo of the green pet waste bag roll in branded layout.",
+      "source": "plasticbag.jpg",
+      "size": "1800x1800",
+      "format": "webp",
+      "bytes": 157382
+    },
+    {
+      "product": "poop_scooper",
+      "kind": "hero",
+      "file": "poop-scooper/hero.webp",
+      "path": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/public/assets/tmp-product-assets/2026-05-18-v3-photo-led/poop-scooper/hero.webp",
+      "altText": "Portable poop scooper lifestyle photo in PawPal promotional layout.",
+      "source": "pop1.jpg",
+      "size": "1800x1800",
+      "format": "webp",
+      "bytes": 287024
+    },
+    {
+      "product": "poop_scooper",
+      "kind": "catalog",
+      "file": "poop-scooper/blue.webp",
+      "path": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/public/assets/tmp-product-assets/2026-05-18-v3-photo-led/poop-scooper/blue.webp",
+      "altText": "Blue portable poop scooper real product photo in branded layout.",
+      "source": "pop5.jpg",
+      "size": "1800x1800",
+      "format": "webp",
+      "bytes": 93952
+    },
+    {
+      "product": "poop_scooper",
+      "kind": "catalog",
+      "file": "poop-scooper/kit.webp",
+      "path": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/public/assets/tmp-product-assets/2026-05-18-v3-photo-led/poop-scooper/kit.webp",
+      "altText": "Portable poop scooper kit photo in branded layout.",
+      "source": "pop3.jpg",
+      "size": "1800x1800",
+      "format": "webp",
+      "bytes": 439900
+    },
+    {
+      "product": "poop_scooper",
+      "kind": "catalog",
+      "file": "poop-scooper/red.webp",
+      "path": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/public/assets/tmp-product-assets/2026-05-18-v3-photo-led/poop-scooper/red.webp",
+      "altText": "Red portable poop scooper photo in PawPal promotional layout.",
+      "source": "pop7.jpg",
+      "size": "1800x1800",
+      "format": "webp",
+      "bytes": 217802
+    },
+    {
+      "product": "smart_tag",
+      "kind": "hero",
+      "file": "smart-tag/hero.webp",
+      "path": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/public/assets/tmp-product-assets/2026-05-18-v3-photo-led/smart-tag/hero.webp",
+      "altText": "Silver and yellow PawPal smart ID tags in photo-led promotional layout.",
+      "source": "tag1,tag2",
+      "size": "1800x1800",
+      "format": "webp",
+      "bytes": 221928
+    },
+    {
+      "product": "smart_tag",
+      "kind": "catalog",
+      "file": "smart-tag/silver.webp",
+      "path": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/public/assets/tmp-product-assets/2026-05-18-v3-photo-led/smart-tag/silver.webp",
+      "altText": "Silver PawPal smart ID tag real photo in branded layout.",
+      "source": "tag1.jpg",
+      "size": "1800x1800",
+      "format": "webp",
+      "bytes": 386814
+    },
+    {
+      "product": "smart_tag",
+      "kind": "catalog",
+      "file": "smart-tag/yellow.webp",
+      "path": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/public/assets/tmp-product-assets/2026-05-18-v3-photo-led/smart-tag/yellow.webp",
+      "altText": "Yellow PawPal smart ID tag real photo in branded layout.",
+      "source": "tag2.jpg",
+      "size": "1800x1800",
+      "format": "webp",
+      "bytes": 274300
+    }
+  ]
+}
