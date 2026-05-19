@@ -6,6 +6,7 @@
         "appID": "8NQHH2K35D.com.pawpal.neumann2026",
         "paths": [
           "/tag/*",
+          "/pet/*",
           "/post/*",
           "/user/*",
           "/group/*"

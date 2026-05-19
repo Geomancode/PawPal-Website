@@ -2,7 +2,8 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { Heart, Phone, Droplets, Shield, Award, Calendar, PawPrint } from "lucide-react";
+import Link from "next/link";
+import { Heart, Phone, Droplets, Shield, Award, Calendar, PawPrint, Smartphone } from "lucide-react";
 import { DoodlePaw, DoodleHeart } from "@/components/PetDoodles";
 
 type PetSocialTraits = {
@@ -178,9 +179,24 @@ export default function TagPageClient({ pet, owner }: TagPageClientProps) {
         </div>
 
         {/* CTA */}
-        <p className="mt-6 text-center text-xs text-paw-muted">
-          Scanned a PawPal NFC tag? Download the app to create your pet&apos;s profile!
-        </p>
+        <div className="mt-6 grid gap-2">
+          <a
+            href={`pawpal://tag/${pet.id}`}
+            className="inline-flex h-11 items-center justify-center gap-2 rounded-paw-md bg-paw-primary px-4 text-sm font-extrabold text-white shadow-paw-action transition hover:bg-paw-primary-hover"
+          >
+            <Smartphone className="h-4 w-4" />
+            Open in App
+          </a>
+          <Link
+            href="/"
+            className="inline-flex h-11 items-center justify-center rounded-paw-md border border-paw-border bg-paw-panel px-4 text-sm font-extrabold text-paw-ink transition hover:border-paw-primary"
+          >
+            Install PawPal
+          </Link>
+          <p className="text-center text-xs text-paw-muted">
+            Scanned a PawPal NFC tag? Download the app to create your pet&apos;s profile.
+          </p>
+        </div>
       </motion.div>
     </div>
   );
