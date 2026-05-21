@@ -9,16 +9,16 @@ import {
 
 /* ── WMO Weather Code → Icon + Label ── */
 function getWeatherInfo(code: number): { icon: React.ReactNode; label: string } {
-  if (code === 0) return { icon: <Sun className="w-4 h-4 text-yellow-400" />, label: "Clear Sky" };
-  if (code <= 3) return { icon: <Cloud className="w-4 h-4 text-gray-300" />, label: code === 1 ? "Mainly Clear" : code === 2 ? "Partly Cloudy" : "Overcast" };
-  if (code <= 48) return { icon: <CloudFog className="w-4 h-4 text-gray-400" />, label: "Foggy" };
-  if (code <= 57) return { icon: <CloudRain className="w-4 h-4 text-blue-300" />, label: "Drizzle" };
-  if (code <= 67) return { icon: <CloudRain className="w-4 h-4 text-blue-400" />, label: "Rain" };
-  if (code <= 77) return { icon: <CloudSnow className="w-4 h-4 text-blue-200" />, label: "Snow" };
-  if (code <= 82) return { icon: <CloudRain className="w-4 h-4 text-blue-500" />, label: "Rain Showers" };
-  if (code <= 86) return { icon: <CloudSnow className="w-4 h-4 text-blue-300" />, label: "Snow Showers" };
-  if (code <= 99) return { icon: <CloudLightning className="w-4 h-4 text-yellow-300" />, label: "Thunderstorm" };
-  return { icon: <Cloud className="w-4 h-4 text-gray-300" />, label: "Unknown" };
+  if (code === 0) return { icon: <Sun className="w-4 h-4 text-paw-warning" />, label: "Clear Sky" };
+  if (code <= 3) return { icon: <Cloud className="w-4 h-4 text-white/70" />, label: code === 1 ? "Mainly Clear" : code === 2 ? "Partly Cloudy" : "Overcast" };
+  if (code <= 48) return { icon: <CloudFog className="w-4 h-4 text-white/60" />, label: "Foggy" };
+  if (code <= 57) return { icon: <CloudRain className="w-4 h-4 text-paw-trust" />, label: "Drizzle" };
+  if (code <= 67) return { icon: <CloudRain className="w-4 h-4 text-paw-trust" />, label: "Rain" };
+  if (code <= 77) return { icon: <CloudSnow className="w-4 h-4 text-paw-trust" />, label: "Snow" };
+  if (code <= 82) return { icon: <CloudRain className="w-4 h-4 text-paw-trust" />, label: "Rain Showers" };
+  if (code <= 86) return { icon: <CloudSnow className="w-4 h-4 text-paw-trust" />, label: "Snow Showers" };
+  if (code <= 99) return { icon: <CloudLightning className="w-4 h-4 text-paw-warning" />, label: "Thunderstorm" };
+  return { icon: <Cloud className="w-4 h-4 text-white/70" />, label: "Unknown" };
 }
 
 /* ── Dog Walk Advice ── */
@@ -214,7 +214,7 @@ export default function WeatherTicker({ mapCenter, onRecenterRequest }: WeatherT
         {!weather.isUserLocation && (
           <button
             onClick={handleRecenter}
-            className="shrink-0 ml-3 mr-1 flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-amber-500/90 hover:bg-amber-500 text-white text-[11px] font-bold transition-all z-10 shadow-lg"
+            className="shrink-0 ml-3 mr-1 flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-paw-primary/90 hover:bg-paw-primary text-white text-[11px] font-bold transition-all z-10 shadow-paw-action"
             title="Back to my location"
           >
             <Navigation className="w-3.5 h-3.5" />
@@ -228,7 +228,7 @@ export default function WeatherTicker({ mapCenter, onRecenterRequest }: WeatherT
             {[...Array(4)].map((_, i) => (
               <div key={i} className="flex items-center space-x-8 shrink-0 px-6 font-medium tracking-wide text-sm">
                 {/* Location */}
-                <span className="flex items-center gap-1.5 text-amber-300">
+                <span className="flex items-center gap-1.5 text-paw-primary">
                   <MapPin className="w-4 h-4" />
                   {weather.city}
                   {!weather.isUserLocation && (
@@ -243,35 +243,35 @@ export default function WeatherTicker({ mapCenter, onRecenterRequest }: WeatherT
 
                 {/* Temperature */}
                 <span className="flex items-center gap-1.5">
-                  <Thermometer className="w-4 h-4 text-emerald-400" />
+                  <Thermometer className="w-4 h-4 text-paw-success" />
                   {weather.temp}°C
                   <span className="text-white/40 text-xs">(feels {weather.feelsLike}°C)</span>
                 </span>
 
                 {/* Wind */}
                 <span className="flex items-center gap-1.5">
-                  <Wind className="w-4 h-4 text-blue-400" /> {weather.windSpeed} km/h
+                  <Wind className="w-4 h-4 text-paw-trust" /> {weather.windSpeed} km/h
                 </span>
 
                 {/* Humidity */}
                 <span className="flex items-center gap-1.5">
-                  <Droplets className="w-4 h-4 text-cyan-400" /> {weather.humidity}%
+                  <Droplets className="w-4 h-4 text-paw-trust" /> {weather.humidity}%
                 </span>
 
                 {/* Rain Probability */}
                 <span className="flex items-center gap-1.5">
-                  <CloudRain className="w-4 h-4 text-blue-300" />
+                  <CloudRain className="w-4 h-4 text-paw-trust" />
                   {weather.rainProb > 0 ? `${weather.rainProb}% rain` : "No rain"}
                 </span>
 
                 {/* UV Index */}
                 <span className="flex items-center gap-1.5">
-                  <Sun className="w-4 h-4 text-yellow-300" /> UV {weather.uvIndex}
+                  <Sun className="w-4 h-4 text-paw-warning" /> UV {weather.uvIndex}
                 </span>
 
                 {/* Dog Walk Advice */}
-                <span className="flex items-center gap-1.5 text-amber-200/90">
-                  <Dog className="w-4 h-4 text-amber-400" />
+                <span className="flex items-center gap-1.5 text-paw-primary/90">
+                  <Dog className="w-4 h-4 text-paw-primary" />
                   {walkAdvice.emoji} {walkAdvice.text}
                 </span>
 

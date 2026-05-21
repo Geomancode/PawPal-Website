@@ -61,10 +61,7 @@ function UserBubble({ text }: { text: string }) {
   return (
     <div className="flex justify-end mb-3">
       <div
-        className="max-w-[80%] px-4 py-2.5 rounded-2xl rounded-br-md text-sm text-white leading-relaxed"
-        style={{
-          background: "linear-gradient(135deg, #f59e0b, #8b5cf6)",
-        }}
+        className="max-w-[80%] px-4 py-2.5 rounded-2xl rounded-br-md bg-paw-primary text-sm text-white leading-relaxed shadow-paw-action"
       >
         {text}
       </div>
@@ -78,10 +75,10 @@ function AssistantBubble({ text }: { text: string }) {
   return (
     <div className="flex justify-start mb-3">
       <div className="flex gap-2 max-w-[85%]">
-        <div className="w-6 h-6 rounded-full bg-gradient-to-br from-violet-500 to-amber-400 flex items-center justify-center shrink-0 mt-0.5">
+        <div className="w-6 h-6 rounded-full bg-gradient-to-br from-paw-trust to-paw-primary flex items-center justify-center shrink-0 mt-0.5">
           <Sparkles className="w-3 h-3 text-white" />
         </div>
-        <div className="px-4 py-2.5 rounded-2xl rounded-bl-md bg-white/90 border border-gray-100 shadow-sm text-sm text-gray-700 leading-relaxed whitespace-pre-wrap">
+        <div className="px-4 py-2.5 rounded-2xl rounded-bl-md bg-paw-panel/90 border border-paw-border shadow-sm text-sm text-paw-body leading-relaxed whitespace-pre-wrap">
           {text}
         </div>
       </div>
@@ -94,8 +91,8 @@ function AssistantBubble({ text }: { text: string }) {
 function ToolBadge({ label }: { label: string }) {
   return (
     <div className="flex justify-start mb-2 pl-8">
-      <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-violet-50 border border-violet-100 text-xs text-violet-600 font-medium">
-        <div className="w-2 h-2 rounded-full bg-violet-400 animate-pulse" />
+      <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-paw-trust-soft border border-paw-trust/15 text-xs text-paw-trust font-medium">
+        <div className="w-2 h-2 rounded-full bg-paw-trust animate-pulse" />
         {label}
       </div>
     </div>
@@ -159,23 +156,23 @@ function PlaceResults({
             <button
               key={p.id}
               onClick={() => p.lat && p.lng && onLocate?.(p.lat, p.lng)}
-              className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl bg-white/90 border border-gray-100 shadow-sm hover:border-violet-200 hover:shadow-md transition-all text-left group"
+              className="w-full flex items-center gap-3 px-3 py-2.5 rounded-paw-md bg-paw-panel/90 border border-paw-border shadow-sm hover:border-paw-trust/35 hover:shadow-paw-panel transition-all text-left group"
             >
-              <div className="w-9 h-9 rounded-lg bg-blue-50 flex items-center justify-center text-base shrink-0">
+              <div className="w-9 h-9 rounded-paw-sm bg-paw-trust-soft flex items-center justify-center text-base shrink-0">
                 {emoji}
               </div>
               <div className="min-w-0 flex-1">
-                <p className="text-sm font-semibold text-gray-800 truncate">
+                <p className="text-sm font-semibold text-paw-ink truncate">
                   {p.name}
                 </p>
-                <p className="text-xs text-gray-400 truncate">
+                <p className="text-xs text-paw-muted truncate">
                   {p.place_type?.replace(/_/g, " ")}
                   {p.city ? ` · ${p.city}` : ""}
                   {rating ? ` · ${rating}` : ""}
                 </p>
               </div>
               {p.lat && p.lng && (
-                <MapPin className="w-4 h-4 text-gray-300 group-hover:text-violet-500 shrink-0 transition-colors" />
+                <MapPin className="w-4 h-4 text-paw-muted group-hover:text-paw-trust shrink-0 transition-colors" />
               )}
             </button>
           );
@@ -216,22 +213,22 @@ function MissionResults({
             <button
               key={m.id}
               onClick={() => m.lat && m.lng && onLocate?.(m.lat, m.lng)}
-              className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl bg-white/90 border border-gray-100 shadow-sm hover:border-amber-200 hover:shadow-md transition-all text-left group"
+              className="w-full flex items-center gap-3 px-3 py-2.5 rounded-paw-md bg-paw-panel/90 border border-paw-border shadow-sm hover:border-paw-accent/35 hover:shadow-paw-panel transition-all text-left group"
             >
-              <div className="w-9 h-9 rounded-lg bg-amber-50 flex items-center justify-center text-base shrink-0">
+              <div className="w-9 h-9 rounded-paw-sm bg-paw-accent-soft flex items-center justify-center text-base shrink-0">
                 {emoji}
               </div>
               <div className="min-w-0 flex-1">
-                <p className="text-sm font-semibold text-gray-800 truncate">
+                <p className="text-sm font-semibold text-paw-ink truncate">
                   {m.title || "Mission"}
                 </p>
-                <p className="text-xs text-gray-400 truncate">
+                <p className="text-xs text-paw-muted truncate">
                   {m.quest_type} · {m.status}
                   {m.reward_type ? ` · 🎁 ${m.reward_type}` : ""}
                 </p>
               </div>
               {m.lat && m.lng && (
-                <MapPin className="w-4 h-4 text-gray-300 group-hover:text-amber-500 shrink-0 transition-colors" />
+                <MapPin className="w-4 h-4 text-paw-muted group-hover:text-paw-accent shrink-0 transition-colors" />
               )}
             </button>
           );
@@ -251,7 +248,7 @@ function FoodSafetyCard({ data }: { data: Record<string, unknown> }) {
   if (!found || results.length === 0) {
     return (
       <div className="flex justify-start mb-3 pl-8">
-        <div className="px-4 py-3 rounded-xl bg-gray-50 border border-gray-100 text-sm text-gray-500">
+        <div className="px-4 py-3 rounded-paw-md bg-paw-panel-subtle border border-paw-border text-sm text-paw-muted">
           No toxicity data found for &quot;{itemSearched}&quot;. When in doubt, consult
           your vet.
         </div>
@@ -274,19 +271,19 @@ function FoodSafetyCard({ data }: { data: Record<string, unknown> }) {
               key={i}
               className={`px-4 py-3 rounded-xl border text-sm ${
                 isDangerous
-                  ? "bg-red-50 border-red-200"
-                  : "bg-green-50 border-green-200"
+                  ? "bg-paw-danger-soft border-paw-danger/25"
+                  : "bg-paw-success-soft border-paw-success/25"
               }`}
             >
               <div className="flex items-center gap-2 mb-1">
                 {isDangerous ? (
-                  <AlertTriangle className="w-4 h-4 text-red-500" />
+                  <AlertTriangle className="w-4 h-4 text-paw-danger" />
                 ) : (
-                  <CheckCircle className="w-4 h-4 text-green-500" />
+                  <CheckCircle className="w-4 h-4 text-paw-success" />
                 )}
                 <span
                   className={`font-semibold ${
-                    isDangerous ? "text-red-700" : "text-green-700"
+                    isDangerous ? "text-paw-danger" : "text-paw-success"
                   }`}
                 >
                   {(r.item_name as string) || itemSearched} — {toxicity.replace(/_/g, " ")}
@@ -295,7 +292,7 @@ function FoodSafetyCard({ data }: { data: Record<string, unknown> }) {
               {typeof r.description === "string" && r.description && (
                 <p
                   className={`text-xs leading-relaxed ${
-                    isDangerous ? "text-red-600" : "text-green-600"
+                    isDangerous ? "text-paw-danger" : "text-paw-success"
                   }`}
                 >
                   {r.description}
@@ -321,41 +318,41 @@ function BreedCard({ data }: { data: Record<string, unknown> }) {
         {breeds.map((b, i) => (
           <div
             key={i}
-            className="px-4 py-3 rounded-xl bg-teal-50 border border-teal-200 text-sm"
+            className="px-4 py-3 rounded-paw-md bg-paw-trust-soft border border-paw-trust/20 text-sm"
           >
             <div className="flex items-center gap-2 mb-2">
-              <BookOpen className="w-4 h-4 text-teal-600" />
-              <span className="font-semibold text-teal-800">
+              <BookOpen className="w-4 h-4 text-paw-trust" />
+              <span className="font-semibold text-paw-ink">
                 {String(b.breed_name ?? "")}
               </span>
               {typeof b.species_group === "string" && b.species_group && (
-                <span className="px-2 py-0.5 rounded-full bg-teal-100 text-teal-600 text-[10px] font-bold uppercase">
+                <span className="px-2 py-0.5 rounded-full bg-paw-panel text-paw-trust text-[10px] font-bold uppercase">
                   {b.species_group}
                 </span>
               )}
             </div>
-            <div className="grid grid-cols-2 gap-x-4 gap-y-1 text-xs text-teal-700">
+            <div className="grid grid-cols-2 gap-x-4 gap-y-1 text-xs text-paw-body">
               {typeof b.origin === "string" && b.origin && (
                 <p>
-                  🌍 <span className="text-teal-500">Origin:</span>{" "}
+                  🌍 <span className="text-paw-trust">Origin:</span>{" "}
                   {b.origin}
                 </p>
               )}
               {b.care_difficulty != null && (
                 <p>
-                  🩺 <span className="text-teal-500">Care:</span>{" "}
+                  🩺 <span className="text-paw-trust">Care:</span>{" "}
                   {String(b.care_difficulty)}/5
                 </p>
               )}
               {typeof b.lifespan === "string" && b.lifespan && (
                 <p>
-                  ⏱️ <span className="text-teal-500">Lifespan:</span>{" "}
+                  ⏱️ <span className="text-paw-trust">Lifespan:</span>{" "}
                   {b.lifespan}
                 </p>
               )}
               {typeof b.legal_status_be === "string" && b.legal_status_be && (
                 <p>
-                  🇧🇪 <span className="text-teal-500">Belgium:</span>{" "}
+                  🇧🇪 <span className="text-paw-trust">Belgium:</span>{" "}
                   {b.legal_status_be}
                 </p>
               )}

@@ -91,7 +91,7 @@ function createSearchMarker(
     border-radius: 50%;
     display: flex; align-items: center; justify-content: center;
     font-size: 18px; cursor: pointer;
-    box-shadow: 0 2px 12px rgba(139, 92, 246, 0.4);
+    box-shadow: var(--shadow-paw-panel);
     animation: markerPop 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) both;
   `;
   el.textContent = emoji;
@@ -207,7 +207,7 @@ export default function ChatBottomSheet({ mapRef }: ChatBottomSheetProps) {
         const marker = createSearchMarker(
           maplibre,
           "⭐",
-          "#8b5cf6",
+          "var(--color-paw-trust)",
           map,
           item.lng,
           item.lat,
@@ -275,7 +275,7 @@ export default function ChatBottomSheet({ mapRef }: ChatBottomSheetProps) {
               clearSearchMarkers();
               results.forEach((r) => {
                 const emoji = r.source === "quest" ? "🐾" : r.rating ? "⭐" : "📍";
-                const color = r.source === "quest" ? "#f59e0b" : "#8b5cf6";
+                const color = r.source === "quest" ? "var(--color-paw-primary)" : "var(--color-paw-trust)";
                 const displayName = r.localizedName ?? r.originalName;
                 const marker = createSearchMarker(maplibre, emoji, color, map, r.lng, r.lat, displayName);
                 searchMarkersRef.current.push(marker);
@@ -311,7 +311,7 @@ export default function ChatBottomSheet({ mapRef }: ChatBottomSheetProps) {
           }
         }
 
-        // ── Phase B: No map results → AI chat (free Q&A for all, tools for subscribers) ──
+        // ── Phase B: No map results → paid AI chat ──
         const history = [...messages, userMsg]
           .filter((m) => m.role === "user" || m.role === "assistant")
           .map((m) => ({ role: m.role as "user" | "assistant", content: m.content }));
@@ -326,7 +326,19 @@ export default function ChatBottomSheet({ mapRef }: ChatBottomSheetProps) {
         });
 
         if (!response.ok || !response.body) {
-          throw new Error("Failed to connect to AI Agent");
+          let message = "Failed to connect to AI Agent";
+          try {
+            const data = await response.json();
+            if (data?.upgradeRequired) {
+              message =
+                "PawPal AI requires an active Basic or Pro plan. Open Store > PawPal AI upgrade to continue.";
+            } else if (typeof data?.error === "string") {
+              message = data.error;
+            }
+          } catch {
+            /* keep fallback */
+          }
+          throw new Error(message);
         }
 
         const reader = response.body.getReader();
@@ -526,10 +538,10 @@ export default function ChatBottomSheet({ mapRef }: ChatBottomSheetProps) {
         style={{
           height: SNAP_HEIGHTS[snap],
           borderRadius: "20px 20px 0 0",
-          background: "rgba(255, 255, 255, 0.97)",
+          background: "color-mix(in srgb, var(--color-paw-panel) 97%, transparent)",
           backdropFilter: "blur(24px)",
           WebkitBackdropFilter: "blur(24px)",
-          boxShadow: "0 -4px 30px rgba(0, 0, 0, 0.1)",
+          boxShadow: "0 -4px 30px rgba(15, 23, 42, 0.12)",
           transition: "height 0.35s cubic-bezier(0.32, 0.72, 0, 1)",
         }}
       >
@@ -540,21 +552,21 @@ export default function ChatBottomSheet({ mapRef }: ChatBottomSheetProps) {
           onPointerMove={onPointerMove}
           onPointerUp={onPointerUp}
         >
-          <div className="w-9 h-[5px] rounded-full bg-black/15" />
+          <div className="w-9 h-[5px] rounded-full bg-paw-border-strong" />
         </div>
 
         {/* ── Header (visible when expanded) ─────────────────────────── */}
         {snap !== "peek" && (
           <div className="flex items-center justify-between px-4 pb-2">
             <div className="flex items-center gap-2">
-              <div className="w-6 h-6 rounded-full bg-gradient-to-br from-violet-500 to-amber-400 flex items-center justify-center">
+              <div className="w-6 h-6 rounded-full bg-gradient-to-br from-paw-trust to-paw-primary flex items-center justify-center">
                 {activePetSpecies ? (
                   <span className="text-sm">{SPECIES_EMOJI[activePetSpecies] ?? "🐾"}</span>
                 ) : (
                   <Sparkles className="w-3 h-3 text-white" />
                 )}
               </div>
-              <span className="text-sm font-bold text-gray-800">
+              <span className="text-sm font-bold text-paw-ink">
                 {activePetName ?? "PawPal AI"}
               </span>
             </div>
@@ -562,7 +574,7 @@ export default function ChatBottomSheet({ mapRef }: ChatBottomSheetProps) {
               {snap === "full" && (
                 <button
                   onClick={() => setSnap("half")}
-                  className="p-1.5 rounded-full hover:bg-gray-100 text-gray-400 transition-colors"
+                  className="p-1.5 rounded-full hover:bg-paw-panel-subtle text-paw-muted transition-colors"
                   title="Collapse"
                 >
                   <ChevronDown className="w-4 h-4" />
@@ -570,7 +582,7 @@ export default function ChatBottomSheet({ mapRef }: ChatBottomSheetProps) {
               )}
               <button
                 onClick={handleClose}
-                className="p-1.5 rounded-full hover:bg-gray-100 text-gray-400 transition-colors"
+                className="p-1.5 rounded-full hover:bg-paw-panel-subtle text-paw-muted transition-colors"
                 title="Close"
               >
                 <X className="w-4 h-4" />
@@ -588,13 +600,13 @@ export default function ChatBottomSheet({ mapRef }: ChatBottomSheetProps) {
           >
             {messages.length === 0 && !isStreaming && (
               <div className="flex flex-col items-center justify-center h-full text-center py-6">
-                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-violet-100 to-amber-100 flex items-center justify-center mb-3">
-                  <Sparkles className="w-5 h-5 text-violet-400" />
+                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-paw-trust-soft to-paw-primary-soft flex items-center justify-center mb-3">
+                  <Sparkles className="w-5 h-5 text-paw-trust" />
                 </div>
-                <p className="text-sm font-medium text-gray-600 mb-1">
+                <p className="text-sm font-medium text-paw-body mb-1">
                   Search & ask in any language
                 </p>
-                <p className="text-xs text-gray-400 max-w-[260px] mb-4">
+                <p className="text-xs text-paw-muted max-w-[260px] mb-4">
                   Find vets, check food safety, explore breeds — or just chat about pets 🐾
                 </p>
                 {/* Quick suggestion chips */}
@@ -610,7 +622,7 @@ export default function ChatBottomSheet({ mapRef }: ChatBottomSheetProps) {
                     <button
                       key={chip}
                       onClick={() => { setInput(chip); sendMessage(chip); }}
-                      className="px-2.5 py-1 text-[11px] rounded-full bg-violet-50 text-violet-600 hover:bg-violet-100 transition-colors border border-violet-100 whitespace-nowrap"
+                      className="px-2.5 py-1 text-[11px] rounded-full bg-paw-trust-soft text-paw-trust hover:bg-paw-primary-soft transition-colors border border-paw-trust/15 whitespace-nowrap"
                     >
                       {chip}
                     </button>
@@ -631,20 +643,20 @@ export default function ChatBottomSheet({ mapRef }: ChatBottomSheetProps) {
             {isStreaming && (
               <div className="flex justify-start mb-3">
                 <div className="flex gap-2 items-center">
-                  <div className="w-6 h-6 rounded-full bg-gradient-to-br from-violet-500 to-amber-400 flex items-center justify-center">
+                  <div className="w-6 h-6 rounded-full bg-gradient-to-br from-paw-trust to-paw-primary flex items-center justify-center">
                     <Sparkles className="w-3 h-3 text-white" />
                   </div>
-                  <div className="flex gap-1 px-3 py-2 rounded-2xl bg-white/90 border border-gray-100 shadow-sm">
+                  <div className="flex gap-1 px-3 py-2 rounded-2xl bg-paw-panel/90 border border-paw-border shadow-sm">
                     <div
-                      className="w-2 h-2 rounded-full bg-violet-400 animate-bounce"
+                      className="w-2 h-2 rounded-full bg-paw-trust animate-bounce"
                       style={{ animationDelay: "0ms" }}
                     />
                     <div
-                      className="w-2 h-2 rounded-full bg-violet-400 animate-bounce"
+                      className="w-2 h-2 rounded-full bg-paw-trust animate-bounce"
                       style={{ animationDelay: "150ms" }}
                     />
                     <div
-                      className="w-2 h-2 rounded-full bg-violet-400 animate-bounce"
+                      className="w-2 h-2 rounded-full bg-paw-trust animate-bounce"
                       style={{ animationDelay: "300ms" }}
                     />
                   </div>
@@ -659,11 +671,11 @@ export default function ChatBottomSheet({ mapRef }: ChatBottomSheetProps) {
           className="flex items-center gap-2 px-3 pb-3 pt-2"
           style={{
             borderTop:
-              snap !== "peek" ? "1px solid rgba(0,0,0,0.05)" : "none",
+              snap !== "peek" ? "1px solid var(--color-paw-border)" : "none",
           }}
         >
           {snap === "peek" && (
-            <Sparkles className="w-4 h-4 text-violet-400 shrink-0 ml-2" />
+            <Sparkles className="w-4 h-4 text-paw-trust shrink-0 ml-2" />
           )}
           <input
             ref={inputRef}
@@ -673,12 +685,12 @@ export default function ChatBottomSheet({ mapRef }: ChatBottomSheetProps) {
             onFocus={handleInputFocus}
             placeholder="Search or ask anything · 搜索 · Zoek · Chercher…"
             disabled={isStreaming}
-            className="flex-1 bg-transparent text-gray-700 placeholder-gray-400 outline-none text-sm font-light min-w-0 disabled:opacity-50"
+            className="flex-1 bg-transparent text-paw-body placeholder-paw-muted outline-none text-sm font-light min-w-0 disabled:opacity-50"
           />
           <button
             onClick={() => sendMessage(input)}
             disabled={!input.trim() || isStreaming}
-            className="bg-gradient-to-r from-amber-500 to-violet-500 hover:from-amber-600 hover:to-violet-600 disabled:opacity-40 disabled:hover:from-amber-500 disabled:hover:to-violet-500 text-white px-4 py-2 rounded-full text-xs font-semibold transition-all shadow-sm flex items-center gap-1.5 shrink-0"
+            className="bg-paw-primary hover:bg-paw-primary-hover disabled:opacity-40 disabled:hover:bg-paw-primary text-white px-4 py-2 rounded-full text-xs font-semibold transition-all shadow-paw-action flex items-center gap-1.5 shrink-0"
           >
             {isStreaming ? (
               <div className="w-3.5 h-3.5 border-2 border-white/30 border-t-white rounded-full animate-spin" />

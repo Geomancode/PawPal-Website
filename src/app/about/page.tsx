@@ -24,7 +24,7 @@ const TEAM = [
     nameCn: "肖轩",
     role: "Co-founder & CEO",
     photo: "/team/sean.jpg",
-    color: "from-amber-400 to-orange-500",
+    color: "from-paw-primary to-paw-primary-hover",
     desc: "PhD candidate in GIS & Remote Sensing at Ghent University. Leads product strategy, technical architecture, and fundraising.",
   },
   {
@@ -32,7 +32,7 @@ const TEAM = [
     nameCn: "李凌枫",
     role: "Co-founder & CPO",
     photo: "/team/lingfeng.png",
-    color: "from-blue-400 to-indigo-500",
+    color: "from-paw-trust to-paw-trust-hover",
     desc: "Business & Marketing background. Drives business model, go-to-market strategy, operations, and supply chain.",
   },
   {
@@ -40,7 +40,7 @@ const TEAM = [
     nameCn: "洁琼",
     role: "Co-founder & CDO",
     photo: "/team/jieqiong.jpg",
-    color: "from-emerald-400 to-teal-500",
+    color: "from-paw-success to-paw-trust",
     desc: "Design background. Leads UI/UX design, brand visual identity, and user research across all PawPal platforms.",
   },
 ];
@@ -51,22 +51,22 @@ const ECOSYSTEM = [
     icon: Smartphone,
     title: "PawPal App",
     desc: "Walk recording with fog-of-war map, PawPoints rewards, pet profiles, daily reminders, AI assistant, NFC tag enrollment, and real-time community — all in one app.",
-    color: "bg-[#FFF4E8] text-[#F5A623]",
-    border: "border-[#F5E6D3]",
+    color: "bg-paw-primary-soft text-paw-primary",
+    border: "border-paw-primary/20",
   },
   {
     icon: Globe,
     title: "PawPal Web",
     desc: "NFC tag scan landing pages at pawpal.be/tag/{id} — zero-download pet rescue. Plus the online store, AI-powered search, and the interactive Globe map.",
-    color: "bg-blue-50 text-blue-500",
-    border: "border-blue-100",
+    color: "bg-paw-trust-soft text-paw-trust",
+    border: "border-paw-trust/20",
   },
   {
     icon: Nfc,
     title: "NFC Smart Tags",
     desc: "Starting at €19. Dynamic profile pages replace static dog tags. Privacy-first: owner contact info stays hidden until lost mode is activated.",
-    color: "bg-emerald-50 text-emerald-500",
-    border: "border-emerald-100",
+    color: "bg-paw-success-soft text-paw-success",
+    border: "border-paw-success/20",
   },
 ];
 
@@ -91,34 +91,29 @@ const TIMELINE = [
 
 export default function About() {
   return (
-    <div className="relative w-full overflow-hidden bg-[#F7F8FA]">
+    <div className="relative w-full overflow-hidden bg-paw-page">
       {/* ===== HERO ===== */}
       <section className="relative pt-28 pb-20 overflow-hidden">
-        {/* Background decoration */}
-        <div className="absolute top-0 left-0 w-full h-full -z-10">
-          <div className="absolute top-[-10%] left-[-5%] w-[40%] h-[40%] rounded-full bg-[#FFF4E8]/50 blur-[120px]" />
-          <div className="absolute bottom-[-10%] right-[-5%] w-[35%] h-[35%] rounded-full bg-[#E0F2FE]/30 blur-[100px]" />
-        </div>
         {/* Pet doodles */}
-        <div className="absolute top-[18%] right-[5%] w-16 h-16 text-[#F5A623]/12 doodle-float hidden lg:block"><DoodlePaw className="w-full h-full" /></div>
-        <div className="absolute bottom-[15%] left-[3%] w-20 h-10 text-[#E8824C]/10 doodle-float-alt hidden lg:block" style={{ animationDelay: '2s' }}><DoodleBone className="w-full h-full" /></div>
+        <div className="absolute top-[18%] right-[5%] w-16 h-16 text-paw-primary/12 doodle-float hidden lg:block"><DoodlePaw className="w-full h-full" /></div>
+        <div className="absolute bottom-[15%] left-[3%] w-20 h-10 text-paw-primary/10 doodle-float-alt hidden lg:block" style={{ animationDelay: '2s' }}><DoodleBone className="w-full h-full" /></div>
 
         <div className="max-w-4xl mx-auto px-4 text-center">
           <motion.div {...fadeUp()}>
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#F9FAFB]/70 backdrop-blur-sm border border-[#F5E6D3] mb-6">
-              <PawPrint className="w-4 h-4 text-[#F5A623]" />
-              <span className="text-sm font-semibold text-[#E8824C]">Our Story</span>
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-paw-panel/80 backdrop-blur-sm border border-paw-primary/20 mb-6">
+              <PawPrint className="w-4 h-4 text-paw-primary" />
+              <span className="text-sm font-semibold text-paw-primary">Our Story</span>
             </div>
           </motion.div>
 
-          <motion.h1 {...fadeUp(0.1)} className="text-4xl md:text-6xl font-extrabold text-[#1E293B] leading-tight mb-6">
+          <motion.h1 {...fadeUp(0.1)} className="text-4xl md:text-6xl font-extrabold text-paw-ink leading-tight mb-6">
             Enhancing the Bond{" "}
-            <span className="bg-gradient-to-r from-[#F5A623] to-[#E8824C] bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-paw-primary to-paw-trust bg-clip-text text-transparent">
               Between You & Your Pet
             </span>
           </motion.h1>
 
-          <motion.p {...fadeUp(0.2)} className="text-lg md:text-xl text-[#6B7B8D] max-w-2xl mx-auto leading-relaxed mb-8">
+          <motion.p {...fadeUp(0.2)} className="text-lg md:text-xl text-paw-muted max-w-2xl mx-auto leading-relaxed mb-8">
             PawPal is a location-based pet life platform for young pet owners in Europe. Starting from the high-frequency
             scenario of dog walking, we combine gamified maps, reward systems, NFC safety tags, AI assistance,
             and local community — helping owners care for their pets more intelligently, securely, and connectedly.
@@ -132,8 +127,8 @@ export default function About() {
               { value: "5", label: "Languages" },
             ].map((s, i) => (
               <div key={i} className="text-center">
-                <div className="text-2xl md:text-3xl font-extrabold bg-gradient-to-r from-[#F5A623] to-[#E8824C] bg-clip-text text-transparent">{s.value}</div>
-                <div className="text-xs text-[#6B7B8D]/70 font-medium mt-0.5">{s.label}</div>
+                <div className="text-2xl md:text-3xl font-extrabold bg-gradient-to-r from-paw-primary to-paw-trust bg-clip-text text-transparent">{s.value}</div>
+                <div className="text-xs text-paw-muted font-medium mt-0.5">{s.label}</div>
               </div>
             ))}
           </motion.div>
@@ -141,58 +136,58 @@ export default function About() {
       </section>
 
       {/* ===== MISSION STATEMENT ===== */}
-      <section className="py-16 bg-[#F9FAFB]/70 border-y border-[#F5E6D3]/60">
+      <section className="py-16 bg-paw-panel/70 border-y border-paw-border">
         <div className="max-w-3xl mx-auto px-4 text-center">
           <motion.div {...fadeUp()}>
-            <p className="text-2xl md:text-3xl font-bold text-[#1E293B] leading-snug">
+            <p className="text-2xl md:text-3xl font-bold text-paw-ink leading-snug">
               &ldquo;PawPal&apos;s mission is not to replace companionship with technology, but to{" "}
-              <span className="text-[#F5A623]">enhance</span> the bond between humans and their pets
+              <span className="text-paw-primary">enhance</span> the bond between humans and their pets
               through smart tools.&rdquo;
             </p>
-            <p className="text-sm text-[#6B7B8D]/70 mt-4 font-medium">— PawPal Founding Team · Ghent, Belgium</p>
+            <p className="text-sm text-paw-muted mt-4 font-medium">— PawPal Founding Team · Ghent, Belgium</p>
           </motion.div>
         </div>
       </section>
 
       {/* ===== PRODUCT ECOSYSTEM ===== */}
       <section className="relative py-20 max-w-6xl mx-auto px-4">
-        <div className="absolute top-10 right-4 w-14 h-14 text-[#4A90D9]/8 doodle-float hidden lg:block" style={{ animationDelay: '1s' }}><DoodleCat className="w-full h-full" /></div>
+        <div className="absolute top-10 right-4 w-14 h-14 text-paw-trust/10 doodle-float hidden lg:block" style={{ animationDelay: '1s' }}><DoodleCat className="w-full h-full" /></div>
         <motion.div {...fadeUp()} className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-[#1E293B] mb-3">The PawPal Ecosystem</h2>
-          <p className="text-[#6B7B8D] max-w-xl mx-auto">App + Web + Hardware — three products, one mission: enhance every moment with your pet.</p>
+          <h2 className="text-3xl md:text-4xl font-bold text-paw-ink mb-3">The PawPal Ecosystem</h2>
+          <p className="text-paw-muted max-w-xl mx-auto">App + Web + Hardware — three products, one mission: enhance every moment with your pet.</p>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {ECOSYSTEM.map((item, i) => (
             <motion.div key={i} {...fadeUp(i * 0.08)}
-              className={`bg-white rounded-2xl border ${item.border} p-7 hover:shadow-lg transition-all group`}>
-              <div className={`w-14 h-14 rounded-xl flex items-center justify-center ${item.color} mb-5 group-hover:scale-110 transition-transform`}>
+              className={`bg-paw-panel rounded-paw-lg border ${item.border} p-7 hover:shadow-paw-panel transition-all group`}>
+              <div className={`w-14 h-14 rounded-paw-md flex items-center justify-center ${item.color} mb-5 group-hover:scale-105 transition-transform`}>
                 <item.icon className="w-7 h-7" />
               </div>
-              <h3 className="text-xl font-bold text-[#1E293B] mb-2">{item.title}</h3>
-              <p className="text-sm text-[#6B7B8D] leading-relaxed">{item.desc}</p>
+              <h3 className="text-xl font-bold text-paw-ink mb-2">{item.title}</h3>
+              <p className="text-sm text-paw-muted leading-relaxed">{item.desc}</p>
             </motion.div>
           ))}
         </div>
       </section>
 
       {/* ===== VALUES ===== */}
-      <section className="relative py-20 bg-gradient-to-b from-[#FFF4E8]/50 to-[#F7F8FA]">
-        <div className="absolute top-12 left-6 w-20 h-20 text-[#F5A623]/8 doodle-float hidden lg:block"><DoodleDog className="w-full h-full" /></div>
-        <div className="absolute bottom-10 right-8 w-14 h-14 text-[#E8824C]/8 doodle-float-alt hidden lg:block" style={{ animationDelay: '3s' }}><DoodleHeart className="w-full h-full" /></div>
+      <section className="relative py-20 bg-paw-primary-soft/35">
+        <div className="absolute top-12 left-6 w-20 h-20 text-paw-primary/10 doodle-float hidden lg:block"><DoodleDog className="w-full h-full" /></div>
+        <div className="absolute bottom-10 right-8 w-14 h-14 text-paw-primary/10 doodle-float-alt hidden lg:block" style={{ animationDelay: '3s' }}><DoodleHeart className="w-full h-full" /></div>
         <div className="max-w-6xl mx-auto px-4">
           <motion.div {...fadeUp()} className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-[#1E293B] mb-3">What We Stand For</h2>
-            <p className="text-[#6B7B8D] max-w-xl mx-auto">Our values guide every decision — from the features we build to the community we grow.</p>
+            <h2 className="text-3xl md:text-4xl font-bold text-paw-ink mb-3">What We Stand For</h2>
+            <p className="text-paw-muted max-w-xl mx-auto">Our values guide every decision — from the features we build to the community we grow.</p>
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
             {VALUES.map((v, i) => (
               <motion.div key={i} {...fadeUp(i * 0.06)}
-                className="bg-[#F9FAFB]/80 backdrop-blur-sm rounded-2xl border border-[#F5E6D3]/60 p-6 hover:border-[#F5A623]/30 transition-all">
-                <v.icon className="w-8 h-8 text-[#F5A623] mb-3" />
-                <h3 className="text-base font-bold text-[#1E293B] mb-1">{v.title}</h3>
-                <p className="text-sm text-[#6B7B8D] leading-relaxed">{v.desc}</p>
+                className="bg-paw-panel/85 backdrop-blur-sm rounded-paw-lg border border-paw-border p-6 hover:border-paw-primary/30 transition-all">
+                <v.icon className="w-8 h-8 text-paw-primary mb-3" />
+                <h3 className="text-base font-bold text-paw-ink mb-1">{v.title}</h3>
+                <p className="text-sm text-paw-muted leading-relaxed">{v.desc}</p>
               </motion.div>
             ))}
           </div>
@@ -201,19 +196,19 @@ export default function About() {
 
       {/* ===== TEAM ===== */}
       <section className="relative py-20 max-w-5xl mx-auto px-4">
-        <div className="absolute top-8 right-4 w-14 h-14 text-[#F5A623]/10 doodle-float hidden lg:block" style={{ animationDelay: '2s' }}><DoodlePaw className="w-full h-full" /></div>
+        <div className="absolute top-8 right-4 w-14 h-14 text-paw-primary/10 doodle-float hidden lg:block" style={{ animationDelay: '2s' }}><DoodlePaw className="w-full h-full" /></div>
         <motion.div {...fadeUp()} className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-[#1E293B] mb-3">Meet the Founding Team</h2>
-          <p className="text-[#6B7B8D] max-w-lg mx-auto">A cross-disciplinary trio from Ghent — engineering, business, and design — united by a shared love for pets.</p>
+          <h2 className="text-3xl md:text-4xl font-bold text-paw-ink mb-3">Meet the Founding Team</h2>
+          <p className="text-paw-muted max-w-lg mx-auto">A cross-disciplinary trio from Ghent — engineering, business, and design — united by a shared love for pets.</p>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {TEAM.map((member, i) => (
             <motion.div key={i} {...fadeUp(i * 0.1)}
-              className="bg-white rounded-2xl border border-[#F5E6D3]/60 overflow-hidden hover:shadow-lg transition-all group">
+              className="bg-paw-panel rounded-paw-lg border border-paw-border overflow-hidden hover:shadow-paw-panel transition-all group">
               {/* Gradient header with photo */}
               <div className={`h-28 bg-gradient-to-r ${member.color} relative flex items-end justify-center`}>
-                <div className="absolute -bottom-10 w-20 h-20 rounded-full border-4 border-white overflow-hidden shadow-md">
+                <div className="absolute -bottom-10 w-20 h-20 rounded-full border-4 border-paw-panel overflow-hidden shadow-md">
                   <Image
                     src={member.photo}
                     alt={member.name}
@@ -224,10 +219,10 @@ export default function About() {
                 </div>
               </div>
               <div className="px-6 pt-12 pb-6 text-center">
-                <h3 className="text-lg font-bold text-[#1E293B]">{member.name}</h3>
-                <p className="text-xs text-[#6B7B8D]/70 mb-1">{member.nameCn}</p>
-                <p className="text-xs font-semibold text-[#F5A623] uppercase tracking-wider mb-3">{member.role}</p>
-                <p className="text-sm text-[#6B7B8D] leading-relaxed">{member.desc}</p>
+                <h3 className="text-lg font-bold text-paw-ink">{member.name}</h3>
+                <p className="text-xs text-paw-muted mb-1">{member.nameCn}</p>
+                <p className="text-xs font-semibold text-paw-primary uppercase tracking-wider mb-3">{member.role}</p>
+                <p className="text-sm text-paw-muted leading-relaxed">{member.desc}</p>
               </div>
             </motion.div>
           ))}
@@ -241,36 +236,36 @@ export default function About() {
             { icon: "🌍", text: "5 Languages Ready" },
             { icon: "🇧🇪", text: "Rooted in Ghent" },
           ].map((s, i) => (
-            <div key={i} className="flex items-center gap-2 px-4 py-3 rounded-xl bg-[#FFF4E8]/60 border border-[#F5E6D3]/50">
+            <div key={i} className="flex items-center gap-2 px-4 py-3 rounded-paw-md bg-paw-primary-soft border border-paw-primary/15">
               <span className="text-lg">{s.icon}</span>
-              <span className="text-xs font-semibold text-gray-700">{s.text}</span>
+              <span className="text-xs font-semibold text-paw-body">{s.text}</span>
             </div>
           ))}
         </motion.div>
       </section>
 
       {/* ===== TIMELINE ===== */}
-      <section className="py-20 bg-[#F9FAFB]/70 border-y border-[#F5E6D3]/60">
+      <section className="py-20 bg-paw-panel/70 border-y border-paw-border">
         <div className="max-w-3xl mx-auto px-4">
           <motion.div {...fadeUp()} className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-[#1E293B] mb-3">Our Journey</h2>
-            <p className="text-[#6B7B8D]">From a spark of an idea to a production-ready platform.</p>
+            <h2 className="text-3xl md:text-4xl font-bold text-paw-ink mb-3">Our Journey</h2>
+            <p className="text-paw-muted">From a spark of an idea to a production-ready platform.</p>
           </motion.div>
 
           <div className="relative">
             {/* Vertical line */}
-            <div className="absolute left-[18px] top-0 bottom-0 w-0.5 bg-amber-200 md:left-1/2 md:-translate-x-0.5" />
+            <div className="absolute left-[18px] top-0 bottom-0 w-0.5 bg-paw-primary/25 md:left-1/2 md:-translate-x-0.5" />
 
             {TIMELINE.map((item, i) => (
               <motion.div key={i} {...fadeUp(i * 0.08)} className={`relative flex items-start gap-4 mb-8 md:mb-10 ${i % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"}`}>
                 {/* Dot */}
-                <div className="w-9 h-9 rounded-full bg-[#F5A623] border-4 border-[#F5E6D3] flex items-center justify-center shrink-0 z-10 md:absolute md:left-1/2 md:-translate-x-1/2">
+                <div className="w-9 h-9 rounded-full bg-paw-primary border-4 border-paw-primary-soft flex items-center justify-center shrink-0 z-10 md:absolute md:left-1/2 md:-translate-x-1/2">
                   <PawPrint className="w-3.5 h-3.5 text-white" />
                 </div>
                 {/* Card */}
-                <div className={`flex-1 bg-white rounded-xl border border-[#F5E6D3]/60 p-4 shadow-sm md:max-w-[45%] ${i % 2 === 0 ? "md:mr-auto md:pr-8" : "md:ml-auto md:pl-8"}`}>
-                  <span className="text-xs font-extrabold text-[#F5A623] uppercase tracking-wider">{item.year}</span>
-                  <p className="text-sm text-gray-600 mt-1 leading-relaxed">{item.event}</p>
+                <div className={`flex-1 bg-paw-panel rounded-paw-md border border-paw-border p-4 shadow-sm md:max-w-[45%] ${i % 2 === 0 ? "md:mr-auto md:pr-8" : "md:ml-auto md:pl-8"}`}>
+                  <span className="text-xs font-extrabold text-paw-primary uppercase tracking-wider">{item.year}</span>
+                  <p className="text-sm text-paw-body mt-1 leading-relaxed">{item.event}</p>
                 </div>
               </motion.div>
             ))}
@@ -280,30 +275,30 @@ export default function About() {
 
       {/* ===== CTA ===== */}
       <section className="relative py-20">
-        <div className="absolute bottom-[20%] left-[5%] w-20 h-10 text-[#E8824C]/8 doodle-float-alt hidden lg:block"><DoodleBone className="w-full h-full" /></div>
+        <div className="absolute bottom-[20%] left-[5%] w-20 h-10 text-paw-primary/10 doodle-float-alt hidden lg:block"><DoodleBone className="w-full h-full" /></div>
         <div className="max-w-3xl mx-auto px-4 text-center">
           <motion.div {...fadeUp()}>
-            <h2 className="text-3xl md:text-4xl font-bold text-[#1E293B] mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-paw-ink mb-4">
               Join the PawPal Journey
             </h2>
-            <p className="text-[#6B7B8D] mb-8 text-lg max-w-lg mx-auto">
+            <p className="text-paw-muted mb-8 text-lg max-w-lg mx-auto">
               We&apos;re building the platform we wished existed — for every dog owner, cat lover, and pet parent who believes technology should strengthen, not replace, the bond with their best friend.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
-              <button className="flex items-center gap-2 bg-[#F5A623] hover:bg-[#E8824C] text-white px-8 py-4 rounded-full font-bold text-lg transition-all shadow-[0_4px_20px_rgba(245,158,11,0.35)] hover:-translate-y-0.5">
+              <button className="flex items-center gap-2 bg-paw-primary hover:bg-paw-primary-hover text-white px-8 py-4 rounded-paw-md font-bold text-lg transition-all shadow-paw-action hover:-translate-y-0.5">
                 Download App <ArrowRight className="w-5 h-5" />
               </button>
               <Link href="/globe"
-                className="flex items-center gap-2 bg-white hover:bg-[#F7F8FA] text-amber-700 px-8 py-4 rounded-full font-bold text-lg transition-all border border-[#F5A623]/30">
+                className="flex items-center gap-2 bg-paw-panel hover:bg-paw-panel-subtle text-paw-primary px-8 py-4 rounded-paw-md font-bold text-lg transition-all border border-paw-primary/30">
                 Explore Globe
               </Link>
             </div>
           </motion.div>
 
           {/* Contact line */}
-          <motion.div {...fadeUp(0.2)} className="mt-12 flex items-center justify-center gap-2 text-[#6B7B8D]/70">
+          <motion.div {...fadeUp(0.2)} className="mt-12 flex items-center justify-center gap-2 text-paw-muted">
             <Mail className="w-4 h-4" />
-            <span className="text-sm">Questions? Reach us at <a href="mailto:hello@pawpal.be" className="text-[#F5A623] font-semibold hover:underline">hello@pawpal.be</a></span>
+            <span className="text-sm">Questions? Reach us at <a href="mailto:hello@pawpal.be" className="text-paw-primary font-semibold hover:underline">hello@pawpal.be</a></span>
           </motion.div>
         </div>
       </section>

@@ -55,7 +55,7 @@ function createMarkerEl(emoji: string, color: string, label?: string): HTMLEleme
     padding: ${label ? "0 10px 0 6px" : "0"};
     box-shadow: 0 2px 8px rgba(0,0,0,0.3);
     transition: transform 0.15s;
-    color: #1f2937;
+    color: var(--color-paw-ink);
     white-space: nowrap;
   `;
   const icon = document.createElement("span");
@@ -110,7 +110,7 @@ function createPopupContent(
     if (!row.value) return;
     const item = document.createElement("div");
     item.style.fontSize = "12px";
-    item.style.color = "#666";
+    item.style.color = "var(--color-paw-muted)";
     item.style.marginBottom = "2px";
     item.textContent = row.label ? `${row.label}: ${row.value}` : row.value;
     wrapper.appendChild(item);
@@ -364,7 +364,7 @@ export default function MapGlobeComponent() {
       const emoji = QUEST_EMOJI[q.quest_type] || "🐾";
       const label = QUEST_LABEL[q.quest_type] ?? q.quest_type.replace(/_/g, " ");
       const distance = q.distance_km != null ? `${q.distance_km.toFixed(1)} km away` : "";
-      const el = createMarkerEl(emoji, "#f59e0b", label);
+      const el = createMarkerEl(emoji, "var(--color-paw-accent)", label);
       const popup = new maplibregl.Popup({ offset: 20, closeButton: false })
         .setDOMContent(createPopupContent(`${emoji} ${q.title || "Mission"}`, [
           { label: "Need", value: label },
@@ -387,7 +387,7 @@ export default function MapGlobeComponent() {
     places.forEach((p) => {
       if (p.lat == null || p.lng == null) return;
       const emoji = PLACE_EMOJI[p.place_type] || "📍";
-      const el = createMarkerEl(emoji, "#3b82f6");
+      const el = createMarkerEl(emoji, "var(--color-paw-trust)");
       const ratingStr = p.rating_avg != null ? `⭐ ${Number(p.rating_avg).toFixed(1)}` : "";
       const distance = p.distance_km != null ? `${p.distance_km.toFixed(1)} km away` : "";
       const popup = new maplibregl.Popup({ offset: 20, closeButton: false })
@@ -411,30 +411,30 @@ export default function MapGlobeComponent() {
       <div ref={mapContainer} id="globe-map" className="absolute inset-0 w-full h-full" />
 
       {/* Nearby need tags */}
-      <div className="absolute top-[222px] left-4 z-40 w-[min(320px,calc(100vw-2rem))] rounded-2xl border border-white/60 bg-white/85 p-3 shadow-lg backdrop-blur-md sm:top-[130px]">
+      <div className="absolute top-[222px] left-4 z-40 w-[min(320px,calc(100vw-2rem))] rounded-paw-lg border border-paw-border bg-paw-panel/90 p-3 shadow-paw-panel backdrop-blur-md sm:top-[130px]">
         <div className="mb-2 flex items-center justify-between gap-3">
           <div>
-            <p className="text-xs font-black uppercase tracking-[0.16em] text-amber-600">Nearby needs</p>
-            <p className="text-[11px] font-medium text-gray-500">
+            <p className="text-xs font-black uppercase tracking-[0.16em] text-paw-accent">Nearby needs</p>
+            <p className="text-[11px] font-medium text-paw-muted">
               {nearbyCenter.lat.toFixed(3)}, {nearbyCenter.lng.toFixed(3)} · {NEARBY_RADIUS_KM} km
             </p>
           </div>
-          <span className="rounded-full bg-amber-100 px-2 py-1 text-[11px] font-black text-amber-700">
+          <span className="rounded-full bg-paw-accent-soft px-2 py-1 text-[11px] font-black text-paw-accent">
             {nearbyLoading ? "..." : quests.length}
           </span>
         </div>
         {nearbyQuestTags.length > 0 ? (
           <div className="flex flex-wrap gap-1.5">
             {nearbyQuestTags.slice(0, 6).map((tag) => (
-              <span key={tag.type} className="inline-flex items-center gap-1 rounded-full border border-amber-200 bg-amber-50 px-2.5 py-1 text-[11px] font-bold text-gray-700">
+              <span key={tag.type} className="inline-flex items-center gap-1 rounded-full border border-paw-accent/20 bg-paw-accent-soft px-2.5 py-1 text-[11px] font-bold text-paw-body">
                 <span>{tag.emoji}</span>
                 <span>{tag.label}</span>
-                <span className="text-amber-700">{tag.count}</span>
+                <span className="text-paw-accent">{tag.count}</span>
               </span>
             ))}
           </div>
         ) : (
-          <p className="text-xs font-medium text-gray-500">
+          <p className="text-xs font-medium text-paw-muted">
             {nearbyLoading ? "Loading nearby needs..." : "No open needs in this area yet."}
           </p>
         )}
@@ -442,10 +442,10 @@ export default function MapGlobeComponent() {
 
       {/* Layer Toggle */}
       <div id="globe-layers" className="absolute top-[130px] right-4 z-40 flex flex-col gap-2">
-        <button onClick={() => setShowQuests(!showQuests)} className={`flex items-center gap-2 px-4 py-2 rounded-full text-xs font-bold transition-all shadow-lg backdrop-blur-md border ${showQuests ? "bg-amber-500/90 text-white border-amber-400" : "bg-white/70 text-gray-500 border-gray-200"}`}>
+        <button onClick={() => setShowQuests(!showQuests)} className={`flex items-center gap-2 px-4 py-2 rounded-full text-xs font-bold transition-all shadow-paw-panel backdrop-blur-md border ${showQuests ? "bg-paw-accent/90 text-white border-paw-accent" : "bg-paw-panel/80 text-paw-muted border-paw-border"}`}>
           🐾 Missions {quests.length > 0 && <span className="bg-white/30 px-1.5 py-0.5 rounded-full text-[10px]">{quests.length}</span>}
         </button>
-        <button onClick={() => setShowPlaces(!showPlaces)} className={`flex items-center gap-2 px-4 py-2 rounded-full text-xs font-bold transition-all shadow-lg backdrop-blur-md border ${showPlaces ? "bg-blue-500/90 text-white border-blue-400" : "bg-white/70 text-gray-500 border-gray-200"}`}>
+        <button onClick={() => setShowPlaces(!showPlaces)} className={`flex items-center gap-2 px-4 py-2 rounded-full text-xs font-bold transition-all shadow-paw-panel backdrop-blur-md border ${showPlaces ? "bg-paw-trust/90 text-white border-paw-trust" : "bg-paw-panel/80 text-paw-muted border-paw-border"}`}>
           📍 Places {places.length > 0 && <span className="bg-white/30 px-1.5 py-0.5 rounded-full text-[10px]">{places.length}</span>}
         </button>
       </div>

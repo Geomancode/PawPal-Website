@@ -6,18 +6,18 @@
   --font-brand: "Avenir Next", "Nunito Sans", "Segoe UI", system-ui, sans-serif;
 
   /* ── PawPal canonical foundation palette ── */
-  --color-brand-blue: #2F8FFF;       /* Paw Blue — Navigation · Map · AI · Links */
+  --color-brand-blue: #2F8FFF;       /* Paw Blue — Primary brand · Map · AI · Trust · Links */
   --color-brand-blue-dark: #1F7AE5;  /* Paw Blue Hover — Pressed/hover state */
   --color-brand-amber: #F5A524;      /* Amber — Offers · Reminders · Pending states */
   --color-brand-green: #16A679;      /* Emerald — Success · Safe · Verified */
-  --color-brand-orange: #FF7A59;     /* Coral — Posting · Social · Warm actions */
+  --color-brand-orange: #FF7A59;     /* Coral — Warm accent · Posting · Social moments */
   --color-brand-cream: #F8FAFC;      /* Canvas — Clean app/page background */
   --color-brand-surface: #FFFFFF;    /* White — Card Surface · Inputs */
   --color-brand-slate: #111827;      /* Strong text */
   --color-brand-muted: #64748B;      /* Secondary text */
   --color-brand-sand: #FFF0EA;       /* Accent soft background */
   --color-brand-blush: #FFECEF;      /* Danger soft background */
-  --color-brand-sky: #EAF4FF;        /* Primary soft background */
+  --color-brand-sky: #EAF4FF;        /* Primary/trust soft background */
 
   /* ── PawPal semantic tokens used by shared UI primitives ── */
   --color-paw-page: #F8FAFC;
@@ -192,7 +192,7 @@ body > * {
   }
 }
 
-/* Brand gradient text — blue-led with a warm accent edge */
+/* Brand gradient text — Paw Blue-led with a warm Coral accent edge */
 .text-gradient {
   background-clip: text;
   -webkit-background-clip: text;

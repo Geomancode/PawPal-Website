@@ -15,7 +15,8 @@
 import { NextRequest } from "next/server";
 import { GoogleGenAI, createPartFromFunctionResponse } from "@google/genai";
 import { supabaseServer } from "@/lib/supabaseServer";
-import { PLATFORM_KNOWLEDGE_PROMPT, FALLBACK_IDENTITY_PROMPT, FREE_TIER_QA_PROMPT } from "./systemPrompt";
+import { hasAiAccess } from "@/lib/subscriptions";
+import { PLATFORM_KNOWLEDGE_PROMPT, FALLBACK_IDENTITY_PROMPT } from "./systemPrompt";
 import { loadUserPets, pickRandom, recallMemories, buildPersonaPrompt } from "./personaEngine";
 import { toolDeclarations, executeTool } from "./tools";
 
@@ -135,6 +136,32 @@ export async function POST(req: NextRequest) {
       );
     }
 
+    if (!userId) {
+      return new Response(
+        JSON.stringify({
+          error: "Sign in and upgrade to Basic or Pro to use PawPal AI.",
+          upgradeRequired: true,
+        }),
+        { status: 401, headers: { "Content-Type": "application/json" } }
+      );
+    }
+
+    const { data: entitlement, error: entitlementError } = await supabaseServer
+      .from("profiles")
+      .select("subscription_tier, subscription_expires_at")
+      .eq("id", userId)
+      .maybeSingle();
+
+    if (entitlementError || !hasAiAccess(entitlement ?? {})) {
+      return new Response(
+        JSON.stringify({
+          error: "PawPal AI requires an active Basic or Pro plan.",
+          upgradeRequired: true,
+        }),
+        { status: 402, headers: { "Content-Type": "application/json" } }
+      );
+    }
+
     // Build SSE stream
     const encoder = new TextEncoder();
     const stream = new ReadableStream({
@@ -146,70 +173,6 @@ export async function POST(req: NextRequest) {
         };
 
         try {
-          // ── Determine subscription tier ────────────────────────────
-          let tier = "free";
-
-          if (userId) {
-            const { data: profile } = await supabaseServer
-              .from("profiles")
-              .select("subscription_tier")
-              .eq("id", userId)
-              .single();
-            tier = (profile?.subscription_tier as string) ?? "free";
-          }
-
-          // ── Free tier / not logged in → lightweight Q&A (no tools, no persona) ──
-          if (!userId || tier === "free") {
-            send("thinking", {});
-            send("persona", { petName: "PawPal", speciesGroup: null, status: "alive", siblingCount: 0, memoriesRecalled: 0 });
-
-            const freeAi = new GoogleGenAI({ apiKey: GEMINI_API_KEY });
-            const MODELS = ["gemini-2.5-flash", "gemini-2.0-flash", "gemini-2.0-flash-lite"];
-            let freeResp;
-            let freeErr: unknown = null;
-
-            const freeHistory = history.map((m) => ({
-              role: m.role === "assistant" ? "model" as const : "user" as const,
-              parts: [{ text: m.content }],
-            }));
-
-            for (const model of MODELS) {
-              try {
-                const freeChat = freeAi.chats.create({
-                  model,
-                  config: {
-                    systemInstruction: FREE_TIER_QA_PROMPT,
-                    temperature: 0.7,
-                    maxOutputTokens: 512,
-                  },
-                  history: freeHistory.length > 0 ? freeHistory : undefined,
-                });
-                freeResp = await freeChat.sendMessage({ message });
-                freeErr = null;
-                break;
-              } catch (e) {
-                freeErr = e;
-                const msg = e instanceof Error ? e.message : String(e);
-                if (!msg.includes("503") && !msg.includes("UNAVAILABLE") && !msg.includes("RESOURCE_EXHAUSTED")) break;
-              }
-            }
-
-            if (freeErr || !freeResp) {
-              send("error", { message: "🔄 Service temporarily busy. Please try again!" });
-            } else {
-              const text = freeResp.text ?? "";
-              if (text) {
-                // Append a subtle upsell hint for free users
-                const upsellHint = !userId
-                  ? "\n\n💡 _Sign in to unlock map search with AI pins!_"
-                  : "\n\n✨ _Upgrade to Pro for personalized AI with your pet's personality!_";
-                send("text", { content: text + upsellHint });
-              }
-            }
-            send("done", {});
-            return;
-          }
-
           // ── Build system prompt (persona or fallback) ──────────────
           let systemPrompt: string;
 

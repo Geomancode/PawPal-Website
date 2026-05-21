@@ -284,7 +284,7 @@ export default function CheckoutPage() {
                       whileTap={{ scale: 0.97 }}
                       onClick={handleStripeCheckout}
                       disabled={redirecting}
-                      className="w-full bg-[#635BFF] hover:bg-[#5851DB] text-white py-4 rounded-full font-bold text-lg flex items-center justify-center gap-3 transition-all shadow-lg cursor-pointer disabled:opacity-60"
+                      className="w-full bg-paw-primary hover:bg-paw-primary-hover text-white py-4 rounded-full font-bold text-lg flex items-center justify-center gap-3 transition-all shadow-paw-action cursor-pointer disabled:opacity-60"
                     >
                       {redirecting ? (
                         <>

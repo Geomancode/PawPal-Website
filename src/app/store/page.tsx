@@ -1,12 +1,12 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { Suspense, useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import {
   ShoppingCart, Plus, Minus, Trash2, ArrowRight,
   Package, Search, SlidersHorizontal, ChevronRight, RefreshCw,
-  ShieldCheck,
+  ShieldCheck, Sparkles, Crown, CheckCircle2, Loader2,
 } from "lucide-react";
 import {
   PRODUCTS, CATEGORIES, Product, CartItem, Category,
@@ -20,12 +20,169 @@ import ProductVisual from "./ProductVisual";
 import { useAuth } from "@/components/AuthProvider";
 import { DoodleBowl, DoodlePaw } from "@/components/PetDoodles";
 import {
+  paidTierFromValue,
+  SUBSCRIPTION_PLANS,
+  type SubscriptionTier,
+} from "@/lib/subscriptions";
+import {
   Button,
   EmptyState,
   Input,
   ProductCard as StoreProductCard,
   Sheet,
 } from "@/components/ui";
+
+function SubscriptionUpgradePanel({
+  initialTier,
+  source,
+  appUserId,
+  appEmail,
+  accessToken,
+}: {
+  initialTier: Exclude<SubscriptionTier, "free">;
+  source: string;
+  appUserId: string | null;
+  appEmail: string | null;
+  accessToken?: string;
+}) {
+  const [selectedTier, setSelectedTier] =
+    useState<Exclude<SubscriptionTier, "free">>(initialTier);
+  const [loadingTier, setLoadingTier] =
+    useState<Exclude<SubscriptionTier, "free"> | null>(null);
+  const [error, setError] = useState("");
+
+  const startCheckout = async (tier: Exclude<SubscriptionTier, "free">) => {
+    setSelectedTier(tier);
+    setLoadingTier(tier);
+    setError("");
+    try {
+      const res = await fetch("/api/subscriptions/checkout", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          ...(accessToken ? { Authorization: `Bearer ${accessToken}` } : {}),
+        },
+        body: JSON.stringify({
+          tier,
+          userId: appUserId,
+          email: appEmail,
+          source,
+        }),
+      });
+      const data = await res.json();
+      if (!res.ok || !data.url) {
+        throw new Error(data.error || "Could not start subscription checkout");
+      }
+      window.location.href = data.url;
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Subscription checkout failed");
+      setLoadingTier(null);
+    }
+  };
+
+  return (
+    <div className="min-h-screen bg-paw-page pt-28 pb-16 text-paw-ink">
+      <section className="mx-auto max-w-6xl px-4">
+        <div className="mb-8 max-w-2xl">
+          <div className="mb-4 inline-flex items-center gap-2 rounded-paw-md border border-paw-primary/20 bg-paw-primary-soft px-3 py-1.5 text-sm font-bold text-paw-primary">
+            <Sparkles className="h-4 w-4" aria-hidden="true" />
+            PawPal AI upgrade
+          </div>
+          <h1 className="text-4xl font-extrabold tracking-tight text-paw-ink sm:text-5xl">
+            Choose your PawPal plan
+          </h1>
+          <p className="mt-4 text-base leading-7 text-paw-body">
+            Basic unlocks your pet companion AI. Pro adds priority access for the
+            next wave of advanced walk, safety, and multi-pet tools.
+          </p>
+        </div>
+
+        {error && (
+          <div className="mb-5 rounded-paw-md border border-paw-danger/20 bg-paw-danger-soft px-4 py-3 text-sm font-bold text-paw-danger">
+            {error}
+          </div>
+        )}
+
+        <div className="grid gap-5 md:grid-cols-2">
+          {(["basic", "pro"] as const).map((tier) => {
+            const plan = SUBSCRIPTION_PLANS[tier];
+            const active = selectedTier === tier;
+            const busy = loadingTier === tier;
+            return (
+              <motion.div
+                key={tier}
+                initial={{ opacity: 0, y: 18 }}
+                animate={{ opacity: 1, y: 0 }}
+                className={`rounded-paw-lg border bg-paw-panel p-6 shadow-paw-panel ${
+                  active ? "border-paw-primary" : "border-paw-border"
+                }`}
+              >
+                <div className="mb-5 flex items-start justify-between gap-4">
+                  <div>
+                    <div className="mb-3 flex h-11 w-11 items-center justify-center rounded-paw-md bg-paw-primary-soft text-paw-primary">
+                      {tier === "pro" ? (
+                        <Crown className="h-5 w-5" aria-hidden="true" />
+                      ) : (
+                        <Sparkles className="h-5 w-5" aria-hidden="true" />
+                      )}
+                    </div>
+                    <h2 className="text-2xl font-extrabold text-paw-ink">
+                      {plan.name}
+                    </h2>
+                    <p className="mt-2 text-sm leading-6 text-paw-body">
+                      {plan.summary}
+                    </p>
+                  </div>
+                  {plan.highlight && (
+                    <span className="rounded-paw-sm border border-paw-success/20 bg-paw-success-soft px-2.5 py-1 text-xs font-bold text-paw-success">
+                      Recommended
+                    </span>
+                  )}
+                </div>
+
+                <div className="mb-5 flex items-end gap-1">
+                  <span className="text-4xl font-extrabold text-paw-ink">
+                    €{plan.monthlyPrice.toFixed(2)}
+                  </span>
+                  <span className="pb-1 text-sm font-bold text-paw-muted">
+                    / month
+                  </span>
+                </div>
+
+                <div className="mb-6 space-y-3">
+                  {plan.features.map((feature) => (
+                    <div key={feature} className="flex items-start gap-2 text-sm text-paw-body">
+                      <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-paw-success" aria-hidden="true" />
+                      <span>{feature}</span>
+                    </div>
+                  ))}
+                </div>
+
+                <Button
+                  type="button"
+                  size="lg"
+                  variant={tier === "pro" ? "accent" : "primary"}
+                  disabled={Boolean(loadingTier)}
+                  onClick={() => startCheckout(tier)}
+                  className="w-full"
+                >
+                  {busy && <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />}
+                  Upgrade to {plan.name}
+                </Button>
+              </motion.div>
+            );
+          })}
+        </div>
+
+        <div className="mt-6 rounded-paw-md border border-paw-border bg-paw-panel-subtle p-4 text-sm leading-6 text-paw-body">
+          Existing Free features stay available after cancellation. Paid AI access is
+          restored automatically after Stripe confirms your subscription; if the app
+          is already open, use Refresh plan in Profile.
+        </div>
+      </section>
+    </div>
+  );
+}
 
 // ─── Product Card ──────────────────────────────────────
 function ProductCard({
@@ -206,9 +363,10 @@ function CartDrawer({
 }
 
 // ─── Main Store Page ───────────────────────────────────
-export default function StorePage() {
+function StorePageContent() {
   const router = useRouter();
-  const { user } = useAuth();
+  const searchParams = useSearchParams();
+  const { user, session } = useAuth();
   const [products, setProducts] = useState<Product[]>(PRODUCTS);
   const [cart, setCart] = useState<CartItem[]>([]);
   const [category, setCategory] = useState<Category>("all");
@@ -218,6 +376,11 @@ export default function StorePage() {
   const [catalogLoading, setCatalogLoading] = useState(true);
   const [catalogIssue, setCatalogIssue] = useState<string | null>(null);
   const [isAdmin, setIsAdmin] = useState(false);
+  const upgradeIntent = searchParams.get("intent") === "ai-upgrade";
+  const upgradeTier = paidTierFromValue(searchParams.get("tier")) ?? "basic";
+  const appUserId = searchParams.get("user_id");
+  const appEmail = searchParams.get("email");
+  const source = searchParams.get("source") ?? "web-store";
 
   useEffect(() => {
     let cancelled = false;
@@ -298,6 +461,18 @@ export default function StorePage() {
   });
 
   const totalItems = cart.reduce((s, i) => s + i.quantity, 0);
+
+  if (upgradeIntent) {
+    return (
+      <SubscriptionUpgradePanel
+        initialTier={upgradeTier}
+        source={source}
+        appUserId={appUserId}
+        appEmail={appEmail}
+        accessToken={session?.access_token}
+      />
+    );
+  }
 
   return (
     <div className="relative min-h-screen w-full bg-paw-page text-paw-ink">
@@ -479,5 +654,19 @@ export default function StorePage() {
         )}
       </AnimatePresence>
     </div>
+  );
+}
+
+export default function StorePage() {
+  return (
+    <Suspense
+      fallback={
+        <div className="min-h-screen bg-paw-page pt-28 text-center text-sm font-bold text-paw-muted">
+          Loading store...
+        </div>
+      }
+    >
+      <StorePageContent />
+    </Suspense>
   );
 }

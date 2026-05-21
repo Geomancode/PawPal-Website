@@ -165,13 +165,9 @@ export default function Home() {
       </section>
 
       {/* ===== CTA SECTION — Dark with Particles ===== */}
-      <section className="relative py-24 bg-gradient-to-br from-[#1E293B] to-[#0f172a] overflow-hidden">
+      <section className="relative py-24 bg-paw-ink overflow-hidden">
         {/* Floating particles */}
         <FloatingParticles />
-
-        {/* Subtle gradient blobs */}
-        <div className="absolute top-[10%] left-[20%] h-[50%] w-[40%] rounded-full bg-paw-primary/10 blur-[120px]" />
-        <div className="absolute bottom-[10%] right-[15%] h-[40%] w-[30%] rounded-full bg-paw-primary/8 blur-[100px]" />
 
         {/* Pet doodle in dark section */}
         <div className="absolute top-[15%] right-[8%] w-20 h-20 text-white/5 doodle-float hidden lg:block">

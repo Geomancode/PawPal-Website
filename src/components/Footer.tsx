@@ -32,7 +32,7 @@ const SOCIALS = [
 
 export default function Footer() {
   return (
-    <footer className="relative overflow-hidden bg-[#111827] text-slate-300">
+    <footer className="relative overflow-hidden bg-paw-ink text-slate-300">
       <div className="h-1 bg-gradient-to-r from-paw-primary via-paw-warning to-paw-trust" />
       {/* Decorative doodles */}
       <div className="absolute top-8 right-12 hidden h-20 w-20 text-paw-primary/[0.05] lg:block"><DoodleDog className="h-full w-full" /></div>

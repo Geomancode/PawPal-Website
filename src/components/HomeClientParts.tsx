@@ -392,8 +392,8 @@ export function BentoFeatureGrid() {
       {/* Card 3: Local Community */}
       <SpotlightCard className="glass rounded-2xl border border-paw-border transition-all duration-300 hover:border-paw-success/30 hover:shadow-xl group cursor-default bento-glow p-7 flex flex-col justify-between">
         <div>
-          <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#10B981]/8 text-[10px] font-bold text-[#10B981] uppercase tracking-wider mb-4">Community Mode</div>
-          <div className="w-12 h-12 rounded-xl flex items-center justify-center bg-[#10B981]/10 text-[#10B981] mb-4 group-hover:scale-110 transition-transform duration-300">
+          <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-paw-success-soft text-[10px] font-bold text-paw-success uppercase tracking-wider mb-4">Community Mode</div>
+          <div className="w-12 h-12 rounded-paw-md flex items-center justify-center bg-paw-success-soft text-paw-success mb-4 group-hover:scale-105 transition-transform duration-300">
             <Users className="w-6 h-6" />
           </div>
           <h3 className="mb-2 text-lg font-bold text-paw-ink">Local Pet Network</h3>
@@ -403,7 +403,7 @@ export function BentoFeatureGrid() {
         </div>
         {/* User stack */}
         <div className="flex -space-x-2 mt-4">
-          {["#FF7A59", "#2F8FFF", "#16A679", "#F5A524", "#E54864"].map((c, i) => (
+          {["var(--color-paw-primary)", "var(--color-paw-trust)", "var(--color-paw-success)", "var(--color-paw-warning)", "var(--color-paw-danger)"].map((c, i) => (
             <div
               key={i}
               className="w-9 h-9 rounded-full border-2 border-white flex items-center justify-center text-white text-xs font-bold"
@@ -551,7 +551,7 @@ export function AppShowcase() {
                 {features.map((f, i) => (
                   <motion.div
                     key={i}
-                    className="flex items-center gap-3 px-4 py-3 rounded-2xl bg-white/60 backdrop-blur-sm border border-white/80 hover:shadow-md transition-all"
+                    className="flex items-center gap-3 px-4 py-3 rounded-paw-lg bg-paw-panel/70 backdrop-blur-sm border border-paw-border hover:shadow-md transition-all"
                     initial={{ opacity: 0, y: 12 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}

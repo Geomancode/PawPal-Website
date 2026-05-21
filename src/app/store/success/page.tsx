@@ -2,7 +2,15 @@
 
 import { useState, useEffect, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { CheckCircle2, Package, ArrowRight, Loader2, AlertTriangle, Receipt } from "lucide-react";
+import {
+  CheckCircle2,
+  Package,
+  ArrowRight,
+  Loader2,
+  AlertTriangle,
+  Receipt,
+  Sparkles,
+} from "lucide-react";
 import { saveOrder, saveCart, generateOrderId, loadCart } from "../storeData";
 import { Badge, Button, Card } from "@/components/ui";
 
@@ -31,6 +39,8 @@ function SuccessContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const sessionId = searchParams.get("session_id");
+  const intent = searchParams.get("intent");
+  const isSubscription = intent === "subscription";
   const [session, setSession] = useState<StripeSession | null>(null);
   const [loading, setLoading] = useState(() => Boolean(sessionId));
   const [error, setError] = useState(() => sessionId ? "" : "No session ID found");
@@ -50,7 +60,7 @@ function SuccessContent() {
           setSession(data);
 
           const cart = loadCart();
-          if (cart.length > 0) {
+          if (!isSubscription && cart.length > 0) {
             const subtotal = cart.reduce((s, i) => s + i.product.price * i.quantity, 0);
             saveOrder({
               id: orderId,
@@ -84,7 +94,7 @@ function SuccessContent() {
         setError(err.message);
         setLoading(false);
       });
-  }, [sessionId, orderId]);
+  }, [sessionId, orderId, isSubscription]);
 
   if (loading) {
     return <LoadingState />;
@@ -117,13 +127,26 @@ function SuccessContent() {
           </div>
 
           <Badge tone="success" className="mb-3">Payment confirmed</Badge>
-          <h1 className="text-3xl font-extrabold text-paw-ink">Payment successful</h1>
-          <p className="mt-2 text-paw-body">Thank you for your PawPal purchase.</p>
+          <h1 className="text-3xl font-extrabold text-paw-ink">
+            {isSubscription ? "Plan activated" : "Payment successful"}
+          </h1>
+          <p className="mt-2 text-paw-body">
+            {isSubscription
+              ? "Your PawPal AI access will be available as soon as the app refreshes your plan."
+              : "Thank you for your PawPal purchase."}
+          </p>
 
-          <div className="mt-5 inline-flex items-center gap-2 rounded-paw-md border border-paw-primary/20 bg-paw-primary-soft px-4 py-2 font-mono text-sm font-extrabold text-paw-primary">
-            <Receipt className="h-4 w-4" aria-hidden="true" />
-            Order #{orderId}
-          </div>
+          {isSubscription ? (
+            <div className="mt-5 inline-flex items-center gap-2 rounded-paw-md border border-paw-primary/20 bg-paw-primary-soft px-4 py-2 text-sm font-extrabold text-paw-primary">
+              <Sparkles className="h-4 w-4" aria-hidden="true" />
+              PawPal {session?.metadata?.tier === "pro" ? "Pro" : "Basic"}
+            </div>
+          ) : (
+            <div className="mt-5 inline-flex items-center gap-2 rounded-paw-md border border-paw-primary/20 bg-paw-primary-soft px-4 py-2 font-mono text-sm font-extrabold text-paw-primary">
+              <Receipt className="h-4 w-4" aria-hidden="true" />
+              Order #{orderId}
+            </div>
+          )}
 
           {session && (
             <div className="mt-7 space-y-4 text-left">
@@ -150,19 +173,34 @@ function SuccessContent() {
                 </div>
               )}
 
-              <div className="rounded-paw-md border border-paw-warning/20 bg-paw-warning-soft p-4">
-                <p className="text-sm leading-6 text-paw-warning">
-                  Receipt sent to <strong>{session.customer_email}</strong>. Your order will ship within 1-2 business days.
-                </p>
-              </div>
+              {isSubscription ? (
+                <div className="rounded-paw-md border border-paw-trust/20 bg-paw-trust-soft p-4">
+                  <p className="text-sm leading-6 text-paw-trust">
+                    Return to the PawPal app and tap <strong>Refresh plan</strong> in Profile if AI does not unlock immediately.
+                  </p>
+                </div>
+              ) : (
+                <div className="rounded-paw-md border border-paw-warning/20 bg-paw-warning-soft p-4">
+                  <p className="text-sm leading-6 text-paw-warning">
+                    Receipt sent to <strong>{session.customer_email}</strong>. Your order will ship within 1-2 business days.
+                  </p>
+                </div>
+              )}
             </div>
           )}
 
           <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
-            <Button type="button" onClick={() => router.push("/store/orders")}>
-              View My Orders
-              <ArrowRight className="h-4 w-4" aria-hidden="true" />
-            </Button>
+            {isSubscription ? (
+              <Button type="button" onClick={() => router.push("/store?intent=ai-upgrade")}>
+                Manage Plans
+                <ArrowRight className="h-4 w-4" aria-hidden="true" />
+              </Button>
+            ) : (
+              <Button type="button" onClick={() => router.push("/store/orders")}>
+                View My Orders
+                <ArrowRight className="h-4 w-4" aria-hidden="true" />
+              </Button>
+            )}
             <Button type="button" variant="secondary" onClick={() => router.push("/store")}>
               Continue Shopping
             </Button>

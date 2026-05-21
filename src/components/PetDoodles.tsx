@@ -96,7 +96,7 @@ export function SectionDoodles({ variant = "default" }: { variant?: "default" | 
   if (variant === "minimal") {
     return (
       <>
-        <div className="absolute top-8 right-6 w-14 h-14 text-[#F5A623]/10 doodle-float hidden lg:block">
+        <div className="absolute top-8 right-6 w-14 h-14 text-paw-primary/10 doodle-float hidden lg:block">
           <DoodlePaw className="w-full h-full" />
         </div>
       </>
@@ -106,10 +106,10 @@ export function SectionDoodles({ variant = "default" }: { variant?: "default" | 
   if (variant === "alt") {
     return (
       <>
-        <div className="absolute top-12 left-6 w-16 h-16 text-[#E8824C]/8 doodle-float-alt hidden lg:block" style={{ animationDelay: "1s" }}>
+        <div className="absolute top-12 left-6 w-16 h-16 text-paw-primary/10 doodle-float-alt hidden lg:block" style={{ animationDelay: "1s" }}>
           <DoodleCat className="w-full h-full" />
         </div>
-        <div className="absolute bottom-8 right-8 w-12 h-12 text-[#4A90D9]/8 doodle-float hidden lg:block" style={{ animationDelay: "3s" }}>
+        <div className="absolute bottom-8 right-8 w-12 h-12 text-paw-trust/10 doodle-float hidden lg:block" style={{ animationDelay: "3s" }}>
           <DoodleHeart className="w-full h-full" />
         </div>
       </>
@@ -118,10 +118,10 @@ export function SectionDoodles({ variant = "default" }: { variant?: "default" | 
 
   return (
     <>
-      <div className="absolute top-10 right-6 w-20 h-20 text-[#F5A623]/8 doodle-float hidden lg:block">
+      <div className="absolute top-10 right-6 w-20 h-20 text-paw-primary/10 doodle-float hidden lg:block">
         <DoodleDog className="w-full h-full" />
       </div>
-      <div className="absolute bottom-10 left-6 w-16 h-16 text-[#E8824C]/8 doodle-float-alt hidden lg:block" style={{ animationDelay: "2s" }}>
+      <div className="absolute bottom-10 left-6 w-16 h-16 text-paw-primary/10 doodle-float-alt hidden lg:block" style={{ animationDelay: "2s" }}>
         <DoodleBone className="w-full h-full" />
       </div>
     </>

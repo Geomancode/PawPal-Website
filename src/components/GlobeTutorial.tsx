@@ -35,7 +35,7 @@ const STEPS: TourStep[] = [
     targetId: "globe-layers",
     emoji: "🗂️",
     title: "Filter Layers",
-    description: "Toggle Missions (🐾 amber) and Places (📍 blue) on or off. Each layer has its own markers with relevant info popups.",
+    description: "Toggle Missions (🐾 Coral accent) and Places (📍 Paw Blue) on or off. Each layer has its own markers with relevant info popups.",
     position: "left",
   },
 ];
@@ -153,12 +153,12 @@ export default function GlobeTutorial() {
           left: targetRect.left - 14,
           width: targetRect.width + 28,
           height: targetRect.height + 28,
-          border: "2px solid rgba(245, 158, 11, 0.6)",
-          boxShadow: "0 0 0 4000px rgba(0,0,0,0), 0 0 20px rgba(245, 158, 11, 0.3)",
+          border: "2px solid color-mix(in srgb, var(--color-paw-primary) 70%, transparent)",
+          boxShadow: "0 0 0 4000px rgba(0,0,0,0), 0 0 20px color-mix(in srgb, var(--color-paw-primary) 35%, transparent)",
           transition: "top 0.4s, left 0.4s, width 0.4s, height 0.4s",
         }}
       >
-        <div className="absolute inset-0 rounded-2xl border-2 border-amber-400/40 animate-pulse" />
+        <div className="absolute inset-0 rounded-paw-lg border-2 border-paw-primary/40 animate-pulse" />
       </motion.div>
 
       {/* Tooltip card anchored near the target */}
@@ -172,9 +172,9 @@ export default function GlobeTutorial() {
           className="fixed z-[10000] w-[340px] max-w-[90vw]"
           style={tooltipStyle}
         >
-          <div className="bg-white rounded-2xl shadow-2xl border border-gray-100 overflow-hidden">
+          <div className="bg-paw-panel rounded-paw-lg shadow-paw-panel border border-paw-border overflow-hidden">
             {/* Top accent */}
-            <div className="h-1 bg-gradient-to-r from-amber-400 to-orange-500" />
+            <div className="h-1 bg-gradient-to-r from-paw-primary to-paw-trust" />
 
             <div className="p-5">
               {/* Progress + close */}
@@ -184,12 +184,12 @@ export default function GlobeTutorial() {
                     <div
                       key={i}
                       className={`h-1.5 rounded-full transition-all duration-300 ${
-                        i === step ? "w-5 bg-amber-500" : i < step ? "w-2.5 bg-amber-300" : "w-2.5 bg-gray-200"
+                        i === step ? "w-5 bg-paw-primary" : i < step ? "w-2.5 bg-paw-primary/45" : "w-2.5 bg-paw-border"
                       }`}
                     />
                   ))}
                 </div>
-                <button onClick={dismiss} className="text-gray-300 hover:text-gray-500 transition-colors">
+                <button onClick={dismiss} className="text-paw-muted hover:text-paw-body transition-colors">
                   <X className="w-4 h-4" />
                 </button>
               </div>
@@ -198,23 +198,23 @@ export default function GlobeTutorial() {
               <div className="flex items-start gap-3 mb-4">
                 <span className="text-2xl leading-none mt-0.5">{current.emoji}</span>
                 <div>
-                  <h3 className="text-base font-extrabold text-gray-900 mb-1">{current.title}</h3>
-                  <p className="text-sm text-gray-500 leading-relaxed">{current.description}</p>
+                  <h3 className="text-base font-extrabold text-paw-ink mb-1">{current.title}</h3>
+                  <p className="text-sm text-paw-muted leading-relaxed">{current.description}</p>
                 </div>
               </div>
 
               {/* Buttons */}
               <div className="flex items-center justify-between">
-                <button onClick={dismiss} className="text-xs text-gray-400 hover:text-gray-600 font-medium">
+                <button onClick={dismiss} className="text-xs text-paw-muted hover:text-paw-body font-medium">
                   Skip
                 </button>
                 <div className="flex items-center gap-2">
                   {step > 0 && (
-                    <button onClick={prev} className="flex items-center gap-1 px-3 py-1.5 text-xs font-semibold text-gray-500 bg-gray-100 hover:bg-gray-200 rounded-lg transition-all">
+                    <button onClick={prev} className="flex items-center gap-1 px-3 py-1.5 text-xs font-semibold text-paw-muted bg-paw-panel-subtle hover:bg-paw-primary-soft rounded-paw-sm transition-all">
                       <ChevronLeft className="w-3 h-3" /> Back
                     </button>
                   )}
-                  <button onClick={next} className="flex items-center gap-1 px-4 py-1.5 text-xs font-bold text-white bg-amber-500 hover:bg-amber-600 rounded-lg transition-all shadow-sm">
+                  <button onClick={next} className="flex items-center gap-1 px-4 py-1.5 text-xs font-bold text-white bg-paw-primary hover:bg-paw-primary-hover rounded-paw-sm transition-all shadow-paw-action">
                     {isLast ? (
                       <><Sparkles className="w-3 h-3" /> Got it!</>
                     ) : (

@@ -6,7 +6,7 @@
   "scope": "/",
   "display": "standalone",
   "background_color": "#F7F8FA",
-  "theme_color": "#F5A623",
+  "theme_color": "#2F8FFF",
   "icons": [
     {
       "src": "/pawpal_icon.svg",
