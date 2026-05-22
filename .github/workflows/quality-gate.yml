@@ -39,7 +39,7 @@ jobs:
 
       - name: Check for exposed secrets
         run: |
-          SECRETS=$(grep -rn 'SUPABASE_SERVICE_ROLE\|sk_live_\|sk_test_' src/ --include="*.ts" --include="*.tsx" || true)
+          SECRETS=$(grep -Ern 'sk_live_[A-Za-z0-9_]+|sk_test_[A-Za-z0-9_]+|sb_secret_[A-Za-z0-9_-]+|eyJ[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+' src/ --include="*.ts" --include="*.tsx" || true)
           if [ -n "$SECRETS" ]; then
             echo "❌ BLOCKED: Possible server secret exposed in client code."
             echo "$SECRETS"
