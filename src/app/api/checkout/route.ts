@@ -56,6 +56,7 @@ export async function POST(req: NextRequest) {
       cancel_url: `${baseUrl}/store/checkout`,
       customer_email: shipping?.email || undefined,
       metadata: {
+        intent: "store-order",
         shipping_name: shipping?.fullName || "",
         shipping_address: shipping?.address || "",
         shipping_city: shipping?.city || "",

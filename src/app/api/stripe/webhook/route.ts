@@ -43,6 +43,22 @@ function eventSubscriptionId(event: Stripe.Event) {
   return object.subscription?.id ?? null;
 }
 
+function shouldHandleSubscriptionEvent(event: Stripe.Event) {
+  const object = event.data.object as {
+    object?: string;
+    mode?: string | null;
+  };
+
+  if (event.type === "checkout.session.completed") {
+    return object.object === "checkout.session" && object.mode === "subscription";
+  }
+
+  return (
+    event.type === "customer.subscription.updated" ||
+    event.type === "customer.subscription.deleted"
+  );
+}
+
 async function recordEvent(event: Stripe.Event, userId?: string | null) {
   const supabaseAdmin = getSupabaseAdmin();
   const { error } = await supabaseAdmin.from("subscription_events").insert({
@@ -171,6 +187,10 @@ export async function POST(req: NextRequest) {
       : null;
 
   try {
+    if (!shouldHandleSubscriptionEvent(event)) {
+      return NextResponse.json({ received: true, ignored: true });
+    }
+
     const shouldProcess = await recordEvent(event, userId);
     if (!shouldProcess) return NextResponse.json({ received: true, duplicate: true });
 

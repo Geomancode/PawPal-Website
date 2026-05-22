@@ -16,6 +16,7 @@ import { Badge, Button, Card } from "@/components/ui";
 
 interface StripeSession {
   id: string;
+  mode: string | null;
   status: string;
   customer_email: string;
   amount_total: number;
@@ -40,11 +41,15 @@ function SuccessContent() {
   const searchParams = useSearchParams();
   const sessionId = searchParams.get("session_id");
   const intent = searchParams.get("intent");
-  const isSubscription = intent === "subscription";
+  const requestedSubscription = intent === "subscription";
   const [session, setSession] = useState<StripeSession | null>(null);
   const [loading, setLoading] = useState(() => Boolean(sessionId));
   const [error, setError] = useState(() => sessionId ? "" : "No session ID found");
   const [orderId] = useState(() => generateOrderId());
+  const isSubscription =
+    requestedSubscription ||
+    session?.mode === "subscription" ||
+    session?.metadata?.intent === "ai-upgrade";
 
   useEffect(() => {
     if (!sessionId) {
@@ -60,7 +65,9 @@ function SuccessContent() {
           setSession(data);
 
           const cart = loadCart();
-          if (!isSubscription && cart.length > 0) {
+          const completedSubscription =
+            data.mode === "subscription" || data.metadata?.intent === "ai-upgrade";
+          if (!completedSubscription && cart.length > 0) {
             const subtotal = cart.reduce((s, i) => s + i.product.price * i.quantity, 0);
             saveOrder({
               id: orderId,
@@ -94,7 +101,7 @@ function SuccessContent() {
         setError(err.message);
         setLoading(false);
       });
-  }, [sessionId, orderId, isSubscription]);
+  }, [sessionId, orderId, requestedSubscription]);
 
   if (loading) {
     return <LoadingState />;

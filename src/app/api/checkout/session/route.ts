@@ -22,16 +22,17 @@ export async function GET(req: NextRequest) {
 
     return NextResponse.json({
       id: session.id,
+      mode: session.mode,
       status: session.payment_status,
       customer_email: session.customer_email || session.customer_details?.email,
       amount_total: session.amount_total,
       currency: session.currency,
-      metadata: session.metadata,
+      metadata: session.metadata ?? {},
       line_items: session.line_items?.data.map((item) => ({
         name: item.description,
         quantity: item.quantity,
         amount: item.amount_total,
-      })),
+      })) ?? [],
     });
   } catch (err) {
     console.error("Session retrieve error:", err);
