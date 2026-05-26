@@ -1,8 +1,18 @@
+import type { Metadata } from "next";
 import {
   FadeIn, FadeInView, HeroCTA, HeroBadges, GlobeSection, BottomCTA,
-  AnimatedHeadline, AnimatedCounter, ScrollProgress, HeroBlobs,
-  BentoFeatureGrid, TrustMarquee, AppShowcase, FloatingParticles,
+  AnimatedHeadline, HeroDescription, AnimatedCounter, ScrollProgress, HeroBlobs,
+  BentoFeatureGrid, TrustMarquee, AppShowcase, ProductFlow,
 } from "@/components/HomeClientParts";
+
+export const metadata: Metadata = {
+  title: "PawPal | Pet Safety, Walks, and Community on One Map",
+  description:
+    "PawPal combines fog-of-war walks, NFC pet safety profiles, AI care help, and a trusted local pet community.",
+  alternates: {
+    canonical: "/",
+  },
+};
 
 /* ── Inline SVG Pet Doodles (Pawlace-inspired line art) ── */
 const DoodleDog = ({ className = "" }: { className?: string }) => (
@@ -62,13 +72,12 @@ const DoodleBone = ({ className = "" }: { className?: string }) => (
 
 export default function Home() {
   return (
-    <div className="noise-overlay relative w-full overflow-hidden bg-paw-page text-paw-ink">
+    <div className="noise-overlay relative w-full overflow-x-hidden bg-paw-page text-paw-ink">
       {/* Scroll progress bar at top */}
       <ScrollProgress />
 
       {/* ===== HERO SECTION ===== */}
-      <section className="relative min-h-screen">
-        {/* Animated breathing background blobs */}
+      <section className="relative min-h-[88svh] overflow-visible pb-8 pt-24 lg:pt-0">
         <HeroBlobs />
 
         {/* Pet doodle decorations */}
@@ -79,16 +88,19 @@ export default function Home() {
           <DoodleBone className="w-full h-full" />
         </div>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 lg:pt-0">
-          <div className="flex flex-col lg:flex-row items-center justify-between min-h-[calc(100vh-5rem)] gap-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="hero-stage relative flex min-h-[calc(88svh-5rem)] flex-col items-center justify-between gap-8">
 
             {/* Left: Text */}
-            <FadeIn className="w-full lg:w-1/2 flex flex-col justify-center space-y-7 z-10">
+            <FadeIn className="hero-orbit-copy z-10 w-full space-y-7">
+              {/* Invisible float for shape-outside arc text wrapping (desktop only) */}
+              <div className="hero-globe-shape" aria-hidden="true" />
+
               {/* Badge */}
               <FadeIn delay={0.1}>
-                <div className="inline-flex w-fit items-center gap-2 rounded-paw-md border border-paw-primary/20 bg-paw-primary-soft px-4 py-2">
-                  <span className="flex h-2 w-2 animate-pulse rounded-full bg-paw-primary" />
-                  <span className="text-sm font-bold text-paw-primary">Smart Pet Life Platform</span>
+                <div className="inline-flex w-fit items-center gap-2 rounded-paw-md border border-[#76C7B8] bg-white px-4 py-2">
+                  <span className="flex h-2 w-2 animate-pulse rounded-full bg-[#76C7B8]" />
+                  <span className="text-sm font-bold text-[#76C7B8]">Smart Pet Life Platform</span>
                 </div>
               </FadeIn>
 
@@ -96,11 +108,7 @@ export default function Home() {
               <AnimatedHeadline />
 
               {/* Description */}
-              <FadeIn delay={0.9}>
-                <p className="max-w-lg text-lg leading-relaxed text-paw-body lg:text-xl">
-                  PawPal enhances the bond between you and your pet — with gamified walks, fog-of-war maps, NFC safety tags, an AI assistant, and a trusted local community — all built for pet lovers.
-                </p>
-              </FadeIn>
+              <HeroDescription />
 
               <HeroCTA />
               <HeroBadges />
@@ -121,13 +129,31 @@ export default function Home() {
       <section className="bg-gradient-to-b from-paw-panel-subtle to-paw-page py-14">
         <div className="max-w-5xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
           {[
-            { value: "58%", label: "Belgian Pet Households" },
-            { value: "€122", label: "Monthly Pet Spending" },
-            { value: "2M+", label: "Dogs in Belgium" },
-            { value: "5", label: "Languages Supported" },
+            { value: "1 scan", label: "Opens a pet profile" },
+            { value: "0 installs", label: "Needed by finders" },
+            { value: "5", label: "Languages ready" },
+            { value: "3 modes", label: "Walk, safety, community" },
           ].map((s, i) => (
             <AnimatedCounter key={i} value={s.value} label={s.label} delay={i * 0.1} />
           ))}
+        </div>
+      </section>
+
+      {/* ===== PRODUCT FLOW ===== */}
+      <section id="workflow" className="bg-paw-page py-20">
+        <div className="mx-auto max-w-6xl px-4">
+          <FadeInView>
+            <h2 className="mb-4 text-center font-brand text-3xl font-bold text-paw-ink md:text-4xl">
+              From walk to rescue to neighborhood help
+            </h2>
+          </FadeInView>
+          <FadeInView delay={0.1}>
+            <p className="mx-auto mb-12 max-w-2xl text-center text-paw-body">
+              Movement creates context, identity protects the pet, and community makes the map useful when owners need a quick next step.
+            </p>
+          </FadeInView>
+
+          <ProductFlow />
         </div>
       </section>
 
@@ -144,12 +170,12 @@ export default function Home() {
 
         <FadeInView>
           <h2 className="mb-4 text-center font-brand text-3xl font-bold text-paw-ink md:text-4xl">
-            Two Modes, One Platform
+            One operating system for pet life
           </h2>
         </FadeInView>
         <FadeInView delay={0.1}>
-          <p className="mx-auto mb-12 max-w-xl text-center text-paw-body">
-            Solo Mode for your daily walks and pet management. Community Mode for local connections and mutual help.
+          <p className="mx-auto mb-12 max-w-2xl text-center text-paw-body">
+            PawPal brings the high-frequency daily habit, the emergency safety layer, and the local network into one recognizable product surface.
           </p>
         </FadeInView>
 
@@ -164,11 +190,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ===== CTA SECTION — Dark with Particles ===== */}
+      {/* ===== CTA SECTION ===== */}
       <section className="relative py-24 bg-paw-ink overflow-hidden">
-        {/* Floating particles */}
-        <FloatingParticles />
-
         {/* Pet doodle in dark section */}
         <div className="absolute top-[15%] right-[8%] w-20 h-20 text-white/5 doodle-float hidden lg:block">
           <DoodlePaw className="w-full h-full" />
@@ -180,12 +203,12 @@ export default function Home() {
         <div className="max-w-3xl mx-auto text-center px-4 relative z-10">
           <FadeInView>
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 font-brand">
-              🇧🇪 Born in Ghent, Built for Pet Lovers
+              Built in Ghent for safer everyday pet life
             </h2>
           </FadeInView>
           <FadeInView delay={0.1}>
             <p className="text-white/60 mb-10 text-lg">
-              Built by a Ghent University team. GDPR-first design, EU-hosted data, 5 languages ready. Download PawPal and start your journey.
+              GDPR-first thinking, EU-ready product architecture, and a practical path from public website to app, store, and community map.
             </p>
           </FadeInView>
           <BottomCTA />

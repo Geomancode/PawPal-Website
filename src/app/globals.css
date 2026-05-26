@@ -1,62 +1,75 @@
 @import "tailwindcss";
 
-@theme {
-  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
-  --font-mono: ui-monospace, "Cascadia Code", "Fira Code", monospace;
-  --font-brand: "Avenir Next", "Nunito Sans", "Segoe UI", system-ui, sans-serif;
+@font-face {
+  font-family: "Pasartulis";
+  src: url("/fonts/pasartulis.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
 
-  /* ── PawPal canonical foundation palette ── */
-  --color-brand-blue: #2F8FFF;       /* Paw Blue — Primary brand · Map · AI · Trust · Links */
-  --color-brand-blue-dark: #1F7AE5;  /* Paw Blue Hover — Pressed/hover state */
-  --color-brand-amber: #F5A524;      /* Amber — Offers · Reminders · Pending states */
-  --color-brand-green: #16A679;      /* Emerald — Success · Safe · Verified */
-  --color-brand-orange: #FF7A59;     /* Coral — Warm accent · Posting · Social moments */
-  --color-brand-cream: #F8FAFC;      /* Canvas — Clean app/page background */
+@theme {
+  --font-sans: "Pasartulis", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  --font-mono: ui-monospace, "Cascadia Code", "Fira Code", monospace;
+  --font-brand: "Pasartulis", "Avenir Next", "Nunito Sans", "Segoe UI", system-ui, sans-serif;
+
+  /* ── PawPal canonical designer palette ── */
+  --color-brand-blue: #4A90D9;       /* Paw Blue — Primary brand · Map · AI · Links */
+  --color-brand-blue-dark: #367DC8;  /* Paw Blue Hover — Pressed/hover state */
+  --color-brand-teal: #76C7B8;       /* Mint Teal — Trust · Safe · Verified */
+  --color-brand-yellow: #FFCD38;     /* Sunny Yellow — Highlights · Rewards */
+  --color-brand-orange: #F28C44;     /* Warm Orange — Accent · Posting · Social moments */
+  --color-brand-brown: #8F6A56;      /* Soft Brown — Neutral brand anchor */
+  --color-brand-cream: #FAFBFC;      /* Canvas — Clean app/page background */
   --color-brand-surface: #FFFFFF;    /* White — Card Surface · Inputs */
-  --color-brand-slate: #111827;      /* Strong text */
-  --color-brand-muted: #64748B;      /* Secondary text */
-  --color-brand-sand: #FFF0EA;       /* Accent soft background */
-  --color-brand-blush: #FFECEF;      /* Danger soft background */
-  --color-brand-sky: #EAF4FF;        /* Primary/trust soft background */
+  --color-brand-ink: #3A2F2A;        /* Strong text — derived from brown */
+  --color-brand-body: #5F514A;       /* Body text — derived from brown */
+  --color-brand-sky: #EAF4FC;        /* Primary soft background */
+  --color-brand-mint: #E9F8F5;       /* Trust/success soft background */
+  --color-brand-sun: #FFF8DC;        /* Yellow soft background */
+  --color-brand-peach: #FFF0E7;      /* Orange soft background */
+  --color-brand-cocoa: #F6EEE9;      /* Brown soft background */
 
   /* ── PawPal semantic tokens used by shared UI primitives ── */
-  --color-paw-page: #F8FAFC;
+  --color-paw-page: #FAFBFC;
   --color-paw-panel: #FFFFFF;
-  --color-paw-panel-subtle: #F3F6FA;
-  --color-paw-ink: #111827;
-  --color-paw-body: #334155;
-  --color-paw-muted: #64748B;
-  --color-paw-border: #E2E8F0;
-  --color-paw-border-strong: #CBD5E1;
-  --color-paw-primary: #2F8FFF;
-  --color-paw-primary-hover: #1F7AE5;
-  --color-paw-primary-soft: #EAF4FF;
-  --color-paw-trust: #2F8FFF;
-  --color-paw-trust-hover: #1F7AE5;
-  --color-paw-trust-soft: #EAF4FF;
-  --color-paw-accent: #FF7A59;
-  --color-paw-accent-hover: #EF6444;
-  --color-paw-accent-soft: #FFF0EA;
-  --color-paw-success: #16A679;
-  --color-paw-success-soft: #E7F8F1;
-  --color-paw-warning: #F5A524;
-  --color-paw-warning-soft: #FFF6E3;
-  --color-paw-danger: #E54864;
-  --color-paw-danger-hover: #D93654;
-  --color-paw-danger-soft: #FFECEF;
+  --color-paw-panel-subtle: #F3F8F7;
+  --color-paw-ink: #3A2F2A;
+  --color-paw-body: #5F514A;
+  --color-paw-muted: #8F6A56;
+  --color-paw-border: #D7E7E4;
+  --color-paw-border-strong: #A9D5CD;
+  --color-paw-primary: #4A90D9;
+  --color-paw-primary-hover: #367DC8;
+  --color-paw-primary-soft: #EAF4FC;
+  --color-paw-trust: #76C7B8;
+  --color-paw-trust-hover: #5BB3A3;
+  --color-paw-trust-soft: #E9F8F5;
+  --color-paw-accent: #F28C44;
+  --color-paw-accent-hover: #D87633;
+  --color-paw-accent-soft: #FFF0E7;
+  --color-paw-success: #76C7B8;
+  --color-paw-success-soft: #E9F8F5;
+  --color-paw-warning: #F28C44;
+  --color-paw-warning-soft: #FFF8DC;
+  --color-paw-danger: #8F6A56;
+  --color-paw-danger-hover: #76513F;
+  --color-paw-danger-soft: #F6EEE9;
+  --color-paw-yellow: #FFCD38;
+  --color-paw-brown: #8F6A56;
   --radius-paw-sm: 0.5rem;
   --radius-paw-md: 0.75rem;
   --radius-paw-lg: 1rem;
-  --shadow-paw-panel: 0 10px 30px rgba(15, 23, 42, 0.08);
-  --shadow-paw-action: 0 12px 28px rgba(47, 143, 255, 0.24);
-  --shadow-paw-trust-action: 0 12px 28px rgba(47, 143, 255, 0.22);
+  --shadow-paw-panel: 0 10px 30px rgba(58, 47, 42, 0.08);
+  --shadow-paw-action: 0 12px 28px rgba(74, 144, 217, 0.24);
+  --shadow-paw-trust-action: 0 12px 28px rgba(118, 199, 184, 0.26);
 }
 
 :root {
   --background: var(--color-brand-cream);
-  --foreground: var(--color-brand-slate);
+  --foreground: var(--color-brand-ink);
   --primary: var(--color-brand-blue);
-  --primary-glow: rgba(47, 143, 255, 0.35);
+  --primary-glow: rgba(74, 144, 217, 0.35);
   color-scheme: light;
 }
 
@@ -76,7 +89,7 @@ body::after {
   z-index: 0;
   pointer-events: none;
   opacity: 0.055;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='300' viewBox='0 0 220 300' fill='none' stroke='%238B95A5' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3C!-- Row 1: bone, paw, cat face, fish --%3E%3Cg transform='translate(10,10)'%3E%3Cpath d='M5 15c-3-5-3-12 3-12s5 5 2 10'/%3E%3Crect x='8' y='12' width='22' height='6' rx='3'/%3E%3Cpath d='M28 15c3-5 3-12-3-12s-5 5-2 10'/%3E%3Cpath d='M5 19c-3 5-3 12 3 12s5-5 2-10'/%3E%3Cpath d='M28 19c3 5 3 12-3 12s-5-5-2-10'/%3E%3C/g%3E%3Cg transform='translate(60,8)'%3E%3Cellipse cx='18' cy='25' rx='9' ry='7'/%3E%3Cellipse cx='8' cy='15' rx='4' ry='5.5' transform='rotate(-10 8 15)'/%3E%3Cellipse cx='28' cy='15' rx='4' ry='5.5' transform='rotate(10 28 15)'/%3E%3Cellipse cx='14' cy='11' rx='3.5' ry='5' transform='rotate(-5 14 11)'/%3E%3Cellipse cx='22' cy='11' rx='3.5' ry='5' transform='rotate(5 22 11)'/%3E%3C/g%3E%3Cg transform='translate(110,8)'%3E%3Cellipse cx='18' cy='20' rx='13' ry='11'/%3E%3Ccircle cx='13' cy='18' r='1.5'/%3E%3Ccircle cx='23' cy='18' r='1.5'/%3E%3Cpath d='M16 22c1.5 1.5 3.5 1.5 5 0'/%3E%3Cpath d='M8 12l-4-12'/%3E%3Cpath d='M28 12l4-12'/%3E%3Cpath d='M4 0c1.5 3 4 9 4 12'/%3E%3Cpath d='M32 0c-1.5 3-4 9-4 12'/%3E%3Cline x1='11' y1='21' x2='2' y2='19'/%3E%3Cline x1='25' y1='21' x2='34' y2='19'/%3E%3C/g%3E%3Cg transform='translate(170,12)'%3E%3Cellipse cx='18' cy='14' rx='14' ry='9'/%3E%3Ccircle cx='24' cy='11' r='1.8'/%3E%3Cpath d='M6 14c-6-5-8-2-8 0s3 5 8 0'/%3E%3Cpath d='M14 9c2-1.5 5-1.5 6 0'/%3E%3C/g%3E%3C!-- Row 2 (offset +30px): dog face, heart, parrot, ball --%3E%3Cg transform='translate(30,75)'%3E%3Cellipse cx='18' cy='20' rx='14' ry='12'/%3E%3Ccircle cx='12' cy='17' r='1.8'/%3E%3Ccircle cx='24' cy='17' r='1.8'/%3E%3Cpath d='M15 22c2 2 5 2 7 0'/%3E%3Cpath d='M6 10c-5-8-2-14 2-13'/%3E%3Cpath d='M30 10c5-8 2-14-2-13'/%3E%3Cellipse cx='18' cy='23' rx='5' ry='3'/%3E%3C/g%3E%3Cg transform='translate(90,75)'%3E%3Cpath d='M18 32C18 32 4 20 4 12c0-5 4-8 8-5l6 5 6-5c4-3 8 0 8 5 0 8-14 20-14 20z'/%3E%3C/g%3E%3Cg transform='translate(140,70)'%3E%3Cellipse cx='16' cy='16' rx='10' ry='12'/%3E%3Ccircle cx='12' cy='13' r='1.5'/%3E%3Cpath d='M16 15c2-1.5 5 0 4 2.5l-4 1.5'/%3E%3Cpath d='M16 28c-1.5 10-1 15 0 18'/%3E%3Cpath d='M19 28c1.5 10 1 15 0 18'/%3E%3Cpath d='M8 8c-6-4-7-9-3-10'/%3E%3C/g%3E%3Cg transform='translate(195,78)'%3E%3Ccircle cx='14' cy='14' r='12'/%3E%3Cpath d='M6 6l16 16'/%3E%3Cpath d='M22 6L6 22'/%3E%3C/g%3E%3C!-- Row 3: lizard, bowl, hamster, bird --%3E%3Cg transform='translate(5,150)'%3E%3Cellipse cx='14' cy='14' rx='9' ry='6'/%3E%3Ccircle cx='10' cy='11' r='1.3'/%3E%3Ccircle cx='18' cy='11' r='1.3'/%3E%3Cpath d='M22 14c10 1.5 20 3 30 0'/%3E%3Cpath d='M52 14c3 3 5 2 6 0'/%3E%3Cpath d='M30 12c-2-5-5-3-4 0'/%3E%3Cpath d='M42 11c-2-5-5-3-4 0'/%3E%3Cpath d='M30 16c-2 5-5 3-4 0'/%3E%3Cpath d='M42 17c-2 5-5 3-4 0'/%3E%3C/g%3E%3Cg transform='translate(80,155)'%3E%3Cpath d='M4 14c0 10 8 15 20 15s20-5 20-15'/%3E%3Cellipse cx='24' cy='14' rx='20' ry='6'/%3E%3Cpath d='M14 8c0-3 4-6 10-6s10 3 10 6' opacity='0.4'/%3E%3C/g%3E%3Cg transform='translate(140,148)'%3E%3Cellipse cx='17' cy='18' rx='13' ry='11'/%3E%3Ccircle cx='12' cy='15' r='1.5'/%3E%3Ccircle cx='22' cy='15' r='1.5'/%3E%3Cpath d='M15 19c1 1.2 3 1.2 4 0'/%3E%3Ccircle cx='8' cy='20' r='4' opacity='0.15' fill='%238B95A5'/%3E%3Ccircle cx='26' cy='20' r='4' opacity='0.15' fill='%238B95A5'/%3E%3Cpath d='M8 8c-3-5-1.5-9 1.5-9'/%3E%3Cpath d='M26 8c3-5 1.5-9-1.5-9'/%3E%3C/g%3E%3Cg transform='translate(185,150)'%3E%3Cpath d='M16 22c-7 0-12-5-10-12 1.5-4 5.5-7 10-7s9 3 10 7c2 7-3 12-10 12z'/%3E%3Ccircle cx='12' cy='13' r='1.5'/%3E%3Cpath d='M17 15l3-1.5 3 2'/%3E%3Cpath d='M12 22c-2 4-1.5 8 0 10'/%3E%3Cpath d='M20 22c2 4 1.5 8 0 10'/%3E%3C/g%3E%3C!-- Row 4 (offset): paw, star, bone small, collar --%3E%3Cg transform='translate(25,230)'%3E%3Cellipse cx='14' cy='22' rx='8' ry='6'/%3E%3Cellipse cx='6' cy='14' rx='3.5' ry='5' transform='rotate(-10 6 14)'/%3E%3Cellipse cx='22' cy='14' rx='3.5' ry='5' transform='rotate(10 22 14)'/%3E%3Cellipse cx='10' cy='9' rx='3' ry='4.5'/%3E%3Cellipse cx='18' cy='9' rx='3' ry='4.5'/%3E%3C/g%3E%3Cg transform='translate(75,232)'%3E%3Cpath d='M16 2l4 11h12l-9 7 4 11-11-7-11 7 4-11-9-7h12z'/%3E%3C/g%3E%3Cg transform='translate(125,238)'%3E%3Cpath d='M3 9c-2-4-2-8 2-8s3 3 1 7'/%3E%3Crect x='5' y='8' width='16' height='4' rx='2'/%3E%3Cpath d='M20 9c2-4 2-8-2-8s-3 3-1 7'/%3E%3Cpath d='M3 13c-2 4-2 8 2 8s3-3 1-7'/%3E%3Cpath d='M20 13c2 4 2 8-2 8s-3-3-1-7'/%3E%3C/g%3E%3Cg transform='translate(170,232)'%3E%3Cellipse cx='18' cy='16' rx='16' ry='8'/%3E%3Ccircle cx='18' cy='24' r='3'/%3E%3Crect x='14' y='12' width='8' height='4' rx='1.5'/%3E%3C/g%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='300' viewBox='0 0 220 300' fill='none' stroke='%238F6A56' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cg transform='translate(24 22)'%3E%3Cellipse cx='18' cy='24' rx='9' ry='7'/%3E%3Cellipse cx='8' cy='14' rx='4' ry='5.5' transform='rotate(-10 8 14)'/%3E%3Cellipse cx='28' cy='14' rx='4' ry='5.5' transform='rotate(10 28 14)'/%3E%3Cellipse cx='14' cy='9' rx='3.5' ry='5'/%3E%3Cellipse cx='22' cy='9' rx='3.5' ry='5'/%3E%3C/g%3E%3Cg transform='translate(92 28)'%3E%3Cpath d='M3 12c-2.5-4-2.5-8 2-8 3.5 0 3.5 3 1.5 6'/%3E%3Crect x='6' y='10' width='24' height='6' rx='3'/%3E%3Cpath d='M29 12c2.5-4 2.5-8-2-8-3.5 0-3.5 3-1.5 6'/%3E%3Cpath d='M3 18c-2.5 4-2.5 8 2 8 3.5 0 3.5-3 1.5-6'/%3E%3Cpath d='M29 18c2.5 4 2.5 8-2 8-3.5 0-3.5-3-1.5-6'/%3E%3C/g%3E%3Cg transform='translate(162 34)'%3E%3Cellipse cx='16' cy='13' rx='13' ry='8'/%3E%3Ccircle cx='21' cy='10' r='1.6'/%3E%3Cpath d='M5 13c-6-4-8-2-8 0s2 4 8 0'/%3E%3C/g%3E%3Cg transform='translate(42 112)'%3E%3Cellipse cx='18' cy='20' rx='14' ry='12'/%3E%3Ccircle cx='12' cy='17' r='1.8'/%3E%3Ccircle cx='24' cy='17' r='1.8'/%3E%3Cpath d='M15 22c2 2 5 2 7 0'/%3E%3Cpath d='M6 10c-5-8-2-14 2-13'/%3E%3Cpath d='M30 10c5-8 2-14-2-13'/%3E%3C/g%3E%3Cg transform='translate(120 116)'%3E%3Cpath d='M18 32C18 32 4 20 4 12c0-5 4-8 8-5l6 5 6-5c4-3 8 0 8 5 0 8-14 20-14 20z'/%3E%3C/g%3E%3Cg transform='translate(28 220)'%3E%3Cpath d='M16 2l4 11h12l-9 7 4 11-11-7-11 7 4-11-9-7h12z'/%3E%3C/g%3E%3Cg transform='translate(108 220)'%3E%3Cellipse cx='18' cy='16' rx='16' ry='8'/%3E%3Ccircle cx='18' cy='24' r='3'/%3E%3Crect x='14' y='12' width='8' height='4' rx='1.5'/%3E%3C/g%3E%3C/svg%3E");
   background-repeat: repeat;
   background-size: 220px 300px;
 }
@@ -97,35 +110,35 @@ body > * {
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #111827;
-    --foreground: #F8FAFC;
-    --color-paw-page: #111827;
-    --color-paw-panel: #172033;
-    --color-paw-panel-subtle: #0F172A;
-    --color-paw-ink: #F8FAFC;
-    --color-paw-body: #CBD5E1;
-    --color-paw-muted: #94A3B8;
-    --color-paw-border: rgba(148, 163, 184, 0.28);
-    --color-paw-border-strong: rgba(203, 213, 225, 0.38);
-    --color-paw-primary: #68ADFF;
-    --color-paw-primary-hover: #8FC2FF;
-    --color-paw-primary-soft: rgba(47, 143, 255, 0.18);
-    --color-paw-trust: #68ADFF;
-    --color-paw-trust-hover: #8FC2FF;
-    --color-paw-trust-soft: rgba(47, 143, 255, 0.18);
-    --color-paw-accent: #FF9A7F;
-    --color-paw-accent-hover: #FFB19C;
-    --color-paw-accent-soft: rgba(255, 122, 89, 0.18);
-    --color-paw-success: #5CE0B5;
-    --color-paw-success-soft: rgba(22, 166, 121, 0.16);
-    --color-paw-warning: #FFC35A;
-    --color-paw-warning-soft: rgba(245, 165, 36, 0.18);
-    --color-paw-danger: #FF7A91;
-    --color-paw-danger-hover: #FFA0AF;
-    --color-paw-danger-soft: rgba(229, 72, 100, 0.16);
+    --background: #151D22;
+    --foreground: #FBF7F2;
+    --color-paw-page: #151D22;
+    --color-paw-panel: #1D272D;
+    --color-paw-panel-subtle: #243139;
+    --color-paw-ink: #FBF7F2;
+    --color-paw-body: #D8C9BF;
+    --color-paw-muted: #B99A88;
+    --color-paw-border: rgba(118, 199, 184, 0.22);
+    --color-paw-border-strong: rgba(118, 199, 184, 0.38);
+    --color-paw-primary: #74B8EA;
+    --color-paw-primary-hover: #9BCDF1;
+    --color-paw-primary-soft: rgba(74, 144, 217, 0.20);
+    --color-paw-trust: #8DD8CC;
+    --color-paw-trust-hover: #A9E4DA;
+    --color-paw-trust-soft: rgba(118, 199, 184, 0.18);
+    --color-paw-accent: #F7A160;
+    --color-paw-accent-hover: #FFB57D;
+    --color-paw-accent-soft: rgba(242, 140, 68, 0.18);
+    --color-paw-success: #8DD8CC;
+    --color-paw-success-soft: rgba(118, 199, 184, 0.18);
+    --color-paw-warning: #FFD95C;
+    --color-paw-warning-soft: rgba(255, 205, 56, 0.18);
+    --color-paw-danger: #B9917D;
+    --color-paw-danger-hover: #D3A893;
+    --color-paw-danger-soft: rgba(143, 106, 86, 0.20);
     --shadow-paw-panel: 0 14px 36px rgba(0, 0, 0, 0.32);
-    --shadow-paw-action: 0 16px 34px rgba(47, 143, 255, 0.30);
-    --shadow-paw-trust-action: 0 16px 34px rgba(47, 143, 255, 0.28);
+    --shadow-paw-action: 0 16px 34px rgba(74, 144, 217, 0.30);
+    --shadow-paw-trust-action: 0 16px 34px rgba(118, 199, 184, 0.30);
     color-scheme: dark;
   }
 
@@ -140,47 +153,46 @@ body > * {
   }
 
   .glass {
-    background: rgba(17, 24, 39, 0.72);
+    background: rgba(21, 29, 34, 0.72);
     border-color: rgba(255, 255, 255, 0.08);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.28);
   }
 
-  .bg-white,
-  .bg-gray-50,
-  .bg-gray-100,
-  [class*="bg-[#F7F8FA]"],
-  [class*="bg-[#F9FAFB]"],
-  [class*="bg-[#FFF4E8]"],
-  [class*="bg-[#fffdf9]"] {
-    background-color: #111827 !important;
+  .home-hero-field {
+    background:
+      radial-gradient(circle at 72% 42%, rgba(74, 184, 234, 0.14), transparent 34%),
+      radial-gradient(circle at 16% 28%, rgba(141, 216, 204, 0.10), transparent 30%),
+      linear-gradient(180deg, var(--color-paw-page), rgba(21, 29, 34, 0.86));
   }
 
-  [class*="text-[#1E293B]"],
-  [class*="text-[#2D3748]"],
+  .bg-white,
+  .bg-gray-50,
+  .bg-gray-100 {
+    background-color: #151D22 !important;
+  }
+
   .text-gray-900,
   .text-gray-800,
   .text-slate-800 {
-    color: #F8FAFC !important;
+    color: #FBF7F2 !important;
   }
 
-  [class*="text-[#6B7B8D]"],
   .text-gray-700,
   .text-gray-600,
   .text-gray-500,
   .text-slate-700 {
-    color: #CBD5E1 !important;
+    color: #D8C9BF !important;
   }
 
   .text-gray-400,
   .text-slate-400 {
-    color: #94A3B8 !important;
+    color: #B99A88 !important;
   }
 
   .border-gray-50,
   .border-gray-100,
-  .border-gray-200,
-  [class*="border-[#F5E6D3]"] {
-    border-color: rgba(148, 163, 184, 0.28) !important;
+  .border-gray-200 {
+    border-color: rgba(118, 199, 184, 0.22) !important;
   }
 
   .shadow-sm,
@@ -192,12 +204,13 @@ body > * {
   }
 }
 
-/* Brand gradient text — Paw Blue-led with a warm Coral accent edge */
+/* Brand gradient text */
 .text-gradient {
+  color: transparent;
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  background-image: linear-gradient(135deg, var(--color-brand-blue), var(--color-brand-orange), var(--color-brand-amber));
+  background-image: linear-gradient(135deg, var(--color-brand-blue), var(--color-brand-teal), var(--color-brand-orange));
 }
 
 /* Brand font utility */
@@ -246,12 +259,14 @@ body > * {
 }
 
 .text-gradient-animated {
+  color: transparent;
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-image: linear-gradient(
     135deg,
     var(--color-brand-blue),
+    var(--color-brand-teal),
     var(--color-brand-orange),
     var(--color-brand-blue)
   );
@@ -282,13 +297,176 @@ body > * {
   z-index: 1;
 }
 
+/* ── Homepage spatial fields ── */
+.home-hero-field {
+  background:
+    radial-gradient(circle at 72% 42%, rgba(74, 144, 217, 0.16), transparent 34%),
+    radial-gradient(circle at 16% 28%, rgba(118, 199, 184, 0.12), transparent 30%),
+    linear-gradient(180deg, var(--color-paw-page), rgba(250, 251, 252, 0.82));
+}
+
+/* ── Shape-outside float: hidden on mobile, active on desktop ── */
+.hero-globe-shape {
+  display: none;
+}
+
+/* ── Globe shell: centres the WebGL canvas inside its container ── */
+.hero-globe-shell {
+  inset: auto;
+  left: 50%;
+  top: 50%;
+  width: var(--hero-globe-diameter, min(90vw, 420px));
+  height: var(--hero-globe-diameter, min(90vw, 420px));
+  transform: translate(-50%, -50%);
+  border-radius: 0;
+  overflow: visible;
+  background: transparent;
+  box-shadow: none;
+}
+
+.hero-globe-hint {
+  left: 50%;
+  top: calc(50% + var(--hero-globe-radius, min(45vw, 210px)) + 0.5rem);
+  transform: translateX(-50%);
+}
+
+/* ═══════ Desktop hero: float + shape-outside arc layout ═══════ */
+@media (min-width: 900px) {
+  .hero-stage {
+    display: block;
+    position: relative;
+    min-height: clamp(640px, 82svh, 860px);
+    /* Shared globe sizing — keeps shape-outside and visual globe in sync */
+    --hero-globe-diameter: clamp(540px, 50vw, 700px);
+    --hero-globe-radius: calc(var(--hero-globe-diameter) / 2);
+    --hero-globe-center-x: 46%;
+    --hero-globe-center-y: 58%;
+    --hero-left-column-width: min(100%, 29rem);
+    --_hero-pad-top: clamp(5rem, 10vh, 8rem);
+  }
+
+  .hero-orbit-copy {
+    display: block;
+    position: relative;
+    z-index: 2;
+    max-width: none;
+    width: 100%;
+    padding-top: var(--_hero-pad-top);
+    padding-bottom: 2rem;
+  }
+
+  /* Invisible float whose shape-outside carves the arc boundary.
+     Height matches the full hero so text NEVER overflows below it.
+     Negative margin-top cancels the padding-top of hero-orbit-copy,
+     aligning the circle center with the globe's visual center. */
+  .hero-globe-shape {
+    display: block;
+    float: right;
+    width: 61.8%;
+    height: clamp(640px, 82svh, 860px);
+    margin-top: calc(-1 * var(--_hero-pad-top));
+    margin-bottom: 0;
+    margin-left: 0;
+    margin-right: 0;
+    pointer-events: none;
+    shape-outside: circle(var(--hero-globe-radius) at var(--hero-globe-center-x) var(--hero-globe-center-y));
+    shape-margin: clamp(1.5rem, 3vw, 3rem);
+  }
+
+  .hero-headline {
+    text-align: right;
+  }
+
+  .hero-copy-description {
+    display: block;
+    width: min(100%, 30.75rem);
+    max-width: none;
+    margin-left: 0;
+    margin-right: auto;
+    text-align: right;
+  }
+
+  .hero-description-line {
+    display: block;
+    text-align: right;
+    white-space: nowrap;
+  }
+
+  .hero-description-line-1 {
+    width: min(100%, 28rem);
+  }
+
+  .hero-description-line-2 {
+    width: min(100%, 29.25rem);
+  }
+
+  .hero-description-line-3 {
+    width: min(100%, 30rem);
+  }
+
+  .hero-description-line-4 {
+    width: min(100%, 30.75rem);
+  }
+
+  .hero-cta {
+    width: var(--hero-left-column-width);
+    margin-left: 0;
+    margin-right: auto;
+    justify-content: flex-start;
+  }
+
+  .hero-trust-badges {
+    width: var(--hero-left-column-width);
+    margin-left: 0;
+    margin-right: auto;
+    justify-content: flex-start;
+  }
+
+  /* Globe visual — absolutely positioned in the same 61.8% zone */
+  .hero-orbit-globe {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: auto;
+    width: 61.8%;
+    height: clamp(640px, 82svh, 860px);
+    margin-left: 0;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* Globe shifted slightly left (46%) within its container
+     for better visual balance — matches the shape-outside center */
+  .hero-globe-shell {
+    left: var(--hero-globe-center-x);
+    top: var(--hero-globe-center-y);
+    width: var(--hero-globe-diameter);
+    height: var(--hero-globe-diameter);
+    transform: translate(-50%, -50%);
+  }
+
+  .hero-globe-hint {
+    top: calc(var(--hero-globe-center-y) + var(--hero-globe-radius) + 0.75rem);
+    left: var(--hero-globe-center-x);
+    right: auto;
+    transform: translateX(-50%);
+  }
+}
+
+/* ═══════ Large desktops: bigger globe ═══════ */
+@media (min-width: 1280px) {
+  .hero-stage {
+    --hero-globe-diameter: clamp(580px, 42vw, 740px);
+  }
+}
+
 /* ── Phase 1: Scroll progress bar ── */
 .scroll-progress {
   position: fixed;
   top: 0;
   left: 0;
   height: 3px;
-  background: linear-gradient(90deg, var(--color-brand-blue), var(--color-brand-orange));
+  background: linear-gradient(90deg, var(--color-brand-blue), var(--color-brand-teal), var(--color-brand-orange));
   z-index: 100;
   transform-origin: left;
   border-radius: 0 2px 2px 0;
@@ -319,7 +497,7 @@ body > * {
   inset: -1px;
   border-radius: 1.25rem;
   padding: 1px;
-  background: linear-gradient(135deg, transparent, rgba(47, 143, 255, 0.15), transparent);
+  background: linear-gradient(135deg, transparent, rgba(74, 144, 217, 0.15), transparent);
   mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   mask-composite: exclude;
   -webkit-mask-composite: xor;
@@ -337,8 +515,8 @@ body > * {
   width: 260px;
   height: 520px;
   border-radius: 40px;
-  border: 6px solid #1E293B;
-  background: #1a1a2e;
+  border: 6px solid #3A2F2A;
+  background: #151D22;
   box-shadow:
     0 20px 60px rgba(0,0,0,0.15),
     inset 0 0 0 2px rgba(255,255,255,0.05);
@@ -353,7 +531,7 @@ body > * {
   transform: translateX(-50%);
   width: 100px;
   height: 24px;
-  background: #1E293B;
+  background: #3A2F2A;
   border-radius: 0 0 16px 16px;
   z-index: 10;
 }
@@ -390,4 +568,21 @@ body > * {
 
 .doodle-float-alt {
   animation: doodle-float-alt 8s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+  }
+
+  .blob-animate-1,
+  .blob-animate-2,
+  .blob-animate-3,
+  .marquee-track,
+  .doodle-float,
+  .doodle-float-alt {
+    animation: none !important;
+  }
 }
