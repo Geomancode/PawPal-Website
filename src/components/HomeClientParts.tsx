@@ -47,45 +47,36 @@ const wordVariants = {
 };
 
 export function AnimatedHeadline() {
-  const line1 = "Every Moment with";
-  const line1Words = line1.split(" ");
-  const line2 = "Your Pet";
-  const line2Words = line2.split(" ");
+  const lines = ["Every Moment", "with Your Pet", "Made Smarter"];
   let wordIndex = 0;
 
   return (
     <h1
-      aria-label={`${line1} ${line2}`}
+      aria-label={lines.join(" ")}
       className="hero-headline font-brand text-6xl font-bold leading-none text-black lg:text-7xl 2xl:text-8xl"
     >
-      {line1Words.map((word, i) => (
-        <motion.span
-          key={`l1-${i}`}
-          custom={wordIndex++}
-          initial="hidden"
-          animate="visible"
-          variants={wordVariants}
-          className="inline-block mr-[0.3em]"
+      {lines.map((line, lineIndex) => (
+        <span
+          key={line}
+          className={`hero-headline-line hero-headline-line-${lineIndex + 1}`}
         >
-          {word}
-        </motion.span>
+          {line.split(" ").map((word, wordOffset, words) => {
+            const idx = wordIndex++;
+            return (
+              <motion.span
+                key={`${line}-${wordOffset}`}
+                custom={idx}
+                initial="hidden"
+                animate="visible"
+                variants={wordVariants}
+                className={`hero-headline-word inline-block ${lineIndex === 2 ? "hero-headline-word-gradient text-gradient-animated" : ""} ${wordOffset < words.length - 1 ? "mr-[0.3em]" : ""}`}
+              >
+                {word}
+              </motion.span>
+            );
+          })}
+        </span>
       ))}
-      <br className="hidden lg:block" />
-      {line2Words.map((word, i) => {
-        const idx = wordIndex++;
-        return (
-          <motion.span
-            key={`l2-${i}`}
-            custom={idx}
-            initial="hidden"
-            animate="visible"
-            variants={wordVariants}
-            className="inline-block mr-[0.3em]"
-          >
-            {word}
-          </motion.span>
-        );
-      })}
     </h1>
   );
 }

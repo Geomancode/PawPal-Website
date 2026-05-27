@@ -33,7 +33,7 @@ READ-ONLY tools (you call these automatically based on user intent):
 
 - Mission: Building the world's most caring pet community
 - Region: Based in Ghent, Belgium (Flanders, Dutch-speaking region)
-- Visual Identity: Paw Blue primary #2F8FFF, Coral accent #FF7A59, clean canvas #F8FAFC
+- Visual Identity: Paw Blue #4A90D9, Mint Teal #76C7B8, Sunny Yellow #FFCD38, Warm Orange #F28C44, Soft Brown #8F6A56
 - Core Values: Animal welfare, community support, responsible pet ownership
 
 === LANGUAGE — CRITICAL RULE ===

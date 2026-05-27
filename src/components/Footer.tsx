@@ -9,12 +9,12 @@ const FOOTER_NAV = {
   Product: [
     { label: "Globe", href: "/globe" },
     { label: "Store", href: "/store" },
-    { label: "Download App", href: "#" },
+    { label: "Open Globe", href: "/globe" },
   ],
   Community: [
     { label: "About Us", href: "/about" },
     { label: "NFC Tags", href: "/store" },
-    { label: "Local Network", href: "#" },
+    { label: "Local Network", href: "/globe" },
   ],
   Support: [
     { label: "Help Center", href: "#" },

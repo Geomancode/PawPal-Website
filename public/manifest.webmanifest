@@ -5,8 +5,8 @@
   "start_url": "/profile",
   "scope": "/",
   "display": "standalone",
-  "background_color": "#F7F8FA",
-  "theme_color": "#2F8FFF",
+  "background_color": "#FAFBFC",
+  "theme_color": "#4A90D9",
   "icons": [
     {
       "src": "/pawpal_icon.svg",

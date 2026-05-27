@@ -17,6 +17,46 @@ const NAV_LINKS = [
 
 const PROFILE_LINK = { href: "/profile", label: "Profile" };
 
+function AccountCardContent({ initial, label }: { initial: string; label: string }) {
+  const glyph = initial.trim().charAt(0).toUpperCase() || "L";
+
+  return (
+    <>
+      <svg
+        className="nav-account-shell"
+        viewBox="-2 0 304 124"
+        preserveAspectRatio="none"
+        aria-hidden="true"
+        focusable="false"
+      >
+        <path
+          className="nav-account-shape"
+          d="M70 18C55 18 45 22 34 33C16 46 4 65 2 83C0 101 12 110 31 103L42 98V104C42 117 52 122 74 122H260C283 122 297 111 297 92V51C297 40 291 29 281 23C277 20 270 18 260 18H70Z"
+        />
+        <path
+          className="nav-account-corner"
+          d="M235 26H263C277 26 287 34 291 47V86C268 82 244 58 235 26Z"
+        />
+      </svg>
+      <span className="nav-account-dots" aria-hidden="true">
+        <span />
+        <span />
+        <span />
+      </span>
+      <span className="nav-account-face" aria-hidden="true">
+        {glyph === "L" ? (
+          <svg className="nav-account-face-mark" viewBox="0 0 56 42" focusable="false">
+            <path d="M21 10L18 31L44 29" />
+          </svg>
+        ) : (
+          <span className="nav-account-face-initial">{glyph}</span>
+        )}
+      </span>
+      <span className="nav-account-label">{label}</span>
+    </>
+  );
+}
+
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
@@ -105,19 +145,23 @@ export default function Navbar() {
           {/* Right side: Auth button or User menu */}
           <div className="hidden md:block">
             {loading ? (
-              <div className="h-9 w-20 animate-pulse rounded-paw-md bg-white/25" />
+              <Link
+                href="/auth"
+                aria-label="Login to PawPal"
+                className="nav-account-card is-loading"
+              >
+                <AccountCardContent initial="L" label="Login" />
+              </Link>
             ) : user ? (
               /* Logged-in: avatar dropdown */
               <div className="relative" ref={dropdownRef}>
                 <button
                   aria-label="Open account menu"
+                  aria-expanded={showDropdown}
                   onClick={() => setShowDropdown(!showDropdown)}
-                  className="flex items-center gap-2 rounded-paw-lg border border-white bg-white/10 px-4 py-2 transition-all hover:bg-white/15"
+                  className="nav-account-card"
                 >
-                  <div className="flex h-7 w-7 items-center justify-center rounded-paw-sm bg-paw-primary text-xs font-bold text-white">
-                    {displayName.charAt(0).toUpperCase()}
-                  </div>
-                  <span className="max-w-[100px] truncate text-sm font-semibold text-white">{displayName}</span>
+                  <AccountCardContent initial={displayName} label={displayName} />
                 </button>
 
                 <AnimatePresence>
@@ -154,13 +198,13 @@ export default function Navbar() {
                 </AnimatePresence>
               </div>
             ) : (
-              /* Not logged in: Sign In button — Coral-led CTA */
-              <Link href="/auth" className={`px-6 py-2 rounded-full font-bold transition-all border inline-block ${
-                pathname === "/auth"
-                  ? "border-white bg-white/20 text-white"
-                  : "border-white/70 bg-white/10 text-white hover:border-white hover:bg-white/20"
-              }`}>
-                Sign In
+              /* Not logged in: illustrated account card */
+              <Link
+                href="/auth"
+                aria-label="Login to PawPal"
+                className={`nav-account-card ${pathname === "/auth" ? "is-active" : ""}`}
+              >
+                <AccountCardContent initial="L" label="Login" />
               </Link>
             )}
           </div>
@@ -201,7 +245,7 @@ export default function Navbar() {
               {user ? (
                 <>
                   <div className="mt-2 flex items-center gap-2 border-t border-white/20 px-3 py-2 pt-3 text-sm text-white">
-                    <div className="flex h-7 w-7 items-center justify-center rounded-paw-sm bg-paw-primary text-xs font-bold text-white">
+                    <div className="nav-account-mobile-avatar">
                       {displayName.charAt(0).toUpperCase()}
                     </div>
                     <span className="font-semibold truncate">{displayName}</span>
@@ -223,8 +267,8 @@ export default function Navbar() {
                   </button>
                 </>
               ) : (
-                <Link href="/auth" className="block rounded-md px-3 py-2 text-base font-medium text-white hover:bg-white/15" onClick={() => setIsOpen(false)}>
-                  Sign In
+                <Link href="/auth" className="nav-account-card mx-3 mt-3 w-fit" onClick={() => setIsOpen(false)}>
+                  <AccountCardContent initial="L" label="Login" />
                 </Link>
               )}
             </div>
