@@ -26,7 +26,6 @@ async function resolveAuthenticatedUserId(req: NextRequest) {
 
 export async function POST(req: NextRequest) {
   try {
-    const stripe = getStripe();
     const body = await req.json();
     const tier = paidTierFromValue(body.tier);
     if (!tier) {
@@ -46,12 +45,14 @@ export async function POST(req: NextRequest) {
       );
     }
 
+    const stripe = getStripe();
     const email =
       typeof body.email === "string" && body.email.includes("@")
         ? body.email.trim()
         : undefined;
     const plan = SUBSCRIPTION_PLANS[tier];
-    const configuredPriceId = process.env[plan.stripePriceEnv];
+    const configuredPriceId =
+      process.env[plan.stripePriceEnv] || plan.defaultStripePriceId;
 
     const lineItem: Stripe.Checkout.SessionCreateParams.LineItem =
       configuredPriceId

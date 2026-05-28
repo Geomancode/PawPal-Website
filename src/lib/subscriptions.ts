@@ -6,6 +6,7 @@ export interface SubscriptionPlan {
   summary: string;
   monthlyPrice: number;
   stripePriceEnv: string;
+  defaultStripePriceId: string;
   highlight?: boolean;
   features: string[];
 }
@@ -20,6 +21,7 @@ export const SUBSCRIPTION_PLANS: Record<
     summary: "Unlock PawPal AI chat and everyday care tools.",
     monthlyPrice: Number(process.env.NEXT_PUBLIC_BASIC_MONTHLY_EUR ?? 6.99),
     stripePriceEnv: "STRIPE_BASIC_PRICE_ID",
+    defaultStripePriceId: "price_1Tc7kbFYBV8rV3Oc3BcNBUrk",
     highlight: true,
     features: [
       "Pet companion AI chat",
@@ -33,6 +35,7 @@ export const SUBSCRIPTION_PLANS: Record<
     summary: "Priority AI plus future advanced pet insights.",
     monthlyPrice: Number(process.env.NEXT_PUBLIC_PRO_MONTHLY_EUR ?? 12.99),
     stripePriceEnv: "STRIPE_PRO_PRICE_ID",
+    defaultStripePriceId: "price_1Tc7lXFYBV8rV3OcJvWpacfe",
     features: [
       "Everything in Basic",
       "Priority access for upcoming AI features",
@@ -76,7 +79,11 @@ export function hasProAccess(row: {
 
 export function tierFromStripePrice(priceId?: string | null): SubscriptionTier {
   if (!priceId) return "free";
-  if (process.env.STRIPE_BASIC_PRICE_ID === priceId) return "basic";
-  if (process.env.STRIPE_PRO_PRICE_ID === priceId) return "pro";
+  const basicPriceId =
+    process.env.STRIPE_BASIC_PRICE_ID || SUBSCRIPTION_PLANS.basic.defaultStripePriceId;
+  const proPriceId =
+    process.env.STRIPE_PRO_PRICE_ID || SUBSCRIPTION_PLANS.pro.defaultStripePriceId;
+  if (basicPriceId === priceId) return "basic";
+  if (proPriceId === priceId) return "pro";
   return "free";
 }
