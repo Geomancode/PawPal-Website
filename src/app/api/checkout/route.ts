@@ -9,8 +9,10 @@ function getStripe() {
 
 export async function POST(req: NextRequest) {
   try {
-    const stripe = getStripe();
     const { items, shipping } = await req.json();
+    if (!Array.isArray(items) || items.length === 0) {
+      return NextResponse.json({ error: "Cart is empty" }, { status: 400 });
+    }
 
     // Build line items for Stripe Checkout
     const lineItems: Stripe.Checkout.SessionCreateParams.LineItem[] = items.map(
@@ -41,6 +43,7 @@ export async function POST(req: NextRequest) {
       },
     );
 
+    const stripe = getStripe();
     const baseUrl =
       process.env.NEXT_PUBLIC_BASE_URL ||
       req.headers.get("origin") ||

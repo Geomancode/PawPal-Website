@@ -158,7 +158,11 @@ async function handleSubscriptionChanged(subscription: Stripe.Subscription) {
 }
 
 export async function POST(req: NextRequest) {
-  const stripe = getStripe();
+  const signature = req.headers.get("stripe-signature");
+  if (!signature) {
+    return NextResponse.json({ error: "Missing Stripe signature" }, { status: 400 });
+  }
+
   const secret = process.env.STRIPE_WEBHOOK_SECRET;
   if (!secret) {
     return NextResponse.json(
@@ -167,11 +171,7 @@ export async function POST(req: NextRequest) {
     );
   }
 
-  const signature = req.headers.get("stripe-signature");
-  if (!signature) {
-    return NextResponse.json({ error: "Missing Stripe signature" }, { status: 400 });
-  }
-
+  const stripe = getStripe();
   let event: Stripe.Event;
   try {
     event = stripe.webhooks.constructEvent(await req.text(), signature, secret);
