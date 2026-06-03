@@ -1,78 +1,65 @@
 "use client";
 
 import Link from "next/link";
-import { Heart, Github, Twitter, Instagram, Mail } from "lucide-react";
+import { Facebook, Instagram, Mail } from "lucide-react";
 import PawPalLogo from "./PawPalLogo";
-import { DoodlePaw, DoodleDog } from "./PetDoodles";
 
 const FOOTER_NAV = {
   Product: [
-    { label: "Globe", href: "/globe" },
-    { label: "Store", href: "/store" },
-    { label: "Open Globe", href: "/globe" },
+    { label: "Globe Map", href: "/globe" },
+    { label: "NFC Safety Tag", href: "/store" },
+    { label: "AI Assistant", href: "/globe" },
+    { label: "Community", href: "/globe" },
   ],
-  Community: [
+  Company: [
     { label: "About Us", href: "/about" },
-    { label: "NFC Tags", href: "/store" },
-    { label: "Local Network", href: "/globe" },
+    { label: "Store", href: "/store" },
+    { label: "Help Center", href: "/help" },
   ],
   Support: [
-    { label: "Help Center", href: "#" },
-    { label: "Privacy Policy", href: "#" },
-    { label: "Terms of Service", href: "#" },
+    { label: "Privacy Policy", href: "/privacy" },
+    { label: "Terms of Service", href: "/terms" },
+    { label: "Contact", href: "mailto:hello@pawpal.be" },
   ],
 };
 
 const SOCIALS = [
-  { icon: Twitter, href: "#", label: "Twitter" },
-  { icon: Instagram, href: "#", label: "Instagram" },
-  { icon: Github, href: "#", label: "GitHub" },
+  { icon: Instagram, href: "https://www.instagram.com/", label: "Instagram" },
+  { icon: Facebook, href: "https://www.facebook.com/", label: "Facebook" },
   { icon: Mail, href: "mailto:hello@pawpal.be", label: "Email" },
 ];
 
 export default function Footer() {
   return (
-    <footer className="relative overflow-hidden bg-paw-ink text-slate-300">
-      <div className="h-1 bg-gradient-to-r from-paw-primary via-paw-warning to-paw-trust" />
-      {/* Decorative doodles */}
-      <div className="absolute top-8 right-12 hidden h-20 w-20 text-paw-primary/[0.05] lg:block"><DoodleDog className="h-full w-full" /></div>
-      <div className="absolute bottom-16 left-10 hidden h-14 w-14 text-paw-trust/[0.05] lg:block"><DoodlePaw className="h-full w-full" /></div>
-      {/* Main grid */}
-      <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-2 gap-10 md:grid-cols-5">
-          {/* Brand column — using real logo (dark variant) */}
-          <div className="col-span-2">
-            <div className="mb-4">
-              <PawPalLogo iconSize={28} fontSize={20} variant="dark" />
-            </div>
-            <p className="mb-6 max-w-xs text-sm leading-relaxed text-slate-300/82">
-              Enhancing the bond between you and your pet — with gamified walks, NFC safety tags, and a trusted local community.
-            </p>
-            <div className="flex gap-3">
-              {SOCIALS.map((s) => (
-                <a
-                  key={s.label}
-                  href={s.href}
-                  aria-label={s.label}
-                  className="group flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-white/[0.07] transition-colors hover:border-paw-primary/40 hover:bg-paw-primary"
-                >
-                  <s.icon className="h-4 w-4 text-slate-300 transition-colors group-hover:text-white" />
-                </a>
-              ))}
-            </div>
+    <footer className="border-t border-paw-border bg-white text-paw-body">
+      <div className="mx-auto grid max-w-7xl gap-10 px-5 py-14 sm:px-6 md:grid-cols-[1.2fr_2fr] lg:px-8">
+        <div>
+          <PawPalLogo iconSize={30} fontSize={22} variant="light" />
+          <p className="mt-5 max-w-xs text-sm leading-7 text-paw-body">
+            Smart walks. Safe pets. Stronger local communities for pet parents across Belgium and the EU.
+          </p>
+          <div className="mt-6 flex gap-2">
+            {SOCIALS.map((social) => (
+              <a
+                key={social.label}
+                href={social.href}
+                aria-label={social.label}
+                className="flex h-9 w-9 items-center justify-center rounded-paw-sm border border-paw-border bg-white text-paw-muted transition hover:border-paw-primary hover:text-paw-primary"
+              >
+                <social.icon className="h-4 w-4" />
+              </a>
+            ))}
           </div>
+        </div>
 
-          {/* Link columns */}
+        <div className="grid grid-cols-2 gap-8 sm:grid-cols-4">
           {Object.entries(FOOTER_NAV).map(([title, links]) => (
             <div key={title}>
-              <h4 className="mb-4 text-sm font-semibold uppercase tracking-wider text-white">{title}</h4>
-              <ul className="space-y-2.5">
+              <h3 className="mb-4 text-xs font-black uppercase tracking-[0.12em] text-paw-ink">{title}</h3>
+              <ul className="space-y-3">
                 {links.map((link) => (
                   <li key={link.label}>
-                    <Link
-                      href={link.href}
-                      className="text-sm text-slate-300/82 transition-colors hover:text-paw-primary"
-                    >
+                    <Link href={link.href} className="text-sm font-medium text-paw-body transition hover:text-paw-primary">
                       {link.label}
                     </Link>
                   </li>
@@ -80,18 +67,32 @@ export default function Footer() {
               </ul>
             </div>
           ))}
+
+          <div>
+            <h3 className="mb-4 text-xs font-black uppercase tracking-[0.12em] text-paw-ink">Stay in the loop</h3>
+            <p className="text-sm leading-6 text-paw-body">Get updates and local pet highlights.</p>
+            <form className="mt-4 flex overflow-hidden rounded-paw-sm border border-paw-border bg-white">
+              <label htmlFor="footer-email" className="sr-only">
+                Email address
+              </label>
+              <input
+                id="footer-email"
+                type="email"
+                placeholder="Email address"
+                className="min-w-0 flex-1 px-3 py-2 text-sm text-paw-ink outline-none placeholder:text-paw-muted"
+              />
+              <button type="submit" className="bg-paw-primary px-4 text-xs font-bold text-white transition hover:bg-paw-primary-hover">
+                Subscribe
+              </button>
+            </form>
+          </div>
         </div>
       </div>
 
-      {/* Bottom bar */}
-      <div className="border-t border-white/10">
-        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-4 py-5 sm:flex-row sm:px-6 lg:px-8">
-          <p className="text-xs text-slate-400">
-            © {new Date().getFullYear()} PawPal. All rights reserved.
-          </p>
-          <p className="flex items-center gap-1 text-xs text-slate-400">
-            Made with <Heart className="h-3 w-3 fill-paw-primary text-paw-primary" /> for every paw
-          </p>
+      <div className="border-t border-paw-border">
+        <div className="mx-auto flex max-w-7xl flex-col gap-3 px-5 py-5 text-xs font-medium text-paw-muted sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-8">
+          <p>© {new Date().getFullYear()} PawPal. All rights reserved.</p>
+          <p>Made in Belgium · English (EN)</p>
         </div>
       </div>
     </footer>

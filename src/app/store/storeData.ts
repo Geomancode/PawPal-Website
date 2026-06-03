@@ -20,6 +20,8 @@ export interface Product {
   category: Category;
   image: string;       // emoji fallback when no product image URL exists
   imageUrl?: string;
+  imageFit?: "cover" | "contain";
+  detailImages?: ProductDetailImage[];
   rating: number;
   reviewCount: number;
   badge?: ProductBadge;
@@ -28,6 +30,11 @@ export interface Product {
   published?: boolean;
   tags?: string[];
 }
+
+export type ProductDetailImage = {
+  src: string;
+  alt: string;
+};
 
 export interface CartItem {
   product: Product;
@@ -280,7 +287,7 @@ export function productFromRow(row: ProductRow): Product {
     ? (row.category as Category)
     : "accessories";
 
-  return {
+  return withProductAssetOverrides({
     id: row.id,
     slug: row.slug ?? undefined,
     sku: row.sku ?? undefined,
@@ -303,7 +310,71 @@ export function productFromRow(row: ProductRow): Product {
     stockQuantity: row.stock_quantity ?? undefined,
     published: row.published ?? true,
     tags: row.tags ?? [],
-  };
+  });
+}
+
+const WATER_BOTTLE_DETAIL_IMAGES: ProductDetailImage[] = [
+  {
+    src: "/assets/store-products/current/water-bottle/details/portable-water-food-bottle.png",
+    alt: "Portable pet water and food bottle with outdoor use cases.",
+  },
+  {
+    src: "/assets/store-products/current/water-bottle/details/travel-design.jpg",
+    alt: "Smart two-in-one travel design details for the PawPal water and food bottle.",
+  },
+  {
+    src: "/assets/store-products/current/water-bottle/details/product-details.jpg",
+    alt: "Product details for the PawPal water and food bottle.",
+  },
+];
+
+const POOP_SCOOPER_DETAIL_IMAGES: ProductDetailImage[] = [
+  {
+    src: "/assets/store-products/current/poop-scooper/details/portable-poop-picker.png",
+    alt: "Portable pet poop picker hero details.",
+  },
+  {
+    src: "/assets/store-products/current/poop-scooper/details/smarter-cleanup.png",
+    alt: "Smarter cleanup use cases for the PawPal poop picker.",
+  },
+  {
+    src: "/assets/store-products/current/poop-scooper/details/product-details.png",
+    alt: "Product details for the PawPal portable poop picker.",
+  },
+  {
+    src: "/assets/store-products/current/poop-scooper/details/how-it-works.png",
+    alt: "How the PawPal portable poop picker works.",
+  },
+];
+
+function productKey(product: Product) {
+  return `${product.slug ?? ""} ${product.sku ?? ""} ${product.name}`.toLowerCase();
+}
+
+export function withProductAssetOverrides(product: Product): Product {
+  const key = productKey(product);
+
+  if (key.includes("water") && (key.includes("bottle") || key.includes("feeder"))) {
+    return {
+      ...product,
+      image: "📦",
+      imageUrl: WATER_BOTTLE_DETAIL_IMAGES[0].src,
+      imageFit: "contain",
+      detailImages: WATER_BOTTLE_DETAIL_IMAGES,
+    };
+  }
+
+  if (key.includes("poop") || key.includes("scooper") || key.includes("picker")) {
+    return {
+      ...product,
+      image: "📦",
+      imageUrl: POOP_SCOOPER_DETAIL_IMAGES[0].src,
+      imageFit: "contain",
+      detailImages: POOP_SCOOPER_DETAIL_IMAGES,
+    };
+  }
+
+  return product;
 }
 
 export async function fetchCatalogProducts(): Promise<Product[]> {

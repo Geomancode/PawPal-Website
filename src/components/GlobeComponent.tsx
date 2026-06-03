@@ -135,6 +135,20 @@ export default function GlobeComponent() {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const globeEl = useRef<GlobeRef | null>(null);
   const [dimensions, setDimensions] = useState({ width: 420, height: 420 });
+  const [canUseWebGL, setCanUseWebGL] = useState<boolean | null>(null);
+
+  useEffect(() => {
+    const frame = window.requestAnimationFrame(() => {
+      const canvas = document.createElement("canvas");
+      const webgl =
+        canvas.getContext("webgl2") ||
+        canvas.getContext("webgl") ||
+        canvas.getContext("experimental-webgl");
+      setCanUseWebGL(Boolean(webgl));
+    });
+
+    return () => window.cancelAnimationFrame(frame);
+  }, []);
 
   // Size the WebGL canvas from its CSS slot so the atmosphere can breathe without a clipping mask.
   useEffect(() => {
@@ -388,21 +402,31 @@ export default function GlobeComponent() {
 
   return (
     <div ref={containerRef} className="flex h-full w-full touch-none items-center justify-center cursor-grab active:cursor-grabbing select-none">
-      <GlobeT
-        ref={globeEl}
-        width={dimensions.width}
-        height={dimensions.height}
-        globeImageUrl={EARTH_RELIEF_TEXTURE_URL}
-        bumpImageUrl={EARTH_RELIEF_TEXTURE_URL}
-        bumpScale={0.028}
-        showGlobe={true}
-        backgroundColor="rgba(0,0,0,0)"
-        atmosphereColor="#4A90D9"
-        atmosphereAltitude={0.2}
-        showGraticules={false}
-        animateIn={false}
-        onZoom={keepGlobeZoomLocked}
-      />
+      {canUseWebGL === null ? (
+        <div className="h-14 w-14 animate-spin rounded-full border-4 border-paw-primary-soft border-t-paw-primary" />
+      ) : canUseWebGL ? (
+        <GlobeT
+          ref={globeEl}
+          width={dimensions.width}
+          height={dimensions.height}
+          globeImageUrl={EARTH_RELIEF_TEXTURE_URL}
+          bumpImageUrl={EARTH_RELIEF_TEXTURE_URL}
+          bumpScale={0.028}
+          showGlobe={true}
+          backgroundColor="rgba(0,0,0,0)"
+          atmosphereColor="#4A90D9"
+          atmosphereAltitude={0.2}
+          showGraticules={false}
+          animateIn={false}
+          onZoom={keepGlobeZoomLocked}
+        />
+      ) : (
+        <div
+          className="globe-static-fallback"
+          role="img"
+          aria-label="PawPal Earth globe preview"
+        />
+      )}
     </div>
   );
 }

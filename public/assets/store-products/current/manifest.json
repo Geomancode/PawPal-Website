@@ -21,7 +21,7 @@
     "amber": "#FFCD38",
     "amberSoft": "#FFF8DC"
   },
-  "assetCount": 13,
+  "assetCount": 20,
   "previewContactSheet": "/assets/store-products/current/preview-contact-sheet.jpg",
   "assets": [
     {
@@ -35,6 +35,39 @@
       "format": "webp",
       "bytes": 95244,
       "publicPath": "/assets/store-products/current/water-bottle/hero.webp"
+    },
+    {
+      "product": "water_bottle",
+      "kind": "details",
+      "file": "water-bottle/details/portable-water-food-bottle.png",
+      "path": "/assets/store-products/current/water-bottle/details/portable-water-food-bottle.png",
+      "altText": "Portable pet water and food bottle with outdoor use cases.",
+      "source": "cup2.png",
+      "size": "1024x1536",
+      "format": "png",
+      "publicPath": "/assets/store-products/current/water-bottle/details/portable-water-food-bottle.png"
+    },
+    {
+      "product": "water_bottle",
+      "kind": "details",
+      "file": "water-bottle/details/travel-design.jpg",
+      "path": "/assets/store-products/current/water-bottle/details/travel-design.jpg",
+      "altText": "Smart two-in-one travel design details for the PawPal water and food bottle.",
+      "source": "cup.jpg",
+      "size": "1024x1536",
+      "format": "jpg",
+      "publicPath": "/assets/store-products/current/water-bottle/details/travel-design.jpg"
+    },
+    {
+      "product": "water_bottle",
+      "kind": "details",
+      "file": "water-bottle/details/product-details.jpg",
+      "path": "/assets/store-products/current/water-bottle/details/product-details.jpg",
+      "altText": "Product details for the PawPal water and food bottle.",
+      "source": "cup3.jpg",
+      "size": "1024x1536",
+      "format": "jpg",
+      "publicPath": "/assets/store-products/current/water-bottle/details/product-details.jpg"
     },
     {
       "product": "water_bottle",
@@ -107,6 +140,50 @@
       "format": "webp",
       "bytes": 287024,
       "publicPath": "/assets/store-products/current/poop-scooper/hero.webp"
+    },
+    {
+      "product": "poop_scooper",
+      "kind": "details",
+      "file": "poop-scooper/details/portable-poop-picker.png",
+      "path": "/assets/store-products/current/poop-scooper/details/portable-poop-picker.png",
+      "altText": "Portable pet poop picker hero details.",
+      "source": "pop4.png",
+      "size": "1024x1536",
+      "format": "png",
+      "publicPath": "/assets/store-products/current/poop-scooper/details/portable-poop-picker.png"
+    },
+    {
+      "product": "poop_scooper",
+      "kind": "details",
+      "file": "poop-scooper/details/smarter-cleanup.png",
+      "path": "/assets/store-products/current/poop-scooper/details/smarter-cleanup.png",
+      "altText": "Smarter cleanup use cases for the PawPal poop picker.",
+      "source": "pop3.png",
+      "size": "1024x1536",
+      "format": "png",
+      "publicPath": "/assets/store-products/current/poop-scooper/details/smarter-cleanup.png"
+    },
+    {
+      "product": "poop_scooper",
+      "kind": "details",
+      "file": "poop-scooper/details/product-details.png",
+      "path": "/assets/store-products/current/poop-scooper/details/product-details.png",
+      "altText": "Product details for the PawPal portable poop picker.",
+      "source": "pop2.png",
+      "size": "1024x1536",
+      "format": "png",
+      "publicPath": "/assets/store-products/current/poop-scooper/details/product-details.png"
+    },
+    {
+      "product": "poop_scooper",
+      "kind": "details",
+      "file": "poop-scooper/details/how-it-works.png",
+      "path": "/assets/store-products/current/poop-scooper/details/how-it-works.png",
+      "altText": "How the PawPal portable poop picker works.",
+      "source": "pop1.png",
+      "size": "1024x1536",
+      "format": "png",
+      "publicPath": "/assets/store-products/current/poop-scooper/details/how-it-works.png"
     },
     {
       "product": "poop_scooper",

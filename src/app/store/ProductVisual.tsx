@@ -31,7 +31,10 @@ export default function ProductVisual({
     return (
       <span className={boxClassName} role="img" aria-label={product.name}>
         <span
-          className="absolute inset-0 bg-cover bg-center"
+          className={cn(
+            "absolute inset-0 bg-center bg-no-repeat",
+            product.imageFit === "contain" ? "bg-contain" : "bg-cover",
+          )}
           style={{ backgroundImage: `url("${safeImageUrl}")` }}
         />
       </span>

@@ -17,6 +17,8 @@ type ProductCardProps = {
   ratingDetail?: string;
   actionLabel?: string;
   onAction?: () => void;
+  detailsLabel?: string;
+  onDetails?: () => void;
   className?: string;
 };
 
@@ -32,6 +34,8 @@ export default function ProductCard({
   ratingDetail,
   actionLabel = "Add to cart",
   onAction,
+  detailsLabel = "Details",
+  onDetails,
   className,
 }: ProductCardProps) {
   return (
@@ -83,9 +87,16 @@ export default function ProductCard({
           ) : (
             <span />
           )}
-          <Button type="button" size="sm" onClick={onAction}>
-            {actionLabel}
-          </Button>
+          <div className="flex items-center gap-2">
+            {onDetails && (
+              <Button type="button" variant="secondary" size="sm" onClick={onDetails}>
+                {detailsLabel}
+              </Button>
+            )}
+            <Button type="button" size="sm" onClick={onAction}>
+              {actionLabel}
+            </Button>
+          </div>
         </div>
       </CardContent>
     </Card>

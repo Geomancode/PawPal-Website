@@ -181,6 +181,7 @@ export default function AuthPage() {
                 />
                 <button
                   type="button"
+                  aria-label={showPassword ? "Hide password" : "Show password"}
                   onClick={() => setShowPassword(!showPassword)}
                   className="absolute right-3 top-1/2 -translate-y-1/2 text-paw-muted hover:text-paw-body"
                 >
@@ -255,8 +256,8 @@ export default function AuthPage() {
         {/* Footer text */}
         <p className="text-center text-xs text-paw-muted mt-6">
           By continuing, you agree to PawPal&apos;s{" "}
-          <a href="#" className="text-paw-primary hover:underline">Terms</a> and{" "}
-          <a href="#" className="text-paw-primary hover:underline">Privacy Policy</a>
+          <a href="/terms" className="text-paw-primary hover:underline">Terms</a> and{" "}
+          <a href="/privacy" className="text-paw-primary hover:underline">Privacy Policy</a>
         </p>
       </motion.div>
     </div>

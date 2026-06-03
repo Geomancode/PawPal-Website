@@ -34,7 +34,7 @@ export default function RootLayout({
       <body className="min-h-screen bg-paw-page text-paw-ink antialiased selection:bg-paw-primary/20">
         <Providers>
           <Navbar />
-          <main>{children}</main>
+          <main className="relative" style={{ zIndex: 20 }}>{children}</main>
           <ConditionalFooter />
         </Providers>
       </body>

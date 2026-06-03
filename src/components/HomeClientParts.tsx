@@ -1,572 +1,343 @@
 "use client";
 
-import { motion, useMotionValue, useTransform, useSpring, useScroll, useInView } from "framer-motion";
+import { motion, useInView, useScroll, useSpring } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import Globe from "@/components/Globe";
 import {
   ArrowRight,
-  Award,
-  BadgeCheck,
   Bot,
+  Download,
+  Globe as GlobeIcon,
   Languages,
   LockKeyhole,
+  Map,
   MapPin,
-  MessageCircle,
   Navigation,
+  Radio,
   Route,
   ScanLine,
   ShieldCheck,
-  Globe as GlobeIcon,
-  Users,
-  Sparkles,
-  Smartphone,
+  Star,
   Store,
-  Trophy,
-  Download,
+  Users,
+  Watch,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
-import { ReactNode, useRef, useEffect, useState, useCallback, MouseEvent as ReactMouseEvent } from "react";
+import { ReactNode, useEffect, useRef, useState } from "react";
 
-/* ═══════════════════════════════════════════════════════════════
-   PHASE 1 — Effect #1: Animated Text Reveal (word-by-word)
-   ═══════════════════════════════════════════════════════════════ */
+const ease = [0.25, 0.46, 0.45, 0.94] as const;
 
-const wordVariants = {
-  hidden: { opacity: 0, y: 20, filter: "blur(4px)" },
-  visible: (i: number) => ({
-    opacity: 1,
-    y: 0,
-    filter: "blur(0px)",
-    transition: {
-      delay: 0.3 + i * 0.08,
-      duration: 0.5,
-      ease: "easeOut" as const,
-    },
-  }),
-};
+export function FadeIn({
+  children,
+  delay = 0,
+  className = "",
+}: {
+  children: ReactNode;
+  delay?: number;
+  className?: string;
+}) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 18 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay, duration: 0.55, ease }}
+      className={className}
+    >
+      {children}
+    </motion.div>
+  );
+}
+
+export function FadeInView({
+  children,
+  delay = 0,
+  className = "",
+}: {
+  children: ReactNode;
+  delay?: number;
+  className?: string;
+}) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-80px" }}
+      transition={{ delay, duration: 0.58, ease }}
+      className={className}
+    >
+      {children}
+    </motion.div>
+  );
+}
+
+export function ScrollProgress() {
+  const { scrollYProgress } = useScroll();
+  const scaleX = useSpring(scrollYProgress, { stiffness: 120, damping: 30 });
+
+  return <motion.div className="scroll-progress" style={{ scaleX }} />;
+}
+
+export function HeroBlobs() {
+  return (
+    <div className="home-hero-field absolute inset-0 -z-10" aria-hidden="true">
+      <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-white to-transparent" />
+    </div>
+  );
+}
 
 export function AnimatedHeadline() {
-  const lines = ["Every Moment", "with Your Pet", "Made Smarter"];
-  let wordIndex = 0;
-
   return (
-    <h1
-      aria-label={lines.join(" ")}
-      className="hero-headline font-brand text-6xl font-bold leading-none text-black lg:text-7xl 2xl:text-8xl"
-    >
-      {lines.map((line, lineIndex) => (
-        <span
-          key={line}
-          className={`hero-headline-line hero-headline-line-${lineIndex + 1}`}
-        >
-          {line.split(" ").map((word, wordOffset, words) => {
-            const idx = wordIndex++;
-            return (
-              <motion.span
-                key={`${line}-${wordOffset}`}
-                custom={idx}
-                initial="hidden"
-                animate="visible"
-                variants={wordVariants}
-                className={`hero-headline-word inline-block ${lineIndex === 2 ? "hero-headline-word-gradient text-gradient-animated" : ""} ${wordOffset < words.length - 1 ? "mr-[0.3em]" : ""}`}
-              >
-                {word}
-              </motion.span>
-            );
-          })}
-        </span>
-      ))}
+    <h1 className="hero-headline max-w-3xl font-brand text-[3.1rem] font-extrabold leading-[1.02] tracking-normal text-paw-ink sm:text-6xl lg:text-[4.45rem] xl:text-[4.8rem]">
+      <span className="block sm:whitespace-nowrap">Every pet moment,</span>
+      <span className="block text-paw-primary">mapped and protected</span>
     </h1>
   );
 }
 
 export function HeroDescription() {
-  const lines = [
-    "PawPal enhances the bond between you and ",
-    "your pet — with gamified walks, fog-of-war maps, ",
-    "NFC safety tags, an AI assistant, and a trusted ",
-    "local community — all built for pet lovers.",
-  ];
-
   return (
     <motion.p
-      className="hero-copy-description text-lg leading-relaxed text-[#8F6A56]/75 lg:text-xl"
-      initial={{ opacity: 0, y: 20 }}
+      className="max-w-xl break-words text-lg leading-8 text-paw-body lg:text-xl lg:leading-9"
+      initial={{ opacity: 0, y: 18 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: 0.9, duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
+      transition={{ delay: 0.18, duration: 0.55, ease }}
     >
-      {lines.map((line, index) => (
-        <span key={line} className={`hero-description-line hero-description-line-${index + 1}`}>
-          {line}
-        </span>
-      ))}
+      PawPal brings gamified walks, fog-of-war maps, NFC safety profiles,
+      AI care help, and a trusted local pet community into one calm product
+      surface.
     </motion.p>
   );
 }
 
-/* ═══════════════════════════════════════════════════════════════
-   PHASE 1 — Effect #2: Animated Counter (count up on scroll)
-   ═══════════════════════════════════════════════════════════════ */
+export function HeroCTA() {
+  return (
+    <motion.div
+      className="flex w-full max-w-[calc(100vw-2.5rem)] flex-col gap-3 pt-2 sm:max-w-none sm:flex-row"
+      initial={{ opacity: 0, y: 14 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: 0.28, duration: 0.55, ease }}
+    >
+      <Link
+        href="/globe"
+        className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-paw-sm bg-paw-primary px-6 text-sm font-bold text-white shadow-paw-action transition hover:bg-paw-primary-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-paw-primary sm:w-auto"
+      >
+        Explore Globe
+        <ArrowRight className="h-4 w-4" />
+      </Link>
+      <Link
+        href="/store"
+        className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-paw-sm border border-paw-border-strong bg-white px-6 text-sm font-bold text-paw-ink transition hover:border-paw-primary hover:text-paw-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-paw-primary sm:w-auto"
+      >
+        Shop NFC Tags
+        <Store className="h-4 w-4" />
+      </Link>
+    </motion.div>
+  );
+}
+
+export function HeroBadges() {
+  const petInitials = ["L", "M", "B", "N", "K"];
+
+  return (
+    <motion.div
+      className="flex flex-col gap-4 pt-2 sm:flex-row sm:items-center"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ delay: 0.42, duration: 0.5 }}
+    >
+      <div className="flex -space-x-2">
+        {petInitials.map((initial, index) => (
+          <span
+            key={initial}
+            className="flex h-9 w-9 items-center justify-center rounded-full border-2 border-white text-xs font-black text-white shadow-sm"
+            style={{
+              backgroundColor: ["#4A90D9", "#76C7B8", "#F28C44", "#FFCD38", "#3A2F2A"][index],
+            }}
+          >
+            {initial}
+          </span>
+        ))}
+      </div>
+      <div>
+        <div className="mb-1 flex gap-0.5 text-paw-yellow" aria-label="Five star rating">
+          {[...Array(5)].map((_, index) => (
+            <Star key={index} className="h-4 w-4 fill-current" />
+          ))}
+        </div>
+        <p className="text-sm font-medium text-paw-muted">
+          Trusted by pet parents across Belgium and the EU
+        </p>
+      </div>
+    </motion.div>
+  );
+}
+
+export function GlobeSection() {
+  return (
+    <motion.div
+      className="hero-globe-upgrade relative mx-auto flex min-h-[500px] w-full max-w-[calc(100vw-2.5rem)] items-center justify-center overflow-visible sm:max-w-[650px] lg:min-h-[610px]"
+      initial={{ opacity: 0, x: 24 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ delay: 0.14, duration: 0.7, ease }}
+    >
+      <div className="hero-globe-orbit-ring" aria-hidden="true" />
+
+      <div className="hero-globe-shell-upgraded pointer-events-auto relative z-10">
+        <Globe />
+      </div>
+
+      <div className="hero-globe-card hero-globe-card-live left-0 top-14">
+        <span className="flex h-10 w-10 items-center justify-center rounded-paw-sm bg-paw-primary text-white">
+          <GlobeIcon className="h-5 w-5" />
+        </span>
+        <div>
+          <p className="text-xs font-black uppercase tracking-[0.12em] text-paw-muted">Live Globe</p>
+          <p className="mt-0.5 text-sm font-extrabold text-paw-ink">Fog map active</p>
+        </div>
+      </div>
+
+      <div className="hero-globe-card hero-globe-card-place right-0 top-28 hidden sm:flex">
+        <span className="flex h-10 w-10 items-center justify-center rounded-paw-sm bg-paw-trust-soft text-paw-trust">
+          <MapPin className="h-5 w-5" />
+        </span>
+        <div>
+          <p className="text-xs font-black uppercase tracking-[0.12em] text-paw-muted">Ghent Pilot</p>
+          <p className="mt-0.5 text-sm font-extrabold text-paw-ink">EU-ready pet map</p>
+        </div>
+      </div>
+
+      <div className="hero-globe-card hero-globe-card-route bottom-16 left-2">
+        <span className="flex h-10 w-10 items-center justify-center rounded-paw-sm bg-paw-accent-soft text-paw-accent">
+          <Route className="h-5 w-5" />
+        </span>
+        <div className="min-w-0">
+          <p className="text-xs font-black uppercase tracking-[0.12em] text-paw-muted">Today&apos;s route</p>
+          <p className="mt-0.5 text-sm font-extrabold text-paw-ink">2.43 km revealed</p>
+        </div>
+      </div>
+
+      <div className="hero-globe-card hero-globe-card-safety bottom-8 right-3 hidden sm:flex">
+        <span className="flex h-10 w-10 items-center justify-center rounded-paw-sm bg-paw-primary-soft text-paw-primary">
+          <ShieldCheck className="h-5 w-5" />
+        </span>
+        <div>
+          <p className="text-xs font-black uppercase tracking-[0.12em] text-paw-muted">NFC Safety</p>
+          <p className="mt-0.5 text-sm font-extrabold text-paw-ink">Finder-ready profile</p>
+        </div>
+      </div>
+
+      <motion.div
+        className="hero-globe-hint-upgraded"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: [0, 1, 1, 0.65, 1] }}
+        transition={{ delay: 1.2, duration: 3.2, repeat: Infinity, repeatDelay: 4 }}
+      >
+        Drag to spin
+      </motion.div>
+    </motion.div>
+  );
+}
+
+const proofItems: Array<{ icon: LucideIcon; title: string; copy: string; color: string }> = [
+  { icon: ShieldCheck, title: "NFC Safety", copy: "Instant ID access anytime", color: "text-paw-primary" },
+  { icon: LockKeyhole, title: "Privacy First", copy: "Owner details stay controlled", color: "text-paw-ink" },
+  { icon: Languages, title: "EU Ready", copy: "Built for multilingual owners", color: "text-paw-primary" },
+  { icon: Users, title: "Local Network", copy: "Community help around the map", color: "text-paw-accent" },
+  { icon: Star, title: "4.9 / 5", copy: "Early app experience target", color: "text-paw-ink" },
+];
+
+export function TrustMarquee() {
+  return (
+    <div className="grid gap-px bg-paw-border sm:grid-cols-2 lg:grid-cols-5">
+      {proofItems.map((item) => (
+        <div key={item.title} className="flex min-h-28 items-center gap-4 bg-white px-5 py-5">
+          <item.icon className={`h-8 w-8 shrink-0 ${item.color}`} />
+          <div>
+            <h3 className="text-sm font-extrabold text-paw-ink">{item.title}</h3>
+            <p className="mt-1 text-xs leading-5 text-paw-muted">{item.copy}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
 
 function parseStatValue(value: string): { prefix: string; num: number; suffix: string } {
   const match = value.match(/^([^\d]*)([\d.]+)(.*)$/);
-  if (match) return { prefix: match[1], num: parseFloat(match[2]), suffix: match[3] };
-  return { prefix: "", num: 0, suffix: value };
+  if (!match) return { prefix: "", num: 0, suffix: value };
+  return { prefix: match[1], num: Number.parseFloat(match[2]), suffix: match[3] };
 }
 
 export function AnimatedCounter({ value, label, delay = 0 }: { value: string; label: string; delay?: number }) {
   const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, margin: "-50px" });
+  const isInView = useInView(ref, { once: true, margin: "-60px" });
   const { prefix, num, suffix } = parseStatValue(value);
   const [displayNum, setDisplayNum] = useState(0);
 
   useEffect(() => {
     if (!isInView) return;
-    const duration = 1800; // ms
-    const startTime = Date.now();
-    const timer = setInterval(() => {
-      const elapsed = Date.now() - startTime;
+
+    const duration = 1300;
+    const startedAt = Date.now();
+    const timer = window.setInterval(() => {
+      const elapsed = Date.now() - startedAt;
       const progress = Math.min(elapsed / duration, 1);
-      // Ease out cubic
       const eased = 1 - Math.pow(1 - progress, 3);
       setDisplayNum(eased * num);
-      if (progress >= 1) clearInterval(timer);
+      if (progress >= 1) window.clearInterval(timer);
     }, 16);
-    return () => clearInterval(timer);
+
+    return () => window.clearInterval(timer);
   }, [isInView, num]);
 
-  const displayedValue = (() => {
-    if (!isInView) return 0;
-    if (num === 0) return 0;
-    if (num % 1 !== 0) return displayNum.toFixed(1);
-    if (num <= 5) return Math.min(num, Math.max(1, Math.round(displayNum)));
-    return Math.floor(displayNum);
-  })();
+  const displayedValue = num % 1 === 0 ? Math.round(displayNum) : displayNum.toFixed(1);
 
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 0, y: 16 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ delay, duration: 0.5 }}
-      className="relative"
+      transition={{ delay, duration: 0.45, ease }}
     >
-      <div className="text-3xl md:text-4xl font-extrabold text-gradient-animated font-brand tabular-nums">
-        {isInView ? (
-          <>{prefix}{displayedValue}{suffix}</>
-        ) : (
-          <>{prefix}0{suffix}</>
-        )}
+      <div className="font-brand text-3xl font-black text-paw-primary md:text-4xl">
+        {isInView ? `${prefix}${displayedValue}${suffix}` : `${prefix}0${suffix}`}
       </div>
-      <div className="mt-1 text-sm font-medium text-paw-muted">{label}</div>
+      <p className="mt-1 text-sm font-semibold text-paw-muted">{label}</p>
     </motion.div>
   );
 }
 
-/* ═══════════════════════════════════════════════════════════════
-   PHASE 1 — Effect #3: Spotlight Card (cursor-following glow)
-   ═══════════════════════════════════════════════════════════════ */
-
-export function SpotlightCard({ children, className = "" }: { children: ReactNode; className?: string }) {
-  const cardRef = useRef<HTMLDivElement>(null);
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
-
-  const handleMouseMove = useCallback((e: ReactMouseEvent<HTMLDivElement>) => {
-    if (!cardRef.current) return;
-    const rect = cardRef.current.getBoundingClientRect();
-    mouseX.set(e.clientX - rect.left);
-    mouseY.set(e.clientY - rect.top);
-  }, [mouseX, mouseY]);
-
-  return (
-    <motion.div
-      ref={cardRef}
-      onMouseMove={handleMouseMove}
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      className={`relative overflow-hidden ${className}`}
-    >
-      {/* Spotlight gradient overlay */}
-      <motion.div
-        className="pointer-events-none absolute -inset-px rounded-2xl opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-        style={{
-          background: useTransform(
-            [mouseX, mouseY],
-            ([x, y]) =>
-              `radial-gradient(400px circle at ${x}px ${y}px, rgba(74, 144, 217, 0.08), transparent 60%)`
-          ),
-        }}
-      />
-      {children}
-    </motion.div>
-  );
-}
-
-/* ═══════════════════════════════════════════════════════════════
-   PHASE 1 — Effect #4: Scroll Progress Bar
-   ═══════════════════════════════════════════════════════════════ */
-
-export function ScrollProgress() {
-  const { scrollYProgress } = useScroll();
-  const scaleX = useSpring(scrollYProgress, { stiffness: 100, damping: 30 });
-
-  return (
-    <motion.div
-      className="scroll-progress"
-      style={{ scaleX }}
-    />
-  );
-}
-
-/* ═══════════════════════════════════════════════════════════════
-   PHASE 1 — Effect #5: Breathing Background Blobs
-   ═══════════════════════════════════════════════════════════════ */
-
-export function HeroBlobs() {
-  return (
-    <div className="home-hero-field absolute inset-0 -z-10 overflow-hidden" aria-hidden="true">
-      <div className="absolute inset-x-0 bottom-0 h-36 bg-gradient-to-t from-paw-page to-transparent" />
-    </div>
-  );
-}
-
-/* ═══════════════════════════════════════════════════════════════
-   Existing components — Updated with brand enhancements
-   ═══════════════════════════════════════════════════════════════ */
-
-/* ── Animated wrapper (client-only) ── */
-export function FadeIn({ children, delay = 0, className = "" }: { children: ReactNode; delay?: number; className?: string }) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay, duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
-      className={className}
-    >
-      {children}
-    </motion.div>
-  );
-}
-
-export function FadeInView({ children, delay = 0, className = "" }: { children: ReactNode; delay?: number; className?: string }) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ delay, duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
-      className={className}
-    >
-      {children}
-    </motion.div>
-  );
-}
-
-/* ── Hero CTA buttons — with hover micro-animation ── */
-export function HeroCTA() {
-  return (
-    <motion.div
-      className="hero-cta flex flex-col sm:flex-row gap-4 pt-2"
-      initial={{ opacity: 0, y: 15 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: 1.0, duration: 0.6 }}
-    >
-      <motion.div
-        whileHover={{ scale: 1.03, y: -2 }}
-        whileTap={{ scale: 0.98 }}
-      >
-        <Link
-          href="/auth"
-          className="flex items-center justify-center gap-2 whitespace-nowrap rounded-paw-lg bg-paw-primary px-8 py-4 text-lg font-bold text-white shadow-paw-action transition-colors hover:bg-paw-primary-hover"
-        >
-          Download App
-          <Download className="w-5 h-5" />
-        </Link>
-      </motion.div>
-      <motion.div
-        whileHover={{ scale: 1.03, y: -2 }}
-        whileTap={{ scale: 0.98 }}
-      >
-        <Link
-          href="/globe"
-          className="flex items-center justify-center gap-2 whitespace-nowrap rounded-paw-lg border border-[#76C7B8]/30 bg-[#76C7B8]/75 px-8 py-4 text-lg font-bold text-white transition-colors hover:border-[#76C7B8]/50 hover:bg-[#76C7B8]"
-        >
-          <GlobeIcon className="w-5 h-5" />
-          Explore Globe
-        </Link>
-      </motion.div>
-    </motion.div>
-  );
-}
-
-/* ── Hero trust badges — staggered entry ── */
-export function HeroBadges() {
-  const badges = [
-    { icon: MapPin, color: "text-paw-primary", label: "Gamified Walks" },
-    { icon: Bot, color: "text-paw-primary", label: "AI Pet Assistant" },
-    { icon: ShieldCheck, color: "text-paw-primary", label: "NFC Safety Tags" },
-  ];
-
-  return (
-    <motion.div
-      className="hero-trust-badges flex flex-wrap items-center gap-x-7 gap-y-3 pt-4"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ delay: 1.3, duration: 0.6 }}
-    >
-      {badges.map((t, i) => (
-        <motion.div
-          key={i}
-          className="flex items-center gap-2 whitespace-nowrap text-[#8F6A56]"
-          initial={{ opacity: 0, x: -10 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 1.4 + i * 0.12 }}
-        >
-          <t.icon className={`w-5 h-5 ${t.color}`} />
-          <span className="text-sm font-medium">{t.label}</span>
-        </motion.div>
-      ))}
-    </motion.div>
-  );
-}
-
-/* ── Globe section with animation ── */
-export function GlobeSection() {
-  return (
-    <motion.div
-      className="hero-orbit-globe relative flex h-[420px] w-full items-center justify-center overflow-visible"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 1.2, delay: 0.15, ease: [0.25, 0.46, 0.45, 0.94] }}
-    >
-      <div className="hero-globe-shell pointer-events-auto absolute inset-0 flex items-center justify-center">
-        <Globe />
-      </div>
-      <motion.div
-        className="hero-globe-hint glass pointer-events-none absolute whitespace-nowrap rounded-paw-md px-4 py-1.5 text-xs font-medium text-paw-trust"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: [0, 1, 1, 0.6, 1] }}
-        transition={{ delay: 1.5, duration: 3, repeat: Infinity, repeatDelay: 4 }}
-      >
-        Drag to spin - click to explore
-      </motion.div>
-    </motion.div>
-  );
-}
-
-/* ── Bottom CTA section — with hover animations ── */
-export function BottomCTA() {
-  return (
-    <div className="flex flex-col sm:flex-row gap-4 justify-center">
-      <MagneticButton>
-        <motion.div
-          whileHover={{ scale: 1.03 }}
-          whileTap={{ scale: 0.98 }}
-        >
-          <Link
-            href="/globe"
-            className="inline-flex items-center justify-center gap-2 rounded-paw-lg bg-paw-primary px-8 py-4 text-lg font-bold text-white shadow-paw-action transition-colors hover:bg-paw-primary-hover"
-          >
-            Open the Globe
-            <ArrowRight className="h-5 w-5" />
-          </Link>
-        </motion.div>
-      </MagneticButton>
-      <MagneticButton>
-        <motion.div
-          whileHover={{ scale: 1.03 }}
-          whileTap={{ scale: 0.98 }}
-        >
-          <Link
-            href="/store"
-            className="glass inline-flex items-center justify-center gap-2 rounded-paw-lg border border-paw-trust/20 px-8 py-4 text-lg font-bold text-paw-trust transition-colors hover:border-paw-trust/40 hover:bg-white/70"
-          >
-            <Store className="h-5 w-5" />
-            View NFC Tags
-          </Link>
-        </motion.div>
-      </MagneticButton>
-    </div>
-  );
-}
-
-/* ═══════════════════════════════════════════════════════════════
-   PHASE 2 — Effect #6: Bento Feature Grid
-   ═══════════════════════════════════════════════════════════════ */
-
-export function BentoFeatureGrid() {
-  return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 auto-rows-[minmax(180px,auto)]">
-      {/* Card 1: Fog-of-war map */}
-      <SpotlightCard className="glass rounded-2xl border border-paw-border transition-all duration-300 hover:border-paw-trust/30 hover:shadow-xl group cursor-default bento-glow lg:row-span-2 p-8 flex flex-col justify-between">
-        <div>
-          <div className="mb-4 inline-flex items-center gap-1.5 rounded-paw-sm bg-paw-trust-soft px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-paw-trust">Solo Mode</div>
-          <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-paw-lg bg-paw-trust-soft text-paw-trust transition-transform duration-300 group-hover:scale-110">
-            <GlobeIcon className="w-7 h-7" />
-          </div>
-          <h3 className="mb-3 text-xl font-bold text-paw-ink">Fog-of-War Map</h3>
-          <p className="text-sm leading-relaxed text-paw-body">
-            Every walk reveals new map tiles, creates route history, and turns daily exercise into visible progress for owners and pets.
-          </p>
-        </div>
-        {/* Hex grid visual */}
-        <div className="relative mt-6 flex h-32 items-center justify-center overflow-hidden rounded-paw-md bg-gradient-to-br from-paw-trust-soft to-paw-success-soft">
-          <div className="grid grid-cols-5 gap-1">
-            {[...Array(15)].map((_, i) => (
-              <div
-                key={i}
-                className={`w-5 h-5 rounded-sm transition-all duration-500 ${
-                  i % 3 === 0 ? "bg-paw-primary/30" : i % 4 === 0 ? "bg-paw-trust/20" : "bg-paw-ink/8"
-                }`}
-                style={{ animationDelay: `${i * 0.15}s` }}
-              />
-            ))}
-          </div>
-          <div className="absolute bottom-2 right-3 text-[10px] font-bold text-paw-trust/70">Route progress</div>
-        </div>
-      </SpotlightCard>
-
-      {/* Card 2: NFC safety tags */}
-      <SpotlightCard className="glass rounded-2xl border border-paw-border transition-all duration-300 hover:border-paw-primary/30 hover:shadow-xl group cursor-default bento-glow p-7 flex flex-col justify-between">
-        <div>
-          <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-paw-md bg-paw-primary-soft text-paw-primary transition-transform duration-300 group-hover:scale-110">
-            <ShieldCheck className="w-6 h-6" />
-          </div>
-          <h3 className="mb-2 text-lg font-bold text-paw-ink">NFC Safety Tags</h3>
-          <p className="text-sm leading-relaxed text-paw-body">
-            A smart collar tag opens a secure pet profile in the browser. Finders do not need the app, and owner contact details stay controlled until lost mode.
-          </p>
-        </div>
-        <div className="mt-4 flex items-center gap-2 rounded-paw-sm bg-paw-primary-soft px-3 py-2 text-xs font-medium text-paw-primary">
-          <ScanLine className="h-4 w-4" />
-          Scan at pawpal.be/tag - no install needed
-        </div>
-      </SpotlightCard>
-
-      {/* Card 3: Local Community */}
-      <SpotlightCard className="glass rounded-2xl border border-paw-border transition-all duration-300 hover:border-paw-success/30 hover:shadow-xl group cursor-default bento-glow p-7 flex flex-col justify-between">
-        <div>
-          <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-paw-success-soft text-[10px] font-bold text-paw-success uppercase tracking-wider mb-4">Community Mode</div>
-          <div className="w-12 h-12 rounded-paw-md flex items-center justify-center bg-paw-success-soft text-paw-success mb-4 group-hover:scale-105 transition-transform duration-300">
-            <Users className="w-6 h-6" />
-          </div>
-          <h3 className="mb-2 text-lg font-bold text-paw-ink">Local Pet Network</h3>
-          <p className="text-sm leading-relaxed text-paw-body">
-            Coordinate walks, local tips, help requests, and lost-pet alerts through a trusted map-first neighborhood layer.
-          </p>
-        </div>
-        {/* User stack */}
-        <div className="flex -space-x-2 mt-4">
-          {["var(--color-paw-primary)", "var(--color-paw-trust)", "var(--color-paw-success)", "var(--color-paw-warning)", "var(--color-paw-danger)"].map((c, i) => (
-            <div
-              key={i}
-              className="w-9 h-9 rounded-full border-2 border-paw-panel flex items-center justify-center text-white text-xs font-bold"
-              style={{ backgroundColor: c, zIndex: 5 - i }}
-            >
-              {String.fromCharCode(65 + i)}
-            </div>
-          ))}
-        </div>
-      </SpotlightCard>
-
-      {/* Card 4: PawPoints + AI — wide spanning 2 cols */}
-      <SpotlightCard className="glass rounded-2xl border border-paw-border transition-all duration-300 hover:border-paw-primary/30 hover:shadow-xl group cursor-default bento-glow lg:col-span-2 p-7 flex flex-col md:flex-row gap-6 items-center">
-        <div className="flex-1">
-          <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-paw-md bg-paw-primary-soft text-paw-primary transition-transform duration-300 group-hover:scale-110">
-            <Sparkles className="w-6 h-6" />
-          </div>
-          <h3 className="mb-2 text-lg font-bold text-paw-ink">PawPoints & AI Assistant</h3>
-          <p className="text-sm leading-relaxed text-paw-body">
-            Reward progress, summarize care questions, identify breeds, and surface useful next actions from one assistant instead of scattered pet tools.
-          </p>
-        </div>
-        {/* Points visual */}
-        <div className="relative flex h-28 w-full flex-col items-center justify-center gap-1 overflow-hidden rounded-paw-md bg-gradient-to-br from-paw-primary-soft to-paw-trust-soft md:w-48">
-          <Trophy className="h-8 w-8 text-paw-warning" />
-          <div className="text-lg font-bold text-paw-primary">+150 pts</div>
-          <div className="text-[10px] text-paw-muted">Daily walk completed</div>
-          <div className="absolute inset-x-0 h-px bg-gradient-to-r from-transparent via-paw-primary/40 to-transparent blob-animate-1" style={{ bottom: "20%" }} />
-        </div>
-      </SpotlightCard>
-    </div>
-  );
-}
-
-/* ═══════════════════════════════════════════════════════════════
-   PHASE 2 — Effect #7: Trust Marquee (infinite scroll)
-   ═══════════════════════════════════════════════════════════════ */
-
-const TRUST_ITEMS: Array<{ icon: LucideIcon; label: string; color: string }> = [
-  { icon: BadgeCheck, label: "Built in Ghent, Belgium", color: "text-paw-primary" },
-  { icon: LockKeyhole, label: "GDPR-first design", color: "text-paw-trust" },
-  { icon: Bot, label: "AI care assistant", color: "text-paw-primary" },
-  { icon: Navigation, label: "Walk route tracking", color: "text-paw-trust" },
-  { icon: GlobeIcon, label: "Fog-of-war map engine", color: "text-paw-primary" },
-  { icon: Award, label: "PawPoints rewards", color: "text-paw-warning" },
-  { icon: ScanLine, label: "NFC smart tags", color: "text-paw-trust" },
-  { icon: Languages, label: "5 languages supported", color: "text-paw-primary" },
-];
-
-export function TrustMarquee() {
-  return (
-    <div className="relative overflow-hidden py-6">
-      {/* Fade edges */}
-      <div className="absolute bottom-0 left-0 top-0 z-10 w-20 bg-gradient-to-r from-paw-panel-subtle to-transparent" />
-      <div className="absolute bottom-0 right-0 top-0 z-10 w-20 bg-gradient-to-l from-paw-panel-subtle to-transparent" />
-
-      <div className="flex marquee-track" style={{ width: "max-content" }}>
-        {/* Duplicate items for seamless loop */}
-        {[...TRUST_ITEMS, ...TRUST_ITEMS].map((item, i) => (
-          <div
-            key={i}
-            className="glass mx-2 flex items-center gap-2.5 whitespace-nowrap rounded-paw-lg border border-paw-border px-6 py-3 transition-all hover:border-paw-primary/25 hover:shadow-sm"
-          >
-            <item.icon className={`h-4 w-4 ${item.color}`} />
-            <span className="text-sm font-medium text-paw-ink">{item.label}</span>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-/* ═══════════════════════════════════════════════════════════════
-   Product workflow section
-   ═══════════════════════════════════════════════════════════════ */
-
-const FLOW_STEPS: Array<{
+const flowSteps: Array<{
   icon: LucideIcon;
-  kicker: string;
+  number: string;
   title: string;
   copy: string;
   color: string;
   surface: string;
 }> = [
   {
-    icon: Route,
-    kicker: "Walk",
-    title: "Reveal the places you actually use",
-    copy: "Track a route, uncover map tiles, save history, and make daily walks feel purposeful without adding more admin.",
+    icon: Navigation,
+    number: "01",
+    title: "Walk & Explore",
+    copy: "Reveal map places, route history, and PawPoints without turning the walk into admin.",
     color: "text-paw-primary",
     surface: "bg-paw-primary-soft",
   },
   {
-    icon: ScanLine,
-    kicker: "Safety",
-    title: "Make the collar useful in a real rescue",
-    copy: "A finder scans the tag, sees the public pet profile, and can reach the owner through controlled lost-mode details.",
+    icon: ShieldCheck,
+    number: "02",
+    title: "Protect & Connect",
+    copy: "A smart tag gives finders the right profile, while owners control sensitive details.",
     color: "text-paw-trust",
     surface: "bg-paw-trust-soft",
   },
   {
-    icon: MessageCircle,
-    kicker: "Community",
-    title: "Turn local pet knowledge into action",
-    copy: "Nearby places, alerts, missions, and help requests live around the map instead of disappearing in separate chats.",
+    icon: Users,
+    number: "03",
+    title: "Community & Care",
+    copy: "Local pet parents, alerts, AI advice, and trusted services stay near the map.",
     color: "text-paw-accent",
     surface: "bg-paw-accent-soft",
   },
@@ -574,302 +345,193 @@ const FLOW_STEPS: Array<{
 
 export function ProductFlow() {
   return (
-    <div className="grid gap-5 lg:grid-cols-3">
-      {FLOW_STEPS.map((step, i) => (
-        <FadeInView key={step.title} delay={i * 0.12}>
-          <div className="group h-full rounded-paw-lg border border-paw-border bg-paw-panel p-6 shadow-paw-panel transition-all duration-300 hover:-translate-y-1 hover:border-paw-primary/30">
-            <div className={`mb-5 flex h-12 w-12 items-center justify-center rounded-paw-md ${step.surface} ${step.color}`}>
-              <step.icon className="h-6 w-6" />
+    <div className="grid gap-8 lg:grid-cols-3">
+      {flowSteps.map((step, index) => (
+        <FadeInView key={step.title} delay={index * 0.08}>
+          <article className="workflow-step relative h-full border-t border-paw-border pt-8">
+            <div className="mb-6 flex items-center gap-5">
+              <span className={`font-brand text-5xl font-light ${step.color}`}>{step.number}</span>
+              <span className={`flex h-16 w-16 items-center justify-center rounded-full ${step.surface} ${step.color}`}>
+                <step.icon className="h-7 w-7" />
+              </span>
             </div>
-            <div className="mb-2 text-xs font-bold uppercase tracking-wider text-paw-muted">{step.kicker}</div>
-            <h3 className="mb-3 text-xl font-bold text-paw-ink">{step.title}</h3>
-            <p className="text-sm leading-relaxed text-paw-body">{step.copy}</p>
-          </div>
+            <h3 className="mb-3 text-xl font-extrabold text-paw-ink">{step.title}</h3>
+            <p className="max-w-sm text-sm leading-7 text-paw-body">{step.copy}</p>
+          </article>
         </FadeInView>
       ))}
     </div>
   );
 }
 
-/* ═══════════════════════════════════════════════════════════════
-   PHASE 2 — Effect #8: App Screenshot Showcase
-   ═══════════════════════════════════════════════════════════════ */
+const featureRows: Array<{ icon: LucideIcon; title: string; copy: string; color: string; surface: string }> = [
+  {
+    icon: Map,
+    title: "Fog-of-War Globe",
+    copy: "Reveal streets, parks, trails, and new local places through daily movement.",
+    color: "text-paw-primary",
+    surface: "bg-paw-primary",
+  },
+  {
+    icon: ScanLine,
+    title: "NFC Safety Tag",
+    copy: "One tap for instant ID, owner contact, care notes, and lost-mode details.",
+    color: "text-paw-trust",
+    surface: "bg-paw-trust",
+  },
+  {
+    icon: Bot,
+    title: "AI Pet Assistant",
+    copy: "Get care guidance for health, behavior, nutrition, breed traits, and training.",
+    color: "text-paw-accent",
+    surface: "bg-paw-accent",
+  },
+  {
+    icon: Users,
+    title: "Local Community",
+    copy: "Find nearby pet parents, events, groups, trusted services, and urgent help.",
+    color: "text-paw-primary",
+    surface: "bg-paw-primary",
+  },
+];
 
-export function AppShowcase() {
-  const features = [
-    { icon: MapPin, title: "Walk Tracking", desc: "Routes, fog tiles, and progress", color: "bg-paw-primary-soft text-paw-primary" },
-    { icon: ShieldCheck, title: "NFC Safety", desc: "Browser-first rescue profiles", color: "bg-paw-trust-soft text-paw-trust" },
-    { icon: Sparkles, title: "AI Assistant", desc: "Breed, care, and behavior help", color: "bg-paw-success-soft text-paw-success" },
-    { icon: Users, title: "Community", desc: "Local places, alerts, and help", color: "bg-paw-accent-soft text-paw-accent" },
-  ];
+const showcaseImages = [
+  { src: "/images/mockup-profile.png", alt: "PawPal pet profile screen", title: "Profile" },
+  { src: "/images/mockup-nfc.png", alt: "PawPal NFC safety screen", title: "NFC" },
+  { src: "/images/mockup-ai.png", alt: "PawPal AI assistant screen", title: "AI" },
+  { src: "/images/mockup-community.png", alt: "PawPal community screen", title: "Community" },
+];
 
-  const thoughtfulFeatures = [
-    {
-      title: "Walk & Explore",
-      desc: "Gamified walks with fog-of-war maps, real-time tracking, route history, and PawPoints rewards.",
-      mockups: ["/images/mockup-walk.png", "/images/app-mockup.png"],
-      iconColor: "text-paw-primary",
-      bgColor: "bg-paw-primary-soft",
-      borderColor: "border-paw-primary/20",
-    },
-    {
-      title: "Smart Safety",
-      desc: "NFC tags turn any collar into a smart ID. Finders scan without installing the app, while owner details stay privacy-controlled.",
-      mockups: ["/images/mockup-nfc.png", "/images/mockup-profile.png"],
-      iconColor: "text-paw-trust",
-      bgColor: "bg-paw-trust-soft",
-      borderColor: "border-paw-trust/20",
-    },
-    {
-      title: "AI & Community",
-      desc: "AI-powered breed ID, care advice, and behavior analysis sit beside a local network for walks, sitting, and urgent alerts.",
-      mockups: ["/images/mockup-ai.png", "/images/mockup-community.png"],
-      iconColor: "text-paw-success",
-      bgColor: "bg-paw-success-soft",
-      borderColor: "border-paw-success/20",
-    },
-  ];
-
+export function BentoFeatureGrid() {
   return (
-    <div className="space-y-20">
-      {/* ══════ SECTION 1: Hero App Overview ══════ */}
+    <div className="grid items-center gap-12 lg:grid-cols-[0.8fr_1.2fr]">
       <FadeInView>
-        <div className="relative overflow-hidden rounded-paw-lg border border-paw-primary/20 bg-gradient-to-br from-paw-primary-soft via-paw-panel-subtle to-paw-trust-soft shadow-paw-panel">
-          {/* Decorative sparkle elements */}
-          <svg className="absolute top-6 left-8 hidden h-10 w-10 text-paw-primary/25 lg:block" viewBox="0 0 40 40" fill="none">
-            <path d="M20 2v8M20 30v8M2 20h8M30 20h8M8 8l5 5M27 27l5 5M8 32l5-5M27 13l5-5" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
-          </svg>
-          <svg className="absolute top-12 left-20 hidden h-5 w-5 text-paw-primary/30 lg:block" viewBox="0 0 20 20" fill="currentColor">
-            <path d="M10 0l2.5 7.5H20l-6 4.5 2.5 7.5L10 15l-6.5 4.5L6 12 0 7.5h7.5z"/>
-          </svg>
-
-          <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-0">
-            {/* Left: Text content */}
-            <div className="flex-1 p-8 lg:p-12 space-y-6">
-              <div className="inline-flex items-center gap-2 rounded-paw-md bg-paw-primary-soft px-3 py-1.5 text-sm font-semibold text-paw-primary">
-                <Smartphone className="w-4 h-4" />
-                PawPal app ecosystem
+        <div>
+          <h2 className="font-brand text-3xl font-extrabold leading-tight text-paw-ink md:text-5xl">
+            Everything you need, in one place.
+          </h2>
+          <div className="mt-8 space-y-6">
+            {featureRows.map((feature) => (
+              <div key={feature.title} className="grid grid-cols-[48px_1fr] gap-4">
+                <div className={`flex h-12 w-12 items-center justify-center rounded-paw-sm ${feature.surface} text-white shadow-sm`}>
+                  <feature.icon className="h-5 w-5" />
+                </div>
+                <div>
+                  <h3 className="text-base font-extrabold text-paw-ink">{feature.title}</h3>
+                  <p className="mt-1 text-sm leading-6 text-paw-body">{feature.copy}</p>
+                </div>
               </div>
-              <h2 className="font-brand text-3xl font-bold leading-tight text-paw-ink md:text-4xl">
-                The daily pet workflow,{" "}
-                <span className="text-gradient-animated">kept in sync</span>
-              </h2>
-              <p className="max-w-md text-lg leading-relaxed text-paw-body">
-                The website introduces the public map, NFC profiles, and store; the app keeps owners moving, caring, and coordinating day to day.
-              </p>
-
-              {/* Feature chips */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                {features.map((f, i) => (
-                  <motion.div
-                    key={i}
-                    className="flex items-center gap-3 px-4 py-3 rounded-paw-lg bg-paw-panel/70 backdrop-blur-sm border border-paw-border hover:shadow-md transition-all"
-                    initial={{ opacity: 0, y: 12 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.2 + i * 0.08 }}
-                  >
-                    <div className={`w-10 h-10 rounded-xl ${f.color} flex items-center justify-center shrink-0`}>
-                      <f.icon className="w-5 h-5" />
-                    </div>
-                    <div>
-                      <div className="text-sm font-bold text-paw-ink">{f.title}</div>
-                      <div className="text-xs text-paw-muted">{f.desc}</div>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-
-              {/* Download CTA */}
-              <div className="flex flex-col gap-3 pt-2 sm:flex-row">
-                <motion.a
-                  href="/globe"
-                  whileHover={{ scale: 1.03 }}
-                  whileTap={{ scale: 0.97 }}
-                  className="inline-flex items-center gap-2 rounded-paw-md bg-paw-primary px-6 py-3 text-sm font-bold text-white shadow-paw-action transition-colors hover:bg-paw-primary-hover"
-                >
-                  <GlobeIcon className="w-4 h-4" /> Explore Globe
-                </motion.a>
-                <motion.a
-                  href="/store"
-                  whileHover={{ scale: 1.03 }}
-                  whileTap={{ scale: 0.97 }}
-                  className="inline-flex items-center gap-2 rounded-paw-md border border-paw-border bg-paw-panel px-6 py-3 text-sm font-bold text-paw-ink transition-colors hover:border-paw-primary"
-                >
-                  <ShieldCheck className="w-4 h-4" /> View NFC Tags
-                </motion.a>
-              </div>
-            </div>
-
-            {/* Right: App mockup image */}
-            <div className="relative flex-1 flex items-center justify-center p-4 lg:p-8">
-              <motion.div
-                className="relative z-10"
-                whileHover={{ y: -8 }}
-                transition={{ type: "spring", stiffness: 200 }}
-              >
-                <Image
-                  src="/images/app-mockup.png"
-                  alt="PawPal App Interface"
-                  width={300}
-                  height={620}
-                  sizes="(min-width: 1024px) 300px, 260px"
-                  className="w-[260px] lg:w-[300px] h-auto drop-shadow-2xl"
-                />
-              </motion.div>
-
-              {/* Floating badges */}
-              <motion.div
-                className="absolute right-4 top-8 z-20 flex items-center gap-2 rounded-paw-lg border border-paw-border bg-paw-panel/90 px-3 py-2 text-xs font-semibold text-paw-ink shadow-lg backdrop-blur-sm lg:right-8"
-                animate={{ y: [0, -6, 0] }}
-                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-              >
-                <span className="h-2 w-2 animate-pulse rounded-full bg-paw-success" />
-                GPS Active
-              </motion.div>
-              <motion.div
-                className="absolute bottom-12 left-2 z-20 flex items-center gap-2 rounded-paw-lg border border-paw-border bg-paw-panel/90 px-3 py-2 text-xs font-semibold text-paw-ink shadow-lg backdrop-blur-sm lg:left-4"
-                animate={{ y: [0, 6, 0] }}
-                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-              >
-                <Route className="h-3.5 w-3.5 text-paw-primary" />
-                3.2km walked today
-              </motion.div>
-            </div>
+            ))}
           </div>
         </div>
       </FadeInView>
 
-      {/* ══════ SECTION 2: 3 Powerful Features — PawView-inspired ══════ */}
-      <div>
-        <FadeInView>
-          <div className="text-center mb-12">
-            <h2 className="mb-3 font-brand text-3xl font-bold text-paw-ink md:text-4xl">
-              Three moments that matter
-            </h2>
-            <p className="mx-auto max-w-lg text-paw-body">
-              PawPal focuses on the jobs owners understand immediately: walks, safety, and trusted local help.
-            </p>
+      <FadeInView delay={0.08}>
+        <div className="relative min-h-[430px] overflow-hidden rounded-paw-md border border-paw-border bg-gradient-to-br from-paw-panel-subtle to-white px-4 pb-8 pt-8 shadow-paw-panel sm:min-h-[540px] sm:px-8">
+          <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-white to-transparent" />
+          <div className="grid grid-cols-2 gap-4 sm:flex sm:items-end sm:justify-center sm:gap-5">
+            {showcaseImages.map((image, index) => (
+              <motion.div
+                key={image.src}
+                className="relative aspect-[9/16] overflow-hidden rounded-[1.25rem] border border-white bg-white shadow-[0_20px_45px_rgba(36,60,84,0.18)] sm:w-[135px] lg:w-[158px]"
+                style={{ marginTop: index % 2 === 0 ? 0 : 36 }}
+                whileHover={{ y: -8 }}
+                transition={{ type: "spring", stiffness: 180, damping: 18 }}
+              >
+                <Image src={image.src} alt={image.alt} fill sizes="(min-width: 1024px) 158px, 45vw" className="object-cover" />
+                <span className="absolute left-3 top-3 rounded-paw-sm bg-white/86 px-2 py-1 text-[10px] font-black text-paw-ink shadow-sm backdrop-blur">
+                  {image.title}
+                </span>
+              </motion.div>
+            ))}
           </div>
-        </FadeInView>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {thoughtfulFeatures.map((feature, i) => (
-            <FadeInView key={i} delay={i * 0.15}>
-              <div className={`relative rounded-paw-lg ${feature.bgColor} border ${feature.borderColor} p-6 pb-4 overflow-hidden h-full flex flex-col`}>
-                {/* Phone mockups */}
-                <div className="flex justify-center gap-3 mb-6">
-                  {feature.mockups.map((src, j) => (
-                    <motion.div
-                      key={j}
-                      className="relative h-[160px] w-[120px] overflow-hidden rounded-paw-md shadow-lg md:h-[148px] md:w-[110px] lg:h-[174px] lg:w-[130px]"
-                      style={{ marginTop: j % 2 === 1 ? "16px" : "0px" }}
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: j % 2 === 1 ? 16 : 0 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: 0.3 + j * 0.1 }}
-                      whileHover={{ y: (j % 2 === 1 ? 16 : 0) - 6, scale: 1.03 }}
-                    >
-                      <Image
-                        src={src}
-                        alt={`${feature.title} screenshot ${j + 1}`}
-                        fill
-                        sizes="(min-width: 1024px) 130px, (min-width: 768px) 110px, 120px"
-                        className="object-cover"
-                      />
-                    </motion.div>
-                  ))}
-                </div>
-
-                {/* Text */}
-                <div className="text-center mt-auto">
-                  <h3 className="mb-2 text-lg font-bold text-paw-ink">{feature.title}</h3>
-                  <p className="text-sm leading-relaxed text-paw-body">{feature.desc}</p>
-                </div>
-              </div>
-            </FadeInView>
-          ))}
         </div>
-      </div>
+      </FadeInView>
     </div>
   );
 }
 
-/* ═══════════════════════════════════════════════════════════════
-   PHASE 3 — Effect #11: Floating Particles
-   ═══════════════════════════════════════════════════════════════ */
+const ecosystemItems: Array<{ icon: LucideIcon; title: string; copy: string }> = [
+  { icon: Download, title: "iOS & Android", copy: "Mobile app" },
+  { icon: Radio, title: "NFC Tag", copy: "Tap to connect" },
+  { icon: Watch, title: "Real-time Sync", copy: "Across devices" },
+  { icon: LockKeyhole, title: "Secure & Private", copy: "By design" },
+];
 
-export function FloatingParticles() {
-  const particles = Array.from({ length: 18 }, (_, i) => ({
-    id: i,
-    left: `${5 + (i * 5.2) % 90}%`,
-    size: 3 + (i % 4) * 1.5,
-    delay: i * 0.8,
-    duration: 6 + (i % 5) * 2,
-    color: i % 3 === 0
-      ? "rgba(245, 158, 11, 0.5)"
-      : i % 3 === 1
-        ? "rgba(74, 144, 217, 0.4)"
-        : "rgba(16, 185, 129, 0.35)",
-    alt: i % 2 === 0,
-  }));
-
+export function AppShowcase() {
   return (
-    <div className="absolute inset-0 overflow-hidden pointer-events-none">
-      {particles.map((p) => (
-        <div
-          key={p.id}
-          className="absolute rounded-full"
-          style={{
-            left: p.left,
-            bottom: `${10 + (p.id * 7) % 40}%`,
-            width: p.size,
-            height: p.size,
-            backgroundColor: p.color,
-            animation: `${p.alt ? "float-particle-alt" : "float-particle"} ${p.duration}s ease-in-out ${p.delay}s infinite`,
-          }}
-        />
-      ))}
+    <div className="grid items-center gap-12 lg:grid-cols-[0.9fr_1.1fr]">
+      <FadeInView>
+        <div>
+          <h2 className="font-brand text-3xl font-extrabold leading-tight text-paw-ink md:text-5xl">
+            Your pet life, seamlessly connected.
+          </h2>
+          <p className="mt-4 max-w-lg text-lg leading-8 text-paw-body">
+            PawPal works across the website, mobile app, NFC tag, and future
+            wearable moments so the product feels continuous.
+          </p>
+          <div className="mt-10 grid grid-cols-2 gap-5 sm:grid-cols-4 lg:grid-cols-2">
+            {ecosystemItems.map((item) => (
+              <div key={item.title}>
+                <span className="mb-3 flex h-11 w-11 items-center justify-center rounded-full bg-paw-primary-soft text-paw-primary">
+                  <item.icon className="h-5 w-5" />
+                </span>
+                <h3 className="text-sm font-extrabold text-paw-ink">{item.title}</h3>
+                <p className="mt-1 text-xs font-medium text-paw-muted">{item.copy}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </FadeInView>
+
+      <FadeInView delay={0.08}>
+        <div className="relative min-h-[420px] overflow-hidden rounded-paw-md border border-paw-border bg-white shadow-paw-panel">
+          <div className="hero-map-grid absolute inset-0 opacity-80" />
+          <div className="absolute left-8 top-8 w-[210px] sm:left-16 sm:w-[260px]">
+            <Image
+              src="/images/app-mockup.png"
+              alt="PawPal main app screen"
+              width={1024}
+              height={1024}
+              sizes="(min-width: 1024px) 260px, 55vw"
+              className="h-auto w-full drop-shadow-[0_24px_44px_rgba(31,52,74,0.22)]"
+            />
+          </div>
+          <div className="absolute bottom-16 right-28 hidden h-36 w-28 rounded-[2rem] bg-[#20262d] p-3 text-white shadow-[0_22px_38px_rgba(18,24,31,0.28)] sm:block">
+            <div className="text-[10px] font-bold text-white/55">PawPal</div>
+            <div className="mt-8 text-2xl font-black">2.43</div>
+            <div className="text-xs text-white/50">km this walk</div>
+            <div className="mt-4 h-1 rounded-full bg-white/15">
+              <div className="h-full w-[62%] rounded-full bg-paw-trust" />
+            </div>
+          </div>
+          <div className="hero-nfc-tag absolute bottom-12 right-8 flex h-28 w-28 flex-col items-center justify-center rounded-full bg-[#232629] text-white shadow-[0_22px_38px_rgba(18,24,31,0.26)]">
+            <span className="text-lg font-black text-white/75">PawPal</span>
+            <Radio className="mt-1 h-5 w-5 text-white/45" />
+          </div>
+        </div>
+      </FadeInView>
     </div>
   );
 }
 
-/* ═══════════════════════════════════════════════════════════════
-   PHASE 3 — Effect #13: Magnetic Button
-   ═══════════════════════════════════════════════════════════════ */
-
-export function MagneticButton({ children }: { children: ReactNode }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
-  const springX = useSpring(x, { stiffness: 150, damping: 15 });
-  const springY = useSpring(y, { stiffness: 150, damping: 15 });
-
-  const handleMouseMove = useCallback((e: ReactMouseEvent<HTMLDivElement>) => {
-    if (!ref.current) return;
-    const rect = ref.current.getBoundingClientRect();
-    const centerX = rect.left + rect.width / 2;
-    const centerY = rect.top + rect.height / 2;
-    const distX = (e.clientX - centerX) * 0.15;
-    const distY = (e.clientY - centerY) * 0.15;
-    x.set(distX);
-    y.set(distY);
-  }, [x, y]);
-
-  const handleMouseLeave = useCallback(() => {
-    x.set(0);
-    y.set(0);
-  }, [x, y]);
-
+export function BottomCTA() {
   return (
-    <motion.div
-      ref={ref}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      style={{ x: springX, y: springY }}
-      className="inline-block"
-    >
-      {children}
-    </motion.div>
+    <div className="flex flex-col gap-3 sm:flex-row">
+      <Link
+        href="/globe"
+        className="inline-flex h-12 items-center justify-center gap-2 rounded-paw-sm bg-paw-primary px-6 text-sm font-bold text-white shadow-paw-action transition hover:bg-paw-primary-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-paw-primary"
+      >
+        Explore Globe
+        <ArrowRight className="h-4 w-4" />
+      </Link>
+      <Link
+        href="/store"
+        className="inline-flex h-12 items-center justify-center gap-2 rounded-paw-sm border border-paw-border-strong bg-white px-6 text-sm font-bold text-paw-ink transition hover:border-paw-primary hover:text-paw-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-paw-primary"
+      >
+        Shop NFC Tags
+        <Store className="h-4 w-4" />
+      </Link>
+    </div>
   );
 }

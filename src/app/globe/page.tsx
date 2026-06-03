@@ -15,5 +15,10 @@ const MapGlobeComponent = dynamic(() => import("@/components/GlobeFullPage"), {
 });
 
 export default function GlobePage() {
-  return <MapGlobeComponent />;
+  return (
+    <>
+      <h1 className="sr-only">PawPal Globe</h1>
+      <MapGlobeComponent />
+    </>
+  );
 }

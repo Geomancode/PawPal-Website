@@ -1,6 +1,8 @@
 "use client";
 
 import { Suspense, useState, useEffect, useCallback } from "react";
+import Image from "next/image";
+import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { useRouter, useSearchParams } from "next/navigation";
 import {
@@ -15,6 +17,7 @@ import {
   formatOptionalPrice,
   formatPrice,
   loadCart, saveCart,
+  withProductAssetOverrides,
 } from "./storeData";
 import ProductVisual from "./ProductVisual";
 import { useAuth } from "@/components/AuthProvider";
@@ -186,10 +189,11 @@ function SubscriptionUpgradePanel({
 
 // ─── Product Card ──────────────────────────────────────
 function ProductCard({
-  product, onAdd,
+  product, onAdd, onDetails,
 }: {
   product: Product;
   onAdd: (p: Product) => void;
+  onDetails: (p: Product) => void;
 }) {
   const badgeTone: Record<NonNullable<Product["badge"]>, "success" | "warning" | "accent"> = {
     New: "success",
@@ -215,10 +219,73 @@ function ProductCard({
         badgeTone={product.badge ? badgeTone[product.badge] : undefined}
         rating={product.rating}
         ratingDetail={`(${product.reviewCount})`}
+        detailsLabel="Details"
+        onDetails={() => onDetails(product)}
         actionLabel="Add"
         onAction={() => onAdd(product)}
       />
     </motion.div>
+  );
+}
+
+function ProductDetailsDrawer({
+  product,
+  onClose,
+}: {
+  product: Product | null;
+  onClose: () => void;
+}) {
+  return (
+    <Sheet
+      open={Boolean(product)}
+      onClose={onClose}
+      ariaLabel={product ? `${product.name} product details` : "Product details"}
+      title={product?.name}
+      description={product?.description}
+      panelClassName="max-w-2xl"
+    >
+      {product && (
+        <div className="space-y-5">
+          <div className="flex flex-wrap items-center justify-between gap-3 rounded-paw-md border border-paw-border bg-paw-panel-subtle p-4">
+            <div>
+              <p className="text-xs font-bold uppercase tracking-[0.16em] text-paw-muted">
+                Product details
+              </p>
+              <p className="mt-1 text-2xl font-extrabold text-paw-primary">
+                {formatPrice(product)}
+              </p>
+            </div>
+            {product.badge && (
+              <span className="rounded-paw-sm bg-paw-primary-soft px-3 py-1 text-xs font-bold text-paw-primary">
+                {product.badge}
+              </span>
+            )}
+          </div>
+
+          {product.detailImages?.length ? (
+            <div className="space-y-4">
+              {product.detailImages.map((image) => (
+                <Image
+                  key={image.src}
+                  src={image.src}
+                  alt={image.alt}
+                  width={1024}
+                  height={1536}
+                  sizes="(min-width: 768px) 640px, calc(100vw - 40px)"
+                  style={{ width: "100%", height: "auto" }}
+                  className="w-full rounded-paw-md border border-paw-border bg-white object-contain shadow-paw-panel"
+                  loading="lazy"
+                />
+              ))}
+            </div>
+          ) : (
+            <div className="flex justify-center rounded-paw-md border border-paw-border bg-paw-panel-subtle p-8">
+              <ProductVisual product={product} size="lg" />
+            </div>
+          )}
+        </div>
+      )}
+    </Sheet>
   );
 }
 
@@ -367,8 +434,9 @@ function StorePageContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const { user, session } = useAuth();
-  const [products, setProducts] = useState<Product[]>(PRODUCTS);
+  const [products, setProducts] = useState<Product[]>(() => PRODUCTS.map(withProductAssetOverrides));
   const [cart, setCart] = useState<CartItem[]>([]);
+  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [category, setCategory] = useState<Category>("all");
   const [search, setSearch] = useState("");
   const [cartOpen, setCartOpen] = useState(false);
@@ -397,17 +465,17 @@ function StorePageContent() {
       .then((remoteProducts) => {
         if (cancelled) return;
         if (remoteProducts.length > 0) {
-          setProducts(remoteProducts);
+          setProducts(remoteProducts.map(withProductAssetOverrides));
           setCatalogIssue(null);
         } else {
-          setProducts(PRODUCTS);
+          setProducts(PRODUCTS.map(withProductAssetOverrides));
           setCatalogIssue("No published catalog products found. Showing demo catalog.");
         }
       })
       .catch((error: unknown) => {
         if (cancelled) return;
         const message = error instanceof Error ? error.message : "Catalog unavailable";
-        setProducts(PRODUCTS);
+        setProducts(PRODUCTS.map(withProductAssetOverrides));
         setCatalogIssue(message);
       })
       .finally(() => {
@@ -590,7 +658,12 @@ function StorePageContent() {
         <motion.div layout className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           <AnimatePresence mode="popLayout">
             {filtered.map((product) => (
-              <ProductCard key={product.id} product={product} onAdd={addToCart} />
+              <ProductCard
+                key={product.id}
+                product={product}
+                onAdd={addToCart}
+                onDetails={setSelectedProduct}
+              />
             ))}
           </AnimatePresence>
         </motion.div>
@@ -607,24 +680,46 @@ function StorePageContent() {
       </section>
 
       {/* ===== FLOATING CART BUTTON ===== */}
-      <motion.button
-        onClick={() => setCartOpen(true)}
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
-        className="fixed bottom-8 right-8 z-40 flex h-16 w-16 cursor-pointer items-center justify-center rounded-paw-lg bg-paw-primary text-white shadow-paw-action transition-colors hover:bg-paw-primary-hover"
-        aria-label="Open cart"
-      >
-        <ShoppingCart className="h-6 w-6" />
-        {totalItems > 0 && (
-          <motion.span
-            initial={{ scale: 0 }}
-            animate={{ scale: 1 }}
-            className="absolute -right-1 -top-1 flex h-6 w-6 items-center justify-center rounded-paw-sm bg-paw-danger text-xs font-extrabold text-white"
+      <AnimatePresence mode="wait">
+        {totalItems > 0 ? (
+          <motion.div
+            key="checkout-link"
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.9 }}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="fixed bottom-8 right-8 z-50"
           >
-            {totalItems}
-          </motion.span>
+            <Link
+              href="/store/checkout"
+              className="relative flex h-16 w-16 items-center justify-center rounded-paw-lg bg-paw-primary text-white shadow-paw-action transition-colors hover:bg-paw-primary-hover focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-paw-trust/20"
+              aria-label={`Proceed to checkout with ${totalItems} item${totalItems !== 1 ? "s" : ""}`}
+            >
+              <ShoppingCart className="h-6 w-6" aria-hidden="true" />
+              <motion.span
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                className="absolute -right-1 -top-1 flex h-6 w-6 items-center justify-center rounded-paw-sm bg-paw-danger text-xs font-extrabold text-white"
+              >
+                {totalItems}
+              </motion.span>
+            </Link>
+          </motion.div>
+        ) : (
+          <motion.button
+            key="open-cart"
+            type="button"
+            onClick={() => setCartOpen(true)}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="fixed bottom-8 right-8 z-50 flex h-16 w-16 cursor-pointer items-center justify-center rounded-paw-lg bg-paw-primary text-white shadow-paw-action transition-colors hover:bg-paw-primary-hover"
+            aria-label="Open cart"
+          >
+            <ShoppingCart className="h-6 w-6" aria-hidden="true" />
+          </motion.button>
         )}
-      </motion.button>
+      </AnimatePresence>
 
       {/* ===== CART DRAWER ===== */}
       <CartDrawer
@@ -637,6 +732,11 @@ function StorePageContent() {
           setCartOpen(false);
           router.push("/store/checkout");
         }}
+      />
+
+      <ProductDetailsDrawer
+        product={selectedProduct}
+        onClose={() => setSelectedProduct(null)}
       />
 
       {/* ===== ADD-TO-CART TOAST ===== */}
