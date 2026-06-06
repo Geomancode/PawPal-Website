@@ -1,6 +1,6 @@
 "use client";
 
-import { Suspense, useState, useEffect, useCallback } from "react";
+import { Suspense, useState, useEffect, useCallback, useMemo } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
@@ -189,11 +189,12 @@ function SubscriptionUpgradePanel({
 
 // ─── Product Card ──────────────────────────────────────
 function ProductCard({
-  product, onAdd, onDetails,
+  product, onAdd, onDetails, recommended = false,
 }: {
   product: Product;
   onAdd: (p: Product) => void;
   onDetails: (p: Product) => void;
+  recommended?: boolean;
 }) {
   const badgeTone: Record<NonNullable<Product["badge"]>, "success" | "warning" | "accent"> = {
     New: "success",
@@ -208,7 +209,14 @@ function ProductCard({
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, scale: 0.95 }}
       whileHover={{ y: -6 }}
+      className="relative"
     >
+      {recommended && (
+        <span className="absolute right-3 top-3 z-10 inline-flex items-center gap-1 rounded-paw-sm bg-paw-primary px-2.5 py-1 text-xs font-extrabold text-white shadow-paw-panel">
+          <Sparkles className="h-3 w-3" aria-hidden="true" />
+          AI pick
+        </span>
+      )}
       <StoreProductCard
         name={product.name}
         description={product.description}
@@ -223,6 +231,11 @@ function ProductCard({
         onDetails={() => onDetails(product)}
         actionLabel="Add"
         onAction={() => onAdd(product)}
+        className={
+          recommended
+            ? "border-paw-primary shadow-[0_14px_34px_rgba(74,144,217,0.22)] ring-2 ring-paw-primary/25"
+            : undefined
+        }
       />
     </motion.div>
   );
@@ -449,6 +462,21 @@ function StorePageContent() {
   const appUserId = searchParams.get("user_id");
   const appEmail = searchParams.get("email");
   const source = searchParams.get("source") ?? "web-store";
+  const recommendedProductIds = useMemo(() => {
+    const seen = new Set<string>();
+    return (searchParams.get("products") ?? "")
+      .split(",")
+      .map((id) => id.trim())
+      .filter((id) => {
+        if (id.length === 0 || seen.has(id)) return false;
+        seen.add(id);
+        return true;
+      });
+  }, [searchParams]);
+  const recommendedProductIdSet = useMemo(
+    () => new Set(recommendedProductIds),
+    [recommendedProductIds],
+  );
 
   useEffect(() => {
     let cancelled = false;
@@ -526,7 +554,15 @@ function StorePageContent() {
     const matchCat = category === "all" || p.category === category;
     const matchSearch = p.name.toLowerCase().includes(search.toLowerCase()) || p.description.toLowerCase().includes(search.toLowerCase());
     return matchCat && matchSearch;
+  }).sort((a, b) => {
+    const aRecommended = recommendedProductIdSet.has(a.id);
+    const bRecommended = recommendedProductIdSet.has(b.id);
+    if (aRecommended === bRecommended) return 0;
+    return aRecommended ? -1 : 1;
   });
+  const recommendedMatchCount = products.filter((product) =>
+    recommendedProductIdSet.has(product.id),
+  ).length;
 
   const totalItems = cart.reduce((s, i) => s + i.quantity, 0);
 
@@ -579,6 +615,21 @@ function StorePageContent() {
           >
             Premium food, toys, accessories, and health products — curated with love.
           </motion.p>
+          {recommendedProductIds.length > 0 && (
+            <motion.div
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.25 }}
+              className="mx-auto mb-7 flex max-w-xl flex-wrap items-center justify-center gap-2 rounded-paw-md border border-paw-primary/20 bg-paw-panel/90 px-4 py-3 text-sm font-bold text-paw-ink shadow-paw-panel backdrop-blur-sm"
+            >
+              <Sparkles className="h-4 w-4 text-paw-primary" aria-hidden="true" />
+              <span>
+                {recommendedMatchCount > 0
+                  ? `${recommendedMatchCount} AI recommended product${recommendedMatchCount !== 1 ? "s" : ""} highlighted`
+                  : "AI recommendations are not in this catalog yet"}
+              </span>
+            </motion.div>
+          )}
 
           {/* Search Bar */}
           <motion.div
@@ -663,6 +714,7 @@ function StorePageContent() {
                 product={product}
                 onAdd={addToCart}
                 onDetails={setSelectedProduct}
+                recommended={recommendedProductIdSet.has(product.id)}
               />
             ))}
           </AnimatePresence>

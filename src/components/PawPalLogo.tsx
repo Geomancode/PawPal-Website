@@ -1,22 +1,29 @@
 /**
  * PawPal Brand Logo Component
  *
- * Renders the official Tracker icon + handlettered wordmark from the brand system.
- * Supports both light and dark background variants.
+ * Renders the official solid-P icon + wordmark from the brand system.
+ * Supports the light white-background and dark Paw Blue-background variants.
  */
 
+import Image from "next/image";
+
 interface PawPalLogoProps {
-  /** Size of the Tracker icon in pixels (default: 32) */
+  /** Size of the logo badge in pixels (default: 32) */
   iconSize?: number;
   /** Font size of the wordmark in pixels (default: 22) */
   fontSize?: number;
-  /** Use the dark-background variant (white route path) */
+  /** Use the white-background or Paw Blue-background variant */
   variant?: "light" | "dark";
   /** Additional CSS classes */
   className?: string;
   /** Hide the wordmark, show icon only */
   iconOnly?: boolean;
 }
+
+const LOGO_SRC = {
+  light: "/assets/logos/pawpal-logo-light.svg",
+  dark: "/assets/logos/pawpal-logo-dark.svg",
+} as const;
 
 export default function PawPalLogo({
   iconSize = 32,
@@ -26,31 +33,29 @@ export default function PawPalLogo({
   iconOnly = false,
 }: PawPalLogoProps) {
   const isLight = variant === "light";
+  const iconSrc = LOGO_SRC[variant];
 
   return (
     <span className={`inline-flex items-center gap-2.5 ${className}`}>
-      {/* Tracker Icon */}
-      <svg
-        viewBox="0 0 500 500"
+      <Image
+        src={iconSrc}
+        alt=""
         width={iconSize}
         height={iconSize}
         aria-hidden="true"
-      >
-        <path
-          d="M 160 380 V 160 A 80 80 0 0 1 240 80 H 260 A 80 80 0 0 1 340 160 V 200 A 80 80 0 0 1 260 280 H 160"
-          fill="none"
-          stroke={isLight ? "var(--color-paw-primary)" : "#FFFFFF"}
-          strokeWidth="50"
-          strokeLinecap="round"
-        />
-        <circle cx="160" cy="280" r="25" fill="var(--color-paw-warning)" />
-        <circle
-          cx="160"
-          cy="380"
-          r="25"
-          fill="var(--color-paw-trust)"
-        />
-      </svg>
+        draggable={false}
+        loading="eager"
+        className="block shrink-0"
+        style={{
+          width: iconSize,
+          height: iconSize,
+          borderRadius: "22%",
+          boxShadow: isLight
+            ? "0 1px 4px rgba(27, 45, 64, 0.08)"
+            : "0 2px 8px rgba(74, 144, 217, 0.22)",
+          outline: isLight ? "1px solid rgba(215, 231, 228, 0.82)" : undefined,
+        }}
+      />
 
       {/* Wordmark */}
       {!iconOnly && (
@@ -59,7 +64,7 @@ export default function PawPalLogo({
           style={{ fontSize }}
         >
           <span style={{ color: isLight ? "var(--color-paw-brown)" : "#FFFFFF" }}>Paw</span>
-          <span style={{ color: "var(--color-paw-accent)" }}>Pal</span>
+          <span style={{ color: isLight ? "var(--color-paw-accent)" : "#FFCD38" }}>Pal</span>
         </span>
       )}
     </span>

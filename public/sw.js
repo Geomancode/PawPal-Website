@@ -1,9 +1,12 @@
-const CACHE_NAME = "pawpal-shell-v1";
+const CACHE_NAME = "pawpal-shell-v2";
 const SHELL_ASSETS = [
   "/",
   "/profile",
+  "/assets/logos/pawpal-logo-light.svg",
+  "/assets/logos/pawpal-logo-dark.svg",
   "/pawpal_favicon.svg",
   "/pawpal_icon.svg",
+  "/pawpal_icon_white.svg",
   "/manifest.webmanifest"
 ];
 

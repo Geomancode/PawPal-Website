@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 100" width="400" height="100">
-  <title>PawPal Full Logo — Horizontal (Light Background)</title>
-  <!-- Tracker Icon -->
-  <g transform="translate(5, 5) scale(0.18)">
-    <path d="M 160 380 V 160 A 80 80 0 0 1 240 80 H 260 A 80 80 0 0 1 340 160 V 200 A 80 80 0 0 1 260 280 H 160"
-          fill="none" stroke="#4A90D9" stroke-width="50" stroke-linecap="round"/>
-    <circle cx="160" cy="280" r="25" fill="#FFCD38"/>
-    <circle cx="160" cy="380" r="25" fill="#76C7B8"/>
-  </g>
-  <!-- Wordmark: Paw in soft brown, Pal in warm orange -->
-  <text x="105" y="68" font-family="'Baloo 2', 'Comfortaa', 'Nunito', sans-serif" font-weight="800" font-size="52" fill="#8F6A56">Paw</text>
-  <text x="240" y="68" font-family="'Baloo 2', 'Comfortaa', 'Nunito', sans-serif" font-weight="800" font-size="52" fill="#F28C44">Pal</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 140" width="520" height="140">
+  <title>PawPal Horizontal Logo - Light Background</title>
+  <rect width="520" height="140" rx="32" fill="#FFFFFF"/>
+  <svg x="24" y="22" width="96" height="96" viewBox="0 0 1024 1024">
+    <rect width="1024" height="1024" rx="224" fill="#FFFFFF"/>
+    <path fill="#4A90D9" fill-rule="evenodd" d="M328 829c-28.2 0-51-22.8-51-51V329c0-119.3 96.7-216 216-216h39c118.7 0 215 96.3 215 215v82c0 118.7-96.3 215-215 215H379v153c0 28.2-22.8 51-51 51Zm51-307h153c62.4 0 113-50.6 113-113v-80c0-63-51-114-114-114h-38c-63 0-114 51-114 114v193Z"/>
+    <circle cx="328" cy="574" r="51" fill="#FFCD38"/>
+    <circle cx="328" cy="778" r="51" fill="#76C7B8"/>
+  </svg>
+  <text x="144" y="88" font-family="'Baloo 2', 'Comfortaa', 'Nunito', sans-serif" font-weight="800" font-size="58" fill="#8F6A56">Paw</text>
+  <text x="294" y="88" font-family="'Baloo 2', 'Comfortaa', 'Nunito', sans-serif" font-weight="800" font-size="58" fill="#F28C44">Pal</text>
 </svg>

@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { ArrowRight, Mail, Lock, User, Eye, EyeOff, AlertCircle, CheckCircle } from "lucide-react";
 import { useAuth } from "@/components/AuthProvider";
+import PawPalLogo from "@/components/PawPalLogo";
 import { useRouter } from "next/navigation";
 import { DoodleDog, DoodlePaw, DoodleHeart } from "@/components/PetDoodles";
 
@@ -79,7 +80,9 @@ export default function AuthPage() {
         <div className="bg-paw-panel/90 backdrop-blur-xl rounded-paw-lg p-8 border border-paw-border shadow-paw-panel">
           {/* Logo */}
           <div className="text-center mb-8">
-            <div className="text-4xl mb-2">🐾</div>
+            <div className="mb-3 flex justify-center">
+              <PawPalLogo iconOnly iconSize={56} variant="light" />
+            </div>
             <h1 className="text-2xl font-bold text-paw-ink">
               {isLogin ? "Welcome Back" : "Join PawPal"}
             </h1>
