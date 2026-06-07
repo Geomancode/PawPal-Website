@@ -83,6 +83,11 @@ type Message = {
   text: string;
 };
 
+type AdminCheckResult = {
+  allowed: boolean;
+  unavailableReason: string | null;
+};
+
 type OfficialRiskForm = {
   placeId: string;
   placeName: string;
@@ -161,10 +166,73 @@ const initialOfficialForm: OfficialRiskForm = {
   evidenceUrl: "",
 };
 
-async function checkPawPalAdmin() {
+const previewReports: ParkRiskReport[] = [
+  {
+    id: "preview-risk-1",
+    place_id: "preview-google-place-id-1",
+    place_name: "Preview park",
+    place_address: "Preview address, 9000 Gent",
+    latitude: 51.0543,
+    longitude: 3.7174,
+    risk_type: "water_terrain",
+    severity: "caution",
+    title: "Preview: slippery path after rain",
+    description:
+      "This sample community report shows how a PawPal admin would review a park risk before it is highlighted.",
+    evidence_url: null,
+    source_type: "community",
+    official_source_name: null,
+    official_source_url: null,
+    status: "ready_for_review",
+    confirmation_count: 3,
+    reporter_id: "preview-reporter",
+    reviewer_id: null,
+    review_note: null,
+    reviewed_at: null,
+    highlighted_at: null,
+    created_at: "2026-06-07T12:00:00.000Z",
+    updated_at: "2026-06-07T12:20:00.000Z",
+  },
+  {
+    id: "preview-risk-2",
+    place_id: "preview-google-place-id-2",
+    place_name: "Preview dog area",
+    place_address: "Preview lane, 9000 Gent",
+    latitude: 51.0492,
+    longitude: 3.7284,
+    risk_type: "wildlife",
+    severity: "info",
+    title: "Preview: user report awaiting confirmations",
+    description:
+      "This sample item represents a community report that has not reached the confirmation threshold yet.",
+    evidence_url: null,
+    source_type: "community",
+    official_source_name: null,
+    official_source_url: null,
+    status: "pending_confirmation",
+    confirmation_count: 1,
+    reporter_id: "preview-reporter",
+    reviewer_id: null,
+    review_note: null,
+    reviewed_at: null,
+    highlighted_at: null,
+    created_at: "2026-06-07T11:00:00.000Z",
+    updated_at: "2026-06-07T11:15:00.000Z",
+  },
+];
+
+async function checkPawPalAdmin(): Promise<AdminCheckResult> {
   const { data, error } = await supabase.rpc("is_pawpal_admin");
-  if (error) return false;
-  return Boolean(data);
+  if (error) {
+    return {
+      allowed: false,
+      unavailableReason: error.message,
+    };
+  }
+  return {
+    allowed: Boolean(data),
+    unavailableReason: null,
+  };
 }
 
 function statusTone(status: RiskStatus) {
@@ -211,10 +279,19 @@ export default function ParkRiskAdminPage() {
   const [adminCheck, setAdminCheck] = useState<{
     email: string | null;
     allowed: boolean;
+    unavailableReason: string | null;
     checking: boolean;
-  }>({ email: null, allowed: false, checking: false });
+  }>({
+    email: null,
+    allowed: false,
+    unavailableReason: null,
+    checking: false,
+  });
   const [reports, setReports] = useState<ParkRiskReport[]>([]);
   const [loadingReports, setLoadingReports] = useState(false);
+  const [queueFallbackReason, setQueueFallbackReason] = useState<string | null>(
+    null,
+  );
   const [busyId, setBusyId] = useState<string | null>(null);
   const [notes, setNotes] = useState<Record<string, string>>({});
   const [message, setMessage] = useState<Message | null>(null);
@@ -236,9 +313,26 @@ export default function ParkRiskAdminPage() {
       adminCheck.email === currentAdminEmail &&
       adminCheck.allowed,
   );
+  const adminPreviewMode = Boolean(
+    currentAdminEmail &&
+      adminCheck.email === currentAdminEmail &&
+      !adminCheck.allowed &&
+      adminCheck.unavailableReason,
+  );
+  const queueReadOnly = adminPreviewMode || Boolean(queueFallbackReason);
+  const canViewQueue = isAdmin || adminPreviewMode;
 
   const refreshReports = useCallback(async () => {
     setLoadingReports(true);
+    if (adminPreviewMode) {
+      setReports(previewReports);
+      setQueueFallbackReason(
+        adminCheck.unavailableReason ?? "PawPal admin check is unavailable.",
+      );
+      setLoadingReports(false);
+      return;
+    }
+
     const { data, error } = await supabase
       .from("park_risk_reports")
       .select(RISK_SELECT)
@@ -247,14 +341,16 @@ export default function ParkRiskAdminPage() {
     if (error) {
       setMessage({
         tone: "warning",
-        text: `Risk queue is not ready yet: ${error.message}`,
+        text: `Risk queue is not ready yet. Showing a read-only preview: ${error.message}`,
       });
-      setReports([]);
+      setQueueFallbackReason(error.message);
+      setReports(previewReports);
     } else {
+      setQueueFallbackReason(null);
       setReports((data ?? []) as unknown as ParkRiskReport[]);
     }
     setLoadingReports(false);
-  }, []);
+  }, [adminCheck.unavailableReason, adminPreviewMode]);
 
   useEffect(() => {
     let cancelled = false;
@@ -264,13 +360,15 @@ export default function ParkRiskAdminPage() {
       setAdminCheck({
         email: currentAdminEmail,
         allowed: false,
+        unavailableReason: null,
         checking: true,
       });
-      checkPawPalAdmin().then((allowed) => {
+      checkPawPalAdmin().then((result) => {
         if (cancelled) return;
         setAdminCheck({
           email: currentAdminEmail,
-          allowed,
+          allowed: result.allowed,
+          unavailableReason: result.unavailableReason,
           checking: false,
         });
       });
@@ -282,14 +380,14 @@ export default function ParkRiskAdminPage() {
   }, [authLoading, currentAdminEmail]);
 
   useEffect(() => {
-    if (!isAdmin) return;
+    if (!canViewQueue) return;
     const timer = window.setTimeout(() => {
       void refreshReports();
     }, 0);
     return () => {
       window.clearTimeout(timer);
     };
-  }, [isAdmin, refreshReports]);
+  }, [canViewQueue, refreshReports]);
 
   const counts = useMemo(() => {
     return reports.reduce(
@@ -335,6 +433,14 @@ export default function ParkRiskAdminPage() {
   }
 
   async function handleReview(report: ParkRiskReport, decision: "approved" | "rejected") {
+    if (queueReadOnly) {
+      setMessage({
+        tone: "warning",
+        text: "Preview mode is read-only. Apply the database migration and restore Supabase access before reviewing reports.",
+      });
+      return;
+    }
+
     setBusyId(report.id);
     setMessage(null);
     const { error } = await supabase.rpc("admin_review_park_risk", {
@@ -364,6 +470,14 @@ export default function ParkRiskAdminPage() {
 
   async function handleCreateOfficialRisk(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    if (queueReadOnly) {
+      setMessage({
+        tone: "warning",
+        text: "Preview mode is read-only. Official risks can be added after the live queue is available.",
+      });
+      return;
+    }
+
     if (!user) return;
     if (
       !officialForm.placeId.trim() ||
@@ -452,7 +566,7 @@ export default function ParkRiskAdminPage() {
     );
   }
 
-  if (!isAdmin) {
+  if (!canViewQueue) {
     return (
       <PageShell
         className="min-h-screen pt-28"
@@ -518,6 +632,14 @@ export default function ParkRiskAdminPage() {
             </div>
           )}
 
+          {queueFallbackReason && (
+            <div className="rounded-paw-md border border-paw-warning/20 bg-paw-warning-soft px-4 py-3 text-sm font-bold leading-6 text-paw-warning">
+              Preview mode active. The live park risk queue is unavailable, so
+              this page is showing local sample reports and all write actions
+              are disabled. Reason: {queueFallbackReason}
+            </div>
+          )}
+
           <Card>
             <CardContent className="space-y-4">
               <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
@@ -562,6 +684,7 @@ export default function ParkRiskAdminPage() {
                       report={report}
                       note={notes[report.id] ?? ""}
                       busy={busyId === report.id}
+                      readOnly={queueReadOnly}
                       onNoteChange={(value) =>
                         setNotes((current) => ({ ...current, [report.id]: value }))
                       }
@@ -675,13 +798,18 @@ export default function ParkRiskAdminPage() {
                 placeholder="Optional supporting link"
               />
 
-              <Button type="submit" size="lg" disabled={creatingOfficial} className="w-full">
+              <Button
+                type="submit"
+                size="lg"
+                disabled={creatingOfficial || queueReadOnly}
+                className="w-full"
+              >
                 {creatingOfficial ? (
                   <Loader2 className="h-5 w-5 animate-spin" aria-hidden="true" />
                 ) : (
                   <ShieldCheck className="h-5 w-5" aria-hidden="true" />
                 )}
-                Highlight official risk
+                {queueReadOnly ? "Preview only" : "Highlight official risk"}
               </Button>
             </form>
           </CardContent>
@@ -743,6 +871,7 @@ function RiskReportCard({
   report,
   note,
   busy,
+  readOnly,
   onNoteChange,
   onApprove,
   onReject,
@@ -750,13 +879,15 @@ function RiskReportCard({
   report: ParkRiskReport;
   note: string;
   busy: boolean;
+  readOnly: boolean;
   onNoteChange: (value: string) => void;
   onApprove: () => void;
   onReject: () => void;
 }) {
   const canReview =
-    report.status === "ready_for_review" ||
-    report.status === "pending_confirmation";
+    !readOnly &&
+    (report.status === "ready_for_review" ||
+      report.status === "pending_confirmation");
 
   return (
     <div className="rounded-paw-md border border-paw-border bg-paw-panel-subtle p-4">
@@ -869,6 +1000,13 @@ function RiskReportCard({
           </div>
         </div>
       )}
+      {readOnly &&
+        (report.status === "ready_for_review" ||
+          report.status === "pending_confirmation") && (
+          <div className="mt-4 rounded-paw-sm border border-paw-warning/20 bg-paw-warning-soft px-3 py-2 text-sm font-bold text-paw-warning">
+            Preview mode is read-only. Review actions will unlock when the live queue is available.
+          </div>
+        )}
     </div>
   );
 }
