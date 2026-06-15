@@ -1,14 +1,14 @@
+import type { Metadata } from "next";
 import { supabaseServer as supabase } from "@/lib/supabaseServer";
 import { notFound } from "next/navigation";
 import TagPageClient from "./TagPageClient";
+import { siteConfig } from "@/lib/site";
 
 interface PageProps {
   params: Promise<{ id: string }>;
 }
 
-export default async function TagPage({ params }: PageProps) {
-  const { id } = await params;
-
+async function loadTagPet(id: string) {
   // Fetch pet data (public, no auth required)
   const { data: pet, error } = await supabase
     .from("pets")
@@ -16,7 +16,7 @@ export default async function TagPage({ params }: PageProps) {
     .eq("id", id)
     .maybeSingle();
 
-  if (!pet || error) return notFound();
+  if (!pet || error) return null;
 
   // Fetch owner display name
   const { data: owner } = await supabase
@@ -25,5 +25,51 @@ export default async function TagPage({ params }: PageProps) {
     .eq("id", pet.owner_id)
     .maybeSingle();
 
-  return <TagPageClient pet={pet} owner={owner} />;
+  return { pet, owner };
+}
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { id } = await params;
+  const data = await loadTagPet(id);
+  if (!data) {
+    return {
+      title: "PawPal tag not found",
+      description:
+        "This PawPal tag link is missing, private, or no longer available. Check the NFC or QR link again.",
+      alternates: {
+        canonical: `/tag/${id}`,
+      },
+      robots: {
+        index: false,
+        follow: false,
+      },
+    };
+  }
+
+  const ownerName = data.owner?.display_name ?? data.owner?.username ?? "their owner";
+  const description = `${data.pet.name} has a PawPal safety profile. Help ${data.pet.name} get back to ${ownerName} safely.`;
+
+  return {
+    title: `${data.pet.name} PawPal safety profile`,
+    description,
+    alternates: {
+      canonical: `/tag/${id}`,
+    },
+    openGraph: {
+      title: `${data.pet.name} on PawPal`,
+      description,
+      url: `${siteConfig.url}/tag/${id}`,
+      images: data.pet.avatar_url
+        ? [{ url: data.pet.avatar_url, alt: `${data.pet.name} pet profile photo` }]
+        : undefined,
+    },
+  };
+}
+
+export default async function TagPage({ params }: PageProps) {
+  const { id } = await params;
+  const data = await loadTagPet(id);
+  if (!data) return notFound();
+
+  return <TagPageClient pet={data.pet} owner={data.owner} />;
 }

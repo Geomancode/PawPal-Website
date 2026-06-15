@@ -1,13 +1,16 @@
 "use client";
 
 import { useEffect, useRef, useState, useCallback, useMemo } from "react";
+import Link from "next/link";
 import maplibregl from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
+import { AlertCircle, LifeBuoy, MapPin, PawPrint, RefreshCw, ShoppingBag, WifiOff } from "lucide-react";
 import WeatherTicker from "./WeatherTicker";
 import { fetchQuests, Quest } from "@/lib/fetchQuests";
 import { fetchPlaces, Place } from "@/lib/fetchPlaces";
 import GlobeTutorial from "./GlobeTutorial";
 import ChatBottomSheet from "./ChatBottomSheet";
+import GlobeStaticPreview from "./GlobeStaticPreview";
 
 /* ── Quest type → emoji mapping ── */
 const QUEST_EMOJI: Record<string, string> = {
@@ -40,6 +43,76 @@ type MapWithSky = maplibregl.Map & {
 
 const DEFAULT_USER_LOCATION = { lat: 51.05, lng: 3.72 };
 const NEARBY_RADIUS_KM = 15;
+const WEBGL_FALLBACK_MESSAGE = "Live map rendering is unavailable in this browser.";
+
+function getErrorMessage(error: unknown): string {
+  if (error instanceof Error) return error.message;
+  if (error && typeof error === "object" && "message" in error) {
+    return String((error as { message?: unknown }).message ?? "");
+  }
+  return "";
+}
+
+function isWebGLFailureMessage(message: string): boolean {
+  return /webgl|web gl|context|canvas|gpu/i.test(message);
+}
+
+function hasUsableWebGL(): boolean {
+  try {
+    const canvas = document.createElement("canvas");
+    const context =
+      canvas.getContext("webgl2", { failIfMajorPerformanceCaveat: true }) ||
+      canvas.getContext("webgl", { failIfMajorPerformanceCaveat: true });
+
+    if (!context) return false;
+    context.getExtension("WEBGL_lose_context")?.loseContext();
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+function GlobeFallbackView({
+  reason,
+  onRetry,
+}: {
+  reason: string;
+  onRetry: () => void;
+}) {
+  return (
+    <div className="globe-fallback-stage">
+      <section className="globe-fallback-copy" aria-labelledby="globe-fallback-title">
+        <p className="text-xs font-black uppercase tracking-[0.18em] text-paw-trust">PawPal Globe</p>
+        <h2 id="globe-fallback-title" className="mt-3 text-4xl font-black leading-tight text-white sm:text-5xl">
+          Map preview is still ready
+        </h2>
+        <p className="mt-4 max-w-xl text-sm font-medium leading-6 text-white/72 sm:text-base">
+          {reason} You can still review the PawPal pet-safety flow, smart tags, and local help paths while the live map is unavailable.
+        </p>
+        <div className="globe-fallback-actions mt-6 flex flex-wrap gap-3">
+          <button type="button" onClick={onRetry} className="globe-fallback-action globe-fallback-action-primary">
+            <RefreshCw className="h-4 w-4" aria-hidden="true" />
+            Try live map
+          </button>
+          <Link href="/store" className="globe-fallback-action">
+            <ShoppingBag className="h-4 w-4" aria-hidden="true" />
+            Shop smart tags
+          </Link>
+          <Link href="/help" className="globe-fallback-action">
+            <LifeBuoy className="h-4 w-4" aria-hidden="true" />
+            Local help
+          </Link>
+        </div>
+      </section>
+
+      <GlobeStaticPreview
+        className="globe-fallback-preview"
+        statusLabel="Static map preview"
+        pulseStatus={false}
+      />
+    </div>
+  );
+}
 
 /* ── Marker badge style ── */
 function createMarkerEl(emoji: string, color: string, label?: string): HTMLElement {
@@ -130,6 +203,10 @@ export default function MapGlobeComponent() {
   const [quests, setQuests] = useState<Quest[]>([]);
   const [places, setPlaces] = useState<Place[]>([]);
   const [nearbyLoading, setNearbyLoading] = useState(true);
+  const [nearbyIssue, setNearbyIssue] = useState<string | null>(null);
+  const [locationIssue, setLocationIssue] = useState<string | null>(null);
+  const [isOffline, setIsOffline] = useState(false);
+  const [mapUnavailableReason, setMapUnavailableReason] = useState<string | null>(null);
   const [nearbyCenter, setNearbyCenter] = useState<{ lat: number; lng: number }>(DEFAULT_USER_LOCATION);
   const questMarkersRef = useRef<maplibregl.Marker[]>([]);
   const placeMarkersRef = useRef<maplibregl.Marker[]>([]);
@@ -157,14 +234,33 @@ export default function MapGlobeComponent() {
 
   const loadNearbyData = useCallback(async (center: { lat: number; lng: number }) => {
     setNearbyLoading(true);
-    const [questRows, placeRows] = await Promise.all([
-      fetchQuests({ ...center, radiusKm: NEARBY_RADIUS_KM, limit: 80 }),
-      fetchPlaces({ ...center, radiusKm: NEARBY_RADIUS_KM, limit: 120 }),
-    ]);
-    setQuests(questRows);
-    setPlaces(placeRows);
-    setNearbyCenter(center);
-    setNearbyLoading(false);
+    setNearbyIssue(null);
+    try {
+      const [questRows, placeRows] = await Promise.all([
+        fetchQuests({ ...center, radiusKm: NEARBY_RADIUS_KM, limit: 80 }),
+        fetchPlaces({ ...center, radiusKm: NEARBY_RADIUS_KM, limit: 120 }),
+      ]);
+      setQuests(questRows);
+      setPlaces(placeRows);
+      setNearbyCenter(center);
+    } catch {
+      setQuests([]);
+      setPlaces([]);
+      setNearbyIssue("Nearby data is unavailable. The map remains usable.");
+    } finally {
+      setNearbyLoading(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    const updateConnectionState = () => setIsOffline(!navigator.onLine);
+    updateConnectionState();
+    window.addEventListener("online", updateConnectionState);
+    window.addEventListener("offline", updateConnectionState);
+    return () => {
+      window.removeEventListener("online", updateConnectionState);
+      window.removeEventListener("offline", updateConnectionState);
+    };
   }, []);
 
   const scheduleNearbyRefresh = useCallback((center: { lat: number; lng: number }) => {
@@ -197,58 +293,120 @@ export default function MapGlobeComponent() {
     setMapCenter(null); // Reset to user location mode
   }, [userLocation]);
 
+  const handleRetryMap = useCallback(() => {
+    setNearbyIssue(null);
+    setLocationIssue(null);
+    setMapUnavailableReason(null);
+  }, []);
+
+  const enterMapFallback = useCallback((reason = WEBGL_FALLBACK_MESSAGE) => {
+    setMapUnavailableReason(reason);
+  }, []);
+
   /* ── Load initial nearby data from Supabase ── */
   useEffect(() => {
+    if (mapUnavailableReason) {
+      if (refreshTimerRef.current) clearTimeout(refreshTimerRef.current);
+      setNearbyLoading(false);
+      return;
+    }
+
     scheduleNearbyRefresh(DEFAULT_USER_LOCATION);
     return () => {
       if (refreshTimerRef.current) clearTimeout(refreshTimerRef.current);
     };
-  }, [scheduleNearbyRefresh]);
+  }, [scheduleNearbyRefresh, mapUnavailableReason]);
 
   /* ── Initialize MapLibre ── */
   useEffect(() => {
-    if (!mapContainer.current || mapRef.current) return;
+    if (!mapContainer.current || mapRef.current || mapUnavailableReason) return;
+
+    if (!hasUsableWebGL()) {
+      enterMapFallback();
+      return;
+    }
 
     // Get user location for initial center
     const defaultCenter: [number, number] = [DEFAULT_USER_LOCATION.lng, DEFAULT_USER_LOCATION.lat];
 
-    const map = new maplibregl.Map({
-      container: mapContainer.current,
-      style: {
-        version: 8,
-        name: "PawPal Map",
-        glyphs: "https://demotiles.maplibre.org/font/{fontstack}/{range}.pbf",
-        sources: {
-          carto: {
-            type: "raster",
-            tiles: ["https://basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}@2x.png"],
-            tileSize: 256,
-            attribution: '&copy; <a href="https://carto.com/">CARTO</a> &copy; <a href="https://www.openstreetmap.org/copyright">OSM</a>',
+    let map: maplibregl.Map;
+    try {
+      map = new maplibregl.Map({
+        container: mapContainer.current,
+        style: {
+          version: 8,
+          name: "PawPal Map",
+          glyphs: "https://demotiles.maplibre.org/font/{fontstack}/{range}.pbf",
+          sources: {
+            carto: {
+              type: "raster",
+              tiles: ["https://basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}@2x.png"],
+              tileSize: 256,
+              attribution: '&copy; <a href="https://carto.com/">CARTO</a> &copy; <a href="https://www.openstreetmap.org/copyright">OSM</a>',
+            },
           },
+          layers: [{ id: "carto-tiles", type: "raster", source: "carto", minzoom: 0, maxzoom: 20 }],
         },
-        layers: [{ id: "carto-tiles", type: "raster", source: "carto", minzoom: 0, maxzoom: 20 }],
-      },
-      center: defaultCenter,
-      zoom: 11,
-      pitch: 30,
-      maxPitch: 85,
-      dragRotate: true,
-    });
+        center: defaultCenter,
+        zoom: 11,
+        pitch: 30,
+        maxPitch: 85,
+        dragRotate: true,
+      });
+    } catch (error) {
+      const message = getErrorMessage(error);
+      enterMapFallback(isWebGLFailureMessage(message) ? WEBGL_FALLBACK_MESSAGE : "The live map could not start.");
+      return;
+    }
 
     mapRef.current = map;
+    let active = true;
+    const isCurrentMap = () => active && mapRef.current === map;
+    const animationFrames = new Set<number>();
+    const requestGuardedFrame = (callback: () => void) => {
+      const id = requestAnimationFrame(() => {
+        animationFrames.delete(id);
+        if (!isCurrentMap()) return;
+        callback();
+      });
+      animationFrames.add(id);
+      return id;
+    };
+
+    const handleMapError = (event: maplibregl.ErrorEvent) => {
+      const message = event.error?.message ?? "";
+      if (isWebGLFailureMessage(message)) {
+        enterMapFallback();
+        return;
+      }
+      setNearbyIssue("A map layer could not load. Try again with a stronger connection.");
+    };
+
+    map.on("error", handleMapError);
+    const canvas = map.getCanvas();
+    const handleContextFailure = (event: Event) => {
+      if (event.cancelable) event.preventDefault();
+      enterMapFallback();
+    };
+    canvas.addEventListener("webglcontextlost", handleContextFailure);
+    canvas.addEventListener("webglcontextcreationerror", handleContextFailure);
 
     // Try to center on user location
     if ("geolocation" in navigator) {
       navigator.geolocation.getCurrentPosition(
         (pos) => {
+          if (!isCurrentMap()) return;
           const coords = { lat: pos.coords.latitude, lng: pos.coords.longitude };
+          setLocationIssue(null);
           setUserLocation(coords);
           setMapCenter(coords);
           void loadNearbyData(coords);
           map.flyTo({ center: [coords.lng, coords.lat], zoom: 11, duration: 1000 });
         },
         () => {
+          if (!isCurrentMap()) return;
           setUserLocation(DEFAULT_USER_LOCATION);
+          setLocationIssue("Using Ghent as the starting point. Enable location for nearby results.");
         },
         { timeout: 8000 }
       );
@@ -263,7 +421,7 @@ export default function MapGlobeComponent() {
       e.preventDefault();
       zoomAccum += e.deltaY > 0 ? -1.0 : 1.0;
       if (!zoomRaf) {
-        zoomRaf = requestAnimationFrame(() => {
+        zoomRaf = requestGuardedFrame(() => {
           const cur = map.getZoom();
           map.easeTo({ zoom: Math.max(0, Math.min(20, cur + zoomAccum)), duration: 180, easing: (t) => t * (2 - t) });
           zoomAccum = 0;
@@ -274,6 +432,7 @@ export default function MapGlobeComponent() {
     container.addEventListener("wheel", onWheel, { passive: false });
 
     map.on("style.load", () => {
+      if (!isCurrentMap()) return;
       map.setProjection({ type: "globe" });
       try { (map as MapWithSky).setSky?.({ "atmosphere-blend": 0.8 }); } catch { /* ok */ }
 
@@ -284,6 +443,7 @@ export default function MapGlobeComponent() {
       let lastDragTime = 0;
 
       map.on("dragstart", () => {
+        if (!isCurrentMap()) return;
         isInteracting = true;
         isDraggingRef.current = true;
         velocityLng = 0;
@@ -293,6 +453,7 @@ export default function MapGlobeComponent() {
       });
 
       map.on("drag", () => {
+        if (!isCurrentMap()) return;
         const now = performance.now();
         const dt = now - lastDragTime;
         if (dt > 0 && lastCenter) {
@@ -305,6 +466,7 @@ export default function MapGlobeComponent() {
       });
 
       map.on("dragend", () => {
+        if (!isCurrentMap()) return;
         isInteracting = false;
         isDraggingRef.current = false;
         // Update weather for new center position
@@ -312,45 +474,61 @@ export default function MapGlobeComponent() {
 
         const friction = 0.94;
         function decelerate() {
-          if (isInteracting) return;
+          if (!isCurrentMap() || isInteracting) return;
           if (Math.abs(velocityLng) < 0.0003 && Math.abs(velocityLat) < 0.0003) { velocityLng = 0; velocityLat = 0; return; }
           const center = map.getCenter();
           center.lng += velocityLng;
           center.lat = Math.max(-85, Math.min(85, center.lat + velocityLat));
           map.setCenter(center);
           velocityLng *= friction; velocityLat *= friction;
-          requestAnimationFrame(decelerate);
+          requestGuardedFrame(decelerate);
         }
-        requestAnimationFrame(decelerate);
+        requestGuardedFrame(decelerate);
       });
 
-      map.on("mousedown", () => { isInteracting = true; });
-      map.on("mouseup", () => { isInteracting = false; });
-      map.on("touchstart", () => { isInteracting = true; });
-      map.on("touchend", () => { isInteracting = false; });
+      map.on("mousedown", () => { if (isCurrentMap()) isInteracting = true; });
+      map.on("mouseup", () => { if (isCurrentMap()) isInteracting = false; });
+      map.on("touchstart", () => { if (isCurrentMap()) isInteracting = true; });
+      map.on("touchend", () => { if (isCurrentMap()) isInteracting = false; });
 
       // Also update weather after zoom (map center might shift slightly)
       map.on("zoomend", () => {
-        if (!isDraggingRef.current) {
+        if (isCurrentMap() && !isDraggingRef.current) {
           updateMapCenter();
         }
       });
 
       function spinGlobe() {
+        if (!isCurrentMap()) return;
         if (!isInteracting && Math.abs(velocityLng) < 0.001 && map.getZoom() < 6) {
           const center = map.getCenter();
           center.lng -= 0.008;
           map.setCenter(center);
         }
-        requestAnimationFrame(spinGlobe);
+        requestGuardedFrame(spinGlobe);
       }
       spinGlobe();
     });
 
     map.addControl(new maplibregl.NavigationControl(), "bottom-right");
 
-    return () => { container.removeEventListener("wheel", onWheel); map.remove(); mapRef.current = null; };
-  }, [loadNearbyData, updateMapCenter]);
+    return () => {
+      active = false;
+      container.removeEventListener("wheel", onWheel);
+      map.off("error", handleMapError);
+      canvas.removeEventListener("webglcontextlost", handleContextFailure);
+      canvas.removeEventListener("webglcontextcreationerror", handleContextFailure);
+      animationFrames.forEach((frame) => cancelAnimationFrame(frame));
+      animationFrames.clear();
+      zoomRaf = 0;
+      try {
+        map.remove();
+      } catch {
+        /* MapLibre may already be tearing down after a context failure. */
+      }
+      mapRef.current = null;
+    };
+  }, [enterMapFallback, loadNearbyData, updateMapCenter, mapUnavailableReason]);
 
   /* ── Render Quest markers ── */
   useEffect(() => {
@@ -403,58 +581,96 @@ export default function MapGlobeComponent() {
   }, [places, showPlaces]);
 
   return (
-    <div className="relative w-full h-screen overflow-hidden">
-      <WeatherTicker
-        mapCenter={mapCenter}
-        onRecenterRequest={handleRecenterRequest}
-      />
-      <div ref={mapContainer} id="globe-map" className="absolute inset-0 w-full h-full" />
+    <div className="globe-page-shell fixed inset-0 h-[100dvh] w-full overflow-hidden bg-paw-ink">
+      {mapUnavailableReason ? (
+        <GlobeFallbackView reason={mapUnavailableReason} onRetry={handleRetryMap} />
+      ) : (
+        <>
+          <WeatherTicker
+            mapCenter={mapCenter}
+            onRecenterRequest={handleRecenterRequest}
+          />
+          <div ref={mapContainer} id="globe-map" className="absolute inset-0 w-full h-full" />
 
-      {/* Nearby need tags */}
-      <div className="absolute top-[222px] left-4 z-40 w-[min(320px,calc(100vw-2rem))] rounded-paw-lg border border-paw-border bg-paw-panel/90 p-3 shadow-paw-panel backdrop-blur-md sm:top-[130px]">
-        <div className="mb-2 flex items-center justify-between gap-3">
-          <div>
-            <p className="text-xs font-black uppercase tracking-[0.16em] text-paw-accent">Nearby needs</p>
-            <p className="text-[11px] font-medium text-paw-muted">
-              {nearbyCenter.lat.toFixed(3)}, {nearbyCenter.lng.toFixed(3)} · {NEARBY_RADIUS_KM} km
-            </p>
-          </div>
-          <span className="rounded-full bg-paw-accent-soft px-2 py-1 text-[11px] font-black text-paw-accent">
-            {nearbyLoading ? "..." : quests.length}
-          </span>
-        </div>
-        {nearbyQuestTags.length > 0 ? (
-          <div className="flex flex-wrap gap-1.5">
-            {nearbyQuestTags.slice(0, 6).map((tag) => (
-              <span key={tag.type} className="inline-flex items-center gap-1 rounded-full border border-paw-accent/20 bg-paw-accent-soft px-2.5 py-1 text-[11px] font-bold text-paw-body">
-                <span>{tag.emoji}</span>
-                <span>{tag.label}</span>
-                <span className="text-paw-accent">{tag.count}</span>
+          {/* Nearby need tags */}
+          <div className="globe-hud-panel globe-nearby-panel absolute z-40 w-[min(320px,calc(100vw-2rem))] rounded-paw-lg border border-paw-border bg-paw-panel/90 p-3 shadow-paw-panel backdrop-blur-md">
+            <div className="mb-2 flex items-center justify-between gap-3">
+              <div>
+                <p className="text-xs font-black uppercase tracking-[0.16em] text-paw-accent">Nearby needs</p>
+                <p className="text-[11px] font-medium text-paw-muted">
+                  {nearbyCenter.lat.toFixed(3)}, {nearbyCenter.lng.toFixed(3)} · {NEARBY_RADIUS_KM} km
+                </p>
+              </div>
+              <span className="rounded-full bg-paw-accent-soft px-2 py-1 text-[11px] font-black text-paw-accent">
+                {nearbyLoading ? "..." : quests.length}
               </span>
-            ))}
+            </div>
+            {(isOffline || locationIssue || nearbyIssue) && (
+              <div className="mb-2 space-y-1.5">
+                {isOffline && (
+                  <p className="globe-inline-issue">
+                    <WifiOff className="h-3.5 w-3.5" aria-hidden="true" />
+                    Offline mode. Live places and missions may be stale.
+                  </p>
+                )}
+                {locationIssue && (
+                  <p className="globe-inline-issue">
+                    <MapPin className="h-3.5 w-3.5" aria-hidden="true" />
+                    {locationIssue}
+                  </p>
+                )}
+                {nearbyIssue && (
+                  <p className="globe-inline-issue">
+                    <AlertCircle className="h-3.5 w-3.5" aria-hidden="true" />
+                    {nearbyIssue}
+                  </p>
+                )}
+              </div>
+            )}
+            {nearbyQuestTags.length > 0 ? (
+              <div className="flex flex-wrap gap-1.5">
+                {nearbyQuestTags.slice(0, 6).map((tag) => (
+                  <span key={tag.type} className="inline-flex items-center gap-1 rounded-full border border-paw-accent/20 bg-paw-accent-soft px-2.5 py-1 text-[11px] font-bold text-paw-body">
+                    <span>{tag.emoji}</span>
+                    <span>{tag.label}</span>
+                    <span className="text-paw-accent">{tag.count}</span>
+                  </span>
+                ))}
+              </div>
+            ) : (
+              <p className="text-xs font-medium text-paw-muted">
+                {nearbyLoading ? "Loading nearby needs..." : "No open needs in this area yet."}
+              </p>
+            )}
           </div>
-        ) : (
-          <p className="text-xs font-medium text-paw-muted">
-            {nearbyLoading ? "Loading nearby needs..." : "No open needs in this area yet."}
-          </p>
-        )}
-      </div>
 
-      {/* Layer Toggle */}
-      <div id="globe-layers" className="absolute top-[130px] right-4 z-40 flex flex-col gap-2">
-        <button onClick={() => setShowQuests(!showQuests)} className={`flex items-center gap-2 px-4 py-2 rounded-full text-xs font-bold transition-all shadow-paw-panel backdrop-blur-md border ${showQuests ? "bg-paw-accent/90 text-white border-paw-accent" : "bg-paw-panel/80 text-paw-muted border-paw-border"}`}>
-          🐾 Missions {quests.length > 0 && <span className="bg-white/30 px-1.5 py-0.5 rounded-full text-[10px]">{quests.length}</span>}
-        </button>
-        <button onClick={() => setShowPlaces(!showPlaces)} className={`flex items-center gap-2 px-4 py-2 rounded-full text-xs font-bold transition-all shadow-paw-panel backdrop-blur-md border ${showPlaces ? "bg-paw-trust/90 text-white border-paw-trust" : "bg-paw-panel/80 text-paw-muted border-paw-border"}`}>
-          📍 Places {places.length > 0 && <span className="bg-white/30 px-1.5 py-0.5 rounded-full text-[10px]">{places.length}</span>}
-        </button>
-      </div>
+          {/* Layer Toggle */}
+          <div id="globe-layers" className="globe-layer-stack absolute z-40 flex gap-1.5">
+            <button onClick={() => setShowQuests(!showQuests)} className={`globe-layer-button flex items-center gap-2 rounded-paw-sm border px-3 py-2 text-xs font-bold transition-all ${showQuests ? "is-active-mission bg-paw-accent/90 text-white border-paw-accent" : "bg-paw-panel/80 text-paw-muted border-paw-border"}`}>
+              <PawPrint className="h-3.5 w-3.5" aria-hidden="true" />
+              Missions {quests.length > 0 && <span className="bg-white/30 px-1.5 py-0.5 rounded-full text-[10px]">{quests.length}</span>}
+            </button>
+            <button onClick={() => setShowPlaces(!showPlaces)} className={`globe-layer-button flex items-center gap-2 rounded-paw-sm border px-3 py-2 text-xs font-bold transition-all ${showPlaces ? "is-active-place bg-paw-trust/90 text-white border-paw-trust" : "bg-paw-panel/80 text-paw-muted border-paw-border"}`}>
+              <MapPin className="h-3.5 w-3.5" aria-hidden="true" />
+              Places {places.length > 0 && <span className="bg-white/30 px-1.5 py-0.5 rounded-full text-[10px]">{places.length}</span>}
+            </button>
+          </div>
 
-      {/* AI Chat Bottom Sheet */}
-      <ChatBottomSheet mapRef={mapRef} />
+          <div className="globe-status-strip">
+            <span>Ghent pilot</span>
+            <strong>{quests.length}</strong>
+            <span>open needs</span>
+            <strong>{places.length}</strong>
+            <span>mapped places</span>
+          </div>
 
-      {/* Tutorial overlay for first-time visitors */}
-      <GlobeTutorial />
+          {/* AI Chat Bottom Sheet */}
+          <ChatBottomSheet mapRef={mapRef} />
+
+          {/* Tutorial overlay for first-time visitors */}
+          <GlobeTutorial />
+        </>
+      )}
     </div>
   );
 }
