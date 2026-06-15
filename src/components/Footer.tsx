@@ -1,8 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import { Facebook, Instagram, Mail } from "lucide-react";
+import { ArrowRight, Mail } from "lucide-react";
 import PawPalLogo from "./PawPalLogo";
+import styles from "./Footer.module.css";
+import { siteConfig } from "@/lib/site";
 
 const FOOTER_NAV = {
   Product: [
@@ -19,47 +21,40 @@ const FOOTER_NAV = {
   Support: [
     { label: "Privacy Policy", href: "/privacy" },
     { label: "Terms of Service", href: "/terms" },
-    { label: "Contact", href: "mailto:hello@pawpal.be" },
+    { label: "Contact", href: `mailto:${siteConfig.email}` },
   ],
 };
 
-const SOCIALS = [
-  { icon: Instagram, href: "https://www.instagram.com/", label: "Instagram" },
-  { icon: Facebook, href: "https://www.facebook.com/", label: "Facebook" },
-  { icon: Mail, href: "mailto:hello@pawpal.be", label: "Email" },
-];
-
 export default function Footer() {
   return (
-    <footer className="border-t border-paw-border bg-white text-paw-body">
-      <div className="mx-auto grid max-w-7xl gap-10 px-5 py-14 sm:px-6 md:grid-cols-[1.2fr_2fr] lg:px-8">
+    <footer aria-labelledby="footer-heading" className={`${styles.visual} border-t border-paw-border text-paw-body`}>
+      <h2 id="footer-heading" className="sr-only">
+        PawPal site footer
+      </h2>
+
+      <div className={`${styles.main} mx-auto grid max-w-7xl gap-8 px-5 py-10 sm:px-6 sm:py-12 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.65fr)_minmax(15rem,0.72fr)] lg:gap-10 lg:px-8`}>
         <div>
-          <PawPalLogo iconSize={30} fontSize={22} variant="light" />
+          <PawPalLogo iconSize={30} fontSize={22} variant="adaptive" />
           <p className="mt-5 max-w-xs text-sm leading-7 text-paw-body">
             Smart walks. Safe pets. Stronger local communities for pet parents across Belgium and the EU.
           </p>
-          <div className="mt-6 flex gap-2">
-            {SOCIALS.map((social) => (
-              <a
-                key={social.label}
-                href={social.href}
-                aria-label={social.label}
-                className="flex h-9 w-9 items-center justify-center rounded-paw-sm border border-paw-border bg-white text-paw-muted transition hover:border-paw-primary hover:text-paw-primary"
-              >
-                <social.icon className="h-4 w-4" />
-              </a>
-            ))}
-          </div>
+          <a
+            href={`mailto:${siteConfig.email}`}
+            className={`${styles.emailLink} mt-6 inline-flex items-center gap-2 rounded-paw-sm border border-paw-border bg-white/86 px-4 text-sm font-bold text-paw-ink shadow-[0_10px_24px_rgba(33,55,78,0.06)] transition hover:border-paw-primary hover:text-paw-primary`}
+          >
+            <Mail className="h-4 w-4" aria-hidden="true" />
+            {siteConfig.email}
+          </a>
         </div>
 
-        <div className="grid grid-cols-2 gap-8 sm:grid-cols-4">
+        <nav className="grid gap-7 sm:grid-cols-3" aria-label="Footer navigation">
           {Object.entries(FOOTER_NAV).map(([title, links]) => (
             <div key={title}>
-              <h3 className="mb-4 text-xs font-black uppercase tracking-[0.12em] text-paw-ink">{title}</h3>
-              <ul className="space-y-3">
+              <h3 className={`${styles.navHeading} mb-3 text-xs font-black uppercase text-paw-ink`}>{title}</h3>
+              <ul className={styles.linkList}>
                 {links.map((link) => (
                   <li key={link.label}>
-                    <Link href={link.href} className="text-sm font-medium text-paw-body transition hover:text-paw-primary">
+                    <Link href={link.href} className={`${styles.link} text-sm font-medium text-paw-body transition`}>
                       {link.label}
                     </Link>
                   </li>
@@ -67,29 +62,24 @@ export default function Footer() {
               </ul>
             </div>
           ))}
+        </nav>
 
-          <div>
-            <h3 className="mb-4 text-xs font-black uppercase tracking-[0.12em] text-paw-ink">Stay in the loop</h3>
-            <p className="text-sm leading-6 text-paw-body">Get updates and local pet highlights.</p>
-            <form className="mt-4 flex overflow-hidden rounded-paw-sm border border-paw-border bg-white">
-              <label htmlFor="footer-email" className="sr-only">
-                Email address
-              </label>
-              <input
-                id="footer-email"
-                type="email"
-                placeholder="Email address"
-                className="min-w-0 flex-1 px-3 py-2 text-sm text-paw-ink outline-none placeholder:text-paw-muted"
-              />
-              <button type="submit" className="bg-paw-primary px-4 text-xs font-bold text-white transition hover:bg-paw-primary-hover">
-                Subscribe
-              </button>
-            </form>
-          </div>
+        <div className={styles.contactBlock}>
+          <h3 className={`${styles.navHeading} mb-3 text-xs font-black uppercase text-paw-ink`}>Belgium Pilot</h3>
+          <p className="text-sm leading-6 text-paw-body">
+            Partnership, clinic, pet shop, or smart tag questions can go straight to the team.
+          </p>
+          <a
+            href={`mailto:${siteConfig.email}?subject=PawPal%20partnership`}
+            className={`${styles.actionLink} mt-5 inline-flex items-center gap-2 rounded-paw-sm bg-paw-primary-contrast px-4 text-xs font-bold text-white transition hover:bg-paw-primary-hover`}
+          >
+            Contact PawPal
+            <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
+          </a>
         </div>
       </div>
 
-      <div className="border-t border-paw-border">
+      <div className={`${styles.bottom} border-t border-paw-border`}>
         <div className="mx-auto flex max-w-7xl flex-col gap-3 px-5 py-5 text-xs font-medium text-paw-muted sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-8">
           <p>© {new Date().getFullYear()} PawPal. All rights reserved.</p>
           <p>Made in Belgium · English (EN)</p>
