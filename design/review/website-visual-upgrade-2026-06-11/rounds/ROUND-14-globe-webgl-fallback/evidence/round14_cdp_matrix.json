@@ -1,0 +1,593 @@
+{
+  "generatedAt": "2026-06-14T22:38:41.472Z",
+  "baseUrl": "http://localhost:3000",
+  "total": 9,
+  "passed": 9,
+  "failed": [],
+  "chromeStderr": [
+    "DevTools listening on ws://127.0.0.1:9580/devtools/browser/4d763ac7-650f-4ce0-8500-a26a9cc0ec0c",
+    "[62058:10675489:0615/003807.098002:ERROR:ui/display/mac/cv_display_link_mac.mm:184] CVDisplayLinkCreateWithCGDisplay failed. CVReturn: -6670",
+    "[62058:10675559:0615/003807.099538:ERROR:ui/display/mac/cv_display_link_mac.mm:184] CVDisplayLinkCreateWithCGDisplay failed. CVReturn: -6670",
+    "[62058:10675489:0615/003807.100041:ERROR:ui/display/mac/cv_display_link_mac.mm:184] CVDisplayLinkCreateWithCGDisplay failed. CVReturn: -6670",
+    "[62058:10675489:0615/003807.100953:ERROR:ui/display/mac/cv_display_link_mac.mm:184] CVDisplayLinkCreateWithCGDisplay failed. CVReturn: -6670",
+    "[62058:10675559:0615/003807.101155:ERROR:ui/display/mac/cv_display_link_mac.mm:184] CVDisplayLinkCreateWithCGDisplay failed. CVReturn: -6670",
+    "[62058:10675489:0615/003807.101318:ERROR:ui/display/mac/cv_display_link_mac.mm:184] CVDisplayLinkCreateWithCGDisplay failed. CVReturn: -6670",
+    "[62058:10675489:0615/003807.102270:ERROR:ui/display/mac/cv_display_link_mac.mm:184] CVDisplayLinkCreateWithCGDisplay failed. CVReturn: -6670",
+    "[62058:10675559:0615/003807.102495:ERROR:ui/display/mac/cv_display_link_mac.mm:184] CVDisplayLinkCreateWithCGDisplay failed. CVReturn: -6670",
+    "[62058:10675489:0615/003807.102652:ERROR:ui/display/mac/cv_display_link_mac.mm:184] CVDisplayLinkCreateWithCGDisplay failed. CVReturn: -6670",
+    "[62058:10675489:0615/003807.515367:ERROR:ui/display/mac/cv_display_link_mac.mm:184] CVDisplayLinkCreateWithCGDisplay failed. CVReturn: -6670",
+    "[62058:10675559:0615/003807.515588:ERROR:ui/display/mac/cv_display_link_mac.mm:184] CVDisplayLinkCreateWithCGDisplay failed. CVReturn: -6670",
+    "[62058:10675489:0615/003807.515791:ERROR:ui/display/mac/cv_display_link_mac.mm:184] CVDisplayLinkCreateWithCGDisplay failed. CVReturn: -6670",
+    "Trying to load the allocator multiple times. This is *not* supported.",
+    "[61996:10675449:0615/003810.868582:ERROR:google_apis/gcm/engine/registration_request.cc:291] Registration response error message: PHONE_REGISTRATION_ERROR",
+    "[61996:10675449:0615/003810.868750:ERROR:google_apis/gcm/engine/registration_request.cc:291] Registration response error message: PHONE_REGISTRATION_ERROR",
+    "[61996:10675449:0615/003810.873101:ERROR:google_apis/gcm/engine/registration_request.cc:291] Registration response error message: PHONE_REGISTRATION_ERROR",
+    "[61996:10675449:0615/003810.960213:ERROR:google_apis/gcm/engine/mcs_client.cc:702]   Error code: 401  Error message: Authentication Failed: wrong_secret",
+    "[61996:10675449:0615/003810.960236:ERROR:google_apis/gcm/engine/mcs_client.cc:704] Failed to log in to GCM, resetting connection.",
+    "Created TensorFlow Lite XNNPACK delegate for CPU."
+  ],
+  "results": [
+    {
+      "name": "fallback-globe-390x844",
+      "url": "http://localhost:3000/globe",
+      "width": 390,
+      "height": 844,
+      "webglUnavailable": true,
+      "screenshotPath": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-14-globe-webgl-fallback/evidence/screenshots/fallback-globe-390x844.png",
+      "checks": {
+        "url": "http://localhost:3000/globe",
+        "title": "Live Pet Globe | PawPal",
+        "textLength": 462,
+        "textSample": "Install PawPal\n\nAdd PawPal to this device for faster access to tags, store, and cached pages.\n\nInstall\nSkip to PawPal content\nPawPal\nPawPal Globe\n\nPAWPAL GLOBE\n\nMap preview is still ready\n\nLive map rendering is unavailable in this browser. You can still review the PawPal pet-safety flow, smart tags, and local help paths while the live map is unavailable.\n\nTry live map\nShop smart tags\nLocal help\nGhent pilot\nNFC finder",
+        "fallbackVisible": true,
+        "mapContainerPresent": false,
+        "navPresent": true,
+        "pwaBannerVisible": false,
+        "hasGlobalErrorPanel": false,
+        "hasFrameworkOverlayText": false,
+        "horizontalOverflow": false,
+        "docWidth": 390,
+        "viewportWidth": 390,
+        "viewportHeight": 844,
+        "fallbackBox": {
+          "top": 0,
+          "left": 0,
+          "width": 390,
+          "height": 844
+        },
+        "navBox": {
+          "top": 12,
+          "left": 12,
+          "width": 366,
+          "height": 50
+        },
+        "actions": [
+          {
+            "text": "Try live map",
+            "href": null,
+            "tag": "button",
+            "height": 44,
+            "width": 131
+          },
+          {
+            "text": "Shop smart tags",
+            "href": "/store",
+            "tag": "a",
+            "height": 44,
+            "width": 159
+          },
+          {
+            "text": "Local help",
+            "href": "/help",
+            "tag": "a",
+            "height": 44,
+            "width": 118
+          }
+        ]
+      },
+      "afterInteraction": {
+        "url": "http://localhost:3000/globe",
+        "title": "Live Pet Globe | PawPal",
+        "textLength": 462,
+        "textSample": "Install PawPal\n\nAdd PawPal to this device for faster access to tags, store, and cached pages.\n\nInstall\nSkip to PawPal content\nPawPal\nPawPal Globe\n\nPAWPAL GLOBE\n\nMap preview is still ready\n\nLive map rendering is unavailable in this browser. You can still review the PawPal pet-safety flow, smart tags, and local help paths while the live map is unavailable.\n\nTry live map\nShop smart tags\nLocal help\nGhent pilot\nNFC finder",
+        "fallbackVisible": true,
+        "mapContainerPresent": false,
+        "navPresent": true,
+        "pwaBannerVisible": false,
+        "hasGlobalErrorPanel": false,
+        "hasFrameworkOverlayText": false,
+        "horizontalOverflow": false,
+        "docWidth": 390,
+        "viewportWidth": 390,
+        "viewportHeight": 844,
+        "fallbackBox": {
+          "top": 0,
+          "left": 0,
+          "width": 390,
+          "height": 844
+        },
+        "navBox": {
+          "top": 12,
+          "left": 12,
+          "width": 366,
+          "height": 50
+        },
+        "actions": [
+          {
+            "text": "Try live map",
+            "href": null,
+            "tag": "button",
+            "height": 44,
+            "width": 131
+          },
+          {
+            "text": "Shop smart tags",
+            "href": "/store",
+            "tag": "a",
+            "height": 44,
+            "width": 159
+          },
+          {
+            "text": "Local help",
+            "href": "/help",
+            "tag": "a",
+            "height": 44,
+            "width": 118
+          }
+        ]
+      },
+      "cdpEvents": [
+        {
+          "method": "Log.entryAdded",
+          "params": {
+            "entry": {
+              "source": "other",
+              "level": "info",
+              "text": "Banner not shown: beforeinstallpromptevent.preventDefault() called. The page must call beforeinstallpromptevent.prompt() to show the banner.",
+              "timestamp": 1781476692289.871,
+              "url": "http://localhost:3000/globe"
+            }
+          }
+        }
+      ],
+      "pass": true
+    },
+    {
+      "name": "fallback-globe-768x1024",
+      "url": "http://localhost:3000/globe",
+      "width": 768,
+      "height": 1024,
+      "webglUnavailable": true,
+      "screenshotPath": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-14-globe-webgl-fallback/evidence/screenshots/fallback-globe-768x1024.png",
+      "checks": {
+        "url": "http://localhost:3000/globe",
+        "title": "Live Pet Globe | PawPal",
+        "textLength": 494,
+        "textSample": "Install PawPal\n\nAdd PawPal to this device for faster access to tags, store, and cached pages.\n\nInstall\nSkip to PawPal content\nPawPal\nHome\nGlobe\nAbout Us\nStore\nLogin\nPawPal Globe\n\nPAWPAL GLOBE\n\nMap preview is still ready\n\nLive map rendering is unavailable in this browser. You can still review the PawPal pet-safety flow, smart tags, and local help paths while the live map is unavailable.\n\nTry live map\nShop smart tags\nL",
+        "fallbackVisible": true,
+        "mapContainerPresent": false,
+        "navPresent": true,
+        "pwaBannerVisible": false,
+        "hasGlobalErrorPanel": false,
+        "hasFrameworkOverlayText": false,
+        "horizontalOverflow": false,
+        "docWidth": 768,
+        "viewportWidth": 768,
+        "viewportHeight": 1024,
+        "fallbackBox": {
+          "top": 0,
+          "left": 0,
+          "width": 768,
+          "height": 1024
+        },
+        "navBox": {
+          "top": 12,
+          "left": 16,
+          "width": 736,
+          "height": 58
+        },
+        "actions": [
+          {
+            "text": "Try live map",
+            "href": null,
+            "tag": "button",
+            "height": 44,
+            "width": 131
+          },
+          {
+            "text": "Shop smart tags",
+            "href": "/store",
+            "tag": "a",
+            "height": 44,
+            "width": 159
+          },
+          {
+            "text": "Local help",
+            "href": "/help",
+            "tag": "a",
+            "height": 44,
+            "width": 118
+          }
+        ]
+      },
+      "afterInteraction": null,
+      "cdpEvents": [
+        {
+          "method": "Log.entryAdded",
+          "params": {
+            "entry": {
+              "source": "other",
+              "level": "info",
+              "text": "Banner not shown: beforeinstallpromptevent.preventDefault() called. The page must call beforeinstallpromptevent.prompt() to show the banner.",
+              "timestamp": 1781476695014.53,
+              "url": "http://localhost:3000/globe"
+            }
+          }
+        }
+      ],
+      "pass": true
+    },
+    {
+      "name": "fallback-globe-1280x720",
+      "url": "http://localhost:3000/globe",
+      "width": 1280,
+      "height": 720,
+      "webglUnavailable": true,
+      "screenshotPath": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-14-globe-webgl-fallback/evidence/screenshots/fallback-globe-1280x720.png",
+      "checks": {
+        "url": "http://localhost:3000/globe",
+        "title": "Live Pet Globe | PawPal",
+        "textLength": 391,
+        "textSample": "Skip to PawPal content\nPawPal\nHome\nGlobe\nAbout Us\nStore\nLogin\nPawPal Globe\n\nPAWPAL GLOBE\n\nMap preview is still ready\n\nLive map rendering is unavailable in this browser. You can still review the PawPal pet-safety flow, smart tags, and local help paths while the live map is unavailable.\n\nTry live map\nShop smart tags\nLocal help\nGhent pilot\nNFC finder ready\n2.43 km revealed\nStatic map preview",
+        "fallbackVisible": true,
+        "mapContainerPresent": false,
+        "navPresent": true,
+        "pwaBannerVisible": false,
+        "hasGlobalErrorPanel": false,
+        "hasFrameworkOverlayText": false,
+        "horizontalOverflow": false,
+        "docWidth": 1280,
+        "viewportWidth": 1280,
+        "viewportHeight": 720,
+        "fallbackBox": {
+          "top": 0,
+          "left": 0,
+          "width": 1280,
+          "height": 720
+        },
+        "navBox": {
+          "top": 12,
+          "left": 16,
+          "width": 1248,
+          "height": 58
+        },
+        "actions": [
+          {
+            "text": "Try live map",
+            "href": null,
+            "tag": "button",
+            "height": 44,
+            "width": 145
+          },
+          {
+            "text": "Shop smart tags",
+            "href": "/store",
+            "tag": "a",
+            "height": 44,
+            "width": 176
+          },
+          {
+            "text": "Local help",
+            "href": "/help",
+            "tag": "a",
+            "height": 44,
+            "width": 131
+          }
+        ]
+      },
+      "afterInteraction": {
+        "url": "http://localhost:3000/globe",
+        "title": "Live Pet Globe | PawPal",
+        "textLength": 391,
+        "textSample": "Skip to PawPal content\nPawPal\nHome\nGlobe\nAbout Us\nStore\nLogin\nPawPal Globe\n\nPAWPAL GLOBE\n\nMap preview is still ready\n\nLive map rendering is unavailable in this browser. You can still review the PawPal pet-safety flow, smart tags, and local help paths while the live map is unavailable.\n\nTry live map\nShop smart tags\nLocal help\nGhent pilot\nNFC finder ready\n2.43 km revealed\nStatic map preview",
+        "fallbackVisible": true,
+        "mapContainerPresent": false,
+        "navPresent": true,
+        "pwaBannerVisible": false,
+        "hasGlobalErrorPanel": false,
+        "hasFrameworkOverlayText": false,
+        "horizontalOverflow": false,
+        "docWidth": 1280,
+        "viewportWidth": 1280,
+        "viewportHeight": 720,
+        "fallbackBox": {
+          "top": 0,
+          "left": 0,
+          "width": 1280,
+          "height": 720
+        },
+        "navBox": {
+          "top": 12,
+          "left": 16,
+          "width": 1248,
+          "height": 58
+        },
+        "actions": [
+          {
+            "text": "Try live map",
+            "href": null,
+            "tag": "button",
+            "height": 44,
+            "width": 145
+          },
+          {
+            "text": "Shop smart tags",
+            "href": "/store",
+            "tag": "a",
+            "height": 44,
+            "width": 176
+          },
+          {
+            "text": "Local help",
+            "href": "/help",
+            "tag": "a",
+            "height": 44,
+            "width": 131
+          }
+        ]
+      },
+      "cdpEvents": [],
+      "pass": true
+    },
+    {
+      "name": "fallback-globe-1440x900",
+      "url": "http://localhost:3000/globe",
+      "width": 1440,
+      "height": 900,
+      "webglUnavailable": true,
+      "screenshotPath": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-14-globe-webgl-fallback/evidence/screenshots/fallback-globe-1440x900.png",
+      "checks": {
+        "url": "http://localhost:3000/globe",
+        "title": "Live Pet Globe | PawPal",
+        "textLength": 391,
+        "textSample": "Skip to PawPal content\nPawPal\nHome\nGlobe\nAbout Us\nStore\nLogin\nPawPal Globe\n\nPAWPAL GLOBE\n\nMap preview is still ready\n\nLive map rendering is unavailable in this browser. You can still review the PawPal pet-safety flow, smart tags, and local help paths while the live map is unavailable.\n\nTry live map\nShop smart tags\nLocal help\nGhent pilot\nNFC finder ready\n2.43 km revealed\nStatic map preview",
+        "fallbackVisible": true,
+        "mapContainerPresent": false,
+        "navPresent": true,
+        "pwaBannerVisible": false,
+        "hasGlobalErrorPanel": false,
+        "hasFrameworkOverlayText": false,
+        "horizontalOverflow": false,
+        "docWidth": 1440,
+        "viewportWidth": 1440,
+        "viewportHeight": 900,
+        "fallbackBox": {
+          "top": 0,
+          "left": 0,
+          "width": 1440,
+          "height": 900
+        },
+        "navBox": {
+          "top": 12,
+          "left": 16,
+          "width": 1408,
+          "height": 58
+        },
+        "actions": [
+          {
+            "text": "Try live map",
+            "href": null,
+            "tag": "button",
+            "height": 44,
+            "width": 145
+          },
+          {
+            "text": "Shop smart tags",
+            "href": "/store",
+            "tag": "a",
+            "height": 44,
+            "width": 176
+          },
+          {
+            "text": "Local help",
+            "href": "/help",
+            "tag": "a",
+            "height": 44,
+            "width": 131
+          }
+        ]
+      },
+      "afterInteraction": null,
+      "cdpEvents": [],
+      "pass": true
+    },
+    {
+      "name": "normal-globe-390x844",
+      "url": "http://localhost:3000/globe",
+      "width": 390,
+      "height": 844,
+      "webglUnavailable": false,
+      "screenshotPath": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-14-globe-webgl-fallback/evidence/screenshots/normal-globe-390x844.png",
+      "checks": {
+        "url": "http://localhost:3000/globe",
+        "title": "Live Pet Globe | PawPal",
+        "textLength": 639,
+        "textSample": "Skip to PawPal content\nPawPal\nPawPal Globe\nGhent\nClear Sky\n15°C\n(feels 14°C)\n7 km/h\n70%\n2% rain\nUV 7\n🐕 Perfect weather for a long walk! Enjoy!\n•\nGhent\nClear Sky\n15°C\n(feels 14°C)\n7 km/h\n70%\n2% rain\nUV 7\n🐕 Perfect weather for a long walk! Enjoy!\n•\nGhent\nClear Sky\n15°C\n(feels 14°C)\n7 km/h\n70%\n2% rain\nUV 7\n🐕 Perfect weather for a long walk! Enjoy!\n•\nGhent\nClear Sky\n15°C\n(feels 14°C)\n7 km/h\n70%\n2% rain\nUV 7\n🐕 Perfect",
+        "fallbackVisible": false,
+        "mapContainerPresent": true,
+        "navPresent": true,
+        "pwaBannerVisible": false,
+        "hasGlobalErrorPanel": false,
+        "hasFrameworkOverlayText": false,
+        "horizontalOverflow": false,
+        "docWidth": 390,
+        "viewportWidth": 390,
+        "viewportHeight": 844,
+        "fallbackBox": null,
+        "navBox": {
+          "top": 12,
+          "left": 12,
+          "width": 366,
+          "height": 50
+        },
+        "actions": []
+      },
+      "afterInteraction": null,
+      "cdpEvents": [],
+      "pass": true
+    },
+    {
+      "name": "normal-globe-1280x720",
+      "url": "http://localhost:3000/globe",
+      "width": 1280,
+      "height": 720,
+      "webglUnavailable": false,
+      "screenshotPath": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-14-globe-webgl-fallback/evidence/screenshots/normal-globe-1280x720.png",
+      "checks": {
+        "url": "http://localhost:3000/globe",
+        "title": "Live Pet Globe | PawPal",
+        "textLength": 347,
+        "textSample": "Install PawPal\n\nAdd PawPal to this device for faster access to tags, store, and cached pages.\n\nInstall\nSkip to PawPal content\nPawPal\nHome\nGlobe\nAbout Us\nStore\nLogin\nPawPal Globe\nWeather temporarily unavailable\nMapLibre\n\nNEARBY NEEDS\n\n51.050, 3.720 · 15 km\n\n...\n\nLoading nearby needs...\n\nMissions\nPlaces\nGhent pilot\n0\nopen needs\n0\nmapped places\nAsk",
+        "fallbackVisible": false,
+        "mapContainerPresent": true,
+        "navPresent": true,
+        "pwaBannerVisible": false,
+        "hasGlobalErrorPanel": false,
+        "hasFrameworkOverlayText": false,
+        "horizontalOverflow": false,
+        "docWidth": 1280,
+        "viewportWidth": 1280,
+        "viewportHeight": 720,
+        "fallbackBox": null,
+        "navBox": {
+          "top": 8,
+          "left": 16,
+          "width": 1248,
+          "height": 58
+        },
+        "actions": []
+      },
+      "afterInteraction": null,
+      "cdpEvents": [
+        {
+          "method": "Log.entryAdded",
+          "params": {
+            "entry": {
+              "source": "other",
+              "level": "info",
+              "text": "Banner not shown: beforeinstallpromptevent.preventDefault() called. The page must call beforeinstallpromptevent.prompt() to show the banner.",
+              "timestamp": 1781476711116.809,
+              "url": "http://localhost:3000/globe"
+            }
+          }
+        }
+      ],
+      "pass": true
+    },
+    {
+      "name": "smoke-home-390x844",
+      "url": "http://localhost:3000/",
+      "width": 390,
+      "height": 844,
+      "webglUnavailable": false,
+      "screenshotPath": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-14-globe-webgl-fallback/evidence/screenshots/smoke-home-390x844.png",
+      "checks": {
+        "url": "http://localhost:3000/",
+        "title": "Pet Safety Map, Smart Tags, and Local Pet Community",
+        "textLength": 509,
+        "textSample": "Skip to PawPal content\nPawPal\n\nPAWPAL IS LOADING\n\nPawPal site footer\nPawPal\n\nSmart walks. Safe pets. Stronger local communities for pet parents across Belgium and the EU.\n\nhello@pawpal.be\nPRODUCT\nGlobe Map\nNFC Safety Tag\nAI Assistant\nCommunity\nCOMPANY\nAbout Us\nStore\nHelp Center\nSUPPORT\nPrivacy Policy\nTerms of Service\nContact\nBELGIUM PILOT\n\nPartnership, clinic, pet shop, or smart tag questions can go straight to the t",
+        "fallbackVisible": false,
+        "mapContainerPresent": false,
+        "navPresent": true,
+        "pwaBannerVisible": false,
+        "hasGlobalErrorPanel": false,
+        "hasFrameworkOverlayText": false,
+        "horizontalOverflow": false,
+        "docWidth": 390,
+        "viewportWidth": 390,
+        "viewportHeight": 844,
+        "fallbackBox": null,
+        "navBox": {
+          "top": -80,
+          "left": 0,
+          "width": 390,
+          "height": 81
+        },
+        "actions": []
+      },
+      "afterInteraction": null,
+      "cdpEvents": [],
+      "pass": true
+    },
+    {
+      "name": "smoke-store-390x844",
+      "url": "http://localhost:3000/store",
+      "width": 390,
+      "height": 844,
+      "webglUnavailable": false,
+      "screenshotPath": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-14-globe-webgl-fallback/evidence/screenshots/smoke-store-390x844.png",
+      "checks": {
+        "url": "http://localhost:3000/store",
+        "title": "Store | PawPal",
+        "textLength": 506,
+        "textSample": "Skip to PawPal content\nPawPal\nLoading store...\nPawPal site footer\nPawPal\n\nSmart walks. Safe pets. Stronger local communities for pet parents across Belgium and the EU.\n\nhello@pawpal.be\nPRODUCT\nGlobe Map\nNFC Safety Tag\nAI Assistant\nCommunity\nCOMPANY\nAbout Us\nStore\nHelp Center\nSUPPORT\nPrivacy Policy\nTerms of Service\nContact\nBELGIUM PILOT\n\nPartnership, clinic, pet shop, or smart tag questions can go straight to the team",
+        "fallbackVisible": false,
+        "mapContainerPresent": false,
+        "navPresent": true,
+        "pwaBannerVisible": false,
+        "hasGlobalErrorPanel": false,
+        "hasFrameworkOverlayText": false,
+        "horizontalOverflow": false,
+        "docWidth": 390,
+        "viewportWidth": 390,
+        "viewportHeight": 844,
+        "fallbackBox": null,
+        "navBox": {
+          "top": -80,
+          "left": 0,
+          "width": 390,
+          "height": 81
+        },
+        "actions": []
+      },
+      "afterInteraction": null,
+      "cdpEvents": [],
+      "pass": true
+    },
+    {
+      "name": "smoke-help-390x844",
+      "url": "http://localhost:3000/help",
+      "width": 390,
+      "height": 844,
+      "webglUnavailable": false,
+      "screenshotPath": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-14-globe-webgl-fallback/evidence/screenshots/smoke-help-390x844.png",
+      "checks": {
+        "url": "http://localhost:3000/help",
+        "title": "Help Center | PawPal",
+        "textLength": 509,
+        "textSample": "Skip to PawPal content\nPawPal\n\nPAWPAL IS LOADING\n\nPawPal site footer\nPawPal\n\nSmart walks. Safe pets. Stronger local communities for pet parents across Belgium and the EU.\n\nhello@pawpal.be\nPRODUCT\nGlobe Map\nNFC Safety Tag\nAI Assistant\nCommunity\nCOMPANY\nAbout Us\nStore\nHelp Center\nSUPPORT\nPrivacy Policy\nTerms of Service\nContact\nBELGIUM PILOT\n\nPartnership, clinic, pet shop, or smart tag questions can go straight to the t",
+        "fallbackVisible": false,
+        "mapContainerPresent": false,
+        "navPresent": true,
+        "pwaBannerVisible": false,
+        "hasGlobalErrorPanel": false,
+        "hasFrameworkOverlayText": false,
+        "horizontalOverflow": false,
+        "docWidth": 390,
+        "viewportWidth": 390,
+        "viewportHeight": 844,
+        "fallbackBox": null,
+        "navBox": {
+          "top": -80,
+          "left": 0,
+          "width": 390,
+          "height": 81
+        },
+        "actions": []
+      },
+      "afterInteraction": null,
+      "cdpEvents": [],
+      "pass": true
+    }
+  ]
+}

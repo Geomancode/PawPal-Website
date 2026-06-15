@@ -1,0 +1,2278 @@
+{
+  "phase": "round08-after-help",
+  "completedAt": "2026-06-11T16:58:32.944Z",
+  "baseUrl": "http://localhost:3000",
+  "totalCount": 8,
+  "passCount": 8,
+  "relevantLogCount": 0,
+  "hydrationLogCount": 0,
+  "overflowCount": 0,
+  "darkProofFailures": 0,
+  "firstViewportFailures": 0,
+  "entries": [
+    {
+      "route": "/help",
+      "viewport": "390x844",
+      "scheme": "light",
+      "requestedUrl": "http://localhost:3000/help",
+      "responseStatus": 200,
+      "screenshot": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/assets/review/website-visual-upgrade-2026-06-11/round-08-help-support-pathways/after-light-help-390x844.png",
+      "pass": true,
+      "firstViewportPass": true,
+      "relevantLogCount": 0,
+      "hydrationLogCount": 0,
+      "logs": [
+        {
+          "level": "info",
+          "message": "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold",
+          "location": {
+            "url": "http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js",
+            "line": 2297,
+            "column": 27,
+            "lineNumber": 2297,
+            "columnNumber": 27
+          },
+          "relevant": false,
+          "hydration": false
+        },
+        {
+          "level": "log",
+          "message": "[HMR] connected",
+          "location": {
+            "url": "http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js",
+            "line": 2297,
+            "column": 27,
+            "lineNumber": 2297,
+            "columnNumber": 27
+          },
+          "relevant": false,
+          "hydration": false
+        },
+        {
+          "level": "info",
+          "message": "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold",
+          "location": {
+            "url": "http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js",
+            "line": 2297,
+            "column": 27,
+            "lineNumber": 2297,
+            "columnNumber": 27
+          },
+          "relevant": false,
+          "hydration": false
+        },
+        {
+          "level": "log",
+          "message": "[HMR] connected",
+          "location": {
+            "url": "http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js",
+            "line": 2297,
+            "column": 27,
+            "lineNumber": 2297,
+            "columnNumber": 27
+          },
+          "relevant": false,
+          "hydration": false
+        }
+      ],
+      "path": "/help",
+      "title": "Help Center | PawPal",
+      "h1": [
+        "Find the right PawPal help path."
+      ],
+      "bodyTextLength": 1744,
+      "overlayMatches": [
+        {
+          "tag": "nextjs-portal",
+          "text": "",
+          "visible": true
+        }
+      ],
+      "visibleFrameworkOverlay": false,
+      "overflowX": false,
+      "prefersDark": false,
+      "prefersReducedMotion": true,
+      "htmlColorScheme": "light",
+      "bodyColorScheme": "light",
+      "bodyBg": "rgb(255, 255, 255)",
+      "pawPage": "#fff",
+      "headings": [
+        {
+          "tag": "h1",
+          "text": "Find the right PawPal help path."
+        },
+        {
+          "tag": "h2",
+          "text": "Pick the right lane"
+        },
+        {
+          "tag": "h2",
+          "text": "NFC tag or pet profile"
+        },
+        {
+          "tag": "h2",
+          "text": "Store or order help"
+        },
+        {
+          "tag": "h2",
+          "text": "Account and community"
+        },
+        {
+          "tag": "h2",
+          "text": "Safety or urgent pet issue"
+        },
+        {
+          "tag": "h3",
+          "text": "Product"
+        },
+        {
+          "tag": "h3",
+          "text": "Company"
+        },
+        {
+          "tag": "h3",
+          "text": "Support"
+        },
+        {
+          "tag": "h3",
+          "text": "Belgium Pilot"
+        }
+      ],
+      "links": [
+        {
+          "text": "Skip to PawPal content",
+          "href": "#main-content",
+          "visible": true
+        },
+        {
+          "text": "PawPal",
+          "href": "/",
+          "visible": true
+        },
+        {
+          "text": "Home",
+          "href": "/",
+          "visible": false
+        },
+        {
+          "text": "Globe",
+          "href": "/globe",
+          "visible": false
+        },
+        {
+          "text": "About Us",
+          "href": "/about",
+          "visible": false
+        },
+        {
+          "text": "Store",
+          "href": "/store",
+          "visible": false
+        },
+        {
+          "text": "Login",
+          "href": "/auth",
+          "visible": false
+        },
+        {
+          "text": "Contact support",
+          "href": "mailto:hello@pawpal.be",
+          "visible": true
+        },
+        {
+          "text": "Open Globe",
+          "href": "/globe",
+          "visible": true
+        },
+        {
+          "text": "Shop or replace a tag",
+          "href": "/store",
+          "visible": true
+        },
+        {
+          "text": "View store",
+          "href": "/store",
+          "visible": true
+        },
+        {
+          "text": "Email support",
+          "href": "mailto:hello@pawpal.be",
+          "visible": true
+        },
+        {
+          "text": "Open Globe",
+          "href": "/globe",
+          "visible": true
+        },
+        {
+          "text": "hello@pawpal.be",
+          "href": "mailto:hello@pawpal.be",
+          "visible": true
+        },
+        {
+          "text": "Globe Map",
+          "href": "/globe",
+          "visible": true
+        },
+        {
+          "text": "NFC Safety Tag",
+          "href": "/store",
+          "visible": true
+        },
+        {
+          "text": "AI Assistant",
+          "href": "/globe",
+          "visible": true
+        },
+        {
+          "text": "Community",
+          "href": "/globe",
+          "visible": true
+        },
+        {
+          "text": "About Us",
+          "href": "/about",
+          "visible": true
+        },
+        {
+          "text": "Store",
+          "href": "/store",
+          "visible": true
+        },
+        {
+          "text": "Help Center",
+          "href": "/help",
+          "visible": true
+        },
+        {
+          "text": "Privacy Policy",
+          "href": "/privacy",
+          "visible": true
+        },
+        {
+          "text": "Terms of Service",
+          "href": "/terms",
+          "visible": true
+        },
+        {
+          "text": "Contact",
+          "href": "mailto:hello@pawpal.be",
+          "visible": true
+        },
+        {
+          "text": "Contact PawPal",
+          "href": "mailto:hello@pawpal.be?subject=PawPal%20partnership",
+          "visible": true
+        }
+      ],
+      "firstViewportChecks": {
+        "routePurpose": {
+          "top": 0,
+          "bottom": 2339,
+          "visibleFirstViewport": true
+        },
+        "primaryAction": {
+          "top": 0,
+          "bottom": 2339,
+          "visibleFirstViewport": true
+        },
+        "supportLane": {
+          "top": 0,
+          "bottom": 2339,
+          "visibleFirstViewport": true
+        },
+        "urgentGuidance": {
+          "top": 0,
+          "bottom": 2339,
+          "visibleFirstViewport": true
+        },
+        "storeLane": {
+          "top": 0,
+          "bottom": 2339,
+          "visibleFirstViewport": true
+        }
+      }
+    },
+    {
+      "route": "/help",
+      "viewport": "390x844",
+      "scheme": "dark",
+      "requestedUrl": "http://localhost:3000/help",
+      "responseStatus": 200,
+      "screenshot": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/assets/review/website-visual-upgrade-2026-06-11/round-08-help-support-pathways/after-dark-help-390x844.png",
+      "pass": true,
+      "firstViewportPass": true,
+      "relevantLogCount": 0,
+      "hydrationLogCount": 0,
+      "logs": [
+        {
+          "level": "info",
+          "message": "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold",
+          "location": {
+            "url": "http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js",
+            "line": 2297,
+            "column": 27,
+            "lineNumber": 2297,
+            "columnNumber": 27
+          },
+          "relevant": false,
+          "hydration": false
+        },
+        {
+          "level": "log",
+          "message": "[HMR] connected",
+          "location": {
+            "url": "http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js",
+            "line": 2297,
+            "column": 27,
+            "lineNumber": 2297,
+            "columnNumber": 27
+          },
+          "relevant": false,
+          "hydration": false
+        },
+        {
+          "level": "info",
+          "message": "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold",
+          "location": {
+            "url": "http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js",
+            "line": 2297,
+            "column": 27,
+            "lineNumber": 2297,
+            "columnNumber": 27
+          },
+          "relevant": false,
+          "hydration": false
+        },
+        {
+          "level": "log",
+          "message": "[HMR] connected",
+          "location": {
+            "url": "http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js",
+            "line": 2297,
+            "column": 27,
+            "lineNumber": 2297,
+            "columnNumber": 27
+          },
+          "relevant": false,
+          "hydration": false
+        }
+      ],
+      "path": "/help",
+      "title": "Help Center | PawPal",
+      "h1": [
+        "Find the right PawPal help path."
+      ],
+      "bodyTextLength": 1744,
+      "overlayMatches": [
+        {
+          "tag": "nextjs-portal",
+          "text": "",
+          "visible": true
+        }
+      ],
+      "visibleFrameworkOverlay": false,
+      "overflowX": false,
+      "prefersDark": true,
+      "prefersReducedMotion": true,
+      "htmlColorScheme": "dark",
+      "bodyColorScheme": "dark",
+      "bodyBg": "rgb(21, 29, 34)",
+      "pawPage": "#151d22",
+      "headings": [
+        {
+          "tag": "h1",
+          "text": "Find the right PawPal help path."
+        },
+        {
+          "tag": "h2",
+          "text": "Pick the right lane"
+        },
+        {
+          "tag": "h2",
+          "text": "NFC tag or pet profile"
+        },
+        {
+          "tag": "h2",
+          "text": "Store or order help"
+        },
+        {
+          "tag": "h2",
+          "text": "Account and community"
+        },
+        {
+          "tag": "h2",
+          "text": "Safety or urgent pet issue"
+        },
+        {
+          "tag": "h3",
+          "text": "Product"
+        },
+        {
+          "tag": "h3",
+          "text": "Company"
+        },
+        {
+          "tag": "h3",
+          "text": "Support"
+        },
+        {
+          "tag": "h3",
+          "text": "Belgium Pilot"
+        }
+      ],
+      "links": [
+        {
+          "text": "Skip to PawPal content",
+          "href": "#main-content",
+          "visible": true
+        },
+        {
+          "text": "PawPal",
+          "href": "/",
+          "visible": true
+        },
+        {
+          "text": "Home",
+          "href": "/",
+          "visible": false
+        },
+        {
+          "text": "Globe",
+          "href": "/globe",
+          "visible": false
+        },
+        {
+          "text": "About Us",
+          "href": "/about",
+          "visible": false
+        },
+        {
+          "text": "Store",
+          "href": "/store",
+          "visible": false
+        },
+        {
+          "text": "Login",
+          "href": "/auth",
+          "visible": false
+        },
+        {
+          "text": "Contact support",
+          "href": "mailto:hello@pawpal.be",
+          "visible": true
+        },
+        {
+          "text": "Open Globe",
+          "href": "/globe",
+          "visible": true
+        },
+        {
+          "text": "Shop or replace a tag",
+          "href": "/store",
+          "visible": true
+        },
+        {
+          "text": "View store",
+          "href": "/store",
+          "visible": true
+        },
+        {
+          "text": "Email support",
+          "href": "mailto:hello@pawpal.be",
+          "visible": true
+        },
+        {
+          "text": "Open Globe",
+          "href": "/globe",
+          "visible": true
+        },
+        {
+          "text": "hello@pawpal.be",
+          "href": "mailto:hello@pawpal.be",
+          "visible": true
+        },
+        {
+          "text": "Globe Map",
+          "href": "/globe",
+          "visible": true
+        },
+        {
+          "text": "NFC Safety Tag",
+          "href": "/store",
+          "visible": true
+        },
+        {
+          "text": "AI Assistant",
+          "href": "/globe",
+          "visible": true
+        },
+        {
+          "text": "Community",
+          "href": "/globe",
+          "visible": true
+        },
+        {
+          "text": "About Us",
+          "href": "/about",
+          "visible": true
+        },
+        {
+          "text": "Store",
+          "href": "/store",
+          "visible": true
+        },
+        {
+          "text": "Help Center",
+          "href": "/help",
+          "visible": true
+        },
+        {
+          "text": "Privacy Policy",
+          "href": "/privacy",
+          "visible": true
+        },
+        {
+          "text": "Terms of Service",
+          "href": "/terms",
+          "visible": true
+        },
+        {
+          "text": "Contact",
+          "href": "mailto:hello@pawpal.be",
+          "visible": true
+        },
+        {
+          "text": "Contact PawPal",
+          "href": "mailto:hello@pawpal.be?subject=PawPal%20partnership",
+          "visible": true
+        }
+      ],
+      "firstViewportChecks": {
+        "routePurpose": {
+          "top": 0,
+          "bottom": 2339,
+          "visibleFirstViewport": true
+        },
+        "primaryAction": {
+          "top": 0,
+          "bottom": 2339,
+          "visibleFirstViewport": true
+        },
+        "supportLane": {
+          "top": 0,
+          "bottom": 2339,
+          "visibleFirstViewport": true
+        },
+        "urgentGuidance": {
+          "top": 0,
+          "bottom": 2339,
+          "visibleFirstViewport": true
+        },
+        "storeLane": {
+          "top": 0,
+          "bottom": 2339,
+          "visibleFirstViewport": true
+        }
+      }
+    },
+    {
+      "route": "/help",
+      "viewport": "768x1024",
+      "scheme": "light",
+      "requestedUrl": "http://localhost:3000/help",
+      "responseStatus": 200,
+      "screenshot": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/assets/review/website-visual-upgrade-2026-06-11/round-08-help-support-pathways/after-light-help-768x1024.png",
+      "pass": true,
+      "firstViewportPass": true,
+      "relevantLogCount": 0,
+      "hydrationLogCount": 0,
+      "logs": [
+        {
+          "level": "info",
+          "message": "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold",
+          "location": {
+            "url": "http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js",
+            "line": 2297,
+            "column": 27,
+            "lineNumber": 2297,
+            "columnNumber": 27
+          },
+          "relevant": false,
+          "hydration": false
+        },
+        {
+          "level": "log",
+          "message": "[HMR] connected",
+          "location": {
+            "url": "http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js",
+            "line": 2297,
+            "column": 27,
+            "lineNumber": 2297,
+            "columnNumber": 27
+          },
+          "relevant": false,
+          "hydration": false
+        },
+        {
+          "level": "info",
+          "message": "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold",
+          "location": {
+            "url": "http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js",
+            "line": 2297,
+            "column": 27,
+            "lineNumber": 2297,
+            "columnNumber": 27
+          },
+          "relevant": false,
+          "hydration": false
+        },
+        {
+          "level": "log",
+          "message": "[HMR] connected",
+          "location": {
+            "url": "http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js",
+            "line": 2297,
+            "column": 27,
+            "lineNumber": 2297,
+            "columnNumber": 27
+          },
+          "relevant": false,
+          "hydration": false
+        }
+      ],
+      "path": "/help",
+      "title": "Help Center | PawPal",
+      "h1": [
+        "Find the right PawPal help path."
+      ],
+      "bodyTextLength": 1776,
+      "overlayMatches": [
+        {
+          "tag": "nextjs-portal",
+          "text": "",
+          "visible": true
+        }
+      ],
+      "visibleFrameworkOverlay": false,
+      "overflowX": false,
+      "prefersDark": false,
+      "prefersReducedMotion": true,
+      "htmlColorScheme": "light",
+      "bodyColorScheme": "light",
+      "bodyBg": "rgb(255, 255, 255)",
+      "pawPage": "#fff",
+      "headings": [
+        {
+          "tag": "h1",
+          "text": "Find the right PawPal help path."
+        },
+        {
+          "tag": "h2",
+          "text": "Pick the right lane"
+        },
+        {
+          "tag": "h2",
+          "text": "NFC tag or pet profile"
+        },
+        {
+          "tag": "h2",
+          "text": "Store or order help"
+        },
+        {
+          "tag": "h2",
+          "text": "Account and community"
+        },
+        {
+          "tag": "h2",
+          "text": "Safety or urgent pet issue"
+        },
+        {
+          "tag": "h3",
+          "text": "Product"
+        },
+        {
+          "tag": "h3",
+          "text": "Company"
+        },
+        {
+          "tag": "h3",
+          "text": "Support"
+        },
+        {
+          "tag": "h3",
+          "text": "Belgium Pilot"
+        }
+      ],
+      "links": [
+        {
+          "text": "Skip to PawPal content",
+          "href": "#main-content",
+          "visible": true
+        },
+        {
+          "text": "PawPal",
+          "href": "/",
+          "visible": true
+        },
+        {
+          "text": "Home",
+          "href": "/",
+          "visible": true
+        },
+        {
+          "text": "Globe",
+          "href": "/globe",
+          "visible": true
+        },
+        {
+          "text": "About Us",
+          "href": "/about",
+          "visible": true
+        },
+        {
+          "text": "Store",
+          "href": "/store",
+          "visible": true
+        },
+        {
+          "text": "Login",
+          "href": "/auth",
+          "visible": true
+        },
+        {
+          "text": "Contact support",
+          "href": "mailto:hello@pawpal.be",
+          "visible": true
+        },
+        {
+          "text": "Open Globe",
+          "href": "/globe",
+          "visible": true
+        },
+        {
+          "text": "Shop or replace a tag",
+          "href": "/store",
+          "visible": true
+        },
+        {
+          "text": "View store",
+          "href": "/store",
+          "visible": true
+        },
+        {
+          "text": "Email support",
+          "href": "mailto:hello@pawpal.be",
+          "visible": true
+        },
+        {
+          "text": "Open Globe",
+          "href": "/globe",
+          "visible": true
+        },
+        {
+          "text": "hello@pawpal.be",
+          "href": "mailto:hello@pawpal.be",
+          "visible": true
+        },
+        {
+          "text": "Globe Map",
+          "href": "/globe",
+          "visible": true
+        },
+        {
+          "text": "NFC Safety Tag",
+          "href": "/store",
+          "visible": true
+        },
+        {
+          "text": "AI Assistant",
+          "href": "/globe",
+          "visible": true
+        },
+        {
+          "text": "Community",
+          "href": "/globe",
+          "visible": true
+        },
+        {
+          "text": "About Us",
+          "href": "/about",
+          "visible": true
+        },
+        {
+          "text": "Store",
+          "href": "/store",
+          "visible": true
+        },
+        {
+          "text": "Help Center",
+          "href": "/help",
+          "visible": true
+        },
+        {
+          "text": "Privacy Policy",
+          "href": "/privacy",
+          "visible": true
+        },
+        {
+          "text": "Terms of Service",
+          "href": "/terms",
+          "visible": true
+        },
+        {
+          "text": "Contact",
+          "href": "mailto:hello@pawpal.be",
+          "visible": true
+        },
+        {
+          "text": "Contact PawPal",
+          "href": "mailto:hello@pawpal.be?subject=PawPal%20partnership",
+          "visible": true
+        }
+      ],
+      "firstViewportChecks": {
+        "routePurpose": {
+          "top": 0,
+          "bottom": 1497,
+          "visibleFirstViewport": true
+        },
+        "primaryAction": {
+          "top": 0,
+          "bottom": 1497,
+          "visibleFirstViewport": true
+        },
+        "supportLane": {
+          "top": 0,
+          "bottom": 1497,
+          "visibleFirstViewport": true
+        },
+        "urgentGuidance": {
+          "top": 0,
+          "bottom": 1497,
+          "visibleFirstViewport": true
+        },
+        "storeLane": {
+          "top": 0,
+          "bottom": 1497,
+          "visibleFirstViewport": true
+        }
+      }
+    },
+    {
+      "route": "/help",
+      "viewport": "768x1024",
+      "scheme": "dark",
+      "requestedUrl": "http://localhost:3000/help",
+      "responseStatus": 200,
+      "screenshot": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/assets/review/website-visual-upgrade-2026-06-11/round-08-help-support-pathways/after-dark-help-768x1024.png",
+      "pass": true,
+      "firstViewportPass": true,
+      "relevantLogCount": 0,
+      "hydrationLogCount": 0,
+      "logs": [
+        {
+          "level": "info",
+          "message": "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold",
+          "location": {
+            "url": "http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js",
+            "line": 2297,
+            "column": 27,
+            "lineNumber": 2297,
+            "columnNumber": 27
+          },
+          "relevant": false,
+          "hydration": false
+        },
+        {
+          "level": "log",
+          "message": "[HMR] connected",
+          "location": {
+            "url": "http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js",
+            "line": 2297,
+            "column": 27,
+            "lineNumber": 2297,
+            "columnNumber": 27
+          },
+          "relevant": false,
+          "hydration": false
+        },
+        {
+          "level": "info",
+          "message": "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold",
+          "location": {
+            "url": "http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js",
+            "line": 2297,
+            "column": 27,
+            "lineNumber": 2297,
+            "columnNumber": 27
+          },
+          "relevant": false,
+          "hydration": false
+        },
+        {
+          "level": "log",
+          "message": "[HMR] connected",
+          "location": {
+            "url": "http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js",
+            "line": 2297,
+            "column": 27,
+            "lineNumber": 2297,
+            "columnNumber": 27
+          },
+          "relevant": false,
+          "hydration": false
+        }
+      ],
+      "path": "/help",
+      "title": "Help Center | PawPal",
+      "h1": [
+        "Find the right PawPal help path."
+      ],
+      "bodyTextLength": 1776,
+      "overlayMatches": [
+        {
+          "tag": "nextjs-portal",
+          "text": "",
+          "visible": true
+        }
+      ],
+      "visibleFrameworkOverlay": false,
+      "overflowX": false,
+      "prefersDark": true,
+      "prefersReducedMotion": true,
+      "htmlColorScheme": "dark",
+      "bodyColorScheme": "dark",
+      "bodyBg": "rgb(21, 29, 34)",
+      "pawPage": "#151d22",
+      "headings": [
+        {
+          "tag": "h1",
+          "text": "Find the right PawPal help path."
+        },
+        {
+          "tag": "h2",
+          "text": "Pick the right lane"
+        },
+        {
+          "tag": "h2",
+          "text": "NFC tag or pet profile"
+        },
+        {
+          "tag": "h2",
+          "text": "Store or order help"
+        },
+        {
+          "tag": "h2",
+          "text": "Account and community"
+        },
+        {
+          "tag": "h2",
+          "text": "Safety or urgent pet issue"
+        },
+        {
+          "tag": "h3",
+          "text": "Product"
+        },
+        {
+          "tag": "h3",
+          "text": "Company"
+        },
+        {
+          "tag": "h3",
+          "text": "Support"
+        },
+        {
+          "tag": "h3",
+          "text": "Belgium Pilot"
+        }
+      ],
+      "links": [
+        {
+          "text": "Skip to PawPal content",
+          "href": "#main-content",
+          "visible": true
+        },
+        {
+          "text": "PawPal",
+          "href": "/",
+          "visible": true
+        },
+        {
+          "text": "Home",
+          "href": "/",
+          "visible": true
+        },
+        {
+          "text": "Globe",
+          "href": "/globe",
+          "visible": true
+        },
+        {
+          "text": "About Us",
+          "href": "/about",
+          "visible": true
+        },
+        {
+          "text": "Store",
+          "href": "/store",
+          "visible": true
+        },
+        {
+          "text": "Login",
+          "href": "/auth",
+          "visible": true
+        },
+        {
+          "text": "Contact support",
+          "href": "mailto:hello@pawpal.be",
+          "visible": true
+        },
+        {
+          "text": "Open Globe",
+          "href": "/globe",
+          "visible": true
+        },
+        {
+          "text": "Shop or replace a tag",
+          "href": "/store",
+          "visible": true
+        },
+        {
+          "text": "View store",
+          "href": "/store",
+          "visible": true
+        },
+        {
+          "text": "Email support",
+          "href": "mailto:hello@pawpal.be",
+          "visible": true
+        },
+        {
+          "text": "Open Globe",
+          "href": "/globe",
+          "visible": true
+        },
+        {
+          "text": "hello@pawpal.be",
+          "href": "mailto:hello@pawpal.be",
+          "visible": true
+        },
+        {
+          "text": "Globe Map",
+          "href": "/globe",
+          "visible": true
+        },
+        {
+          "text": "NFC Safety Tag",
+          "href": "/store",
+          "visible": true
+        },
+        {
+          "text": "AI Assistant",
+          "href": "/globe",
+          "visible": true
+        },
+        {
+          "text": "Community",
+          "href": "/globe",
+          "visible": true
+        },
+        {
+          "text": "About Us",
+          "href": "/about",
+          "visible": true
+        },
+        {
+          "text": "Store",
+          "href": "/store",
+          "visible": true
+        },
+        {
+          "text": "Help Center",
+          "href": "/help",
+          "visible": true
+        },
+        {
+          "text": "Privacy Policy",
+          "href": "/privacy",
+          "visible": true
+        },
+        {
+          "text": "Terms of Service",
+          "href": "/terms",
+          "visible": true
+        },
+        {
+          "text": "Contact",
+          "href": "mailto:hello@pawpal.be",
+          "visible": true
+        },
+        {
+          "text": "Contact PawPal",
+          "href": "mailto:hello@pawpal.be?subject=PawPal%20partnership",
+          "visible": true
+        }
+      ],
+      "firstViewportChecks": {
+        "routePurpose": {
+          "top": 0,
+          "bottom": 1497,
+          "visibleFirstViewport": true
+        },
+        "primaryAction": {
+          "top": 0,
+          "bottom": 1497,
+          "visibleFirstViewport": true
+        },
+        "supportLane": {
+          "top": 0,
+          "bottom": 1497,
+          "visibleFirstViewport": true
+        },
+        "urgentGuidance": {
+          "top": 0,
+          "bottom": 1497,
+          "visibleFirstViewport": true
+        },
+        "storeLane": {
+          "top": 0,
+          "bottom": 1497,
+          "visibleFirstViewport": true
+        }
+      }
+    },
+    {
+      "route": "/help",
+      "viewport": "1280x720",
+      "scheme": "light",
+      "requestedUrl": "http://localhost:3000/help",
+      "responseStatus": 200,
+      "screenshot": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/assets/review/website-visual-upgrade-2026-06-11/round-08-help-support-pathways/after-light-help-1280x720.png",
+      "pass": true,
+      "firstViewportPass": true,
+      "relevantLogCount": 0,
+      "hydrationLogCount": 0,
+      "logs": [
+        {
+          "level": "info",
+          "message": "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold",
+          "location": {
+            "url": "http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js",
+            "line": 2297,
+            "column": 27,
+            "lineNumber": 2297,
+            "columnNumber": 27
+          },
+          "relevant": false,
+          "hydration": false
+        },
+        {
+          "level": "log",
+          "message": "[HMR] connected",
+          "location": {
+            "url": "http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js",
+            "line": 2297,
+            "column": 27,
+            "lineNumber": 2297,
+            "columnNumber": 27
+          },
+          "relevant": false,
+          "hydration": false
+        },
+        {
+          "level": "info",
+          "message": "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold",
+          "location": {
+            "url": "http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js",
+            "line": 2297,
+            "column": 27,
+            "lineNumber": 2297,
+            "columnNumber": 27
+          },
+          "relevant": false,
+          "hydration": false
+        },
+        {
+          "level": "log",
+          "message": "[HMR] connected",
+          "location": {
+            "url": "http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js",
+            "line": 2297,
+            "column": 27,
+            "lineNumber": 2297,
+            "columnNumber": 27
+          },
+          "relevant": false,
+          "hydration": false
+        }
+      ],
+      "path": "/help",
+      "title": "Help Center | PawPal",
+      "h1": [
+        "Find the right PawPal help path."
+      ],
+      "bodyTextLength": 1776,
+      "overlayMatches": [
+        {
+          "tag": "nextjs-portal",
+          "text": "",
+          "visible": true
+        }
+      ],
+      "visibleFrameworkOverlay": false,
+      "overflowX": false,
+      "prefersDark": false,
+      "prefersReducedMotion": true,
+      "htmlColorScheme": "light",
+      "bodyColorScheme": "light",
+      "bodyBg": "rgb(255, 255, 255)",
+      "pawPage": "#fff",
+      "headings": [
+        {
+          "tag": "h1",
+          "text": "Find the right PawPal help path."
+        },
+        {
+          "tag": "h2",
+          "text": "Pick the right lane"
+        },
+        {
+          "tag": "h2",
+          "text": "NFC tag or pet profile"
+        },
+        {
+          "tag": "h2",
+          "text": "Store or order help"
+        },
+        {
+          "tag": "h2",
+          "text": "Account and community"
+        },
+        {
+          "tag": "h2",
+          "text": "Safety or urgent pet issue"
+        },
+        {
+          "tag": "h3",
+          "text": "Product"
+        },
+        {
+          "tag": "h3",
+          "text": "Company"
+        },
+        {
+          "tag": "h3",
+          "text": "Support"
+        },
+        {
+          "tag": "h3",
+          "text": "Belgium Pilot"
+        }
+      ],
+      "links": [
+        {
+          "text": "Skip to PawPal content",
+          "href": "#main-content",
+          "visible": true
+        },
+        {
+          "text": "PawPal",
+          "href": "/",
+          "visible": true
+        },
+        {
+          "text": "Home",
+          "href": "/",
+          "visible": true
+        },
+        {
+          "text": "Globe",
+          "href": "/globe",
+          "visible": true
+        },
+        {
+          "text": "About Us",
+          "href": "/about",
+          "visible": true
+        },
+        {
+          "text": "Store",
+          "href": "/store",
+          "visible": true
+        },
+        {
+          "text": "Login",
+          "href": "/auth",
+          "visible": true
+        },
+        {
+          "text": "Contact support",
+          "href": "mailto:hello@pawpal.be",
+          "visible": true
+        },
+        {
+          "text": "Open Globe",
+          "href": "/globe",
+          "visible": true
+        },
+        {
+          "text": "Shop or replace a tag",
+          "href": "/store",
+          "visible": true
+        },
+        {
+          "text": "View store",
+          "href": "/store",
+          "visible": true
+        },
+        {
+          "text": "Email support",
+          "href": "mailto:hello@pawpal.be",
+          "visible": true
+        },
+        {
+          "text": "Open Globe",
+          "href": "/globe",
+          "visible": true
+        },
+        {
+          "text": "hello@pawpal.be",
+          "href": "mailto:hello@pawpal.be",
+          "visible": true
+        },
+        {
+          "text": "Globe Map",
+          "href": "/globe",
+          "visible": true
+        },
+        {
+          "text": "NFC Safety Tag",
+          "href": "/store",
+          "visible": true
+        },
+        {
+          "text": "AI Assistant",
+          "href": "/globe",
+          "visible": true
+        },
+        {
+          "text": "Community",
+          "href": "/globe",
+          "visible": true
+        },
+        {
+          "text": "About Us",
+          "href": "/about",
+          "visible": true
+        },
+        {
+          "text": "Store",
+          "href": "/store",
+          "visible": true
+        },
+        {
+          "text": "Help Center",
+          "href": "/help",
+          "visible": true
+        },
+        {
+          "text": "Privacy Policy",
+          "href": "/privacy",
+          "visible": true
+        },
+        {
+          "text": "Terms of Service",
+          "href": "/terms",
+          "visible": true
+        },
+        {
+          "text": "Contact",
+          "href": "mailto:hello@pawpal.be",
+          "visible": true
+        },
+        {
+          "text": "Contact PawPal",
+          "href": "mailto:hello@pawpal.be?subject=PawPal%20partnership",
+          "visible": true
+        }
+      ],
+      "firstViewportChecks": {
+        "routePurpose": {
+          "top": 0,
+          "bottom": 1038,
+          "visibleFirstViewport": true
+        },
+        "primaryAction": {
+          "top": 0,
+          "bottom": 1038,
+          "visibleFirstViewport": true
+        },
+        "supportLane": {
+          "top": 0,
+          "bottom": 1038,
+          "visibleFirstViewport": true
+        },
+        "urgentGuidance": {
+          "top": 0,
+          "bottom": 1038,
+          "visibleFirstViewport": true
+        },
+        "storeLane": {
+          "top": 0,
+          "bottom": 1038,
+          "visibleFirstViewport": true
+        }
+      }
+    },
+    {
+      "route": "/help",
+      "viewport": "1280x720",
+      "scheme": "dark",
+      "requestedUrl": "http://localhost:3000/help",
+      "responseStatus": 200,
+      "screenshot": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/assets/review/website-visual-upgrade-2026-06-11/round-08-help-support-pathways/after-dark-help-1280x720.png",
+      "pass": true,
+      "firstViewportPass": true,
+      "relevantLogCount": 0,
+      "hydrationLogCount": 0,
+      "logs": [
+        {
+          "level": "info",
+          "message": "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold",
+          "location": {
+            "url": "http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js",
+            "line": 2297,
+            "column": 27,
+            "lineNumber": 2297,
+            "columnNumber": 27
+          },
+          "relevant": false,
+          "hydration": false
+        },
+        {
+          "level": "log",
+          "message": "[HMR] connected",
+          "location": {
+            "url": "http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js",
+            "line": 2297,
+            "column": 27,
+            "lineNumber": 2297,
+            "columnNumber": 27
+          },
+          "relevant": false,
+          "hydration": false
+        },
+        {
+          "level": "info",
+          "message": "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold",
+          "location": {
+            "url": "http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js",
+            "line": 2297,
+            "column": 27,
+            "lineNumber": 2297,
+            "columnNumber": 27
+          },
+          "relevant": false,
+          "hydration": false
+        },
+        {
+          "level": "log",
+          "message": "[HMR] connected",
+          "location": {
+            "url": "http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js",
+            "line": 2297,
+            "column": 27,
+            "lineNumber": 2297,
+            "columnNumber": 27
+          },
+          "relevant": false,
+          "hydration": false
+        }
+      ],
+      "path": "/help",
+      "title": "Help Center | PawPal",
+      "h1": [
+        "Find the right PawPal help path."
+      ],
+      "bodyTextLength": 1776,
+      "overlayMatches": [
+        {
+          "tag": "nextjs-portal",
+          "text": "",
+          "visible": true
+        }
+      ],
+      "visibleFrameworkOverlay": false,
+      "overflowX": false,
+      "prefersDark": true,
+      "prefersReducedMotion": true,
+      "htmlColorScheme": "dark",
+      "bodyColorScheme": "dark",
+      "bodyBg": "rgb(21, 29, 34)",
+      "pawPage": "#151d22",
+      "headings": [
+        {
+          "tag": "h1",
+          "text": "Find the right PawPal help path."
+        },
+        {
+          "tag": "h2",
+          "text": "Pick the right lane"
+        },
+        {
+          "tag": "h2",
+          "text": "NFC tag or pet profile"
+        },
+        {
+          "tag": "h2",
+          "text": "Store or order help"
+        },
+        {
+          "tag": "h2",
+          "text": "Account and community"
+        },
+        {
+          "tag": "h2",
+          "text": "Safety or urgent pet issue"
+        },
+        {
+          "tag": "h3",
+          "text": "Product"
+        },
+        {
+          "tag": "h3",
+          "text": "Company"
+        },
+        {
+          "tag": "h3",
+          "text": "Support"
+        },
+        {
+          "tag": "h3",
+          "text": "Belgium Pilot"
+        }
+      ],
+      "links": [
+        {
+          "text": "Skip to PawPal content",
+          "href": "#main-content",
+          "visible": true
+        },
+        {
+          "text": "PawPal",
+          "href": "/",
+          "visible": true
+        },
+        {
+          "text": "Home",
+          "href": "/",
+          "visible": true
+        },
+        {
+          "text": "Globe",
+          "href": "/globe",
+          "visible": true
+        },
+        {
+          "text": "About Us",
+          "href": "/about",
+          "visible": true
+        },
+        {
+          "text": "Store",
+          "href": "/store",
+          "visible": true
+        },
+        {
+          "text": "Login",
+          "href": "/auth",
+          "visible": true
+        },
+        {
+          "text": "Contact support",
+          "href": "mailto:hello@pawpal.be",
+          "visible": true
+        },
+        {
+          "text": "Open Globe",
+          "href": "/globe",
+          "visible": true
+        },
+        {
+          "text": "Shop or replace a tag",
+          "href": "/store",
+          "visible": true
+        },
+        {
+          "text": "View store",
+          "href": "/store",
+          "visible": true
+        },
+        {
+          "text": "Email support",
+          "href": "mailto:hello@pawpal.be",
+          "visible": true
+        },
+        {
+          "text": "Open Globe",
+          "href": "/globe",
+          "visible": true
+        },
+        {
+          "text": "hello@pawpal.be",
+          "href": "mailto:hello@pawpal.be",
+          "visible": true
+        },
+        {
+          "text": "Globe Map",
+          "href": "/globe",
+          "visible": true
+        },
+        {
+          "text": "NFC Safety Tag",
+          "href": "/store",
+          "visible": true
+        },
+        {
+          "text": "AI Assistant",
+          "href": "/globe",
+          "visible": true
+        },
+        {
+          "text": "Community",
+          "href": "/globe",
+          "visible": true
+        },
+        {
+          "text": "About Us",
+          "href": "/about",
+          "visible": true
+        },
+        {
+          "text": "Store",
+          "href": "/store",
+          "visible": true
+        },
+        {
+          "text": "Help Center",
+          "href": "/help",
+          "visible": true
+        },
+        {
+          "text": "Privacy Policy",
+          "href": "/privacy",
+          "visible": true
+        },
+        {
+          "text": "Terms of Service",
+          "href": "/terms",
+          "visible": true
+        },
+        {
+          "text": "Contact",
+          "href": "mailto:hello@pawpal.be",
+          "visible": true
+        },
+        {
+          "text": "Contact PawPal",
+          "href": "mailto:hello@pawpal.be?subject=PawPal%20partnership",
+          "visible": true
+        }
+      ],
+      "firstViewportChecks": {
+        "routePurpose": {
+          "top": 0,
+          "bottom": 1038,
+          "visibleFirstViewport": true
+        },
+        "primaryAction": {
+          "top": 0,
+          "bottom": 1038,
+          "visibleFirstViewport": true
+        },
+        "supportLane": {
+          "top": 0,
+          "bottom": 1038,
+          "visibleFirstViewport": true
+        },
+        "urgentGuidance": {
+          "top": 0,
+          "bottom": 1038,
+          "visibleFirstViewport": true
+        },
+        "storeLane": {
+          "top": 0,
+          "bottom": 1038,
+          "visibleFirstViewport": true
+        }
+      }
+    },
+    {
+      "route": "/help",
+      "viewport": "1440x900",
+      "scheme": "light",
+      "requestedUrl": "http://localhost:3000/help",
+      "responseStatus": 200,
+      "screenshot": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/assets/review/website-visual-upgrade-2026-06-11/round-08-help-support-pathways/after-light-help-1440x900.png",
+      "pass": true,
+      "firstViewportPass": true,
+      "relevantLogCount": 0,
+      "hydrationLogCount": 0,
+      "logs": [
+        {
+          "level": "info",
+          "message": "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold",
+          "location": {
+            "url": "http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js",
+            "line": 2297,
+            "column": 27,
+            "lineNumber": 2297,
+            "columnNumber": 27
+          },
+          "relevant": false,
+          "hydration": false
+        },
+        {
+          "level": "log",
+          "message": "[HMR] connected",
+          "location": {
+            "url": "http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js",
+            "line": 2297,
+            "column": 27,
+            "lineNumber": 2297,
+            "columnNumber": 27
+          },
+          "relevant": false,
+          "hydration": false
+        },
+        {
+          "level": "info",
+          "message": "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold",
+          "location": {
+            "url": "http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js",
+            "line": 2297,
+            "column": 27,
+            "lineNumber": 2297,
+            "columnNumber": 27
+          },
+          "relevant": false,
+          "hydration": false
+        },
+        {
+          "level": "log",
+          "message": "[HMR] connected",
+          "location": {
+            "url": "http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js",
+            "line": 2297,
+            "column": 27,
+            "lineNumber": 2297,
+            "columnNumber": 27
+          },
+          "relevant": false,
+          "hydration": false
+        }
+      ],
+      "path": "/help",
+      "title": "Help Center | PawPal",
+      "h1": [
+        "Find the right PawPal help path."
+      ],
+      "bodyTextLength": 1776,
+      "overlayMatches": [
+        {
+          "tag": "nextjs-portal",
+          "text": "",
+          "visible": true
+        }
+      ],
+      "visibleFrameworkOverlay": false,
+      "overflowX": false,
+      "prefersDark": false,
+      "prefersReducedMotion": true,
+      "htmlColorScheme": "light",
+      "bodyColorScheme": "light",
+      "bodyBg": "rgb(255, 255, 255)",
+      "pawPage": "#fff",
+      "headings": [
+        {
+          "tag": "h1",
+          "text": "Find the right PawPal help path."
+        },
+        {
+          "tag": "h2",
+          "text": "Pick the right lane"
+        },
+        {
+          "tag": "h2",
+          "text": "NFC tag or pet profile"
+        },
+        {
+          "tag": "h2",
+          "text": "Store or order help"
+        },
+        {
+          "tag": "h2",
+          "text": "Account and community"
+        },
+        {
+          "tag": "h2",
+          "text": "Safety or urgent pet issue"
+        },
+        {
+          "tag": "h3",
+          "text": "Product"
+        },
+        {
+          "tag": "h3",
+          "text": "Company"
+        },
+        {
+          "tag": "h3",
+          "text": "Support"
+        },
+        {
+          "tag": "h3",
+          "text": "Belgium Pilot"
+        }
+      ],
+      "links": [
+        {
+          "text": "Skip to PawPal content",
+          "href": "#main-content",
+          "visible": true
+        },
+        {
+          "text": "PawPal",
+          "href": "/",
+          "visible": true
+        },
+        {
+          "text": "Home",
+          "href": "/",
+          "visible": true
+        },
+        {
+          "text": "Globe",
+          "href": "/globe",
+          "visible": true
+        },
+        {
+          "text": "About Us",
+          "href": "/about",
+          "visible": true
+        },
+        {
+          "text": "Store",
+          "href": "/store",
+          "visible": true
+        },
+        {
+          "text": "Login",
+          "href": "/auth",
+          "visible": true
+        },
+        {
+          "text": "Contact support",
+          "href": "mailto:hello@pawpal.be",
+          "visible": true
+        },
+        {
+          "text": "Open Globe",
+          "href": "/globe",
+          "visible": true
+        },
+        {
+          "text": "Shop or replace a tag",
+          "href": "/store",
+          "visible": true
+        },
+        {
+          "text": "View store",
+          "href": "/store",
+          "visible": true
+        },
+        {
+          "text": "Email support",
+          "href": "mailto:hello@pawpal.be",
+          "visible": true
+        },
+        {
+          "text": "Open Globe",
+          "href": "/globe",
+          "visible": true
+        },
+        {
+          "text": "hello@pawpal.be",
+          "href": "mailto:hello@pawpal.be",
+          "visible": true
+        },
+        {
+          "text": "Globe Map",
+          "href": "/globe",
+          "visible": true
+        },
+        {
+          "text": "NFC Safety Tag",
+          "href": "/store",
+          "visible": true
+        },
+        {
+          "text": "AI Assistant",
+          "href": "/globe",
+          "visible": true
+        },
+        {
+          "text": "Community",
+          "href": "/globe",
+          "visible": true
+        },
+        {
+          "text": "About Us",
+          "href": "/about",
+          "visible": true
+        },
+        {
+          "text": "Store",
+          "href": "/store",
+          "visible": true
+        },
+        {
+          "text": "Help Center",
+          "href": "/help",
+          "visible": true
+        },
+        {
+          "text": "Privacy Policy",
+          "href": "/privacy",
+          "visible": true
+        },
+        {
+          "text": "Terms of Service",
+          "href": "/terms",
+          "visible": true
+        },
+        {
+          "text": "Contact",
+          "href": "mailto:hello@pawpal.be",
+          "visible": true
+        },
+        {
+          "text": "Contact PawPal",
+          "href": "mailto:hello@pawpal.be?subject=PawPal%20partnership",
+          "visible": true
+        }
+      ],
+      "firstViewportChecks": {
+        "routePurpose": {
+          "top": 0,
+          "bottom": 1038,
+          "visibleFirstViewport": true
+        },
+        "primaryAction": {
+          "top": 0,
+          "bottom": 1038,
+          "visibleFirstViewport": true
+        },
+        "supportLane": {
+          "top": 0,
+          "bottom": 1038,
+          "visibleFirstViewport": true
+        },
+        "urgentGuidance": {
+          "top": 0,
+          "bottom": 1038,
+          "visibleFirstViewport": true
+        },
+        "storeLane": {
+          "top": 0,
+          "bottom": 1038,
+          "visibleFirstViewport": true
+        }
+      }
+    },
+    {
+      "route": "/help",
+      "viewport": "1440x900",
+      "scheme": "dark",
+      "requestedUrl": "http://localhost:3000/help",
+      "responseStatus": 200,
+      "screenshot": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/assets/review/website-visual-upgrade-2026-06-11/round-08-help-support-pathways/after-dark-help-1440x900.png",
+      "pass": true,
+      "firstViewportPass": true,
+      "relevantLogCount": 0,
+      "hydrationLogCount": 0,
+      "logs": [
+        {
+          "level": "info",
+          "message": "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold",
+          "location": {
+            "url": "http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js",
+            "line": 2297,
+            "column": 27,
+            "lineNumber": 2297,
+            "columnNumber": 27
+          },
+          "relevant": false,
+          "hydration": false
+        },
+        {
+          "level": "log",
+          "message": "[HMR] connected",
+          "location": {
+            "url": "http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js",
+            "line": 2297,
+            "column": 27,
+            "lineNumber": 2297,
+            "columnNumber": 27
+          },
+          "relevant": false,
+          "hydration": false
+        },
+        {
+          "level": "info",
+          "message": "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold",
+          "location": {
+            "url": "http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js",
+            "line": 2297,
+            "column": 27,
+            "lineNumber": 2297,
+            "columnNumber": 27
+          },
+          "relevant": false,
+          "hydration": false
+        },
+        {
+          "level": "log",
+          "message": "[HMR] connected",
+          "location": {
+            "url": "http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js",
+            "line": 2297,
+            "column": 27,
+            "lineNumber": 2297,
+            "columnNumber": 27
+          },
+          "relevant": false,
+          "hydration": false
+        }
+      ],
+      "path": "/help",
+      "title": "Help Center | PawPal",
+      "h1": [
+        "Find the right PawPal help path."
+      ],
+      "bodyTextLength": 1776,
+      "overlayMatches": [
+        {
+          "tag": "nextjs-portal",
+          "text": "",
+          "visible": true
+        }
+      ],
+      "visibleFrameworkOverlay": false,
+      "overflowX": false,
+      "prefersDark": true,
+      "prefersReducedMotion": true,
+      "htmlColorScheme": "dark",
+      "bodyColorScheme": "dark",
+      "bodyBg": "rgb(21, 29, 34)",
+      "pawPage": "#151d22",
+      "headings": [
+        {
+          "tag": "h1",
+          "text": "Find the right PawPal help path."
+        },
+        {
+          "tag": "h2",
+          "text": "Pick the right lane"
+        },
+        {
+          "tag": "h2",
+          "text": "NFC tag or pet profile"
+        },
+        {
+          "tag": "h2",
+          "text": "Store or order help"
+        },
+        {
+          "tag": "h2",
+          "text": "Account and community"
+        },
+        {
+          "tag": "h2",
+          "text": "Safety or urgent pet issue"
+        },
+        {
+          "tag": "h3",
+          "text": "Product"
+        },
+        {
+          "tag": "h3",
+          "text": "Company"
+        },
+        {
+          "tag": "h3",
+          "text": "Support"
+        },
+        {
+          "tag": "h3",
+          "text": "Belgium Pilot"
+        }
+      ],
+      "links": [
+        {
+          "text": "Skip to PawPal content",
+          "href": "#main-content",
+          "visible": true
+        },
+        {
+          "text": "PawPal",
+          "href": "/",
+          "visible": true
+        },
+        {
+          "text": "Home",
+          "href": "/",
+          "visible": true
+        },
+        {
+          "text": "Globe",
+          "href": "/globe",
+          "visible": true
+        },
+        {
+          "text": "About Us",
+          "href": "/about",
+          "visible": true
+        },
+        {
+          "text": "Store",
+          "href": "/store",
+          "visible": true
+        },
+        {
+          "text": "Login",
+          "href": "/auth",
+          "visible": true
+        },
+        {
+          "text": "Contact support",
+          "href": "mailto:hello@pawpal.be",
+          "visible": true
+        },
+        {
+          "text": "Open Globe",
+          "href": "/globe",
+          "visible": true
+        },
+        {
+          "text": "Shop or replace a tag",
+          "href": "/store",
+          "visible": true
+        },
+        {
+          "text": "View store",
+          "href": "/store",
+          "visible": true
+        },
+        {
+          "text": "Email support",
+          "href": "mailto:hello@pawpal.be",
+          "visible": true
+        },
+        {
+          "text": "Open Globe",
+          "href": "/globe",
+          "visible": true
+        },
+        {
+          "text": "hello@pawpal.be",
+          "href": "mailto:hello@pawpal.be",
+          "visible": true
+        },
+        {
+          "text": "Globe Map",
+          "href": "/globe",
+          "visible": true
+        },
+        {
+          "text": "NFC Safety Tag",
+          "href": "/store",
+          "visible": true
+        },
+        {
+          "text": "AI Assistant",
+          "href": "/globe",
+          "visible": true
+        },
+        {
+          "text": "Community",
+          "href": "/globe",
+          "visible": true
+        },
+        {
+          "text": "About Us",
+          "href": "/about",
+          "visible": true
+        },
+        {
+          "text": "Store",
+          "href": "/store",
+          "visible": true
+        },
+        {
+          "text": "Help Center",
+          "href": "/help",
+          "visible": true
+        },
+        {
+          "text": "Privacy Policy",
+          "href": "/privacy",
+          "visible": true
+        },
+        {
+          "text": "Terms of Service",
+          "href": "/terms",
+          "visible": true
+        },
+        {
+          "text": "Contact",
+          "href": "mailto:hello@pawpal.be",
+          "visible": true
+        },
+        {
+          "text": "Contact PawPal",
+          "href": "mailto:hello@pawpal.be?subject=PawPal%20partnership",
+          "visible": true
+        }
+      ],
+      "firstViewportChecks": {
+        "routePurpose": {
+          "top": 0,
+          "bottom": 1038,
+          "visibleFirstViewport": true
+        },
+        "primaryAction": {
+          "top": 0,
+          "bottom": 1038,
+          "visibleFirstViewport": true
+        },
+        "supportLane": {
+          "top": 0,
+          "bottom": 1038,
+          "visibleFirstViewport": true
+        },
+        "urgentGuidance": {
+          "top": 0,
+          "bottom": 1038,
+          "visibleFirstViewport": true
+        },
+        "storeLane": {
+          "top": 0,
+          "bottom": 1038,
+          "visibleFirstViewport": true
+        }
+      }
+    }
+  ]
+}

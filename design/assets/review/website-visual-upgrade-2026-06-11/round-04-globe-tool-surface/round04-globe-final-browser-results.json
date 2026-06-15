@@ -1,0 +1,514 @@
+[
+  {
+    "label": "mobile-390x844",
+    "runStart": "2026-06-11T13:20:47.515Z",
+    "url": "http://localhost:3000/globe",
+    "title": "Live Pet Globe | PawPal",
+    "snapshotSignals": {
+      "hasWelcomeTutorial": false,
+      "length": 2637
+    },
+    "document": {
+      "clientHeight": 844,
+      "clientWidth": 390,
+      "scrollHeight": 844,
+      "scrollWidth": 390
+    },
+    "mapCanvasPresent": true,
+    "meaningfulText": true,
+    "overflowX": 0,
+    "overflowY": 0,
+    "overlapPairs": [],
+    "rects": {
+      "chat": {
+        "bottom": 828,
+        "height": 68,
+        "position": "absolute",
+        "right": 316,
+        "selector": ".globe-chat-sheet",
+        "visible": true,
+        "width": 304,
+        "x": 12,
+        "y": 760,
+        "zIndex": "50"
+      },
+      "layers": {
+        "bottom": 219,
+        "height": 89,
+        "position": "absolute",
+        "right": 378,
+        "selector": ".globe-layer-stack",
+        "visible": true,
+        "width": 133,
+        "x": 245,
+        "y": 130,
+        "zIndex": "40"
+      },
+      "mapCanvas": {
+        "bottom": 844,
+        "height": 844,
+        "position": "absolute",
+        "right": 390,
+        "selector": ".maplibregl-canvas",
+        "visible": true,
+        "width": 390,
+        "x": 0,
+        "y": 0,
+        "zIndex": "auto"
+      },
+      "mapControls": {
+        "bottom": 756,
+        "height": 141,
+        "position": "absolute",
+        "right": 378,
+        "selector": ".maplibregl-ctrl-bottom-right",
+        "visible": true,
+        "width": 213,
+        "x": 165,
+        "y": 615,
+        "zIndex": "2"
+      },
+      "nav": {
+        "bottom": 62,
+        "height": 50,
+        "position": "fixed",
+        "right": 378,
+        "selector": ".site-nav-map",
+        "visible": true,
+        "width": 366,
+        "x": 12,
+        "y": 12,
+        "zIndex": "9900"
+      },
+      "nearby": {
+        "bottom": 358,
+        "height": 136,
+        "position": "absolute",
+        "right": 332,
+        "selector": ".globe-nearby-panel",
+        "visible": true,
+        "width": 320,
+        "x": 12,
+        "y": 222,
+        "zIndex": "40"
+      },
+      "status": {
+        "bottom": 0,
+        "height": 0,
+        "position": "absolute",
+        "right": 0,
+        "selector": ".globe-status-strip",
+        "visible": false,
+        "width": 0,
+        "x": 0,
+        "y": 0,
+        "zIndex": "40"
+      },
+      "tutorial": null,
+      "weather": {
+        "bottom": 120,
+        "height": 49,
+        "position": "absolute",
+        "right": 378,
+        "selector": ".globe-weather-bar",
+        "visible": true,
+        "width": 366,
+        "x": 12,
+        "y": 71,
+        "zIndex": "40"
+      }
+    },
+    "textSample": "Skip to PawPal content PawPal PawPal Globe Ghent Drizzle 16°C (feels 13°C) 18 km/h 67% 100% rain UV 5 🌧️ High chance of rain — bring a raincoat for your pup • Ghent Drizzle 16°C (feels 13°C) 18 km/h 67% 100% rain UV 5 🌧️ High chance of rain — bring a raincoat for your pup • Ghent Drizzle 16°C (feels 13°C) 18 km/h 67% 100% rain UV 5 🌧️ High chance of rain — bring a raincoat for your pup • Ghent Drizzle 16°C (feels 13°C) 18 km/h 67% 100% rain UV 5 🌧️ High chance of rain — bring a raincoat for ",
+    "viewport": {
+      "height": 844,
+      "width": 390
+    },
+    "visibleFrameworkOverlay": false,
+    "newLogs": [],
+    "screenshotPath": "/private/tmp/geopet-round04-globe/final-v2/round04-globe-mobile-390x844.png"
+  },
+  {
+    "label": "tablet-768x1024",
+    "runStart": "2026-06-11T13:20:57.496Z",
+    "url": "http://localhost:3000/globe",
+    "title": "Live Pet Globe | PawPal",
+    "snapshotSignals": {
+      "hasWelcomeTutorial": false,
+      "length": 2801
+    },
+    "document": {
+      "clientHeight": 1024,
+      "clientWidth": 768,
+      "scrollHeight": 1024,
+      "scrollWidth": 768
+    },
+    "mapCanvasPresent": true,
+    "meaningfulText": true,
+    "overflowX": 0,
+    "overflowY": 0,
+    "overlapPairs": [],
+    "rects": {
+      "chat": {
+        "bottom": 1008,
+        "height": 68,
+        "position": "absolute",
+        "right": 694,
+        "selector": ".globe-chat-sheet",
+        "visible": true,
+        "width": 682,
+        "x": 12,
+        "y": 940,
+        "zIndex": "50"
+      },
+      "layers": {
+        "bottom": 219,
+        "height": 89,
+        "position": "absolute",
+        "right": 756,
+        "selector": ".globe-layer-stack",
+        "visible": true,
+        "width": 133,
+        "x": 623,
+        "y": 130,
+        "zIndex": "40"
+      },
+      "mapCanvas": {
+        "bottom": 1024,
+        "height": 1024,
+        "position": "absolute",
+        "right": 768,
+        "selector": ".maplibregl-canvas",
+        "visible": true,
+        "width": 768,
+        "x": 0,
+        "y": 0,
+        "zIndex": "auto"
+      },
+      "mapControls": {
+        "bottom": 936,
+        "height": 141,
+        "position": "absolute",
+        "right": 756,
+        "selector": ".maplibregl-ctrl-bottom-right",
+        "visible": true,
+        "width": 213,
+        "x": 543,
+        "y": 795,
+        "zIndex": "2"
+      },
+      "nav": {
+        "bottom": 70,
+        "height": 58,
+        "position": "fixed",
+        "right": 752,
+        "selector": ".site-nav-map",
+        "visible": true,
+        "width": 736,
+        "x": 16,
+        "y": 12,
+        "zIndex": "9900"
+      },
+      "nearby": {
+        "bottom": 358,
+        "height": 136,
+        "position": "absolute",
+        "right": 332,
+        "selector": ".globe-nearby-panel",
+        "visible": true,
+        "width": 320,
+        "x": 12,
+        "y": 222,
+        "zIndex": "40"
+      },
+      "status": {
+        "bottom": 0,
+        "height": 0,
+        "position": "absolute",
+        "right": 0,
+        "selector": ".globe-status-strip",
+        "visible": false,
+        "width": 0,
+        "x": 0,
+        "y": 0,
+        "zIndex": "40"
+      },
+      "tutorial": null,
+      "weather": {
+        "bottom": 120,
+        "height": 49,
+        "position": "absolute",
+        "right": 756,
+        "selector": ".globe-weather-bar",
+        "visible": true,
+        "width": 744,
+        "x": 12,
+        "y": 71,
+        "zIndex": "40"
+      }
+    },
+    "textSample": "Skip to PawPal content PawPal Home Globe About Us Store Login PawPal Globe Ghent Drizzle 16°C (feels 13°C) 18 km/h 67% 100% rain UV 5 🌧️ High chance of rain — bring a raincoat for your pup • Ghent Drizzle 16°C (feels 13°C) 18 km/h 67% 100% rain UV 5 🌧️ High chance of rain — bring a raincoat for your pup • Ghent Drizzle 16°C (feels 13°C) 18 km/h 67% 100% rain UV 5 🌧️ High chance of rain — bring a raincoat for your pup • Ghent Drizzle 16°C (feels 13°C) 18 km/h 67% 100% rain UV 5 🌧️ High chance",
+    "viewport": {
+      "height": 1024,
+      "width": 768
+    },
+    "visibleFrameworkOverlay": false,
+    "newLogs": [],
+    "screenshotPath": "/private/tmp/geopet-round04-globe/final-v2/round04-globe-tablet-768x1024.png"
+  },
+  {
+    "label": "desktop-1280x720",
+    "runStart": "2026-06-11T13:21:02.688Z",
+    "url": "http://localhost:3000/globe",
+    "title": "Live Pet Globe | PawPal",
+    "snapshotSignals": {
+      "hasWelcomeTutorial": false,
+      "length": 2910
+    },
+    "document": {
+      "clientHeight": 720,
+      "clientWidth": 1280,
+      "scrollHeight": 720,
+      "scrollWidth": 1280
+    },
+    "mapCanvasPresent": true,
+    "meaningfulText": true,
+    "overflowX": 0,
+    "overflowY": 0,
+    "overlapPairs": [],
+    "rects": {
+      "chat": {
+        "bottom": 704,
+        "height": 68,
+        "position": "absolute",
+        "right": 896,
+        "selector": ".globe-chat-sheet",
+        "visible": true,
+        "width": 512,
+        "x": 384,
+        "y": 636,
+        "zIndex": "50"
+      },
+      "layers": {
+        "bottom": 125,
+        "height": 49,
+        "position": "absolute",
+        "right": 1264,
+        "selector": ".globe-layer-stack",
+        "visible": true,
+        "width": 240,
+        "x": 1024,
+        "y": 76,
+        "zIndex": "40"
+      },
+      "mapCanvas": {
+        "bottom": 720,
+        "height": 720,
+        "position": "absolute",
+        "right": 1280,
+        "selector": ".maplibregl-canvas",
+        "visible": true,
+        "width": 1280,
+        "x": 0,
+        "y": 0,
+        "zIndex": "auto"
+      },
+      "mapControls": {
+        "bottom": 636,
+        "height": 141,
+        "position": "absolute",
+        "right": 1268,
+        "selector": ".maplibregl-ctrl-bottom-right",
+        "visible": true,
+        "width": 213,
+        "x": 1055,
+        "y": 495,
+        "zIndex": "2"
+      },
+      "nav": {
+        "bottom": 70,
+        "height": 58,
+        "position": "fixed",
+        "right": 1264,
+        "selector": ".site-nav-map",
+        "visible": true,
+        "width": 1248,
+        "x": 16,
+        "y": 12,
+        "zIndex": "9900"
+      },
+      "nearby": {
+        "bottom": 270,
+        "height": 136,
+        "position": "absolute",
+        "right": 336,
+        "selector": ".globe-nearby-panel",
+        "visible": true,
+        "width": 320,
+        "x": 16,
+        "y": 134,
+        "zIndex": "40"
+      },
+      "status": {
+        "bottom": 634,
+        "height": 41,
+        "position": "absolute",
+        "right": 336,
+        "selector": ".globe-status-strip",
+        "visible": true,
+        "width": 320,
+        "x": 16,
+        "y": 593,
+        "zIndex": "40"
+      },
+      "tutorial": null,
+      "weather": {
+        "bottom": 125,
+        "height": 49,
+        "position": "absolute",
+        "right": 992,
+        "selector": ".globe-weather-bar",
+        "visible": true,
+        "width": 704,
+        "x": 288,
+        "y": 76,
+        "zIndex": "40"
+      }
+    },
+    "textSample": "Skip to PawPal content PawPal Home Globe About Us Store Login PawPal Globe Ghent Drizzle 16°C (feels 13°C) 18 km/h 67% 100% rain UV 5 🌧️ High chance of rain — bring a raincoat for your pup • Ghent Drizzle 16°C (feels 13°C) 18 km/h 67% 100% rain UV 5 🌧️ High chance of rain — bring a raincoat for your pup • Ghent Drizzle 16°C (feels 13°C) 18 km/h 67% 100% rain UV 5 🌧️ High chance of rain — bring a raincoat for your pup • Ghent Drizzle 16°C (feels 13°C) 18 km/h 67% 100% rain UV 5 🌧️ High chance",
+    "viewport": {
+      "height": 720,
+      "width": 1280
+    },
+    "visibleFrameworkOverlay": false,
+    "newLogs": [],
+    "screenshotPath": "/private/tmp/geopet-round04-globe/final-v2/round04-globe-desktop-1280x720.png"
+  },
+  {
+    "label": "desktop-1440x900",
+    "runStart": "2026-06-11T13:21:07.901Z",
+    "url": "http://localhost:3000/globe",
+    "title": "Live Pet Globe | PawPal",
+    "snapshotSignals": {
+      "hasWelcomeTutorial": false,
+      "length": 2910
+    },
+    "document": {
+      "clientHeight": 900,
+      "clientWidth": 1440,
+      "scrollHeight": 900,
+      "scrollWidth": 1440
+    },
+    "mapCanvasPresent": true,
+    "meaningfulText": true,
+    "overflowX": 0,
+    "overflowY": 0,
+    "overlapPairs": [],
+    "rects": {
+      "chat": {
+        "bottom": 884,
+        "height": 68,
+        "position": "absolute",
+        "right": 976,
+        "selector": ".globe-chat-sheet",
+        "visible": true,
+        "width": 512,
+        "x": 464,
+        "y": 816,
+        "zIndex": "50"
+      },
+      "layers": {
+        "bottom": 125,
+        "height": 49,
+        "position": "absolute",
+        "right": 1424,
+        "selector": ".globe-layer-stack",
+        "visible": true,
+        "width": 240,
+        "x": 1184,
+        "y": 76,
+        "zIndex": "40"
+      },
+      "mapCanvas": {
+        "bottom": 900,
+        "height": 900,
+        "position": "absolute",
+        "right": 1440,
+        "selector": ".maplibregl-canvas",
+        "visible": true,
+        "width": 1440,
+        "x": 0,
+        "y": 0,
+        "zIndex": "auto"
+      },
+      "mapControls": {
+        "bottom": 816,
+        "height": 141,
+        "position": "absolute",
+        "right": 1428,
+        "selector": ".maplibregl-ctrl-bottom-right",
+        "visible": true,
+        "width": 213,
+        "x": 1215,
+        "y": 675,
+        "zIndex": "2"
+      },
+      "nav": {
+        "bottom": 70,
+        "height": 58,
+        "position": "fixed",
+        "right": 1424,
+        "selector": ".site-nav-map",
+        "visible": true,
+        "width": 1408,
+        "x": 16,
+        "y": 12,
+        "zIndex": "9900"
+      },
+      "nearby": {
+        "bottom": 270,
+        "height": 136,
+        "position": "absolute",
+        "right": 336,
+        "selector": ".globe-nearby-panel",
+        "visible": true,
+        "width": 320,
+        "x": 16,
+        "y": 134,
+        "zIndex": "40"
+      },
+      "status": {
+        "bottom": 814,
+        "height": 41,
+        "position": "absolute",
+        "right": 336,
+        "selector": ".globe-status-strip",
+        "visible": true,
+        "width": 320,
+        "x": 16,
+        "y": 773,
+        "zIndex": "40"
+      },
+      "tutorial": null,
+      "weather": {
+        "bottom": 125,
+        "height": 49,
+        "position": "absolute",
+        "right": 1072,
+        "selector": ".globe-weather-bar",
+        "visible": true,
+        "width": 704,
+        "x": 368,
+        "y": 76,
+        "zIndex": "40"
+      }
+    },
+    "textSample": "Skip to PawPal content PawPal Home Globe About Us Store Login PawPal Globe Ghent Drizzle 16°C (feels 13°C) 18 km/h 67% 100% rain UV 5 🌧️ High chance of rain — bring a raincoat for your pup • Ghent Drizzle 16°C (feels 13°C) 18 km/h 67% 100% rain UV 5 🌧️ High chance of rain — bring a raincoat for your pup • Ghent Drizzle 16°C (feels 13°C) 18 km/h 67% 100% rain UV 5 🌧️ High chance of rain — bring a raincoat for your pup • Ghent Drizzle 16°C (feels 13°C) 18 km/h 67% 100% rain UV 5 🌧️ High chance",
+    "viewport": {
+      "height": 900,
+      "width": 1440
+    },
+    "visibleFrameworkOverlay": false,
+    "newLogs": [],
+    "screenshotPath": "/private/tmp/geopet-round04-globe/final-v2/round04-globe-desktop-1440x900.png"
+  }
+]

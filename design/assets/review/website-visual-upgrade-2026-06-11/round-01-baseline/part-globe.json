@@ -1,0 +1,1072 @@
+{
+  "route": {
+    "path": "/globe",
+    "slug": "globe",
+    "character": "Tool/map",
+    "signals": [
+      "Live Map",
+      "Nearby",
+      "Weather",
+      "Explore",
+      "Layer"
+    ]
+  },
+  "results": [
+    {
+      "route": "/globe",
+      "slug": "globe",
+      "routeCharacter": "Tool/map",
+      "requestedUrl": "http://localhost:3000/globe",
+      "viewport": {
+        "label": "390x844",
+        "width": 390,
+        "height": 844
+      },
+      "started": "2026-06-11T11:22:54.287Z",
+      "navError": null,
+      "screenshotPath": "/private/tmp/geopet-round01-baseline/globe-390x844.png",
+      "screenshotError": null,
+      "metrics": {
+        "blockingOverlay": true,
+        "bodyBackground": "rgb(255, 255, 255)",
+        "bodyColor": "rgb(58, 47, 42)",
+        "canvases": [
+          {
+            "height": 844,
+            "inFirstViewport": true,
+            "left": 0,
+            "role": "region",
+            "tag": "canvas",
+            "text": "Map",
+            "top": 81,
+            "width": 390
+          }
+        ],
+        "clientWidth": 390,
+        "colorSchemeStyle": "light",
+        "controls": [
+          {
+            "height": 44,
+            "inFirstViewport": false,
+            "left": 16,
+            "role": null,
+            "tag": "a",
+            "text": "Skip to PawPal content",
+            "top": -54,
+            "width": 194
+          },
+          {
+            "height": 32,
+            "inFirstViewport": true,
+            "left": 20,
+            "role": null,
+            "tag": "a",
+            "text": "PawPal",
+            "top": 24,
+            "width": 122
+          },
+          {
+            "height": 40,
+            "inFirstViewport": true,
+            "left": 330,
+            "role": null,
+            "tag": "button",
+            "text": "Open navigation menu",
+            "top": 20,
+            "width": 40
+          },
+          {
+            "height": 29,
+            "inFirstViewport": true,
+            "left": 351,
+            "role": null,
+            "tag": "button",
+            "text": "Zoom in",
+            "top": 784,
+            "width": 29
+          },
+          {
+            "height": 29,
+            "inFirstViewport": true,
+            "left": 351,
+            "role": null,
+            "tag": "button",
+            "text": "Zoom out",
+            "top": 813,
+            "width": 29
+          },
+          {
+            "height": 29,
+            "inFirstViewport": true,
+            "left": 351,
+            "role": null,
+            "tag": "button",
+            "text": "Drag to rotate map, click to reset north",
+            "top": 842,
+            "width": 29
+          },
+          {
+            "height": 14,
+            "inFirstViewport": false,
+            "left": 195,
+            "role": null,
+            "tag": "a",
+            "text": "MapLibre",
+            "top": 896,
+            "width": 51
+          },
+          {
+            "height": 14,
+            "inFirstViewport": false,
+            "left": 268,
+            "role": null,
+            "tag": "a",
+            "text": "CARTO",
+            "top": 896,
+            "width": 40
+          },
+          {
+            "height": 14,
+            "inFirstViewport": false,
+            "left": 325,
+            "role": null,
+            "tag": "a",
+            "text": "OSM",
+            "top": 896,
+            "width": 27
+          },
+          {
+            "height": 34,
+            "inFirstViewport": true,
+            "left": 265,
+            "role": null,
+            "tag": "button",
+            "text": "Missions",
+            "top": 211,
+            "width": 109
+          },
+          {
+            "height": 34,
+            "inFirstViewport": true,
+            "left": 265,
+            "role": null,
+            "tag": "button",
+            "text": "Places",
+            "top": 253,
+            "width": 109
+          },
+          {
+            "height": 20,
+            "inFirstViewport": false,
+            "left": 44,
+            "role": null,
+            "tag": "input",
+            "text": "Search or ask anything · 搜索 · Zoek · Chercher…",
+            "top": 888,
+            "width": 252
+          }
+        ],
+        "currentUrl": "http://localhost:3000/globe",
+        "documentHeight": 925,
+        "foundSignals": [
+          {
+            "element": null,
+            "found": false,
+            "signal": "Live Map"
+          },
+          {
+            "element": {
+              "height": 844,
+              "inFirstViewport": true,
+              "left": 0,
+              "role": null,
+              "tag": "main",
+              "text": "PawPal Globe Loading weather… MapLibre | © CARTO © OSM NEARBY NEEDS 51.050, 3.720 · 15 km ... Using Ghent as the startin",
+              "top": 81,
+              "width": 390
+            },
+            "found": true,
+            "signal": "Nearby"
+          },
+          {
+            "element": {
+              "height": 844,
+              "inFirstViewport": true,
+              "left": 0,
+              "role": null,
+              "tag": "main",
+              "text": "PawPal Globe Loading weather… MapLibre | © CARTO © OSM NEARBY NEEDS 51.050, 3.720 · 15 km ... Using Ghent as the startin",
+              "top": 81,
+              "width": 390
+            },
+            "found": true,
+            "signal": "Weather"
+          },
+          {
+            "element": null,
+            "found": false,
+            "signal": "Explore"
+          },
+          {
+            "element": null,
+            "found": false,
+            "signal": "Layer"
+          }
+        ],
+        "headings": [
+          {
+            "height": 1,
+            "inFirstViewport": true,
+            "left": -1,
+            "role": null,
+            "tag": "h1",
+            "text": "PawPal Globe",
+            "top": 80,
+            "width": 1
+          }
+        ],
+        "horizontalOverflow": false,
+        "images": [
+          {
+            "height": 32,
+            "inFirstViewport": true,
+            "left": 20,
+            "role": null,
+            "tag": "img",
+            "text": "IMG",
+            "top": 24,
+            "width": 32
+          }
+        ],
+        "nonEmptyRender": true,
+        "overlayText": "",
+        "prefersDarkScheme": false,
+        "prefersReducedMotion": false,
+        "routeCharacter": "Tool/map",
+        "scrollWidth": 390,
+        "textLength": 238,
+        "textSample": "Skip to PawPal content PawPal PawPal Globe Loading weather… MapLibre | © CARTO © OSM NEARBY NEEDS 51.050, 3.720 · 15 km ... Using Ghent as the starting point. Enable location for nearby results. Loading nearby needs... Missions Places Ask",
+        "title": "Live Pet Globe | PawPal",
+        "viewport": {
+          "height": 844,
+          "width": 390
+        }
+      },
+      "focus": {
+        "height": 925,
+        "left": 0,
+        "ok": true,
+        "role": null,
+        "tag": "body",
+        "text": "Skip to PawPal content PawPal PawPal Globe Loading weather… ✂️ 🐾 🐾 🏥 🛒 🏥 🐾 🐾 🏥 🛒 🏠 🐾 🏥 🌳 🌳 MapLibre | © CA",
+        "top": 0,
+        "width": 390
+      },
+      "logs": [],
+      "darkModeCapture": {
+        "captured": false,
+        "reason": "Browser viewport capability does not expose color-scheme emulation; current prefers-color-scheme value is recorded instead.",
+        "impact": "No separate dark-mode screenshot in this baseline round.",
+        "followUpRound": "First implementation verification round touching this route."
+      },
+      "reducedMotionCapture": {
+        "captured": false,
+        "reason": "Browser capability does not expose prefers-reduced-motion emulation; current matchMedia value is recorded instead.",
+        "impact": "No separate reduced-motion behavior emulation in this baseline round.",
+        "followUpRound": "First implementation verification round touching this route."
+      }
+    },
+    {
+      "route": "/globe",
+      "slug": "globe",
+      "routeCharacter": "Tool/map",
+      "requestedUrl": "http://localhost:3000/globe",
+      "viewport": {
+        "label": "768x1024",
+        "width": 768,
+        "height": 1024
+      },
+      "started": "2026-06-11T11:22:57.468Z",
+      "navError": null,
+      "screenshotPath": "/private/tmp/geopet-round01-baseline/globe-768x1024.png",
+      "screenshotError": null,
+      "metrics": {
+        "blockingOverlay": true,
+        "bodyBackground": "rgb(255, 255, 255)",
+        "bodyColor": "rgb(58, 47, 42)",
+        "canvases": [
+          {
+            "height": 1024,
+            "inFirstViewport": true,
+            "left": 0,
+            "role": "region",
+            "tag": "canvas",
+            "text": "Map",
+            "top": 81,
+            "width": 768
+          }
+        ],
+        "clientWidth": 768,
+        "colorSchemeStyle": "light",
+        "controls": [
+          {
+            "height": 44,
+            "inFirstViewport": false,
+            "left": 16,
+            "role": null,
+            "tag": "a",
+            "text": "Skip to PawPal content",
+            "top": -54,
+            "width": 194
+          },
+          {
+            "height": 32,
+            "inFirstViewport": true,
+            "left": 24,
+            "role": null,
+            "tag": "a",
+            "text": "PawPal",
+            "top": 24,
+            "width": 122
+          },
+          {
+            "height": 36,
+            "inFirstViewport": true,
+            "left": 211,
+            "role": null,
+            "tag": "a",
+            "text": "Home",
+            "top": 22,
+            "width": 68
+          },
+          {
+            "height": 36,
+            "inFirstViewport": true,
+            "left": 311,
+            "role": null,
+            "tag": "a",
+            "text": "Globe",
+            "top": 22,
+            "width": 68
+          },
+          {
+            "height": 36,
+            "inFirstViewport": true,
+            "left": 411,
+            "role": null,
+            "tag": "a",
+            "text": "About Us",
+            "top": 22,
+            "width": 91
+          },
+          {
+            "height": 36,
+            "inFirstViewport": true,
+            "left": 534,
+            "role": null,
+            "tag": "a",
+            "text": "Store",
+            "top": 22,
+            "width": 65
+          },
+          {
+            "height": 40,
+            "inFirstViewport": true,
+            "left": 664,
+            "role": null,
+            "tag": "a",
+            "text": "Login",
+            "top": 20,
+            "width": 80
+          },
+          {
+            "height": 29,
+            "inFirstViewport": true,
+            "left": 729,
+            "role": null,
+            "tag": "button",
+            "text": "Zoom in",
+            "top": 964,
+            "width": 29
+          },
+          {
+            "height": 29,
+            "inFirstViewport": true,
+            "left": 729,
+            "role": null,
+            "tag": "button",
+            "text": "Zoom out",
+            "top": 993,
+            "width": 29
+          },
+          {
+            "height": 29,
+            "inFirstViewport": true,
+            "left": 729,
+            "role": null,
+            "tag": "button",
+            "text": "Drag to rotate map, click to reset north",
+            "top": 1022,
+            "width": 29
+          },
+          {
+            "height": 14,
+            "inFirstViewport": false,
+            "left": 573,
+            "role": null,
+            "tag": "a",
+            "text": "MapLibre",
+            "top": 1076,
+            "width": 51
+          },
+          {
+            "height": 14,
+            "inFirstViewport": false,
+            "left": 646,
+            "role": null,
+            "tag": "a",
+            "text": "CARTO",
+            "top": 1076,
+            "width": 40
+          }
+        ],
+        "currentUrl": "http://localhost:3000/globe",
+        "documentHeight": 1105,
+        "foundSignals": [
+          {
+            "element": null,
+            "found": false,
+            "signal": "Live Map"
+          },
+          {
+            "element": {
+              "height": 1024,
+              "inFirstViewport": true,
+              "left": 0,
+              "role": null,
+              "tag": "main",
+              "text": "PawPal Globe Loading weather… ✂️ 🐾 🐾 🏥 🛒 🏥 🐾 🐾 🏥 🛒 🏠 🐾 🏥 🌳 🌳 MapLibre | © CARTO © OSM NEARBY NEEDS 51.050,",
+              "top": 81,
+              "width": 768
+            },
+            "found": true,
+            "signal": "Nearby"
+          },
+          {
+            "element": {
+              "height": 1024,
+              "inFirstViewport": true,
+              "left": 0,
+              "role": null,
+              "tag": "main",
+              "text": "PawPal Globe Loading weather… ✂️ 🐾 🐾 🏥 🛒 🏥 🐾 🐾 🏥 🛒 🏠 🐾 🏥 🌳 🌳 MapLibre | © CARTO © OSM NEARBY NEEDS 51.050,",
+              "top": 81,
+              "width": 768
+            },
+            "found": true,
+            "signal": "Weather"
+          },
+          {
+            "element": null,
+            "found": false,
+            "signal": "Explore"
+          },
+          {
+            "element": null,
+            "found": false,
+            "signal": "Layer"
+          }
+        ],
+        "headings": [
+          {
+            "height": 1,
+            "inFirstViewport": true,
+            "left": -1,
+            "role": null,
+            "tag": "h1",
+            "text": "PawPal Globe",
+            "top": 80,
+            "width": 1
+          }
+        ],
+        "horizontalOverflow": false,
+        "images": [
+          {
+            "height": 32,
+            "inFirstViewport": true,
+            "left": 24,
+            "role": null,
+            "tag": "img",
+            "text": "IMG",
+            "top": 24,
+            "width": 32
+          }
+        ],
+        "nonEmptyRender": true,
+        "overlayText": "",
+        "prefersDarkScheme": false,
+        "prefersReducedMotion": false,
+        "routeCharacter": "Tool/map",
+        "scrollWidth": 768,
+        "textLength": 324,
+        "textSample": "Skip to PawPal content PawPal Home Globe About Us Store Login PawPal Globe Loading weather… ✂️ 🐾 🐾 🏥 🛒 🏥 🐾 🐾 🏥 🛒 🏠 🐾 🏥 🌳 🌳 MapLibre | © CARTO © OSM NEARBY NEEDS 51.050, 3.720 · 15 km 0 Using Ghent as the starting point. Enable location for nearby",
+        "title": "Live Pet Globe | PawPal",
+        "viewport": {
+          "height": 1024,
+          "width": 768
+        }
+      },
+      "focus": {
+        "height": 1105,
+        "left": 0,
+        "ok": true,
+        "role": null,
+        "tag": "body",
+        "text": "Skip to PawPal content PawPal Home Globe About Us Store Login PawPal Globe Loading weather… ✂️ 🐾 🐾 🏥 🛒 🏥 🐾 🐾 🏥 �",
+        "top": 0,
+        "width": 768
+      },
+      "logs": [],
+      "darkModeCapture": {
+        "captured": false,
+        "reason": "Browser viewport capability does not expose color-scheme emulation; current prefers-color-scheme value is recorded instead.",
+        "impact": "No separate dark-mode screenshot in this baseline round.",
+        "followUpRound": "First implementation verification round touching this route."
+      },
+      "reducedMotionCapture": {
+        "captured": false,
+        "reason": "Browser capability does not expose prefers-reduced-motion emulation; current matchMedia value is recorded instead.",
+        "impact": "No separate reduced-motion behavior emulation in this baseline round.",
+        "followUpRound": "First implementation verification round touching this route."
+      }
+    },
+    {
+      "route": "/globe",
+      "slug": "globe",
+      "routeCharacter": "Tool/map",
+      "requestedUrl": "http://localhost:3000/globe",
+      "viewport": {
+        "label": "1280x720",
+        "width": 1280,
+        "height": 720
+      },
+      "started": "2026-06-11T11:23:00.563Z",
+      "navError": null,
+      "screenshotPath": "/private/tmp/geopet-round01-baseline/globe-1280x720.png",
+      "screenshotError": null,
+      "metrics": {
+        "blockingOverlay": true,
+        "bodyBackground": "rgb(255, 255, 255)",
+        "bodyColor": "rgb(58, 47, 42)",
+        "canvases": [
+          {
+            "height": 720,
+            "inFirstViewport": true,
+            "left": 0,
+            "role": "region",
+            "tag": "canvas",
+            "text": "Map",
+            "top": 81,
+            "width": 1280
+          }
+        ],
+        "clientWidth": 1280,
+        "colorSchemeStyle": "light",
+        "controls": [
+          {
+            "height": 44,
+            "inFirstViewport": false,
+            "left": 16,
+            "role": null,
+            "tag": "a",
+            "text": "Skip to PawPal content",
+            "top": -54,
+            "width": 194
+          },
+          {
+            "height": 32,
+            "inFirstViewport": true,
+            "left": 32,
+            "role": null,
+            "tag": "a",
+            "text": "PawPal",
+            "top": 24,
+            "width": 122
+          },
+          {
+            "height": 36,
+            "inFirstViewport": true,
+            "left": 467,
+            "role": null,
+            "tag": "a",
+            "text": "Home",
+            "top": 22,
+            "width": 68
+          },
+          {
+            "height": 36,
+            "inFirstViewport": true,
+            "left": 567,
+            "role": null,
+            "tag": "a",
+            "text": "Globe",
+            "top": 22,
+            "width": 68
+          },
+          {
+            "height": 36,
+            "inFirstViewport": true,
+            "left": 667,
+            "role": null,
+            "tag": "a",
+            "text": "About Us",
+            "top": 22,
+            "width": 91
+          },
+          {
+            "height": 36,
+            "inFirstViewport": true,
+            "left": 790,
+            "role": null,
+            "tag": "a",
+            "text": "Store",
+            "top": 22,
+            "width": 65
+          },
+          {
+            "height": 40,
+            "inFirstViewport": true,
+            "left": 1168,
+            "role": null,
+            "tag": "a",
+            "text": "Login",
+            "top": 20,
+            "width": 80
+          },
+          {
+            "height": 29,
+            "inFirstViewport": true,
+            "left": 1241,
+            "role": null,
+            "tag": "button",
+            "text": "Zoom in",
+            "top": 660,
+            "width": 29
+          },
+          {
+            "height": 29,
+            "inFirstViewport": true,
+            "left": 1241,
+            "role": null,
+            "tag": "button",
+            "text": "Zoom out",
+            "top": 689,
+            "width": 29
+          },
+          {
+            "height": 29,
+            "inFirstViewport": true,
+            "left": 1241,
+            "role": null,
+            "tag": "button",
+            "text": "Drag to rotate map, click to reset north",
+            "top": 718,
+            "width": 29
+          },
+          {
+            "height": 14,
+            "inFirstViewport": false,
+            "left": 1085,
+            "role": null,
+            "tag": "a",
+            "text": "MapLibre",
+            "top": 772,
+            "width": 51
+          },
+          {
+            "height": 14,
+            "inFirstViewport": false,
+            "left": 1158,
+            "role": null,
+            "tag": "a",
+            "text": "CARTO",
+            "top": 772,
+            "width": 40
+          }
+        ],
+        "currentUrl": "http://localhost:3000/globe",
+        "documentHeight": 801,
+        "foundSignals": [
+          {
+            "element": null,
+            "found": false,
+            "signal": "Live Map"
+          },
+          {
+            "element": {
+              "height": 720,
+              "inFirstViewport": true,
+              "left": 0,
+              "role": null,
+              "tag": "main",
+              "text": "PawPal Globe Loading weather… ✂️ 🐾 🐾 🏥 🛒 🏥 🐾 🐾 🏥 🛒 🏠 🐾 🏥 🌳 🌳 MapLibre | © CARTO © OSM NEARBY NEEDS 51.050,",
+              "top": 81,
+              "width": 1280
+            },
+            "found": true,
+            "signal": "Nearby"
+          },
+          {
+            "element": {
+              "height": 720,
+              "inFirstViewport": true,
+              "left": 0,
+              "role": null,
+              "tag": "main",
+              "text": "PawPal Globe Loading weather… ✂️ 🐾 🐾 🏥 🛒 🏥 🐾 🐾 🏥 🛒 🏠 🐾 🏥 🌳 🌳 MapLibre | © CARTO © OSM NEARBY NEEDS 51.050,",
+              "top": 81,
+              "width": 1280
+            },
+            "found": true,
+            "signal": "Weather"
+          },
+          {
+            "element": null,
+            "found": false,
+            "signal": "Explore"
+          },
+          {
+            "element": null,
+            "found": false,
+            "signal": "Layer"
+          }
+        ],
+        "headings": [
+          {
+            "height": 1,
+            "inFirstViewport": true,
+            "left": -1,
+            "role": null,
+            "tag": "h1",
+            "text": "PawPal Globe",
+            "top": 80,
+            "width": 1
+          }
+        ],
+        "horizontalOverflow": false,
+        "images": [
+          {
+            "height": 32,
+            "inFirstViewport": true,
+            "left": 32,
+            "role": null,
+            "tag": "img",
+            "text": "IMG",
+            "top": 24,
+            "width": 32
+          }
+        ],
+        "nonEmptyRender": true,
+        "overlayText": "",
+        "prefersDarkScheme": false,
+        "prefersReducedMotion": false,
+        "routeCharacter": "Tool/map",
+        "scrollWidth": 1280,
+        "textLength": 366,
+        "textSample": "Skip to PawPal content PawPal Home Globe About Us Store Login PawPal Globe Loading weather… ✂️ 🐾 🐾 🏥 🛒 🏥 🐾 🐾 🏥 🛒 🏠 🐾 🏥 🌳 🌳 MapLibre | © CARTO © OSM NEARBY NEEDS 51.050, 3.720 · 15 km 0 Using Ghent as the starting point. Enable location for nearby",
+        "title": "Live Pet Globe | PawPal",
+        "viewport": {
+          "height": 720,
+          "width": 1280
+        }
+      },
+      "focus": {
+        "height": 801,
+        "left": 0,
+        "ok": true,
+        "role": null,
+        "tag": "body",
+        "text": "Skip to PawPal content PawPal Home Globe About Us Store Login PawPal Globe Loading weather… ✂️ 🐾 🐾 🏥 🛒 🏥 🐾 🐾 🏥 �",
+        "top": 0,
+        "width": 1280
+      },
+      "logs": [],
+      "darkModeCapture": {
+        "captured": false,
+        "reason": "Browser viewport capability does not expose color-scheme emulation; current prefers-color-scheme value is recorded instead.",
+        "impact": "No separate dark-mode screenshot in this baseline round.",
+        "followUpRound": "First implementation verification round touching this route."
+      },
+      "reducedMotionCapture": {
+        "captured": false,
+        "reason": "Browser capability does not expose prefers-reduced-motion emulation; current matchMedia value is recorded instead.",
+        "impact": "No separate reduced-motion behavior emulation in this baseline round.",
+        "followUpRound": "First implementation verification round touching this route."
+      }
+    },
+    {
+      "route": "/globe",
+      "slug": "globe",
+      "routeCharacter": "Tool/map",
+      "requestedUrl": "http://localhost:3000/globe",
+      "viewport": {
+        "label": "1440x900",
+        "width": 1440,
+        "height": 900
+      },
+      "started": "2026-06-11T11:23:03.981Z",
+      "navError": null,
+      "screenshotPath": "/private/tmp/geopet-round01-baseline/globe-1440x900.png",
+      "screenshotError": null,
+      "metrics": {
+        "blockingOverlay": true,
+        "bodyBackground": "rgb(255, 255, 255)",
+        "bodyColor": "rgb(58, 47, 42)",
+        "canvases": [
+          {
+            "height": 900,
+            "inFirstViewport": true,
+            "left": 0,
+            "role": "region",
+            "tag": "canvas",
+            "text": "Map",
+            "top": 81,
+            "width": 1440
+          }
+        ],
+        "clientWidth": 1440,
+        "colorSchemeStyle": "light",
+        "controls": [
+          {
+            "height": 44,
+            "inFirstViewport": false,
+            "left": 16,
+            "role": null,
+            "tag": "a",
+            "text": "Skip to PawPal content",
+            "top": -54,
+            "width": 194
+          },
+          {
+            "height": 32,
+            "inFirstViewport": true,
+            "left": 112,
+            "role": null,
+            "tag": "a",
+            "text": "PawPal",
+            "top": 24,
+            "width": 122
+          },
+          {
+            "height": 36,
+            "inFirstViewport": true,
+            "left": 547,
+            "role": null,
+            "tag": "a",
+            "text": "Home",
+            "top": 22,
+            "width": 68
+          },
+          {
+            "height": 36,
+            "inFirstViewport": true,
+            "left": 647,
+            "role": null,
+            "tag": "a",
+            "text": "Globe",
+            "top": 22,
+            "width": 68
+          },
+          {
+            "height": 36,
+            "inFirstViewport": true,
+            "left": 747,
+            "role": null,
+            "tag": "a",
+            "text": "About Us",
+            "top": 22,
+            "width": 91
+          },
+          {
+            "height": 36,
+            "inFirstViewport": true,
+            "left": 870,
+            "role": null,
+            "tag": "a",
+            "text": "Store",
+            "top": 22,
+            "width": 65
+          },
+          {
+            "height": 40,
+            "inFirstViewport": true,
+            "left": 1248,
+            "role": null,
+            "tag": "a",
+            "text": "Login",
+            "top": 20,
+            "width": 80
+          },
+          {
+            "height": 29,
+            "inFirstViewport": true,
+            "left": 1401,
+            "role": null,
+            "tag": "button",
+            "text": "Zoom in",
+            "top": 840,
+            "width": 29
+          },
+          {
+            "height": 29,
+            "inFirstViewport": true,
+            "left": 1401,
+            "role": null,
+            "tag": "button",
+            "text": "Zoom out",
+            "top": 869,
+            "width": 29
+          },
+          {
+            "height": 29,
+            "inFirstViewport": true,
+            "left": 1401,
+            "role": null,
+            "tag": "button",
+            "text": "Drag to rotate map, click to reset north",
+            "top": 898,
+            "width": 29
+          },
+          {
+            "height": 14,
+            "inFirstViewport": false,
+            "left": 1245,
+            "role": null,
+            "tag": "a",
+            "text": "MapLibre",
+            "top": 952,
+            "width": 51
+          },
+          {
+            "height": 14,
+            "inFirstViewport": false,
+            "left": 1318,
+            "role": null,
+            "tag": "a",
+            "text": "CARTO",
+            "top": 952,
+            "width": 40
+          }
+        ],
+        "currentUrl": "http://localhost:3000/globe",
+        "documentHeight": 981,
+        "foundSignals": [
+          {
+            "element": null,
+            "found": false,
+            "signal": "Live Map"
+          },
+          {
+            "element": {
+              "height": 900,
+              "inFirstViewport": true,
+              "left": 0,
+              "role": null,
+              "tag": "main",
+              "text": "PawPal Globe Loading weather… ✂️ 🐾 🐾 🏥 🛒 🏥 🐾 🐾 🏥 🛒 🏠 🐾 🏥 🌳 🌳 MapLibre | © CARTO © OSM NEARBY NEEDS 51.050,",
+              "top": 81,
+              "width": 1440
+            },
+            "found": true,
+            "signal": "Nearby"
+          },
+          {
+            "element": {
+              "height": 900,
+              "inFirstViewport": true,
+              "left": 0,
+              "role": null,
+              "tag": "main",
+              "text": "PawPal Globe Loading weather… ✂️ 🐾 🐾 🏥 🛒 🏥 🐾 🐾 🏥 🛒 🏠 🐾 🏥 🌳 🌳 MapLibre | © CARTO © OSM NEARBY NEEDS 51.050,",
+              "top": 81,
+              "width": 1440
+            },
+            "found": true,
+            "signal": "Weather"
+          },
+          {
+            "element": null,
+            "found": false,
+            "signal": "Explore"
+          },
+          {
+            "element": null,
+            "found": false,
+            "signal": "Layer"
+          }
+        ],
+        "headings": [
+          {
+            "height": 1,
+            "inFirstViewport": true,
+            "left": -1,
+            "role": null,
+            "tag": "h1",
+            "text": "PawPal Globe",
+            "top": 80,
+            "width": 1
+          }
+        ],
+        "horizontalOverflow": false,
+        "images": [
+          {
+            "height": 32,
+            "inFirstViewport": true,
+            "left": 112,
+            "role": null,
+            "tag": "img",
+            "text": "IMG",
+            "top": 24,
+            "width": 32
+          }
+        ],
+        "nonEmptyRender": true,
+        "overlayText": "",
+        "prefersDarkScheme": false,
+        "prefersReducedMotion": false,
+        "routeCharacter": "Tool/map",
+        "scrollWidth": 1440,
+        "textLength": 366,
+        "textSample": "Skip to PawPal content PawPal Home Globe About Us Store Login PawPal Globe Loading weather… ✂️ 🐾 🐾 🏥 🛒 🏥 🐾 🐾 🏥 🛒 🏠 🐾 🏥 🌳 🌳 MapLibre | © CARTO © OSM NEARBY NEEDS 51.050, 3.720 · 15 km 0 Using Ghent as the starting point. Enable location for nearby",
+        "title": "Live Pet Globe | PawPal",
+        "viewport": {
+          "height": 900,
+          "width": 1440
+        }
+      },
+      "focus": {
+        "height": 981,
+        "left": 0,
+        "ok": true,
+        "role": null,
+        "tag": "body",
+        "text": "Skip to PawPal content PawPal Home Globe About Us Store Login PawPal Globe Loading weather… ✂️ 🐾 🐾 🏥 🛒 🏥 🐾 🐾 🏥 �",
+        "top": 0,
+        "width": 1440
+      },
+      "logs": [],
+      "darkModeCapture": {
+        "captured": false,
+        "reason": "Browser viewport capability does not expose color-scheme emulation; current prefers-color-scheme value is recorded instead.",
+        "impact": "No separate dark-mode screenshot in this baseline round.",
+        "followUpRound": "First implementation verification round touching this route."
+      },
+      "reducedMotionCapture": {
+        "captured": false,
+        "reason": "Browser capability does not expose prefers-reduced-motion emulation; current matchMedia value is recorded instead.",
+        "impact": "No separate reduced-motion behavior emulation in this baseline round.",
+        "followUpRound": "First implementation verification round touching this route."
+      }
+    }
+  ]
+}

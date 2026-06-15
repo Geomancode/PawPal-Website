@@ -1,0 +1,2360 @@
+{
+  "capturedAt": "2026-06-11T15:34:25.841Z",
+  "tool": "Browser plugin in-app browser baseline for light-mode DOM/log/overflow",
+  "baseUrl": "http://localhost:3000",
+  "routes": [
+    "/",
+    "/store",
+    "/auth",
+    "/tag/sample-id",
+    "/store/checkout",
+    "/globe"
+  ],
+  "viewports": [
+    {
+      "width": 390,
+      "height": 844
+    },
+    {
+      "width": 1280,
+      "height": 720
+    }
+  ],
+  "results": [
+    {
+      "route": "/",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "navigationStartedAt": "2026-06-11T15:33:57.054Z",
+      "url": "http://localhost:3000/",
+      "title": "Pet Safety Map, Smart Tags, and Local Pet Community",
+      "snapshotLength": 5441,
+      "relevantLogs": [],
+      "ignoredHistoricalLogs": 1,
+      "metrics": {
+        "bodyScrollWidth": 390,
+        "ctaLinks": [
+          {
+            "href": "#main-content",
+            "tag": "a",
+            "text": "Skip to PawPal content",
+            "top": -54
+          },
+          {
+            "href": "/",
+            "tag": "a",
+            "text": "PawPal",
+            "top": 24
+          },
+          {
+            "href": null,
+            "tag": "button",
+            "text": "",
+            "top": 20
+          },
+          {
+            "href": "/globe",
+            "tag": "a",
+            "text": "Open Live Map",
+            "top": 472
+          },
+          {
+            "href": "/store",
+            "tag": "a",
+            "text": "Shop Smart Tags",
+            "top": 532
+          },
+          {
+            "href": "/globe",
+            "tag": "a",
+            "text": "Open Live Map",
+            "top": 6776
+          },
+          {
+            "href": "/store",
+            "tag": "a",
+            "text": "Shop Smart Tags",
+            "top": 6836
+          },
+          {
+            "href": "mailto:hello@pawpal.be",
+            "tag": "a",
+            "text": "hello@pawpal.be",
+            "top": 7202
+          },
+          {
+            "href": "/globe",
+            "tag": "a",
+            "text": "Globe Map",
+            "top": 7318
+          },
+          {
+            "href": "/store",
+            "tag": "a",
+            "text": "NFC Safety Tag",
+            "top": 7354
+          },
+          {
+            "href": "/globe",
+            "tag": "a",
+            "text": "AI Assistant",
+            "top": 7390
+          },
+          {
+            "href": "/globe",
+            "tag": "a",
+            "text": "Community",
+            "top": 7426
+          },
+          {
+            "href": "/about",
+            "tag": "a",
+            "text": "About Us",
+            "top": 7318
+          },
+          {
+            "href": "/store",
+            "tag": "a",
+            "text": "Store",
+            "top": 7354
+          },
+          {
+            "href": "/help",
+            "tag": "a",
+            "text": "Help Center",
+            "top": 7390
+          },
+          {
+            "href": "/privacy",
+            "tag": "a",
+            "text": "Privacy Policy",
+            "top": 7514
+          },
+          {
+            "href": "/terms",
+            "tag": "a",
+            "text": "Terms of Service",
+            "top": 7550
+          },
+          {
+            "href": "mailto:hello@pawpal.be",
+            "tag": "a",
+            "text": "Contact",
+            "top": 7586
+          },
+          {
+            "href": "mailto:hello@pawpal.be?subject=PawPal%20partnership",
+            "tag": "a",
+            "text": "Contact PawPal",
+            "top": 7622
+          }
+        ],
+        "h1": {
+          "bottom": 296,
+          "height": 196,
+          "left": 16,
+          "right": 374,
+          "text": "PawPal pet safety for every walk",
+          "top": 100,
+          "width": 358
+        },
+        "horizontalOverflow": false,
+        "main": {
+          "bottom": 0,
+          "height": 0,
+          "left": 0,
+          "right": 0,
+          "text": "",
+          "top": 0,
+          "width": 0
+        },
+        "nav": {
+          "bottom": 81,
+          "height": 81,
+          "left": 0,
+          "right": 390,
+          "text": "PawPal",
+          "top": 0,
+          "width": 390
+        },
+        "overflowCandidate": {
+          "className": "hero-globe-orbit-ring",
+          "right": 413,
+          "tag": "div",
+          "text": "",
+          "width": 435
+        },
+        "overlayMarker": null,
+        "overlayNodes": [
+          {
+            "height": 0,
+            "tag": "nextjs-portal",
+            "text": "",
+            "visible": false,
+            "width": 0
+          }
+        ],
+        "overlaySelectorVisible": false,
+        "pathname": "/",
+        "scroll": {
+          "clientHeight": 844,
+          "clientWidth": 390,
+          "height": 7802,
+          "width": 390
+        },
+        "textLength": 2657,
+        "textSample": "Skip to PawPal content PawPal PawPal pet safety for every walk Built in Belgium, PawPal connects fog-of-war walks, NFC finder profiles, AI care guidance, and local pet help in one calm product surface. Open Live Map Shop Smart Tags TODAY'S ROUTE 2.43 km revealed NFC SAFETY Finder-ready profile DRAG TO SPIN Lost Mode Finder pages with owner control Walk Map Routes, places, and nearby needs Local Help Community support",
+        "title": "Pet Safety Map, Smart Tags, and Local Pet Community"
+      },
+      "pass": true
+    },
+    {
+      "route": "/",
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "navigationStartedAt": "2026-06-11T15:34:04.141Z",
+      "url": "http://localhost:3000/",
+      "title": "Pet Safety Map, Smart Tags, and Local Pet Community",
+      "snapshotLength": 6048,
+      "relevantLogs": [],
+      "ignoredHistoricalLogs": 1,
+      "metrics": {
+        "bodyScrollWidth": 1280,
+        "ctaLinks": [
+          {
+            "href": "#main-content",
+            "tag": "a",
+            "text": "Skip to PawPal content",
+            "top": -54
+          },
+          {
+            "href": "/",
+            "tag": "a",
+            "text": "PawPal",
+            "top": 24
+          },
+          {
+            "href": "/",
+            "tag": "a",
+            "text": "Home",
+            "top": 22
+          },
+          {
+            "href": "/globe",
+            "tag": "a",
+            "text": "Globe",
+            "top": 22
+          },
+          {
+            "href": "/about",
+            "tag": "a",
+            "text": "About Us",
+            "top": 22
+          },
+          {
+            "href": "/store",
+            "tag": "a",
+            "text": "Store",
+            "top": 22
+          },
+          {
+            "href": "/auth",
+            "tag": "a",
+            "text": "Login",
+            "top": 20
+          },
+          {
+            "href": "/globe",
+            "tag": "a",
+            "text": "Open Live Map",
+            "top": 455
+          },
+          {
+            "href": "/store",
+            "tag": "a",
+            "text": "Shop Smart Tags",
+            "top": 455
+          },
+          {
+            "href": "/globe",
+            "tag": "a",
+            "text": "Open Live Map",
+            "top": 3596
+          },
+          {
+            "href": "/store",
+            "tag": "a",
+            "text": "Shop Smart Tags",
+            "top": 3596
+          },
+          {
+            "href": "mailto:hello@pawpal.be",
+            "tag": "a",
+            "text": "hello@pawpal.be",
+            "top": 3996
+          },
+          {
+            "href": "/globe",
+            "tag": "a",
+            "text": "Globe Map",
+            "top": 3869
+          },
+          {
+            "href": "/store",
+            "tag": "a",
+            "text": "NFC Safety Tag",
+            "top": 3905
+          },
+          {
+            "href": "/globe",
+            "tag": "a",
+            "text": "AI Assistant",
+            "top": 3941
+          },
+          {
+            "href": "/globe",
+            "tag": "a",
+            "text": "Community",
+            "top": 3977
+          },
+          {
+            "href": "/about",
+            "tag": "a",
+            "text": "About Us",
+            "top": 3869
+          },
+          {
+            "href": "/store",
+            "tag": "a",
+            "text": "Store",
+            "top": 3905
+          },
+          {
+            "href": "/help",
+            "tag": "a",
+            "text": "Help Center",
+            "top": 3941
+          },
+          {
+            "href": "/privacy",
+            "tag": "a",
+            "text": "Privacy Policy",
+            "top": 3869
+          },
+          {
+            "href": "/terms",
+            "tag": "a",
+            "text": "Terms of Service",
+            "top": 3905
+          },
+          {
+            "href": "mailto:hello@pawpal.be",
+            "tag": "a",
+            "text": "Contact",
+            "top": 3941
+          }
+        ],
+        "h1": {
+          "bottom": 283,
+          "height": 122,
+          "left": 32,
+          "right": 548,
+          "text": "PawPal pet safety for every walk",
+          "top": 161,
+          "width": 516
+        },
+        "horizontalOverflow": false,
+        "main": {
+          "bottom": 0,
+          "height": 0,
+          "left": 0,
+          "right": 0,
+          "text": "",
+          "top": 0,
+          "width": 0
+        },
+        "nav": {
+          "bottom": 81,
+          "height": 81,
+          "left": 0,
+          "right": 1280,
+          "text": "PawPal Home Globe About Us Store Login",
+          "top": 0,
+          "width": 1280
+        },
+        "overflowCandidate": {
+          "className": "site-nav fixed inset-x-0 top-0 z-[10000]",
+          "right": 1280,
+          "tag": "nav",
+          "text": "PawPal Home Globe About Us Store Login",
+          "width": 1280
+        },
+        "overlayMarker": null,
+        "overlayNodes": [
+          {
+            "height": 0,
+            "tag": "nextjs-portal",
+            "text": "",
+            "visible": false,
+            "width": 0
+          }
+        ],
+        "overlaySelectorVisible": false,
+        "pathname": "/",
+        "scroll": {
+          "clientHeight": 720,
+          "clientWidth": 1280,
+          "height": 4149,
+          "width": 1280
+        },
+        "textLength": 2874,
+        "textSample": "Skip to PawPal content PawPal Home Globe About Us Store Login PawPal pet safety for every walk Built in Belgium, PawPal connects fog-of-war walks, NFC finder profiles, AI care guidance, and local pet help in one calm product surface. Open Live Map Shop Smart Tags 1 tap Finder page 2.43 km Walk reveal 15 km Local help Finder-ready NFC safety profiles Privacy-first Owner-controlled details EU-ready 5-language product b",
+        "title": "Pet Safety Map, Smart Tags, and Local Pet Community"
+      },
+      "pass": true
+    },
+    {
+      "route": "/store",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "navigationStartedAt": "2026-06-11T15:34:07.313Z",
+      "url": "http://localhost:3000/store",
+      "title": "Store | PawPal",
+      "snapshotLength": 5797,
+      "relevantLogs": [],
+      "ignoredHistoricalLogs": 1,
+      "metrics": {
+        "bodyScrollWidth": 390,
+        "ctaLinks": [
+          {
+            "href": "#main-content",
+            "tag": "a",
+            "text": "Skip to PawPal content",
+            "top": -54
+          },
+          {
+            "href": "/",
+            "tag": "a",
+            "text": "PawPal",
+            "top": 24
+          },
+          {
+            "href": null,
+            "tag": "button",
+            "text": "",
+            "top": 20
+          },
+          {
+            "href": null,
+            "tag": "button",
+            "text": "All Products",
+            "top": 460
+          },
+          {
+            "href": null,
+            "tag": "button",
+            "text": "Food & Treats",
+            "top": 460
+          },
+          {
+            "href": null,
+            "tag": "button",
+            "text": "Toys & Play",
+            "top": 460
+          },
+          {
+            "href": null,
+            "tag": "button",
+            "text": "Accessories",
+            "top": 460
+          },
+          {
+            "href": null,
+            "tag": "button",
+            "text": "Health & Care",
+            "top": 460
+          },
+          {
+            "href": null,
+            "tag": "button",
+            "text": "Cart",
+            "top": 508
+          },
+          {
+            "href": null,
+            "tag": "button",
+            "text": "My Orders",
+            "top": 508
+          },
+          {
+            "href": null,
+            "tag": "button",
+            "text": "Details",
+            "top": 930
+          },
+          {
+            "href": null,
+            "tag": "button",
+            "text": "Add",
+            "top": 930
+          },
+          {
+            "href": null,
+            "tag": "button",
+            "text": "Details",
+            "top": 1411
+          },
+          {
+            "href": null,
+            "tag": "button",
+            "text": "Add",
+            "top": 1411
+          },
+          {
+            "href": null,
+            "tag": "button",
+            "text": "Details",
+            "top": 1872
+          },
+          {
+            "href": null,
+            "tag": "button",
+            "text": "Add",
+            "top": 1872
+          },
+          {
+            "href": null,
+            "tag": "button",
+            "text": "Details",
+            "top": 2333
+          },
+          {
+            "href": null,
+            "tag": "button",
+            "text": "Add",
+            "top": 2333
+          },
+          {
+            "href": null,
+            "tag": "button",
+            "text": "Details",
+            "top": 2794
+          },
+          {
+            "href": null,
+            "tag": "button",
+            "text": "Add",
+            "top": 2794
+          },
+          {
+            "href": null,
+            "tag": "button",
+            "text": "Details",
+            "top": 3255
+          },
+          {
+            "href": null,
+            "tag": "button",
+            "text": "Add",
+            "top": 3255
+          }
+        ],
+        "h1": {
+          "bottom": 155,
+          "height": 75,
+          "left": 16,
+          "right": 374,
+          "text": "Smart tags and walk gear for safer pet days",
+          "top": 80,
+          "width": 358
+        },
+        "horizontalOverflow": false,
+        "main": {
+          "bottom": 0,
+          "height": 0,
+          "left": 0,
+          "right": 0,
+          "text": "",
+          "top": 0,
+          "width": 0
+        },
+        "nav": {
+          "bottom": 81,
+          "height": 81,
+          "left": 0,
+          "right": 390,
+          "text": "PawPal",
+          "top": 0,
+          "width": 390
+        },
+        "overflowCandidate": {
+          "className": "inline-flex shrink-0 items-center gap-1.5 rounded-paw-md border px-3 py-2 text-xs font-bold transition cursor-pointer sm",
+          "right": 660,
+          "tag": "button",
+          "text": "Health & Care",
+          "width": 129
+        },
+        "overlayMarker": null,
+        "overlayNodes": [
+          {
+            "height": 0,
+            "tag": "nextjs-portal",
+            "text": "",
+            "visible": false,
+            "width": 0
+          }
+        ],
+        "overlaySelectorVisible": false,
+        "pathname": "/store",
+        "scroll": {
+          "clientHeight": 844,
+          "clientWidth": 390,
+          "height": 6931,
+          "width": 390
+        },
+        "textLength": 2454,
+        "textSample": "Skip to PawPal content PawPal Smart tags and walk gear for safer pet days Start with PawPal NFC safety tags, then find practical gear for daily walks, travel, cleanup, and care. NFC safety ready EU-first fulfillment Secure checkout Filter by category All Products Food & Treats Toys & Play Accessories Health & Care 12 products Syncing Cart My Orders Best Seller 🐟 Organic Salmon Bites €14.99 Wild-caught salmon treats ",
+        "title": "Store | PawPal"
+      },
+      "pass": true
+    },
+    {
+      "route": "/store",
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "navigationStartedAt": "2026-06-11T15:34:08.955Z",
+      "url": "http://localhost:3000/store",
+      "title": "Store | PawPal",
+      "snapshotLength": 7451,
+      "relevantLogs": [],
+      "ignoredHistoricalLogs": 1,
+      "metrics": {
+        "bodyScrollWidth": 1280,
+        "ctaLinks": [
+          {
+            "href": "#main-content",
+            "tag": "a",
+            "text": "Skip to PawPal content",
+            "top": -54
+          },
+          {
+            "href": "/",
+            "tag": "a",
+            "text": "PawPal",
+            "top": 24
+          },
+          {
+            "href": "/",
+            "tag": "a",
+            "text": "Home",
+            "top": 22
+          },
+          {
+            "href": "/globe",
+            "tag": "a",
+            "text": "Globe",
+            "top": 22
+          },
+          {
+            "href": "/about",
+            "tag": "a",
+            "text": "About Us",
+            "top": 22
+          },
+          {
+            "href": "/store",
+            "tag": "a",
+            "text": "Store",
+            "top": 22
+          },
+          {
+            "href": "/auth",
+            "tag": "a",
+            "text": "Login",
+            "top": 20
+          },
+          {
+            "href": null,
+            "tag": "button",
+            "text": "All Products",
+            "top": 435
+          },
+          {
+            "href": null,
+            "tag": "button",
+            "text": "Food & Treats",
+            "top": 435
+          },
+          {
+            "href": null,
+            "tag": "button",
+            "text": "Toys & Play",
+            "top": 435
+          },
+          {
+            "href": null,
+            "tag": "button",
+            "text": "Accessories",
+            "top": 435
+          },
+          {
+            "href": null,
+            "tag": "button",
+            "text": "Health & Care",
+            "top": 435
+          },
+          {
+            "href": null,
+            "tag": "button",
+            "text": "Cart",
+            "top": 489
+          },
+          {
+            "href": null,
+            "tag": "button",
+            "text": "My Orders",
+            "top": 489
+          },
+          {
+            "href": null,
+            "tag": "button",
+            "text": "Details",
+            "top": 2209
+          },
+          {
+            "href": null,
+            "tag": "button",
+            "text": "Add",
+            "top": 2209
+          },
+          {
+            "href": null,
+            "tag": "button",
+            "text": "Details",
+            "top": 2229
+          },
+          {
+            "href": null,
+            "tag": "button",
+            "text": "Add",
+            "top": 2229
+          },
+          {
+            "href": null,
+            "tag": "button",
+            "text": "Details",
+            "top": 2229
+          },
+          {
+            "href": null,
+            "tag": "button",
+            "text": "Add",
+            "top": 2229
+          },
+          {
+            "href": null,
+            "tag": "button",
+            "text": "Details",
+            "top": 2229
+          },
+          {
+            "href": null,
+            "tag": "button",
+            "text": "Add",
+            "top": 2229
+          }
+        ],
+        "h1": {
+          "bottom": 216,
+          "height": 120,
+          "left": 16,
+          "right": 732,
+          "text": "Smart tags and walk gear for safer pet days",
+          "top": 96,
+          "width": 716
+        },
+        "horizontalOverflow": false,
+        "main": {
+          "bottom": 0,
+          "height": 0,
+          "left": 0,
+          "right": 0,
+          "text": "",
+          "top": 0,
+          "width": 0
+        },
+        "nav": {
+          "bottom": 81,
+          "height": 81,
+          "left": 0,
+          "right": 1280,
+          "text": "PawPal Home Globe About Us Store Login",
+          "top": 0,
+          "width": 1280
+        },
+        "overflowCandidate": {
+          "className": "site-nav fixed inset-x-0 top-0 z-[10000]",
+          "right": 1280,
+          "tag": "nav",
+          "text": "PawPal Home Globe About Us Store Login",
+          "width": 1280
+        },
+        "overlayMarker": null,
+        "overlayNodes": [
+          {
+            "height": 0,
+            "tag": "nextjs-portal",
+            "text": "",
+            "visible": false,
+            "width": 0
+          }
+        ],
+        "overlaySelectorVisible": false,
+        "pathname": "/store",
+        "scroll": {
+          "clientHeight": 720,
+          "clientWidth": 1280,
+          "height": 1340,
+          "width": 1280
+        },
+        "textLength": 1534,
+        "textSample": "Skip to PawPal content PawPal Home Globe About Us Store Login Smart tags and walk gear for safer pet days Start with PawPal NFC safety tags, then find practical gear for daily walks, travel, cleanup, and care. NFC safety ready Built for public finder pages and controlled owner details. EU-first fulfillment Catalog and checkout flows are prepared for Belgium-led rollout. Secure checkout Stripe-backed payment flow with",
+        "title": "Store | PawPal"
+      },
+      "pass": true
+    },
+    {
+      "route": "/auth",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "navigationStartedAt": "2026-06-11T15:34:10.648Z",
+      "url": "http://localhost:3000/auth",
+      "title": "PawPal | Pet Safety Map, Smart Tags, and Local Pet Community",
+      "snapshotLength": 2202,
+      "relevantLogs": [],
+      "ignoredHistoricalLogs": 1,
+      "metrics": {
+        "bodyScrollWidth": 390,
+        "ctaLinks": [
+          {
+            "href": "#main-content",
+            "tag": "a",
+            "text": "Skip to PawPal content",
+            "top": -54
+          },
+          {
+            "href": "/",
+            "tag": "a",
+            "text": "PawPal",
+            "top": 24
+          },
+          {
+            "href": null,
+            "tag": "button",
+            "text": "",
+            "top": 20
+          },
+          {
+            "href": null,
+            "tag": "button",
+            "text": "Sign In",
+            "top": 289
+          },
+          {
+            "href": null,
+            "tag": "button",
+            "text": "Sign Up",
+            "top": 289
+          },
+          {
+            "href": null,
+            "tag": "button",
+            "text": "",
+            "top": 478
+          },
+          {
+            "href": null,
+            "tag": "button",
+            "text": "Sign In",
+            "top": 525
+          },
+          {
+            "href": "/terms",
+            "tag": "a",
+            "text": "Terms",
+            "top": 862
+          },
+          {
+            "href": "/privacy",
+            "tag": "a",
+            "text": "Privacy Policy",
+            "top": 862
+          },
+          {
+            "href": "mailto:hello@pawpal.be",
+            "tag": "a",
+            "text": "hello@pawpal.be",
+            "top": 1146
+          },
+          {
+            "href": "/globe",
+            "tag": "a",
+            "text": "Globe Map",
+            "top": 1262
+          },
+          {
+            "href": "/store",
+            "tag": "a",
+            "text": "NFC Safety Tag",
+            "top": 1298
+          },
+          {
+            "href": "/globe",
+            "tag": "a",
+            "text": "AI Assistant",
+            "top": 1334
+          },
+          {
+            "href": "/globe",
+            "tag": "a",
+            "text": "Community",
+            "top": 1370
+          },
+          {
+            "href": "/about",
+            "tag": "a",
+            "text": "About Us",
+            "top": 1262
+          },
+          {
+            "href": "/store",
+            "tag": "a",
+            "text": "Store",
+            "top": 1298
+          },
+          {
+            "href": "/help",
+            "tag": "a",
+            "text": "Help Center",
+            "top": 1334
+          },
+          {
+            "href": "/privacy",
+            "tag": "a",
+            "text": "Privacy Policy",
+            "top": 1458
+          },
+          {
+            "href": "/terms",
+            "tag": "a",
+            "text": "Terms of Service",
+            "top": 1494
+          },
+          {
+            "href": "mailto:hello@pawpal.be",
+            "tag": "a",
+            "text": "Contact",
+            "top": 1530
+          },
+          {
+            "href": "mailto:hello@pawpal.be?subject=PawPal%20partnership",
+            "tag": "a",
+            "text": "Contact PawPal",
+            "top": 1566
+          }
+        ],
+        "h1": {
+          "bottom": 0,
+          "height": 0,
+          "left": 0,
+          "right": 0,
+          "text": "One login for walks, tags, rescue pages, and store orders.",
+          "top": 0,
+          "width": 0
+        },
+        "horizontalOverflow": false,
+        "main": {
+          "bottom": 0,
+          "height": 0,
+          "left": 0,
+          "right": 0,
+          "text": "",
+          "top": 0,
+          "width": 0
+        },
+        "nav": {
+          "bottom": 81,
+          "height": 81,
+          "left": 0,
+          "right": 390,
+          "text": "PawPal",
+          "top": 0,
+          "width": 390
+        },
+        "overflowCandidate": {
+          "className": "site-nav fixed inset-x-0 top-0 z-[10000]",
+          "right": 390,
+          "tag": "nav",
+          "text": "PawPal",
+          "width": 390
+        },
+        "overlayMarker": null,
+        "overlayNodes": [
+          {
+            "height": 0,
+            "tag": "nextjs-portal",
+            "text": "",
+            "visible": false,
+            "width": 0
+          }
+        ],
+        "overlaySelectorVisible": false,
+        "pathname": "/auth",
+        "scroll": {
+          "clientHeight": 844,
+          "clientWidth": 390,
+          "height": 1747,
+          "width": 390
+        },
+        "textLength": 780,
+        "textSample": "Skip to PawPal content PawPal Welcome Back Access profiles, tags, and orders securely Sign In Sign Up Email Password Sign In Email account access only PawPal keeps profile, rescue tag, and order access tied to the email credentials submitted above. Tag controls Private owner details By continuing, you agree to PawPal's Terms and Privacy Policy PawPal Smart walks. Safe pets. Stronger local communities for pet parents ",
+        "title": "PawPal | Pet Safety Map, Smart Tags, and Local Pet Community"
+      },
+      "pass": true
+    },
+    {
+      "route": "/auth",
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "navigationStartedAt": "2026-06-11T15:34:12.007Z",
+      "url": "http://localhost:3000/auth",
+      "title": "PawPal | Pet Safety Map, Smart Tags, and Local Pet Community",
+      "snapshotLength": 2902,
+      "relevantLogs": [],
+      "ignoredHistoricalLogs": 1,
+      "metrics": {
+        "bodyScrollWidth": 1280,
+        "ctaLinks": [
+          {
+            "href": "#main-content",
+            "tag": "a",
+            "text": "Skip to PawPal content",
+            "top": -54
+          },
+          {
+            "href": "/",
+            "tag": "a",
+            "text": "PawPal",
+            "top": 24
+          },
+          {
+            "href": "/",
+            "tag": "a",
+            "text": "Home",
+            "top": 22
+          },
+          {
+            "href": "/globe",
+            "tag": "a",
+            "text": "Globe",
+            "top": 22
+          },
+          {
+            "href": "/about",
+            "tag": "a",
+            "text": "About Us",
+            "top": 22
+          },
+          {
+            "href": "/store",
+            "tag": "a",
+            "text": "Store",
+            "top": 22
+          },
+          {
+            "href": "/auth",
+            "tag": "a",
+            "text": "Login",
+            "top": 20
+          },
+          {
+            "href": null,
+            "tag": "button",
+            "text": "Sign In",
+            "top": 289
+          },
+          {
+            "href": null,
+            "tag": "button",
+            "text": "Sign Up",
+            "top": 289
+          },
+          {
+            "href": null,
+            "tag": "button",
+            "text": "",
+            "top": 478
+          },
+          {
+            "href": null,
+            "tag": "button",
+            "text": "Sign In",
+            "top": 525
+          },
+          {
+            "href": "/terms",
+            "tag": "a",
+            "text": "Terms",
+            "top": 800
+          },
+          {
+            "href": "/privacy",
+            "tag": "a",
+            "text": "Privacy Policy",
+            "top": 800
+          },
+          {
+            "href": "mailto:hello@pawpal.be",
+            "tag": "a",
+            "text": "hello@pawpal.be",
+            "top": 1084
+          },
+          {
+            "href": "/globe",
+            "tag": "a",
+            "text": "Globe Map",
+            "top": 957
+          },
+          {
+            "href": "/store",
+            "tag": "a",
+            "text": "NFC Safety Tag",
+            "top": 993
+          },
+          {
+            "href": "/globe",
+            "tag": "a",
+            "text": "AI Assistant",
+            "top": 1029
+          },
+          {
+            "href": "/globe",
+            "tag": "a",
+            "text": "Community",
+            "top": 1065
+          },
+          {
+            "href": "/about",
+            "tag": "a",
+            "text": "About Us",
+            "top": 957
+          },
+          {
+            "href": "/store",
+            "tag": "a",
+            "text": "Store",
+            "top": 993
+          },
+          {
+            "href": "/help",
+            "tag": "a",
+            "text": "Help Center",
+            "top": 1029
+          },
+          {
+            "href": "/privacy",
+            "tag": "a",
+            "text": "Privacy Policy",
+            "top": 957
+          }
+        ],
+        "h1": {
+          "bottom": 390,
+          "height": 180,
+          "left": 97,
+          "right": 673,
+          "text": "One login for walks, tags, rescue pages, and store orders.",
+          "top": 210,
+          "width": 576
+        },
+        "horizontalOverflow": false,
+        "main": {
+          "bottom": 0,
+          "height": 0,
+          "left": 0,
+          "right": 0,
+          "text": "",
+          "top": 0,
+          "width": 0
+        },
+        "nav": {
+          "bottom": 81,
+          "height": 81,
+          "left": 0,
+          "right": 1280,
+          "text": "PawPal Home Globe About Us Store Login",
+          "top": 0,
+          "width": 1280
+        },
+        "overflowCandidate": {
+          "className": "site-nav fixed inset-x-0 top-0 z-[10000]",
+          "right": 1280,
+          "tag": "nav",
+          "text": "PawPal Home Globe About Us Store Login",
+          "width": 1280
+        },
+        "overlayMarker": null,
+        "overlayNodes": [
+          {
+            "height": 0,
+            "tag": "nextjs-portal",
+            "text": "",
+            "visible": false,
+            "width": 0
+          }
+        ],
+        "overlaySelectorVisible": false,
+        "pathname": "/auth",
+        "scroll": {
+          "clientHeight": 720,
+          "clientWidth": 1280,
+          "height": 1237,
+          "width": 1280
+        },
+        "textLength": 1190,
+        "textSample": "Skip to PawPal content PawPal Home Globe About Us Store Login PawPal account One login for walks, tags, rescue pages, and store orders. Keep pet profiles, finder visibility, map activity, and community support tied to a single secure account. NFC ready Connect smart tags to controlled finder pages. Walk context Map features and nearby help stay attached to your profile. Privacy first Owner details stay hidden until y",
+        "title": "PawPal | Pet Safety Map, Smart Tags, and Local Pet Community"
+      },
+      "pass": true
+    },
+    {
+      "route": "/tag/sample-id",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "navigationStartedAt": "2026-06-11T15:34:13.822Z",
+      "url": "http://localhost:3000/tag/sample-id",
+      "title": "PawPal | Pet Safety Map, Smart Tags, and Local Pet Community",
+      "snapshotLength": 2039,
+      "relevantLogs": [],
+      "ignoredHistoricalLogs": 1,
+      "metrics": {
+        "bodyScrollWidth": 390,
+        "ctaLinks": [
+          {
+            "href": "#main-content",
+            "tag": "a",
+            "text": "Skip to PawPal content",
+            "top": -54
+          },
+          {
+            "href": "/",
+            "tag": "a",
+            "text": "PawPal",
+            "top": 24
+          },
+          {
+            "href": null,
+            "tag": "button",
+            "text": "",
+            "top": 20
+          },
+          {
+            "href": "/",
+            "tag": "a",
+            "text": "Back home",
+            "top": 464
+          },
+          {
+            "href": "/store",
+            "tag": "a",
+            "text": "Shop smart tags",
+            "top": 524
+          },
+          {
+            "href": "mailto:hello@pawpal.be",
+            "tag": "a",
+            "text": "hello@pawpal.be",
+            "top": 1353
+          },
+          {
+            "href": "/globe",
+            "tag": "a",
+            "text": "Globe Map",
+            "top": 1470
+          },
+          {
+            "href": "/store",
+            "tag": "a",
+            "text": "NFC Safety Tag",
+            "top": 1506
+          },
+          {
+            "href": "/globe",
+            "tag": "a",
+            "text": "AI Assistant",
+            "top": 1542
+          },
+          {
+            "href": "/globe",
+            "tag": "a",
+            "text": "Community",
+            "top": 1578
+          },
+          {
+            "href": "/about",
+            "tag": "a",
+            "text": "About Us",
+            "top": 1470
+          },
+          {
+            "href": "/store",
+            "tag": "a",
+            "text": "Store",
+            "top": 1506
+          },
+          {
+            "href": "/help",
+            "tag": "a",
+            "text": "Help Center",
+            "top": 1542
+          },
+          {
+            "href": "/privacy",
+            "tag": "a",
+            "text": "Privacy Policy",
+            "top": 1666
+          },
+          {
+            "href": "/terms",
+            "tag": "a",
+            "text": "Terms of Service",
+            "top": 1702
+          },
+          {
+            "href": "mailto:hello@pawpal.be",
+            "tag": "a",
+            "text": "Contact",
+            "top": 1738
+          },
+          {
+            "href": "mailto:hello@pawpal.be?subject=PawPal%20partnership",
+            "tag": "a",
+            "text": "Contact PawPal",
+            "top": 1773
+          }
+        ],
+        "h1": {
+          "bottom": 316,
+          "height": 90,
+          "left": 20,
+          "right": 370,
+          "text": "This PawPal route is not available.",
+          "top": 226,
+          "width": 350
+        },
+        "horizontalOverflow": false,
+        "main": {
+          "bottom": 0,
+          "height": 0,
+          "left": 0,
+          "right": 0,
+          "text": "",
+          "top": 0,
+          "width": 0
+        },
+        "nav": {
+          "bottom": 81,
+          "height": 81,
+          "left": 0,
+          "right": 390,
+          "text": "PawPal",
+          "top": 0,
+          "width": 390
+        },
+        "overflowCandidate": {
+          "className": "site-nav fixed inset-x-0 top-0 z-[10000]",
+          "right": 390,
+          "tag": "nav",
+          "text": "PawPal",
+          "width": 390
+        },
+        "overlayMarker": null,
+        "overlayNodes": [
+          {
+            "height": 0,
+            "tag": "nextjs-portal",
+            "text": "",
+            "visible": false,
+            "width": 0
+          }
+        ],
+        "overlaySelectorVisible": false,
+        "pathname": "/tag/sample-id",
+        "scroll": {
+          "clientHeight": 844,
+          "clientWidth": 390,
+          "height": 1954,
+          "width": 390
+        },
+        "textLength": 838,
+        "textSample": "Skip to PawPal content PawPal PawPal PAGE NOT FOUND This PawPal route is not available. The link may be old, private, or missing a valid pet, post, group, or profile ID. Start from a trusted PawPal page instead. Back home Shop smart tags Scanned a tag? Check the printed code and try the full NFC or QR link again. Looking for local help? The live Globe keeps places, weather, and community needs close. PawPal Smart wal",
+        "title": "PawPal | Pet Safety Map, Smart Tags, and Local Pet Community"
+      },
+      "pass": true
+    },
+    {
+      "route": "/tag/sample-id",
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "navigationStartedAt": "2026-06-11T15:34:16.475Z",
+      "url": "http://localhost:3000/tag/sample-id",
+      "title": "PawPal | Pet Safety Map, Smart Tags, and Local Pet Community",
+      "snapshotLength": 2185,
+      "relevantLogs": [],
+      "ignoredHistoricalLogs": 1,
+      "metrics": {
+        "bodyScrollWidth": 1280,
+        "ctaLinks": [
+          {
+            "href": "#main-content",
+            "tag": "a",
+            "text": "Skip to PawPal content",
+            "top": -54
+          },
+          {
+            "href": "/",
+            "tag": "a",
+            "text": "PawPal",
+            "top": 24
+          },
+          {
+            "href": "/",
+            "tag": "a",
+            "text": "Home",
+            "top": 22
+          },
+          {
+            "href": "/globe",
+            "tag": "a",
+            "text": "Globe",
+            "top": 22
+          },
+          {
+            "href": "/about",
+            "tag": "a",
+            "text": "About Us",
+            "top": 22
+          },
+          {
+            "href": "/store",
+            "tag": "a",
+            "text": "Store",
+            "top": 22
+          },
+          {
+            "href": "/auth",
+            "tag": "a",
+            "text": "Login",
+            "top": 20
+          },
+          {
+            "href": "/",
+            "tag": "a",
+            "text": "Back home",
+            "top": 567
+          },
+          {
+            "href": "/store",
+            "tag": "a",
+            "text": "Shop smart tags",
+            "top": 567
+          },
+          {
+            "href": "mailto:hello@pawpal.be",
+            "tag": "a",
+            "text": "hello@pawpal.be",
+            "top": 948
+          },
+          {
+            "href": "/globe",
+            "tag": "a",
+            "text": "Globe Map",
+            "top": 821
+          },
+          {
+            "href": "/store",
+            "tag": "a",
+            "text": "NFC Safety Tag",
+            "top": 857
+          },
+          {
+            "href": "/globe",
+            "tag": "a",
+            "text": "AI Assistant",
+            "top": 893
+          },
+          {
+            "href": "/globe",
+            "tag": "a",
+            "text": "Community",
+            "top": 929
+          },
+          {
+            "href": "/about",
+            "tag": "a",
+            "text": "About Us",
+            "top": 821
+          },
+          {
+            "href": "/store",
+            "tag": "a",
+            "text": "Store",
+            "top": 857
+          },
+          {
+            "href": "/help",
+            "tag": "a",
+            "text": "Help Center",
+            "top": 893
+          },
+          {
+            "href": "/privacy",
+            "tag": "a",
+            "text": "Privacy Policy",
+            "top": 821
+          },
+          {
+            "href": "/terms",
+            "tag": "a",
+            "text": "Terms of Service",
+            "top": 857
+          },
+          {
+            "href": "mailto:hello@pawpal.be",
+            "tag": "a",
+            "text": "Contact",
+            "top": 893
+          },
+          {
+            "href": "mailto:hello@pawpal.be?subject=PawPal%20partnership",
+            "tag": "a",
+            "text": "Contact PawPal",
+            "top": 928
+          }
+        ],
+        "h1": {
+          "bottom": 451,
+          "height": 225,
+          "left": 128,
+          "right": 574,
+          "text": "This PawPal route is not available.",
+          "top": 226,
+          "width": 446
+        },
+        "horizontalOverflow": false,
+        "main": {
+          "bottom": 0,
+          "height": 0,
+          "left": 0,
+          "right": 0,
+          "text": "",
+          "top": 0,
+          "width": 0
+        },
+        "nav": {
+          "bottom": 81,
+          "height": 81,
+          "left": 0,
+          "right": 1280,
+          "text": "PawPal Home Globe About Us Store Login",
+          "top": 0,
+          "width": 1280
+        },
+        "overflowCandidate": {
+          "className": "site-nav fixed inset-x-0 top-0 z-[10000]",
+          "right": 1280,
+          "tag": "nav",
+          "text": "PawPal Home Globe About Us Store Login",
+          "width": 1280
+        },
+        "overlayMarker": null,
+        "overlayNodes": [
+          {
+            "height": 0,
+            "tag": "nextjs-portal",
+            "text": "",
+            "visible": false,
+            "width": 0
+          }
+        ],
+        "overlaySelectorVisible": false,
+        "pathname": "/tag/sample-id",
+        "scroll": {
+          "clientHeight": 720,
+          "clientWidth": 1280,
+          "height": 1101,
+          "width": 1280
+        },
+        "textLength": 870,
+        "textSample": "Skip to PawPal content PawPal Home Globe About Us Store Login PawPal PAGE NOT FOUND This PawPal route is not available. The link may be old, private, or missing a valid pet, post, group, or profile ID. Start from a trusted PawPal page instead. Back home Shop smart tags Scanned a tag? Check the printed code and try the full NFC or QR link again. Looking for local help? The live Globe keeps places, weather, and communi",
+        "title": "PawPal | Pet Safety Map, Smart Tags, and Local Pet Community"
+      },
+      "pass": true
+    },
+    {
+      "route": "/store/checkout",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "navigationStartedAt": "2026-06-11T15:34:18.016Z",
+      "url": "http://localhost:3000/store",
+      "title": "Store | PawPal",
+      "snapshotLength": 7053,
+      "relevantLogs": [],
+      "ignoredHistoricalLogs": 1,
+      "metrics": {
+        "bodyScrollWidth": 390,
+        "ctaLinks": [
+          {
+            "href": "#main-content",
+            "tag": "a",
+            "text": "Skip to PawPal content",
+            "top": -54
+          },
+          {
+            "href": "/",
+            "tag": "a",
+            "text": "PawPal",
+            "top": 24
+          },
+          {
+            "href": null,
+            "tag": "button",
+            "text": "",
+            "top": 20
+          },
+          {
+            "href": null,
+            "tag": "button",
+            "text": "All Products",
+            "top": 460
+          },
+          {
+            "href": null,
+            "tag": "button",
+            "text": "Food & Treats",
+            "top": 460
+          },
+          {
+            "href": null,
+            "tag": "button",
+            "text": "Toys & Play",
+            "top": 460
+          },
+          {
+            "href": null,
+            "tag": "button",
+            "text": "Accessories",
+            "top": 460
+          },
+          {
+            "href": null,
+            "tag": "button",
+            "text": "Health & Care",
+            "top": 460
+          },
+          {
+            "href": null,
+            "tag": "button",
+            "text": "Cart",
+            "top": 506
+          },
+          {
+            "href": null,
+            "tag": "button",
+            "text": "My Orders",
+            "top": 506
+          },
+          {
+            "href": null,
+            "tag": "button",
+            "text": "Details",
+            "top": 6494
+          },
+          {
+            "href": null,
+            "tag": "button",
+            "text": "Add",
+            "top": 6494
+          },
+          {
+            "href": null,
+            "tag": "button",
+            "text": "Details",
+            "top": 6955
+          },
+          {
+            "href": null,
+            "tag": "button",
+            "text": "Add",
+            "top": 6955
+          },
+          {
+            "href": null,
+            "tag": "button",
+            "text": "Details",
+            "top": 7416
+          },
+          {
+            "href": null,
+            "tag": "button",
+            "text": "Add",
+            "top": 7416
+          },
+          {
+            "href": null,
+            "tag": "button",
+            "text": "Details",
+            "top": 7877
+          },
+          {
+            "href": null,
+            "tag": "button",
+            "text": "Add",
+            "top": 7877
+          },
+          {
+            "href": "mailto:hello@pawpal.be",
+            "tag": "a",
+            "text": "hello@pawpal.be",
+            "top": 2599
+          },
+          {
+            "href": "/globe",
+            "tag": "a",
+            "text": "Globe Map",
+            "top": 2715
+          },
+          {
+            "href": "/store",
+            "tag": "a",
+            "text": "NFC Safety Tag",
+            "top": 2751
+          },
+          {
+            "href": "/globe",
+            "tag": "a",
+            "text": "AI Assistant",
+            "top": 2787
+          }
+        ],
+        "h1": {
+          "bottom": 155,
+          "height": 75,
+          "left": 16,
+          "right": 374,
+          "text": "Smart tags and walk gear for safer pet days",
+          "top": 80,
+          "width": 358
+        },
+        "horizontalOverflow": false,
+        "main": {
+          "bottom": 0,
+          "height": 0,
+          "left": 0,
+          "right": 0,
+          "text": "",
+          "top": 0,
+          "width": 0
+        },
+        "nav": {
+          "bottom": 81,
+          "height": 81,
+          "left": 0,
+          "right": 390,
+          "text": "PawPal",
+          "top": 0,
+          "width": 390
+        },
+        "overflowCandidate": {
+          "className": "inline-flex shrink-0 items-center gap-1.5 rounded-paw-md border px-3 py-2 text-xs font-bold transition cursor-pointer sm",
+          "right": 660,
+          "tag": "button",
+          "text": "Health & Care",
+          "width": 129
+        },
+        "overlayMarker": null,
+        "overlayNodes": [
+          {
+            "height": 0,
+            "tag": "nextjs-portal",
+            "text": "",
+            "visible": false,
+            "width": 0
+          }
+        ],
+        "overlaySelectorVisible": false,
+        "pathname": "/store",
+        "scroll": {
+          "clientHeight": 844,
+          "clientWidth": 390,
+          "height": 3199,
+          "width": 390
+        },
+        "textLength": 1313,
+        "textSample": "Skip to PawPal content PawPal Smart tags and walk gear for safer pet days Start with PawPal NFC safety tags, then find practical gear for daily walks, travel, cleanup, and care. NFC safety ready EU-first fulfillment Secure checkout Filter by category All Products Food & Treats Toys & Play Accessories Health & Care 4 products Cart My Orders New PawPal Smart ID Tag €12.99 NFC-ready safety tag that links rescuers to you",
+        "title": "Store | PawPal"
+      },
+      "pass": true
+    },
+    {
+      "route": "/store/checkout",
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "navigationStartedAt": "2026-06-11T15:34:19.626Z",
+      "url": "http://localhost:3000/store",
+      "title": "Store | PawPal",
+      "snapshotLength": 7451,
+      "relevantLogs": [],
+      "ignoredHistoricalLogs": 1,
+      "metrics": {
+        "bodyScrollWidth": 1280,
+        "ctaLinks": [
+          {
+            "href": "#main-content",
+            "tag": "a",
+            "text": "Skip to PawPal content",
+            "top": -54
+          },
+          {
+            "href": "/",
+            "tag": "a",
+            "text": "PawPal",
+            "top": 24
+          },
+          {
+            "href": "/",
+            "tag": "a",
+            "text": "Home",
+            "top": 22
+          },
+          {
+            "href": "/globe",
+            "tag": "a",
+            "text": "Globe",
+            "top": 22
+          },
+          {
+            "href": "/about",
+            "tag": "a",
+            "text": "About Us",
+            "top": 22
+          },
+          {
+            "href": "/store",
+            "tag": "a",
+            "text": "Store",
+            "top": 22
+          },
+          {
+            "href": "/auth",
+            "tag": "a",
+            "text": "Login",
+            "top": 20
+          },
+          {
+            "href": null,
+            "tag": "button",
+            "text": "All Products",
+            "top": 435
+          },
+          {
+            "href": null,
+            "tag": "button",
+            "text": "Food & Treats",
+            "top": 435
+          },
+          {
+            "href": null,
+            "tag": "button",
+            "text": "Toys & Play",
+            "top": 435
+          },
+          {
+            "href": null,
+            "tag": "button",
+            "text": "Accessories",
+            "top": 435
+          },
+          {
+            "href": null,
+            "tag": "button",
+            "text": "Health & Care",
+            "top": 435
+          },
+          {
+            "href": null,
+            "tag": "button",
+            "text": "Cart",
+            "top": 489
+          },
+          {
+            "href": null,
+            "tag": "button",
+            "text": "My Orders",
+            "top": 489
+          },
+          {
+            "href": null,
+            "tag": "button",
+            "text": "Details",
+            "top": 867
+          },
+          {
+            "href": null,
+            "tag": "button",
+            "text": "Add",
+            "top": 867
+          },
+          {
+            "href": null,
+            "tag": "button",
+            "text": "Details",
+            "top": 886
+          },
+          {
+            "href": null,
+            "tag": "button",
+            "text": "Add",
+            "top": 886
+          },
+          {
+            "href": null,
+            "tag": "button",
+            "text": "Details",
+            "top": 867
+          },
+          {
+            "href": null,
+            "tag": "button",
+            "text": "Add",
+            "top": 867
+          },
+          {
+            "href": null,
+            "tag": "button",
+            "text": "Details",
+            "top": 867
+          },
+          {
+            "href": null,
+            "tag": "button",
+            "text": "Add",
+            "top": 867
+          }
+        ],
+        "h1": {
+          "bottom": 216,
+          "height": 120,
+          "left": 16,
+          "right": 732,
+          "text": "Smart tags and walk gear for safer pet days",
+          "top": 96,
+          "width": 716
+        },
+        "horizontalOverflow": false,
+        "main": {
+          "bottom": 0,
+          "height": 0,
+          "left": 0,
+          "right": 0,
+          "text": "",
+          "top": 0,
+          "width": 0
+        },
+        "nav": {
+          "bottom": 81,
+          "height": 81,
+          "left": 0,
+          "right": 1280,
+          "text": "PawPal Home Globe About Us Store Login",
+          "top": 0,
+          "width": 1280
+        },
+        "overflowCandidate": {
+          "className": "site-nav fixed inset-x-0 top-0 z-[10000]",
+          "right": 1280,
+          "tag": "nav",
+          "text": "PawPal Home Globe About Us Store Login",
+          "width": 1280
+        },
+        "overlayMarker": null,
+        "overlayNodes": [
+          {
+            "height": 0,
+            "tag": "nextjs-portal",
+            "text": "",
+            "visible": false,
+            "width": 0
+          }
+        ],
+        "overlaySelectorVisible": false,
+        "pathname": "/store",
+        "scroll": {
+          "clientHeight": 720,
+          "clientWidth": 1280,
+          "height": 2678,
+          "width": 1280
+        },
+        "textLength": 3203,
+        "textSample": "Skip to PawPal content PawPal Home Globe About Us Store Login Smart tags and walk gear for safer pet days Start with PawPal NFC safety tags, then find practical gear for daily walks, travel, cleanup, and care. NFC safety ready Built for public finder pages and controlled owner details. EU-first fulfillment Catalog and checkout flows are prepared for Belgium-led rollout. Secure checkout Stripe-backed payment flow with",
+        "title": "Store | PawPal"
+      },
+      "pass": true
+    },
+    {
+      "route": "/globe",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "navigationStartedAt": "2026-06-11T15:34:21.156Z",
+      "url": "http://localhost:3000/globe",
+      "title": "Live Pet Globe | PawPal",
+      "snapshotLength": 1098,
+      "relevantLogs": [],
+      "ignoredHistoricalLogs": 1,
+      "metrics": {
+        "bodyScrollWidth": 390,
+        "ctaLinks": [
+          {
+            "href": "#main-content",
+            "tag": "a",
+            "text": "Skip to PawPal content",
+            "top": -54
+          },
+          {
+            "href": "/",
+            "tag": "a",
+            "text": "PawPal",
+            "top": 24
+          },
+          {
+            "href": null,
+            "tag": "button",
+            "text": "",
+            "top": 17
+          },
+          {
+            "href": null,
+            "tag": "button",
+            "text": "",
+            "top": 615
+          },
+          {
+            "href": null,
+            "tag": "button",
+            "text": "",
+            "top": 644
+          },
+          {
+            "href": null,
+            "tag": "button",
+            "text": "",
+            "top": 673
+          },
+          {
+            "href": "https://maplibre.org/",
+            "tag": "a",
+            "text": "MapLibre",
+            "top": 727
+          },
+          {
+            "href": "https://carto.com/",
+            "tag": "a",
+            "text": "CARTO",
+            "top": 727
+          },
+          {
+            "href": "https://www.openstreetmap.org/copyright",
+            "tag": "a",
+            "text": "OSM",
+            "top": 727
+          },
+          {
+            "href": null,
+            "tag": "button",
+            "text": "Missions",
+            "top": 137
+          },
+          {
+            "href": null,
+            "tag": "button",
+            "text": "Places",
+            "top": 177
+          },
+          {
+            "href": null,
+            "tag": "button",
+            "text": "Ask",
+            "top": 786
+          }
+        ],
+        "h1": {
+          "bottom": 0,
+          "height": 1,
+          "left": -1,
+          "right": 0,
+          "text": "PawPal Globe",
+          "top": -1,
+          "width": 1
+        },
+        "horizontalOverflow": false,
+        "main": {
+          "bottom": 0,
+          "height": 0,
+          "left": 0,
+          "right": 0,
+          "text": "",
+          "top": 0,
+          "width": 0
+        },
+        "nav": {
+          "bottom": 62,
+          "height": 50,
+          "left": 12,
+          "right": 378,
+          "text": "PawPal",
+          "top": 12,
+          "width": 366
+        },
+        "overflowCandidate": {
+          "className": "weather-marquee-track flex whitespace-nowrap items-center",
+          "right": 5009,
+          "tag": "div",
+          "text": "Ghent Drizzle 13°C (feels 11°C) 14 km/h 79% 100% rain UV 5 🌧️ High chance of rain — bring a raincoat for your pup • Ghe",
+          "width": 4993
+        },
+        "overlayMarker": null,
+        "overlayNodes": [
+          {
+            "height": 0,
+            "tag": "nextjs-portal",
+            "text": "",
+            "visible": false,
+            "width": 0
+          }
+        ],
+        "overlaySelectorVisible": false,
+        "pathname": "/globe",
+        "scroll": {
+          "clientHeight": 844,
+          "clientWidth": 390,
+          "height": 844,
+          "width": 390
+        },
+        "textLength": 689,
+        "textSample": "Skip to PawPal content PawPal PawPal Globe Ghent Drizzle 13°C (feels 11°C) 14 km/h 79% 100% rain UV 5 🌧️ High chance of rain — bring a raincoat for your pup • Ghent Drizzle 13°C (feels 11°C) 14 km/h 79% 100% rain UV 5 🌧️ High chance of rain — bring a raincoat for your pup • Ghent Drizzle 13°C (feels 11°C) 14 km/h 79% 100% rain UV 5 🌧️ High chance of rain — bring a raincoat for your pup • Ghent Drizzle 13°C (feels ",
+        "title": "Live Pet Globe | PawPal"
+      },
+      "pass": true
+    },
+    {
+      "route": "/globe",
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "navigationStartedAt": "2026-06-11T15:34:23.685Z",
+      "url": "http://localhost:3000/globe",
+      "title": "Live Pet Globe | PawPal",
+      "snapshotLength": 2910,
+      "relevantLogs": [],
+      "ignoredHistoricalLogs": 1,
+      "metrics": {
+        "bodyScrollWidth": 1280,
+        "ctaLinks": [
+          {
+            "href": "#main-content",
+            "tag": "a",
+            "text": "Skip to PawPal content",
+            "top": -54
+          },
+          {
+            "href": "/",
+            "tag": "a",
+            "text": "PawPal",
+            "top": 28
+          },
+          {
+            "href": "/",
+            "tag": "a",
+            "text": "Home",
+            "top": 25
+          },
+          {
+            "href": "/globe",
+            "tag": "a",
+            "text": "Globe",
+            "top": 25
+          },
+          {
+            "href": "/about",
+            "tag": "a",
+            "text": "About Us",
+            "top": 25
+          },
+          {
+            "href": "/store",
+            "tag": "a",
+            "text": "Store",
+            "top": 25
+          },
+          {
+            "href": "/auth",
+            "tag": "a",
+            "text": "Login",
+            "top": 21
+          },
+          {
+            "href": null,
+            "tag": "button",
+            "text": "",
+            "top": 495
+          },
+          {
+            "href": null,
+            "tag": "button",
+            "text": "",
+            "top": 524
+          },
+          {
+            "href": null,
+            "tag": "button",
+            "text": "",
+            "top": 553
+          },
+          {
+            "href": "https://maplibre.org/",
+            "tag": "a",
+            "text": "MapLibre",
+            "top": 607
+          },
+          {
+            "href": "https://carto.com/",
+            "tag": "a",
+            "text": "CARTO",
+            "top": 607
+          },
+          {
+            "href": "https://www.openstreetmap.org/copyright",
+            "tag": "a",
+            "text": "OSM",
+            "top": 607
+          },
+          {
+            "href": null,
+            "tag": "button",
+            "text": "Missions",
+            "top": 83
+          },
+          {
+            "href": null,
+            "tag": "button",
+            "text": "Places 15",
+            "top": 83
+          },
+          {
+            "href": null,
+            "tag": "button",
+            "text": "Ask",
+            "top": 662
+          }
+        ],
+        "h1": {
+          "bottom": 0,
+          "height": 1,
+          "left": -1,
+          "right": 0,
+          "text": "PawPal Globe",
+          "top": -1,
+          "width": 1
+        },
+        "horizontalOverflow": false,
+        "main": {
+          "bottom": 0,
+          "height": 0,
+          "left": 0,
+          "right": 0,
+          "text": "",
+          "top": 0,
+          "width": 0
+        },
+        "nav": {
+          "bottom": 70,
+          "height": 58,
+          "left": 16,
+          "right": 1264,
+          "text": "PawPal Home Globe About Us Store Login",
+          "top": 12,
+          "width": 1248
+        },
+        "overflowCandidate": {
+          "className": "weather-marquee-track flex whitespace-nowrap items-center",
+          "right": 5235,
+          "tag": "div",
+          "text": "Ghent Drizzle 13°C (feels 11°C) 14 km/h 79% 100% rain UV 5 🌧️ High chance of rain — bring a raincoat for your pup • Ghe",
+          "width": 4993
+        },
+        "overlayMarker": null,
+        "overlayNodes": [
+          {
+            "height": 0,
+            "tag": "nextjs-portal",
+            "text": "",
+            "visible": false,
+            "width": 0
+          }
+        ],
+        "overlaySelectorVisible": false,
+        "pathname": "/globe",
+        "scroll": {
+          "clientHeight": 720,
+          "clientWidth": 1280,
+          "height": 720,
+          "width": 1280
+        },
+        "textLength": 817,
+        "textSample": "Skip to PawPal content PawPal Home Globe About Us Store Login PawPal Globe Ghent Drizzle 13°C (feels 11°C) 14 km/h 79% 100% rain UV 5 🌧️ High chance of rain — bring a raincoat for your pup • Ghent Drizzle 13°C (feels 11°C) 14 km/h 79% 100% rain UV 5 🌧️ High chance of rain — bring a raincoat for your pup • Ghent Drizzle 13°C (feels 11°C) 14 km/h 79% 100% rain UV 5 🌧️ High chance of rain — bring a raincoat for your ",
+        "title": "Live Pet Globe | PawPal"
+      },
+      "pass": true
+    }
+  ],
+  "summary": {
+    "totalChecks": 12,
+    "passedChecks": 12,
+    "failedChecks": 0,
+    "relevantLogCount": 0,
+    "ignoredHistoricalLogCount": 12
+  }
+}

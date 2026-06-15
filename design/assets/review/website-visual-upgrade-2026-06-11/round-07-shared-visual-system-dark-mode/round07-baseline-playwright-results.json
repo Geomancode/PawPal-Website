@@ -1,0 +1,1388 @@
+{
+  "capturedAt": "2026-06-11T15:36:06.139Z",
+  "tool": "Playwright baseline screenshots using existing bundled runtime and existing Chromium binary",
+  "baseUrl": "http://localhost:3000",
+  "routes": [
+    "/",
+    "/store",
+    "/auth",
+    "/tag/sample-id",
+    "/store/checkout",
+    "/globe"
+  ],
+  "schemes": [
+    "light",
+    "dark"
+  ],
+  "viewports": [
+    {
+      "width": 390,
+      "height": 844
+    },
+    {
+      "width": 1280,
+      "height": 720
+    }
+  ],
+  "results": [
+    {
+      "route": "/",
+      "scheme": "light",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "url": "http://localhost:3000/",
+      "title": "Pet Safety Map, Smart Tags, and Local Pet Community",
+      "file": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/assets/review/website-visual-upgrade-2026-06-11/round-07-shared-visual-system-dark-mode/baseline-light-home-390x844.png",
+      "logs": [
+        {
+          "type": "warning",
+          "text": "You have Reduced Motion enabled on your device. Animations may not appear as expected.. For more information and steps for solving, visit https://motion.dev/troubleshooting/reduced-motion-disabled"
+        },
+        {
+          "type": "error",
+          "text": "A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:\n\n- A server/client branch `if (typeof window !== 'undefined')`.\n- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.\n- Date formatting in a user's locale which doesn't match the server.\n- External changing data without sending a snapshot of it along with the HTML.\n- Invalid HTML tag nesting.\n\nIt can also happen if the client has a browser extension installed which messes with the HTML before React loaded.\n\n%s%s https://react.dev/link/hydration-mismatch \n\n  ...\n    <HTTPAccessFallbackBoundary notFound={<SegmentViewNode>} forbidden={undefined} unauthorized={undefined}>\n      <HTTPAccessFallbackErrorBoundary pathname=\"/\" notFound={<SegmentViewNode>} forbidden={undefined} ...>\n        <RedirectBoundary>\n          <RedirectErrorBoundary router={{...}}>\n            <InnerLayoutRouter url=\"/\" tree={[...]} params={{}} cacheNode={{rsc:<Fragment>, ...}} segmentPath={[...]} ...>\n              <SegmentViewNode type=\"page\" pagePath=\"page.tsx\">\n                <SegmentTrieNode>\n                <Home>\n                  <div className=\"relative w...\">\n                    <ScrollProgress>\n                    <section className=\"relative i...\">\n                      <HeroBlobs>\n                      <div className=\"mx-auto gr...\">\n                        <FadeIn className=\"z-10 min-w...\">\n                          <motion.div initial={false} animate={{opacity:1,y:0}} transition={{duration:0}} ...>\n                            <div\n                              className=\"z-10 min-w-0 max-w-2xl space-y-5 lg:space-y-7\"\n                              style={{\n+                               opacity: 1\n-                               opacity: \"0\"\n+                               transform: \"none\"\n-                               transform: \"translateY(18px)\"\n                              }}\n                              ref={function useMotionRef.useCallback}\n                            >\n                              <AnimatedHeadline>\n                              <HeroDescription>\n                                <motion.p className=\"max-w-xl b...\" initial={false} animate={{opacity:1,y:0}} ...>\n                                  <p\n                                    className=\"max-w-xl break-words text-lg leading-8 text-paw-body lg:text-xl lg:lead...\"\n                                    style={{\n+                                     opacity: 1\n-                                     opacity: \"0\"\n+                                     transform: \"none\"\n-                                     transform: \"translateY(18px)\"\n                                    }}\n                                    ref={function useMotionRef.useCallback}\n                                  >\n+                                   Built in Belgium, PawPal connects fog-of-war walks, NFC finder profiles, AI care gu...\n                              <HeroCTA>\n                                <motion.div className=\"flex w-ful...\" initial={false} animate={{opacity:1,y:0}} ...>\n                                  <div\n                                    className=\"flex w-full max-w-[calc(100vw-2.5rem)] flex-col gap-3 pt-2 sm:max-w-non...\"\n                                    style={{\n+                                     opacity: 1\n-                                     opacity: \"0\"\n+                                     transform: \"none\"\n-                                     transform: \"translateY(14px)\"\n                                    }}\n                                    ref={function useMotionRef.useCallback}\n                                  >\n                              <div className=\"hidden sm:...\">\n                                <HeroSignalRail>\n                                  <motion.div className=\"hero-signa...\" initial={false} animate={{opacity:1,y:0}} ...>\n                                    <div\n                                      className=\"hero-signal-rail\"\n                                      aria-label=\"PawPal product signals\"\n                                      style={{\n+                                       opacity: 1\n-                                       opacity: \"0\"\n+                                       transform: \"none\"\n-                                       transform: \"translateY(14px)\"\n                                      }}\n                                      ref={function useMotionRef.useCallback}\n                                    >\n                              <div className=\"hidden md:...\">\n                                <HeroBadges>\n                                  <motion.div className=\"grid max-w...\" initial={false} animate={{opacity:1}} ...>\n                                    <div\n                                      className=\"grid max-w-2xl gap-3 pt-2 sm:grid-cols-3\"\n+                                     style={{opacity:1}}\n-                                     style={{opacity:\"0\"}}\n                                      ref={function useMotionRef.useCallback}\n                                    >\n                        <GlobeSection>\n                          <motion.div className=\"hero-globe...\" style={{...}} initial={false} animate={{opacity:1,x:0}} ...>\n                            <div\n                              className=\"hero-globe-upgrade relative mx-auto flex w-full max-w-[calc(100vw-2.5rem)] it...\"\n                              style={{\n+                               minHeight: \"clamp(385px, 72vw, 610px)\"\n+                               opacity: 1\n-                               opacity: \"0\"\n+                               transform: \"none\"\n-                               transform: \"translateX(24px)\"\n-                               min-height: \"clamp(385px, 72vw, 610px)\"\n                              }}\n                              ref={function useMotionRef.useCallback}\n                            >\n                              <div>\n                              <div>\n                              <div>\n                              <div>\n                              <div>\n                              <motion.div className=\"hero-globe...\" initial={false} animate={{opacity:1}} ...>\n                                <div\n                                  className=\"hero-globe-hint-upgraded\"\n+                                 style={{opacity:1}}\n-                                 style={{opacity:\"0\"}}\n                                  ref={function useMotionRef.useCallback}\n                                >\n+                                 Drag to spin\n                    <section>\n                    <LaunchReadinessPanel>\n                      <section className=\"relative o...\">\n                        <div>\n                        <div className=\"mx-auto ma...\">\n                          <div className=\"grid gap-3...\">\n                            <FadeInView>\n                              <motion.div initial={false} whileInView={{opacity:1,y:0}} viewport={{once:true, ...}} ...>\n                                <div\n                                  className=\"\"\n                                  style={{\n-                                   opacity: \"0.96\"\n-                                   transform: \"translateY(8px)\"\n                                  }}\n                                  ref={function useMotionRef.useCallback}\n                                >\n                            <FadeInView>\n                              <motion.div initial={false} whileInView={{opacity:1,y:0}} viewport={{once:true, ...}} ...>\n                                <div\n                                  className=\"\"\n                                  style={{\n-                                   opacity: \"0.96\"\n-                                   transform: \"translateY(8px)\"\n                                  }}\n                                  ref={function useMotionRef.useCallback}\n                                >\n                            <FadeInView>\n                              <motion.div initial={false} whileInView={{opacity:1,y:0}} viewport={{once:true, ...}} ...>\n                                <div\n                                  className=\"\"\n                                  style={{\n-                                   opacity: \"0.96\"\n-                                   transform: \"translateY(8px)\"\n                                  }}\n                                  ref={function useMotionRef.useCallback}\n                                >\n                            <FadeInView>\n                              <motion.div initial={false} whileInView={{opacity:1,y:0}} viewport={{once:true, ...}} ...>\n                                <div\n                                  className=\"\"\n                                  style={{\n-                                   opacity: \"0.96\"\n-                                   transform: \"translateY(8px)\"\n                                  }}\n                                  ref={function useMotionRef.useCallback}\n                                >\n                    <section id=\"workflow\" className=\"bg-white p...\">\n                      <div className=\"mx-auto ma...\">\n                        <FadeInView>\n                          <motion.div initial={false} whileInView={{opacity:1,y:0}} viewport={{once:true, ...}} ...>\n                            <div\n                              className=\"\"\n                              style={{\n-                               opacity: \"0.96\"\n-                               transform: \"translateY(8px)\"\n                              }}\n                              ref={function useMotionRef.useCallback}\n                            >\n                        ...\n                          <div className=\"grid gap-8...\">\n                            <FadeInView delay={0}>\n                              <motion.div initial={false} whileInView={{opacity:1,y:0}} viewport={{once:true, ...}} ...>\n                                <div\n                                  className=\"\"\n                                  style={{\n-                                   opacity: \"0.96\"\n-                                   transform: \"translateY(8px)\"\n                                  }}\n                                  ref={function useMotionRef.useCallback}\n                                >\n                            <FadeInView delay={0.08}>\n                              <motion.div initial={false} whileInView={{opacity:1,y:0}} viewport={{once:true, ...}} ...>\n                                <div\n                                  className=\"\"\n                                  style={{\n-                                   opacity: \"0.96\"\n-                                   transform: \"translateY(8px)\"\n                                  }}\n                                  ref={function useMotionRef.useCallback}\n                                >\n                            <FadeInView delay={0.16}>\n                              <motion.div initial={false} whileInView={{opacity:1,y:0}} viewport={{once:true, ...}} ...>\n                                <div\n                                  className=\"\"\n                                  style={{\n-                                   opacity: \"0.96\"\n-                                   transform: \"translateY(8px)\"\n                                  }}\n                                  ref={function useMotionRef.useCallback}\n                                >\n                    <section id=\"features\" className=\"bg-white p...\">\n                      <div className=\"mx-auto ma...\">\n                        <BentoFeatureGrid>\n                          <div className=\"grid items...\">\n                            <FadeInView>\n                              <motion.div initial={false} whileInView={{opacity:1,y:0}} viewport={{once:true, ...}} ...>\n                                <div\n                                  className=\"\"\n                                  style={{\n-                                   opacity: \"0.96\"\n-                                   transform: \"translateY(8px)\"\n                                  }}\n                                  ref={function useMotionRef.useCallback}\n                                >\n                            <FadeInView delay={0.08}>\n                              <motion.div initial={false} whileInView={{opacity:1,y:0}} viewport={{once:true, ...}} ...>\n                                <div\n                                  className=\"\"\n                                  style={{\n-                                   opacity: \"0.96\"\n-                                   transform: \"translateY(8px)\"\n                                  }}\n                                  ref={function useMotionRef.useCallback}\n                                >\n                    <section className=\"border-y b...\">\n                      <div className=\"mx-auto ma...\">\n                        <AppShowcase>\n                          <div className=\"grid items...\">\n                            <FadeInView>\n                              <motion.div initial={false} whileInView={{opacity:1,y:0}} viewport={{once:true, ...}} ...>\n                                <div\n                                  className=\"\"\n                                  style={{\n-                                   opacity: \"0.96\"\n-                                   transform: \"translateY(8px)\"\n                                  }}\n                                  ref={function useMotionRef.useCallback}\n                                >\n                            <FadeInView delay={0.08}>\n                              <motion.div initial={false} whileInView={{opacity:1,y:0}} viewport={{once:true, ...}} ...>\n                                <div\n                                  className=\"\"\n                                  style={{\n-                                   opacity: \"0.96\"\n-                                   transform: \"translateY(8px)\"\n                                  }}\n                                  ref={function useMotionRef.useCallback}\n                                >\n                    <section className=\"bg-white p...\">\n                      <div className=\"mx-auto ma...\">\n                        <div className=\"grid items...\">\n                          <FadeInView>\n                            <motion.div initial={false} whileInView={{opacity:1,y:0}} viewport={{once:true, ...}} ...>\n                              <div\n                                className=\"\"\n                                style={{\n-                                 opacity: \"0.96\"\n-                                 transform: \"translateY(8px)\"\n                                }}\n                                ref={function useMotionRef.useCallback}\n                              >\n                          <FadeInView delay={0.08}>\n                            <motion.div initial={false} whileInView={{opacity:1,y:0}} viewport={{once:true, ...}} ...>\n                              <div\n                                className=\"\"\n                                style={{\n-                                 opacity: \"0.96\"\n-                                 transform: \"translateY(8px)\"\n                                }}\n                                ref={function useMotionRef.useCallback}\n                              >\n              ...\n            ...\n"
+        }
+      ],
+      "metrics": {
+        "title": "Pet Safety Map, Smart Tags, and Local Pet Community",
+        "pathname": "/",
+        "textLength": 2722,
+        "h1": {
+          "text": "PawPal pet safety for every walk",
+          "top": 100,
+          "left": 16,
+          "width": 358,
+          "height": 196,
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgb(23, 20, 19)"
+        },
+        "nav": {
+          "text": "PawPal",
+          "top": -6,
+          "left": 0,
+          "width": 390,
+          "height": 81,
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgb(58, 47, 42)"
+        },
+        "main": {
+          "text": "",
+          "top": 0,
+          "left": 0,
+          "width": 0,
+          "height": 0,
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgb(58, 47, 42)"
+        },
+        "bodyBackground": "rgb(255, 255, 255)",
+        "bodyColor": "rgb(58, 47, 42)",
+        "colorScheme": "light",
+        "scrollWidth": 390,
+        "clientWidth": 390,
+        "bodyScrollWidth": 390,
+        "horizontalOverflow": false,
+        "frameworkOverlay": false
+      },
+      "pass": false
+    },
+    {
+      "route": "/",
+      "scheme": "light",
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "url": "http://localhost:3000/",
+      "title": "Pet Safety Map, Smart Tags, and Local Pet Community",
+      "file": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/assets/review/website-visual-upgrade-2026-06-11/round-07-shared-visual-system-dark-mode/baseline-light-home-1280x720.png",
+      "logs": [
+        {
+          "type": "warning",
+          "text": "You have Reduced Motion enabled on your device. Animations may not appear as expected.. For more information and steps for solving, visit https://motion.dev/troubleshooting/reduced-motion-disabled"
+        },
+        {
+          "type": "error",
+          "text": "A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:\n\n- A server/client branch `if (typeof window !== 'undefined')`.\n- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.\n- Date formatting in a user's locale which doesn't match the server.\n- External changing data without sending a snapshot of it along with the HTML.\n- Invalid HTML tag nesting.\n\nIt can also happen if the client has a browser extension installed which messes with the HTML before React loaded.\n\n%s%s https://react.dev/link/hydration-mismatch \n\n  ...\n    <HTTPAccessFallbackBoundary notFound={<SegmentViewNode>} forbidden={undefined} unauthorized={undefined}>\n      <HTTPAccessFallbackErrorBoundary pathname=\"/\" notFound={<SegmentViewNode>} forbidden={undefined} ...>\n        <RedirectBoundary>\n          <RedirectErrorBoundary router={{...}}>\n            <InnerLayoutRouter url=\"/\" tree={[...]} params={{}} cacheNode={{rsc:<Fragment>, ...}} segmentPath={[...]} ...>\n              <SegmentViewNode type=\"page\" pagePath=\"page.tsx\">\n                <SegmentTrieNode>\n                <Home>\n                  <div className=\"relative w...\">\n                    <ScrollProgress>\n                    <section className=\"relative i...\">\n                      <HeroBlobs>\n                      <div className=\"mx-auto gr...\">\n                        <FadeIn className=\"z-10 min-w...\">\n                          <motion.div initial={false} animate={{opacity:1,y:0}} transition={{duration:0}} ...>\n                            <div\n                              className=\"z-10 min-w-0 max-w-2xl space-y-5 lg:space-y-7\"\n                              style={{\n+                               opacity: 1\n-                               opacity: \"0\"\n+                               transform: \"none\"\n-                               transform: \"translateY(18px)\"\n                              }}\n                              ref={function useMotionRef.useCallback}\n                            >\n                              <AnimatedHeadline>\n                              <HeroDescription>\n                                <motion.p className=\"max-w-xl b...\" initial={false} animate={{opacity:1,y:0}} ...>\n                                  <p\n                                    className=\"max-w-xl break-words text-lg leading-8 text-paw-body lg:text-xl lg:lead...\"\n                                    style={{\n+                                     opacity: 1\n-                                     opacity: \"0\"\n+                                     transform: \"none\"\n-                                     transform: \"translateY(18px)\"\n                                    }}\n                                    ref={function useMotionRef.useCallback}\n                                  >\n+                                   Built in Belgium, PawPal connects fog-of-war walks, NFC finder profiles, AI care gu...\n                              <HeroCTA>\n                                <motion.div className=\"flex w-ful...\" initial={false} animate={{opacity:1,y:0}} ...>\n                                  <div\n                                    className=\"flex w-full max-w-[calc(100vw-2.5rem)] flex-col gap-3 pt-2 sm:max-w-non...\"\n                                    style={{\n+                                     opacity: 1\n-                                     opacity: \"0\"\n+                                     transform: \"none\"\n-                                     transform: \"translateY(14px)\"\n                                    }}\n                                    ref={function useMotionRef.useCallback}\n                                  >\n                              <div className=\"hidden sm:...\">\n                                <HeroSignalRail>\n                                  <motion.div className=\"hero-signa...\" initial={false} animate={{opacity:1,y:0}} ...>\n                                    <div\n                                      className=\"hero-signal-rail\"\n                                      aria-label=\"PawPal product signals\"\n                                      style={{\n+                                       opacity: 1\n-                                       opacity: \"0\"\n+                                       transform: \"none\"\n-                                       transform: \"translateY(14px)\"\n                                      }}\n                                      ref={function useMotionRef.useCallback}\n                                    >\n                              <div className=\"hidden md:...\">\n                                <HeroBadges>\n                                  <motion.div className=\"grid max-w...\" initial={false} animate={{opacity:1}} ...>\n                                    <div\n                                      className=\"grid max-w-2xl gap-3 pt-2 sm:grid-cols-3\"\n+                                     style={{opacity:1}}\n-                                     style={{opacity:\"0\"}}\n                                      ref={function useMotionRef.useCallback}\n                                    >\n                        <GlobeSection>\n                          <motion.div className=\"hero-globe...\" style={{...}} initial={false} animate={{opacity:1,x:0}} ...>\n                            <div\n                              className=\"hero-globe-upgrade relative mx-auto flex w-full max-w-[calc(100vw-2.5rem)] it...\"\n                              style={{\n+                               minHeight: \"clamp(385px, 72vw, 610px)\"\n+                               opacity: 1\n-                               opacity: \"0\"\n+                               transform: \"none\"\n-                               transform: \"translateX(24px)\"\n-                               min-height: \"clamp(385px, 72vw, 610px)\"\n                              }}\n                              ref={function useMotionRef.useCallback}\n                            >\n                              <div>\n                              <div>\n                              <div>\n                              <div>\n                              <div>\n                              <motion.div className=\"hero-globe...\" initial={false} animate={{opacity:1}} ...>\n                                <div\n                                  className=\"hero-globe-hint-upgraded\"\n+                                 style={{opacity:1}}\n-                                 style={{opacity:\"0\"}}\n                                  ref={function useMotionRef.useCallback}\n                                >\n+                                 Drag to spin\n                    <section>\n                    <LaunchReadinessPanel>\n                      <section className=\"relative o...\">\n                        <div>\n                        <div className=\"mx-auto ma...\">\n                          <div className=\"grid gap-3...\">\n                            <FadeInView>\n                              <motion.div initial={false} whileInView={{opacity:1,y:0}} viewport={{once:true, ...}} ...>\n                                <div\n                                  className=\"\"\n                                  style={{\n-                                   opacity: \"0.96\"\n-                                   transform: \"translateY(8px)\"\n                                  }}\n                                  ref={function useMotionRef.useCallback}\n                                >\n                            <FadeInView>\n                              <motion.div initial={false} whileInView={{opacity:1,y:0}} viewport={{once:true, ...}} ...>\n                                <div\n                                  className=\"\"\n                                  style={{\n-                                   opacity: \"0.96\"\n-                                   transform: \"translateY(8px)\"\n                                  }}\n                                  ref={function useMotionRef.useCallback}\n                                >\n                            <FadeInView>\n                              <motion.div initial={false} whileInView={{opacity:1,y:0}} viewport={{once:true, ...}} ...>\n                                <div\n                                  className=\"\"\n                                  style={{\n-                                   opacity: \"0.96\"\n-                                   transform: \"translateY(8px)\"\n                                  }}\n                                  ref={function useMotionRef.useCallback}\n                                >\n                            <FadeInView>\n                              <motion.div initial={false} whileInView={{opacity:1,y:0}} viewport={{once:true, ...}} ...>\n                                <div\n                                  className=\"\"\n                                  style={{\n-                                   opacity: \"0.96\"\n-                                   transform: \"translateY(8px)\"\n                                  }}\n                                  ref={function useMotionRef.useCallback}\n                                >\n                    <section id=\"workflow\" className=\"bg-white p...\">\n                      <div className=\"mx-auto ma...\">\n                        <FadeInView>\n                          <motion.div initial={false} whileInView={{opacity:1,y:0}} viewport={{once:true, ...}} ...>\n                            <div\n                              className=\"\"\n                              style={{\n-                               opacity: \"0.96\"\n-                               transform: \"translateY(8px)\"\n                              }}\n                              ref={function useMotionRef.useCallback}\n                            >\n                        ...\n                          <div className=\"grid gap-8...\">\n                            <FadeInView delay={0}>\n                              <motion.div initial={false} whileInView={{opacity:1,y:0}} viewport={{once:true, ...}} ...>\n                                <div\n                                  className=\"\"\n                                  style={{\n-                                   opacity: \"0.96\"\n-                                   transform: \"translateY(8px)\"\n                                  }}\n                                  ref={function useMotionRef.useCallback}\n                                >\n                            <FadeInView delay={0.08}>\n                              <motion.div initial={false} whileInView={{opacity:1,y:0}} viewport={{once:true, ...}} ...>\n                                <div\n                                  className=\"\"\n                                  style={{\n-                                   opacity: \"0.96\"\n-                                   transform: \"translateY(8px)\"\n                                  }}\n                                  ref={function useMotionRef.useCallback}\n                                >\n                            <FadeInView delay={0.16}>\n                              <motion.div initial={false} whileInView={{opacity:1,y:0}} viewport={{once:true, ...}} ...>\n                                <div\n                                  className=\"\"\n                                  style={{\n-                                   opacity: \"0.96\"\n-                                   transform: \"translateY(8px)\"\n                                  }}\n                                  ref={function useMotionRef.useCallback}\n                                >\n                    <section id=\"features\" className=\"bg-white p...\">\n                      <div className=\"mx-auto ma...\">\n                        <BentoFeatureGrid>\n                          <div className=\"grid items...\">\n                            <FadeInView>\n                              <motion.div initial={false} whileInView={{opacity:1,y:0}} viewport={{once:true, ...}} ...>\n                                <div\n                                  className=\"\"\n                                  style={{\n-                                   opacity: \"0.96\"\n-                                   transform: \"translateY(8px)\"\n                                  }}\n                                  ref={function useMotionRef.useCallback}\n                                >\n                            <FadeInView delay={0.08}>\n                              <motion.div initial={false} whileInView={{opacity:1,y:0}} viewport={{once:true, ...}} ...>\n                                <div\n                                  className=\"\"\n                                  style={{\n-                                   opacity: \"0.96\"\n-                                   transform: \"translateY(8px)\"\n                                  }}\n                                  ref={function useMotionRef.useCallback}\n                                >\n                    <section className=\"border-y b...\">\n                      <div className=\"mx-auto ma...\">\n                        <AppShowcase>\n                          <div className=\"grid items...\">\n                            <FadeInView>\n                              <motion.div initial={false} whileInView={{opacity:1,y:0}} viewport={{once:true, ...}} ...>\n                                <div\n                                  className=\"\"\n                                  style={{\n-                                   opacity: \"0.96\"\n-                                   transform: \"translateY(8px)\"\n                                  }}\n                                  ref={function useMotionRef.useCallback}\n                                >\n                            <FadeInView delay={0.08}>\n                              <motion.div initial={false} whileInView={{opacity:1,y:0}} viewport={{once:true, ...}} ...>\n                                <div\n                                  className=\"\"\n                                  style={{\n-                                   opacity: \"0.96\"\n-                                   transform: \"translateY(8px)\"\n                                  }}\n                                  ref={function useMotionRef.useCallback}\n                                >\n                    <section className=\"bg-white p...\">\n                      <div className=\"mx-auto ma...\">\n                        <div className=\"grid items...\">\n                          <FadeInView>\n                            <motion.div initial={false} whileInView={{opacity:1,y:0}} viewport={{once:true, ...}} ...>\n                              <div\n                                className=\"\"\n                                style={{\n-                                 opacity: \"0.96\"\n-                                 transform: \"translateY(8px)\"\n                                }}\n                                ref={function useMotionRef.useCallback}\n                              >\n                          <FadeInView delay={0.08}>\n                            <motion.div initial={false} whileInView={{opacity:1,y:0}} viewport={{once:true, ...}} ...>\n                              <div\n                                className=\"\"\n                                style={{\n-                                 opacity: \"0.96\"\n-                                 transform: \"translateY(8px)\"\n                                }}\n                                ref={function useMotionRef.useCallback}\n                              >\n              ...\n            ...\n"
+        }
+      ],
+      "metrics": {
+        "title": "Pet Safety Map, Smart Tags, and Local Pet Community",
+        "pathname": "/",
+        "textLength": 2933,
+        "h1": {
+          "text": "PawPal pet safety for every walk",
+          "top": 179,
+          "left": 32,
+          "width": 516,
+          "height": 122,
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgb(23, 20, 19)"
+        },
+        "nav": {
+          "text": "PawPal Home Globe About Us Store",
+          "top": -80,
+          "left": 0,
+          "width": 1280,
+          "height": 81,
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgb(58, 47, 42)"
+        },
+        "main": {
+          "text": "",
+          "top": 0,
+          "left": 0,
+          "width": 0,
+          "height": 0,
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgb(58, 47, 42)"
+        },
+        "bodyBackground": "rgb(255, 255, 255)",
+        "bodyColor": "rgb(58, 47, 42)",
+        "colorScheme": "light",
+        "scrollWidth": 1280,
+        "clientWidth": 1280,
+        "bodyScrollWidth": 1280,
+        "horizontalOverflow": false,
+        "frameworkOverlay": false
+      },
+      "pass": false
+    },
+    {
+      "route": "/store",
+      "scheme": "light",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "url": "http://localhost:3000/store",
+      "title": "Store | PawPal",
+      "file": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/assets/review/website-visual-upgrade-2026-06-11/round-07-shared-visual-system-dark-mode/baseline-light-store-390x844.png",
+      "logs": [
+        {
+          "type": "warning",
+          "text": "You have Reduced Motion enabled on your device. Animations may not appear as expected.. For more information and steps for solving, visit https://motion.dev/troubleshooting/reduced-motion-disabled"
+        },
+        {
+          "type": "error",
+          "text": "A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:\n\n- A server/client branch `if (typeof window !== 'undefined')`.\n- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.\n- Date formatting in a user's locale which doesn't match the server.\n- External changing data without sending a snapshot of it along with the HTML.\n- Invalid HTML tag nesting.\n\nIt can also happen if the client has a browser extension installed which messes with the HTML before React loaded.\n\n%s%s https://react.dev/link/hydration-mismatch \n\n  ...\n    <RedirectBoundary>\n      <RedirectErrorBoundary router={{...}}>\n        <InnerLayoutRouter url=\"/store\" tree={[...]} params={{}} cacheNode={{rsc:<Fragment>, ...}} segmentPath={[...]} ...>\n          <SegmentViewNode type=\"page\" pagePath=\"store/page...\">\n            <SegmentTrieNode>\n            <ClientPageRoot Component={function StorePage} serverProvidedParams={{...}}>\n              <StorePage params={Promise} searchParams={Promise}>\n                <Suspense fallback={<div>}>\n                  <StorePageContent>\n                    <div className=\"relative m...\">\n                      <section className=\"relative o...\">\n                        <div>\n                        <div className=\"mx-auto gr...\">\n                          <div>\n                            <motion.h1 initial={false} animate={{opacity:1,y:0}} transition={{duration:0}} ...>\n                              <h1\n                                className=\"max-w-3xl text-3xl font-extrabold leading-tight tracking-tight text-paw-ink...\"\n                                style={{\n+                                 opacity: 1\n-                                 opacity: \"0\"\n+                                 transform: \"none\"\n-                                 transform: \"translateY(18px)\"\n                                }}\n                                ref={function useMotionRef.useCallback}\n                              >\n                            <motion.p initial={false} animate={{opacity:1,y:0}} transition={{duration:0}} ...>\n                              <p\n                                className=\"mt-2 max-w-2xl text-base leading-7 text-paw-body md:text-lg\"\n                                style={{\n+                                 opacity: 1\n-                                 opacity: \"0\"\n+                                 transform: \"none\"\n-                                 transform: \"translateY(16px)\"\n                                }}\n                                ref={function useMotionRef.useCallback}\n                              >\n+                               Start with PawPal NFC safety tags, then find practical gear for daily walks, travel, cl...\n                          <div className=\"space-y-3\">\n                            <motion.div initial={false} animate={{opacity:1,y:0}} transition={{duration:0}} ...>\n                              <div\n                                className=\"relative\"\n                                style={{\n+                                 opacity: 1\n-                                 opacity: \"0\"\n+                                 transform: \"none\"\n-                                 transform: \"translateY(14px)\"\n                                }}\n                                ref={function useMotionRef.useCallback}\n                              >\n                        <motion.div initial={false} animate={{opacity:1,y:0}} transition={{duration:0}} ...>\n                          <div\n                            className=\"mx-auto mt-3 grid max-w-7xl grid-cols-3 gap-2 px-4\"\n                            style={{\n+                             opacity: 1\n-                             opacity: \"0\"\n+                             transform: \"none\"\n-                             transform: \"translateY(14px)\"\n                            }}\n                            ref={function useMotionRef.useCallback}\n                          >\n                      <section className=\"bg-paw-acc...\">\n                        <div className=\"mx-auto ma...\">\n                          <div>\n                          <div className=\"-mx-4 mb-2...\">\n                            <motion.button whileTap={undefined} onClick={function onClick} className=\"inline-fle...\">\n                              <button\n                                onClick={function onClick}\n                                className=\"inline-flex shrink-0 items-center gap-1.5 rounded-paw-md border px-3 py-2 t...\"\n                                style={{}}\n                                ref={function useMotionRef.useCallback}\n-                               tabindex=\"0\"\n                              >\n                            <motion.button whileTap={undefined} onClick={function onClick} className=\"inline-fle...\">\n                              <button\n                                onClick={function onClick}\n                                className=\"inline-flex shrink-0 items-center gap-1.5 rounded-paw-md border px-3 py-2 t...\"\n                                style={{}}\n                                ref={function useMotionRef.useCallback}\n-                               tabindex=\"0\"\n                              >\n                            <motion.button whileTap={undefined} onClick={function onClick} className=\"inline-fle...\">\n                              <button\n                                onClick={function onClick}\n                                className=\"inline-flex shrink-0 items-center gap-1.5 rounded-paw-md border px-3 py-2 t...\"\n                                style={{}}\n                                ref={function useMotionRef.useCallback}\n-                               tabindex=\"0\"\n                              >\n                            <motion.button whileTap={undefined} onClick={function onClick} className=\"inline-fle...\">\n                              <button\n                                onClick={function onClick}\n                                className=\"inline-flex shrink-0 items-center gap-1.5 rounded-paw-md border px-3 py-2 t...\"\n                                style={{}}\n                                ref={function useMotionRef.useCallback}\n-                               tabindex=\"0\"\n                              >\n                            <motion.button whileTap={undefined} onClick={function onClick} className=\"inline-fle...\">\n                              <button\n                                onClick={function onClick}\n                                className=\"inline-flex shrink-0 items-center gap-1.5 rounded-paw-md border px-3 py-2 t...\"\n                                style={{}}\n                                ref={function useMotionRef.useCallback}\n-                               tabindex=\"0\"\n                              >\n                          <div>\n                          ...\n                            <AnimatePresence mode=\"popLayout\">\n                              ...\n                                <ProductCard product={{id:\"f1\",name:\"...\", ...}} ...>\n                                  <motion.div layout={false} initial={false} animate={{opacity:1,y:0}} exit={undefined} ...>\n                                    <div\n                                      className=\"relative\"\n                                      style={{\n+                                       opacity: 1\n-                                       opacity: \"0\"\n+                                       transform: \"none\"\n-                                       transform: \"translateY(20px)\"\n                                      }}\n                                      ref={function useMotionRef.useCallback}\n                                    >\n                              ...\n                                <ProductCard product={{id:\"f2\",name:\"...\", ...}} ...>\n                                  <motion.div layout={false} initial={false} animate={{opacity:1,y:0}} exit={undefined} ...>\n                                    <div\n                                      className=\"relative\"\n                                      style={{\n+                                       opacity: 1\n-                                       opacity: \"0\"\n+                                       transform: \"none\"\n-                                       transform: \"translateY(20px)\"\n                                      }}\n                                      ref={function useMotionRef.useCallback}\n                                    >\n                              ...\n                                <ProductCard product={{id:\"f3\",name:\"...\", ...}} ...>\n                                  <motion.div layout={false} initial={false} animate={{opacity:1,y:0}} exit={undefined} ...>\n                                    <div\n                                      className=\"relative\"\n                                      style={{\n+                                       opacity: 1\n-                                       opacity: \"0\"\n+                                       transform: \"none\"\n-                                       transform: \"translateY(20px)\"\n                                      }}\n                                      ref={function useMotionRef.useCallback}\n                                    >\n                              ...\n                                <ProductCard product={{id:\"t1\",name:\"...\", ...}} ...>\n                                  <motion.div layout={false} initial={false} animate={{opacity:1,y:0}} exit={undefined} ...>\n                                    <div\n                                      className=\"relative\"\n                                      style={{\n+                                       opacity: 1\n-                                       opacity: \"0\"\n+                                       transform: \"none\"\n-                                       transform: \"translateY(20px)\"\n                                      }}\n                                      ref={function useMotionRef.useCallback}\n                                    >\n                              ...\n                                <ProductCard product={{id:\"t2\",name:\"...\", ...}} ...>\n                                  <motion.div layout={false} initial={false} animate={{opacity:1,y:0}} exit={undefined} ...>\n                                    <div\n                                      className=\"relative\"\n                                      style={{\n+                                       opacity: 1\n-                                       opacity: \"0\"\n+                                       transform: \"none\"\n-                                       transform: \"translateY(20px)\"\n                                      }}\n                                      ref={function useMotionRef.useCallback}\n                                    >\n                              ...\n                                <ProductCard product={{id:\"t3\",name:\"...\", ...}} ...>\n                                  <motion.div layout={false} initial={false} animate={{opacity:1,y:0}} exit={undefined} ...>\n                                    <div\n                                      className=\"relative\"\n                                      style={{\n+                                       opacity: 1\n-                                       opacity: \"0\"\n+                                       transform: \"none\"\n-                                       transform: \"translateY(20px)\"\n                                      }}\n                                      ref={function useMotionRef.useCallback}\n                                    >\n                              ...\n                                <ProductCard product={{id:\"a1\",name:\"...\", ...}} ...>\n                                  <motion.div layout={false} initial={false} animate={{opacity:1,y:0}} exit={undefined} ...>\n                                    <div\n                                      className=\"relative\"\n                                      style={{\n+                                       opacity: 1\n-                                       opacity: \"0\"\n+                                       transform: \"none\"\n-                                       transform: \"translateY(20px)\"\n                                      }}\n                                      ref={function useMotionRef.useCallback}\n                                    >\n                              ...\n                                <ProductCard product={{id:\"a2\",name:\"...\", ...}} ...>\n                                  <motion.div layout={false} initial={false} animate={{opacity:1,y:0}} exit={undefined} ...>\n                                    <div\n                                      className=\"relative\"\n                                      style={{\n+                                       opacity: 1\n-                                       opacity: \"0\"\n+                                       transform: \"none\"\n-                                       transform: \"translateY(20px)\"\n                                      }}\n                                      ref={function useMotionRef.useCallback}\n                                    >\n                              ...\n                                <ProductCard product={{id:\"a3\",name:\"...\", ...}} ...>\n                                  <motion.div layout={false} initial={false} animate={{opacity:1,y:0}} exit={undefined} ...>\n                                    <div\n                                      className=\"relative\"\n                                      style={{\n+                                       opacity: 1\n-                                       opacity: \"0\"\n+                                       transform: \"none\"\n-                                       transform: \"translateY(20px)\"\n                                      }}\n                                      ref={function useMotionRef.useCallback}\n                                    >\n                              ...\n                                <ProductCard product={{id:\"h1\",name:\"...\", ...}} ...>\n                                  <motion.div layout={false} initial={false} animate={{opacity:1,y:0}} exit={undefined} ...>\n                                    <div\n                                      className=\"relative\"\n                                      style={{\n+                                       opacity: 1\n-                                       opacity: \"0\"\n+                                       transform: \"none\"\n-                                       transform: \"translateY(20px)\"\n                                      }}\n                                      ref={function useMotionRef.useCallback}\n                                    >\n                              ...\n                                <ProductCard product={{id:\"h2\",name:\"...\", ...}} ...>\n                                  <motion.div layout={false} initial={false} animate={{opacity:1,y:0}} exit={undefined} ...>\n                                    <div\n                                      className=\"relative\"\n                                      style={{\n+                                       opacity: 1\n-                                       opacity: \"0\"\n+                                       transform: \"none\"\n-                                       transform: \"translateY(20px)\"\n                                      }}\n                                      ref={function useMotionRef.useCallback}\n                                    >\n                              ...\n                                <ProductCard product={{id:\"h3\",name:\"...\", ...}} ...>\n                                  <motion.div layout={false} initial={false} animate={{opacity:1,y:0}} exit={undefined} ...>\n                                    <div\n                                      className=\"relative\"\n                                      style={{\n+                                       opacity: 1\n-                                       opacity: \"0\"\n+                                       transform: \"none\"\n-                                       transform: \"translateY(20px)\"\n                                      }}\n                                      ref={function useMotionRef.useCallback}\n                                    >\n                      ...\n          ...\n        ...\n"
+        }
+      ],
+      "metrics": {
+        "title": "Store | PawPal",
+        "pathname": "/store",
+        "textLength": 2454,
+        "h1": {
+          "text": "Smart tags and walk gear for safer pet days",
+          "top": 80,
+          "left": 16,
+          "width": 358,
+          "height": 75,
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgb(23, 20, 19)"
+        },
+        "nav": {
+          "text": "PawPal",
+          "top": -29,
+          "left": 0,
+          "width": 390,
+          "height": 81,
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgb(58, 47, 42)"
+        },
+        "main": {
+          "text": "",
+          "top": 0,
+          "left": 0,
+          "width": 0,
+          "height": 0,
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgb(58, 47, 42)"
+        },
+        "bodyBackground": "rgb(255, 255, 255)",
+        "bodyColor": "rgb(58, 47, 42)",
+        "colorScheme": "light",
+        "scrollWidth": 390,
+        "clientWidth": 390,
+        "bodyScrollWidth": 390,
+        "horizontalOverflow": false,
+        "frameworkOverlay": false
+      },
+      "pass": false
+    },
+    {
+      "route": "/store",
+      "scheme": "light",
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "url": "http://localhost:3000/store",
+      "title": "Loading http://localhost:3000/store",
+      "file": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/assets/review/website-visual-upgrade-2026-06-11/round-07-shared-visual-system-dark-mode/baseline-light-store-1280x720.png",
+      "logs": [
+        {
+          "type": "warning",
+          "text": "You have Reduced Motion enabled on your device. Animations may not appear as expected.. For more information and steps for solving, visit https://motion.dev/troubleshooting/reduced-motion-disabled"
+        },
+        {
+          "type": "error",
+          "text": "A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:\n\n- A server/client branch `if (typeof window !== 'undefined')`.\n- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.\n- Date formatting in a user's locale which doesn't match the server.\n- External changing data without sending a snapshot of it along with the HTML.\n- Invalid HTML tag nesting.\n\nIt can also happen if the client has a browser extension installed which messes with the HTML before React loaded.\n\n%s%s https://react.dev/link/hydration-mismatch \n\n  ...\n    <RedirectBoundary>\n      <RedirectErrorBoundary router={{...}}>\n        <InnerLayoutRouter url=\"/store\" tree={[...]} params={{}} cacheNode={{rsc:<Fragment>, ...}} segmentPath={[...]} ...>\n          <SegmentViewNode type=\"page\" pagePath=\"store/page...\">\n            <SegmentTrieNode>\n            <ClientPageRoot Component={function StorePage} serverProvidedParams={{...}}>\n              <StorePage params={Promise} searchParams={Promise}>\n                <Suspense fallback={<div>}>\n                  <StorePageContent>\n                    <div className=\"relative m...\">\n                      <section className=\"relative o...\">\n                        <div>\n                        <div className=\"mx-auto gr...\">\n                          <div>\n                            <motion.h1 initial={false} animate={{opacity:1,y:0}} transition={{duration:0}} ...>\n                              <h1\n                                className=\"max-w-3xl text-3xl font-extrabold leading-tight tracking-tight text-paw-ink...\"\n                                style={{\n+                                 opacity: 1\n-                                 opacity: \"0\"\n+                                 transform: \"none\"\n-                                 transform: \"translateY(18px)\"\n                                }}\n                                ref={function useMotionRef.useCallback}\n                              >\n                            <motion.p initial={false} animate={{opacity:1,y:0}} transition={{duration:0}} ...>\n                              <p\n                                className=\"mt-2 max-w-2xl text-base leading-7 text-paw-body md:text-lg\"\n                                style={{\n+                                 opacity: 1\n-                                 opacity: \"0\"\n+                                 transform: \"none\"\n-                                 transform: \"translateY(16px)\"\n                                }}\n                                ref={function useMotionRef.useCallback}\n                              >\n+                               Start with PawPal NFC safety tags, then find practical gear for daily walks, travel, cl...\n                          <div className=\"space-y-3\">\n                            <motion.div initial={false} animate={{opacity:1,y:0}} transition={{duration:0}} ...>\n                              <div\n                                className=\"relative\"\n                                style={{\n+                                 opacity: 1\n-                                 opacity: \"0\"\n+                                 transform: \"none\"\n-                                 transform: \"translateY(14px)\"\n                                }}\n                                ref={function useMotionRef.useCallback}\n                              >\n                        <motion.div initial={false} animate={{opacity:1,y:0}} transition={{duration:0}} ...>\n                          <div\n                            className=\"mx-auto mt-3 grid max-w-7xl grid-cols-3 gap-2 px-4\"\n                            style={{\n+                             opacity: 1\n-                             opacity: \"0\"\n+                             transform: \"none\"\n-                             transform: \"translateY(14px)\"\n                            }}\n                            ref={function useMotionRef.useCallback}\n                          >\n                      <section className=\"bg-paw-acc...\">\n                        <div className=\"mx-auto ma...\">\n                          <div>\n                          <div className=\"-mx-4 mb-2...\">\n                            <motion.button whileTap={undefined} onClick={function onClick} className=\"inline-fle...\">\n                              <button\n                                onClick={function onClick}\n                                className=\"inline-flex shrink-0 items-center gap-1.5 rounded-paw-md border px-3 py-2 t...\"\n                                style={{}}\n                                ref={function useMotionRef.useCallback}\n-                               tabindex=\"0\"\n                              >\n                            <motion.button whileTap={undefined} onClick={function onClick} className=\"inline-fle...\">\n                              <button\n                                onClick={function onClick}\n                                className=\"inline-flex shrink-0 items-center gap-1.5 rounded-paw-md border px-3 py-2 t...\"\n                                style={{}}\n                                ref={function useMotionRef.useCallback}\n-                               tabindex=\"0\"\n                              >\n                            <motion.button whileTap={undefined} onClick={function onClick} className=\"inline-fle...\">\n                              <button\n                                onClick={function onClick}\n                                className=\"inline-flex shrink-0 items-center gap-1.5 rounded-paw-md border px-3 py-2 t...\"\n                                style={{}}\n                                ref={function useMotionRef.useCallback}\n-                               tabindex=\"0\"\n                              >\n                            <motion.button whileTap={undefined} onClick={function onClick} className=\"inline-fle...\">\n                              <button\n                                onClick={function onClick}\n                                className=\"inline-flex shrink-0 items-center gap-1.5 rounded-paw-md border px-3 py-2 t...\"\n                                style={{}}\n                                ref={function useMotionRef.useCallback}\n-                               tabindex=\"0\"\n                              >\n                            <motion.button whileTap={undefined} onClick={function onClick} className=\"inline-fle...\">\n                              <button\n                                onClick={function onClick}\n                                className=\"inline-flex shrink-0 items-center gap-1.5 rounded-paw-md border px-3 py-2 t...\"\n                                style={{}}\n                                ref={function useMotionRef.useCallback}\n-                               tabindex=\"0\"\n                              >\n                          <div>\n                          ...\n                            <AnimatePresence mode=\"popLayout\">\n                              ...\n                                <ProductCard product={{id:\"f1\",name:\"...\", ...}} ...>\n                                  <motion.div layout={false} initial={false} animate={{opacity:1,y:0}} exit={undefined} ...>\n                                    <div\n                                      className=\"relative\"\n                                      style={{\n+                                       opacity: 1\n-                                       opacity: \"0\"\n+                                       transform: \"none\"\n-                                       transform: \"translateY(20px)\"\n                                      }}\n                                      ref={function useMotionRef.useCallback}\n                                    >\n                              ...\n                                <ProductCard product={{id:\"f2\",name:\"...\", ...}} ...>\n                                  <motion.div layout={false} initial={false} animate={{opacity:1,y:0}} exit={undefined} ...>\n                                    <div\n                                      className=\"relative\"\n                                      style={{\n+                                       opacity: 1\n-                                       opacity: \"0\"\n+                                       transform: \"none\"\n-                                       transform: \"translateY(20px)\"\n                                      }}\n                                      ref={function useMotionRef.useCallback}\n                                    >\n                              ...\n                                <ProductCard product={{id:\"f3\",name:\"...\", ...}} ...>\n                                  <motion.div layout={false} initial={false} animate={{opacity:1,y:0}} exit={undefined} ...>\n                                    <div\n                                      className=\"relative\"\n                                      style={{\n+                                       opacity: 1\n-                                       opacity: \"0\"\n+                                       transform: \"none\"\n-                                       transform: \"translateY(20px)\"\n                                      }}\n                                      ref={function useMotionRef.useCallback}\n                                    >\n                              ...\n                                <ProductCard product={{id:\"t1\",name:\"...\", ...}} ...>\n                                  <motion.div layout={false} initial={false} animate={{opacity:1,y:0}} exit={undefined} ...>\n                                    <div\n                                      className=\"relative\"\n                                      style={{\n+                                       opacity: 1\n-                                       opacity: \"0\"\n+                                       transform: \"none\"\n-                                       transform: \"translateY(20px)\"\n                                      }}\n                                      ref={function useMotionRef.useCallback}\n                                    >\n                              ...\n                                <ProductCard product={{id:\"t2\",name:\"...\", ...}} ...>\n                                  <motion.div layout={false} initial={false} animate={{opacity:1,y:0}} exit={undefined} ...>\n                                    <div\n                                      className=\"relative\"\n                                      style={{\n+                                       opacity: 1\n-                                       opacity: \"0\"\n+                                       transform: \"none\"\n-                                       transform: \"translateY(20px)\"\n                                      }}\n                                      ref={function useMotionRef.useCallback}\n                                    >\n                              ...\n                                <ProductCard product={{id:\"t3\",name:\"...\", ...}} ...>\n                                  <motion.div layout={false} initial={false} animate={{opacity:1,y:0}} exit={undefined} ...>\n                                    <div\n                                      className=\"relative\"\n                                      style={{\n+                                       opacity: 1\n-                                       opacity: \"0\"\n+                                       transform: \"none\"\n-                                       transform: \"translateY(20px)\"\n                                      }}\n                                      ref={function useMotionRef.useCallback}\n                                    >\n                              ...\n                                <ProductCard product={{id:\"a1\",name:\"...\", ...}} ...>\n                                  <motion.div layout={false} initial={false} animate={{opacity:1,y:0}} exit={undefined} ...>\n                                    <div\n                                      className=\"relative\"\n                                      style={{\n+                                       opacity: 1\n-                                       opacity: \"0\"\n+                                       transform: \"none\"\n-                                       transform: \"translateY(20px)\"\n                                      }}\n                                      ref={function useMotionRef.useCallback}\n                                    >\n                              ...\n                                <ProductCard product={{id:\"a2\",name:\"...\", ...}} ...>\n                                  <motion.div layout={false} initial={false} animate={{opacity:1,y:0}} exit={undefined} ...>\n                                    <div\n                                      className=\"relative\"\n                                      style={{\n+                                       opacity: 1\n-                                       opacity: \"0\"\n+                                       transform: \"none\"\n-                                       transform: \"translateY(20px)\"\n                                      }}\n                                      ref={function useMotionRef.useCallback}\n                                    >\n                              ...\n                                <ProductCard product={{id:\"a3\",name:\"...\", ...}} ...>\n                                  <motion.div layout={false} initial={false} animate={{opacity:1,y:0}} exit={undefined} ...>\n                                    <div\n                                      className=\"relative\"\n                                      style={{\n+                                       opacity: 1\n-                                       opacity: \"0\"\n+                                       transform: \"none\"\n-                                       transform: \"translateY(20px)\"\n                                      }}\n                                      ref={function useMotionRef.useCallback}\n                                    >\n                              ...\n                                <ProductCard product={{id:\"h1\",name:\"...\", ...}} ...>\n                                  <motion.div layout={false} initial={false} animate={{opacity:1,y:0}} exit={undefined} ...>\n                                    <div\n                                      className=\"relative\"\n                                      style={{\n+                                       opacity: 1\n-                                       opacity: \"0\"\n+                                       transform: \"none\"\n-                                       transform: \"translateY(20px)\"\n                                      }}\n                                      ref={function useMotionRef.useCallback}\n                                    >\n                              ...\n                                <ProductCard product={{id:\"h2\",name:\"...\", ...}} ...>\n                                  <motion.div layout={false} initial={false} animate={{opacity:1,y:0}} exit={undefined} ...>\n                                    <div\n                                      className=\"relative\"\n                                      style={{\n+                                       opacity: 1\n-                                       opacity: \"0\"\n+                                       transform: \"none\"\n-                                       transform: \"translateY(20px)\"\n                                      }}\n                                      ref={function useMotionRef.useCallback}\n                                    >\n                              ...\n                                <ProductCard product={{id:\"h3\",name:\"...\", ...}} ...>\n                                  <motion.div layout={false} initial={false} animate={{opacity:1,y:0}} exit={undefined} ...>\n                                    <div\n                                      className=\"relative\"\n                                      style={{\n+                                       opacity: 1\n-                                       opacity: \"0\"\n+                                       transform: \"none\"\n-                                       transform: \"translateY(20px)\"\n                                      }}\n                                      ref={function useMotionRef.useCallback}\n                                    >\n                      ...\n          ...\n        ...\n"
+        }
+      ],
+      "metrics": {
+        "title": "Store | PawPal",
+        "pathname": "/store",
+        "textLength": 2675,
+        "h1": {
+          "text": "Smart tags and walk gear for safer pet days",
+          "top": 96,
+          "left": 16,
+          "width": 716,
+          "height": 120,
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgb(23, 20, 19)"
+        },
+        "nav": {
+          "text": "PawPal Home Globe About Us Store Login",
+          "top": -3,
+          "left": 0,
+          "width": 1280,
+          "height": 81,
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgb(58, 47, 42)"
+        },
+        "main": {
+          "text": "",
+          "top": 0,
+          "left": 0,
+          "width": 0,
+          "height": 0,
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgb(58, 47, 42)"
+        },
+        "bodyBackground": "rgb(255, 255, 255)",
+        "bodyColor": "rgb(58, 47, 42)",
+        "colorScheme": "light",
+        "scrollWidth": 1280,
+        "clientWidth": 1280,
+        "bodyScrollWidth": 1280,
+        "horizontalOverflow": false,
+        "frameworkOverlay": false
+      },
+      "pass": false
+    },
+    {
+      "route": "/auth",
+      "scheme": "light",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "url": "http://localhost:3000/auth",
+      "title": "PawPal | Pet Safety Map, Smart Tags, and Local Pet Community",
+      "file": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/assets/review/website-visual-upgrade-2026-06-11/round-07-shared-visual-system-dark-mode/baseline-light-auth-390x844.png",
+      "logs": [],
+      "metrics": {
+        "title": "PawPal | Pet Safety Map, Smart Tags, and Local Pet Community",
+        "pathname": "/auth",
+        "textLength": 780,
+        "h1": {
+          "text": "One login for walks, tags, rescue pages, and store orders.",
+          "top": 0,
+          "left": 0,
+          "width": 0,
+          "height": 0,
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgb(23, 20, 19)"
+        },
+        "nav": {
+          "text": "PawPal",
+          "top": -69,
+          "left": 0,
+          "width": 390,
+          "height": 81,
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgb(58, 47, 42)"
+        },
+        "main": {
+          "text": "",
+          "top": 0,
+          "left": 0,
+          "width": 0,
+          "height": 0,
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgb(58, 47, 42)"
+        },
+        "bodyBackground": "rgb(255, 255, 255)",
+        "bodyColor": "rgb(58, 47, 42)",
+        "colorScheme": "light",
+        "scrollWidth": 390,
+        "clientWidth": 390,
+        "bodyScrollWidth": 390,
+        "horizontalOverflow": false,
+        "frameworkOverlay": false
+      },
+      "pass": true
+    },
+    {
+      "route": "/auth",
+      "scheme": "light",
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "url": "http://localhost:3000/auth",
+      "title": "PawPal | Pet Safety Map, Smart Tags, and Local Pet Community",
+      "file": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/assets/review/website-visual-upgrade-2026-06-11/round-07-shared-visual-system-dark-mode/baseline-light-auth-1280x720.png",
+      "logs": [],
+      "metrics": {
+        "title": "PawPal | Pet Safety Map, Smart Tags, and Local Pet Community",
+        "pathname": "/auth",
+        "textLength": 1184,
+        "h1": {
+          "text": "One login for walks, tags, rescue pages, and store orders.",
+          "top": 210,
+          "left": 81,
+          "width": 576,
+          "height": 180,
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgb(23, 20, 19)"
+        },
+        "nav": {
+          "text": "PawPal Home Globe About Us Store",
+          "top": -53,
+          "left": 0,
+          "width": 1280,
+          "height": 81,
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgb(58, 47, 42)"
+        },
+        "main": {
+          "text": "",
+          "top": 0,
+          "left": 0,
+          "width": 0,
+          "height": 0,
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgb(58, 47, 42)"
+        },
+        "bodyBackground": "rgb(255, 255, 255)",
+        "bodyColor": "rgb(58, 47, 42)",
+        "colorScheme": "light",
+        "scrollWidth": 1280,
+        "clientWidth": 1280,
+        "bodyScrollWidth": 1280,
+        "horizontalOverflow": false,
+        "frameworkOverlay": false
+      },
+      "pass": true
+    },
+    {
+      "route": "/tag/sample-id",
+      "scheme": "light",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "url": "http://localhost:3000/tag/sample-id",
+      "title": "PawPal | Pet Safety Map, Smart Tags, and Local Pet Community",
+      "file": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/assets/review/website-visual-upgrade-2026-06-11/round-07-shared-visual-system-dark-mode/baseline-light-tag-sample-id-390x844.png",
+      "logs": [],
+      "metrics": {
+        "title": "PawPal | Pet Safety Map, Smart Tags, and Local Pet Community",
+        "pathname": "/tag/sample-id",
+        "textLength": 838,
+        "h1": {
+          "text": "This PawPal route is not available.",
+          "top": 226,
+          "left": 20,
+          "width": 350,
+          "height": 90,
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgb(23, 20, 19)"
+        },
+        "nav": {
+          "text": "PawPal",
+          "top": -9,
+          "left": 0,
+          "width": 390,
+          "height": 81,
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgb(58, 47, 42)"
+        },
+        "main": {
+          "text": "",
+          "top": 0,
+          "left": 0,
+          "width": 0,
+          "height": 0,
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgb(58, 47, 42)"
+        },
+        "bodyBackground": "rgb(255, 255, 255)",
+        "bodyColor": "rgb(58, 47, 42)",
+        "colorScheme": "light",
+        "scrollWidth": 390,
+        "clientWidth": 390,
+        "bodyScrollWidth": 390,
+        "horizontalOverflow": false,
+        "frameworkOverlay": false
+      },
+      "pass": true
+    },
+    {
+      "route": "/tag/sample-id",
+      "scheme": "light",
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "url": "http://localhost:3000/tag/sample-id",
+      "title": "PawPal | Pet Safety Map, Smart Tags, and Local Pet Community",
+      "file": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/assets/review/website-visual-upgrade-2026-06-11/round-07-shared-visual-system-dark-mode/baseline-light-tag-sample-id-1280x720.png",
+      "logs": [],
+      "metrics": {
+        "title": "PawPal | Pet Safety Map, Smart Tags, and Local Pet Community",
+        "pathname": "/tag/sample-id",
+        "textLength": 864,
+        "h1": {
+          "text": "This PawPal route is not available.",
+          "top": 226,
+          "left": 128,
+          "width": 446,
+          "height": 225,
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgb(23, 20, 19)"
+        },
+        "nav": {
+          "text": "PawPal Home Globe About Us Store",
+          "top": -74,
+          "left": 0,
+          "width": 1280,
+          "height": 81,
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgb(58, 47, 42)"
+        },
+        "main": {
+          "text": "",
+          "top": 0,
+          "left": 0,
+          "width": 0,
+          "height": 0,
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgb(58, 47, 42)"
+        },
+        "bodyBackground": "rgb(255, 255, 255)",
+        "bodyColor": "rgb(58, 47, 42)",
+        "colorScheme": "light",
+        "scrollWidth": 1280,
+        "clientWidth": 1280,
+        "bodyScrollWidth": 1280,
+        "horizontalOverflow": false,
+        "frameworkOverlay": false
+      },
+      "pass": true
+    },
+    {
+      "route": "/store/checkout",
+      "scheme": "light",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "url": "http://localhost:3000/store/checkout",
+      "title": "Store | PawPal",
+      "file": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/assets/review/website-visual-upgrade-2026-06-11/round-07-shared-visual-system-dark-mode/baseline-light-checkout-390x844.png",
+      "logs": [],
+      "metrics": {
+        "title": "Store | PawPal",
+        "pathname": "/store/checkout",
+        "textLength": 887,
+        "h1": {
+          "text": "Secure checkout",
+          "top": 209,
+          "left": 37,
+          "width": 316,
+          "height": 36,
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgb(23, 20, 19)"
+        },
+        "nav": {
+          "text": "PawPal",
+          "top": -40,
+          "left": 0,
+          "width": 390,
+          "height": 81,
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgb(58, 47, 42)"
+        },
+        "main": {
+          "text": "",
+          "top": 0,
+          "left": 0,
+          "width": 0,
+          "height": 0,
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgb(58, 47, 42)"
+        },
+        "bodyBackground": "rgb(255, 255, 255)",
+        "bodyColor": "rgb(58, 47, 42)",
+        "colorScheme": "light",
+        "scrollWidth": 390,
+        "clientWidth": 390,
+        "bodyScrollWidth": 390,
+        "horizontalOverflow": false,
+        "frameworkOverlay": false
+      },
+      "pass": true
+    },
+    {
+      "route": "/store/checkout",
+      "scheme": "light",
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "url": "http://localhost:3000/store/checkout",
+      "title": "Store | PawPal",
+      "file": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/assets/review/website-visual-upgrade-2026-06-11/round-07-shared-visual-system-dark-mode/baseline-light-checkout-1280x720.png",
+      "logs": [],
+      "metrics": {
+        "title": "Store | PawPal",
+        "pathname": "/store/checkout",
+        "textLength": 943,
+        "h1": {
+          "text": "Secure checkout",
+          "top": 225,
+          "left": 173,
+          "width": 642,
+          "height": 48,
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgb(23, 20, 19)"
+        },
+        "nav": {
+          "text": "PawPal Home Globe About Us Store Login",
+          "top": -15,
+          "left": 0,
+          "width": 1280,
+          "height": 81,
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgb(58, 47, 42)"
+        },
+        "main": {
+          "text": "",
+          "top": 0,
+          "left": 0,
+          "width": 0,
+          "height": 0,
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgb(58, 47, 42)"
+        },
+        "bodyBackground": "rgb(255, 255, 255)",
+        "bodyColor": "rgb(58, 47, 42)",
+        "colorScheme": "light",
+        "scrollWidth": 1280,
+        "clientWidth": 1280,
+        "bodyScrollWidth": 1280,
+        "horizontalOverflow": false,
+        "frameworkOverlay": false
+      },
+      "pass": true
+    },
+    {
+      "route": "/globe",
+      "scheme": "light",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "url": "http://localhost:3000/globe",
+      "title": "Live Pet Globe | PawPal",
+      "file": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/assets/review/website-visual-upgrade-2026-06-11/round-07-shared-visual-system-dark-mode/baseline-light-globe-390x844.png",
+      "logs": [],
+      "metrics": {
+        "title": "Live Pet Globe | PawPal",
+        "pathname": "/globe",
+        "textLength": 126,
+        "h1": {
+          "text": "PawPal Globe",
+          "top": -1,
+          "left": -1,
+          "width": 1,
+          "height": 1,
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgb(58, 47, 42)"
+        },
+        "nav": {
+          "text": "PawPal",
+          "top": -68,
+          "left": 12,
+          "width": 366,
+          "height": 50,
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgb(58, 47, 42)"
+        },
+        "main": {
+          "text": "",
+          "top": 0,
+          "left": 0,
+          "width": 0,
+          "height": 0,
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgb(58, 47, 42)"
+        },
+        "bodyBackground": "rgb(255, 255, 255)",
+        "bodyColor": "rgb(58, 47, 42)",
+        "colorScheme": "light",
+        "scrollWidth": 390,
+        "clientWidth": 390,
+        "bodyScrollWidth": 390,
+        "horizontalOverflow": false,
+        "frameworkOverlay": false
+      },
+      "pass": true
+    },
+    {
+      "route": "/globe",
+      "scheme": "light",
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "url": "http://localhost:3000/globe",
+      "title": "Live Pet Globe | PawPal",
+      "file": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/assets/review/website-visual-upgrade-2026-06-11/round-07-shared-visual-system-dark-mode/baseline-light-globe-1280x720.png",
+      "logs": [],
+      "metrics": {
+        "title": "Live Pet Globe | PawPal",
+        "pathname": "/globe",
+        "textLength": 152,
+        "h1": {
+          "text": "PawPal Globe",
+          "top": -1,
+          "left": -1,
+          "width": 1,
+          "height": 1,
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgb(58, 47, 42)"
+        },
+        "nav": {
+          "text": "PawPal Home Globe About Us Store",
+          "top": -68,
+          "left": 16,
+          "width": 1248,
+          "height": 58,
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgb(58, 47, 42)"
+        },
+        "main": {
+          "text": "",
+          "top": 0,
+          "left": 0,
+          "width": 0,
+          "height": 0,
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgb(58, 47, 42)"
+        },
+        "bodyBackground": "rgb(255, 255, 255)",
+        "bodyColor": "rgb(58, 47, 42)",
+        "colorScheme": "light",
+        "scrollWidth": 1280,
+        "clientWidth": 1280,
+        "bodyScrollWidth": 1280,
+        "horizontalOverflow": false,
+        "frameworkOverlay": false
+      },
+      "pass": true
+    },
+    {
+      "route": "/",
+      "scheme": "dark",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "url": "http://localhost:3000/",
+      "title": "Pet Safety Map, Smart Tags, and Local Pet Community",
+      "file": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/assets/review/website-visual-upgrade-2026-06-11/round-07-shared-visual-system-dark-mode/baseline-dark-home-390x844.png",
+      "logs": [
+        {
+          "type": "warning",
+          "text": "You have Reduced Motion enabled on your device. Animations may not appear as expected.. For more information and steps for solving, visit https://motion.dev/troubleshooting/reduced-motion-disabled"
+        },
+        {
+          "type": "error",
+          "text": "A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:\n\n- A server/client branch `if (typeof window !== 'undefined')`.\n- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.\n- Date formatting in a user's locale which doesn't match the server.\n- External changing data without sending a snapshot of it along with the HTML.\n- Invalid HTML tag nesting.\n\nIt can also happen if the client has a browser extension installed which messes with the HTML before React loaded.\n\n%s%s https://react.dev/link/hydration-mismatch \n\n  ...\n    <HTTPAccessFallbackBoundary notFound={<SegmentViewNode>} forbidden={undefined} unauthorized={undefined}>\n      <HTTPAccessFallbackErrorBoundary pathname=\"/\" notFound={<SegmentViewNode>} forbidden={undefined} ...>\n        <RedirectBoundary>\n          <RedirectErrorBoundary router={{...}}>\n            <InnerLayoutRouter url=\"/\" tree={[...]} params={{}} cacheNode={{rsc:<Fragment>, ...}} segmentPath={[...]} ...>\n              <SegmentViewNode type=\"page\" pagePath=\"page.tsx\">\n                <SegmentTrieNode>\n                <Home>\n                  <div className=\"relative w...\">\n                    <ScrollProgress>\n                    <section className=\"relative i...\">\n                      <HeroBlobs>\n                      <div className=\"mx-auto gr...\">\n                        <FadeIn className=\"z-10 min-w...\">\n                          <motion.div initial={false} animate={{opacity:1,y:0}} transition={{duration:0}} ...>\n                            <div\n                              className=\"z-10 min-w-0 max-w-2xl space-y-5 lg:space-y-7\"\n                              style={{\n+                               opacity: 1\n-                               opacity: \"0\"\n+                               transform: \"none\"\n-                               transform: \"translateY(18px)\"\n                              }}\n                              ref={function useMotionRef.useCallback}\n                            >\n                              <AnimatedHeadline>\n                              <HeroDescription>\n                                <motion.p className=\"max-w-xl b...\" initial={false} animate={{opacity:1,y:0}} ...>\n                                  <p\n                                    className=\"max-w-xl break-words text-lg leading-8 text-paw-body lg:text-xl lg:lead...\"\n                                    style={{\n+                                     opacity: 1\n-                                     opacity: \"0\"\n+                                     transform: \"none\"\n-                                     transform: \"translateY(18px)\"\n                                    }}\n                                    ref={function useMotionRef.useCallback}\n                                  >\n+                                   Built in Belgium, PawPal connects fog-of-war walks, NFC finder profiles, AI care gu...\n                              <HeroCTA>\n                                <motion.div className=\"flex w-ful...\" initial={false} animate={{opacity:1,y:0}} ...>\n                                  <div\n                                    className=\"flex w-full max-w-[calc(100vw-2.5rem)] flex-col gap-3 pt-2 sm:max-w-non...\"\n                                    style={{\n+                                     opacity: 1\n-                                     opacity: \"0\"\n+                                     transform: \"none\"\n-                                     transform: \"translateY(14px)\"\n                                    }}\n                                    ref={function useMotionRef.useCallback}\n                                  >\n                              <div className=\"hidden sm:...\">\n                                <HeroSignalRail>\n                                  <motion.div className=\"hero-signa...\" initial={false} animate={{opacity:1,y:0}} ...>\n                                    <div\n                                      className=\"hero-signal-rail\"\n                                      aria-label=\"PawPal product signals\"\n                                      style={{\n+                                       opacity: 1\n-                                       opacity: \"0\"\n+                                       transform: \"none\"\n-                                       transform: \"translateY(14px)\"\n                                      }}\n                                      ref={function useMotionRef.useCallback}\n                                    >\n                              <div className=\"hidden md:...\">\n                                <HeroBadges>\n                                  <motion.div className=\"grid max-w...\" initial={false} animate={{opacity:1}} ...>\n                                    <div\n                                      className=\"grid max-w-2xl gap-3 pt-2 sm:grid-cols-3\"\n+                                     style={{opacity:1}}\n-                                     style={{opacity:\"0\"}}\n                                      ref={function useMotionRef.useCallback}\n                                    >\n                        <GlobeSection>\n                          <motion.div className=\"hero-globe...\" style={{...}} initial={false} animate={{opacity:1,x:0}} ...>\n                            <div\n                              className=\"hero-globe-upgrade relative mx-auto flex w-full max-w-[calc(100vw-2.5rem)] it...\"\n                              style={{\n+                               minHeight: \"clamp(385px, 72vw, 610px)\"\n+                               opacity: 1\n-                               opacity: \"0\"\n+                               transform: \"none\"\n-                               transform: \"translateX(24px)\"\n-                               min-height: \"clamp(385px, 72vw, 610px)\"\n                              }}\n                              ref={function useMotionRef.useCallback}\n                            >\n                              <div>\n                              <div>\n                              <div>\n                              <div>\n                              <div>\n                              <motion.div className=\"hero-globe...\" initial={false} animate={{opacity:1}} ...>\n                                <div\n                                  className=\"hero-globe-hint-upgraded\"\n+                                 style={{opacity:1}}\n-                                 style={{opacity:\"0\"}}\n                                  ref={function useMotionRef.useCallback}\n                                >\n+                                 Drag to spin\n                    <section>\n                    <LaunchReadinessPanel>\n                      <section className=\"relative o...\">\n                        <div>\n                        <div className=\"mx-auto ma...\">\n                          <div className=\"grid gap-3...\">\n                            <FadeInView>\n                              <motion.div initial={false} whileInView={{opacity:1,y:0}} viewport={{once:true, ...}} ...>\n                                <div\n                                  className=\"\"\n                                  style={{\n-                                   opacity: \"0.96\"\n-                                   transform: \"translateY(8px)\"\n                                  }}\n                                  ref={function useMotionRef.useCallback}\n                                >\n                            <FadeInView>\n                              <motion.div initial={false} whileInView={{opacity:1,y:0}} viewport={{once:true, ...}} ...>\n                                <div\n                                  className=\"\"\n                                  style={{\n-                                   opacity: \"0.96\"\n-                                   transform: \"translateY(8px)\"\n                                  }}\n                                  ref={function useMotionRef.useCallback}\n                                >\n                            <FadeInView>\n                              <motion.div initial={false} whileInView={{opacity:1,y:0}} viewport={{once:true, ...}} ...>\n                                <div\n                                  className=\"\"\n                                  style={{\n-                                   opacity: \"0.96\"\n-                                   transform: \"translateY(8px)\"\n                                  }}\n                                  ref={function useMotionRef.useCallback}\n                                >\n                            <FadeInView>\n                              <motion.div initial={false} whileInView={{opacity:1,y:0}} viewport={{once:true, ...}} ...>\n                                <div\n                                  className=\"\"\n                                  style={{\n-                                   opacity: \"0.96\"\n-                                   transform: \"translateY(8px)\"\n                                  }}\n                                  ref={function useMotionRef.useCallback}\n                                >\n                    <section id=\"workflow\" className=\"bg-white p...\">\n                      <div className=\"mx-auto ma...\">\n                        <FadeInView>\n                          <motion.div initial={false} whileInView={{opacity:1,y:0}} viewport={{once:true, ...}} ...>\n                            <div\n                              className=\"\"\n                              style={{\n-                               opacity: \"0.96\"\n-                               transform: \"translateY(8px)\"\n                              }}\n                              ref={function useMotionRef.useCallback}\n                            >\n                        ...\n                          <div className=\"grid gap-8...\">\n                            <FadeInView delay={0}>\n                              <motion.div initial={false} whileInView={{opacity:1,y:0}} viewport={{once:true, ...}} ...>\n                                <div\n                                  className=\"\"\n                                  style={{\n-                                   opacity: \"0.96\"\n-                                   transform: \"translateY(8px)\"\n                                  }}\n                                  ref={function useMotionRef.useCallback}\n                                >\n                            <FadeInView delay={0.08}>\n                              <motion.div initial={false} whileInView={{opacity:1,y:0}} viewport={{once:true, ...}} ...>\n                                <div\n                                  className=\"\"\n                                  style={{\n-                                   opacity: \"0.96\"\n-                                   transform: \"translateY(8px)\"\n                                  }}\n                                  ref={function useMotionRef.useCallback}\n                                >\n                            <FadeInView delay={0.16}>\n                              <motion.div initial={false} whileInView={{opacity:1,y:0}} viewport={{once:true, ...}} ...>\n                                <div\n                                  className=\"\"\n                                  style={{\n-                                   opacity: \"0.96\"\n-                                   transform: \"translateY(8px)\"\n                                  }}\n                                  ref={function useMotionRef.useCallback}\n                                >\n                    <section id=\"features\" className=\"bg-white p...\">\n                      <div className=\"mx-auto ma...\">\n                        <BentoFeatureGrid>\n                          <div className=\"grid items...\">\n                            <FadeInView>\n                              <motion.div initial={false} whileInView={{opacity:1,y:0}} viewport={{once:true, ...}} ...>\n                                <div\n                                  className=\"\"\n                                  style={{\n-                                   opacity: \"0.96\"\n-                                   transform: \"translateY(8px)\"\n                                  }}\n                                  ref={function useMotionRef.useCallback}\n                                >\n                            <FadeInView delay={0.08}>\n                              <motion.div initial={false} whileInView={{opacity:1,y:0}} viewport={{once:true, ...}} ...>\n                                <div\n                                  className=\"\"\n                                  style={{\n-                                   opacity: \"0.96\"\n-                                   transform: \"translateY(8px)\"\n                                  }}\n                                  ref={function useMotionRef.useCallback}\n                                >\n                    <section className=\"border-y b...\">\n                      <div className=\"mx-auto ma...\">\n                        <AppShowcase>\n                          <div className=\"grid items...\">\n                            <FadeInView>\n                              <motion.div initial={false} whileInView={{opacity:1,y:0}} viewport={{once:true, ...}} ...>\n                                <div\n                                  className=\"\"\n                                  style={{\n-                                   opacity: \"0.96\"\n-                                   transform: \"translateY(8px)\"\n                                  }}\n                                  ref={function useMotionRef.useCallback}\n                                >\n                            <FadeInView delay={0.08}>\n                              <motion.div initial={false} whileInView={{opacity:1,y:0}} viewport={{once:true, ...}} ...>\n                                <div\n                                  className=\"\"\n                                  style={{\n-                                   opacity: \"0.96\"\n-                                   transform: \"translateY(8px)\"\n                                  }}\n                                  ref={function useMotionRef.useCallback}\n                                >\n                    <section className=\"bg-white p...\">\n                      <div className=\"mx-auto ma...\">\n                        <div className=\"grid items...\">\n                          <FadeInView>\n                            <motion.div initial={false} whileInView={{opacity:1,y:0}} viewport={{once:true, ...}} ...>\n                              <div\n                                className=\"\"\n                                style={{\n-                                 opacity: \"0.96\"\n-                                 transform: \"translateY(8px)\"\n                                }}\n                                ref={function useMotionRef.useCallback}\n                              >\n                          <FadeInView delay={0.08}>\n                            <motion.div initial={false} whileInView={{opacity:1,y:0}} viewport={{once:true, ...}} ...>\n                              <div\n                                className=\"\"\n                                style={{\n-                                 opacity: \"0.96\"\n-                                 transform: \"translateY(8px)\"\n                                }}\n                                ref={function useMotionRef.useCallback}\n                              >\n              ...\n            ...\n"
+        }
+      ],
+      "metrics": {
+        "title": "Pet Safety Map, Smart Tags, and Local Pet Community",
+        "pathname": "/",
+        "textLength": 2722,
+        "h1": {
+          "text": "PawPal pet safety for every walk",
+          "top": 100,
+          "left": 16,
+          "width": 358,
+          "height": 196,
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgb(23, 20, 19)"
+        },
+        "nav": {
+          "text": "PawPal",
+          "top": -80,
+          "left": 0,
+          "width": 390,
+          "height": 81,
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgb(23, 20, 19)"
+        },
+        "main": {
+          "text": "",
+          "top": 0,
+          "left": 0,
+          "width": 0,
+          "height": 0,
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgb(23, 20, 19)"
+        },
+        "bodyBackground": "rgb(255, 255, 255)",
+        "bodyColor": "rgb(23, 20, 19)",
+        "colorScheme": "light",
+        "scrollWidth": 390,
+        "clientWidth": 390,
+        "bodyScrollWidth": 390,
+        "horizontalOverflow": false,
+        "frameworkOverlay": false
+      },
+      "pass": false
+    },
+    {
+      "route": "/",
+      "scheme": "dark",
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "url": "http://localhost:3000/",
+      "title": "Pet Safety Map, Smart Tags, and Local Pet Community",
+      "file": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/assets/review/website-visual-upgrade-2026-06-11/round-07-shared-visual-system-dark-mode/baseline-dark-home-1280x720.png",
+      "logs": [
+        {
+          "type": "warning",
+          "text": "You have Reduced Motion enabled on your device. Animations may not appear as expected.. For more information and steps for solving, visit https://motion.dev/troubleshooting/reduced-motion-disabled"
+        },
+        {
+          "type": "error",
+          "text": "A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:\n\n- A server/client branch `if (typeof window !== 'undefined')`.\n- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.\n- Date formatting in a user's locale which doesn't match the server.\n- External changing data without sending a snapshot of it along with the HTML.\n- Invalid HTML tag nesting.\n\nIt can also happen if the client has a browser extension installed which messes with the HTML before React loaded.\n\n%s%s https://react.dev/link/hydration-mismatch \n\n  ...\n    <HTTPAccessFallbackBoundary notFound={<SegmentViewNode>} forbidden={undefined} unauthorized={undefined}>\n      <HTTPAccessFallbackErrorBoundary pathname=\"/\" notFound={<SegmentViewNode>} forbidden={undefined} ...>\n        <RedirectBoundary>\n          <RedirectErrorBoundary router={{...}}>\n            <InnerLayoutRouter url=\"/\" tree={[...]} params={{}} cacheNode={{rsc:<Fragment>, ...}} segmentPath={[...]} ...>\n              <SegmentViewNode type=\"page\" pagePath=\"page.tsx\">\n                <SegmentTrieNode>\n                <Home>\n                  <div className=\"relative w...\">\n                    <ScrollProgress>\n                    <section className=\"relative i...\">\n                      <HeroBlobs>\n                      <div className=\"mx-auto gr...\">\n                        <FadeIn className=\"z-10 min-w...\">\n                          <motion.div initial={false} animate={{opacity:1,y:0}} transition={{duration:0}} ...>\n                            <div\n                              className=\"z-10 min-w-0 max-w-2xl space-y-5 lg:space-y-7\"\n                              style={{\n+                               opacity: 1\n-                               opacity: \"0\"\n+                               transform: \"none\"\n-                               transform: \"translateY(18px)\"\n                              }}\n                              ref={function useMotionRef.useCallback}\n                            >\n                              <AnimatedHeadline>\n                              <HeroDescription>\n                                <motion.p className=\"max-w-xl b...\" initial={false} animate={{opacity:1,y:0}} ...>\n                                  <p\n                                    className=\"max-w-xl break-words text-lg leading-8 text-paw-body lg:text-xl lg:lead...\"\n                                    style={{\n+                                     opacity: 1\n-                                     opacity: \"0\"\n+                                     transform: \"none\"\n-                                     transform: \"translateY(18px)\"\n                                    }}\n                                    ref={function useMotionRef.useCallback}\n                                  >\n+                                   Built in Belgium, PawPal connects fog-of-war walks, NFC finder profiles, AI care gu...\n                              <HeroCTA>\n                                <motion.div className=\"flex w-ful...\" initial={false} animate={{opacity:1,y:0}} ...>\n                                  <div\n                                    className=\"flex w-full max-w-[calc(100vw-2.5rem)] flex-col gap-3 pt-2 sm:max-w-non...\"\n                                    style={{\n+                                     opacity: 1\n-                                     opacity: \"0\"\n+                                     transform: \"none\"\n-                                     transform: \"translateY(14px)\"\n                                    }}\n                                    ref={function useMotionRef.useCallback}\n                                  >\n                              <div className=\"hidden sm:...\">\n                                <HeroSignalRail>\n                                  <motion.div className=\"hero-signa...\" initial={false} animate={{opacity:1,y:0}} ...>\n                                    <div\n                                      className=\"hero-signal-rail\"\n                                      aria-label=\"PawPal product signals\"\n                                      style={{\n+                                       opacity: 1\n-                                       opacity: \"0\"\n+                                       transform: \"none\"\n-                                       transform: \"translateY(14px)\"\n                                      }}\n                                      ref={function useMotionRef.useCallback}\n                                    >\n                              <div className=\"hidden md:...\">\n                                <HeroBadges>\n                                  <motion.div className=\"grid max-w...\" initial={false} animate={{opacity:1}} ...>\n                                    <div\n                                      className=\"grid max-w-2xl gap-3 pt-2 sm:grid-cols-3\"\n+                                     style={{opacity:1}}\n-                                     style={{opacity:\"0\"}}\n                                      ref={function useMotionRef.useCallback}\n                                    >\n                        <GlobeSection>\n                          <motion.div className=\"hero-globe...\" style={{...}} initial={false} animate={{opacity:1,x:0}} ...>\n                            <div\n                              className=\"hero-globe-upgrade relative mx-auto flex w-full max-w-[calc(100vw-2.5rem)] it...\"\n                              style={{\n+                               minHeight: \"clamp(385px, 72vw, 610px)\"\n+                               opacity: 1\n-                               opacity: \"0\"\n+                               transform: \"none\"\n-                               transform: \"translateX(24px)\"\n-                               min-height: \"clamp(385px, 72vw, 610px)\"\n                              }}\n                              ref={function useMotionRef.useCallback}\n                            >\n                              <div>\n                              <div>\n                              <div>\n                              <div>\n                              <div>\n                              <motion.div className=\"hero-globe...\" initial={false} animate={{opacity:1}} ...>\n                                <div\n                                  className=\"hero-globe-hint-upgraded\"\n+                                 style={{opacity:1}}\n-                                 style={{opacity:\"0\"}}\n                                  ref={function useMotionRef.useCallback}\n                                >\n+                                 Drag to spin\n                    <section>\n                    <LaunchReadinessPanel>\n                      <section className=\"relative o...\">\n                        <div>\n                        <div className=\"mx-auto ma...\">\n                          <div className=\"grid gap-3...\">\n                            <FadeInView>\n                              <motion.div initial={false} whileInView={{opacity:1,y:0}} viewport={{once:true, ...}} ...>\n                                <div\n                                  className=\"\"\n                                  style={{\n-                                   opacity: \"0.96\"\n-                                   transform: \"translateY(8px)\"\n                                  }}\n                                  ref={function useMotionRef.useCallback}\n                                >\n                            <FadeInView>\n                              <motion.div initial={false} whileInView={{opacity:1,y:0}} viewport={{once:true, ...}} ...>\n                                <div\n                                  className=\"\"\n                                  style={{\n-                                   opacity: \"0.96\"\n-                                   transform: \"translateY(8px)\"\n                                  }}\n                                  ref={function useMotionRef.useCallback}\n                                >\n                            <FadeInView>\n                              <motion.div initial={false} whileInView={{opacity:1,y:0}} viewport={{once:true, ...}} ...>\n                                <div\n                                  className=\"\"\n                                  style={{\n-                                   opacity: \"0.96\"\n-                                   transform: \"translateY(8px)\"\n                                  }}\n                                  ref={function useMotionRef.useCallback}\n                                >\n                            <FadeInView>\n                              <motion.div initial={false} whileInView={{opacity:1,y:0}} viewport={{once:true, ...}} ...>\n                                <div\n                                  className=\"\"\n                                  style={{\n-                                   opacity: \"0.96\"\n-                                   transform: \"translateY(8px)\"\n                                  }}\n                                  ref={function useMotionRef.useCallback}\n                                >\n                    <section id=\"workflow\" className=\"bg-white p...\">\n                      <div className=\"mx-auto ma...\">\n                        <FadeInView>\n                          <motion.div initial={false} whileInView={{opacity:1,y:0}} viewport={{once:true, ...}} ...>\n                            <div\n                              className=\"\"\n                              style={{\n-                               opacity: \"0.96\"\n-                               transform: \"translateY(8px)\"\n                              }}\n                              ref={function useMotionRef.useCallback}\n                            >\n                        ...\n                          <div className=\"grid gap-8...\">\n                            <FadeInView delay={0}>\n                              <motion.div initial={false} whileInView={{opacity:1,y:0}} viewport={{once:true, ...}} ...>\n                                <div\n                                  className=\"\"\n                                  style={{\n-                                   opacity: \"0.96\"\n-                                   transform: \"translateY(8px)\"\n                                  }}\n                                  ref={function useMotionRef.useCallback}\n                                >\n                            <FadeInView delay={0.08}>\n                              <motion.div initial={false} whileInView={{opacity:1,y:0}} viewport={{once:true, ...}} ...>\n                                <div\n                                  className=\"\"\n                                  style={{\n-                                   opacity: \"0.96\"\n-                                   transform: \"translateY(8px)\"\n                                  }}\n                                  ref={function useMotionRef.useCallback}\n                                >\n                            <FadeInView delay={0.16}>\n                              <motion.div initial={false} whileInView={{opacity:1,y:0}} viewport={{once:true, ...}} ...>\n                                <div\n                                  className=\"\"\n                                  style={{\n-                                   opacity: \"0.96\"\n-                                   transform: \"translateY(8px)\"\n                                  }}\n                                  ref={function useMotionRef.useCallback}\n                                >\n                    <section id=\"features\" className=\"bg-white p...\">\n                      <div className=\"mx-auto ma...\">\n                        <BentoFeatureGrid>\n                          <div className=\"grid items...\">\n                            <FadeInView>\n                              <motion.div initial={false} whileInView={{opacity:1,y:0}} viewport={{once:true, ...}} ...>\n                                <div\n                                  className=\"\"\n                                  style={{\n-                                   opacity: \"0.96\"\n-                                   transform: \"translateY(8px)\"\n                                  }}\n                                  ref={function useMotionRef.useCallback}\n                                >\n                            <FadeInView delay={0.08}>\n                              <motion.div initial={false} whileInView={{opacity:1,y:0}} viewport={{once:true, ...}} ...>\n                                <div\n                                  className=\"\"\n                                  style={{\n-                                   opacity: \"0.96\"\n-                                   transform: \"translateY(8px)\"\n                                  }}\n                                  ref={function useMotionRef.useCallback}\n                                >\n                    <section className=\"border-y b...\">\n                      <div className=\"mx-auto ma...\">\n                        <AppShowcase>\n                          <div className=\"grid items...\">\n                            <FadeInView>\n                              <motion.div initial={false} whileInView={{opacity:1,y:0}} viewport={{once:true, ...}} ...>\n                                <div\n                                  className=\"\"\n                                  style={{\n-                                   opacity: \"0.96\"\n-                                   transform: \"translateY(8px)\"\n                                  }}\n                                  ref={function useMotionRef.useCallback}\n                                >\n                            <FadeInView delay={0.08}>\n                              <motion.div initial={false} whileInView={{opacity:1,y:0}} viewport={{once:true, ...}} ...>\n                                <div\n                                  className=\"\"\n                                  style={{\n-                                   opacity: \"0.96\"\n-                                   transform: \"translateY(8px)\"\n                                  }}\n                                  ref={function useMotionRef.useCallback}\n                                >\n                    <section className=\"bg-white p...\">\n                      <div className=\"mx-auto ma...\">\n                        <div className=\"grid items...\">\n                          <FadeInView>\n                            <motion.div initial={false} whileInView={{opacity:1,y:0}} viewport={{once:true, ...}} ...>\n                              <div\n                                className=\"\"\n                                style={{\n-                                 opacity: \"0.96\"\n-                                 transform: \"translateY(8px)\"\n                                }}\n                                ref={function useMotionRef.useCallback}\n                              >\n                          <FadeInView delay={0.08}>\n                            <motion.div initial={false} whileInView={{opacity:1,y:0}} viewport={{once:true, ...}} ...>\n                              <div\n                                className=\"\"\n                                style={{\n-                                 opacity: \"0.96\"\n-                                 transform: \"translateY(8px)\"\n                                }}\n                                ref={function useMotionRef.useCallback}\n                              >\n              ...\n            ...\n"
+        },
+        {
+          "type": "warning",
+          "text": "[.WebGL-0x13c05d89a00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels"
+        }
+      ],
+      "metrics": {
+        "title": "Pet Safety Map, Smart Tags, and Local Pet Community",
+        "pathname": "/",
+        "textLength": 2939,
+        "h1": {
+          "text": "PawPal pet safety for every walk",
+          "top": 161,
+          "left": 32,
+          "width": 516,
+          "height": 122,
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgb(23, 20, 19)"
+        },
+        "nav": {
+          "text": "PawPal Home Globe About Us Store Login",
+          "top": -8,
+          "left": 0,
+          "width": 1280,
+          "height": 81,
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgb(23, 20, 19)"
+        },
+        "main": {
+          "text": "",
+          "top": 0,
+          "left": 0,
+          "width": 0,
+          "height": 0,
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgb(23, 20, 19)"
+        },
+        "bodyBackground": "rgb(255, 255, 255)",
+        "bodyColor": "rgb(23, 20, 19)",
+        "colorScheme": "light",
+        "scrollWidth": 1280,
+        "clientWidth": 1280,
+        "bodyScrollWidth": 1280,
+        "horizontalOverflow": false,
+        "frameworkOverlay": false
+      },
+      "pass": false
+    },
+    {
+      "route": "/store",
+      "scheme": "dark",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "url": "http://localhost:3000/store",
+      "title": "Store | PawPal",
+      "file": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/assets/review/website-visual-upgrade-2026-06-11/round-07-shared-visual-system-dark-mode/baseline-dark-store-390x844.png",
+      "logs": [
+        {
+          "type": "warning",
+          "text": "You have Reduced Motion enabled on your device. Animations may not appear as expected.. For more information and steps for solving, visit https://motion.dev/troubleshooting/reduced-motion-disabled"
+        },
+        {
+          "type": "error",
+          "text": "A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:\n\n- A server/client branch `if (typeof window !== 'undefined')`.\n- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.\n- Date formatting in a user's locale which doesn't match the server.\n- External changing data without sending a snapshot of it along with the HTML.\n- Invalid HTML tag nesting.\n\nIt can also happen if the client has a browser extension installed which messes with the HTML before React loaded.\n\n%s%s https://react.dev/link/hydration-mismatch \n\n  ...\n    <RedirectBoundary>\n      <RedirectErrorBoundary router={{...}}>\n        <InnerLayoutRouter url=\"/store\" tree={[...]} params={{}} cacheNode={{rsc:<Fragment>, ...}} segmentPath={[...]} ...>\n          <SegmentViewNode type=\"page\" pagePath=\"store/page...\">\n            <SegmentTrieNode>\n            <ClientPageRoot Component={function StorePage} serverProvidedParams={{...}}>\n              <StorePage params={Promise} searchParams={Promise}>\n                <Suspense fallback={<div>}>\n                  <StorePageContent>\n                    <div className=\"relative m...\">\n                      <section className=\"relative o...\">\n                        <div>\n                        <div className=\"mx-auto gr...\">\n                          <div>\n                            <motion.h1 initial={false} animate={{opacity:1,y:0}} transition={{duration:0}} ...>\n                              <h1\n                                className=\"max-w-3xl text-3xl font-extrabold leading-tight tracking-tight text-paw-ink...\"\n                                style={{\n+                                 opacity: 1\n-                                 opacity: \"0\"\n+                                 transform: \"none\"\n-                                 transform: \"translateY(18px)\"\n                                }}\n                                ref={function useMotionRef.useCallback}\n                              >\n                            <motion.p initial={false} animate={{opacity:1,y:0}} transition={{duration:0}} ...>\n                              <p\n                                className=\"mt-2 max-w-2xl text-base leading-7 text-paw-body md:text-lg\"\n                                style={{\n+                                 opacity: 1\n-                                 opacity: \"0\"\n+                                 transform: \"none\"\n-                                 transform: \"translateY(16px)\"\n                                }}\n                                ref={function useMotionRef.useCallback}\n                              >\n+                               Start with PawPal NFC safety tags, then find practical gear for daily walks, travel, cl...\n                          <div className=\"space-y-3\">\n                            <motion.div initial={false} animate={{opacity:1,y:0}} transition={{duration:0}} ...>\n                              <div\n                                className=\"relative\"\n                                style={{\n+                                 opacity: 1\n-                                 opacity: \"0\"\n+                                 transform: \"none\"\n-                                 transform: \"translateY(14px)\"\n                                }}\n                                ref={function useMotionRef.useCallback}\n                              >\n                        <motion.div initial={false} animate={{opacity:1,y:0}} transition={{duration:0}} ...>\n                          <div\n                            className=\"mx-auto mt-3 grid max-w-7xl grid-cols-3 gap-2 px-4\"\n                            style={{\n+                             opacity: 1\n-                             opacity: \"0\"\n+                             transform: \"none\"\n-                             transform: \"translateY(14px)\"\n                            }}\n                            ref={function useMotionRef.useCallback}\n                          >\n                      <section className=\"bg-paw-acc...\">\n                        <div className=\"mx-auto ma...\">\n                          <div>\n                          <div className=\"-mx-4 mb-2...\">\n                            <motion.button whileTap={undefined} onClick={function onClick} className=\"inline-fle...\">\n                              <button\n                                onClick={function onClick}\n                                className=\"inline-flex shrink-0 items-center gap-1.5 rounded-paw-md border px-3 py-2 t...\"\n                                style={{}}\n                                ref={function useMotionRef.useCallback}\n-                               tabindex=\"0\"\n                              >\n                            <motion.button whileTap={undefined} onClick={function onClick} className=\"inline-fle...\">\n                              <button\n                                onClick={function onClick}\n                                className=\"inline-flex shrink-0 items-center gap-1.5 rounded-paw-md border px-3 py-2 t...\"\n                                style={{}}\n                                ref={function useMotionRef.useCallback}\n-                               tabindex=\"0\"\n                              >\n                            <motion.button whileTap={undefined} onClick={function onClick} className=\"inline-fle...\">\n                              <button\n                                onClick={function onClick}\n                                className=\"inline-flex shrink-0 items-center gap-1.5 rounded-paw-md border px-3 py-2 t...\"\n                                style={{}}\n                                ref={function useMotionRef.useCallback}\n-                               tabindex=\"0\"\n                              >\n                            <motion.button whileTap={undefined} onClick={function onClick} className=\"inline-fle...\">\n                              <button\n                                onClick={function onClick}\n                                className=\"inline-flex shrink-0 items-center gap-1.5 rounded-paw-md border px-3 py-2 t...\"\n                                style={{}}\n                                ref={function useMotionRef.useCallback}\n-                               tabindex=\"0\"\n                              >\n                            <motion.button whileTap={undefined} onClick={function onClick} className=\"inline-fle...\">\n                              <button\n                                onClick={function onClick}\n                                className=\"inline-flex shrink-0 items-center gap-1.5 rounded-paw-md border px-3 py-2 t...\"\n                                style={{}}\n                                ref={function useMotionRef.useCallback}\n-                               tabindex=\"0\"\n                              >\n                          <div>\n                          ...\n                            <AnimatePresence mode=\"popLayout\">\n                              ...\n                                <ProductCard product={{id:\"f1\",name:\"...\", ...}} ...>\n                                  <motion.div layout={false} initial={false} animate={{opacity:1,y:0}} exit={undefined} ...>\n                                    <div\n                                      className=\"relative\"\n                                      style={{\n+                                       opacity: 1\n-                                       opacity: \"0\"\n+                                       transform: \"none\"\n-                                       transform: \"translateY(20px)\"\n                                      }}\n                                      ref={function useMotionRef.useCallback}\n                                    >\n                              ...\n                                <ProductCard product={{id:\"f2\",name:\"...\", ...}} ...>\n                                  <motion.div layout={false} initial={false} animate={{opacity:1,y:0}} exit={undefined} ...>\n                                    <div\n                                      className=\"relative\"\n                                      style={{\n+                                       opacity: 1\n-                                       opacity: \"0\"\n+                                       transform: \"none\"\n-                                       transform: \"translateY(20px)\"\n                                      }}\n                                      ref={function useMotionRef.useCallback}\n                                    >\n                              ...\n                                <ProductCard product={{id:\"f3\",name:\"...\", ...}} ...>\n                                  <motion.div layout={false} initial={false} animate={{opacity:1,y:0}} exit={undefined} ...>\n                                    <div\n                                      className=\"relative\"\n                                      style={{\n+                                       opacity: 1\n-                                       opacity: \"0\"\n+                                       transform: \"none\"\n-                                       transform: \"translateY(20px)\"\n                                      }}\n                                      ref={function useMotionRef.useCallback}\n                                    >\n                              ...\n                                <ProductCard product={{id:\"t1\",name:\"...\", ...}} ...>\n                                  <motion.div layout={false} initial={false} animate={{opacity:1,y:0}} exit={undefined} ...>\n                                    <div\n                                      className=\"relative\"\n                                      style={{\n+                                       opacity: 1\n-                                       opacity: \"0\"\n+                                       transform: \"none\"\n-                                       transform: \"translateY(20px)\"\n                                      }}\n                                      ref={function useMotionRef.useCallback}\n                                    >\n                              ...\n                                <ProductCard product={{id:\"t2\",name:\"...\", ...}} ...>\n                                  <motion.div layout={false} initial={false} animate={{opacity:1,y:0}} exit={undefined} ...>\n                                    <div\n                                      className=\"relative\"\n                                      style={{\n+                                       opacity: 1\n-                                       opacity: \"0\"\n+                                       transform: \"none\"\n-                                       transform: \"translateY(20px)\"\n                                      }}\n                                      ref={function useMotionRef.useCallback}\n                                    >\n                              ...\n                                <ProductCard product={{id:\"t3\",name:\"...\", ...}} ...>\n                                  <motion.div layout={false} initial={false} animate={{opacity:1,y:0}} exit={undefined} ...>\n                                    <div\n                                      className=\"relative\"\n                                      style={{\n+                                       opacity: 1\n-                                       opacity: \"0\"\n+                                       transform: \"none\"\n-                                       transform: \"translateY(20px)\"\n                                      }}\n                                      ref={function useMotionRef.useCallback}\n                                    >\n                              ...\n                                <ProductCard product={{id:\"a1\",name:\"...\", ...}} ...>\n                                  <motion.div layout={false} initial={false} animate={{opacity:1,y:0}} exit={undefined} ...>\n                                    <div\n                                      className=\"relative\"\n                                      style={{\n+                                       opacity: 1\n-                                       opacity: \"0\"\n+                                       transform: \"none\"\n-                                       transform: \"translateY(20px)\"\n                                      }}\n                                      ref={function useMotionRef.useCallback}\n                                    >\n                              ...\n                                <ProductCard product={{id:\"a2\",name:\"...\", ...}} ...>\n                                  <motion.div layout={false} initial={false} animate={{opacity:1,y:0}} exit={undefined} ...>\n                                    <div\n                                      className=\"relative\"\n                                      style={{\n+                                       opacity: 1\n-                                       opacity: \"0\"\n+                                       transform: \"none\"\n-                                       transform: \"translateY(20px)\"\n                                      }}\n                                      ref={function useMotionRef.useCallback}\n                                    >\n                              ...\n                                <ProductCard product={{id:\"a3\",name:\"...\", ...}} ...>\n                                  <motion.div layout={false} initial={false} animate={{opacity:1,y:0}} exit={undefined} ...>\n                                    <div\n                                      className=\"relative\"\n                                      style={{\n+                                       opacity: 1\n-                                       opacity: \"0\"\n+                                       transform: \"none\"\n-                                       transform: \"translateY(20px)\"\n                                      }}\n                                      ref={function useMotionRef.useCallback}\n                                    >\n                              ...\n                                <ProductCard product={{id:\"h1\",name:\"...\", ...}} ...>\n                                  <motion.div layout={false} initial={false} animate={{opacity:1,y:0}} exit={undefined} ...>\n                                    <div\n                                      className=\"relative\"\n                                      style={{\n+                                       opacity: 1\n-                                       opacity: \"0\"\n+                                       transform: \"none\"\n-                                       transform: \"translateY(20px)\"\n                                      }}\n                                      ref={function useMotionRef.useCallback}\n                                    >\n                              ...\n                                <ProductCard product={{id:\"h2\",name:\"...\", ...}} ...>\n                                  <motion.div layout={false} initial={false} animate={{opacity:1,y:0}} exit={undefined} ...>\n                                    <div\n                                      className=\"relative\"\n                                      style={{\n+                                       opacity: 1\n-                                       opacity: \"0\"\n+                                       transform: \"none\"\n-                                       transform: \"translateY(20px)\"\n                                      }}\n                                      ref={function useMotionRef.useCallback}\n                                    >\n                              ...\n                                <ProductCard product={{id:\"h3\",name:\"...\", ...}} ...>\n                                  <motion.div layout={false} initial={false} animate={{opacity:1,y:0}} exit={undefined} ...>\n                                    <div\n                                      className=\"relative\"\n                                      style={{\n+                                       opacity: 1\n-                                       opacity: \"0\"\n+                                       transform: \"none\"\n-                                       transform: \"translateY(20px)\"\n                                      }}\n                                      ref={function useMotionRef.useCallback}\n                                    >\n                      ...\n          ...\n        ...\n"
+        }
+      ],
+      "metrics": {
+        "title": "Store | PawPal",
+        "pathname": "/store",
+        "textLength": 2454,
+        "h1": {
+          "text": "Smart tags and walk gear for safer pet days",
+          "top": 98,
+          "left": 16,
+          "width": 358,
+          "height": 75,
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgb(23, 20, 19)"
+        },
+        "nav": {
+          "text": "PawPal",
+          "top": -72,
+          "left": 0,
+          "width": 390,
+          "height": 81,
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgb(23, 20, 19)"
+        },
+        "main": {
+          "text": "",
+          "top": 0,
+          "left": 0,
+          "width": 0,
+          "height": 0,
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgb(23, 20, 19)"
+        },
+        "bodyBackground": "rgb(255, 255, 255)",
+        "bodyColor": "rgb(23, 20, 19)",
+        "colorScheme": "light",
+        "scrollWidth": 390,
+        "clientWidth": 390,
+        "bodyScrollWidth": 390,
+        "horizontalOverflow": false,
+        "frameworkOverlay": false
+      },
+      "pass": false
+    },
+    {
+      "route": "/store",
+      "scheme": "dark",
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "url": "http://localhost:3000/store",
+      "title": "",
+      "file": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/assets/review/website-visual-upgrade-2026-06-11/round-07-shared-visual-system-dark-mode/baseline-dark-store-1280x720.png",
+      "logs": [
+        {
+          "type": "warning",
+          "text": "You have Reduced Motion enabled on your device. Animations may not appear as expected.. For more information and steps for solving, visit https://motion.dev/troubleshooting/reduced-motion-disabled"
+        },
+        {
+          "type": "error",
+          "text": "A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:\n\n- A server/client branch `if (typeof window !== 'undefined')`.\n- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.\n- Date formatting in a user's locale which doesn't match the server.\n- External changing data without sending a snapshot of it along with the HTML.\n- Invalid HTML tag nesting.\n\nIt can also happen if the client has a browser extension installed which messes with the HTML before React loaded.\n\n%s%s https://react.dev/link/hydration-mismatch \n\n  ...\n    <RedirectBoundary>\n      <RedirectErrorBoundary router={{...}}>\n        <InnerLayoutRouter url=\"/store\" tree={[...]} params={{}} cacheNode={{rsc:<Fragment>, ...}} segmentPath={[...]} ...>\n          <SegmentViewNode type=\"page\" pagePath=\"store/page...\">\n            <SegmentTrieNode>\n            <ClientPageRoot Component={function StorePage} serverProvidedParams={{...}}>\n              <StorePage params={Promise} searchParams={Promise}>\n                <Suspense fallback={<div>}>\n                  <StorePageContent>\n                    <div className=\"relative m...\">\n                      <section className=\"relative o...\">\n                        <div>\n                        <div className=\"mx-auto gr...\">\n                          <div>\n                            <motion.h1 initial={false} animate={{opacity:1,y:0}} transition={{duration:0}} ...>\n                              <h1\n                                className=\"max-w-3xl text-3xl font-extrabold leading-tight tracking-tight text-paw-ink...\"\n                                style={{\n+                                 opacity: 1\n-                                 opacity: \"0\"\n+                                 transform: \"none\"\n-                                 transform: \"translateY(18px)\"\n                                }}\n                                ref={function useMotionRef.useCallback}\n                              >\n                            <motion.p initial={false} animate={{opacity:1,y:0}} transition={{duration:0}} ...>\n                              <p\n                                className=\"mt-2 max-w-2xl text-base leading-7 text-paw-body md:text-lg\"\n                                style={{\n+                                 opacity: 1\n-                                 opacity: \"0\"\n+                                 transform: \"none\"\n-                                 transform: \"translateY(16px)\"\n                                }}\n                                ref={function useMotionRef.useCallback}\n                              >\n+                               Start with PawPal NFC safety tags, then find practical gear for daily walks, travel, cl...\n                          <div className=\"space-y-3\">\n                            <motion.div initial={false} animate={{opacity:1,y:0}} transition={{duration:0}} ...>\n                              <div\n                                className=\"relative\"\n                                style={{\n+                                 opacity: 1\n-                                 opacity: \"0\"\n+                                 transform: \"none\"\n-                                 transform: \"translateY(14px)\"\n                                }}\n                                ref={function useMotionRef.useCallback}\n                              >\n                        <motion.div initial={false} animate={{opacity:1,y:0}} transition={{duration:0}} ...>\n                          <div\n                            className=\"mx-auto mt-3 grid max-w-7xl grid-cols-3 gap-2 px-4\"\n                            style={{\n+                             opacity: 1\n-                             opacity: \"0\"\n+                             transform: \"none\"\n-                             transform: \"translateY(14px)\"\n                            }}\n                            ref={function useMotionRef.useCallback}\n                          >\n                      <section className=\"bg-paw-acc...\">\n                        <div className=\"mx-auto ma...\">\n                          <div>\n                          <div className=\"-mx-4 mb-2...\">\n                            <motion.button whileTap={undefined} onClick={function onClick} className=\"inline-fle...\">\n                              <button\n                                onClick={function onClick}\n                                className=\"inline-flex shrink-0 items-center gap-1.5 rounded-paw-md border px-3 py-2 t...\"\n                                style={{}}\n                                ref={function useMotionRef.useCallback}\n-                               tabindex=\"0\"\n                              >\n                            <motion.button whileTap={undefined} onClick={function onClick} className=\"inline-fle...\">\n                              <button\n                                onClick={function onClick}\n                                className=\"inline-flex shrink-0 items-center gap-1.5 rounded-paw-md border px-3 py-2 t...\"\n                                style={{}}\n                                ref={function useMotionRef.useCallback}\n-                               tabindex=\"0\"\n                              >\n                            <motion.button whileTap={undefined} onClick={function onClick} className=\"inline-fle...\">\n                              <button\n                                onClick={function onClick}\n                                className=\"inline-flex shrink-0 items-center gap-1.5 rounded-paw-md border px-3 py-2 t...\"\n                                style={{}}\n                                ref={function useMotionRef.useCallback}\n-                               tabindex=\"0\"\n                              >\n                            <motion.button whileTap={undefined} onClick={function onClick} className=\"inline-fle...\">\n                              <button\n                                onClick={function onClick}\n                                className=\"inline-flex shrink-0 items-center gap-1.5 rounded-paw-md border px-3 py-2 t...\"\n                                style={{}}\n                                ref={function useMotionRef.useCallback}\n-                               tabindex=\"0\"\n                              >\n                            <motion.button whileTap={undefined} onClick={function onClick} className=\"inline-fle...\">\n                              <button\n                                onClick={function onClick}\n                                className=\"inline-flex shrink-0 items-center gap-1.5 rounded-paw-md border px-3 py-2 t...\"\n                                style={{}}\n                                ref={function useMotionRef.useCallback}\n-                               tabindex=\"0\"\n                              >\n                          <div>\n                          ...\n                            <AnimatePresence mode=\"popLayout\">\n                              ...\n                                <ProductCard product={{id:\"f1\",name:\"...\", ...}} ...>\n                                  <motion.div layout={false} initial={false} animate={{opacity:1,y:0}} exit={undefined} ...>\n                                    <div\n                                      className=\"relative\"\n                                      style={{\n+                                       opacity: 1\n-                                       opacity: \"0\"\n+                                       transform: \"none\"\n-                                       transform: \"translateY(20px)\"\n                                      }}\n                                      ref={function useMotionRef.useCallback}\n                                    >\n                              ...\n                                <ProductCard product={{id:\"f2\",name:\"...\", ...}} ...>\n                                  <motion.div layout={false} initial={false} animate={{opacity:1,y:0}} exit={undefined} ...>\n                                    <div\n                                      className=\"relative\"\n                                      style={{\n+                                       opacity: 1\n-                                       opacity: \"0\"\n+                                       transform: \"none\"\n-                                       transform: \"translateY(20px)\"\n                                      }}\n                                      ref={function useMotionRef.useCallback}\n                                    >\n                              ...\n                                <ProductCard product={{id:\"f3\",name:\"...\", ...}} ...>\n                                  <motion.div layout={false} initial={false} animate={{opacity:1,y:0}} exit={undefined} ...>\n                                    <div\n                                      className=\"relative\"\n                                      style={{\n+                                       opacity: 1\n-                                       opacity: \"0\"\n+                                       transform: \"none\"\n-                                       transform: \"translateY(20px)\"\n                                      }}\n                                      ref={function useMotionRef.useCallback}\n                                    >\n                              ...\n                                <ProductCard product={{id:\"t1\",name:\"...\", ...}} ...>\n                                  <motion.div layout={false} initial={false} animate={{opacity:1,y:0}} exit={undefined} ...>\n                                    <div\n                                      className=\"relative\"\n                                      style={{\n+                                       opacity: 1\n-                                       opacity: \"0\"\n+                                       transform: \"none\"\n-                                       transform: \"translateY(20px)\"\n                                      }}\n                                      ref={function useMotionRef.useCallback}\n                                    >\n                              ...\n                                <ProductCard product={{id:\"t2\",name:\"...\", ...}} ...>\n                                  <motion.div layout={false} initial={false} animate={{opacity:1,y:0}} exit={undefined} ...>\n                                    <div\n                                      className=\"relative\"\n                                      style={{\n+                                       opacity: 1\n-                                       opacity: \"0\"\n+                                       transform: \"none\"\n-                                       transform: \"translateY(20px)\"\n                                      }}\n                                      ref={function useMotionRef.useCallback}\n                                    >\n                              ...\n                                <ProductCard product={{id:\"t3\",name:\"...\", ...}} ...>\n                                  <motion.div layout={false} initial={false} animate={{opacity:1,y:0}} exit={undefined} ...>\n                                    <div\n                                      className=\"relative\"\n                                      style={{\n+                                       opacity: 1\n-                                       opacity: \"0\"\n+                                       transform: \"none\"\n-                                       transform: \"translateY(20px)\"\n                                      }}\n                                      ref={function useMotionRef.useCallback}\n                                    >\n                              ...\n                                <ProductCard product={{id:\"a1\",name:\"...\", ...}} ...>\n                                  <motion.div layout={false} initial={false} animate={{opacity:1,y:0}} exit={undefined} ...>\n                                    <div\n                                      className=\"relative\"\n                                      style={{\n+                                       opacity: 1\n-                                       opacity: \"0\"\n+                                       transform: \"none\"\n-                                       transform: \"translateY(20px)\"\n                                      }}\n                                      ref={function useMotionRef.useCallback}\n                                    >\n                              ...\n                                <ProductCard product={{id:\"a2\",name:\"...\", ...}} ...>\n                                  <motion.div layout={false} initial={false} animate={{opacity:1,y:0}} exit={undefined} ...>\n                                    <div\n                                      className=\"relative\"\n                                      style={{\n+                                       opacity: 1\n-                                       opacity: \"0\"\n+                                       transform: \"none\"\n-                                       transform: \"translateY(20px)\"\n                                      }}\n                                      ref={function useMotionRef.useCallback}\n                                    >\n                              ...\n                                <ProductCard product={{id:\"a3\",name:\"...\", ...}} ...>\n                                  <motion.div layout={false} initial={false} animate={{opacity:1,y:0}} exit={undefined} ...>\n                                    <div\n                                      className=\"relative\"\n                                      style={{\n+                                       opacity: 1\n-                                       opacity: \"0\"\n+                                       transform: \"none\"\n-                                       transform: \"translateY(20px)\"\n                                      }}\n                                      ref={function useMotionRef.useCallback}\n                                    >\n                              ...\n                                <ProductCard product={{id:\"h1\",name:\"...\", ...}} ...>\n                                  <motion.div layout={false} initial={false} animate={{opacity:1,y:0}} exit={undefined} ...>\n                                    <div\n                                      className=\"relative\"\n                                      style={{\n+                                       opacity: 1\n-                                       opacity: \"0\"\n+                                       transform: \"none\"\n-                                       transform: \"translateY(20px)\"\n                                      }}\n                                      ref={function useMotionRef.useCallback}\n                                    >\n                              ...\n                                <ProductCard product={{id:\"h2\",name:\"...\", ...}} ...>\n                                  <motion.div layout={false} initial={false} animate={{opacity:1,y:0}} exit={undefined} ...>\n                                    <div\n                                      className=\"relative\"\n                                      style={{\n+                                       opacity: 1\n-                                       opacity: \"0\"\n+                                       transform: \"none\"\n-                                       transform: \"translateY(20px)\"\n                                      }}\n                                      ref={function useMotionRef.useCallback}\n                                    >\n                              ...\n                                <ProductCard product={{id:\"h3\",name:\"...\", ...}} ...>\n                                  <motion.div layout={false} initial={false} animate={{opacity:1,y:0}} exit={undefined} ...>\n                                    <div\n                                      className=\"relative\"\n                                      style={{\n+                                       opacity: 1\n-                                       opacity: \"0\"\n+                                       transform: \"none\"\n-                                       transform: \"translateY(20px)\"\n                                      }}\n                                      ref={function useMotionRef.useCallback}\n                                    >\n                      ...\n          ...\n        ...\n"
+        }
+      ],
+      "metrics": {
+        "title": "Store | PawPal",
+        "pathname": "/store",
+        "textLength": 2669,
+        "h1": {
+          "text": "Smart tags and walk gear for safer pet days",
+          "top": 96,
+          "left": 16,
+          "width": 716,
+          "height": 120,
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgb(23, 20, 19)"
+        },
+        "nav": {
+          "text": "PawPal Home Globe About Us Store",
+          "top": -13,
+          "left": 0,
+          "width": 1280,
+          "height": 81,
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgb(23, 20, 19)"
+        },
+        "main": {
+          "text": "",
+          "top": 0,
+          "left": 0,
+          "width": 0,
+          "height": 0,
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgb(23, 20, 19)"
+        },
+        "bodyBackground": "rgb(255, 255, 255)",
+        "bodyColor": "rgb(23, 20, 19)",
+        "colorScheme": "light",
+        "scrollWidth": 1280,
+        "clientWidth": 1280,
+        "bodyScrollWidth": 1280,
+        "horizontalOverflow": false,
+        "frameworkOverlay": false
+      },
+      "pass": false
+    },
+    {
+      "route": "/auth",
+      "scheme": "dark",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "url": "http://localhost:3000/auth",
+      "title": "PawPal | Pet Safety Map, Smart Tags, and Local Pet Community",
+      "file": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/assets/review/website-visual-upgrade-2026-06-11/round-07-shared-visual-system-dark-mode/baseline-dark-auth-390x844.png",
+      "logs": [],
+      "metrics": {
+        "title": "PawPal | Pet Safety Map, Smart Tags, and Local Pet Community",
+        "pathname": "/auth",
+        "textLength": 780,
+        "h1": {
+          "text": "One login for walks, tags, rescue pages, and store orders.",
+          "top": 0,
+          "left": 0,
+          "width": 0,
+          "height": 0,
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgb(23, 20, 19)"
+        },
+        "nav": {
+          "text": "PawPal",
+          "top": -50,
+          "left": 0,
+          "width": 390,
+          "height": 81,
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgb(23, 20, 19)"
+        },
+        "main": {
+          "text": "",
+          "top": 0,
+          "left": 0,
+          "width": 0,
+          "height": 0,
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgb(23, 20, 19)"
+        },
+        "bodyBackground": "rgb(255, 255, 255)",
+        "bodyColor": "rgb(23, 20, 19)",
+        "colorScheme": "light",
+        "scrollWidth": 390,
+        "clientWidth": 390,
+        "bodyScrollWidth": 390,
+        "horizontalOverflow": false,
+        "frameworkOverlay": false
+      },
+      "pass": true
+    },
+    {
+      "route": "/auth",
+      "scheme": "dark",
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "url": "http://localhost:3000/auth",
+      "title": "PawPal | Pet Safety Map, Smart Tags, and Local Pet Community",
+      "file": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/assets/review/website-visual-upgrade-2026-06-11/round-07-shared-visual-system-dark-mode/baseline-dark-auth-1280x720.png",
+      "logs": [],
+      "metrics": {
+        "title": "PawPal | Pet Safety Map, Smart Tags, and Local Pet Community",
+        "pathname": "/auth",
+        "textLength": 1190,
+        "h1": {
+          "text": "One login for walks, tags, rescue pages, and store orders.",
+          "top": 210,
+          "left": 92,
+          "width": 576,
+          "height": 180,
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgb(23, 20, 19)"
+        },
+        "nav": {
+          "text": "PawPal Home Globe About Us Store Login",
+          "top": -7,
+          "left": 0,
+          "width": 1280,
+          "height": 81,
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgb(23, 20, 19)"
+        },
+        "main": {
+          "text": "",
+          "top": 0,
+          "left": 0,
+          "width": 0,
+          "height": 0,
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgb(23, 20, 19)"
+        },
+        "bodyBackground": "rgb(255, 255, 255)",
+        "bodyColor": "rgb(23, 20, 19)",
+        "colorScheme": "light",
+        "scrollWidth": 1280,
+        "clientWidth": 1280,
+        "bodyScrollWidth": 1280,
+        "horizontalOverflow": false,
+        "frameworkOverlay": false
+      },
+      "pass": true
+    },
+    {
+      "route": "/tag/sample-id",
+      "scheme": "dark",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "url": "http://localhost:3000/tag/sample-id",
+      "title": "PawPal | Pet Safety Map, Smart Tags, and Local Pet Community",
+      "file": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/assets/review/website-visual-upgrade-2026-06-11/round-07-shared-visual-system-dark-mode/baseline-dark-tag-sample-id-390x844.png",
+      "logs": [],
+      "metrics": {
+        "title": "PawPal | Pet Safety Map, Smart Tags, and Local Pet Community",
+        "pathname": "/tag/sample-id",
+        "textLength": 838,
+        "h1": {
+          "text": "This PawPal route is not available.",
+          "top": 226,
+          "left": 20,
+          "width": 350,
+          "height": 90,
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgb(23, 20, 19)"
+        },
+        "nav": {
+          "text": "PawPal",
+          "top": -12,
+          "left": 0,
+          "width": 390,
+          "height": 81,
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgb(23, 20, 19)"
+        },
+        "main": {
+          "text": "",
+          "top": 0,
+          "left": 0,
+          "width": 0,
+          "height": 0,
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgb(23, 20, 19)"
+        },
+        "bodyBackground": "rgb(255, 255, 255)",
+        "bodyColor": "rgb(23, 20, 19)",
+        "colorScheme": "light",
+        "scrollWidth": 390,
+        "clientWidth": 390,
+        "bodyScrollWidth": 390,
+        "horizontalOverflow": false,
+        "frameworkOverlay": false
+      },
+      "pass": true
+    },
+    {
+      "route": "/tag/sample-id",
+      "scheme": "dark",
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "url": "http://localhost:3000/tag/sample-id",
+      "title": "PawPal | Pet Safety Map, Smart Tags, and Local Pet Community",
+      "file": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/assets/review/website-visual-upgrade-2026-06-11/round-07-shared-visual-system-dark-mode/baseline-dark-tag-sample-id-1280x720.png",
+      "logs": [],
+      "metrics": {
+        "title": "PawPal | Pet Safety Map, Smart Tags, and Local Pet Community",
+        "pathname": "/tag/sample-id",
+        "textLength": 870,
+        "h1": {
+          "text": "This PawPal route is not available.",
+          "top": 226,
+          "left": 128,
+          "width": 446,
+          "height": 225,
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgb(23, 20, 19)"
+        },
+        "nav": {
+          "text": "PawPal Home Globe About Us Store Login",
+          "top": -12,
+          "left": 0,
+          "width": 1280,
+          "height": 81,
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgb(23, 20, 19)"
+        },
+        "main": {
+          "text": "",
+          "top": 0,
+          "left": 0,
+          "width": 0,
+          "height": 0,
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgb(23, 20, 19)"
+        },
+        "bodyBackground": "rgb(255, 255, 255)",
+        "bodyColor": "rgb(23, 20, 19)",
+        "colorScheme": "light",
+        "scrollWidth": 1280,
+        "clientWidth": 1280,
+        "bodyScrollWidth": 1280,
+        "horizontalOverflow": false,
+        "frameworkOverlay": false
+      },
+      "pass": true
+    },
+    {
+      "route": "/store/checkout",
+      "scheme": "dark",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "url": "http://localhost:3000/store/checkout",
+      "title": "Store | PawPal",
+      "file": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/assets/review/website-visual-upgrade-2026-06-11/round-07-shared-visual-system-dark-mode/baseline-dark-checkout-390x844.png",
+      "logs": [],
+      "metrics": {
+        "title": "Store | PawPal",
+        "pathname": "/store/checkout",
+        "textLength": 887,
+        "h1": {
+          "text": "Secure checkout",
+          "top": 209,
+          "left": 37,
+          "width": 316,
+          "height": 36,
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgb(23, 20, 19)"
+        },
+        "nav": {
+          "text": "PawPal",
+          "top": -12,
+          "left": 0,
+          "width": 390,
+          "height": 81,
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgb(23, 20, 19)"
+        },
+        "main": {
+          "text": "",
+          "top": 0,
+          "left": 0,
+          "width": 0,
+          "height": 0,
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgb(23, 20, 19)"
+        },
+        "bodyBackground": "rgb(255, 255, 255)",
+        "bodyColor": "rgb(23, 20, 19)",
+        "colorScheme": "light",
+        "scrollWidth": 390,
+        "clientWidth": 390,
+        "bodyScrollWidth": 390,
+        "horizontalOverflow": false,
+        "frameworkOverlay": false
+      },
+      "pass": true
+    },
+    {
+      "route": "/store/checkout",
+      "scheme": "dark",
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "url": "http://localhost:3000/store/checkout",
+      "title": "Store | PawPal",
+      "file": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/assets/review/website-visual-upgrade-2026-06-11/round-07-shared-visual-system-dark-mode/baseline-dark-checkout-1280x720.png",
+      "logs": [
+        {
+          "type": "error",
+          "text": "A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:\n\n- A server/client branch `if (typeof window !== 'undefined')`.\n- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.\n- Date formatting in a user's locale which doesn't match the server.\n- External changing data without sending a snapshot of it along with the HTML.\n- Invalid HTML tag nesting.\n\nIt can also happen if the client has a browser extension installed which messes with the HTML before React loaded.\n\n%s%s https://react.dev/link/hydration-mismatch \n\n  ...\n    <div className=\"commerce-p...\">\n      <div className=\"max-w-5xl ...\">\n        <button>\n        <div>\n        <StepIndicator>\n        <div className=\"grid grid-...\">\n          <div className=\"lg:col-span-2\">\n            <AnimatePresence mode=\"wait\">\n              <PresenceChild isPresent={true} initial={undefined} custom={undefined} presenceAffectsLayout={true} ...>\n                <PopChild pop={false} isPresent={true} anchorX=\"left\" anchorY=\"top\" root={undefined}>\n                  <PopChildMeasure isPresent={true} childRef={{current:null}} sizeRef={{...}} pop={false}>\n                    <motion.div initial={{opacity:0,x:30}} animate={{opacity:1,x:0}} exit={{opacity:0,x:-30}} ...>\n                      <div className=\"checkout-m...\" style={{opacity:0, ...}} ref={function useMotionRef.useCallback}>\n                        <h2>\n                        <div className=\"grid grid-...\">\n                          <div className=\"sm:col-span-2\">\n                            <Field label=\"Full Name\" value=\"\" onChange={function onChange} placeholder=\"John Doe\">\n                              <div>\n                                <label>\n                                <input\n                                  type=\"text\"\n                                  value=\"\"\n                                  onChange={function onChange}\n                                  placeholder=\"John Doe\"\n                                  required={true}\n                                  className=\"w-full rounded-paw-md border border-paw-border bg-paw-panel px-4 py-3 tex...\"\n-                                 style={{caret-color:\"transparent\"}}\n                                >\n                          <Field label=\"Email\" value=\"\" onChange={function onChange} placeholder=\"john@examp...\" ...>\n                            <div>\n                              <label>\n                              <input\n                                type=\"email\"\n                                value=\"\"\n                                onChange={function onChange}\n                                placeholder=\"john@example.com\"\n                                required={true}\n                                className=\"w-full rounded-paw-md border border-paw-border bg-paw-panel px-4 py-3 text-...\"\n-                               style={{caret-color:\"transparent\"}}\n                              >\n                          <Field label=\"Phone\" value=\"\" onChange={function onChange} placeholder=\"+32 XXX XX...\" ...>\n                            <div>\n                              <label>\n                              <input\n                                type=\"tel\"\n                                value=\"\"\n                                onChange={function onChange}\n                                placeholder=\"+32 XXX XXX XXX\"\n                                required={true}\n                                className=\"w-full rounded-paw-md border border-paw-border bg-paw-panel px-4 py-3 text-...\"\n-                               style={{caret-color:\"transparent\"}}\n                              >\n                          <div className=\"sm:col-span-2\">\n                            <Field label=\"Street Add...\" value=\"\" onChange={function onChange} ...>\n                              <div>\n                                <label>\n                                <input\n                                  type=\"text\"\n                                  value=\"\"\n                                  onChange={function onChange}\n                                  placeholder=\"123 Pet Street\"\n                                  required={true}\n                                  className=\"w-full rounded-paw-md border border-paw-border bg-paw-panel px-4 py-3 tex...\"\n-                                 style={{caret-color:\"transparent\"}}\n                                >\n                          <Field label=\"City\" value=\"\" onChange={function onChange} placeholder=\"Ghent\">\n                            <div>\n                              <label>\n                              <input\n                                type=\"text\"\n                                value=\"\"\n                                onChange={function onChange}\n                                placeholder=\"Ghent\"\n                                required={true}\n                                className=\"w-full rounded-paw-md border border-paw-border bg-paw-panel px-4 py-3 text-...\"\n-                               style={{caret-color:\"transparent\"}}\n                              >\n                          <Field label=\"Zip Code\" value=\"\" onChange={function onChange} placeholder=\"9000\">\n                            <div>\n                              <label>\n                              <input\n                                type=\"text\"\n                                value=\"\"\n                                onChange={function onChange}\n                                placeholder=\"9000\"\n                                required={true}\n                                className=\"w-full rounded-paw-md border border-paw-border bg-paw-panel px-4 py-3 text-...\"\n-                               style={{caret-color:\"transparent\"}}\n                              >\n                          <div className=\"sm:col-span-2\">\n                            <Field label=\"Country\" value=\"\" onChange={function onChange} placeholder=\"Belgium\">\n                              <div>\n                                <label>\n                                <input\n                                  type=\"text\"\n                                  value=\"\"\n                                  onChange={function onChange}\n                                  placeholder=\"Belgium\"\n                                  required={true}\n                                  className=\"w-full rounded-paw-md border border-paw-border bg-paw-panel px-4 py-3 tex...\"\n-                                 style={{caret-color:\"transparent\"}}\n                                >\n                        ...\n          ...\n"
+        }
+      ],
+      "metrics": {
+        "title": "Store | PawPal",
+        "pathname": "/store/checkout",
+        "textLength": 937,
+        "h1": {
+          "text": "Secure checkout",
+          "top": 225,
+          "left": 173,
+          "width": 642,
+          "height": 48,
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgb(23, 20, 19)"
+        },
+        "nav": {
+          "text": "PawPal Home Globe About Us Store",
+          "top": -80,
+          "left": 0,
+          "width": 1280,
+          "height": 81,
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgb(23, 20, 19)"
+        },
+        "main": {
+          "text": "",
+          "top": 0,
+          "left": 0,
+          "width": 0,
+          "height": 0,
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgb(23, 20, 19)"
+        },
+        "bodyBackground": "rgb(255, 255, 255)",
+        "bodyColor": "rgb(23, 20, 19)",
+        "colorScheme": "light",
+        "scrollWidth": 1280,
+        "clientWidth": 1280,
+        "bodyScrollWidth": 1280,
+        "horizontalOverflow": false,
+        "frameworkOverlay": false
+      },
+      "pass": false
+    },
+    {
+      "route": "/globe",
+      "scheme": "dark",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "url": "http://localhost:3000/globe",
+      "title": "Live Pet Globe | PawPal",
+      "file": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/assets/review/website-visual-upgrade-2026-06-11/round-07-shared-visual-system-dark-mode/baseline-dark-globe-390x844.png",
+      "logs": [],
+      "metrics": {
+        "title": "Live Pet Globe | PawPal",
+        "pathname": "/globe",
+        "textLength": 126,
+        "h1": {
+          "text": "PawPal Globe",
+          "top": -1,
+          "left": -1,
+          "width": 1,
+          "height": 1,
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgb(23, 20, 19)"
+        },
+        "nav": {
+          "text": "PawPal",
+          "top": -62,
+          "left": 12,
+          "width": 366,
+          "height": 50,
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgb(23, 20, 19)"
+        },
+        "main": {
+          "text": "",
+          "top": 0,
+          "left": 0,
+          "width": 0,
+          "height": 0,
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgb(23, 20, 19)"
+        },
+        "bodyBackground": "rgb(255, 255, 255)",
+        "bodyColor": "rgb(23, 20, 19)",
+        "colorScheme": "light",
+        "scrollWidth": 390,
+        "clientWidth": 390,
+        "bodyScrollWidth": 390,
+        "horizontalOverflow": false,
+        "frameworkOverlay": false
+      },
+      "pass": true
+    },
+    {
+      "route": "/globe",
+      "scheme": "dark",
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "url": "http://localhost:3000/globe",
+      "title": "Loading http://localhost:3000/globe",
+      "file": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/assets/review/website-visual-upgrade-2026-06-11/round-07-shared-visual-system-dark-mode/baseline-dark-globe-1280x720.png",
+      "logs": [],
+      "metrics": {
+        "title": "Live Pet Globe | PawPal",
+        "pathname": "/globe",
+        "textLength": 158,
+        "h1": {
+          "text": "PawPal Globe",
+          "top": -1,
+          "left": -1,
+          "width": 1,
+          "height": 1,
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgb(23, 20, 19)"
+        },
+        "nav": {
+          "text": "PawPal Home Globe About Us Store Login",
+          "top": 12,
+          "left": 16,
+          "width": 1248,
+          "height": 58,
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgb(23, 20, 19)"
+        },
+        "main": {
+          "text": "",
+          "top": 0,
+          "left": 0,
+          "width": 0,
+          "height": 0,
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgb(23, 20, 19)"
+        },
+        "bodyBackground": "rgb(255, 255, 255)",
+        "bodyColor": "rgb(23, 20, 19)",
+        "colorScheme": "light",
+        "scrollWidth": 1280,
+        "clientWidth": 1280,
+        "bodyScrollWidth": 1280,
+        "horizontalOverflow": false,
+        "frameworkOverlay": false
+      },
+      "pass": true
+    }
+  ],
+  "summary": {
+    "totalScreenshots": 24,
+    "passedScreenshots": 15,
+    "failedScreenshots": 9,
+    "relevantLogCount": 18
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "runId": "2026-06-11T12-42-37-899Z",
+  "runStartedAt": "2026-06-11T12:42:37.899Z",
+  "collectedAt": "2026-06-11T12:42:49.165Z",
+  "viewport": {
+    "width": 390,
+    "height": 844
+  },
+  "routeEvidence": [
+    {
+      "action": "Open Live Map",
+      "start": {
+        "href": "/globe",
+        "text": "Open Live Map",
+        "top": 553,
+        "x": 191,
+        "y": 577
+      },
+      "finalUrl": "http://localhost:3000/globe",
+      "finalTitle": "Live Pet Globe | PawPal",
+      "overlayCount": 0,
+      "screenshotPath": "/private/tmp/geopet-round03-homepage/final/cta-open-live-map-target-globe-390x844.png"
+    },
+    {
+      "action": "Shop Smart Tags",
+      "start": {
+        "href": "/store",
+        "text": "Shop Smart Tags",
+        "top": 613,
+        "x": 191,
+        "y": 637
+      },
+      "finalUrl": "http://localhost:3000/store",
+      "finalTitle": "Store | PawPal",
+      "overlayCount": 0,
+      "screenshotPath": "/private/tmp/geopet-round03-homepage/final/cta-shop-smart-tags-target-store-390x844.png"
+    }
+  ],
+  "newLogs": [],
+  "allLogCount": 2
+}

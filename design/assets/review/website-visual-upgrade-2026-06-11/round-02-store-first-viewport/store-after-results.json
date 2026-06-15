@@ -1,0 +1,679 @@
+{
+  "capturedAt": "2026-06-11T11:51:01.568Z",
+  "captures": [
+    {
+      "viewport": {
+        "label": "390x844",
+        "width": 390,
+        "height": 844
+      },
+      "metrics": {
+        "blockingOverlayDetector": true,
+        "cartAffordance": {
+          "height": 20,
+          "inFirstViewport": false,
+          "left": 216,
+          "tag": "button",
+          "text": "Cart",
+          "top": 923,
+          "width": 50
+        },
+        "checkoutAffordance": null,
+        "clientWidth": 390,
+        "documentHeight": 9197,
+        "firstAdd": {
+          "height": 34,
+          "inFirstViewport": false,
+          "left": 275,
+          "tag": "button",
+          "text": "Add",
+          "top": 1339,
+          "width": 70
+        },
+        "firstCategory": {
+          "height": 42,
+          "inFirstViewport": true,
+          "left": 16,
+          "tag": "button",
+          "text": "All Products",
+          "top": 765,
+          "width": 142
+        },
+        "firstDetails": {
+          "height": 34,
+          "inFirstViewport": false,
+          "left": 176,
+          "tag": "button",
+          "text": "Details",
+          "top": 1339,
+          "width": 91
+        },
+        "firstProductCard": {
+          "height": 423,
+          "inFirstViewport": false,
+          "left": 25,
+          "tag": "div",
+          "text": "Best Seller 🐟 Organic Salmon Bites €14.99 Wild-caught salmon treats packed with Omega-3 for a shiny coat. Grain-free, s",
+          "top": 971,
+          "width": 340
+        },
+        "firstProductHeading": {
+          "height": 23,
+          "inFirstViewport": false,
+          "left": 45,
+          "tag": "h3",
+          "text": "Organic Salmon Bites",
+          "top": 1244,
+          "width": 161
+        },
+        "horizontalOverflow": false,
+        "nonEmptyRender": true,
+        "overlayText": "",
+        "prefersDarkScheme": false,
+        "prefersReducedMotion": false,
+        "scrollWidth": 390,
+        "search": {
+          "height": 48,
+          "inFirstViewport": true,
+          "left": 16,
+          "tag": "input",
+          "text": "Search products...",
+          "top": 368,
+          "width": 358
+        },
+        "textLength": 3219,
+        "title": "Store | PawPal",
+        "url": "http://localhost:3000/store",
+        "viewport": {
+          "height": 844,
+          "width": 390
+        }
+      },
+      "screenshotPath": "/private/tmp/geopet-round02-store/store-after-390x844.png",
+      "logs": []
+    },
+    {
+      "viewport": {
+        "label": "768x1024",
+        "width": 768,
+        "height": 1024
+      },
+      "metrics": {
+        "blockingOverlayDetector": true,
+        "cartAffordance": {
+          "height": 20,
+          "inFirstViewport": true,
+          "left": 594,
+          "tag": "button",
+          "text": "Cart",
+          "top": 675,
+          "width": 50
+        },
+        "checkoutAffordance": null,
+        "clientWidth": 768,
+        "documentHeight": 2106,
+        "firstAdd": {
+          "height": 36,
+          "inFirstViewport": false,
+          "left": 281,
+          "tag": "button",
+          "text": "Add",
+          "top": 2230,
+          "width": 74
+        },
+        "firstCategory": {
+          "height": 42,
+          "inFirstViewport": true,
+          "left": 16,
+          "tag": "button",
+          "text": "All Products",
+          "top": 567,
+          "width": 142
+        },
+        "firstDetails": {
+          "height": 36,
+          "inFirstViewport": false,
+          "left": 177,
+          "tag": "button",
+          "text": "Details",
+          "top": 2230,
+          "width": 96
+        },
+        "firstProductCard": {
+          "height": 447,
+          "inFirstViewport": false,
+          "left": 16,
+          "tag": "div",
+          "text": "New PawPal Smart ID Tag €12.99 NFC-ready safety tag that links rescuers to your pet profile and emergency contact flow. ",
+          "top": 1841,
+          "width": 360
+        },
+        "firstProductHeading": {
+          "height": 24,
+          "inFirstViewport": false,
+          "left": 37,
+          "tag": "h3",
+          "text": "PawPal Smart ID Tag",
+          "top": 2130,
+          "width": 162
+        },
+        "horizontalOverflow": false,
+        "nonEmptyRender": true,
+        "overlayText": "",
+        "prefersDarkScheme": false,
+        "prefersReducedMotion": false,
+        "scrollWidth": 768,
+        "search": {
+          "height": 48,
+          "inFirstViewport": true,
+          "left": 16,
+          "tag": "input",
+          "text": "Search products...",
+          "top": 326,
+          "width": 736
+        },
+        "textLength": 1558,
+        "title": "Store | PawPal",
+        "url": "http://localhost:3000/store",
+        "viewport": {
+          "height": 1024,
+          "width": 768
+        }
+      },
+      "screenshotPath": "/private/tmp/geopet-round02-store/store-after-768x1024.png",
+      "logs": []
+    },
+    {
+      "viewport": {
+        "label": "1280x720",
+        "width": 1280,
+        "height": 720
+      },
+      "metrics": {
+        "blockingOverlayDetector": true,
+        "cartAffordance": {
+          "height": 20,
+          "inFirstViewport": true,
+          "left": 1106,
+          "tag": "button",
+          "text": "Cart",
+          "top": 612,
+          "width": 50
+        },
+        "checkoutAffordance": null,
+        "clientWidth": 1280,
+        "documentHeight": 1472,
+        "firstAdd": {
+          "height": 36,
+          "inFirstViewport": false,
+          "left": 221,
+          "tag": "button",
+          "text": "Add",
+          "top": 1213,
+          "width": 74
+        },
+        "firstCategory": {
+          "height": 42,
+          "inFirstViewport": true,
+          "left": 16,
+          "tag": "button",
+          "text": "All Products",
+          "top": 554,
+          "width": 142
+        },
+        "firstDetails": {
+          "height": 36,
+          "inFirstViewport": false,
+          "left": 117,
+          "tag": "button",
+          "text": "Details",
+          "top": 1213,
+          "width": 96
+        },
+        "firstProductCard": {
+          "height": 410,
+          "inFirstViewport": false,
+          "left": 16,
+          "tag": "div",
+          "text": "New PawPal Smart ID Tag €12.99 NFC-ready safety tag that links rescuers to your pet profile and emergency contact flow. ",
+          "top": 860,
+          "width": 300
+        },
+        "firstProductHeading": {
+          "height": 24,
+          "inFirstViewport": false,
+          "left": 37,
+          "tag": "h3",
+          "text": "PawPal Smart ID Tag",
+          "top": 1113,
+          "width": 162
+        },
+        "horizontalOverflow": false,
+        "nonEmptyRender": true,
+        "overlayText": "",
+        "prefersDarkScheme": false,
+        "prefersReducedMotion": false,
+        "scrollWidth": 1280,
+        "search": {
+          "height": 48,
+          "inFirstViewport": true,
+          "left": 750,
+          "tag": "input",
+          "text": "Search products...",
+          "top": 333,
+          "width": 514
+        },
+        "textLength": 1558,
+        "title": "Store | PawPal",
+        "url": "http://localhost:3000/store",
+        "viewport": {
+          "height": 720,
+          "width": 1280
+        }
+      },
+      "screenshotPath": "/private/tmp/geopet-round02-store/store-after-1280x720.png",
+      "logs": []
+    },
+    {
+      "viewport": {
+        "label": "1440x900",
+        "width": 1440,
+        "height": 900
+      },
+      "metrics": {
+        "blockingOverlayDetector": true,
+        "cartAffordance": {
+          "height": 20,
+          "inFirstViewport": true,
+          "left": 1186,
+          "tag": "button",
+          "text": "Cart",
+          "top": 612,
+          "width": 50
+        },
+        "checkoutAffordance": null,
+        "clientWidth": 1440,
+        "documentHeight": 1472,
+        "firstAdd": {
+          "height": 36,
+          "inFirstViewport": false,
+          "left": 301,
+          "tag": "button",
+          "text": "Add",
+          "top": 1486,
+          "width": 74
+        },
+        "firstCategory": {
+          "height": 42,
+          "inFirstViewport": true,
+          "left": 96,
+          "tag": "button",
+          "text": "All Products",
+          "top": 554,
+          "width": 142
+        },
+        "firstDetails": {
+          "height": 36,
+          "inFirstViewport": false,
+          "left": 197,
+          "tag": "button",
+          "text": "Details",
+          "top": 1486,
+          "width": 96
+        },
+        "firstProductCard": {
+          "height": 410,
+          "inFirstViewport": false,
+          "left": 96,
+          "tag": "div",
+          "text": "New PawPal Smart ID Tag €12.99 NFC-ready safety tag that links rescuers to your pet profile and emergency contact flow. ",
+          "top": 1133,
+          "width": 300
+        },
+        "firstProductHeading": {
+          "height": 24,
+          "inFirstViewport": false,
+          "left": 117,
+          "tag": "h3",
+          "text": "PawPal Smart ID Tag",
+          "top": 1386,
+          "width": 162
+        },
+        "horizontalOverflow": false,
+        "nonEmptyRender": true,
+        "overlayText": "",
+        "prefersDarkScheme": false,
+        "prefersReducedMotion": false,
+        "scrollWidth": 1440,
+        "search": {
+          "height": 48,
+          "inFirstViewport": true,
+          "left": 830,
+          "tag": "input",
+          "text": "Search products...",
+          "top": 333,
+          "width": 514
+        },
+        "textLength": 1558,
+        "title": "Store | PawPal",
+        "url": "http://localhost:3000/store",
+        "viewport": {
+          "height": 900,
+          "width": 1440
+        }
+      },
+      "screenshotPath": "/private/tmp/geopet-round02-store/store-after-1440x900.png",
+      "logs": []
+    }
+  ],
+  "interaction": {
+    "started": "2026-06-11T11:50:54.419Z",
+    "steps": [
+      {
+        "name": "Search for tag",
+        "ok": true,
+        "result": {
+          "blockingOverlayDetector": true,
+          "cartAffordance": {
+            "height": 20,
+            "inFirstViewport": false,
+            "left": 216,
+            "tag": "button",
+            "text": "Cart",
+            "top": 923,
+            "width": 50
+          },
+          "checkoutAffordance": null,
+          "clientWidth": 390,
+          "documentHeight": 2242,
+          "firstAdd": {
+            "height": 36,
+            "inFirstViewport": false,
+            "left": 279,
+            "tag": "button",
+            "text": "Add",
+            "top": 1347,
+            "width": 74
+          },
+          "firstCategory": {
+            "height": 42,
+            "inFirstViewport": true,
+            "left": 16,
+            "tag": "button",
+            "text": "All Products",
+            "top": 765,
+            "width": 142
+          },
+          "firstDetails": {
+            "height": 36,
+            "inFirstViewport": false,
+            "left": 175,
+            "tag": "button",
+            "text": "Details",
+            "top": 1347,
+            "width": 96
+          },
+          "firstProductCard": {
+            "height": 445,
+            "inFirstViewport": false,
+            "left": 16,
+            "tag": "div",
+            "text": "New PawPal Smart ID Tag €12.99 NFC-ready safety tag that links rescuers to your pet profile and emergency contact flow. ",
+            "top": 959,
+            "width": 358
+          },
+          "firstProductHeading": {
+            "height": 24,
+            "inFirstViewport": false,
+            "left": 37,
+            "tag": "h3",
+            "text": "PawPal Smart ID Tag",
+            "top": 1247,
+            "width": 162
+          },
+          "horizontalOverflow": false,
+          "nonEmptyRender": true,
+          "overlayText": "",
+          "prefersDarkScheme": false,
+          "prefersReducedMotion": false,
+          "scrollWidth": 390,
+          "search": {
+            "height": 48,
+            "inFirstViewport": true,
+            "left": 16,
+            "tag": "input",
+            "text": "Search products...",
+            "top": 368,
+            "width": 358
+          },
+          "textLength": 1122,
+          "title": "Store | PawPal",
+          "url": "http://localhost:3000/store",
+          "viewport": {
+            "height": 844,
+            "width": 390
+          }
+        }
+      },
+      {
+        "name": "Select Accessories category",
+        "ok": true,
+        "result": {
+          "blockingOverlayDetector": true,
+          "cartAffordance": {
+            "height": 20,
+            "inFirstViewport": true,
+            "left": 216,
+            "tag": "button",
+            "text": "Cart",
+            "top": 509,
+            "width": 50
+          },
+          "checkoutAffordance": null,
+          "clientWidth": 390,
+          "documentHeight": 2226,
+          "firstAdd": {
+            "height": 36,
+            "inFirstViewport": false,
+            "left": 279,
+            "tag": "button",
+            "text": "Add",
+            "top": 933,
+            "width": 74
+          },
+          "firstCategory": {
+            "height": 42,
+            "inFirstViewport": true,
+            "left": 16,
+            "tag": "button",
+            "text": "All Products",
+            "top": 351,
+            "width": 142
+          },
+          "firstDetails": {
+            "height": 36,
+            "inFirstViewport": false,
+            "left": 175,
+            "tag": "button",
+            "text": "Details",
+            "top": 933,
+            "width": 96
+          },
+          "firstProductCard": {
+            "height": 445,
+            "inFirstViewport": true,
+            "left": 16,
+            "tag": "div",
+            "text": "New PawPal Smart ID Tag €12.99 NFC-ready safety tag that links rescuers to your pet profile and emergency contact flow. ",
+            "top": 545,
+            "width": 358
+          },
+          "firstProductHeading": {
+            "height": 24,
+            "inFirstViewport": true,
+            "left": 37,
+            "tag": "h3",
+            "text": "PawPal Smart ID Tag",
+            "top": 833,
+            "width": 162
+          },
+          "horizontalOverflow": false,
+          "nonEmptyRender": true,
+          "overlayText": "",
+          "prefersDarkScheme": false,
+          "prefersReducedMotion": false,
+          "scrollWidth": 390,
+          "search": {
+            "height": 48,
+            "inFirstViewport": true,
+            "left": 16,
+            "tag": "input",
+            "text": "Search products...",
+            "top": -46,
+            "width": 358
+          },
+          "textLength": 1122,
+          "title": "Store | PawPal",
+          "url": "http://localhost:3000/store",
+          "viewport": {
+            "height": 844,
+            "width": 390
+          }
+        }
+      },
+      {
+        "name": "Open first Details drawer",
+        "ok": true,
+        "result": {
+          "dialog": true,
+          "screenshotPath": "/private/tmp/geopet-round02-store/store-after-details-drawer-390x844.png"
+        }
+      },
+      {
+        "name": "Close Details drawer",
+        "ok": true,
+        "result": {
+          "dialogOpen": false
+        }
+      },
+      {
+        "name": "Add first product",
+        "ok": true,
+        "result": {
+          "blockingOverlayDetector": true,
+          "cartAffordance": {
+            "height": 20,
+            "inFirstViewport": false,
+            "left": 194,
+            "tag": "button",
+            "text": "Cart (1)",
+            "top": -20,
+            "width": 72
+          },
+          "checkoutAffordance": {
+            "height": 64,
+            "inFirstViewport": true,
+            "left": 294,
+            "tag": "a",
+            "text": "1",
+            "top": 748,
+            "width": 64
+          },
+          "clientWidth": 390,
+          "documentHeight": 2226,
+          "firstAdd": {
+            "height": 36,
+            "inFirstViewport": true,
+            "left": 279,
+            "tag": "button",
+            "text": "Add",
+            "top": 404,
+            "width": 74
+          },
+          "firstCategory": {
+            "height": 42,
+            "inFirstViewport": false,
+            "left": 16,
+            "tag": "button",
+            "text": "All Products",
+            "top": -178,
+            "width": 142
+          },
+          "firstDetails": {
+            "height": 36,
+            "inFirstViewport": true,
+            "left": 175,
+            "tag": "button",
+            "text": "Details",
+            "top": 404,
+            "width": 96
+          },
+          "firstProductCard": {
+            "height": 445,
+            "inFirstViewport": true,
+            "left": 16,
+            "tag": "div",
+            "text": "New PawPal Smart ID Tag €12.99 NFC-ready safety tag that links rescuers to your pet profile and emergency contact flow. ",
+            "top": 16,
+            "width": 358
+          },
+          "firstProductHeading": {
+            "height": 24,
+            "inFirstViewport": true,
+            "left": 37,
+            "tag": "h3",
+            "text": "PawPal Smart ID Tag",
+            "top": 304,
+            "width": 162
+          },
+          "horizontalOverflow": false,
+          "nonEmptyRender": true,
+          "overlayText": "",
+          "prefersDarkScheme": false,
+          "prefersReducedMotion": false,
+          "scrollWidth": 390,
+          "search": {
+            "height": 48,
+            "inFirstViewport": false,
+            "left": 16,
+            "tag": "input",
+            "text": "Search products...",
+            "top": -575,
+            "width": 358
+          },
+          "textLength": 1164,
+          "title": "Store | PawPal",
+          "url": "http://localhost:3000/store",
+          "viewport": {
+            "height": 844,
+            "width": 390
+          }
+        }
+      },
+      {
+        "name": "Open cart drawer after add",
+        "ok": true,
+        "result": {
+          "dialogOpen": true,
+          "screenshotPath": "/private/tmp/geopet-round02-store/store-after-cart-drawer-390x844.png",
+          "url": "http://localhost:3000/store"
+        }
+      },
+      {
+        "name": "Keyboard focus smoke",
+        "ok": true,
+        "result": {
+          "activeTag": "input",
+          "activeText": "Search products..."
+        }
+      }
+    ],
+    "mediaState": {
+      "colorScheme": "light",
+      "dark": false,
+      "reducedMotion": false
+    }
+  },
+  "playwrightAvailable": false,
+  "verificationNote": "In-app Browser used for screenshots and interactions. Standalone Playwright package is not installed; media states are recorded via matchMedia and CSS/code inspection."
+}

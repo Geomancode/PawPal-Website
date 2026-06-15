@@ -1,0 +1,398 @@
+[
+  {
+    "route": "/tag/sample-id",
+    "server": "next-start-3001",
+    "mode": "light",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "url": "http://localhost:3001/tag/sample-id",
+    "title": "PawPal tag not found | PawPal",
+    "logs": [],
+    "pageErrors": [],
+    "metrics": {
+      "meaningfulRender": true,
+      "hasFrameworkOverlay": false,
+      "horizontalOverflow": false,
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "bodyBackground": "rgb(255, 255, 255)",
+      "bodyColor": "rgb(58, 47, 42)",
+      "colorScheme": "light",
+      "matchDark": false,
+      "matchReducedMotion": false,
+      "headings": [
+        "This PawPal route is not available.",
+        "Product",
+        "Company",
+        "Support",
+        "Belgium Pilot"
+      ]
+    },
+    "screenshotPath": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-09-nfc-finder-emergency-states/evidence/screenshots/prod-tag-sample-light-390x844.png"
+  },
+  {
+    "route": "/tag/sample-id",
+    "server": "next-start-3001",
+    "mode": "dark",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "url": "http://localhost:3001/tag/sample-id",
+    "title": "PawPal tag not found | PawPal",
+    "logs": [],
+    "pageErrors": [],
+    "metrics": {
+      "meaningfulRender": true,
+      "hasFrameworkOverlay": false,
+      "horizontalOverflow": false,
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "bodyBackground": "rgb(21, 29, 34)",
+      "bodyColor": "rgb(251, 247, 242)",
+      "colorScheme": "dark",
+      "matchDark": true,
+      "matchReducedMotion": false,
+      "headings": [
+        "This PawPal route is not available.",
+        "Product",
+        "Company",
+        "Support",
+        "Belgium Pilot"
+      ]
+    },
+    "screenshotPath": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-09-nfc-finder-emergency-states/evidence/screenshots/prod-tag-sample-dark-390x844.png"
+  },
+  {
+    "route": "/tag/sample-id",
+    "server": "next-start-3001",
+    "mode": "reduced",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "url": "http://localhost:3001/tag/sample-id",
+    "title": "PawPal tag not found | PawPal",
+    "logs": [],
+    "pageErrors": [],
+    "metrics": {
+      "meaningfulRender": true,
+      "hasFrameworkOverlay": false,
+      "horizontalOverflow": false,
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "bodyBackground": "rgb(255, 255, 255)",
+      "bodyColor": "rgb(58, 47, 42)",
+      "colorScheme": "light",
+      "matchDark": false,
+      "matchReducedMotion": true,
+      "headings": [
+        "This PawPal route is not available.",
+        "Product",
+        "Company",
+        "Support",
+        "Belgium Pilot"
+      ]
+    },
+    "screenshotPath": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-09-nfc-finder-emergency-states/evidence/screenshots/prod-tag-sample-reduced-390x844.png"
+  },
+  {
+    "route": "/tag/sample-id",
+    "server": "next-start-3001",
+    "mode": "light",
+    "viewport": {
+      "width": 768,
+      "height": 1024
+    },
+    "url": "http://localhost:3001/tag/sample-id",
+    "title": "PawPal tag not found | PawPal",
+    "logs": [],
+    "pageErrors": [],
+    "metrics": {
+      "meaningfulRender": true,
+      "hasFrameworkOverlay": false,
+      "horizontalOverflow": false,
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "bodyBackground": "rgb(255, 255, 255)",
+      "bodyColor": "rgb(58, 47, 42)",
+      "colorScheme": "light",
+      "matchDark": false,
+      "matchReducedMotion": false,
+      "headings": [
+        "This PawPal route is not available.",
+        "Product",
+        "Company",
+        "Support",
+        "Belgium Pilot"
+      ]
+    },
+    "screenshotPath": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-09-nfc-finder-emergency-states/evidence/screenshots/prod-tag-sample-light-768x1024.png"
+  },
+  {
+    "route": "/tag/sample-id",
+    "server": "next-start-3001",
+    "mode": "dark",
+    "viewport": {
+      "width": 768,
+      "height": 1024
+    },
+    "url": "http://localhost:3001/tag/sample-id",
+    "title": "PawPal tag not found | PawPal",
+    "logs": [],
+    "pageErrors": [],
+    "metrics": {
+      "meaningfulRender": true,
+      "hasFrameworkOverlay": false,
+      "horizontalOverflow": false,
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "bodyBackground": "rgb(21, 29, 34)",
+      "bodyColor": "rgb(251, 247, 242)",
+      "colorScheme": "dark",
+      "matchDark": true,
+      "matchReducedMotion": false,
+      "headings": [
+        "This PawPal route is not available.",
+        "Product",
+        "Company",
+        "Support",
+        "Belgium Pilot"
+      ]
+    },
+    "screenshotPath": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-09-nfc-finder-emergency-states/evidence/screenshots/prod-tag-sample-dark-768x1024.png"
+  },
+  {
+    "route": "/tag/sample-id",
+    "server": "next-start-3001",
+    "mode": "reduced",
+    "viewport": {
+      "width": 768,
+      "height": 1024
+    },
+    "url": "http://localhost:3001/tag/sample-id",
+    "title": "PawPal tag not found | PawPal",
+    "logs": [],
+    "pageErrors": [],
+    "metrics": {
+      "meaningfulRender": true,
+      "hasFrameworkOverlay": false,
+      "horizontalOverflow": false,
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "bodyBackground": "rgb(255, 255, 255)",
+      "bodyColor": "rgb(58, 47, 42)",
+      "colorScheme": "light",
+      "matchDark": false,
+      "matchReducedMotion": true,
+      "headings": [
+        "This PawPal route is not available.",
+        "Product",
+        "Company",
+        "Support",
+        "Belgium Pilot"
+      ]
+    },
+    "screenshotPath": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-09-nfc-finder-emergency-states/evidence/screenshots/prod-tag-sample-reduced-768x1024.png"
+  },
+  {
+    "route": "/tag/sample-id",
+    "server": "next-start-3001",
+    "mode": "light",
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "url": "http://localhost:3001/tag/sample-id",
+    "title": "PawPal tag not found | PawPal",
+    "logs": [],
+    "pageErrors": [],
+    "metrics": {
+      "meaningfulRender": true,
+      "hasFrameworkOverlay": false,
+      "horizontalOverflow": false,
+      "scrollWidth": 1280,
+      "clientWidth": 1280,
+      "bodyBackground": "rgb(255, 255, 255)",
+      "bodyColor": "rgb(58, 47, 42)",
+      "colorScheme": "light",
+      "matchDark": false,
+      "matchReducedMotion": false,
+      "headings": [
+        "This PawPal route is not available.",
+        "Product",
+        "Company",
+        "Support",
+        "Belgium Pilot"
+      ]
+    },
+    "screenshotPath": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-09-nfc-finder-emergency-states/evidence/screenshots/prod-tag-sample-light-1280x720.png"
+  },
+  {
+    "route": "/tag/sample-id",
+    "server": "next-start-3001",
+    "mode": "dark",
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "url": "http://localhost:3001/tag/sample-id",
+    "title": "PawPal tag not found | PawPal",
+    "logs": [],
+    "pageErrors": [],
+    "metrics": {
+      "meaningfulRender": true,
+      "hasFrameworkOverlay": false,
+      "horizontalOverflow": false,
+      "scrollWidth": 1280,
+      "clientWidth": 1280,
+      "bodyBackground": "rgb(21, 29, 34)",
+      "bodyColor": "rgb(251, 247, 242)",
+      "colorScheme": "dark",
+      "matchDark": true,
+      "matchReducedMotion": false,
+      "headings": [
+        "This PawPal route is not available.",
+        "Product",
+        "Company",
+        "Support",
+        "Belgium Pilot"
+      ]
+    },
+    "screenshotPath": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-09-nfc-finder-emergency-states/evidence/screenshots/prod-tag-sample-dark-1280x720.png"
+  },
+  {
+    "route": "/tag/sample-id",
+    "server": "next-start-3001",
+    "mode": "reduced",
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "url": "http://localhost:3001/tag/sample-id",
+    "title": "PawPal tag not found | PawPal",
+    "logs": [],
+    "pageErrors": [],
+    "metrics": {
+      "meaningfulRender": true,
+      "hasFrameworkOverlay": false,
+      "horizontalOverflow": false,
+      "scrollWidth": 1280,
+      "clientWidth": 1280,
+      "bodyBackground": "rgb(255, 255, 255)",
+      "bodyColor": "rgb(58, 47, 42)",
+      "colorScheme": "light",
+      "matchDark": false,
+      "matchReducedMotion": true,
+      "headings": [
+        "This PawPal route is not available.",
+        "Product",
+        "Company",
+        "Support",
+        "Belgium Pilot"
+      ]
+    },
+    "screenshotPath": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-09-nfc-finder-emergency-states/evidence/screenshots/prod-tag-sample-reduced-1280x720.png"
+  },
+  {
+    "route": "/tag/sample-id",
+    "server": "next-start-3001",
+    "mode": "light",
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "url": "http://localhost:3001/tag/sample-id",
+    "title": "PawPal tag not found | PawPal",
+    "logs": [],
+    "pageErrors": [],
+    "metrics": {
+      "meaningfulRender": true,
+      "hasFrameworkOverlay": false,
+      "horizontalOverflow": false,
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "bodyBackground": "rgb(255, 255, 255)",
+      "bodyColor": "rgb(58, 47, 42)",
+      "colorScheme": "light",
+      "matchDark": false,
+      "matchReducedMotion": false,
+      "headings": [
+        "This PawPal route is not available.",
+        "Product",
+        "Company",
+        "Support",
+        "Belgium Pilot"
+      ]
+    },
+    "screenshotPath": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-09-nfc-finder-emergency-states/evidence/screenshots/prod-tag-sample-light-1440x900.png"
+  },
+  {
+    "route": "/tag/sample-id",
+    "server": "next-start-3001",
+    "mode": "dark",
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "url": "http://localhost:3001/tag/sample-id",
+    "title": "PawPal tag not found | PawPal",
+    "logs": [],
+    "pageErrors": [],
+    "metrics": {
+      "meaningfulRender": true,
+      "hasFrameworkOverlay": false,
+      "horizontalOverflow": false,
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "bodyBackground": "rgb(21, 29, 34)",
+      "bodyColor": "rgb(251, 247, 242)",
+      "colorScheme": "dark",
+      "matchDark": true,
+      "matchReducedMotion": false,
+      "headings": [
+        "This PawPal route is not available.",
+        "Product",
+        "Company",
+        "Support",
+        "Belgium Pilot"
+      ]
+    },
+    "screenshotPath": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-09-nfc-finder-emergency-states/evidence/screenshots/prod-tag-sample-dark-1440x900.png"
+  },
+  {
+    "route": "/tag/sample-id",
+    "server": "next-start-3001",
+    "mode": "reduced",
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "url": "http://localhost:3001/tag/sample-id",
+    "title": "PawPal tag not found | PawPal",
+    "logs": [],
+    "pageErrors": [],
+    "metrics": {
+      "meaningfulRender": true,
+      "hasFrameworkOverlay": false,
+      "horizontalOverflow": false,
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "bodyBackground": "rgb(255, 255, 255)",
+      "bodyColor": "rgb(58, 47, 42)",
+      "colorScheme": "light",
+      "matchDark": false,
+      "matchReducedMotion": true,
+      "headings": [
+        "This PawPal route is not available.",
+        "Product",
+        "Company",
+        "Support",
+        "Belgium Pilot"
+      ]
+    },
+    "screenshotPath": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-09-nfc-finder-emergency-states/evidence/screenshots/prod-tag-sample-reduced-1440x900.png"
+  }
+]

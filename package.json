@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "test:home-contract": "node scripts/homepage-contract-check.mjs"
   },
   "dependencies": {
     "@google/genai": "^1.50.1",

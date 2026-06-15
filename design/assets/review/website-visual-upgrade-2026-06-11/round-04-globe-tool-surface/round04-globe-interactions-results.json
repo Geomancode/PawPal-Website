@@ -1,0 +1,211 @@
+{
+  "runStart": "2026-06-11T13:18:31.190Z",
+  "layerButtonCount": 2,
+  "initial": {
+    "chatRect": {
+      "bottom": 704,
+      "height": 68,
+      "right": 896,
+      "width": 512,
+      "x": 384,
+      "y": 636
+    },
+    "chatText": "Ask",
+    "markerCount": 15,
+    "missionActive": true,
+    "overflowX": 0,
+    "placesActive": true,
+    "title": "Live Pet Globe | PawPal",
+    "tutorialTitle": null,
+    "tutorialVisible": false,
+    "url": "http://localhost:3000/globe",
+    "visibleFrameworkOverlay": false
+  },
+  "afterMissionOff": {
+    "chatRect": {
+      "bottom": 704,
+      "height": 68,
+      "right": 896,
+      "width": 512,
+      "x": 384,
+      "y": 636
+    },
+    "chatText": "Ask",
+    "markerCount": 15,
+    "missionActive": false,
+    "overflowX": 0,
+    "placesActive": true,
+    "title": "Live Pet Globe | PawPal",
+    "tutorialTitle": null,
+    "tutorialVisible": false,
+    "url": "http://localhost:3000/globe",
+    "visibleFrameworkOverlay": false
+  },
+  "afterBothOff": {
+    "chatRect": {
+      "bottom": 704,
+      "height": 68,
+      "right": 896,
+      "width": 512,
+      "x": 384,
+      "y": 636
+    },
+    "chatText": "Ask",
+    "markerCount": 0,
+    "missionActive": false,
+    "overflowX": 0,
+    "placesActive": false,
+    "title": "Live Pet Globe | PawPal",
+    "tutorialTitle": null,
+    "tutorialVisible": false,
+    "url": "http://localhost:3000/globe",
+    "visibleFrameworkOverlay": false
+  },
+  "afterLayersRestored": {
+    "chatRect": {
+      "bottom": 704,
+      "height": 68,
+      "right": 896,
+      "width": 512,
+      "x": 384,
+      "y": 636
+    },
+    "chatText": "Ask",
+    "markerCount": 15,
+    "missionActive": true,
+    "overflowX": 0,
+    "placesActive": true,
+    "title": "Live Pet Globe | PawPal",
+    "tutorialTitle": null,
+    "tutorialVisible": false,
+    "url": "http://localhost:3000/globe",
+    "visibleFrameworkOverlay": false
+  },
+  "layersOffScreenshot": "/private/tmp/geopet-round04-globe/interactions-v2/round04-globe-layers-both-off.png",
+  "chatBefore": {
+    "chatRect": {
+      "bottom": 704,
+      "height": 68,
+      "right": 896,
+      "width": 512,
+      "x": 384,
+      "y": 636
+    },
+    "chatText": "Ask",
+    "markerCount": 15,
+    "missionActive": true,
+    "overflowX": 0,
+    "placesActive": true,
+    "title": "Live Pet Globe | PawPal",
+    "tutorialTitle": null,
+    "tutorialVisible": false,
+    "url": "http://localhost:3000/globe",
+    "visibleFrameworkOverlay": false
+  },
+  "chatExpanded": {
+    "chatRect": {
+      "bottom": 704,
+      "height": 68,
+      "right": 896,
+      "width": 512,
+      "x": 384,
+      "y": 636
+    },
+    "chatText": "Ask",
+    "markerCount": 15,
+    "missionActive": true,
+    "overflowX": 0,
+    "placesActive": true,
+    "title": "Live Pet Globe | PawPal",
+    "tutorialTitle": null,
+    "tutorialVisible": false,
+    "url": "http://localhost:3000/globe",
+    "visibleFrameworkOverlay": false
+  },
+  "chatExpandedScreenshot": "/private/tmp/geopet-round04-globe/interactions-v2/round04-globe-chat-expanded.png",
+  "closeCount": 0,
+  "chatClosed": {
+    "chatRect": {
+      "bottom": 704,
+      "height": 68,
+      "right": 896,
+      "width": 512,
+      "x": 384,
+      "y": 636
+    },
+    "chatText": "Ask",
+    "markerCount": 15,
+    "missionActive": true,
+    "overflowX": 0,
+    "placesActive": true,
+    "title": "Live Pet Globe | PawPal",
+    "tutorialTitle": null,
+    "tutorialVisible": false,
+    "url": "http://localhost:3000/globe",
+    "visibleFrameworkOverlay": false
+  },
+  "tutorialOrigin": "http://127.0.0.1:3000/globe",
+  "tutorialStep1": {
+    "chatRect": {
+      "bottom": 828,
+      "height": 68,
+      "right": 316,
+      "width": 304,
+      "x": 12,
+      "y": 760
+    },
+    "chatText": "Ask",
+    "markerCount": 15,
+    "missionActive": true,
+    "overflowX": 0,
+    "placesActive": true,
+    "title": "Live Pet Globe | PawPal",
+    "tutorialTitle": "Welcome to the Globe!",
+    "tutorialVisible": true,
+    "url": "http://127.0.0.1:3000/globe",
+    "visibleFrameworkOverlay": false
+  },
+  "tutorialStep2": {
+    "chatRect": {
+      "bottom": 828,
+      "height": 68,
+      "right": 316,
+      "width": 304,
+      "x": 12,
+      "y": 760
+    },
+    "chatText": "Ask",
+    "markerCount": 15,
+    "missionActive": true,
+    "overflowX": 0,
+    "placesActive": true,
+    "title": "Live Pet Globe | PawPal",
+    "tutorialTitle": "AI-Powered Search",
+    "tutorialVisible": true,
+    "url": "http://127.0.0.1:3000/globe",
+    "visibleFrameworkOverlay": false
+  },
+  "tutorialStep2Screenshot": "/private/tmp/geopet-round04-globe/interactions-v2/round04-globe-tutorial-step2.png",
+  "skipCount": 1,
+  "tutorialDismissed": {
+    "chatRect": {
+      "bottom": 828,
+      "height": 68,
+      "right": 316,
+      "width": 304,
+      "x": 12,
+      "y": 760
+    },
+    "chatText": "Ask",
+    "markerCount": 15,
+    "missionActive": true,
+    "overflowX": 0,
+    "placesActive": true,
+    "title": "Live Pet Globe | PawPal",
+    "tutorialTitle": null,
+    "tutorialVisible": false,
+    "url": "http://127.0.0.1:3000/globe",
+    "visibleFrameworkOverlay": false
+  },
+  "newLogs": []
+}

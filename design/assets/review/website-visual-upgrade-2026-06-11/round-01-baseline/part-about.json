@@ -1,0 +1,1439 @@
+{
+  "route": {
+    "path": "/about",
+    "slug": "about",
+    "character": "Marketing/editorial",
+    "signals": [
+      "About",
+      "PawPal",
+      "mission",
+      "pet"
+    ]
+  },
+  "results": [
+    {
+      "route": "/about",
+      "slug": "about",
+      "routeCharacter": "Marketing/editorial",
+      "requestedUrl": "http://localhost:3000/about",
+      "viewport": {
+        "label": "390x844",
+        "width": 390,
+        "height": 844
+      },
+      "started": "2026-06-11T11:23:32.291Z",
+      "navError": null,
+      "screenshotPath": "/private/tmp/geopet-round01-baseline/about-390x844.png",
+      "screenshotError": null,
+      "metrics": {
+        "blockingOverlay": true,
+        "bodyBackground": "rgb(255, 255, 255)",
+        "bodyColor": "rgb(58, 47, 42)",
+        "canvases": [],
+        "clientWidth": 390,
+        "colorSchemeStyle": "light",
+        "controls": [
+          {
+            "height": 44,
+            "inFirstViewport": false,
+            "left": 16,
+            "role": null,
+            "tag": "a",
+            "text": "Skip to PawPal content",
+            "top": -54,
+            "width": 194
+          },
+          {
+            "height": 32,
+            "inFirstViewport": true,
+            "left": 20,
+            "role": null,
+            "tag": "a",
+            "text": "PawPal",
+            "top": 24,
+            "width": 122
+          },
+          {
+            "height": 40,
+            "inFirstViewport": true,
+            "left": 330,
+            "role": null,
+            "tag": "button",
+            "text": "Open navigation menu",
+            "top": 20,
+            "width": 40
+          },
+          {
+            "height": 60,
+            "inFirstViewport": false,
+            "left": 87,
+            "role": null,
+            "tag": "button",
+            "text": "Download App",
+            "top": 7646,
+            "width": 217
+          },
+          {
+            "height": 62,
+            "inFirstViewport": false,
+            "left": 102,
+            "role": null,
+            "tag": "a",
+            "text": "Explore Globe",
+            "top": 7722,
+            "width": 185
+          },
+          {
+            "height": 17,
+            "inFirstViewport": false,
+            "left": 227,
+            "role": null,
+            "tag": "a",
+            "text": "hello@pawpal.be",
+            "top": 7833,
+            "width": 115
+          },
+          {
+            "height": 40,
+            "inFirstViewport": false,
+            "left": 20,
+            "role": null,
+            "tag": "a",
+            "text": "hello@pawpal.be",
+            "top": 8153,
+            "width": 176
+          },
+          {
+            "height": 17,
+            "inFirstViewport": false,
+            "left": 20,
+            "role": null,
+            "tag": "a",
+            "text": "Globe Map",
+            "top": 8269,
+            "width": 71
+          },
+          {
+            "height": 17,
+            "inFirstViewport": false,
+            "left": 20,
+            "role": null,
+            "tag": "a",
+            "text": "NFC Safety Tag",
+            "top": 8305,
+            "width": 102
+          },
+          {
+            "height": 17,
+            "inFirstViewport": false,
+            "left": 20,
+            "role": null,
+            "tag": "a",
+            "text": "AI Assistant",
+            "top": 8341,
+            "width": 78
+          },
+          {
+            "height": 17,
+            "inFirstViewport": false,
+            "left": 20,
+            "role": null,
+            "tag": "a",
+            "text": "Community",
+            "top": 8377,
+            "width": 76
+          },
+          {
+            "height": 17,
+            "inFirstViewport": false,
+            "left": 211,
+            "role": null,
+            "tag": "a",
+            "text": "About Us",
+            "top": 8269,
+            "width": 61
+          }
+        ],
+        "currentUrl": "http://localhost:3000/about",
+        "documentHeight": 8754,
+        "foundSignals": [
+          {
+            "element": {
+              "height": 17,
+              "inFirstViewport": false,
+              "left": 211,
+              "role": null,
+              "tag": "a",
+              "text": "About Us",
+              "top": 8269,
+              "width": 61
+            },
+            "found": true,
+            "signal": "About"
+          },
+          {
+            "element": {
+              "height": 44,
+              "inFirstViewport": false,
+              "left": 16,
+              "role": null,
+              "tag": "a",
+              "text": "Skip to PawPal content",
+              "top": -54,
+              "width": 194
+            },
+            "found": true,
+            "signal": "PawPal"
+          },
+          {
+            "element": {
+              "height": 7851,
+              "inFirstViewport": true,
+              "left": 0,
+              "role": null,
+              "tag": "main",
+              "text": "Our Story Enhancing the Bond Between You & Your Pet PawPal is a location-based pet life platform for young pet owners in",
+              "top": 81,
+              "width": 390
+            },
+            "found": true,
+            "signal": "mission"
+          },
+          {
+            "element": {
+              "height": 7851,
+              "inFirstViewport": true,
+              "left": 0,
+              "role": null,
+              "tag": "main",
+              "text": "Our Story Enhancing the Bond Between You & Your Pet PawPal is a location-based pet life platform for young pet owners in",
+              "top": 81,
+              "width": 390
+            },
+            "found": true,
+            "signal": "pet"
+          }
+        ],
+        "headings": [
+          {
+            "height": 135,
+            "inFirstViewport": true,
+            "left": 16,
+            "role": null,
+            "tag": "h1",
+            "text": "Enhancing the Bond Between You & Your Pet",
+            "top": 255,
+            "width": 358
+          },
+          {
+            "height": 64,
+            "inFirstViewport": false,
+            "left": 41,
+            "role": null,
+            "tag": "h2",
+            "text": "App, Web, and NFC tags working as one loop.",
+            "top": 943,
+            "width": 308
+          },
+          {
+            "height": 36,
+            "inFirstViewport": false,
+            "left": 16,
+            "role": null,
+            "tag": "h2",
+            "text": "The PawPal Ecosystem",
+            "top": 1881,
+            "width": 358
+          },
+          {
+            "height": 36,
+            "inFirstViewport": false,
+            "left": 16,
+            "role": null,
+            "tag": "h2",
+            "text": "What We Stand For",
+            "top": 2993,
+            "width": 358
+          },
+          {
+            "height": 36,
+            "inFirstViewport": false,
+            "left": 16,
+            "role": null,
+            "tag": "h2",
+            "text": "Meet the Founding Team",
+            "top": 4675,
+            "width": 358
+          },
+          {
+            "height": 36,
+            "inFirstViewport": false,
+            "left": 16,
+            "role": null,
+            "tag": "h2",
+            "text": "Our Journey",
+            "top": 6215,
+            "width": 358
+          }
+        ],
+        "horizontalOverflow": false,
+        "images": [
+          {
+            "height": 32,
+            "inFirstViewport": true,
+            "left": 20,
+            "role": null,
+            "tag": "img",
+            "text": "IMG",
+            "top": 24,
+            "width": 32
+          },
+          {
+            "height": 72,
+            "inFirstViewport": false,
+            "left": 159,
+            "role": null,
+            "tag": "img",
+            "text": "Sean Xiao",
+            "top": 4920,
+            "width": 72
+          },
+          {
+            "height": 72,
+            "inFirstViewport": false,
+            "left": 159,
+            "role": null,
+            "tag": "img",
+            "text": "Lingfeng Li",
+            "top": 5274,
+            "width": 72
+          },
+          {
+            "height": 72,
+            "inFirstViewport": false,
+            "left": 159,
+            "role": null,
+            "tag": "img",
+            "text": "Jieqiong",
+            "top": 5628,
+            "width": 72
+          },
+          {
+            "height": 30,
+            "inFirstViewport": false,
+            "left": 20,
+            "role": null,
+            "tag": "img",
+            "text": "IMG",
+            "top": 7989,
+            "width": 30
+          }
+        ],
+        "nonEmptyRender": true,
+        "overlayText": "",
+        "prefersDarkScheme": false,
+        "prefersReducedMotion": false,
+        "routeCharacter": "Marketing/editorial",
+        "scrollWidth": 390,
+        "textLength": 4614,
+        "textSample": "Skip to PawPal content PawPal Our Story Enhancing the Bond Between You & Your Pet PawPal is a location-based pet life platform for young pet owners in Europe. Starting from the high-frequency scenario of dog walking, we combine gamified maps, reward systems, N",
+        "title": "About | PawPal",
+        "viewport": {
+          "height": 844,
+          "width": 390
+        }
+      },
+      "focus": {
+        "height": 8754,
+        "left": 0,
+        "ok": true,
+        "role": null,
+        "tag": "body",
+        "text": "Skip to PawPal content PawPal Our Story Enhancing the Bond Between You & Your Pet PawPal is a location-based pet life pl",
+        "top": 0,
+        "width": 390
+      },
+      "logs": [],
+      "darkModeCapture": {
+        "captured": false,
+        "reason": "Browser viewport capability does not expose color-scheme emulation; current prefers-color-scheme value is recorded instead.",
+        "impact": "No separate dark-mode screenshot in this baseline round.",
+        "followUpRound": "First implementation verification round touching this route."
+      },
+      "reducedMotionCapture": {
+        "captured": false,
+        "reason": "Browser capability does not expose prefers-reduced-motion emulation; current matchMedia value is recorded instead.",
+        "impact": "No separate reduced-motion behavior emulation in this baseline round.",
+        "followUpRound": "First implementation verification round touching this route."
+      }
+    },
+    {
+      "route": "/about",
+      "slug": "about",
+      "routeCharacter": "Marketing/editorial",
+      "requestedUrl": "http://localhost:3000/about",
+      "viewport": {
+        "label": "768x1024",
+        "width": 768,
+        "height": 1024
+      },
+      "started": "2026-06-11T11:23:34.256Z",
+      "navError": null,
+      "screenshotPath": "/private/tmp/geopet-round01-baseline/about-768x1024.png",
+      "screenshotError": null,
+      "metrics": {
+        "blockingOverlay": true,
+        "bodyBackground": "rgb(255, 255, 255)",
+        "bodyColor": "rgb(58, 47, 42)",
+        "canvases": [],
+        "clientWidth": 768,
+        "colorSchemeStyle": "light",
+        "controls": [
+          {
+            "height": 44,
+            "inFirstViewport": false,
+            "left": 16,
+            "role": null,
+            "tag": "a",
+            "text": "Skip to PawPal content",
+            "top": -54,
+            "width": 194
+          },
+          {
+            "height": 32,
+            "inFirstViewport": true,
+            "left": 24,
+            "role": null,
+            "tag": "a",
+            "text": "PawPal",
+            "top": 24,
+            "width": 122
+          },
+          {
+            "height": 36,
+            "inFirstViewport": true,
+            "left": 211,
+            "role": null,
+            "tag": "a",
+            "text": "Home",
+            "top": 22,
+            "width": 68
+          },
+          {
+            "height": 36,
+            "inFirstViewport": true,
+            "left": 311,
+            "role": null,
+            "tag": "a",
+            "text": "Globe",
+            "top": 22,
+            "width": 68
+          },
+          {
+            "height": 36,
+            "inFirstViewport": true,
+            "left": 411,
+            "role": null,
+            "tag": "a",
+            "text": "About Us",
+            "top": 22,
+            "width": 91
+          },
+          {
+            "height": 36,
+            "inFirstViewport": true,
+            "left": 534,
+            "role": null,
+            "tag": "a",
+            "text": "Store",
+            "top": 22,
+            "width": 65
+          },
+          {
+            "height": 40,
+            "inFirstViewport": true,
+            "left": 664,
+            "role": null,
+            "tag": "a",
+            "text": "Login",
+            "top": 20,
+            "width": 80
+          },
+          {
+            "height": 62,
+            "inFirstViewport": false,
+            "left": 175,
+            "role": null,
+            "tag": "button",
+            "text": "Download App",
+            "top": 5546,
+            "width": 217
+          },
+          {
+            "height": 62,
+            "inFirstViewport": false,
+            "left": 408,
+            "role": null,
+            "tag": "a",
+            "text": "Explore Globe",
+            "top": 5546,
+            "width": 185
+          },
+          {
+            "height": 17,
+            "inFirstViewport": false,
+            "left": 416,
+            "role": null,
+            "tag": "a",
+            "text": "hello@pawpal.be",
+            "top": 5657,
+            "width": 115
+          },
+          {
+            "height": 40,
+            "inFirstViewport": false,
+            "left": 24,
+            "role": null,
+            "tag": "a",
+            "text": "hello@pawpal.be",
+            "top": 5977,
+            "width": 176
+          },
+          {
+            "height": 17,
+            "inFirstViewport": false,
+            "left": 319,
+            "role": null,
+            "tag": "a",
+            "text": "Globe Map",
+            "top": 5849,
+            "width": 71
+          }
+        ],
+        "currentUrl": "http://localhost:3000/about",
+        "documentHeight": 6222,
+        "foundSignals": [
+          {
+            "element": {
+              "height": 36,
+              "inFirstViewport": true,
+              "left": 411,
+              "role": null,
+              "tag": "a",
+              "text": "About Us",
+              "top": 22,
+              "width": 91
+            },
+            "found": true,
+            "signal": "About"
+          },
+          {
+            "element": {
+              "height": 44,
+              "inFirstViewport": false,
+              "left": 16,
+              "role": null,
+              "tag": "a",
+              "text": "Skip to PawPal content",
+              "top": -54,
+              "width": 194
+            },
+            "found": true,
+            "signal": "PawPal"
+          },
+          {
+            "element": {
+              "height": 5675,
+              "inFirstViewport": true,
+              "left": 0,
+              "role": null,
+              "tag": "main",
+              "text": "Our Story Enhancing the Bond Between You & Your Pet PawPal is a location-based pet life platform for young pet owners in",
+              "top": 81,
+              "width": 768
+            },
+            "found": true,
+            "signal": "mission"
+          },
+          {
+            "element": {
+              "height": 5675,
+              "inFirstViewport": true,
+              "left": 0,
+              "role": null,
+              "tag": "main",
+              "text": "Our Story Enhancing the Bond Between You & Your Pet PawPal is a location-based pet life platform for young pet owners in",
+              "top": 81,
+              "width": 768
+            },
+            "found": true,
+            "signal": "pet"
+          }
+        ],
+        "headings": [
+          {
+            "height": 150,
+            "inFirstViewport": true,
+            "left": 16,
+            "role": null,
+            "tag": "h1",
+            "text": "Enhancing the Bond Between You & Your Pet",
+            "top": 255,
+            "width": 736
+          },
+          {
+            "height": 32,
+            "inFirstViewport": true,
+            "left": 41,
+            "role": null,
+            "tag": "h2",
+            "text": "App, Web, and NFC tags working as one loop.",
+            "top": 797,
+            "width": 686
+          },
+          {
+            "height": 40,
+            "inFirstViewport": false,
+            "left": 16,
+            "role": null,
+            "tag": "h2",
+            "text": "The PawPal Ecosystem",
+            "top": 1694,
+            "width": 736
+          },
+          {
+            "height": 40,
+            "inFirstViewport": false,
+            "left": 16,
+            "role": null,
+            "tag": "h2",
+            "text": "What We Stand For",
+            "top": 2354,
+            "width": 736
+          },
+          {
+            "height": 40,
+            "inFirstViewport": false,
+            "left": 16,
+            "role": null,
+            "tag": "h2",
+            "text": "Meet the Founding Team",
+            "top": 3341,
+            "width": 736
+          },
+          {
+            "height": 40,
+            "inFirstViewport": false,
+            "left": 16,
+            "role": null,
+            "tag": "h2",
+            "text": "Our Journey",
+            "top": 4147,
+            "width": 736
+          }
+        ],
+        "horizontalOverflow": false,
+        "images": [
+          {
+            "height": 32,
+            "inFirstViewport": true,
+            "left": 24,
+            "role": null,
+            "tag": "img",
+            "text": "IMG",
+            "top": 24,
+            "width": 32
+          },
+          {
+            "height": 72,
+            "inFirstViewport": false,
+            "left": 95,
+            "role": null,
+            "tag": "img",
+            "text": "Sean Xiao",
+            "top": 3566,
+            "width": 72
+          },
+          {
+            "height": 72,
+            "inFirstViewport": false,
+            "left": 348,
+            "role": null,
+            "tag": "img",
+            "text": "Lingfeng Li",
+            "top": 3566,
+            "width": 72
+          },
+          {
+            "height": 72,
+            "inFirstViewport": false,
+            "left": 601,
+            "role": null,
+            "tag": "img",
+            "text": "Jieqiong",
+            "top": 3566,
+            "width": 72
+          },
+          {
+            "height": 30,
+            "inFirstViewport": false,
+            "left": 24,
+            "role": null,
+            "tag": "img",
+            "text": "IMG",
+            "top": 5813,
+            "width": 30
+          }
+        ],
+        "nonEmptyRender": true,
+        "overlayText": "",
+        "prefersDarkScheme": false,
+        "prefersReducedMotion": false,
+        "routeCharacter": "Marketing/editorial",
+        "scrollWidth": 768,
+        "textLength": 4646,
+        "textSample": "Skip to PawPal content PawPal Home Globe About Us Store Login Our Story Enhancing the Bond Between You & Your Pet PawPal is a location-based pet life platform for young pet owners in Europe. Starting from the high-frequency scenario of dog walking, we combine ",
+        "title": "About | PawPal",
+        "viewport": {
+          "height": 1024,
+          "width": 768
+        }
+      },
+      "focus": {
+        "height": 6222,
+        "left": 0,
+        "ok": true,
+        "role": null,
+        "tag": "body",
+        "text": "Skip to PawPal content PawPal Home Globe About Us Store Login Our Story Enhancing the Bond Between You & Your Pet PawPal",
+        "top": 0,
+        "width": 768
+      },
+      "logs": [],
+      "darkModeCapture": {
+        "captured": false,
+        "reason": "Browser viewport capability does not expose color-scheme emulation; current prefers-color-scheme value is recorded instead.",
+        "impact": "No separate dark-mode screenshot in this baseline round.",
+        "followUpRound": "First implementation verification round touching this route."
+      },
+      "reducedMotionCapture": {
+        "captured": false,
+        "reason": "Browser capability does not expose prefers-reduced-motion emulation; current matchMedia value is recorded instead.",
+        "impact": "No separate reduced-motion behavior emulation in this baseline round.",
+        "followUpRound": "First implementation verification round touching this route."
+      }
+    },
+    {
+      "route": "/about",
+      "slug": "about",
+      "routeCharacter": "Marketing/editorial",
+      "requestedUrl": "http://localhost:3000/about",
+      "viewport": {
+        "label": "1280x720",
+        "width": 1280,
+        "height": 720
+      },
+      "started": "2026-06-11T11:23:36.180Z",
+      "navError": null,
+      "screenshotPath": "/private/tmp/geopet-round01-baseline/about-1280x720.png",
+      "screenshotError": null,
+      "metrics": {
+        "blockingOverlay": true,
+        "bodyBackground": "rgb(255, 255, 255)",
+        "bodyColor": "rgb(58, 47, 42)",
+        "canvases": [],
+        "clientWidth": 1280,
+        "colorSchemeStyle": "light",
+        "controls": [
+          {
+            "height": 44,
+            "inFirstViewport": false,
+            "left": 16,
+            "role": null,
+            "tag": "a",
+            "text": "Skip to PawPal content",
+            "top": -54,
+            "width": 194
+          },
+          {
+            "height": 32,
+            "inFirstViewport": true,
+            "left": 32,
+            "role": null,
+            "tag": "a",
+            "text": "PawPal",
+            "top": 24,
+            "width": 122
+          },
+          {
+            "height": 36,
+            "inFirstViewport": true,
+            "left": 467,
+            "role": null,
+            "tag": "a",
+            "text": "Home",
+            "top": 22,
+            "width": 68
+          },
+          {
+            "height": 36,
+            "inFirstViewport": true,
+            "left": 567,
+            "role": null,
+            "tag": "a",
+            "text": "Globe",
+            "top": 22,
+            "width": 68
+          },
+          {
+            "height": 36,
+            "inFirstViewport": true,
+            "left": 667,
+            "role": null,
+            "tag": "a",
+            "text": "About Us",
+            "top": 22,
+            "width": 91
+          },
+          {
+            "height": 36,
+            "inFirstViewport": true,
+            "left": 790,
+            "role": null,
+            "tag": "a",
+            "text": "Store",
+            "top": 22,
+            "width": 65
+          },
+          {
+            "height": 40,
+            "inFirstViewport": true,
+            "left": 1168,
+            "role": null,
+            "tag": "a",
+            "text": "Login",
+            "top": 20,
+            "width": 80
+          },
+          {
+            "height": 62,
+            "inFirstViewport": false,
+            "left": 431,
+            "role": null,
+            "tag": "button",
+            "text": "Download App",
+            "top": 4727,
+            "width": 217
+          },
+          {
+            "height": 62,
+            "inFirstViewport": false,
+            "left": 664,
+            "role": null,
+            "tag": "a",
+            "text": "Explore Globe",
+            "top": 4727,
+            "width": 185
+          },
+          {
+            "height": 17,
+            "inFirstViewport": false,
+            "left": 672,
+            "role": null,
+            "tag": "a",
+            "text": "hello@pawpal.be",
+            "top": 4839,
+            "width": 115
+          },
+          {
+            "height": 40,
+            "inFirstViewport": false,
+            "left": 32,
+            "role": null,
+            "tag": "a",
+            "text": "hello@pawpal.be",
+            "top": 5158,
+            "width": 176
+          },
+          {
+            "height": 17,
+            "inFirstViewport": false,
+            "left": 513,
+            "role": null,
+            "tag": "a",
+            "text": "Globe Map",
+            "top": 5031,
+            "width": 71
+          }
+        ],
+        "currentUrl": "http://localhost:3000/about",
+        "documentHeight": 5311,
+        "foundSignals": [
+          {
+            "element": {
+              "height": 36,
+              "inFirstViewport": true,
+              "left": 667,
+              "role": null,
+              "tag": "a",
+              "text": "About Us",
+              "top": 22,
+              "width": 91
+            },
+            "found": true,
+            "signal": "About"
+          },
+          {
+            "element": {
+              "height": 44,
+              "inFirstViewport": false,
+              "left": 16,
+              "role": null,
+              "tag": "a",
+              "text": "Skip to PawPal content",
+              "top": -54,
+              "width": 194
+            },
+            "found": true,
+            "signal": "PawPal"
+          },
+          {
+            "element": {
+              "height": 4856,
+              "inFirstViewport": true,
+              "left": 0,
+              "role": null,
+              "tag": "main",
+              "text": "Our Story Enhancing the Bond Between You & Your Pet PawPal is a location-based pet life platform for young pet owners in",
+              "top": 81,
+              "width": 1280
+            },
+            "found": true,
+            "signal": "mission"
+          },
+          {
+            "element": {
+              "height": 4856,
+              "inFirstViewport": true,
+              "left": 0,
+              "role": null,
+              "tag": "main",
+              "text": "Our Story Enhancing the Bond Between You & Your Pet PawPal is a location-based pet life platform for young pet owners in",
+              "top": 81,
+              "width": 1280
+            },
+            "found": true,
+            "signal": "pet"
+          }
+        ],
+        "headings": [
+          {
+            "height": 225,
+            "inFirstViewport": true,
+            "left": 80,
+            "role": null,
+            "tag": "h1",
+            "text": "Enhancing the Bond Between You & Your Pet",
+            "top": 255,
+            "width": 660
+          },
+          {
+            "height": 64,
+            "inFirstViewport": true,
+            "left": 805,
+            "role": null,
+            "tag": "h2",
+            "text": "App, Web, and NFC tags working as one loop.",
+            "top": 297,
+            "width": 370
+          },
+          {
+            "height": 40,
+            "inFirstViewport": false,
+            "left": 80,
+            "role": null,
+            "tag": "h2",
+            "text": "The PawPal Ecosystem",
+            "top": 1249,
+            "width": 1120
+          },
+          {
+            "height": 40,
+            "inFirstViewport": false,
+            "left": 80,
+            "role": null,
+            "tag": "h2",
+            "text": "What We Stand For",
+            "top": 1818,
+            "width": 1120
+          },
+          {
+            "height": 40,
+            "inFirstViewport": false,
+            "left": 144,
+            "role": null,
+            "tag": "h2",
+            "text": "Meet the Founding Team",
+            "top": 2572,
+            "width": 992
+          },
+          {
+            "height": 40,
+            "inFirstViewport": false,
+            "left": 272,
+            "role": null,
+            "tag": "h2",
+            "text": "Our Journey",
+            "top": 3328,
+            "width": 736
+          }
+        ],
+        "horizontalOverflow": false,
+        "images": [
+          {
+            "height": 32,
+            "inFirstViewport": true,
+            "left": 32,
+            "role": null,
+            "tag": "img",
+            "text": "IMG",
+            "top": 24,
+            "width": 32
+          },
+          {
+            "height": 72,
+            "inFirstViewport": false,
+            "left": 265,
+            "role": null,
+            "tag": "img",
+            "text": "Sean Xiao",
+            "top": 2797,
+            "width": 72
+          },
+          {
+            "height": 72,
+            "inFirstViewport": false,
+            "left": 604,
+            "role": null,
+            "tag": "img",
+            "text": "Lingfeng Li",
+            "top": 2797,
+            "width": 72
+          },
+          {
+            "height": 72,
+            "inFirstViewport": false,
+            "left": 943,
+            "role": null,
+            "tag": "img",
+            "text": "Jieqiong",
+            "top": 2797,
+            "width": 72
+          },
+          {
+            "height": 30,
+            "inFirstViewport": false,
+            "left": 32,
+            "role": null,
+            "tag": "img",
+            "text": "IMG",
+            "top": 4994,
+            "width": 30
+          }
+        ],
+        "nonEmptyRender": true,
+        "overlayText": "",
+        "prefersDarkScheme": false,
+        "prefersReducedMotion": false,
+        "routeCharacter": "Marketing/editorial",
+        "scrollWidth": 1280,
+        "textLength": 4646,
+        "textSample": "Skip to PawPal content PawPal Home Globe About Us Store Login Our Story Enhancing the Bond Between You & Your Pet PawPal is a location-based pet life platform for young pet owners in Europe. Starting from the high-frequency scenario of dog walking, we combine ",
+        "title": "About | PawPal",
+        "viewport": {
+          "height": 720,
+          "width": 1280
+        }
+      },
+      "focus": {
+        "height": 5311,
+        "left": 0,
+        "ok": true,
+        "role": null,
+        "tag": "body",
+        "text": "Skip to PawPal content PawPal Home Globe About Us Store Login Our Story Enhancing the Bond Between You & Your Pet PawPal",
+        "top": 0,
+        "width": 1280
+      },
+      "logs": [],
+      "darkModeCapture": {
+        "captured": false,
+        "reason": "Browser viewport capability does not expose color-scheme emulation; current prefers-color-scheme value is recorded instead.",
+        "impact": "No separate dark-mode screenshot in this baseline round.",
+        "followUpRound": "First implementation verification round touching this route."
+      },
+      "reducedMotionCapture": {
+        "captured": false,
+        "reason": "Browser capability does not expose prefers-reduced-motion emulation; current matchMedia value is recorded instead.",
+        "impact": "No separate reduced-motion behavior emulation in this baseline round.",
+        "followUpRound": "First implementation verification round touching this route."
+      }
+    },
+    {
+      "route": "/about",
+      "slug": "about",
+      "routeCharacter": "Marketing/editorial",
+      "requestedUrl": "http://localhost:3000/about",
+      "viewport": {
+        "label": "1440x900",
+        "width": 1440,
+        "height": 900
+      },
+      "started": "2026-06-11T11:23:38.271Z",
+      "navError": null,
+      "screenshotPath": "/private/tmp/geopet-round01-baseline/about-1440x900.png",
+      "screenshotError": null,
+      "metrics": {
+        "blockingOverlay": true,
+        "bodyBackground": "rgb(255, 255, 255)",
+        "bodyColor": "rgb(58, 47, 42)",
+        "canvases": [],
+        "clientWidth": 1440,
+        "colorSchemeStyle": "light",
+        "controls": [
+          {
+            "height": 44,
+            "inFirstViewport": false,
+            "left": 16,
+            "role": null,
+            "tag": "a",
+            "text": "Skip to PawPal content",
+            "top": -54,
+            "width": 194
+          },
+          {
+            "height": 32,
+            "inFirstViewport": true,
+            "left": 112,
+            "role": null,
+            "tag": "a",
+            "text": "PawPal",
+            "top": 24,
+            "width": 122
+          },
+          {
+            "height": 36,
+            "inFirstViewport": true,
+            "left": 547,
+            "role": null,
+            "tag": "a",
+            "text": "Home",
+            "top": 22,
+            "width": 68
+          },
+          {
+            "height": 36,
+            "inFirstViewport": true,
+            "left": 647,
+            "role": null,
+            "tag": "a",
+            "text": "Globe",
+            "top": 22,
+            "width": 68
+          },
+          {
+            "height": 36,
+            "inFirstViewport": true,
+            "left": 747,
+            "role": null,
+            "tag": "a",
+            "text": "About Us",
+            "top": 22,
+            "width": 91
+          },
+          {
+            "height": 36,
+            "inFirstViewport": true,
+            "left": 870,
+            "role": null,
+            "tag": "a",
+            "text": "Store",
+            "top": 22,
+            "width": 65
+          },
+          {
+            "height": 40,
+            "inFirstViewport": true,
+            "left": 1248,
+            "role": null,
+            "tag": "a",
+            "text": "Login",
+            "top": 20,
+            "width": 80
+          },
+          {
+            "height": 62,
+            "inFirstViewport": false,
+            "left": 511,
+            "role": null,
+            "tag": "button",
+            "text": "Download App",
+            "top": 4727,
+            "width": 217
+          },
+          {
+            "height": 62,
+            "inFirstViewport": false,
+            "left": 744,
+            "role": null,
+            "tag": "a",
+            "text": "Explore Globe",
+            "top": 4727,
+            "width": 185
+          },
+          {
+            "height": 17,
+            "inFirstViewport": false,
+            "left": 752,
+            "role": null,
+            "tag": "a",
+            "text": "hello@pawpal.be",
+            "top": 4839,
+            "width": 115
+          },
+          {
+            "height": 40,
+            "inFirstViewport": false,
+            "left": 112,
+            "role": null,
+            "tag": "a",
+            "text": "hello@pawpal.be",
+            "top": 5158,
+            "width": 176
+          },
+          {
+            "height": 17,
+            "inFirstViewport": false,
+            "left": 593,
+            "role": null,
+            "tag": "a",
+            "text": "Globe Map",
+            "top": 5031,
+            "width": 71
+          }
+        ],
+        "currentUrl": "http://localhost:3000/about",
+        "documentHeight": 5311,
+        "foundSignals": [
+          {
+            "element": {
+              "height": 36,
+              "inFirstViewport": true,
+              "left": 747,
+              "role": null,
+              "tag": "a",
+              "text": "About Us",
+              "top": 22,
+              "width": 91
+            },
+            "found": true,
+            "signal": "About"
+          },
+          {
+            "element": {
+              "height": 44,
+              "inFirstViewport": false,
+              "left": 16,
+              "role": null,
+              "tag": "a",
+              "text": "Skip to PawPal content",
+              "top": -54,
+              "width": 194
+            },
+            "found": true,
+            "signal": "PawPal"
+          },
+          {
+            "element": {
+              "height": 4856,
+              "inFirstViewport": true,
+              "left": 0,
+              "role": null,
+              "tag": "main",
+              "text": "Our Story Enhancing the Bond Between You & Your Pet PawPal is a location-based pet life platform for young pet owners in",
+              "top": 81,
+              "width": 1440
+            },
+            "found": true,
+            "signal": "mission"
+          },
+          {
+            "element": {
+              "height": 4856,
+              "inFirstViewport": true,
+              "left": 0,
+              "role": null,
+              "tag": "main",
+              "text": "Our Story Enhancing the Bond Between You & Your Pet PawPal is a location-based pet life platform for young pet owners in",
+              "top": 81,
+              "width": 1440
+            },
+            "found": true,
+            "signal": "pet"
+          }
+        ],
+        "headings": [
+          {
+            "height": 225,
+            "inFirstViewport": true,
+            "left": 160,
+            "role": null,
+            "tag": "h1",
+            "text": "Enhancing the Bond Between You & Your Pet",
+            "top": 255,
+            "width": 660
+          },
+          {
+            "height": 64,
+            "inFirstViewport": true,
+            "left": 885,
+            "role": null,
+            "tag": "h2",
+            "text": "App, Web, and NFC tags working as one loop.",
+            "top": 297,
+            "width": 370
+          },
+          {
+            "height": 40,
+            "inFirstViewport": false,
+            "left": 160,
+            "role": null,
+            "tag": "h2",
+            "text": "The PawPal Ecosystem",
+            "top": 1249,
+            "width": 1120
+          },
+          {
+            "height": 40,
+            "inFirstViewport": false,
+            "left": 160,
+            "role": null,
+            "tag": "h2",
+            "text": "What We Stand For",
+            "top": 1818,
+            "width": 1120
+          },
+          {
+            "height": 40,
+            "inFirstViewport": false,
+            "left": 224,
+            "role": null,
+            "tag": "h2",
+            "text": "Meet the Founding Team",
+            "top": 2572,
+            "width": 992
+          },
+          {
+            "height": 40,
+            "inFirstViewport": false,
+            "left": 352,
+            "role": null,
+            "tag": "h2",
+            "text": "Our Journey",
+            "top": 3328,
+            "width": 736
+          }
+        ],
+        "horizontalOverflow": false,
+        "images": [
+          {
+            "height": 32,
+            "inFirstViewport": true,
+            "left": 112,
+            "role": null,
+            "tag": "img",
+            "text": "IMG",
+            "top": 24,
+            "width": 32
+          },
+          {
+            "height": 72,
+            "inFirstViewport": false,
+            "left": 345,
+            "role": null,
+            "tag": "img",
+            "text": "Sean Xiao",
+            "top": 2797,
+            "width": 72
+          },
+          {
+            "height": 72,
+            "inFirstViewport": false,
+            "left": 684,
+            "role": null,
+            "tag": "img",
+            "text": "Lingfeng Li",
+            "top": 2797,
+            "width": 72
+          },
+          {
+            "height": 72,
+            "inFirstViewport": false,
+            "left": 1023,
+            "role": null,
+            "tag": "img",
+            "text": "Jieqiong",
+            "top": 2797,
+            "width": 72
+          },
+          {
+            "height": 30,
+            "inFirstViewport": false,
+            "left": 112,
+            "role": null,
+            "tag": "img",
+            "text": "IMG",
+            "top": 4994,
+            "width": 30
+          }
+        ],
+        "nonEmptyRender": true,
+        "overlayText": "",
+        "prefersDarkScheme": false,
+        "prefersReducedMotion": false,
+        "routeCharacter": "Marketing/editorial",
+        "scrollWidth": 1440,
+        "textLength": 4646,
+        "textSample": "Skip to PawPal content PawPal Home Globe About Us Store Login Our Story Enhancing the Bond Between You & Your Pet PawPal is a location-based pet life platform for young pet owners in Europe. Starting from the high-frequency scenario of dog walking, we combine ",
+        "title": "About | PawPal",
+        "viewport": {
+          "height": 900,
+          "width": 1440
+        }
+      },
+      "focus": {
+        "height": 5311,
+        "left": 0,
+        "ok": true,
+        "role": null,
+        "tag": "body",
+        "text": "Skip to PawPal content PawPal Home Globe About Us Store Login Our Story Enhancing the Bond Between You & Your Pet PawPal",
+        "top": 0,
+        "width": 1440
+      },
+      "logs": [],
+      "darkModeCapture": {
+        "captured": false,
+        "reason": "Browser viewport capability does not expose color-scheme emulation; current prefers-color-scheme value is recorded instead.",
+        "impact": "No separate dark-mode screenshot in this baseline round.",
+        "followUpRound": "First implementation verification round touching this route."
+      },
+      "reducedMotionCapture": {
+        "captured": false,
+        "reason": "Browser capability does not expose prefers-reduced-motion emulation; current matchMedia value is recorded instead.",
+        "impact": "No separate reduced-motion behavior emulation in this baseline round.",
+        "followUpRound": "First implementation verification round touching this route."
+      }
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "tool": "Codex in-app Browser",
+  "baseUrl": "http://localhost:3000",
+  "route": "/globe",
+  "generatedAt": "2026-06-14",
+  "pageIdentity": {
+    "url": "http://localhost:3000/globe",
+    "title": "Live Pet Globe | PawPal"
+  },
+  "initialChecks": {
+    "bodyLength": 335,
+    "canvasCount": 1,
+    "firstLayerActiveBefore": "globe-layer-button flex items-center gap-2 rounded-paw-sm border px-3 py-2 text-xs font-bold transition-all is-active-mission bg-paw-accent/90 text-white border-paw-accent",
+    "hasFallback": false,
+    "hasFrameworkOverlay": false,
+    "hasGlobalError": false,
+    "hasGlobe": true,
+    "hasMap": true,
+    "horizontalOverflow": false
+  },
+  "interaction": {
+    "attempted": true,
+    "control": "Missions layer toggle",
+    "beforeActive": true,
+    "afterActive": false,
+    "buttonCount": 2,
+    "afterClass": "globe-layer-button flex items-center gap-2 rounded-paw-sm border px-3 py-2 text-xs font-bold transition-all bg-paw-panel/80 text-paw-muted border-paw-border"
+  },
+  "console": {
+    "relevantErrorsOrWarnings": []
+  },
+  "notes": [
+    "Browser screenshot capture timed out on the live WebGL page, so visual screenshot evidence is supplied by round15_cdp_verify.js outputs.",
+    "The in-app Browser smoke was used for page identity, DOM health, console health, and interaction proof."
+  ]
+}
