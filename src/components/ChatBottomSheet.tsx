@@ -180,6 +180,7 @@ export default function ChatBottomSheet({ mapRef }: ChatBottomSheetProps) {
 
       // Dynamic import maplibre for marker creation
       const maplibre = await import("maplibre-gl");
+      if (mapRef.current !== map) return;
 
       const items: { lat: number; lng: number; name: string; type: string }[] =
         [];
@@ -201,9 +202,11 @@ export default function ChatBottomSheet({ mapRef }: ChatBottomSheetProps) {
 
       // Clear previous search markers
       clearSearchMarkers();
+      if (mapRef.current !== map) return;
 
       // Add new markers
       items.forEach((item) => {
+        if (mapRef.current !== map) return;
         const marker = createSearchMarker(
           maplibre,
           "⭐",
@@ -217,6 +220,7 @@ export default function ChatBottomSheet({ mapRef }: ChatBottomSheetProps) {
       });
 
       // Fly to first result
+      if (mapRef.current !== map) return;
       map.flyTo({
         center: [items[0].lng, items[0].lat],
         zoom: 13,
@@ -272,14 +276,18 @@ export default function ChatBottomSheet({ mapRef }: ChatBottomSheetProps) {
             const map = mapRef.current;
             if (map) {
               const maplibre = await import("maplibre-gl");
+              if (mapRef.current !== map) return;
               clearSearchMarkers();
+              if (mapRef.current !== map) return;
               results.forEach((r) => {
+                if (mapRef.current !== map) return;
                 const emoji = r.source === "quest" ? "🐾" : r.rating ? "⭐" : "📍";
                 const color = r.source === "quest" ? "var(--color-paw-primary)" : "var(--color-paw-trust)";
                 const displayName = r.localizedName ?? r.originalName;
                 const marker = createSearchMarker(maplibre, emoji, color, map, r.lng, r.lat, displayName);
                 searchMarkersRef.current.push(marker);
               });
+              if (mapRef.current !== map) return;
               map.flyTo({ center: [results[0].lng, results[0].lat], zoom: results[0].zoom ?? 13, duration: 2000 });
             }
 
@@ -509,7 +517,7 @@ export default function ChatBottomSheet({ mapRef }: ChatBottomSheetProps) {
   // ── Focus input = expand ─────────────────────────────────────────────────
 
   const handleInputFocus = () => {
-    if (snap === "peek" && messages.length > 0) {
+    if (snap === "peek") {
       setSnap("half");
     }
   };
@@ -534,10 +542,12 @@ export default function ChatBottomSheet({ mapRef }: ChatBottomSheetProps) {
 
       <div
         ref={sheetRef}
-        className="absolute bottom-0 left-0 right-0 z-50 flex flex-col overflow-hidden"
+        className={`globe-chat-sheet absolute z-50 flex flex-col overflow-hidden ${
+          snap === "peek" ? "globe-chat-sheet-peek" : "globe-chat-sheet-expanded"
+        }`}
         style={{
           height: SNAP_HEIGHTS[snap],
-          borderRadius: "20px 20px 0 0",
+          borderRadius: snap === "peek" ? "999px" : "20px 20px 0 0",
           background: "color-mix(in srgb, var(--color-paw-panel) 97%, transparent)",
           backdropFilter: "blur(24px)",
           WebkitBackdropFilter: "blur(24px)",
@@ -575,6 +585,7 @@ export default function ChatBottomSheet({ mapRef }: ChatBottomSheetProps) {
                 <button
                   onClick={() => setSnap("half")}
                   className="p-1.5 rounded-full hover:bg-paw-panel-subtle text-paw-muted transition-colors"
+                  aria-label="Collapse search panel"
                   title="Collapse"
                 >
                   <ChevronDown className="w-4 h-4" />
@@ -583,6 +594,7 @@ export default function ChatBottomSheet({ mapRef }: ChatBottomSheetProps) {
               <button
                 onClick={handleClose}
                 className="p-1.5 rounded-full hover:bg-paw-panel-subtle text-paw-muted transition-colors"
+                aria-label="Close search panel"
                 title="Close"
               >
                 <X className="w-4 h-4" />
@@ -678,11 +690,13 @@ export default function ChatBottomSheet({ mapRef }: ChatBottomSheetProps) {
             <Sparkles className="w-4 h-4 text-paw-trust shrink-0 ml-2" />
           )}
           <input
+            id="globe-search"
             ref={inputRef}
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={handleKeyDown}
             onFocus={handleInputFocus}
+            aria-label="Search or ask PawPal AI on the globe"
             placeholder="Search or ask anything · 搜索 · Zoek · Chercher…"
             disabled={isStreaming}
             className="flex-1 bg-transparent text-paw-body placeholder-paw-muted outline-none text-sm font-light min-w-0 disabled:opacity-50"

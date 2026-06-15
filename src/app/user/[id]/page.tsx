@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import { BadgeCheck, MapPin, PawPrint, Smartphone } from "lucide-react";
 
 import { supabaseServer as supabase } from "@/lib/supabaseServer";
+import { AppDeepLinkButton } from "@/components/ui";
 
 interface PageProps {
   params: Promise<{ id: string }>;
@@ -157,12 +158,7 @@ export default async function SharedUserPage({ params }: PageProps) {
               community experience.
             </p>
             <div className="mt-5 flex flex-col gap-3">
-              <a
-                href={`pawpal://user/${id}`}
-                className="inline-flex h-11 items-center justify-center rounded-paw-md bg-paw-primary px-4 text-sm font-extrabold text-white shadow-paw-action transition hover:bg-paw-primary-hover"
-              >
-                Open in App
-              </a>
+              <AppDeepLinkButton href={`pawpal://user/${id}`} fallbackHref={`/user/${id}`} />
               <Link
                 href="/"
                 className="inline-flex h-11 items-center justify-center rounded-paw-md border border-paw-border bg-paw-panel px-4 text-sm font-extrabold"

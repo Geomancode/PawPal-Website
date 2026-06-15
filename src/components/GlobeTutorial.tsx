@@ -6,6 +6,7 @@ import { X, ChevronRight, ChevronLeft, Sparkles } from "lucide-react";
 import { useAuth } from "./AuthProvider";
 
 const STORAGE_KEY = "pawpal_globe_tutorial_done";
+const INTRO_DELAY_MS = 12000;
 
 /* ── Step definitions ── */
 interface TourStep {
@@ -77,7 +78,7 @@ export default function GlobeTutorial() {
     if (loading) return;
     if (user) return;
     if (typeof window !== "undefined" && localStorage.getItem(STORAGE_KEY)) return;
-    const timer = setTimeout(() => setVisible(true), 2000);
+    const timer = setTimeout(() => setVisible(true), INTRO_DELAY_MS);
     return () => clearTimeout(timer);
   }, [user, loading]);
 
@@ -135,7 +136,7 @@ export default function GlobeTutorial() {
         className="fixed inset-0 z-[9998]"
         onClick={dismiss}
         style={{
-          background: "rgba(0,0,0,0.55)",
+          background: "rgba(0,0,0,0.38)",
           clipPath: getSpotlightClip(targetRect),
           transition: "clip-path 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
         }}
@@ -169,7 +170,7 @@ export default function GlobeTutorial() {
           animate={{ opacity: 1, y: 0, x: 0 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.3 }}
-          className="fixed z-[10000] w-[340px] max-w-[90vw]"
+          className="globe-tutorial-card fixed z-[10000] w-[340px] max-w-[90vw]"
           style={tooltipStyle}
         >
           <div className="bg-paw-panel rounded-paw-lg shadow-paw-panel border border-paw-border overflow-hidden">
@@ -189,7 +190,7 @@ export default function GlobeTutorial() {
                     />
                   ))}
                 </div>
-                <button onClick={dismiss} className="text-paw-muted hover:text-paw-body transition-colors">
+                <button onClick={dismiss} aria-label="Close globe tutorial" className="text-paw-muted hover:text-paw-body transition-colors">
                   <X className="w-4 h-4" />
                 </button>
               </div>
@@ -237,17 +238,25 @@ function getTooltipPosition(
   rect: DOMRect
 ): React.CSSProperties {
   const gap = 20;
+  const safeLeft = Math.max(16, Math.min(window.innerWidth - 356, rect.left + rect.width / 2 - 170));
+
+  if (rect.width > window.innerWidth * 0.82 || rect.height > window.innerHeight * 0.72) {
+    return {
+      top: window.innerWidth < 640 ? 92 : 82,
+      left: safeLeft,
+    };
+  }
 
   switch (position) {
     case "top":
       return {
         bottom: window.innerHeight - rect.top + gap,
-        left: Math.max(16, rect.left + rect.width / 2 - 170),
+        left: safeLeft,
       };
     case "bottom":
       return {
         top: rect.bottom + gap,
-        left: Math.max(16, rect.left + rect.width / 2 - 170),
+        left: safeLeft,
       };
     case "left":
       return {

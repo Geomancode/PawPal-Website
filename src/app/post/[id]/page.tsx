@@ -2,9 +2,10 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { MessageCircle, PawPrint, Share2, Smartphone, ThumbsUp } from "lucide-react";
+import { MessageCircle, PawPrint, Share2, ThumbsUp } from "lucide-react";
 
 import { supabaseServer as supabase } from "@/lib/supabaseServer";
+import { AppDeepLinkButton } from "@/components/ui";
 
 interface PageProps {
   params: Promise<{ id: string }>;
@@ -152,13 +153,7 @@ export default async function SharedPostPage({ params }: PageProps) {
             you can preview it here and install PawPal to like, comment, or message.
           </p>
           <div className="mt-6 flex flex-col gap-3">
-            <a
-              href={`pawpal://post/${id}`}
-              className="inline-flex h-12 items-center justify-center gap-2 rounded-paw-md bg-paw-primary px-5 text-sm font-extrabold text-white shadow-paw-action transition hover:bg-paw-primary-hover"
-            >
-              <Smartphone className="h-4 w-4" />
-              Open in App
-            </a>
+            <AppDeepLinkButton href={`pawpal://post/${id}`} fallbackHref={`/post/${id}`} />
             <Link
               href="/"
               className="inline-flex h-12 items-center justify-center rounded-paw-md border border-paw-border bg-paw-panel-subtle px-5 text-sm font-extrabold text-paw-ink transition hover:border-paw-primary"
