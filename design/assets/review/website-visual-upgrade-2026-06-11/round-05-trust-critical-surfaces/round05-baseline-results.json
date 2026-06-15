@@ -1,0 +1,898 @@
+[
+  {
+    "route": "/auth",
+    "key": "auth",
+    "viewport": {
+      "height": 844,
+      "width": 390
+    },
+    "runStart": "2026-06-11T13:36:05.170Z",
+    "url": "http://localhost:3000/auth",
+    "title": "PawPal | Pet Safety Map, Smart Tags, and Local Pet Community",
+    "snapshotLength": 1984,
+    "mainRect": {
+      "bottom": 844,
+      "height": 844,
+      "right": 375,
+      "width": 375,
+      "x": 0,
+      "y": 0
+    },
+    "meaningfulText": true,
+    "navRect": {
+      "bottom": 81,
+      "height": 81,
+      "right": 375,
+      "width": 375,
+      "x": 0,
+      "y": 0
+    },
+    "overflowX": 0,
+    "overflowY": 822,
+    "textSample": "Skip to PawPal content PawPal Welcome Back Sign in to continue your journey Sign In Sign Up Email Password Sign In or continue with Google Apple By continuing, you agree to PawPal's Terms and Privacy Policy PawPal Smart walks. Safe pets. Stronger local communities for pet parents across Belgium and the EU. hello@pawpal.be PRODUCT Globe Map NFC Safety Tag AI Assistant Community COMPANY About Us Store Help Center SUPPORT Privacy Policy Terms of Service Contact BELGIUM PILOT Partnership, clinic, pet shop, or smart tag",
+    "visibleFrameworkOverlay": false,
+    "newLogs": [],
+    "screenshotPath": "/private/tmp/geopet-round05-baseline/baseline-auth-390x844.png"
+  },
+  {
+    "route": "/auth",
+    "key": "auth",
+    "viewport": {
+      "height": 1024,
+      "width": 768
+    },
+    "runStart": "2026-06-11T13:36:08.886Z",
+    "url": "http://localhost:3000/auth",
+    "title": "PawPal | Pet Safety Map, Smart Tags, and Local Pet Community",
+    "snapshotLength": 2130,
+    "mainRect": {
+      "bottom": 1024,
+      "height": 1024,
+      "right": 753,
+      "width": 753,
+      "x": 0,
+      "y": 0
+    },
+    "meaningfulText": true,
+    "navRect": {
+      "bottom": 81,
+      "height": 81,
+      "right": 753,
+      "width": 753,
+      "x": 0,
+      "y": 0
+    },
+    "overflowX": 0,
+    "overflowY": 466,
+    "textSample": "Skip to PawPal content PawPal Home Globe About Us Store Login Welcome Back Sign in to continue your journey Sign In Sign Up Email Password Sign In or continue with Google Apple By continuing, you agree to PawPal's Terms and Privacy Policy PawPal Smart walks. Safe pets. Stronger local communities for pet parents across Belgium and the EU. hello@pawpal.be PRODUCT Globe Map NFC Safety Tag AI Assistant Community COMPANY About Us Store Help Center SUPPORT Privacy Policy Terms of Service Contact BELGIUM PILOT Partnership",
+    "visibleFrameworkOverlay": false,
+    "newLogs": [],
+    "screenshotPath": "/private/tmp/geopet-round05-baseline/baseline-auth-768x1024.png"
+  },
+  {
+    "route": "/auth",
+    "key": "auth",
+    "viewport": {
+      "height": 720,
+      "width": 1280
+    },
+    "runStart": "2026-06-11T13:36:12.693Z",
+    "url": "http://localhost:3000/auth",
+    "title": "PawPal | Pet Safety Map, Smart Tags, and Local Pet Community",
+    "snapshotLength": 2684,
+    "mainRect": {
+      "bottom": 810,
+      "height": 810,
+      "right": 1265,
+      "width": 1265,
+      "x": 0,
+      "y": 0
+    },
+    "meaningfulText": true,
+    "navRect": {
+      "bottom": 81,
+      "height": 81,
+      "right": 1265,
+      "width": 1265,
+      "x": 0,
+      "y": 0
+    },
+    "overflowX": 0,
+    "overflowY": 464,
+    "textSample": "Skip to PawPal content PawPal Home Globe About Us Store Login PawPal account One login for walks, tags, rescue pages, and store orders. Keep pet profiles, finder visibility, map activity, and community support tied to a single secure account. NFC ready Connect smart tags to controlled finder pages. Walk context Map features and nearby help stay attached to your profile. Privacy first Owner details stay hidden until you choose to share. Welcome Back Sign in to continue your journey Sign In Sign Up Email Password Sig",
+    "visibleFrameworkOverlay": false,
+    "newLogs": [],
+    "screenshotPath": "/private/tmp/geopet-round05-baseline/baseline-auth-1280x720.png"
+  },
+  {
+    "route": "/auth",
+    "key": "auth",
+    "viewport": {
+      "height": 900,
+      "width": 1440
+    },
+    "runStart": "2026-06-11T13:36:16.423Z",
+    "url": "http://localhost:3000/auth",
+    "title": "PawPal | Pet Safety Map, Smart Tags, and Local Pet Community",
+    "snapshotLength": 2684,
+    "mainRect": {
+      "bottom": 900,
+      "height": 900,
+      "right": 1425,
+      "width": 1425,
+      "x": 0,
+      "y": 0
+    },
+    "meaningfulText": true,
+    "navRect": {
+      "bottom": 81,
+      "height": 81,
+      "right": 1425,
+      "width": 1425,
+      "x": 0,
+      "y": 0
+    },
+    "overflowX": 0,
+    "overflowY": 374,
+    "textSample": "Skip to PawPal content PawPal Home Globe About Us Store Login PawPal account One login for walks, tags, rescue pages, and store orders. Keep pet profiles, finder visibility, map activity, and community support tied to a single secure account. NFC ready Connect smart tags to controlled finder pages. Walk context Map features and nearby help stay attached to your profile. Privacy first Owner details stay hidden until you choose to share. Welcome Back Sign in to continue your journey Sign In Sign Up Email Password Sig",
+    "visibleFrameworkOverlay": false,
+    "newLogs": [],
+    "screenshotPath": "/private/tmp/geopet-round05-baseline/baseline-auth-1440x900.png"
+  },
+  {
+    "route": "/profile",
+    "key": "profile",
+    "viewport": {
+      "height": 844,
+      "width": 390
+    },
+    "runStart": "2026-06-11T13:36:20.140Z",
+    "url": "http://localhost:3000/auth",
+    "title": "PawPal | Pet Safety Map, Smart Tags, and Local Pet Community",
+    "snapshotLength": 1984,
+    "mainRect": {
+      "bottom": 844,
+      "height": 844,
+      "right": 375,
+      "width": 375,
+      "x": 0,
+      "y": 0
+    },
+    "meaningfulText": true,
+    "navRect": {
+      "bottom": 81,
+      "height": 81,
+      "right": 375,
+      "width": 375,
+      "x": 0,
+      "y": 0
+    },
+    "overflowX": 0,
+    "overflowY": 822,
+    "textSample": "Skip to PawPal content PawPal Welcome Back Sign in to continue your journey Sign In Sign Up Email Password Sign In or continue with Google Apple By continuing, you agree to PawPal's Terms and Privacy Policy PawPal Smart walks. Safe pets. Stronger local communities for pet parents across Belgium and the EU. hello@pawpal.be PRODUCT Globe Map NFC Safety Tag AI Assistant Community COMPANY About Us Store Help Center SUPPORT Privacy Policy Terms of Service Contact BELGIUM PILOT Partnership, clinic, pet shop, or smart tag",
+    "visibleFrameworkOverlay": false,
+    "newLogs": [
+      {
+        "level": "warn",
+        "message": "Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior=\"smooth\"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior",
+        "timestamp": "2026-06-11T13:36:21.050Z",
+        "url": "http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js"
+      }
+    ],
+    "screenshotPath": "/private/tmp/geopet-round05-baseline/baseline-profile-390x844.png"
+  },
+  {
+    "route": "/profile",
+    "key": "profile",
+    "viewport": {
+      "height": 1024,
+      "width": 768
+    },
+    "runStart": "2026-06-11T13:36:23.781Z",
+    "url": "http://localhost:3000/auth",
+    "title": "PawPal | Pet Safety Map, Smart Tags, and Local Pet Community",
+    "snapshotLength": 2130,
+    "mainRect": {
+      "bottom": 1024,
+      "height": 1024,
+      "right": 753,
+      "width": 753,
+      "x": 0,
+      "y": 0
+    },
+    "meaningfulText": true,
+    "navRect": {
+      "bottom": 81,
+      "height": 81,
+      "right": 753,
+      "width": 753,
+      "x": 0,
+      "y": 0
+    },
+    "overflowX": 0,
+    "overflowY": 466,
+    "textSample": "Skip to PawPal content PawPal Home Globe About Us Store Login Welcome Back Sign in to continue your journey Sign In Sign Up Email Password Sign In or continue with Google Apple By continuing, you agree to PawPal's Terms and Privacy Policy PawPal Smart walks. Safe pets. Stronger local communities for pet parents across Belgium and the EU. hello@pawpal.be PRODUCT Globe Map NFC Safety Tag AI Assistant Community COMPANY About Us Store Help Center SUPPORT Privacy Policy Terms of Service Contact BELGIUM PILOT Partnership",
+    "visibleFrameworkOverlay": false,
+    "newLogs": [
+      {
+        "level": "warn",
+        "message": "Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior=\"smooth\"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior",
+        "timestamp": "2026-06-11T13:36:24.585Z",
+        "url": "http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js"
+      }
+    ],
+    "screenshotPath": "/private/tmp/geopet-round05-baseline/baseline-profile-768x1024.png"
+  },
+  {
+    "route": "/profile",
+    "key": "profile",
+    "viewport": {
+      "height": 720,
+      "width": 1280
+    },
+    "runStart": "2026-06-11T13:36:27.438Z",
+    "url": "http://localhost:3000/auth",
+    "title": "PawPal | Pet Safety Map, Smart Tags, and Local Pet Community",
+    "snapshotLength": 2684,
+    "mainRect": {
+      "bottom": 810,
+      "height": 810,
+      "right": 1265,
+      "width": 1265,
+      "x": 0,
+      "y": 0
+    },
+    "meaningfulText": true,
+    "navRect": {
+      "bottom": 81,
+      "height": 81,
+      "right": 1265,
+      "width": 1265,
+      "x": 0,
+      "y": 0
+    },
+    "overflowX": 0,
+    "overflowY": 464,
+    "textSample": "Skip to PawPal content PawPal Home Globe About Us Store Login PawPal account One login for walks, tags, rescue pages, and store orders. Keep pet profiles, finder visibility, map activity, and community support tied to a single secure account. NFC ready Connect smart tags to controlled finder pages. Walk context Map features and nearby help stay attached to your profile. Privacy first Owner details stay hidden until you choose to share. Welcome Back Sign in to continue your journey Sign In Sign Up Email Password Sig",
+    "visibleFrameworkOverlay": false,
+    "newLogs": [
+      {
+        "level": "warn",
+        "message": "Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior=\"smooth\"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior",
+        "timestamp": "2026-06-11T13:36:28.283Z",
+        "url": "http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js"
+      }
+    ],
+    "screenshotPath": "/private/tmp/geopet-round05-baseline/baseline-profile-1280x720.png"
+  },
+  {
+    "route": "/profile",
+    "key": "profile",
+    "viewport": {
+      "height": 900,
+      "width": 1440
+    },
+    "runStart": "2026-06-11T13:36:31.212Z",
+    "url": "http://localhost:3000/auth",
+    "title": "PawPal | Pet Safety Map, Smart Tags, and Local Pet Community",
+    "snapshotLength": 2684,
+    "mainRect": {
+      "bottom": 900,
+      "height": 900,
+      "right": 1425,
+      "width": 1425,
+      "x": 0,
+      "y": 0
+    },
+    "meaningfulText": true,
+    "navRect": {
+      "bottom": 81,
+      "height": 81,
+      "right": 1425,
+      "width": 1425,
+      "x": 0,
+      "y": 0
+    },
+    "overflowX": 0,
+    "overflowY": 374,
+    "textSample": "Skip to PawPal content PawPal Home Globe About Us Store Login PawPal account One login for walks, tags, rescue pages, and store orders. Keep pet profiles, finder visibility, map activity, and community support tied to a single secure account. NFC ready Connect smart tags to controlled finder pages. Walk context Map features and nearby help stay attached to your profile. Privacy first Owner details stay hidden until you choose to share. Welcome Back Sign in to continue your journey Sign In Sign Up Email Password Sig",
+    "visibleFrameworkOverlay": false,
+    "newLogs": [
+      {
+        "level": "warn",
+        "message": "Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior=\"smooth\"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior",
+        "timestamp": "2026-06-11T13:36:31.988Z",
+        "url": "http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js"
+      }
+    ],
+    "screenshotPath": "/private/tmp/geopet-round05-baseline/baseline-profile-1440x900.png"
+  },
+  {
+    "route": "/tag/sample-id",
+    "key": "tag-sample-id",
+    "viewport": {
+      "height": 844,
+      "width": 390
+    },
+    "runStart": "2026-06-11T13:36:34.914Z",
+    "url": "http://localhost:3000/tag/sample-id",
+    "title": "PawPal | Pet Safety Map, Smart Tags, and Local Pet Community",
+    "snapshotLength": 2039,
+    "mainRect": {
+      "bottom": 1132,
+      "height": 1132,
+      "right": 375,
+      "width": 375,
+      "x": 0,
+      "y": 0
+    },
+    "meaningfulText": true,
+    "navRect": {
+      "bottom": 81,
+      "height": 81,
+      "right": 375,
+      "width": 375,
+      "x": 0,
+      "y": 0
+    },
+    "overflowX": 0,
+    "overflowY": 1110,
+    "textSample": "Skip to PawPal content PawPal PawPal PAGE NOT FOUND This PawPal route is not available. The link may be old, private, or missing a valid pet, post, group, or profile ID. Start from a trusted PawPal page instead. Back home Shop smart tags Scanned a tag? Check the printed code and try the full NFC or QR link again. Looking for local help? The live Globe keeps places, weather, and community needs close. PawPal Smart walks. Safe pets. Stronger local communities for pet parents across Belgium and the EU. hello@pawpal.be",
+    "visibleFrameworkOverlay": false,
+    "newLogs": [],
+    "screenshotPath": "/private/tmp/geopet-round05-baseline/baseline-tag-sample-id-390x844.png"
+  },
+  {
+    "route": "/tag/sample-id",
+    "key": "tag-sample-id",
+    "viewport": {
+      "height": 1024,
+      "width": 768
+    },
+    "runStart": "2026-06-11T13:36:40.778Z",
+    "url": "http://localhost:3000/tag/sample-id",
+    "title": "PawPal | Pet Safety Map, Smart Tags, and Local Pet Community",
+    "snapshotLength": 2185,
+    "mainRect": {
+      "bottom": 1100,
+      "height": 1100,
+      "right": 753,
+      "width": 753,
+      "x": 0,
+      "y": 0
+    },
+    "meaningfulText": true,
+    "navRect": {
+      "bottom": 81,
+      "height": 81,
+      "right": 753,
+      "width": 753,
+      "x": 0,
+      "y": 0
+    },
+    "overflowX": 0,
+    "overflowY": 542,
+    "textSample": "Skip to PawPal content PawPal Home Globe About Us Store Login PawPal PAGE NOT FOUND This PawPal route is not available. The link may be old, private, or missing a valid pet, post, group, or profile ID. Start from a trusted PawPal page instead. Back home Shop smart tags Scanned a tag? Check the printed code and try the full NFC or QR link again. Looking for local help? The live Globe keeps places, weather, and community needs close. PawPal Smart walks. Safe pets. Stronger local communities for pet parents across Bel",
+    "visibleFrameworkOverlay": false,
+    "newLogs": [],
+    "screenshotPath": "/private/tmp/geopet-round05-baseline/baseline-tag-sample-id-768x1024.png"
+  },
+  {
+    "route": "/tag/sample-id",
+    "key": "tag-sample-id",
+    "viewport": {
+      "height": 720,
+      "width": 1280
+    },
+    "runStart": "2026-06-11T13:36:44.507Z",
+    "url": "http://localhost:3000/tag/sample-id",
+    "title": "PawPal | Pet Safety Map, Smart Tags, and Local Pet Community",
+    "snapshotLength": 2185,
+    "mainRect": {
+      "bottom": 727,
+      "height": 727,
+      "right": 1265,
+      "width": 1265,
+      "x": 0,
+      "y": 0
+    },
+    "meaningfulText": true,
+    "navRect": {
+      "bottom": 81,
+      "height": 81,
+      "right": 1265,
+      "width": 1265,
+      "x": 0,
+      "y": 0
+    },
+    "overflowX": 0,
+    "overflowY": 381,
+    "textSample": "Skip to PawPal content PawPal Home Globe About Us Store Login PawPal PAGE NOT FOUND This PawPal route is not available. The link may be old, private, or missing a valid pet, post, group, or profile ID. Start from a trusted PawPal page instead. Back home Shop smart tags Scanned a tag? Check the printed code and try the full NFC or QR link again. Looking for local help? The live Globe keeps places, weather, and community needs close. PawPal Smart walks. Safe pets. Stronger local communities for pet parents across Bel",
+    "visibleFrameworkOverlay": false,
+    "newLogs": [],
+    "screenshotPath": "/private/tmp/geopet-round05-baseline/baseline-tag-sample-id-1280x720.png"
+  },
+  {
+    "route": "/tag/sample-id",
+    "key": "tag-sample-id",
+    "viewport": {
+      "height": 900,
+      "width": 1440
+    },
+    "runStart": "2026-06-11T13:36:48.214Z",
+    "url": "http://localhost:3000/tag/sample-id",
+    "title": "PawPal | Pet Safety Map, Smart Tags, and Local Pet Community",
+    "snapshotLength": 2185,
+    "mainRect": {
+      "bottom": 900,
+      "height": 900,
+      "right": 1425,
+      "width": 1425,
+      "x": 0,
+      "y": 0
+    },
+    "meaningfulText": true,
+    "navRect": {
+      "bottom": 81,
+      "height": 81,
+      "right": 1425,
+      "width": 1425,
+      "x": 0,
+      "y": 0
+    },
+    "overflowX": 0,
+    "overflowY": 374,
+    "textSample": "Skip to PawPal content PawPal Home Globe About Us Store Login PawPal PAGE NOT FOUND This PawPal route is not available. The link may be old, private, or missing a valid pet, post, group, or profile ID. Start from a trusted PawPal page instead. Back home Shop smart tags Scanned a tag? Check the printed code and try the full NFC or QR link again. Looking for local help? The live Globe keeps places, weather, and community needs close. PawPal Smart walks. Safe pets. Stronger local communities for pet parents across Bel",
+    "visibleFrameworkOverlay": false,
+    "newLogs": [],
+    "screenshotPath": "/private/tmp/geopet-round05-baseline/baseline-tag-sample-id-1440x900.png"
+  },
+  {
+    "route": "/store/checkout",
+    "key": "checkout",
+    "viewport": {
+      "height": 844,
+      "width": 390
+    },
+    "runStart": "2026-06-11T13:36:51.923Z",
+    "url": "http://localhost:3000/store",
+    "title": "Store | PawPal",
+    "snapshotLength": 3406,
+    "mainRect": {
+      "bottom": 2348,
+      "height": 2348,
+      "right": 375,
+      "width": 375,
+      "x": 0,
+      "y": 0
+    },
+    "meaningfulText": true,
+    "navRect": {
+      "bottom": 81,
+      "height": 81,
+      "right": 375,
+      "width": 375,
+      "x": 0,
+      "y": 0
+    },
+    "overflowX": 0,
+    "overflowY": 2325,
+    "textSample": "Skip to PawPal content PawPal Smart tags and walk gear for safer pet days Start with PawPal NFC safety tags, then find practical gear for daily walks, travel, cleanup, and care. NFC safety ready EU-first fulfillment Secure checkout Filter by category All Products Food & Treats Toys & Play Accessories Health & Care 4 products Cart My Orders New PawPal Smart ID Tag €12.99 NFC-ready safety tag that links rescuers to your pet profile and emergency contact flow. 4.9 (0) Details Add Best Seller Portable Pet Water Bottle ",
+    "visibleFrameworkOverlay": false,
+    "newLogs": [
+      {
+        "level": "warn",
+        "message": "Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior=\"smooth\"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior",
+        "timestamp": "2026-06-11T13:36:53.520Z",
+        "url": "http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js"
+      }
+    ],
+    "screenshotPath": "/private/tmp/geopet-round05-baseline/baseline-checkout-390x844.png"
+  },
+  {
+    "route": "/store/checkout",
+    "key": "checkout",
+    "viewport": {
+      "height": 1024,
+      "width": 768
+    },
+    "runStart": "2026-06-11T13:36:56.158Z",
+    "url": "http://localhost:3000/store",
+    "title": "Store | PawPal",
+    "snapshotLength": 3804,
+    "mainRect": {
+      "bottom": 1493,
+      "height": 1493,
+      "right": 753,
+      "width": 753,
+      "x": 0,
+      "y": 0
+    },
+    "meaningfulText": true,
+    "navRect": {
+      "bottom": 81,
+      "height": 81,
+      "right": 753,
+      "width": 753,
+      "x": 0,
+      "y": 0
+    },
+    "overflowX": 0,
+    "overflowY": 935,
+    "textSample": "Skip to PawPal content PawPal Home Globe About Us Store Login Smart tags and walk gear for safer pet days Start with PawPal NFC safety tags, then find practical gear for daily walks, travel, cleanup, and care. NFC safety ready Built for public finder pages and controlled owner details. EU-first fulfillment Catalog and checkout flows are prepared for Belgium-led rollout. Secure checkout Stripe-backed payment flow with cart persistence across visits. Filter by category All Products Food & Treats Toys & Play Accessori",
+    "visibleFrameworkOverlay": false,
+    "newLogs": [
+      {
+        "level": "warn",
+        "message": "Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior=\"smooth\"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior",
+        "timestamp": "2026-06-11T13:36:57.572Z",
+        "url": "http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js"
+      }
+    ],
+    "screenshotPath": "/private/tmp/geopet-round05-baseline/baseline-checkout-768x1024.png"
+  },
+  {
+    "route": "/store/checkout",
+    "key": "checkout",
+    "viewport": {
+      "height": 720,
+      "width": 1280
+    },
+    "runStart": "2026-06-11T13:36:59.766Z",
+    "url": "http://localhost:3000/store",
+    "title": "Store | PawPal",
+    "snapshotLength": 3804,
+    "mainRect": {
+      "bottom": 967,
+      "height": 967,
+      "right": 1265,
+      "width": 1265,
+      "x": 0,
+      "y": 0
+    },
+    "meaningfulText": true,
+    "navRect": {
+      "bottom": 81,
+      "height": 81,
+      "right": 1265,
+      "width": 1265,
+      "x": 0,
+      "y": 0
+    },
+    "overflowX": 0,
+    "overflowY": 620,
+    "textSample": "Skip to PawPal content PawPal Home Globe About Us Store Login Smart tags and walk gear for safer pet days Start with PawPal NFC safety tags, then find practical gear for daily walks, travel, cleanup, and care. NFC safety ready Built for public finder pages and controlled owner details. EU-first fulfillment Catalog and checkout flows are prepared for Belgium-led rollout. Secure checkout Stripe-backed payment flow with cart persistence across visits. Filter by category All Products Food & Treats Toys & Play Accessori",
+    "visibleFrameworkOverlay": false,
+    "newLogs": [
+      {
+        "level": "warn",
+        "message": "Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior=\"smooth\"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior",
+        "timestamp": "2026-06-11T13:37:00.917Z",
+        "url": "http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js"
+      }
+    ],
+    "screenshotPath": "/private/tmp/geopet-round05-baseline/baseline-checkout-1280x720.png"
+  },
+  {
+    "route": "/store/checkout",
+    "key": "checkout",
+    "viewport": {
+      "height": 900,
+      "width": 1440
+    },
+    "runStart": "2026-06-11T13:37:03.465Z",
+    "url": "http://localhost:3000/store",
+    "title": "Store | PawPal",
+    "snapshotLength": 3804,
+    "mainRect": {
+      "bottom": 967,
+      "height": 967,
+      "right": 1425,
+      "width": 1425,
+      "x": 0,
+      "y": 0
+    },
+    "meaningfulText": true,
+    "navRect": {
+      "bottom": 81,
+      "height": 81,
+      "right": 1425,
+      "width": 1425,
+      "x": 0,
+      "y": 0
+    },
+    "overflowX": 0,
+    "overflowY": 440,
+    "textSample": "Skip to PawPal content PawPal Home Globe About Us Store Login Smart tags and walk gear for safer pet days Start with PawPal NFC safety tags, then find practical gear for daily walks, travel, cleanup, and care. NFC safety ready Built for public finder pages and controlled owner details. EU-first fulfillment Catalog and checkout flows are prepared for Belgium-led rollout. Secure checkout Stripe-backed payment flow with cart persistence across visits. Filter by category All Products Food & Treats Toys & Play Accessori",
+    "visibleFrameworkOverlay": false,
+    "newLogs": [
+      {
+        "level": "warn",
+        "message": "Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior=\"smooth\"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior",
+        "timestamp": "2026-06-11T13:37:04.585Z",
+        "url": "http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js"
+      }
+    ],
+    "screenshotPath": "/private/tmp/geopet-round05-baseline/baseline-checkout-1440x900.png"
+  },
+  {
+    "route": "/store/orders",
+    "key": "orders",
+    "viewport": {
+      "height": 844,
+      "width": 390
+    },
+    "runStart": "2026-06-11T13:37:07.139Z",
+    "url": "http://localhost:3000/store/orders",
+    "title": "Store | PawPal",
+    "snapshotLength": 1804,
+    "mainRect": {
+      "bottom": 844,
+      "height": 844,
+      "right": 375,
+      "width": 375,
+      "x": 0,
+      "y": 0
+    },
+    "meaningfulText": true,
+    "navRect": {
+      "bottom": 81,
+      "height": 81,
+      "right": 375,
+      "width": 375,
+      "x": 0,
+      "y": 0
+    },
+    "overflowX": 0,
+    "overflowY": 822,
+    "textSample": "Skip to PawPal content PawPal Back to Store Purchase history My Orders Track PawPal store purchases, delivery progress, and payment details in one place. 0 orders No orders yet Start shopping and your orders will appear here. Browse Products PawPal Smart walks. Safe pets. Stronger local communities for pet parents across Belgium and the EU. hello@pawpal.be PRODUCT Globe Map NFC Safety Tag AI Assistant Community COMPANY About Us Store Help Center SUPPORT Privacy Policy Terms of Service Contact BELGIUM PILOT Partners",
+    "visibleFrameworkOverlay": false,
+    "newLogs": [],
+    "screenshotPath": "/private/tmp/geopet-round05-baseline/baseline-orders-390x844.png"
+  },
+  {
+    "route": "/store/orders",
+    "key": "orders",
+    "viewport": {
+      "height": 1024,
+      "width": 768
+    },
+    "runStart": "2026-06-11T13:37:11.318Z",
+    "url": "http://localhost:3000/store/orders",
+    "title": "Store | PawPal",
+    "snapshotLength": 1950,
+    "mainRect": {
+      "bottom": 1024,
+      "height": 1024,
+      "right": 753,
+      "width": 753,
+      "x": 0,
+      "y": 0
+    },
+    "meaningfulText": true,
+    "navRect": {
+      "bottom": 81,
+      "height": 81,
+      "right": 753,
+      "width": 753,
+      "x": 0,
+      "y": 0
+    },
+    "overflowX": 0,
+    "overflowY": 466,
+    "textSample": "Skip to PawPal content PawPal Home Globe About Us Store Login Back to Store Purchase history My Orders Track PawPal store purchases, delivery progress, and payment details in one place. 0 orders No orders yet Start shopping and your orders will appear here. Browse Products PawPal Smart walks. Safe pets. Stronger local communities for pet parents across Belgium and the EU. hello@pawpal.be PRODUCT Globe Map NFC Safety Tag AI Assistant Community COMPANY About Us Store Help Center SUPPORT Privacy Policy Terms of Servic",
+    "visibleFrameworkOverlay": false,
+    "newLogs": [],
+    "screenshotPath": "/private/tmp/geopet-round05-baseline/baseline-orders-768x1024.png"
+  },
+  {
+    "route": "/store/orders",
+    "key": "orders",
+    "viewport": {
+      "height": 720,
+      "width": 1280
+    },
+    "runStart": "2026-06-11T13:37:14.947Z",
+    "url": "http://localhost:3000/store/orders",
+    "title": "Store | PawPal",
+    "snapshotLength": 1950,
+    "mainRect": {
+      "bottom": 720,
+      "height": 720,
+      "right": 1265,
+      "width": 1265,
+      "x": 0,
+      "y": 0
+    },
+    "meaningfulText": true,
+    "navRect": {
+      "bottom": 81,
+      "height": 81,
+      "right": 1265,
+      "width": 1265,
+      "x": 0,
+      "y": 0
+    },
+    "overflowX": 0,
+    "overflowY": 374,
+    "textSample": "Skip to PawPal content PawPal Home Globe About Us Store Login Back to Store Purchase history My Orders Track PawPal store purchases, delivery progress, and payment details in one place. 0 orders No orders yet Start shopping and your orders will appear here. Browse Products PawPal Smart walks. Safe pets. Stronger local communities for pet parents across Belgium and the EU. hello@pawpal.be PRODUCT Globe Map NFC Safety Tag AI Assistant Community COMPANY About Us Store Help Center SUPPORT Privacy Policy Terms of Servic",
+    "visibleFrameworkOverlay": false,
+    "newLogs": [],
+    "screenshotPath": "/private/tmp/geopet-round05-baseline/baseline-orders-1280x720.png"
+  },
+  {
+    "route": "/store/orders",
+    "key": "orders",
+    "viewport": {
+      "height": 900,
+      "width": 1440
+    },
+    "runStart": "2026-06-11T13:37:18.625Z",
+    "url": "http://localhost:3000/store/orders",
+    "title": "Store | PawPal",
+    "snapshotLength": 1950,
+    "mainRect": {
+      "bottom": 900,
+      "height": 900,
+      "right": 1425,
+      "width": 1425,
+      "x": 0,
+      "y": 0
+    },
+    "meaningfulText": true,
+    "navRect": {
+      "bottom": 81,
+      "height": 81,
+      "right": 1425,
+      "width": 1425,
+      "x": 0,
+      "y": 0
+    },
+    "overflowX": 0,
+    "overflowY": 374,
+    "textSample": "Skip to PawPal content PawPal Home Globe About Us Store Login Back to Store Purchase history My Orders Track PawPal store purchases, delivery progress, and payment details in one place. 0 orders No orders yet Start shopping and your orders will appear here. Browse Products PawPal Smart walks. Safe pets. Stronger local communities for pet parents across Belgium and the EU. hello@pawpal.be PRODUCT Globe Map NFC Safety Tag AI Assistant Community COMPANY About Us Store Help Center SUPPORT Privacy Policy Terms of Servic",
+    "visibleFrameworkOverlay": false,
+    "newLogs": [],
+    "screenshotPath": "/private/tmp/geopet-round05-baseline/baseline-orders-1440x900.png"
+  },
+  {
+    "route": "/store/success",
+    "key": "success",
+    "viewport": {
+      "height": 844,
+      "width": 390
+    },
+    "runStart": "2026-06-11T13:37:22.116Z",
+    "url": "http://localhost:3000/store/success",
+    "title": "Store | PawPal",
+    "snapshotLength": 1560,
+    "mainRect": {
+      "bottom": 844,
+      "height": 844,
+      "right": 375,
+      "width": 375,
+      "x": 0,
+      "y": 0
+    },
+    "meaningfulText": true,
+    "navRect": {
+      "bottom": 81,
+      "height": 81,
+      "right": 375,
+      "width": 375,
+      "x": 0,
+      "y": 0
+    },
+    "overflowX": 0,
+    "overflowY": 822,
+    "textSample": "Skip to PawPal content PawPal Checkout status We could not verify this payment No session ID found Back to Store PawPal Smart walks. Safe pets. Stronger local communities for pet parents across Belgium and the EU. hello@pawpal.be PRODUCT Globe Map NFC Safety Tag AI Assistant Community COMPANY About Us Store Help Center SUPPORT Privacy Policy Terms of Service Contact BELGIUM PILOT Partnership, clinic, pet shop, or smart tag questions can go straight to the team. Contact PawPal © 2026 PawPal. All rights reserved. Mad",
+    "visibleFrameworkOverlay": false,
+    "newLogs": [],
+    "screenshotPath": "/private/tmp/geopet-round05-baseline/baseline-success-390x844.png"
+  },
+  {
+    "route": "/store/success",
+    "key": "success",
+    "viewport": {
+      "height": 1024,
+      "width": 768
+    },
+    "runStart": "2026-06-11T13:37:25.621Z",
+    "url": "http://localhost:3000/store/success",
+    "title": "Store | PawPal",
+    "snapshotLength": 1706,
+    "mainRect": {
+      "bottom": 1024,
+      "height": 1024,
+      "right": 753,
+      "width": 753,
+      "x": 0,
+      "y": 0
+    },
+    "meaningfulText": true,
+    "navRect": {
+      "bottom": 81,
+      "height": 81,
+      "right": 753,
+      "width": 753,
+      "x": 0,
+      "y": 0
+    },
+    "overflowX": 0,
+    "overflowY": 466,
+    "textSample": "Skip to PawPal content PawPal Home Globe About Us Store Login Checkout status We could not verify this payment No session ID found Back to Store PawPal Smart walks. Safe pets. Stronger local communities for pet parents across Belgium and the EU. hello@pawpal.be PRODUCT Globe Map NFC Safety Tag AI Assistant Community COMPANY About Us Store Help Center SUPPORT Privacy Policy Terms of Service Contact BELGIUM PILOT Partnership, clinic, pet shop, or smart tag questions can go straight to the team. Contact PawPal © 2026 ",
+    "visibleFrameworkOverlay": false,
+    "newLogs": [],
+    "screenshotPath": "/private/tmp/geopet-round05-baseline/baseline-success-768x1024.png"
+  },
+  {
+    "route": "/store/success",
+    "key": "success",
+    "viewport": {
+      "height": 720,
+      "width": 1280
+    },
+    "runStart": "2026-06-11T13:37:29.193Z",
+    "url": "http://localhost:3000/store/success",
+    "title": "Store | PawPal",
+    "snapshotLength": 1706,
+    "mainRect": {
+      "bottom": 720,
+      "height": 720,
+      "right": 1265,
+      "width": 1265,
+      "x": 0,
+      "y": 0
+    },
+    "meaningfulText": true,
+    "navRect": {
+      "bottom": 81,
+      "height": 81,
+      "right": 1265,
+      "width": 1265,
+      "x": 0,
+      "y": 0
+    },
+    "overflowX": 0,
+    "overflowY": 374,
+    "textSample": "Skip to PawPal content PawPal Home Globe About Us Store Login Checkout status We could not verify this payment No session ID found Back to Store PawPal Smart walks. Safe pets. Stronger local communities for pet parents across Belgium and the EU. hello@pawpal.be PRODUCT Globe Map NFC Safety Tag AI Assistant Community COMPANY About Us Store Help Center SUPPORT Privacy Policy Terms of Service Contact BELGIUM PILOT Partnership, clinic, pet shop, or smart tag questions can go straight to the team. Contact PawPal © 2026 ",
+    "visibleFrameworkOverlay": false,
+    "newLogs": [],
+    "screenshotPath": "/private/tmp/geopet-round05-baseline/baseline-success-1280x720.png"
+  },
+  {
+    "route": "/store/success",
+    "key": "success",
+    "viewport": {
+      "height": 900,
+      "width": 1440
+    },
+    "runStart": "2026-06-11T13:37:32.822Z",
+    "url": "http://localhost:3000/store/success",
+    "title": "Store | PawPal",
+    "snapshotLength": 1706,
+    "mainRect": {
+      "bottom": 900,
+      "height": 900,
+      "right": 1425,
+      "width": 1425,
+      "x": 0,
+      "y": 0
+    },
+    "meaningfulText": true,
+    "navRect": {
+      "bottom": 81,
+      "height": 81,
+      "right": 1425,
+      "width": 1425,
+      "x": 0,
+      "y": 0
+    },
+    "overflowX": 0,
+    "overflowY": 374,
+    "textSample": "Skip to PawPal content PawPal Home Globe About Us Store Login Checkout status We could not verify this payment No session ID found Back to Store PawPal Smart walks. Safe pets. Stronger local communities for pet parents across Belgium and the EU. hello@pawpal.be PRODUCT Globe Map NFC Safety Tag AI Assistant Community COMPANY About Us Store Help Center SUPPORT Privacy Policy Terms of Service Contact BELGIUM PILOT Partnership, clinic, pet shop, or smart tag questions can go straight to the team. Contact PawPal © 2026 ",
+    "visibleFrameworkOverlay": false,
+    "newLogs": [],
+    "screenshotPath": "/private/tmp/geopet-round05-baseline/baseline-success-1440x900.png"
+  }
+]

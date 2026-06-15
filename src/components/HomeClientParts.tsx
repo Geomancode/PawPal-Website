@@ -1,32 +1,62 @@
 "use client";
 
 import { motion, useInView, useScroll, useSpring } from "framer-motion";
+import Globe from "@/components/Globe";
 import Image from "next/image";
 import Link from "next/link";
-import Globe from "@/components/Globe";
 import {
   ArrowRight,
   Bot,
-  Download,
-  Globe as GlobeIcon,
+  Footprints,
+  HeartHandshake,
   Languages,
   LockKeyhole,
   Map,
-  MapPin,
   Navigation,
-  Radio,
   Route,
   ScanLine,
   ShieldCheck,
-  Star,
   Store,
   Users,
-  Watch,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
-import { ReactNode, useEffect, useRef, useState } from "react";
+import { ReactNode, useEffect, useRef, useState, useSyncExternalStore } from "react";
 
 const ease = [0.25, 0.46, 0.45, 0.94] as const;
+const REDUCED_MOTION_QUERY = "(prefers-reduced-motion: reduce)";
+
+function enterMotion(shouldReduceMotion: boolean | null, y = 18, delay = 0) {
+  return {
+    initial: shouldReduceMotion ? false : { opacity: 0, y },
+    animate: { opacity: 1, y: 0 },
+    transition: shouldReduceMotion
+      ? { duration: 0 }
+      : { delay, duration: 0.55, ease },
+  };
+}
+
+function subscribeToReducedMotion(onStoreChange: () => void) {
+  if (typeof window === "undefined") return () => {};
+  const mediaQuery = window.matchMedia(REDUCED_MOTION_QUERY);
+  mediaQuery.addEventListener("change", onStoreChange);
+  return () => mediaQuery.removeEventListener("change", onStoreChange);
+}
+
+function getReducedMotionSnapshot() {
+  return typeof window !== "undefined" && window.matchMedia(REDUCED_MOTION_QUERY).matches;
+}
+
+function getServerReducedMotionSnapshot() {
+  return false;
+}
+
+function useHydratedReducedMotion() {
+  return useSyncExternalStore(
+    subscribeToReducedMotion,
+    getReducedMotionSnapshot,
+    getServerReducedMotionSnapshot,
+  );
+}
 
 export function FadeIn({
   children,
@@ -37,11 +67,11 @@ export function FadeIn({
   delay?: number;
   className?: string;
 }) {
+  const shouldReduceMotion = useHydratedReducedMotion();
+
   return (
     <motion.div
-      initial={{ opacity: 0, y: 18 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay, duration: 0.55, ease }}
+      {...enterMotion(shouldReduceMotion, 18, delay)}
       className={className}
     >
       {children}
@@ -58,12 +88,14 @@ export function FadeInView({
   delay?: number;
   className?: string;
 }) {
+  const shouldReduceMotion = useHydratedReducedMotion();
+
   return (
     <motion.div
-      initial={{ opacity: 0, y: 24 }}
+      initial={shouldReduceMotion ? false : { opacity: 0, y: 18 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-80px" }}
-      transition={{ delay, duration: 0.58, ease }}
+      transition={shouldReduceMotion ? { duration: 0 } : { delay, duration: 0.58, ease }}
       className={className}
     >
       {children}
@@ -72,114 +104,163 @@ export function FadeInView({
 }
 
 export function ScrollProgress() {
+  const shouldReduceMotion = useHydratedReducedMotion();
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, { stiffness: 120, damping: 30 });
 
-  return <motion.div className="scroll-progress" style={{ scaleX }} />;
+  return <motion.div className="scroll-progress" style={{ scaleX: shouldReduceMotion ? scrollYProgress : scaleX }} />;
 }
 
 export function HeroBlobs() {
   return (
     <div className="home-hero-field absolute inset-0 -z-10" aria-hidden="true">
-      <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-white to-transparent" />
+      <div className="hero-map-grid absolute inset-0 opacity-[0.18]" />
+      <div className="hero-safety-ribbon absolute inset-x-0 top-20 h-40" />
+      <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-paw-page to-transparent" />
     </div>
   );
 }
 
 export function AnimatedHeadline() {
   return (
-    <h1 className="hero-headline max-w-3xl font-brand text-[3.1rem] font-extrabold leading-[1.02] tracking-normal text-paw-ink sm:text-6xl lg:text-[4.45rem] xl:text-[4.8rem]">
-      <span className="block sm:whitespace-nowrap">Every pet moment,</span>
-      <span className="block text-paw-primary">mapped and protected</span>
+    <h1
+      aria-label="PawPal pet safety for every walk"
+      className="homepage-hero-headline max-w-3xl font-brand text-[3.15rem] font-extrabold leading-[1.02] tracking-normal text-paw-ink sm:text-6xl lg:text-[4.45rem] xl:text-[4.65rem]"
+    >
+      <span className="block sm:whitespace-nowrap">PawPal pet safety</span>
+      {" "}
+      <span className="block text-paw-primary">for every walk</span>
     </h1>
   );
 }
 
 export function HeroDescription() {
+  const shouldReduceMotion = useHydratedReducedMotion();
+
   return (
     <motion.p
-      className="max-w-xl break-words text-lg leading-8 text-paw-body lg:text-xl lg:leading-9"
-      initial={{ opacity: 0, y: 18 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: 0.18, duration: 0.55, ease }}
+      className="max-w-xl break-words text-base leading-7 text-paw-body sm:text-lg sm:leading-8"
+      {...enterMotion(shouldReduceMotion, 18, 0.18)}
     >
-      PawPal brings gamified walks, fog-of-war maps, NFC safety profiles,
-      AI care help, and a trusted local pet community into one calm product
-      surface.
+      Built in Belgium, PawPal connects live walks, smart finder
+      profiles, and local pet help in one calm product surface.
     </motion.p>
   );
 }
 
 export function HeroCTA() {
+  const shouldReduceMotion = useHydratedReducedMotion();
+
   return (
     <motion.div
       className="flex w-full max-w-[calc(100vw-2.5rem)] flex-col gap-3 pt-2 sm:max-w-none sm:flex-row"
-      initial={{ opacity: 0, y: 14 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: 0.28, duration: 0.55, ease }}
+      {...enterMotion(shouldReduceMotion, 14, 0.28)}
     >
       <Link
         href="/globe"
-        className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-paw-sm bg-paw-primary px-6 text-sm font-bold text-white shadow-paw-action transition hover:bg-paw-primary-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-paw-primary sm:w-auto"
+        className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-paw-sm bg-paw-primary-contrast px-6 text-sm font-bold text-white shadow-paw-action transition hover:bg-paw-primary-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-paw-primary sm:w-auto"
       >
-        Explore Globe
+        Open Live Map
         <ArrowRight className="h-4 w-4" />
       </Link>
       <Link
         href="/store"
-        className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-paw-sm border border-paw-border-strong bg-white px-6 text-sm font-bold text-paw-ink transition hover:border-paw-primary hover:text-paw-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-paw-primary sm:w-auto"
+        className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-paw-sm border border-paw-border-strong bg-paw-panel px-6 text-sm font-bold text-paw-ink transition hover:border-paw-primary hover:text-paw-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-paw-primary sm:w-auto"
       >
-        Shop NFC Tags
+        Shop Smart Tags
         <Store className="h-4 w-4" />
       </Link>
     </motion.div>
   );
 }
 
-export function HeroBadges() {
-  const petInitials = ["L", "M", "B", "N", "K"];
+export function HeroSignalRail() {
+  const shouldReduceMotion = useHydratedReducedMotion();
+  const signals = [
+    { label: "Finder page", value: "1 tap", icon: ScanLine },
+    { label: "Walk reveal", value: "2.43 km", icon: Route },
+    { label: "Local help", value: "15 km", icon: HeartHandshake },
+  ];
 
   return (
     <motion.div
-      className="flex flex-col gap-4 pt-2 sm:flex-row sm:items-center"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ delay: 0.42, duration: 0.5 }}
+      className="hero-signal-rail"
+      {...enterMotion(shouldReduceMotion, 14, 0.36)}
+      aria-label="PawPal product signals"
     >
-      <div className="flex -space-x-2">
-        {petInitials.map((initial, index) => (
-          <span
-            key={initial}
-            className="flex h-9 w-9 items-center justify-center rounded-full border-2 border-white text-xs font-black text-white shadow-sm"
-            style={{
-              backgroundColor: ["#4A90D9", "#76C7B8", "#F28C44", "#FFCD38", "#3A2F2A"][index],
-            }}
-          >
-            {initial}
+      {signals.map((signal) => (
+        <div key={signal.label} className="hero-signal-item">
+          <span className="hero-signal-icon">
+            <signal.icon className="h-4 w-4" aria-hidden="true" />
           </span>
-        ))}
-      </div>
-      <div>
-        <div className="mb-1 flex gap-0.5 text-paw-yellow" aria-label="Five star rating">
-          {[...Array(5)].map((_, index) => (
-            <Star key={index} className="h-4 w-4 fill-current" />
-          ))}
+          <span>
+            <span className="block text-xs font-black text-paw-ink">{signal.value}</span>
+            <span className="block text-[11px] font-semibold text-paw-muted">{signal.label}</span>
+          </span>
         </div>
-        <p className="text-sm font-medium text-paw-muted">
-          Trusted by pet parents across Belgium and the EU
-        </p>
-      </div>
+      ))}
+    </motion.div>
+  );
+}
+
+export function HeroBadges() {
+  const shouldReduceMotion = useHydratedReducedMotion();
+  const badges = [
+    {
+      icon: ShieldCheck,
+      label: "Finder-ready",
+      copy: "NFC safety profiles",
+      tone: "bg-paw-primary-soft text-paw-primary",
+    },
+    {
+      icon: LockKeyhole,
+      label: "Privacy-first",
+      copy: "Owner-controlled details",
+      tone: "bg-paw-trust-soft text-paw-trust",
+    },
+    {
+      icon: Languages,
+      label: "EU-ready",
+      copy: "5-language product base",
+      tone: "bg-paw-accent-soft text-paw-accent",
+    },
+  ];
+
+  return (
+    <motion.div
+      className="grid max-w-2xl gap-3 pt-2 sm:grid-cols-3"
+      initial={false}
+      animate={{ opacity: 1 }}
+      transition={shouldReduceMotion ? { duration: 0 } : { delay: 0.42, duration: 0.5 }}
+    >
+      {badges.map((badge) => (
+        <div
+          key={badge.label}
+          className="flex min-w-0 items-center gap-3 rounded-paw-md border border-paw-border bg-paw-panel/82 p-3 shadow-[0_10px_24px_rgba(33,55,78,0.08)] backdrop-blur"
+        >
+          <span className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-paw-sm ${badge.tone}`}>
+            <badge.icon className="h-5 w-5" aria-hidden="true" />
+          </span>
+          <div className="min-w-0">
+            <p className="truncate text-sm font-extrabold text-paw-ink">{badge.label}</p>
+            <p className="truncate text-xs font-semibold text-paw-muted">{badge.copy}</p>
+          </div>
+        </div>
+      ))}
     </motion.div>
   );
 }
 
 export function GlobeSection() {
+  const shouldReduceMotion = useHydratedReducedMotion();
+
   return (
     <motion.div
-      className="hero-globe-upgrade relative mx-auto flex min-h-[500px] w-full max-w-[calc(100vw-2.5rem)] items-center justify-center overflow-visible sm:max-w-[650px] lg:min-h-[610px]"
-      initial={{ opacity: 0, x: 24 }}
+      className="hero-globe-upgrade relative mx-auto flex w-full max-w-[calc(100vw-2.5rem)] items-center justify-center overflow-hidden sm:max-w-[680px]"
+      style={{ minHeight: "clamp(320px, 54vw, 560px)" }}
+      initial={false}
       animate={{ opacity: 1, x: 0 }}
-      transition={{ delay: 0.14, duration: 0.7, ease }}
+      transition={shouldReduceMotion ? { duration: 0 } : { delay: 0.14, duration: 0.7, ease }}
     >
       <div className="hero-globe-orbit-ring" aria-hidden="true" />
 
@@ -187,72 +268,30 @@ export function GlobeSection() {
         <Globe />
       </div>
 
-      <div className="hero-globe-card hero-globe-card-live left-0 top-14">
-        <span className="flex h-10 w-10 items-center justify-center rounded-paw-sm bg-paw-primary text-white">
-          <GlobeIcon className="h-5 w-5" />
+      <div className="hero-product-tag" aria-hidden="true">
+        <span className="hero-product-tag-mark">
+          <ScanLine className="h-5 w-5" />
         </span>
-        <div>
-          <p className="text-xs font-black uppercase tracking-[0.12em] text-paw-muted">Live Globe</p>
-          <p className="mt-0.5 text-sm font-extrabold text-paw-ink">Fog map active</p>
-        </div>
+        <span className="mt-1 font-brand text-sm font-black text-paw-primary">PawPal</span>
       </div>
-
-      <div className="hero-globe-card hero-globe-card-place right-0 top-28 hidden sm:flex">
-        <span className="flex h-10 w-10 items-center justify-center rounded-paw-sm bg-paw-trust-soft text-paw-trust">
-          <MapPin className="h-5 w-5" />
-        </span>
-        <div>
-          <p className="text-xs font-black uppercase tracking-[0.12em] text-paw-muted">Ghent Pilot</p>
-          <p className="mt-0.5 text-sm font-extrabold text-paw-ink">EU-ready pet map</p>
-        </div>
-      </div>
-
-      <div className="hero-globe-card hero-globe-card-route bottom-16 left-2">
-        <span className="flex h-10 w-10 items-center justify-center rounded-paw-sm bg-paw-accent-soft text-paw-accent">
-          <Route className="h-5 w-5" />
-        </span>
-        <div className="min-w-0">
-          <p className="text-xs font-black uppercase tracking-[0.12em] text-paw-muted">Today&apos;s route</p>
-          <p className="mt-0.5 text-sm font-extrabold text-paw-ink">2.43 km revealed</p>
-        </div>
-      </div>
-
-      <div className="hero-globe-card hero-globe-card-safety bottom-8 right-3 hidden sm:flex">
-        <span className="flex h-10 w-10 items-center justify-center rounded-paw-sm bg-paw-primary-soft text-paw-primary">
-          <ShieldCheck className="h-5 w-5" />
-        </span>
-        <div>
-          <p className="text-xs font-black uppercase tracking-[0.12em] text-paw-muted">NFC Safety</p>
-          <p className="mt-0.5 text-sm font-extrabold text-paw-ink">Finder-ready profile</p>
-        </div>
-      </div>
-
-      <motion.div
-        className="hero-globe-hint-upgraded"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: [0, 1, 1, 0.65, 1] }}
-        transition={{ delay: 1.2, duration: 3.2, repeat: Infinity, repeatDelay: 4 }}
-      >
-        Drag to spin
-      </motion.div>
     </motion.div>
   );
 }
 
 const proofItems: Array<{ icon: LucideIcon; title: string; copy: string; color: string }> = [
-  { icon: ShieldCheck, title: "NFC Safety", copy: "Instant ID access anytime", color: "text-paw-primary" },
-  { icon: LockKeyhole, title: "Privacy First", copy: "Owner details stay controlled", color: "text-paw-ink" },
-  { icon: Languages, title: "EU Ready", copy: "Built for multilingual owners", color: "text-paw-primary" },
-  { icon: Users, title: "Local Network", copy: "Community help around the map", color: "text-paw-accent" },
-  { icon: Star, title: "4.9 / 5", copy: "Early app experience target", color: "text-paw-ink" },
+  { icon: Map, title: "Walk map", copy: "See live walks and safe routes around you.", color: "text-paw-primary" },
+  { icon: ScanLine, title: "Smart tag", copy: "NFC finder profiles help get your pet home safely.", color: "text-paw-trust" },
+  { icon: HeartHandshake, title: "Local help", copy: "Connect with nearby helpers and trusted pet services.", color: "text-paw-accent" },
 ];
 
 export function TrustMarquee() {
   return (
-    <div className="grid gap-px bg-paw-border sm:grid-cols-2 lg:grid-cols-5">
+    <div className="homepage-proof-grid">
       {proofItems.map((item) => (
-        <div key={item.title} className="flex min-h-28 items-center gap-4 bg-white px-5 py-5">
-          <item.icon className={`h-8 w-8 shrink-0 ${item.color}`} />
+        <div key={item.title} className="homepage-proof-item">
+          <span className={`homepage-proof-icon ${item.color}`}>
+            <item.icon className="h-6 w-6" />
+          </span>
           <div>
             <h3 className="text-sm font-extrabold text-paw-ink">{item.title}</h3>
             <p className="mt-1 text-xs leading-5 text-paw-muted">{item.copy}</p>
@@ -260,6 +299,64 @@ export function TrustMarquee() {
         </div>
       ))}
     </div>
+  );
+}
+
+const readinessItems: Array<{ icon: LucideIcon; value: string; label: string; copy: string }> = [
+  {
+    icon: ScanLine,
+    value: "NFC",
+    label: "Instant finder profile",
+    copy: "Public pages are designed for quick owner contact without exposing private data by default.",
+  },
+  {
+    icon: Navigation,
+    value: "H3",
+    label: "Fog-of-war walks",
+    copy: "The mobile map turns daily routes into revealed places, route memory, and exploration rewards.",
+  },
+  {
+    icon: Bot,
+    value: "AI",
+    label: "Care copilot",
+    copy: "Breed, behavior, food safety, and local place help stay close to the walk and profile flows.",
+  },
+  {
+    icon: Users,
+    value: "EU",
+    label: "Local community base",
+    copy: "Built from Ghent outward with multilingual support and local pet parent coordination.",
+  },
+];
+
+export function LaunchReadinessPanel() {
+  return (
+    <section className="relative overflow-hidden bg-paw-panel-subtle py-12">
+      <div className="hero-map-grid absolute inset-0 opacity-[0.12]" aria-hidden="true" />
+      <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
+        <div className="grid gap-3 md:grid-cols-4">
+          {readinessItems.map((item) => (
+            <FadeInView key={item.label}>
+              <article className="readiness-card min-h-full">
+                <div className="readiness-card-track" aria-hidden="true">
+                  <span />
+                  <span />
+                  <span />
+                </div>
+                <div className="mb-5 flex items-center justify-between gap-4">
+                  <span className="flex h-11 w-11 items-center justify-center rounded-paw-sm bg-paw-primary-soft text-paw-primary">
+                    <item.icon className="h-5 w-5" aria-hidden="true" />
+                  </span>
+                  <span className="font-brand text-2xl font-black text-paw-primary">{item.value}</span>
+                </div>
+                <h2 className="text-base font-extrabold text-paw-ink">{item.label}</h2>
+                <p className="mt-2 text-sm leading-6 text-paw-body">{item.copy}</p>
+              </article>
+            </FadeInView>
+          ))}
+        </div>
+      </div>
+    </section>
   );
 }
 
@@ -272,11 +369,21 @@ function parseStatValue(value: string): { prefix: string; num: number; suffix: s
 export function AnimatedCounter({ value, label, delay = 0 }: { value: string; label: string; delay?: number }) {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-60px" });
+  const shouldReduceMotion = useHydratedReducedMotion();
   const { prefix, num, suffix } = parseStatValue(value);
   const [displayNum, setDisplayNum] = useState(0);
 
   useEffect(() => {
+    let cancelled = false;
     if (!isInView) return;
+    if (shouldReduceMotion) {
+      queueMicrotask(() => {
+        if (!cancelled) setDisplayNum(num);
+      });
+      return () => {
+        cancelled = true;
+      };
+    }
 
     const duration = 1300;
     const startedAt = Date.now();
@@ -288,18 +395,21 @@ export function AnimatedCounter({ value, label, delay = 0 }: { value: string; la
       if (progress >= 1) window.clearInterval(timer);
     }, 16);
 
-    return () => window.clearInterval(timer);
-  }, [isInView, num]);
+    return () => {
+      cancelled = true;
+      window.clearInterval(timer);
+    };
+  }, [isInView, num, shouldReduceMotion]);
 
   const displayedValue = num % 1 === 0 ? Math.round(displayNum) : displayNum.toFixed(1);
 
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, y: 16 }}
+      initial={false}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ delay, duration: 0.45, ease }}
+      transition={shouldReduceMotion ? { duration: 0 } : { delay, duration: 0.45, ease }}
     >
       <div className="font-brand text-3xl font-black text-paw-primary md:text-4xl">
         {isInView ? `${prefix}${displayedValue}${suffix}` : `${prefix}0${suffix}`}
@@ -318,7 +428,7 @@ const flowSteps: Array<{
   surface: string;
 }> = [
   {
-    icon: Navigation,
+    icon: Footprints,
     number: "01",
     title: "Walk & Explore",
     copy: "Reveal map places, route history, and PawPoints without turning the walk into admin.",
@@ -345,18 +455,20 @@ const flowSteps: Array<{
 
 export function ProductFlow() {
   return (
-    <div className="grid gap-8 lg:grid-cols-3">
+    <div className="homepage-flow">
       {flowSteps.map((step, index) => (
         <FadeInView key={step.title} delay={index * 0.08}>
-          <article className="workflow-step relative h-full border-t border-paw-border pt-8">
-            <div className="mb-6 flex items-center gap-5">
-              <span className={`font-brand text-5xl font-light ${step.color}`}>{step.number}</span>
-              <span className={`flex h-16 w-16 items-center justify-center rounded-full ${step.surface} ${step.color}`}>
-                <step.icon className="h-7 w-7" />
+          <article className="homepage-flow-step">
+            <div className="homepage-flow-marker">
+              <span className="homepage-flow-number">{index + 1}</span>
+              <span className={`homepage-flow-icon ${step.surface} ${step.color}`}>
+                <step.icon className="h-5 w-5" />
               </span>
             </div>
-            <h3 className="mb-3 text-xl font-extrabold text-paw-ink">{step.title}</h3>
-            <p className="max-w-sm text-sm leading-7 text-paw-body">{step.copy}</p>
+            <div>
+              <h3 className="text-base font-extrabold text-paw-ink">{step.title}</h3>
+              <p className="mt-2 max-w-sm text-sm leading-6 text-paw-body">{step.copy}</p>
+            </div>
           </article>
         </FadeInView>
       ))}
@@ -368,28 +480,28 @@ const featureRows: Array<{ icon: LucideIcon; title: string; copy: string; color:
   {
     icon: Map,
     title: "Fog-of-War Globe",
-    copy: "Reveal streets, parks, trails, and new local places through daily movement.",
+    copy: "Reveal routes, pet-friendly places, and local context through daily movement.",
     color: "text-paw-primary",
     surface: "bg-paw-primary",
   },
   {
     icon: ScanLine,
     title: "NFC Safety Tag",
-    copy: "One tap for instant ID, owner contact, care notes, and lost-mode details.",
+    copy: "One tap can open pet ID, care notes, owner contact rules, and lost-mode details.",
     color: "text-paw-trust",
     surface: "bg-paw-trust",
   },
   {
     icon: Bot,
     title: "AI Pet Assistant",
-    copy: "Get care guidance for health, behavior, nutrition, breed traits, and training.",
+    copy: "Get clearly scoped care guidance for behavior, nutrition, breed traits, and training.",
     color: "text-paw-accent",
     surface: "bg-paw-accent",
   },
   {
     icon: Users,
     title: "Local Community",
-    copy: "Find nearby pet parents, events, groups, trusted services, and urgent help.",
+    copy: "Find nearby pet parents, missions, groups, trusted services, and practical help.",
     color: "text-paw-primary",
     surface: "bg-paw-primary",
   },
@@ -403,12 +515,14 @@ const showcaseImages = [
 ];
 
 export function BentoFeatureGrid() {
+  const shouldReduceMotion = useHydratedReducedMotion();
+
   return (
     <div className="grid items-center gap-12 lg:grid-cols-[0.8fr_1.2fr]">
       <FadeInView>
         <div>
           <h2 className="font-brand text-3xl font-extrabold leading-tight text-paw-ink md:text-5xl">
-            Everything you need, in one place.
+            The daily pet stack, joined up.
           </h2>
           <div className="mt-8 space-y-6">
             {featureRows.map((feature) => (
@@ -427,16 +541,22 @@ export function BentoFeatureGrid() {
       </FadeInView>
 
       <FadeInView delay={0.08}>
-        <div className="relative min-h-[430px] overflow-hidden rounded-paw-md border border-paw-border bg-gradient-to-br from-paw-panel-subtle to-white px-4 pb-8 pt-8 shadow-paw-panel sm:min-h-[540px] sm:px-8">
-          <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-white to-transparent" />
-          <div className="grid grid-cols-2 gap-4 sm:flex sm:items-end sm:justify-center sm:gap-5">
+        <div className="feature-showcase-stage relative min-h-[430px] overflow-hidden rounded-paw-md border border-paw-border bg-gradient-to-br from-paw-panel-subtle to-paw-panel px-4 pb-8 pt-8 shadow-paw-panel sm:min-h-[540px] sm:px-8">
+          <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-paw-panel to-transparent" />
+          <div className="feature-showcase-header" aria-hidden="true">
+            <span>Profile</span>
+            <span>NFC</span>
+            <span>AI</span>
+            <span>Community</span>
+          </div>
+          <div className="relative z-10 grid grid-cols-2 gap-4 sm:flex sm:items-end sm:justify-center sm:gap-5">
             {showcaseImages.map((image, index) => (
               <motion.div
                 key={image.src}
-                className="relative aspect-[9/16] overflow-hidden rounded-[1.25rem] border border-white bg-white shadow-[0_20px_45px_rgba(36,60,84,0.18)] sm:w-[135px] lg:w-[158px]"
+                className="phone-screen-card relative aspect-[9/16] overflow-hidden rounded-[1.25rem] border border-paw-border bg-paw-panel shadow-[0_20px_45px_rgba(36,60,84,0.18)] sm:w-[135px] lg:w-[158px]"
                 style={{ marginTop: index % 2 === 0 ? 0 : 36 }}
-                whileHover={{ y: -8 }}
-                transition={{ type: "spring", stiffness: 180, damping: 18 }}
+                whileHover={shouldReduceMotion ? undefined : { y: -8 }}
+                transition={shouldReduceMotion ? { duration: 0 } : { type: "spring", stiffness: 180, damping: 18 }}
               >
                 <Image src={image.src} alt={image.alt} fill sizes="(min-width: 1024px) 158px, 45vw" className="object-cover" />
                 <span className="absolute left-3 top-3 rounded-paw-sm bg-white/86 px-2 py-1 text-[10px] font-black text-paw-ink shadow-sm backdrop-blur">
@@ -451,63 +571,52 @@ export function BentoFeatureGrid() {
   );
 }
 
-const ecosystemItems: Array<{ icon: LucideIcon; title: string; copy: string }> = [
-  { icon: Download, title: "iOS & Android", copy: "Mobile app" },
-  { icon: Radio, title: "NFC Tag", copy: "Tap to connect" },
-  { icon: Watch, title: "Real-time Sync", copy: "Across devices" },
-  { icon: LockKeyhole, title: "Secure & Private", copy: "By design" },
-];
-
 export function AppShowcase() {
   return (
-    <div className="grid items-center gap-12 lg:grid-cols-[0.9fr_1.1fr]">
-      <FadeInView>
-        <div>
-          <h2 className="font-brand text-3xl font-extrabold leading-tight text-paw-ink md:text-5xl">
-            Your pet life, seamlessly connected.
-          </h2>
-          <p className="mt-4 max-w-lg text-lg leading-8 text-paw-body">
-            PawPal works across the website, mobile app, NFC tag, and future
-            wearable moments so the product feels continuous.
-          </p>
-          <div className="mt-10 grid grid-cols-2 gap-5 sm:grid-cols-4 lg:grid-cols-2">
-            {ecosystemItems.map((item) => (
-              <div key={item.title}>
-                <span className="mb-3 flex h-11 w-11 items-center justify-center rounded-full bg-paw-primary-soft text-paw-primary">
-                  <item.icon className="h-5 w-5" />
-                </span>
-                <h3 className="text-sm font-extrabold text-paw-ink">{item.title}</h3>
-                <p className="mt-1 text-xs font-medium text-paw-muted">{item.copy}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </FadeInView>
-
+    <div className="homepage-showcase">
       <FadeInView delay={0.08}>
-        <div className="relative min-h-[420px] overflow-hidden rounded-paw-md border border-paw-border bg-white shadow-paw-panel">
-          <div className="hero-map-grid absolute inset-0 opacity-80" />
-          <div className="absolute left-8 top-8 w-[210px] sm:left-16 sm:w-[260px]">
+        <div className="homepage-showcase-visual">
+          <div className="homepage-showcase-grid" aria-hidden="true" />
+          <div className="homepage-phone-frame">
             <Image
               src="/images/app-mockup.png"
               alt="PawPal main app screen"
               width={1024}
               height={1024}
-              sizes="(min-width: 1024px) 260px, 55vw"
-              className="h-auto w-full drop-shadow-[0_24px_44px_rgba(31,52,74,0.22)]"
+              sizes="(min-width: 1024px) 250px, 58vw"
+              loading="eager"
+              className="h-auto w-full"
             />
           </div>
-          <div className="absolute bottom-16 right-28 hidden h-36 w-28 rounded-[2rem] bg-[#20262d] p-3 text-white shadow-[0_22px_38px_rgba(18,24,31,0.28)] sm:block">
-            <div className="text-[10px] font-bold text-white/55">PawPal</div>
-            <div className="mt-8 text-2xl font-black">2.43</div>
-            <div className="text-xs text-white/50">km this walk</div>
-            <div className="mt-4 h-1 rounded-full bg-white/15">
-              <div className="h-full w-[62%] rounded-full bg-paw-trust" />
-            </div>
+          <div className="homepage-tag-disc" aria-hidden="true">
+            <ScanLine className="h-6 w-6" />
+            <span>PawPal</span>
           </div>
-          <div className="hero-nfc-tag absolute bottom-12 right-8 flex h-28 w-28 flex-col items-center justify-center rounded-full bg-[#232629] text-white shadow-[0_22px_38px_rgba(18,24,31,0.26)]">
-            <span className="text-lg font-black text-white/75">PawPal</span>
-            <Radio className="mt-1 h-5 w-5 text-white/45" />
+        </div>
+      </FadeInView>
+
+      <FadeInView>
+        <div className="homepage-showcase-copy">
+          <h2 className="font-brand text-3xl font-extrabold leading-tight text-paw-ink md:text-5xl">
+            Everything you need, in one calm place.
+          </h2>
+          <p className="mt-4 max-w-lg text-base leading-7 text-paw-body md:text-lg md:leading-8">
+            The map, finder profile, and local help stay connected without turning the Homepage into a control panel.
+          </p>
+          <div className="homepage-showcase-list">
+            {[
+              { icon: Map, title: "Live map", copy: "See walks and safer routes in your area.", color: "text-paw-primary" },
+              { icon: ScanLine, title: "Finder profile", copy: "Share what matters, not everything.", color: "text-paw-trust" },
+              { icon: HeartHandshake, title: "Local help", copy: "Find nearby helpers and trusted services.", color: "text-paw-accent" },
+            ].map((item) => (
+              <div key={item.title} className="homepage-showcase-row">
+                <item.icon className={`h-6 w-6 ${item.color}`} aria-hidden="true" />
+                <div>
+                  <h3 className="text-sm font-extrabold text-paw-ink">{item.title}</h3>
+                  <p className="mt-1 text-sm leading-6 text-paw-body">{item.copy}</p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </FadeInView>
@@ -520,16 +629,16 @@ export function BottomCTA() {
     <div className="flex flex-col gap-3 sm:flex-row">
       <Link
         href="/globe"
-        className="inline-flex h-12 items-center justify-center gap-2 rounded-paw-sm bg-paw-primary px-6 text-sm font-bold text-white shadow-paw-action transition hover:bg-paw-primary-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-paw-primary"
+        className="inline-flex h-12 items-center justify-center gap-2 rounded-paw-sm bg-paw-primary-contrast px-6 text-sm font-bold text-white shadow-paw-action transition hover:bg-paw-primary-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-paw-primary"
       >
-        Explore Globe
+        Open Live Map
         <ArrowRight className="h-4 w-4" />
       </Link>
       <Link
         href="/store"
-        className="inline-flex h-12 items-center justify-center gap-2 rounded-paw-sm border border-paw-border-strong bg-white px-6 text-sm font-bold text-paw-ink transition hover:border-paw-primary hover:text-paw-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-paw-primary"
+        className="inline-flex h-12 items-center justify-center gap-2 rounded-paw-sm border border-paw-border-strong bg-paw-panel px-6 text-sm font-bold text-paw-ink transition hover:border-paw-primary hover:text-paw-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-paw-primary"
       >
-        Shop NFC Tags
+        Shop Smart Tags
         <Store className="h-4 w-4" />
       </Link>
     </div>

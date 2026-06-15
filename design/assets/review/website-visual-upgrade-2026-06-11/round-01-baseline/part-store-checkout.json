@@ -1,0 +1,1260 @@
+{
+  "route": {
+    "path": "/store/checkout",
+    "slug": "store-checkout",
+    "character": "Commerce checkout",
+    "signals": [
+      "Checkout",
+      "Cart",
+      "Sign in",
+      "Payment",
+      "Order"
+    ]
+  },
+  "results": [
+    {
+      "route": "/store/checkout",
+      "slug": "store-checkout",
+      "routeCharacter": "Commerce checkout",
+      "requestedUrl": "http://localhost:3000/store/checkout",
+      "viewport": {
+        "label": "390x844",
+        "width": 390,
+        "height": 844
+      },
+      "started": "2026-06-11T11:24:04.302Z",
+      "navError": null,
+      "screenshotPath": "/private/tmp/geopet-round01-baseline/store-checkout-390x844.png",
+      "screenshotError": null,
+      "metrics": {
+        "blockingOverlay": true,
+        "bodyBackground": "rgb(255, 255, 255)",
+        "bodyColor": "rgb(58, 47, 42)",
+        "canvases": [],
+        "clientWidth": 390,
+        "colorSchemeStyle": "light",
+        "controls": [
+          {
+            "height": 44,
+            "inFirstViewport": false,
+            "left": 16,
+            "role": null,
+            "tag": "a",
+            "text": "Skip to PawPal content",
+            "top": -54,
+            "width": 194
+          },
+          {
+            "height": 32,
+            "inFirstViewport": true,
+            "left": 20,
+            "role": null,
+            "tag": "a",
+            "text": "PawPal",
+            "top": 24,
+            "width": 122
+          },
+          {
+            "height": 40,
+            "inFirstViewport": true,
+            "left": 330,
+            "role": null,
+            "tag": "button",
+            "text": "Open navigation menu",
+            "top": 20,
+            "width": 40
+          },
+          {
+            "height": 48,
+            "inFirstViewport": true,
+            "left": 16,
+            "role": null,
+            "tag": "input",
+            "text": "Search products...",
+            "top": 519,
+            "width": 358
+          },
+          {
+            "height": 42,
+            "inFirstViewport": false,
+            "left": 16,
+            "role": null,
+            "tag": "button",
+            "text": "All Products",
+            "top": 1037,
+            "width": 142
+          },
+          {
+            "height": 42,
+            "inFirstViewport": false,
+            "left": 166,
+            "role": null,
+            "tag": "button",
+            "text": "Food & Treats",
+            "top": 1037,
+            "width": 153
+          },
+          {
+            "height": 42,
+            "inFirstViewport": false,
+            "left": 16,
+            "role": null,
+            "tag": "button",
+            "text": "Toys & Play",
+            "top": 1087,
+            "width": 136
+          },
+          {
+            "height": 42,
+            "inFirstViewport": false,
+            "left": 160,
+            "role": null,
+            "tag": "button",
+            "text": "Accessories",
+            "top": 1087,
+            "width": 142
+          },
+          {
+            "height": 42,
+            "inFirstViewport": false,
+            "left": 16,
+            "role": null,
+            "tag": "button",
+            "text": "Health & Care",
+            "top": 1137,
+            "width": 153
+          },
+          {
+            "height": 20,
+            "inFirstViewport": false,
+            "left": 282,
+            "role": null,
+            "tag": "button",
+            "text": "My Orders",
+            "top": 1211,
+            "width": 92
+          },
+          {
+            "height": 34,
+            "inFirstViewport": false,
+            "left": 176,
+            "role": null,
+            "tag": "button",
+            "text": "Details",
+            "top": 1635,
+            "width": 91
+          },
+          {
+            "height": 34,
+            "inFirstViewport": false,
+            "left": 275,
+            "role": null,
+            "tag": "button",
+            "text": "Add",
+            "top": 1635,
+            "width": 70
+          }
+        ],
+        "currentUrl": "http://localhost:3000/store",
+        "documentHeight": 9629,
+        "foundSignals": [
+          {
+            "element": {
+              "height": 8726,
+              "inFirstViewport": true,
+              "left": 0,
+              "role": null,
+              "tag": "main",
+              "text": "PawPal Shop Smart tags and walk gear for safer pet days Start with PawPal NFC safety tags, then add practical gear for d",
+              "top": 81,
+              "width": 390
+            },
+            "found": true,
+            "signal": "Checkout"
+          },
+          {
+            "element": {
+              "height": 8726,
+              "inFirstViewport": true,
+              "left": 0,
+              "role": null,
+              "tag": "main",
+              "text": "PawPal Shop Smart tags and walk gear for safer pet days Start with PawPal NFC safety tags, then add practical gear for d",
+              "top": 81,
+              "width": 390
+            },
+            "found": true,
+            "signal": "Cart"
+          },
+          {
+            "element": null,
+            "found": false,
+            "signal": "Sign in"
+          },
+          {
+            "element": {
+              "height": 8726,
+              "inFirstViewport": true,
+              "left": 0,
+              "role": null,
+              "tag": "main",
+              "text": "PawPal Shop Smart tags and walk gear for safer pet days Start with PawPal NFC safety tags, then add practical gear for d",
+              "top": 81,
+              "width": 390
+            },
+            "found": true,
+            "signal": "Payment"
+          },
+          {
+            "element": {
+              "height": 8726,
+              "inFirstViewport": true,
+              "left": 0,
+              "role": null,
+              "tag": "main",
+              "text": "PawPal Shop Smart tags and walk gear for safer pet days Start with PawPal NFC safety tags, then add practical gear for d",
+              "top": 81,
+              "width": 390
+            },
+            "found": true,
+            "signal": "Order"
+          }
+        ],
+        "headings": [
+          {
+            "height": 120,
+            "inFirstViewport": true,
+            "left": 16,
+            "role": null,
+            "tag": "h1",
+            "text": "Smart tags and walk gear for safer pet days",
+            "top": 255,
+            "width": 358
+          },
+          {
+            "height": 20,
+            "inFirstViewport": true,
+            "left": 85,
+            "role": null,
+            "tag": "h2",
+            "text": "NFC safety ready",
+            "top": 612,
+            "width": 272
+          },
+          {
+            "height": 20,
+            "inFirstViewport": true,
+            "left": 85,
+            "role": null,
+            "tag": "h2",
+            "text": "EU-first fulfillment",
+            "top": 722,
+            "width": 272
+          },
+          {
+            "height": 20,
+            "inFirstViewport": true,
+            "left": 85,
+            "role": null,
+            "tag": "h2",
+            "text": "Secure checkout",
+            "top": 832,
+            "width": 272
+          }
+        ],
+        "horizontalOverflow": false,
+        "images": [
+          {
+            "height": 32,
+            "inFirstViewport": true,
+            "left": 20,
+            "role": null,
+            "tag": "img",
+            "text": "IMG",
+            "top": 24,
+            "width": 32
+          },
+          {
+            "height": 30,
+            "inFirstViewport": false,
+            "left": 20,
+            "role": null,
+            "tag": "img",
+            "text": "IMG",
+            "top": 8864,
+            "width": 30
+          }
+        ],
+        "nonEmptyRender": true,
+        "overlayText": "",
+        "prefersDarkScheme": false,
+        "prefersReducedMotion": false,
+        "routeCharacter": "Commerce checkout",
+        "scrollWidth": 390,
+        "textLength": 3177,
+        "textSample": "Skip to PawPal content PawPal PawPal Shop Smart tags and walk gear for safer pet days Start with PawPal NFC safety tags, then add practical gear for daily walks, travel, cleanup, and care. NFC safety ready Built for public finder pages and controlled owner det",
+        "title": "Store | PawPal",
+        "viewport": {
+          "height": 844,
+          "width": 390
+        }
+      },
+      "focus": {
+        "height": 3961,
+        "left": 0,
+        "ok": true,
+        "role": null,
+        "tag": "body",
+        "text": "Skip to PawPal content PawPal PawPal Shop Smart tags and walk gear for safer pet days Start with PawPal NFC safety tags,",
+        "top": 0,
+        "width": 390
+      },
+      "logs": [],
+      "darkModeCapture": {
+        "captured": false,
+        "reason": "Browser viewport capability does not expose color-scheme emulation; current prefers-color-scheme value is recorded instead.",
+        "impact": "No separate dark-mode screenshot in this baseline round.",
+        "followUpRound": "First implementation verification round touching this route."
+      },
+      "reducedMotionCapture": {
+        "captured": false,
+        "reason": "Browser capability does not expose prefers-reduced-motion emulation; current matchMedia value is recorded instead.",
+        "impact": "No separate reduced-motion behavior emulation in this baseline round.",
+        "followUpRound": "First implementation verification round touching this route."
+      }
+    },
+    {
+      "route": "/store/checkout",
+      "slug": "store-checkout",
+      "routeCharacter": "Commerce checkout",
+      "requestedUrl": "http://localhost:3000/store/checkout",
+      "viewport": {
+        "label": "768x1024",
+        "width": 768,
+        "height": 1024
+      },
+      "started": "2026-06-11T11:24:06.495Z",
+      "navError": null,
+      "screenshotPath": "/private/tmp/geopet-round01-baseline/store-checkout-768x1024.png",
+      "screenshotError": null,
+      "metrics": {
+        "blockingOverlay": true,
+        "bodyBackground": "rgb(255, 255, 255)",
+        "bodyColor": "rgb(58, 47, 42)",
+        "canvases": [],
+        "clientWidth": 768,
+        "colorSchemeStyle": "light",
+        "controls": [
+          {
+            "height": 44,
+            "inFirstViewport": false,
+            "left": 16,
+            "role": null,
+            "tag": "a",
+            "text": "Skip to PawPal content",
+            "top": -54,
+            "width": 194
+          },
+          {
+            "height": 32,
+            "inFirstViewport": true,
+            "left": 24,
+            "role": null,
+            "tag": "a",
+            "text": "PawPal",
+            "top": 24,
+            "width": 122
+          },
+          {
+            "height": 36,
+            "inFirstViewport": true,
+            "left": 211,
+            "role": null,
+            "tag": "a",
+            "text": "Home",
+            "top": 22,
+            "width": 68
+          },
+          {
+            "height": 36,
+            "inFirstViewport": true,
+            "left": 311,
+            "role": null,
+            "tag": "a",
+            "text": "Globe",
+            "top": 22,
+            "width": 68
+          },
+          {
+            "height": 36,
+            "inFirstViewport": true,
+            "left": 411,
+            "role": null,
+            "tag": "a",
+            "text": "About Us",
+            "top": 22,
+            "width": 91
+          },
+          {
+            "height": 36,
+            "inFirstViewport": true,
+            "left": 534,
+            "role": null,
+            "tag": "a",
+            "text": "Store",
+            "top": 22,
+            "width": 65
+          },
+          {
+            "height": 40,
+            "inFirstViewport": true,
+            "left": 664,
+            "role": null,
+            "tag": "a",
+            "text": "Login",
+            "top": 20,
+            "width": 80
+          },
+          {
+            "height": 48,
+            "inFirstViewport": true,
+            "left": 128,
+            "role": null,
+            "tag": "input",
+            "text": "Search products...",
+            "top": 487,
+            "width": 512
+          },
+          {
+            "height": 42,
+            "inFirstViewport": true,
+            "left": 16,
+            "role": null,
+            "tag": "button",
+            "text": "All Products",
+            "top": 805,
+            "width": 142
+          },
+          {
+            "height": 42,
+            "inFirstViewport": true,
+            "left": 166,
+            "role": null,
+            "tag": "button",
+            "text": "Food & Treats",
+            "top": 805,
+            "width": 153
+          },
+          {
+            "height": 42,
+            "inFirstViewport": true,
+            "left": 327,
+            "role": null,
+            "tag": "button",
+            "text": "Toys & Play",
+            "top": 805,
+            "width": 136
+          },
+          {
+            "height": 42,
+            "inFirstViewport": true,
+            "left": 472,
+            "role": null,
+            "tag": "button",
+            "text": "Accessories",
+            "top": 805,
+            "width": 142
+          }
+        ],
+        "currentUrl": "http://localhost:3000/store",
+        "documentHeight": 4658,
+        "foundSignals": [
+          {
+            "element": {
+              "height": 1835,
+              "inFirstViewport": true,
+              "left": 0,
+              "role": null,
+              "tag": "main",
+              "text": "PawPal Shop Smart tags and walk gear for safer pet days Start with PawPal NFC safety tags, then add practical gear for d",
+              "top": 81,
+              "width": 768
+            },
+            "found": true,
+            "signal": "Checkout"
+          },
+          {
+            "element": {
+              "height": 1835,
+              "inFirstViewport": true,
+              "left": 0,
+              "role": null,
+              "tag": "main",
+              "text": "PawPal Shop Smart tags and walk gear for safer pet days Start with PawPal NFC safety tags, then add practical gear for d",
+              "top": 81,
+              "width": 768
+            },
+            "found": true,
+            "signal": "Cart"
+          },
+          {
+            "element": null,
+            "found": false,
+            "signal": "Sign in"
+          },
+          {
+            "element": {
+              "height": 1835,
+              "inFirstViewport": true,
+              "left": 0,
+              "role": null,
+              "tag": "main",
+              "text": "PawPal Shop Smart tags and walk gear for safer pet days Start with PawPal NFC safety tags, then add practical gear for d",
+              "top": 81,
+              "width": 768
+            },
+            "found": true,
+            "signal": "Payment"
+          },
+          {
+            "element": {
+              "height": 1835,
+              "inFirstViewport": true,
+              "left": 0,
+              "role": null,
+              "tag": "main",
+              "text": "PawPal Shop Smart tags and walk gear for safer pet days Start with PawPal NFC safety tags, then add practical gear for d",
+              "top": 81,
+              "width": 768
+            },
+            "found": true,
+            "signal": "Order"
+          }
+        ],
+        "headings": [
+          {
+            "height": 120,
+            "inFirstViewport": true,
+            "left": 16,
+            "role": null,
+            "tag": "h1",
+            "text": "Smart tags and walk gear for safer pet days",
+            "top": 255,
+            "width": 736
+          },
+          {
+            "height": 20,
+            "inFirstViewport": true,
+            "left": 85,
+            "role": null,
+            "tag": "h2",
+            "text": "NFC safety ready",
+            "top": 579,
+            "width": 151
+          },
+          {
+            "height": 20,
+            "inFirstViewport": true,
+            "left": 334,
+            "role": null,
+            "tag": "h2",
+            "text": "EU-first fulfillment",
+            "top": 579,
+            "width": 151
+          },
+          {
+            "height": 20,
+            "inFirstViewport": true,
+            "left": 584,
+            "role": null,
+            "tag": "h2",
+            "text": "Secure checkout",
+            "top": 579,
+            "width": 151
+          }
+        ],
+        "horizontalOverflow": false,
+        "images": [
+          {
+            "height": 32,
+            "inFirstViewport": true,
+            "left": 24,
+            "role": null,
+            "tag": "img",
+            "text": "IMG",
+            "top": 24,
+            "width": 32
+          },
+          {
+            "height": 30,
+            "inFirstViewport": false,
+            "left": 24,
+            "role": null,
+            "tag": "img",
+            "text": "IMG",
+            "top": 1973,
+            "width": 30
+          }
+        ],
+        "nonEmptyRender": true,
+        "overlayText": "",
+        "prefersDarkScheme": false,
+        "prefersReducedMotion": false,
+        "routeCharacter": "Commerce checkout",
+        "scrollWidth": 768,
+        "textLength": 1540,
+        "textSample": "Skip to PawPal content PawPal Home Globe About Us Store Login PawPal Shop Smart tags and walk gear for safer pet days Start with PawPal NFC safety tags, then add practical gear for daily walks, travel, cleanup, and care. NFC safety ready Built for public finde",
+        "title": "Store | PawPal",
+        "viewport": {
+          "height": 1024,
+          "width": 768
+        }
+      },
+      "focus": {
+        "height": 2382,
+        "left": 0,
+        "ok": true,
+        "role": null,
+        "tag": "body",
+        "text": "Skip to PawPal content PawPal Home Globe About Us Store Login PawPal Shop Smart tags and walk gear for safer pet days St",
+        "top": 0,
+        "width": 768
+      },
+      "logs": [],
+      "darkModeCapture": {
+        "captured": false,
+        "reason": "Browser viewport capability does not expose color-scheme emulation; current prefers-color-scheme value is recorded instead.",
+        "impact": "No separate dark-mode screenshot in this baseline round.",
+        "followUpRound": "First implementation verification round touching this route."
+      },
+      "reducedMotionCapture": {
+        "captured": false,
+        "reason": "Browser capability does not expose prefers-reduced-motion emulation; current matchMedia value is recorded instead.",
+        "impact": "No separate reduced-motion behavior emulation in this baseline round.",
+        "followUpRound": "First implementation verification round touching this route."
+      }
+    },
+    {
+      "route": "/store/checkout",
+      "slug": "store-checkout",
+      "routeCharacter": "Commerce checkout",
+      "requestedUrl": "http://localhost:3000/store/checkout",
+      "viewport": {
+        "label": "1280x720",
+        "width": 1280,
+        "height": 720
+      },
+      "started": "2026-06-11T11:24:08.751Z",
+      "navError": null,
+      "screenshotPath": "/private/tmp/geopet-round01-baseline/store-checkout-1280x720.png",
+      "screenshotError": null,
+      "metrics": {
+        "blockingOverlay": true,
+        "bodyBackground": "rgb(255, 255, 255)",
+        "bodyColor": "rgb(58, 47, 42)",
+        "canvases": [],
+        "clientWidth": 1280,
+        "colorSchemeStyle": "light",
+        "controls": [
+          {
+            "height": 44,
+            "inFirstViewport": false,
+            "left": 16,
+            "role": null,
+            "tag": "a",
+            "text": "Skip to PawPal content",
+            "top": -54,
+            "width": 194
+          },
+          {
+            "height": 32,
+            "inFirstViewport": true,
+            "left": 32,
+            "role": null,
+            "tag": "a",
+            "text": "PawPal",
+            "top": 24,
+            "width": 122
+          },
+          {
+            "height": 36,
+            "inFirstViewport": true,
+            "left": 467,
+            "role": null,
+            "tag": "a",
+            "text": "Home",
+            "top": 22,
+            "width": 68
+          },
+          {
+            "height": 36,
+            "inFirstViewport": true,
+            "left": 567,
+            "role": null,
+            "tag": "a",
+            "text": "Globe",
+            "top": 22,
+            "width": 68
+          },
+          {
+            "height": 36,
+            "inFirstViewport": true,
+            "left": 667,
+            "role": null,
+            "tag": "a",
+            "text": "About Us",
+            "top": 22,
+            "width": 91
+          },
+          {
+            "height": 36,
+            "inFirstViewport": true,
+            "left": 790,
+            "role": null,
+            "tag": "a",
+            "text": "Store",
+            "top": 22,
+            "width": 65
+          },
+          {
+            "height": 40,
+            "inFirstViewport": true,
+            "left": 1168,
+            "role": null,
+            "tag": "a",
+            "text": "Login",
+            "top": 20,
+            "width": 80
+          },
+          {
+            "height": 48,
+            "inFirstViewport": true,
+            "left": 384,
+            "role": null,
+            "tag": "input",
+            "text": "Search products...",
+            "top": 427,
+            "width": 512
+          },
+          {
+            "height": 42,
+            "inFirstViewport": false,
+            "left": 16,
+            "role": null,
+            "tag": "button",
+            "text": "All Products",
+            "top": 725,
+            "width": 142
+          },
+          {
+            "height": 42,
+            "inFirstViewport": false,
+            "left": 166,
+            "role": null,
+            "tag": "button",
+            "text": "Food & Treats",
+            "top": 725,
+            "width": 153
+          },
+          {
+            "height": 42,
+            "inFirstViewport": false,
+            "left": 327,
+            "role": null,
+            "tag": "button",
+            "text": "Toys & Play",
+            "top": 725,
+            "width": 136
+          },
+          {
+            "height": 42,
+            "inFirstViewport": false,
+            "left": 472,
+            "role": null,
+            "tag": "button",
+            "text": "Accessories",
+            "top": 725,
+            "width": 142
+          }
+        ],
+        "currentUrl": "http://localhost:3000/store",
+        "documentHeight": 3041,
+        "foundSignals": [
+          {
+            "element": {
+              "height": 2586,
+              "inFirstViewport": true,
+              "left": 0,
+              "role": null,
+              "tag": "main",
+              "text": "PawPal Shop Smart tags and walk gear for safer pet days Start with PawPal NFC safety tags, then add practical gear for d",
+              "top": 81,
+              "width": 1280
+            },
+            "found": true,
+            "signal": "Checkout"
+          },
+          {
+            "element": {
+              "height": 2586,
+              "inFirstViewport": true,
+              "left": 0,
+              "role": null,
+              "tag": "main",
+              "text": "PawPal Shop Smart tags and walk gear for safer pet days Start with PawPal NFC safety tags, then add practical gear for d",
+              "top": 81,
+              "width": 1280
+            },
+            "found": true,
+            "signal": "Cart"
+          },
+          {
+            "element": null,
+            "found": false,
+            "signal": "Sign in"
+          },
+          {
+            "element": {
+              "height": 2586,
+              "inFirstViewport": true,
+              "left": 0,
+              "role": null,
+              "tag": "main",
+              "text": "PawPal Shop Smart tags and walk gear for safer pet days Start with PawPal NFC safety tags, then add practical gear for d",
+              "top": 81,
+              "width": 1280
+            },
+            "found": true,
+            "signal": "Payment"
+          },
+          {
+            "element": {
+              "height": 2586,
+              "inFirstViewport": true,
+              "left": 0,
+              "role": null,
+              "tag": "main",
+              "text": "PawPal Shop Smart tags and walk gear for safer pet days Start with PawPal NFC safety tags, then add practical gear for d",
+              "top": 81,
+              "width": 1280
+            },
+            "found": true,
+            "signal": "Order"
+          }
+        ],
+        "headings": [
+          {
+            "height": 60,
+            "inFirstViewport": true,
+            "left": 16,
+            "role": null,
+            "tag": "h1",
+            "text": "Smart tags and walk gear for safer pet days",
+            "top": 255,
+            "width": 1248
+          },
+          {
+            "height": 20,
+            "inFirstViewport": true,
+            "left": 261,
+            "role": null,
+            "tag": "h2",
+            "text": "NFC safety ready",
+            "top": 534,
+            "width": 205
+          },
+          {
+            "height": 20,
+            "inFirstViewport": true,
+            "left": 564,
+            "role": null,
+            "tag": "h2",
+            "text": "EU-first fulfillment",
+            "top": 534,
+            "width": 205
+          },
+          {
+            "height": 20,
+            "inFirstViewport": true,
+            "left": 866,
+            "role": null,
+            "tag": "h2",
+            "text": "Secure checkout",
+            "top": 534,
+            "width": 205
+          }
+        ],
+        "horizontalOverflow": false,
+        "images": [
+          {
+            "height": 32,
+            "inFirstViewport": true,
+            "left": 32,
+            "role": null,
+            "tag": "img",
+            "text": "IMG",
+            "top": 24,
+            "width": 32
+          },
+          {
+            "height": 30,
+            "inFirstViewport": false,
+            "left": 32,
+            "role": null,
+            "tag": "img",
+            "text": "IMG",
+            "top": 2724,
+            "width": 30
+          }
+        ],
+        "nonEmptyRender": true,
+        "overlayText": "",
+        "prefersDarkScheme": false,
+        "prefersReducedMotion": false,
+        "routeCharacter": "Commerce checkout",
+        "scrollWidth": 1280,
+        "textLength": 3209,
+        "textSample": "Skip to PawPal content PawPal Home Globe About Us Store Login PawPal Shop Smart tags and walk gear for safer pet days Start with PawPal NFC safety tags, then add practical gear for daily walks, travel, cleanup, and care. NFC safety ready Built for public finde",
+        "title": "Store | PawPal",
+        "viewport": {
+          "height": 720,
+          "width": 1280
+        }
+      },
+      "focus": {
+        "height": 1679,
+        "left": 0,
+        "ok": true,
+        "role": null,
+        "tag": "body",
+        "text": "Skip to PawPal content PawPal Home Globe About Us Store Login PawPal Shop Smart tags and walk gear for safer pet days St",
+        "top": 0,
+        "width": 1280
+      },
+      "logs": [],
+      "darkModeCapture": {
+        "captured": false,
+        "reason": "Browser viewport capability does not expose color-scheme emulation; current prefers-color-scheme value is recorded instead.",
+        "impact": "No separate dark-mode screenshot in this baseline round.",
+        "followUpRound": "First implementation verification round touching this route."
+      },
+      "reducedMotionCapture": {
+        "captured": false,
+        "reason": "Browser capability does not expose prefers-reduced-motion emulation; current matchMedia value is recorded instead.",
+        "impact": "No separate reduced-motion behavior emulation in this baseline round.",
+        "followUpRound": "First implementation verification round touching this route."
+      }
+    },
+    {
+      "route": "/store/checkout",
+      "slug": "store-checkout",
+      "routeCharacter": "Commerce checkout",
+      "requestedUrl": "http://localhost:3000/store/checkout",
+      "viewport": {
+        "label": "1440x900",
+        "width": 1440,
+        "height": 900
+      },
+      "started": "2026-06-11T11:24:10.945Z",
+      "navError": null,
+      "screenshotPath": "/private/tmp/geopet-round01-baseline/store-checkout-1440x900.png",
+      "screenshotError": null,
+      "metrics": {
+        "blockingOverlay": true,
+        "bodyBackground": "rgb(255, 255, 255)",
+        "bodyColor": "rgb(58, 47, 42)",
+        "canvases": [],
+        "clientWidth": 1440,
+        "colorSchemeStyle": "light",
+        "controls": [
+          {
+            "height": 44,
+            "inFirstViewport": false,
+            "left": 16,
+            "role": null,
+            "tag": "a",
+            "text": "Skip to PawPal content",
+            "top": -54,
+            "width": 194
+          },
+          {
+            "height": 32,
+            "inFirstViewport": true,
+            "left": 112,
+            "role": null,
+            "tag": "a",
+            "text": "PawPal",
+            "top": 24,
+            "width": 122
+          },
+          {
+            "height": 36,
+            "inFirstViewport": true,
+            "left": 547,
+            "role": null,
+            "tag": "a",
+            "text": "Home",
+            "top": 22,
+            "width": 68
+          },
+          {
+            "height": 36,
+            "inFirstViewport": true,
+            "left": 647,
+            "role": null,
+            "tag": "a",
+            "text": "Globe",
+            "top": 22,
+            "width": 68
+          },
+          {
+            "height": 36,
+            "inFirstViewport": true,
+            "left": 747,
+            "role": null,
+            "tag": "a",
+            "text": "About Us",
+            "top": 22,
+            "width": 91
+          },
+          {
+            "height": 36,
+            "inFirstViewport": true,
+            "left": 870,
+            "role": null,
+            "tag": "a",
+            "text": "Store",
+            "top": 22,
+            "width": 65
+          },
+          {
+            "height": 40,
+            "inFirstViewport": true,
+            "left": 1248,
+            "role": null,
+            "tag": "a",
+            "text": "Login",
+            "top": 20,
+            "width": 80
+          },
+          {
+            "height": 48,
+            "inFirstViewport": true,
+            "left": 464,
+            "role": null,
+            "tag": "input",
+            "text": "Search products...",
+            "top": 427,
+            "width": 512
+          },
+          {
+            "height": 42,
+            "inFirstViewport": true,
+            "left": 96,
+            "role": null,
+            "tag": "button",
+            "text": "All Products",
+            "top": 725,
+            "width": 142
+          },
+          {
+            "height": 42,
+            "inFirstViewport": true,
+            "left": 246,
+            "role": null,
+            "tag": "button",
+            "text": "Food & Treats",
+            "top": 725,
+            "width": 153
+          },
+          {
+            "height": 42,
+            "inFirstViewport": true,
+            "left": 407,
+            "role": null,
+            "tag": "button",
+            "text": "Toys & Play",
+            "top": 725,
+            "width": 136
+          },
+          {
+            "height": 42,
+            "inFirstViewport": true,
+            "left": 552,
+            "role": null,
+            "tag": "button",
+            "text": "Accessories",
+            "top": 725,
+            "width": 142
+          }
+        ],
+        "currentUrl": "http://localhost:3000/store",
+        "documentHeight": 2635,
+        "foundSignals": [
+          {
+            "element": {
+              "height": 1224,
+              "inFirstViewport": true,
+              "left": 0,
+              "role": null,
+              "tag": "main",
+              "text": "PawPal Shop Smart tags and walk gear for safer pet days Start with PawPal NFC safety tags, then add practical gear for d",
+              "top": 81,
+              "width": 1440
+            },
+            "found": true,
+            "signal": "Checkout"
+          },
+          {
+            "element": {
+              "height": 1224,
+              "inFirstViewport": true,
+              "left": 0,
+              "role": null,
+              "tag": "main",
+              "text": "PawPal Shop Smart tags and walk gear for safer pet days Start with PawPal NFC safety tags, then add practical gear for d",
+              "top": 81,
+              "width": 1440
+            },
+            "found": true,
+            "signal": "Cart"
+          },
+          {
+            "element": null,
+            "found": false,
+            "signal": "Sign in"
+          },
+          {
+            "element": {
+              "height": 1224,
+              "inFirstViewport": true,
+              "left": 0,
+              "role": null,
+              "tag": "main",
+              "text": "PawPal Shop Smart tags and walk gear for safer pet days Start with PawPal NFC safety tags, then add practical gear for d",
+              "top": 81,
+              "width": 1440
+            },
+            "found": true,
+            "signal": "Payment"
+          },
+          {
+            "element": {
+              "height": 1224,
+              "inFirstViewport": true,
+              "left": 0,
+              "role": null,
+              "tag": "main",
+              "text": "PawPal Shop Smart tags and walk gear for safer pet days Start with PawPal NFC safety tags, then add practical gear for d",
+              "top": 81,
+              "width": 1440
+            },
+            "found": true,
+            "signal": "Order"
+          }
+        ],
+        "headings": [
+          {
+            "height": 60,
+            "inFirstViewport": true,
+            "left": 96,
+            "role": null,
+            "tag": "h1",
+            "text": "Smart tags and walk gear for safer pet days",
+            "top": 255,
+            "width": 1248
+          },
+          {
+            "height": 20,
+            "inFirstViewport": true,
+            "left": 341,
+            "role": null,
+            "tag": "h2",
+            "text": "NFC safety ready",
+            "top": 520,
+            "width": 205
+          },
+          {
+            "height": 20,
+            "inFirstViewport": true,
+            "left": 644,
+            "role": null,
+            "tag": "h2",
+            "text": "EU-first fulfillment",
+            "top": 520,
+            "width": 205
+          },
+          {
+            "height": 20,
+            "inFirstViewport": true,
+            "left": 946,
+            "role": null,
+            "tag": "h2",
+            "text": "Secure checkout",
+            "top": 520,
+            "width": 205
+          }
+        ],
+        "horizontalOverflow": false,
+        "images": [
+          {
+            "height": 32,
+            "inFirstViewport": true,
+            "left": 112,
+            "role": null,
+            "tag": "img",
+            "text": "IMG",
+            "top": 24,
+            "width": 32
+          },
+          {
+            "height": 30,
+            "inFirstViewport": false,
+            "left": 112,
+            "role": null,
+            "tag": "img",
+            "text": "IMG",
+            "top": 1362,
+            "width": 30
+          }
+        ],
+        "nonEmptyRender": true,
+        "overlayText": "",
+        "prefersDarkScheme": false,
+        "prefersReducedMotion": false,
+        "routeCharacter": "Commerce checkout",
+        "scrollWidth": 1440,
+        "textLength": 1540,
+        "textSample": "Skip to PawPal content PawPal Home Globe About Us Store Login PawPal Shop Smart tags and walk gear for safer pet days Start with PawPal NFC safety tags, then add practical gear for daily walks, travel, cleanup, and care. NFC safety ready Built for public finde",
+        "title": "Store | PawPal",
+        "viewport": {
+          "height": 900,
+          "width": 1440
+        }
+      },
+      "focus": {
+        "height": 1679,
+        "left": 0,
+        "ok": true,
+        "role": null,
+        "tag": "body",
+        "text": "Skip to PawPal content PawPal Home Globe About Us Store Login PawPal Shop Smart tags and walk gear for safer pet days St",
+        "top": 0,
+        "width": 1440
+      },
+      "logs": [],
+      "darkModeCapture": {
+        "captured": false,
+        "reason": "Browser viewport capability does not expose color-scheme emulation; current prefers-color-scheme value is recorded instead.",
+        "impact": "No separate dark-mode screenshot in this baseline round.",
+        "followUpRound": "First implementation verification round touching this route."
+      },
+      "reducedMotionCapture": {
+        "captured": false,
+        "reason": "Browser capability does not expose prefers-reduced-motion emulation; current matchMedia value is recorded instead.",
+        "impact": "No separate reduced-motion behavior emulation in this baseline round.",
+        "followUpRound": "First implementation verification round touching this route."
+      }
+    }
+  ]
+}

@@ -1,18 +1,43 @@
 {
   "name": "PawPal",
   "short_name": "PawPal",
-  "description": "PawPal pet profiles, nearby needs, and smart map.",
-  "start_url": "/profile",
+  "description": "Smart pet walks, NFC safety profiles, AI care guidance, and local pet community tools.",
+  "start_url": "/",
   "scope": "/",
   "display": "standalone",
-  "background_color": "#FAFBFC",
+  "background_color": "#FFFFFF",
   "theme_color": "#4A90D9",
+  "orientation": "portrait-primary",
+  "categories": ["lifestyle", "navigation", "shopping"],
   "icons": [
     {
       "src": "/pawpal_icon.svg",
       "sizes": "any",
       "type": "image/svg+xml",
       "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Open Globe",
+      "short_name": "Globe",
+      "description": "Explore nearby pet places and community needs.",
+      "url": "/globe",
+      "icons": [{ "src": "/pawpal_icon.svg", "sizes": "any" }]
+    },
+    {
+      "name": "Shop Smart Tags",
+      "short_name": "Store",
+      "description": "Browse PawPal NFC safety tags and pet gear.",
+      "url": "/store",
+      "icons": [{ "src": "/pawpal_icon.svg", "sizes": "any" }]
+    },
+    {
+      "name": "My Profile",
+      "short_name": "Profile",
+      "description": "Open your PawPal profile.",
+      "url": "/profile",
+      "icons": [{ "src": "/pawpal_icon.svg", "sizes": "any" }]
     }
   ]
 }

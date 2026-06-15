@@ -7,11 +7,10 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
-import { DoodlePaw, DoodleBone, DoodleDog, DoodleCat, DoodleHeart } from "@/components/PetDoodles";
 
 /* ── Animation helpers ── */
 const fadeUp = (delay = 0) => ({
-  initial: { opacity: 0, y: 24 },
+  initial: { opacity: 1, y: 0 },
   whileInView: { opacity: 1, y: 0 },
   viewport: { once: true },
   transition: { duration: 0.6, delay },
@@ -93,45 +92,84 @@ export default function About() {
   return (
     <div className="relative w-full overflow-hidden bg-paw-page">
       {/* ===== HERO ===== */}
-      <section className="relative pt-28 pb-20 overflow-hidden">
-        {/* Pet doodles */}
-        <div className="absolute top-[18%] right-[5%] w-16 h-16 text-paw-primary/12 doodle-float hidden lg:block"><DoodlePaw className="w-full h-full" /></div>
-        <div className="absolute bottom-[15%] left-[3%] w-20 h-10 text-paw-primary/10 doodle-float-alt hidden lg:block" style={{ animationDelay: '2s' }}><DoodleBone className="w-full h-full" /></div>
-
-        <div className="max-w-4xl mx-auto px-4 text-center">
-          <motion.div {...fadeUp()}>
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-paw-panel/80 backdrop-blur-sm border border-paw-primary/20 mb-6">
-              <PawPrint className="w-4 h-4 text-paw-primary" />
-              <span className="text-sm font-semibold text-paw-primary">Our Story</span>
-            </div>
-          </motion.div>
-
-          <motion.h1 {...fadeUp(0.1)} className="text-4xl md:text-6xl font-extrabold text-paw-ink leading-tight mb-6">
-            Enhancing the Bond{" "}
-            <span className="bg-gradient-to-r from-paw-primary to-paw-trust bg-clip-text text-transparent">
-              Between You & Your Pet
-            </span>
-          </motion.h1>
-
-          <motion.p {...fadeUp(0.2)} className="text-lg md:text-xl text-paw-muted max-w-2xl mx-auto leading-relaxed mb-8">
-            PawPal is a location-based pet life platform for young pet owners in Europe. Starting from the high-frequency
-            scenario of dog walking, we combine gamified maps, reward systems, NFC safety tags, AI assistance,
-            and local community — helping owners care for their pets more intelligently, securely, and connectedly.
-          </motion.p>
-
-          <motion.div {...fadeUp(0.3)} className="flex flex-wrap justify-center gap-6">
-            {[
-              { value: "58%", label: "Belgian Pet Households" },
-              { value: "€122/mo", label: "Avg. Pet Spending" },
-              { value: "2M+", label: "Dogs in Belgium" },
-              { value: "5", label: "Languages" },
-            ].map((s, i) => (
-              <div key={i} className="text-center">
-                <div className="text-2xl md:text-3xl font-extrabold bg-gradient-to-r from-paw-primary to-paw-trust bg-clip-text text-transparent">{s.value}</div>
-                <div className="text-xs text-paw-muted font-medium mt-0.5">{s.label}</div>
+      <section className="about-hero relative overflow-hidden pt-24 pb-14">
+        <div className="mx-auto grid max-w-6xl gap-6 px-4 lg:grid-cols-[minmax(0,1.05fr)_minmax(20rem,0.95fr)] lg:items-stretch">
+          <div className="about-context-panel">
+            <motion.div {...fadeUp()}>
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-paw-md bg-paw-panel/80 backdrop-blur-sm border border-paw-primary/20 mb-6 shadow-sm">
+                <PawPrint className="w-4 h-4 text-paw-primary" />
+                <span className="text-sm font-semibold text-paw-primary">Product proof from Ghent</span>
               </div>
-            ))}
-          </motion.div>
+            </motion.div>
+
+            <motion.h1 {...fadeUp(0.1)} className="max-w-3xl text-4xl font-extrabold leading-tight text-paw-ink md:text-5xl">
+              A connected safety layer for everyday pet care.
+            </motion.h1>
+
+            <motion.p {...fadeUp(0.2)} className="mt-5 max-w-2xl text-base leading-7 text-paw-body md:text-lg">
+              PawPal connects the moments around a pet: walks, finder pages,
+              smart tags, store orders, and local support. The web layer gives
+              owners and finders a clear path without requiring the app first.
+            </motion.p>
+
+            <motion.div {...fadeUp(0.3)} className="mt-7 flex flex-wrap gap-3">
+              <Link
+                href="/globe"
+                className="inline-flex items-center gap-2 rounded-paw-md bg-paw-primary px-5 py-3 text-sm font-bold text-white shadow-paw-action transition hover:bg-paw-primary-hover"
+              >
+                Explore Globe
+                <ArrowRight className="h-4 w-4" aria-hidden="true" />
+              </Link>
+              <Link
+                href="/store"
+                className="inline-flex items-center gap-2 rounded-paw-md border border-paw-border bg-paw-panel px-5 py-3 text-sm font-bold text-paw-ink transition hover:border-paw-primary/40 hover:bg-paw-primary-soft"
+              >
+                Shop smart tags
+              </Link>
+            </motion.div>
+          </div>
+
+          <motion.aside {...fadeUp(0.18)} className="about-system-panel">
+            <div className="hero-map-grid absolute inset-0 opacity-65" />
+            <div className="relative z-10">
+              <p className="text-xs font-black uppercase tracking-[0.16em] text-paw-muted">
+                Product system
+              </p>
+              <h2 className="mt-2 text-2xl font-extrabold text-paw-ink">
+                App, Web, and NFC tags work as one loop.
+              </h2>
+              <div className="mt-5 space-y-3">
+                {[
+                  { icon: Smartphone, label: "Daily care", copy: "Walks, pets, reminders, and AI guidance." },
+                  { icon: Nfc, label: "Physical safety", copy: "Smart tags open controlled finder pages." },
+                  { icon: Globe, label: "Local network", copy: "Map places, community help, and support routes." },
+                ].map((item) => (
+                  <div key={item.label} className="about-system-row">
+                    <span className="about-system-icon">
+                      <item.icon className="h-5 w-5" aria-hidden="true" />
+                    </span>
+                    <div>
+                      <p className="text-sm font-extrabold text-paw-ink">{item.label}</p>
+                      <p className="mt-1 text-xs leading-5 text-paw-body">{item.copy}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <div className="about-market-grid mt-5">
+                {[
+                  { value: "Finder pages", label: "Controlled public safety flow" },
+                  { value: "Smart tags", label: "Physical scan entry" },
+                  { value: "Store orders", label: "Stripe-backed purchase path" },
+                  { value: "Globe map", label: "Local pet-care context" },
+                ].map((s, i) => (
+                  <div key={i} className="about-metric-tile text-center">
+                    <div className="text-lg font-extrabold leading-tight text-paw-primary md:text-xl">{s.value}</div>
+                    <div className="text-xs text-paw-muted font-medium mt-0.5">{s.label}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </motion.aside>
         </div>
       </section>
 
@@ -151,7 +189,6 @@ export default function About() {
 
       {/* ===== PRODUCT ECOSYSTEM ===== */}
       <section className="relative py-20 max-w-6xl mx-auto px-4">
-        <div className="absolute top-10 right-4 w-14 h-14 text-paw-trust/10 doodle-float hidden lg:block" style={{ animationDelay: '1s' }}><DoodleCat className="w-full h-full" /></div>
         <motion.div {...fadeUp()} className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-paw-ink mb-3">The PawPal Ecosystem</h2>
           <p className="text-paw-muted max-w-xl mx-auto">App + Web + Hardware — three products, one mission: enhance every moment with your pet.</p>
@@ -173,8 +210,6 @@ export default function About() {
 
       {/* ===== VALUES ===== */}
       <section className="relative py-20 bg-paw-primary-soft/35">
-        <div className="absolute top-12 left-6 w-20 h-20 text-paw-primary/10 doodle-float hidden lg:block"><DoodleDog className="w-full h-full" /></div>
-        <div className="absolute bottom-10 right-8 w-14 h-14 text-paw-primary/10 doodle-float-alt hidden lg:block" style={{ animationDelay: '3s' }}><DoodleHeart className="w-full h-full" /></div>
         <div className="max-w-6xl mx-auto px-4">
           <motion.div {...fadeUp()} className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-paw-ink mb-3">What We Stand For</h2>
@@ -196,7 +231,6 @@ export default function About() {
 
       {/* ===== TEAM ===== */}
       <section className="relative py-20 max-w-5xl mx-auto px-4">
-        <div className="absolute top-8 right-4 w-14 h-14 text-paw-primary/10 doodle-float hidden lg:block" style={{ animationDelay: '2s' }}><DoodlePaw className="w-full h-full" /></div>
         <motion.div {...fadeUp()} className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-paw-ink mb-3">Meet the Founding Team</h2>
           <p className="text-paw-muted max-w-lg mx-auto">A cross-disciplinary trio from Ghent — engineering, business, and design — united by a shared love for pets.</p>
@@ -275,7 +309,6 @@ export default function About() {
 
       {/* ===== CTA ===== */}
       <section className="relative py-20">
-        <div className="absolute bottom-[20%] left-[5%] w-20 h-10 text-paw-primary/10 doodle-float-alt hidden lg:block"><DoodleBone className="w-full h-full" /></div>
         <div className="max-w-3xl mx-auto px-4 text-center">
           <motion.div {...fadeUp()}>
             <h2 className="text-3xl md:text-4xl font-bold text-paw-ink mb-4">
@@ -285,9 +318,12 @@ export default function About() {
               We&apos;re building the platform we wished existed — for every dog owner, cat lover, and pet parent who believes technology should strengthen, not replace, the bond with their best friend.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
-              <button className="flex items-center gap-2 bg-paw-primary hover:bg-paw-primary-hover text-white px-8 py-4 rounded-paw-md font-bold text-lg transition-all shadow-paw-action hover:-translate-y-0.5">
-                Download App <ArrowRight className="w-5 h-5" />
-              </button>
+              <a
+                href="mailto:hello@pawpal.be"
+                className="flex items-center gap-2 bg-paw-primary hover:bg-paw-primary-hover text-white px-8 py-4 rounded-paw-md font-bold text-lg transition-all shadow-paw-action hover:-translate-y-0.5"
+              >
+                Contact the team <Mail className="w-5 h-5" />
+              </a>
               <Link href="/globe"
                 className="flex items-center gap-2 bg-paw-panel hover:bg-paw-panel-subtle text-paw-primary px-8 py-4 rounded-paw-md font-bold text-lg transition-all border border-paw-primary/30">
                 Explore Globe

@@ -1,4 +1,5 @@
 export { default as Badge } from "./Badge";
+export { default as AppDeepLinkButton } from "./AppDeepLinkButton";
 export { default as Button, buttonClassName } from "./Button";
 export { Card, CardContent, CardHeader } from "./Card";
 export { default as CheckoutStep } from "./CheckoutStep";
@@ -9,3 +10,4 @@ export { default as PageShell } from "./PageShell";
 export { default as ProductCard } from "./ProductCard";
 export { default as ProfileStat } from "./ProfileStat";
 export { default as Sheet } from "./Sheet";
+export { default as StatusMessage } from "./StatusMessage";

@@ -1,14 +1,11 @@
 "use client";
 
 import dynamic from "next/dynamic";
+import GlobeStaticPreview from "./GlobeStaticPreview";
 
 const HomeGlobe = dynamic(() => import("./GlobeComponent"), {
   ssr: false,
-  loading: () => (
-    <div className="w-full h-full flex items-center justify-center min-h-[400px]">
-      <div className="w-14 h-14 border-4 border-paw-primary-soft border-t-paw-primary rounded-full animate-spin"></div>
-    </div>
-  ),
+  loading: () => <GlobeStaticPreview />,
 });
 
 export default function Globe() {

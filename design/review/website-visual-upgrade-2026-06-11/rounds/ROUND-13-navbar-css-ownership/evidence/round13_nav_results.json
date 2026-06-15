@@ -1,0 +1,3225 @@
+{
+  "baseUrl": "http://localhost:3000",
+  "browserPath": "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+  "matrix": [
+    {
+      "route": "/",
+      "viewport": "390x844",
+      "media": {
+        "dark": false,
+        "reduced": false
+      },
+      "screenshotPath": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-13-navbar-css-ownership/evidence/screenshots/nav-home-390x844.png",
+      "consoleMessages": [],
+      "pageErrors": [],
+      "url": "http://localhost:3000/",
+      "title": "Pet Safety Map, Smart Tags, and Local Pet Community",
+      "nonEmptyText": true,
+      "horizontalOverflow": false,
+      "frameworkOverlay": false,
+      "navRendered": true,
+      "navBox": {
+        "top": -80,
+        "left": 0,
+        "right": 390,
+        "width": 390,
+        "height": 81
+      },
+      "navLinks": [
+        {
+          "text": "PawPal",
+          "href": "/",
+          "height": 32,
+          "visible": true
+        },
+        {
+          "text": "Home",
+          "href": "/",
+          "height": 0,
+          "visible": false
+        },
+        {
+          "text": "Globe",
+          "href": "/globe",
+          "height": 0,
+          "visible": false
+        },
+        {
+          "text": "About Us",
+          "href": "/about",
+          "height": 0,
+          "visible": false
+        },
+        {
+          "text": "Store",
+          "href": "/store",
+          "height": 0,
+          "visible": false
+        },
+        {
+          "text": "Globe Map",
+          "href": "/globe",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "NFC Safety Tag",
+          "href": "/store",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "AI Assistant",
+          "href": "/globe",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Community",
+          "href": "/globe",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "About Us",
+          "href": "/about",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Store",
+          "href": "/store",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Help Center",
+          "href": "/help",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Privacy Policy",
+          "href": "/privacy",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Terms of Service",
+          "href": "/terms",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Contact",
+          "href": "mailto:hello@pawpal.be",
+          "height": 44,
+          "visible": true
+        }
+      ],
+      "navButtons": [
+        {
+          "label": "Open navigation menu",
+          "height": 44,
+          "width": 44
+        }
+      ],
+      "homeHeroCtas": [],
+      "compactGlobeNav": null,
+      "computedNav": {
+        "background": "linear-gradient(90deg, rgba(255, 255, 255, 0.94), rgba(246, 250, 254, 0.9)), linear-gradient(90deg, rgba(74, 144, 217, 0.05), rgba(0, 0, 0, 0) 42%, rgba(118, 199, 184, 0.05))",
+        "borderBottomColor": "rgba(227, 236, 244, 0.74)",
+        "borderRadius": "0px",
+        "boxShadow": "rgba(33, 55, 78, 0.05) 0px 8px 30px 0px",
+        "backdropFilter": "none"
+      }
+    },
+    {
+      "route": "/",
+      "viewport": "768x1024",
+      "media": {
+        "dark": false,
+        "reduced": false
+      },
+      "screenshotPath": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-13-navbar-css-ownership/evidence/screenshots/nav-home-768x1024.png",
+      "consoleMessages": [],
+      "pageErrors": [],
+      "url": "http://localhost:3000/",
+      "title": "Pet Safety Map, Smart Tags, and Local Pet Community",
+      "nonEmptyText": true,
+      "horizontalOverflow": false,
+      "frameworkOverlay": false,
+      "navRendered": true,
+      "navBox": {
+        "top": 0,
+        "left": 0,
+        "right": 768,
+        "width": 768,
+        "height": 81
+      },
+      "navLinks": [
+        {
+          "text": "PawPal",
+          "href": "/",
+          "height": 32,
+          "visible": true
+        },
+        {
+          "text": "Home",
+          "href": "/",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Globe",
+          "href": "/globe",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "About Us",
+          "href": "/about",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Store",
+          "href": "/store",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Login",
+          "href": "/auth",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Globe Map",
+          "href": "/globe",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "NFC Safety Tag",
+          "href": "/store",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "AI Assistant",
+          "href": "/globe",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Community",
+          "href": "/globe",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "About Us",
+          "href": "/about",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Store",
+          "href": "/store",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Help Center",
+          "href": "/help",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Privacy Policy",
+          "href": "/privacy",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Terms of Service",
+          "href": "/terms",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Contact",
+          "href": "mailto:hello@pawpal.be",
+          "height": 44,
+          "visible": true
+        }
+      ],
+      "navButtons": [
+        {
+          "label": "Open navigation menu",
+          "height": 0,
+          "width": 0
+        }
+      ],
+      "homeHeroCtas": [
+        {
+          "text": "Open Live Map",
+          "href": "/globe",
+          "height": 48
+        },
+        {
+          "text": "Shop Smart Tags",
+          "href": "/store",
+          "height": 48
+        },
+        {
+          "text": "Open Live Map",
+          "href": "/globe",
+          "height": 48
+        },
+        {
+          "text": "Shop Smart Tags",
+          "href": "/store",
+          "height": 48
+        }
+      ],
+      "compactGlobeNav": null,
+      "computedNav": {
+        "background": "linear-gradient(90deg, rgba(255, 255, 255, 0.94), rgba(246, 250, 254, 0.9)), linear-gradient(90deg, rgba(74, 144, 217, 0.05), rgba(0, 0, 0, 0) 42%, rgba(118, 199, 184, 0.05))",
+        "borderBottomColor": "rgba(227, 236, 244, 0.74)",
+        "borderRadius": "0px",
+        "boxShadow": "rgba(33, 55, 78, 0.05) 0px 8px 30px 0px",
+        "backdropFilter": "none"
+      }
+    },
+    {
+      "route": "/",
+      "viewport": "1280x720",
+      "media": {
+        "dark": false,
+        "reduced": false
+      },
+      "screenshotPath": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-13-navbar-css-ownership/evidence/screenshots/nav-home-1280x720.png",
+      "consoleMessages": [],
+      "pageErrors": [],
+      "url": "http://localhost:3000/",
+      "title": "Pet Safety Map, Smart Tags, and Local Pet Community",
+      "nonEmptyText": true,
+      "horizontalOverflow": false,
+      "frameworkOverlay": false,
+      "navRendered": true,
+      "navBox": {
+        "top": 0,
+        "left": 0,
+        "right": 1280,
+        "width": 1280,
+        "height": 81
+      },
+      "navLinks": [
+        {
+          "text": "PawPal",
+          "href": "/",
+          "height": 32,
+          "visible": true
+        },
+        {
+          "text": "Home",
+          "href": "/",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Globe",
+          "href": "/globe",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "About Us",
+          "href": "/about",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Store",
+          "href": "/store",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Login",
+          "href": "/auth",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Globe Map",
+          "href": "/globe",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "NFC Safety Tag",
+          "href": "/store",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "AI Assistant",
+          "href": "/globe",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Community",
+          "href": "/globe",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "About Us",
+          "href": "/about",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Store",
+          "href": "/store",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Help Center",
+          "href": "/help",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Privacy Policy",
+          "href": "/privacy",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Terms of Service",
+          "href": "/terms",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Contact",
+          "href": "mailto:hello@pawpal.be",
+          "height": 44,
+          "visible": true
+        }
+      ],
+      "navButtons": [
+        {
+          "label": "Open navigation menu",
+          "height": 0,
+          "width": 0
+        }
+      ],
+      "homeHeroCtas": [
+        {
+          "text": "Open Live Map",
+          "href": "/globe",
+          "height": 48
+        },
+        {
+          "text": "Shop Smart Tags",
+          "href": "/store",
+          "height": 48
+        },
+        {
+          "text": "Open Live Map",
+          "href": "/globe",
+          "height": 48
+        },
+        {
+          "text": "Shop Smart Tags",
+          "href": "/store",
+          "height": 48
+        }
+      ],
+      "compactGlobeNav": null,
+      "computedNav": {
+        "background": "linear-gradient(90deg, rgba(255, 255, 255, 0.94), rgba(246, 250, 254, 0.9)), linear-gradient(90deg, rgba(74, 144, 217, 0.05), rgba(0, 0, 0, 0) 42%, rgba(118, 199, 184, 0.05))",
+        "borderBottomColor": "rgba(227, 236, 244, 0.74)",
+        "borderRadius": "0px",
+        "boxShadow": "rgba(33, 55, 78, 0.05) 0px 8px 30px 0px",
+        "backdropFilter": "none"
+      }
+    },
+    {
+      "route": "/",
+      "viewport": "1440x900",
+      "media": {
+        "dark": false,
+        "reduced": false
+      },
+      "screenshotPath": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-13-navbar-css-ownership/evidence/screenshots/nav-home-1440x900.png",
+      "consoleMessages": [],
+      "pageErrors": [],
+      "url": "http://localhost:3000/",
+      "title": "Pet Safety Map, Smart Tags, and Local Pet Community",
+      "nonEmptyText": true,
+      "horizontalOverflow": false,
+      "frameworkOverlay": false,
+      "navRendered": true,
+      "navBox": {
+        "top": 0,
+        "left": 0,
+        "right": 1440,
+        "width": 1440,
+        "height": 81
+      },
+      "navLinks": [
+        {
+          "text": "PawPal",
+          "href": "/",
+          "height": 32,
+          "visible": true
+        },
+        {
+          "text": "Home",
+          "href": "/",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Globe",
+          "href": "/globe",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "About Us",
+          "href": "/about",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Store",
+          "href": "/store",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Login",
+          "href": "/auth",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Globe Map",
+          "href": "/globe",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "NFC Safety Tag",
+          "href": "/store",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "AI Assistant",
+          "href": "/globe",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Community",
+          "href": "/globe",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "About Us",
+          "href": "/about",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Store",
+          "href": "/store",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Help Center",
+          "href": "/help",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Privacy Policy",
+          "href": "/privacy",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Terms of Service",
+          "href": "/terms",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Contact",
+          "href": "mailto:hello@pawpal.be",
+          "height": 44,
+          "visible": true
+        }
+      ],
+      "navButtons": [
+        {
+          "label": "Open navigation menu",
+          "height": 0,
+          "width": 0
+        }
+      ],
+      "homeHeroCtas": [
+        {
+          "text": "Open Live Map",
+          "href": "/globe",
+          "height": 48
+        },
+        {
+          "text": "Shop Smart Tags",
+          "href": "/store",
+          "height": 48
+        },
+        {
+          "text": "Open Live Map",
+          "href": "/globe",
+          "height": 48
+        },
+        {
+          "text": "Shop Smart Tags",
+          "href": "/store",
+          "height": 48
+        }
+      ],
+      "compactGlobeNav": null,
+      "computedNav": {
+        "background": "linear-gradient(90deg, rgba(255, 255, 255, 0.94), rgba(246, 250, 254, 0.9)), linear-gradient(90deg, rgba(74, 144, 217, 0.05), rgba(0, 0, 0, 0) 42%, rgba(118, 199, 184, 0.05))",
+        "borderBottomColor": "rgba(227, 236, 244, 0.74)",
+        "borderRadius": "0px",
+        "boxShadow": "rgba(33, 55, 78, 0.05) 0px 8px 30px 0px",
+        "backdropFilter": "none"
+      }
+    },
+    {
+      "route": "/store",
+      "viewport": "390x844",
+      "media": {
+        "dark": false,
+        "reduced": false
+      },
+      "screenshotPath": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-13-navbar-css-ownership/evidence/screenshots/nav-store-390x844.png",
+      "consoleMessages": [],
+      "pageErrors": [],
+      "url": "http://localhost:3000/store",
+      "title": "Store | PawPal",
+      "nonEmptyText": true,
+      "horizontalOverflow": false,
+      "frameworkOverlay": false,
+      "navRendered": true,
+      "navBox": {
+        "top": 0,
+        "left": 0,
+        "right": 390,
+        "width": 390,
+        "height": 81
+      },
+      "navLinks": [
+        {
+          "text": "PawPal",
+          "href": "/",
+          "height": 32,
+          "visible": true
+        },
+        {
+          "text": "Home",
+          "href": "/",
+          "height": 0,
+          "visible": false
+        },
+        {
+          "text": "Globe",
+          "href": "/globe",
+          "height": 0,
+          "visible": false
+        },
+        {
+          "text": "About Us",
+          "href": "/about",
+          "height": 0,
+          "visible": false
+        },
+        {
+          "text": "Store",
+          "href": "/store",
+          "height": 0,
+          "visible": false
+        },
+        {
+          "text": "Login",
+          "href": "/auth",
+          "height": 0,
+          "visible": false
+        },
+        {
+          "text": "Globe Map",
+          "href": "/globe",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "NFC Safety Tag",
+          "href": "/store",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "AI Assistant",
+          "href": "/globe",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Community",
+          "href": "/globe",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "About Us",
+          "href": "/about",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Store",
+          "href": "/store",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Help Center",
+          "href": "/help",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Privacy Policy",
+          "href": "/privacy",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Terms of Service",
+          "href": "/terms",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Contact",
+          "href": "mailto:hello@pawpal.be",
+          "height": 44,
+          "visible": true
+        }
+      ],
+      "navButtons": [
+        {
+          "label": "Open navigation menu",
+          "height": 44,
+          "width": 44
+        }
+      ],
+      "homeHeroCtas": [],
+      "compactGlobeNav": null,
+      "computedNav": {
+        "background": "linear-gradient(90deg, rgba(255, 255, 255, 0.94), rgba(246, 250, 254, 0.9)), linear-gradient(90deg, rgba(74, 144, 217, 0.05), rgba(0, 0, 0, 0) 42%, rgba(118, 199, 184, 0.05))",
+        "borderBottomColor": "rgba(227, 236, 244, 0.74)",
+        "borderRadius": "0px",
+        "boxShadow": "rgba(33, 55, 78, 0.05) 0px 8px 30px 0px",
+        "backdropFilter": "none"
+      }
+    },
+    {
+      "route": "/store",
+      "viewport": "768x1024",
+      "media": {
+        "dark": false,
+        "reduced": false
+      },
+      "screenshotPath": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-13-navbar-css-ownership/evidence/screenshots/nav-store-768x1024.png",
+      "consoleMessages": [],
+      "pageErrors": [],
+      "url": "http://localhost:3000/store",
+      "title": "Store | PawPal",
+      "nonEmptyText": true,
+      "horizontalOverflow": false,
+      "frameworkOverlay": false,
+      "navRendered": true,
+      "navBox": {
+        "top": 0,
+        "left": 0,
+        "right": 768,
+        "width": 768,
+        "height": 81
+      },
+      "navLinks": [
+        {
+          "text": "PawPal",
+          "href": "/",
+          "height": 32,
+          "visible": true
+        },
+        {
+          "text": "Home",
+          "href": "/",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Globe",
+          "href": "/globe",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "About Us",
+          "href": "/about",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Store",
+          "href": "/store",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Login",
+          "href": "/auth",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Globe Map",
+          "href": "/globe",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "NFC Safety Tag",
+          "href": "/store",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "AI Assistant",
+          "href": "/globe",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Community",
+          "href": "/globe",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "About Us",
+          "href": "/about",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Store",
+          "href": "/store",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Help Center",
+          "href": "/help",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Privacy Policy",
+          "href": "/privacy",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Terms of Service",
+          "href": "/terms",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Contact",
+          "href": "mailto:hello@pawpal.be",
+          "height": 44,
+          "visible": true
+        }
+      ],
+      "navButtons": [
+        {
+          "label": "Open navigation menu",
+          "height": 0,
+          "width": 0
+        }
+      ],
+      "homeHeroCtas": [],
+      "compactGlobeNav": null,
+      "computedNav": {
+        "background": "linear-gradient(90deg, rgba(255, 255, 255, 0.94), rgba(246, 250, 254, 0.9)), linear-gradient(90deg, rgba(74, 144, 217, 0.05), rgba(0, 0, 0, 0) 42%, rgba(118, 199, 184, 0.05))",
+        "borderBottomColor": "rgba(227, 236, 244, 0.74)",
+        "borderRadius": "0px",
+        "boxShadow": "rgba(33, 55, 78, 0.05) 0px 8px 30px 0px",
+        "backdropFilter": "none"
+      }
+    },
+    {
+      "route": "/store",
+      "viewport": "1280x720",
+      "media": {
+        "dark": false,
+        "reduced": false
+      },
+      "screenshotPath": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-13-navbar-css-ownership/evidence/screenshots/nav-store-1280x720.png",
+      "consoleMessages": [],
+      "pageErrors": [],
+      "url": "http://localhost:3000/store",
+      "title": "Store | PawPal",
+      "nonEmptyText": true,
+      "horizontalOverflow": false,
+      "frameworkOverlay": false,
+      "navRendered": true,
+      "navBox": {
+        "top": 0,
+        "left": 0,
+        "right": 1280,
+        "width": 1280,
+        "height": 81
+      },
+      "navLinks": [
+        {
+          "text": "PawPal",
+          "href": "/",
+          "height": 32,
+          "visible": true
+        },
+        {
+          "text": "Home",
+          "href": "/",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Globe",
+          "href": "/globe",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "About Us",
+          "href": "/about",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Store",
+          "href": "/store",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Login",
+          "href": "/auth",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Globe Map",
+          "href": "/globe",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "NFC Safety Tag",
+          "href": "/store",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "AI Assistant",
+          "href": "/globe",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Community",
+          "href": "/globe",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "About Us",
+          "href": "/about",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Store",
+          "href": "/store",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Help Center",
+          "href": "/help",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Privacy Policy",
+          "href": "/privacy",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Terms of Service",
+          "href": "/terms",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Contact",
+          "href": "mailto:hello@pawpal.be",
+          "height": 44,
+          "visible": true
+        }
+      ],
+      "navButtons": [
+        {
+          "label": "Open navigation menu",
+          "height": 0,
+          "width": 0
+        }
+      ],
+      "homeHeroCtas": [],
+      "compactGlobeNav": null,
+      "computedNav": {
+        "background": "linear-gradient(90deg, rgba(255, 255, 255, 0.94), rgba(246, 250, 254, 0.9)), linear-gradient(90deg, rgba(74, 144, 217, 0.05), rgba(0, 0, 0, 0) 42%, rgba(118, 199, 184, 0.05))",
+        "borderBottomColor": "rgba(227, 236, 244, 0.74)",
+        "borderRadius": "0px",
+        "boxShadow": "rgba(33, 55, 78, 0.05) 0px 8px 30px 0px",
+        "backdropFilter": "none"
+      }
+    },
+    {
+      "route": "/store",
+      "viewport": "1440x900",
+      "media": {
+        "dark": false,
+        "reduced": false
+      },
+      "screenshotPath": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-13-navbar-css-ownership/evidence/screenshots/nav-store-1440x900.png",
+      "consoleMessages": [],
+      "pageErrors": [],
+      "url": "http://localhost:3000/store",
+      "title": "Store | PawPal",
+      "nonEmptyText": true,
+      "horizontalOverflow": false,
+      "frameworkOverlay": false,
+      "navRendered": true,
+      "navBox": {
+        "top": 0,
+        "left": 0,
+        "right": 1440,
+        "width": 1440,
+        "height": 81
+      },
+      "navLinks": [
+        {
+          "text": "PawPal",
+          "href": "/",
+          "height": 32,
+          "visible": true
+        },
+        {
+          "text": "Home",
+          "href": "/",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Globe",
+          "href": "/globe",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "About Us",
+          "href": "/about",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Store",
+          "href": "/store",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Login",
+          "href": "/auth",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Globe Map",
+          "href": "/globe",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "NFC Safety Tag",
+          "href": "/store",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "AI Assistant",
+          "href": "/globe",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Community",
+          "href": "/globe",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "About Us",
+          "href": "/about",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Store",
+          "href": "/store",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Help Center",
+          "href": "/help",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Privacy Policy",
+          "href": "/privacy",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Terms of Service",
+          "href": "/terms",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Contact",
+          "href": "mailto:hello@pawpal.be",
+          "height": 44,
+          "visible": true
+        }
+      ],
+      "navButtons": [
+        {
+          "label": "Open navigation menu",
+          "height": 0,
+          "width": 0
+        }
+      ],
+      "homeHeroCtas": [],
+      "compactGlobeNav": null,
+      "computedNav": {
+        "background": "linear-gradient(90deg, rgba(255, 255, 255, 0.94), rgba(246, 250, 254, 0.9)), linear-gradient(90deg, rgba(74, 144, 217, 0.05), rgba(0, 0, 0, 0) 42%, rgba(118, 199, 184, 0.05))",
+        "borderBottomColor": "rgba(227, 236, 244, 0.74)",
+        "borderRadius": "0px",
+        "boxShadow": "rgba(33, 55, 78, 0.05) 0px 8px 30px 0px",
+        "backdropFilter": "none"
+      }
+    },
+    {
+      "route": "/help",
+      "viewport": "390x844",
+      "media": {
+        "dark": false,
+        "reduced": false
+      },
+      "screenshotPath": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-13-navbar-css-ownership/evidence/screenshots/nav-help-390x844.png",
+      "consoleMessages": [],
+      "pageErrors": [],
+      "url": "http://localhost:3000/help",
+      "title": "Help Center | PawPal",
+      "nonEmptyText": true,
+      "horizontalOverflow": false,
+      "frameworkOverlay": false,
+      "navRendered": true,
+      "navBox": {
+        "top": 0,
+        "left": 0,
+        "right": 390,
+        "width": 390,
+        "height": 81
+      },
+      "navLinks": [
+        {
+          "text": "PawPal",
+          "href": "/",
+          "height": 32,
+          "visible": true
+        },
+        {
+          "text": "Home",
+          "href": "/",
+          "height": 0,
+          "visible": false
+        },
+        {
+          "text": "Globe",
+          "href": "/globe",
+          "height": 0,
+          "visible": false
+        },
+        {
+          "text": "About Us",
+          "href": "/about",
+          "height": 0,
+          "visible": false
+        },
+        {
+          "text": "Store",
+          "href": "/store",
+          "height": 0,
+          "visible": false
+        },
+        {
+          "text": "Login",
+          "href": "/auth",
+          "height": 0,
+          "visible": false
+        },
+        {
+          "text": "Globe Map",
+          "href": "/globe",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "NFC Safety Tag",
+          "href": "/store",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "AI Assistant",
+          "href": "/globe",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Community",
+          "href": "/globe",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "About Us",
+          "href": "/about",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Store",
+          "href": "/store",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Help Center",
+          "href": "/help",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Privacy Policy",
+          "href": "/privacy",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Terms of Service",
+          "href": "/terms",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Contact",
+          "href": "mailto:hello@pawpal.be",
+          "height": 44,
+          "visible": true
+        }
+      ],
+      "navButtons": [
+        {
+          "label": "Open navigation menu",
+          "height": 44,
+          "width": 44
+        }
+      ],
+      "homeHeroCtas": [
+        {
+          "text": "Open Globe",
+          "href": "/globe",
+          "height": 46
+        },
+        {
+          "text": "Shop or replace a tag",
+          "href": "/store",
+          "height": 20
+        },
+        {
+          "text": "View store",
+          "href": "/store",
+          "height": 20
+        },
+        {
+          "text": "Open Globe",
+          "href": "/globe",
+          "height": 20
+        }
+      ],
+      "compactGlobeNav": null,
+      "computedNav": {
+        "background": "linear-gradient(90deg, rgba(255, 255, 255, 0.94), rgba(246, 250, 254, 0.9)), linear-gradient(90deg, rgba(74, 144, 217, 0.05), rgba(0, 0, 0, 0) 42%, rgba(118, 199, 184, 0.05))",
+        "borderBottomColor": "rgba(227, 236, 244, 0.74)",
+        "borderRadius": "0px",
+        "boxShadow": "rgba(33, 55, 78, 0.05) 0px 8px 30px 0px",
+        "backdropFilter": "none"
+      }
+    },
+    {
+      "route": "/help",
+      "viewport": "768x1024",
+      "media": {
+        "dark": false,
+        "reduced": false
+      },
+      "screenshotPath": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-13-navbar-css-ownership/evidence/screenshots/nav-help-768x1024.png",
+      "consoleMessages": [],
+      "pageErrors": [],
+      "url": "http://localhost:3000/help",
+      "title": "Help Center | PawPal",
+      "nonEmptyText": true,
+      "horizontalOverflow": false,
+      "frameworkOverlay": false,
+      "navRendered": true,
+      "navBox": {
+        "top": 0,
+        "left": 0,
+        "right": 768,
+        "width": 768,
+        "height": 81
+      },
+      "navLinks": [
+        {
+          "text": "PawPal",
+          "href": "/",
+          "height": 32,
+          "visible": true
+        },
+        {
+          "text": "Home",
+          "href": "/",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Globe",
+          "href": "/globe",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "About Us",
+          "href": "/about",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Store",
+          "href": "/store",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Login",
+          "href": "/auth",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Globe Map",
+          "href": "/globe",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "NFC Safety Tag",
+          "href": "/store",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "AI Assistant",
+          "href": "/globe",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Community",
+          "href": "/globe",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "About Us",
+          "href": "/about",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Store",
+          "href": "/store",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Help Center",
+          "href": "/help",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Privacy Policy",
+          "href": "/privacy",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Terms of Service",
+          "href": "/terms",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Contact",
+          "href": "mailto:hello@pawpal.be",
+          "height": 44,
+          "visible": true
+        }
+      ],
+      "navButtons": [
+        {
+          "label": "Open navigation menu",
+          "height": 0,
+          "width": 0
+        }
+      ],
+      "homeHeroCtas": [
+        {
+          "text": "Open Globe",
+          "href": "/globe",
+          "height": 46
+        },
+        {
+          "text": "Shop or replace a tag",
+          "href": "/store",
+          "height": 20
+        },
+        {
+          "text": "View store",
+          "href": "/store",
+          "height": 20
+        },
+        {
+          "text": "Open Globe",
+          "href": "/globe",
+          "height": 20
+        }
+      ],
+      "compactGlobeNav": null,
+      "computedNav": {
+        "background": "linear-gradient(90deg, rgba(255, 255, 255, 0.94), rgba(246, 250, 254, 0.9)), linear-gradient(90deg, rgba(74, 144, 217, 0.05), rgba(0, 0, 0, 0) 42%, rgba(118, 199, 184, 0.05))",
+        "borderBottomColor": "rgba(227, 236, 244, 0.74)",
+        "borderRadius": "0px",
+        "boxShadow": "rgba(33, 55, 78, 0.05) 0px 8px 30px 0px",
+        "backdropFilter": "none"
+      }
+    },
+    {
+      "route": "/help",
+      "viewport": "1280x720",
+      "media": {
+        "dark": false,
+        "reduced": false
+      },
+      "screenshotPath": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-13-navbar-css-ownership/evidence/screenshots/nav-help-1280x720.png",
+      "consoleMessages": [],
+      "pageErrors": [],
+      "url": "http://localhost:3000/help",
+      "title": "Help Center | PawPal",
+      "nonEmptyText": true,
+      "horizontalOverflow": false,
+      "frameworkOverlay": false,
+      "navRendered": true,
+      "navBox": {
+        "top": 0,
+        "left": 0,
+        "right": 1280,
+        "width": 1280,
+        "height": 81
+      },
+      "navLinks": [
+        {
+          "text": "PawPal",
+          "href": "/",
+          "height": 32,
+          "visible": true
+        },
+        {
+          "text": "Home",
+          "href": "/",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Globe",
+          "href": "/globe",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "About Us",
+          "href": "/about",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Store",
+          "href": "/store",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Login",
+          "href": "/auth",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Globe Map",
+          "href": "/globe",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "NFC Safety Tag",
+          "href": "/store",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "AI Assistant",
+          "href": "/globe",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Community",
+          "href": "/globe",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "About Us",
+          "href": "/about",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Store",
+          "href": "/store",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Help Center",
+          "href": "/help",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Privacy Policy",
+          "href": "/privacy",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Terms of Service",
+          "href": "/terms",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Contact",
+          "href": "mailto:hello@pawpal.be",
+          "height": 44,
+          "visible": true
+        }
+      ],
+      "navButtons": [
+        {
+          "label": "Open navigation menu",
+          "height": 0,
+          "width": 0
+        }
+      ],
+      "homeHeroCtas": [
+        {
+          "text": "Open Globe",
+          "href": "/globe",
+          "height": 46
+        },
+        {
+          "text": "Shop or replace a tag",
+          "href": "/store",
+          "height": 20
+        },
+        {
+          "text": "View store",
+          "href": "/store",
+          "height": 20
+        },
+        {
+          "text": "Open Globe",
+          "href": "/globe",
+          "height": 20
+        }
+      ],
+      "compactGlobeNav": null,
+      "computedNav": {
+        "background": "linear-gradient(90deg, rgba(255, 255, 255, 0.94), rgba(246, 250, 254, 0.9)), linear-gradient(90deg, rgba(74, 144, 217, 0.05), rgba(0, 0, 0, 0) 42%, rgba(118, 199, 184, 0.05))",
+        "borderBottomColor": "rgba(227, 236, 244, 0.74)",
+        "borderRadius": "0px",
+        "boxShadow": "rgba(33, 55, 78, 0.05) 0px 8px 30px 0px",
+        "backdropFilter": "none"
+      }
+    },
+    {
+      "route": "/help",
+      "viewport": "1440x900",
+      "media": {
+        "dark": false,
+        "reduced": false
+      },
+      "screenshotPath": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-13-navbar-css-ownership/evidence/screenshots/nav-help-1440x900.png",
+      "consoleMessages": [],
+      "pageErrors": [],
+      "url": "http://localhost:3000/help",
+      "title": "Help Center | PawPal",
+      "nonEmptyText": true,
+      "horizontalOverflow": false,
+      "frameworkOverlay": false,
+      "navRendered": true,
+      "navBox": {
+        "top": 0,
+        "left": 0,
+        "right": 1440,
+        "width": 1440,
+        "height": 81
+      },
+      "navLinks": [
+        {
+          "text": "PawPal",
+          "href": "/",
+          "height": 32,
+          "visible": true
+        },
+        {
+          "text": "Home",
+          "href": "/",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Globe",
+          "href": "/globe",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "About Us",
+          "href": "/about",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Store",
+          "href": "/store",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Login",
+          "href": "/auth",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Globe Map",
+          "href": "/globe",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "NFC Safety Tag",
+          "href": "/store",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "AI Assistant",
+          "href": "/globe",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Community",
+          "href": "/globe",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "About Us",
+          "href": "/about",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Store",
+          "href": "/store",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Help Center",
+          "href": "/help",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Privacy Policy",
+          "href": "/privacy",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Terms of Service",
+          "href": "/terms",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Contact",
+          "href": "mailto:hello@pawpal.be",
+          "height": 44,
+          "visible": true
+        }
+      ],
+      "navButtons": [
+        {
+          "label": "Open navigation menu",
+          "height": 0,
+          "width": 0
+        }
+      ],
+      "homeHeroCtas": [
+        {
+          "text": "Open Globe",
+          "href": "/globe",
+          "height": 46
+        },
+        {
+          "text": "Shop or replace a tag",
+          "href": "/store",
+          "height": 20
+        },
+        {
+          "text": "View store",
+          "href": "/store",
+          "height": 20
+        },
+        {
+          "text": "Open Globe",
+          "href": "/globe",
+          "height": 20
+        }
+      ],
+      "compactGlobeNav": null,
+      "computedNav": {
+        "background": "linear-gradient(90deg, rgba(255, 255, 255, 0.94), rgba(246, 250, 254, 0.9)), linear-gradient(90deg, rgba(74, 144, 217, 0.05), rgba(0, 0, 0, 0) 42%, rgba(118, 199, 184, 0.05))",
+        "borderBottomColor": "rgba(227, 236, 244, 0.74)",
+        "borderRadius": "0px",
+        "boxShadow": "rgba(33, 55, 78, 0.05) 0px 8px 30px 0px",
+        "backdropFilter": "none"
+      }
+    },
+    {
+      "route": "/auth",
+      "viewport": "390x844",
+      "media": {
+        "dark": false,
+        "reduced": false
+      },
+      "screenshotPath": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-13-navbar-css-ownership/evidence/screenshots/nav-auth-390x844.png",
+      "consoleMessages": [],
+      "pageErrors": [],
+      "url": "http://localhost:3000/auth",
+      "title": "PawPal | Pet Safety Map, Smart Tags, and Local Pet Community",
+      "nonEmptyText": true,
+      "horizontalOverflow": false,
+      "frameworkOverlay": false,
+      "navRendered": true,
+      "navBox": {
+        "top": 0,
+        "left": 0,
+        "right": 390,
+        "width": 390,
+        "height": 81
+      },
+      "navLinks": [
+        {
+          "text": "PawPal",
+          "href": "/",
+          "height": 32,
+          "visible": true
+        },
+        {
+          "text": "Home",
+          "href": "/",
+          "height": 0,
+          "visible": false
+        },
+        {
+          "text": "Globe",
+          "href": "/globe",
+          "height": 0,
+          "visible": false
+        },
+        {
+          "text": "About Us",
+          "href": "/about",
+          "height": 0,
+          "visible": false
+        },
+        {
+          "text": "Store",
+          "href": "/store",
+          "height": 0,
+          "visible": false
+        },
+        {
+          "text": "Login",
+          "href": "/auth",
+          "height": 0,
+          "visible": false
+        },
+        {
+          "text": "Globe Map",
+          "href": "/globe",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "NFC Safety Tag",
+          "href": "/store",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "AI Assistant",
+          "href": "/globe",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Community",
+          "href": "/globe",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "About Us",
+          "href": "/about",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Store",
+          "href": "/store",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Help Center",
+          "href": "/help",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Privacy Policy",
+          "href": "/privacy",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Terms of Service",
+          "href": "/terms",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Contact",
+          "href": "mailto:hello@pawpal.be",
+          "height": 44,
+          "visible": true
+        }
+      ],
+      "navButtons": [
+        {
+          "label": "Open navigation menu",
+          "height": 44,
+          "width": 44
+        }
+      ],
+      "homeHeroCtas": [],
+      "compactGlobeNav": null,
+      "computedNav": {
+        "background": "linear-gradient(90deg, rgba(255, 255, 255, 0.94), rgba(246, 250, 254, 0.9)), linear-gradient(90deg, rgba(74, 144, 217, 0.05), rgba(0, 0, 0, 0) 42%, rgba(118, 199, 184, 0.05))",
+        "borderBottomColor": "rgba(227, 236, 244, 0.74)",
+        "borderRadius": "0px",
+        "boxShadow": "rgba(33, 55, 78, 0.05) 0px 8px 30px 0px",
+        "backdropFilter": "none"
+      }
+    },
+    {
+      "route": "/auth",
+      "viewport": "768x1024",
+      "media": {
+        "dark": false,
+        "reduced": false
+      },
+      "screenshotPath": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-13-navbar-css-ownership/evidence/screenshots/nav-auth-768x1024.png",
+      "consoleMessages": [],
+      "pageErrors": [],
+      "url": "http://localhost:3000/auth",
+      "title": "PawPal | Pet Safety Map, Smart Tags, and Local Pet Community",
+      "nonEmptyText": true,
+      "horizontalOverflow": false,
+      "frameworkOverlay": false,
+      "navRendered": true,
+      "navBox": {
+        "top": 0,
+        "left": 0,
+        "right": 768,
+        "width": 768,
+        "height": 81
+      },
+      "navLinks": [
+        {
+          "text": "PawPal",
+          "href": "/",
+          "height": 32,
+          "visible": true
+        },
+        {
+          "text": "Home",
+          "href": "/",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Globe",
+          "href": "/globe",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "About Us",
+          "href": "/about",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Store",
+          "href": "/store",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Login",
+          "href": "/auth",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Globe Map",
+          "href": "/globe",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "NFC Safety Tag",
+          "href": "/store",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "AI Assistant",
+          "href": "/globe",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Community",
+          "href": "/globe",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "About Us",
+          "href": "/about",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Store",
+          "href": "/store",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Help Center",
+          "href": "/help",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Privacy Policy",
+          "href": "/privacy",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Terms of Service",
+          "href": "/terms",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Contact",
+          "href": "mailto:hello@pawpal.be",
+          "height": 44,
+          "visible": true
+        }
+      ],
+      "navButtons": [
+        {
+          "label": "Open navigation menu",
+          "height": 0,
+          "width": 0
+        }
+      ],
+      "homeHeroCtas": [],
+      "compactGlobeNav": null,
+      "computedNav": {
+        "background": "linear-gradient(90deg, rgba(255, 255, 255, 0.94), rgba(246, 250, 254, 0.9)), linear-gradient(90deg, rgba(74, 144, 217, 0.05), rgba(0, 0, 0, 0) 42%, rgba(118, 199, 184, 0.05))",
+        "borderBottomColor": "rgba(227, 236, 244, 0.74)",
+        "borderRadius": "0px",
+        "boxShadow": "rgba(33, 55, 78, 0.05) 0px 8px 30px 0px",
+        "backdropFilter": "none"
+      }
+    },
+    {
+      "route": "/auth",
+      "viewport": "1280x720",
+      "media": {
+        "dark": false,
+        "reduced": false
+      },
+      "screenshotPath": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-13-navbar-css-ownership/evidence/screenshots/nav-auth-1280x720.png",
+      "consoleMessages": [],
+      "pageErrors": [],
+      "url": "http://localhost:3000/auth",
+      "title": "PawPal | Pet Safety Map, Smart Tags, and Local Pet Community",
+      "nonEmptyText": true,
+      "horizontalOverflow": false,
+      "frameworkOverlay": false,
+      "navRendered": true,
+      "navBox": {
+        "top": 0,
+        "left": 0,
+        "right": 1280,
+        "width": 1280,
+        "height": 81
+      },
+      "navLinks": [
+        {
+          "text": "PawPal",
+          "href": "/",
+          "height": 32,
+          "visible": true
+        },
+        {
+          "text": "Home",
+          "href": "/",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Globe",
+          "href": "/globe",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "About Us",
+          "href": "/about",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Store",
+          "href": "/store",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Login",
+          "href": "/auth",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Globe Map",
+          "href": "/globe",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "NFC Safety Tag",
+          "href": "/store",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "AI Assistant",
+          "href": "/globe",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Community",
+          "href": "/globe",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "About Us",
+          "href": "/about",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Store",
+          "href": "/store",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Help Center",
+          "href": "/help",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Privacy Policy",
+          "href": "/privacy",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Terms of Service",
+          "href": "/terms",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Contact",
+          "href": "mailto:hello@pawpal.be",
+          "height": 44,
+          "visible": true
+        }
+      ],
+      "navButtons": [
+        {
+          "label": "Open navigation menu",
+          "height": 0,
+          "width": 0
+        }
+      ],
+      "homeHeroCtas": [],
+      "compactGlobeNav": null,
+      "computedNav": {
+        "background": "linear-gradient(90deg, rgba(255, 255, 255, 0.94), rgba(246, 250, 254, 0.9)), linear-gradient(90deg, rgba(74, 144, 217, 0.05), rgba(0, 0, 0, 0) 42%, rgba(118, 199, 184, 0.05))",
+        "borderBottomColor": "rgba(227, 236, 244, 0.74)",
+        "borderRadius": "0px",
+        "boxShadow": "rgba(33, 55, 78, 0.05) 0px 8px 30px 0px",
+        "backdropFilter": "none"
+      }
+    },
+    {
+      "route": "/auth",
+      "viewport": "1440x900",
+      "media": {
+        "dark": false,
+        "reduced": false
+      },
+      "screenshotPath": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-13-navbar-css-ownership/evidence/screenshots/nav-auth-1440x900.png",
+      "consoleMessages": [],
+      "pageErrors": [],
+      "url": "http://localhost:3000/auth",
+      "title": "PawPal | Pet Safety Map, Smart Tags, and Local Pet Community",
+      "nonEmptyText": true,
+      "horizontalOverflow": false,
+      "frameworkOverlay": false,
+      "navRendered": true,
+      "navBox": {
+        "top": 0,
+        "left": 0,
+        "right": 1440,
+        "width": 1440,
+        "height": 81
+      },
+      "navLinks": [
+        {
+          "text": "PawPal",
+          "href": "/",
+          "height": 32,
+          "visible": true
+        },
+        {
+          "text": "Home",
+          "href": "/",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Globe",
+          "href": "/globe",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "About Us",
+          "href": "/about",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Store",
+          "href": "/store",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Login",
+          "href": "/auth",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Globe Map",
+          "href": "/globe",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "NFC Safety Tag",
+          "href": "/store",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "AI Assistant",
+          "href": "/globe",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Community",
+          "href": "/globe",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "About Us",
+          "href": "/about",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Store",
+          "href": "/store",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Help Center",
+          "href": "/help",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Privacy Policy",
+          "href": "/privacy",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Terms of Service",
+          "href": "/terms",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Contact",
+          "href": "mailto:hello@pawpal.be",
+          "height": 44,
+          "visible": true
+        }
+      ],
+      "navButtons": [
+        {
+          "label": "Open navigation menu",
+          "height": 0,
+          "width": 0
+        }
+      ],
+      "homeHeroCtas": [],
+      "compactGlobeNav": null,
+      "computedNav": {
+        "background": "linear-gradient(90deg, rgba(255, 255, 255, 0.94), rgba(246, 250, 254, 0.9)), linear-gradient(90deg, rgba(74, 144, 217, 0.05), rgba(0, 0, 0, 0) 42%, rgba(118, 199, 184, 0.05))",
+        "borderBottomColor": "rgba(227, 236, 244, 0.74)",
+        "borderRadius": "0px",
+        "boxShadow": "rgba(33, 55, 78, 0.05) 0px 8px 30px 0px",
+        "backdropFilter": "none"
+      }
+    },
+    {
+      "route": "/globe",
+      "viewport": "390x844",
+      "media": {
+        "dark": false,
+        "reduced": false
+      },
+      "screenshotPath": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-13-navbar-css-ownership/evidence/screenshots/nav-globe-390x844.png",
+      "consoleMessages": [
+        {
+          "type": "error",
+          "text": "Error: {\"requestedAttributes\":{\"antialias\":false,\"preserveDrawingBuffer\":false,\"powerPreference\":\"high-performance\",\"failIfMajorPerformanceCaveat\":false,\"desynchronized\":false,\"alpha\":true,\"depth\":true,\"stencil\":true,\"premultipliedAlpha\":true},\"statusMessage\":\"Could not create a WebGL context, VENDOR = 0xffff, DEVICE = 0xffff, GL_VENDOR = Disabled, GL_RENDERER = Disabled, Sandboxed = no, Optimus = no, AMD switchable = no, Reset notification strategy = 0x0000, ErrorMessage = BindToCurrentSequence failed: .\",\"type\":\"webglcontextcreationerror\",\"message\":\"Failed to initialize WebGL\"}\n    at a$._setupPainter (http://localhost:3000/_next/static/chunks/02fabff66ba42dd1.js:53:103218)\n    at new a$ (http://localhost:3000/_next/static/chunks/02fabff66ba42dd1.js:53:82079)\n    at http://localhost:3000/_next/static/chunks/439ffcc348feee79.js:66:2298\n    at ih (http://localhost:3000/_next/static/chunks/aee6c7720838f8a2.js:1:102174)\n    at e (http://localhost:3000/_next/static/chunks/aee6c7720838f8a2.js:1:127147)\n    at e (http://localhost:3000/_next/static/chunks/aee6c7720838f8a2.js:1:127134)\n    at uf (http://localhost:3000/_next/static/chunks/aee6c7720838f8a2.js:1:127418)\n    at uc (http://localhost:3000/_next/static/chunks/aee6c7720838f8a2.js:1:125686)\n    at uf (http://localhost:3000/_next/static/chunks/aee6c7720838f8a2.js:1:126069)\n    at uc (http://localhost:3000/_next/static/chunks/aee6c7720838f8a2.js:1:125686)"
+        }
+      ],
+      "pageErrors": [],
+      "url": "http://localhost:3000/globe",
+      "title": "Live Pet Globe | PawPal",
+      "nonEmptyText": true,
+      "horizontalOverflow": false,
+      "frameworkOverlay": false,
+      "navRendered": true,
+      "navBox": {
+        "top": 12,
+        "left": 12,
+        "right": 378,
+        "width": 366,
+        "height": 50
+      },
+      "navLinks": [
+        {
+          "text": "PawPal",
+          "href": "/",
+          "height": 26,
+          "visible": true
+        },
+        {
+          "text": "Home",
+          "href": "/",
+          "height": 0,
+          "visible": false
+        },
+        {
+          "text": "Globe",
+          "href": "/globe",
+          "height": 0,
+          "visible": false
+        },
+        {
+          "text": "About Us",
+          "href": "/about",
+          "height": 0,
+          "visible": false
+        },
+        {
+          "text": "Store",
+          "href": "/store",
+          "height": 0,
+          "visible": false
+        },
+        {
+          "text": "Login",
+          "href": "/auth",
+          "height": 0,
+          "visible": false
+        }
+      ],
+      "navButtons": [
+        {
+          "label": "Open navigation menu",
+          "height": 44,
+          "width": 44
+        }
+      ],
+      "homeHeroCtas": [],
+      "compactGlobeNav": true,
+      "computedNav": {
+        "background": "linear-gradient(90deg, rgba(255, 255, 255, 0.88), rgba(246, 250, 254, 0.8)), linear-gradient(90deg, rgba(74, 144, 217, 0.08), rgba(0, 0, 0, 0) 48%, rgba(118, 199, 184, 0.08))",
+        "borderBottomColor": "rgba(201, 216, 230, 0.72)",
+        "borderRadius": "8px",
+        "boxShadow": "rgba(33, 55, 78, 0.13) 0px 16px 42px 0px",
+        "backdropFilter": "none"
+      }
+    },
+    {
+      "route": "/globe",
+      "viewport": "768x1024",
+      "media": {
+        "dark": false,
+        "reduced": false
+      },
+      "screenshotPath": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-13-navbar-css-ownership/evidence/screenshots/nav-globe-768x1024.png",
+      "consoleMessages": [
+        {
+          "type": "error",
+          "text": "Error: {\"requestedAttributes\":{\"antialias\":false,\"preserveDrawingBuffer\":false,\"powerPreference\":\"high-performance\",\"failIfMajorPerformanceCaveat\":false,\"desynchronized\":false,\"alpha\":true,\"depth\":true,\"stencil\":true,\"premultipliedAlpha\":true},\"statusMessage\":\"Could not create a WebGL context, VENDOR = 0xffff, DEVICE = 0xffff, GL_VENDOR = Disabled, GL_RENDERER = Disabled, Sandboxed = no, Optimus = no, AMD switchable = no, Reset notification strategy = 0x0000, ErrorMessage = BindToCurrentSequence failed: .\",\"type\":\"webglcontextcreationerror\",\"message\":\"Failed to initialize WebGL\"}\n    at a$._setupPainter (http://localhost:3000/_next/static/chunks/02fabff66ba42dd1.js:53:103218)\n    at new a$ (http://localhost:3000/_next/static/chunks/02fabff66ba42dd1.js:53:82079)\n    at http://localhost:3000/_next/static/chunks/439ffcc348feee79.js:66:2298\n    at ih (http://localhost:3000/_next/static/chunks/aee6c7720838f8a2.js:1:102174)\n    at e (http://localhost:3000/_next/static/chunks/aee6c7720838f8a2.js:1:127147)\n    at e (http://localhost:3000/_next/static/chunks/aee6c7720838f8a2.js:1:127134)\n    at uf (http://localhost:3000/_next/static/chunks/aee6c7720838f8a2.js:1:127418)\n    at uc (http://localhost:3000/_next/static/chunks/aee6c7720838f8a2.js:1:125686)\n    at uf (http://localhost:3000/_next/static/chunks/aee6c7720838f8a2.js:1:126069)\n    at uc (http://localhost:3000/_next/static/chunks/aee6c7720838f8a2.js:1:125686)"
+        }
+      ],
+      "pageErrors": [],
+      "url": "http://localhost:3000/globe",
+      "title": "Live Pet Globe | PawPal",
+      "nonEmptyText": true,
+      "horizontalOverflow": false,
+      "frameworkOverlay": false,
+      "navRendered": true,
+      "navBox": {
+        "top": 12,
+        "left": 16,
+        "right": 752,
+        "width": 736,
+        "height": 58
+      },
+      "navLinks": [
+        {
+          "text": "PawPal",
+          "href": "/",
+          "height": 26,
+          "visible": true
+        },
+        {
+          "text": "Home",
+          "href": "/",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Globe",
+          "href": "/globe",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "About Us",
+          "href": "/about",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Store",
+          "href": "/store",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Login",
+          "href": "/auth",
+          "height": 44,
+          "visible": true
+        }
+      ],
+      "navButtons": [
+        {
+          "label": "Open navigation menu",
+          "height": 0,
+          "width": 0
+        }
+      ],
+      "homeHeroCtas": [],
+      "compactGlobeNav": true,
+      "computedNav": {
+        "background": "linear-gradient(90deg, rgba(255, 255, 255, 0.88), rgba(246, 250, 254, 0.8)), linear-gradient(90deg, rgba(74, 144, 217, 0.08), rgba(0, 0, 0, 0) 48%, rgba(118, 199, 184, 0.08))",
+        "borderBottomColor": "rgba(201, 216, 230, 0.72)",
+        "borderRadius": "8px",
+        "boxShadow": "rgba(33, 55, 78, 0.13) 0px 16px 42px 0px",
+        "backdropFilter": "none"
+      }
+    },
+    {
+      "route": "/globe",
+      "viewport": "1280x720",
+      "media": {
+        "dark": false,
+        "reduced": false
+      },
+      "screenshotPath": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-13-navbar-css-ownership/evidence/screenshots/nav-globe-1280x720.png",
+      "consoleMessages": [
+        {
+          "type": "error",
+          "text": "Error: {\"requestedAttributes\":{\"antialias\":false,\"preserveDrawingBuffer\":false,\"powerPreference\":\"high-performance\",\"failIfMajorPerformanceCaveat\":false,\"desynchronized\":false,\"alpha\":true,\"depth\":true,\"stencil\":true,\"premultipliedAlpha\":true},\"statusMessage\":\"Could not create a WebGL context, VENDOR = 0xffff, DEVICE = 0xffff, GL_VENDOR = Disabled, GL_RENDERER = Disabled, Sandboxed = no, Optimus = no, AMD switchable = no, Reset notification strategy = 0x0000, ErrorMessage = BindToCurrentSequence failed: .\",\"type\":\"webglcontextcreationerror\",\"message\":\"Failed to initialize WebGL\"}\n    at a$._setupPainter (http://localhost:3000/_next/static/chunks/02fabff66ba42dd1.js:53:103218)\n    at new a$ (http://localhost:3000/_next/static/chunks/02fabff66ba42dd1.js:53:82079)\n    at http://localhost:3000/_next/static/chunks/439ffcc348feee79.js:66:2298\n    at ih (http://localhost:3000/_next/static/chunks/aee6c7720838f8a2.js:1:102174)\n    at e (http://localhost:3000/_next/static/chunks/aee6c7720838f8a2.js:1:127147)\n    at e (http://localhost:3000/_next/static/chunks/aee6c7720838f8a2.js:1:127134)\n    at uf (http://localhost:3000/_next/static/chunks/aee6c7720838f8a2.js:1:127418)\n    at uc (http://localhost:3000/_next/static/chunks/aee6c7720838f8a2.js:1:125686)\n    at uf (http://localhost:3000/_next/static/chunks/aee6c7720838f8a2.js:1:126069)\n    at uc (http://localhost:3000/_next/static/chunks/aee6c7720838f8a2.js:1:125686)"
+        }
+      ],
+      "pageErrors": [],
+      "url": "http://localhost:3000/globe",
+      "title": "Live Pet Globe | PawPal",
+      "nonEmptyText": true,
+      "horizontalOverflow": false,
+      "frameworkOverlay": false,
+      "navRendered": true,
+      "navBox": {
+        "top": 12,
+        "left": 16,
+        "right": 1264,
+        "width": 1248,
+        "height": 58
+      },
+      "navLinks": [
+        {
+          "text": "PawPal",
+          "href": "/",
+          "height": 26,
+          "visible": true
+        },
+        {
+          "text": "Home",
+          "href": "/",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Globe",
+          "href": "/globe",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "About Us",
+          "href": "/about",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Store",
+          "href": "/store",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Login",
+          "href": "/auth",
+          "height": 44,
+          "visible": true
+        }
+      ],
+      "navButtons": [
+        {
+          "label": "Open navigation menu",
+          "height": 0,
+          "width": 0
+        }
+      ],
+      "homeHeroCtas": [],
+      "compactGlobeNav": true,
+      "computedNav": {
+        "background": "linear-gradient(90deg, rgba(255, 255, 255, 0.88), rgba(246, 250, 254, 0.8)), linear-gradient(90deg, rgba(74, 144, 217, 0.08), rgba(0, 0, 0, 0) 48%, rgba(118, 199, 184, 0.08))",
+        "borderBottomColor": "rgba(201, 216, 230, 0.72)",
+        "borderRadius": "8px",
+        "boxShadow": "rgba(33, 55, 78, 0.13) 0px 16px 42px 0px",
+        "backdropFilter": "none"
+      }
+    },
+    {
+      "route": "/globe",
+      "viewport": "1440x900",
+      "media": {
+        "dark": false,
+        "reduced": false
+      },
+      "screenshotPath": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-13-navbar-css-ownership/evidence/screenshots/nav-globe-1440x900.png",
+      "consoleMessages": [
+        {
+          "type": "error",
+          "text": "Error: {\"requestedAttributes\":{\"antialias\":false,\"preserveDrawingBuffer\":false,\"powerPreference\":\"high-performance\",\"failIfMajorPerformanceCaveat\":false,\"desynchronized\":false,\"alpha\":true,\"depth\":true,\"stencil\":true,\"premultipliedAlpha\":true},\"statusMessage\":\"Could not create a WebGL context, VENDOR = 0xffff, DEVICE = 0xffff, GL_VENDOR = Disabled, GL_RENDERER = Disabled, Sandboxed = no, Optimus = no, AMD switchable = no, Reset notification strategy = 0x0000, ErrorMessage = BindToCurrentSequence failed: .\",\"type\":\"webglcontextcreationerror\",\"message\":\"Failed to initialize WebGL\"}\n    at a$._setupPainter (http://localhost:3000/_next/static/chunks/02fabff66ba42dd1.js:53:103218)\n    at new a$ (http://localhost:3000/_next/static/chunks/02fabff66ba42dd1.js:53:82079)\n    at http://localhost:3000/_next/static/chunks/439ffcc348feee79.js:66:2298\n    at ih (http://localhost:3000/_next/static/chunks/aee6c7720838f8a2.js:1:102174)\n    at e (http://localhost:3000/_next/static/chunks/aee6c7720838f8a2.js:1:127147)\n    at e (http://localhost:3000/_next/static/chunks/aee6c7720838f8a2.js:1:127134)\n    at uf (http://localhost:3000/_next/static/chunks/aee6c7720838f8a2.js:1:127418)\n    at uc (http://localhost:3000/_next/static/chunks/aee6c7720838f8a2.js:1:125686)\n    at uf (http://localhost:3000/_next/static/chunks/aee6c7720838f8a2.js:1:126069)\n    at uc (http://localhost:3000/_next/static/chunks/aee6c7720838f8a2.js:1:125686)"
+        }
+      ],
+      "pageErrors": [],
+      "url": "http://localhost:3000/globe",
+      "title": "Live Pet Globe | PawPal",
+      "nonEmptyText": true,
+      "horizontalOverflow": false,
+      "frameworkOverlay": false,
+      "navRendered": true,
+      "navBox": {
+        "top": 12,
+        "left": 16,
+        "right": 1424,
+        "width": 1408,
+        "height": 58
+      },
+      "navLinks": [
+        {
+          "text": "PawPal",
+          "href": "/",
+          "height": 26,
+          "visible": true
+        },
+        {
+          "text": "Home",
+          "href": "/",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Globe",
+          "href": "/globe",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "About Us",
+          "href": "/about",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Store",
+          "href": "/store",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Login",
+          "href": "/auth",
+          "height": 44,
+          "visible": true
+        }
+      ],
+      "navButtons": [
+        {
+          "label": "Open navigation menu",
+          "height": 0,
+          "width": 0
+        }
+      ],
+      "homeHeroCtas": [],
+      "compactGlobeNav": true,
+      "computedNav": {
+        "background": "linear-gradient(90deg, rgba(255, 255, 255, 0.88), rgba(246, 250, 254, 0.8)), linear-gradient(90deg, rgba(74, 144, 217, 0.08), rgba(0, 0, 0, 0) 48%, rgba(118, 199, 184, 0.08))",
+        "borderBottomColor": "rgba(201, 216, 230, 0.72)",
+        "borderRadius": "8px",
+        "boxShadow": "rgba(33, 55, 78, 0.13) 0px 16px 42px 0px",
+        "backdropFilter": "none"
+      }
+    }
+  ],
+  "darkChecks": [
+    {
+      "route": "/",
+      "viewport": "1280x720",
+      "media": {
+        "dark": true,
+        "reduced": false
+      },
+      "screenshotPath": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-13-navbar-css-ownership/evidence/screenshots/nav-home-1280x720-dark.png",
+      "consoleMessages": [],
+      "pageErrors": [],
+      "url": "http://localhost:3000/",
+      "title": "Pet Safety Map, Smart Tags, and Local Pet Community",
+      "nonEmptyText": true,
+      "horizontalOverflow": false,
+      "frameworkOverlay": false,
+      "navRendered": true,
+      "navBox": {
+        "top": 0,
+        "left": 0,
+        "right": 1280,
+        "width": 1280,
+        "height": 81
+      },
+      "navLinks": [
+        {
+          "text": "PawPal",
+          "href": "/",
+          "height": 32,
+          "visible": true
+        },
+        {
+          "text": "Home",
+          "href": "/",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Globe",
+          "href": "/globe",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "About Us",
+          "href": "/about",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Store",
+          "href": "/store",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Login",
+          "href": "/auth",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Globe Map",
+          "href": "/globe",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "NFC Safety Tag",
+          "href": "/store",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "AI Assistant",
+          "href": "/globe",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Community",
+          "href": "/globe",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "About Us",
+          "href": "/about",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Store",
+          "href": "/store",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Help Center",
+          "href": "/help",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Privacy Policy",
+          "href": "/privacy",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Terms of Service",
+          "href": "/terms",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Contact",
+          "href": "mailto:hello@pawpal.be",
+          "height": 44,
+          "visible": true
+        }
+      ],
+      "navButtons": [
+        {
+          "label": "Open navigation menu",
+          "height": 0,
+          "width": 0
+        }
+      ],
+      "homeHeroCtas": [
+        {
+          "text": "Open Live Map",
+          "href": "/globe",
+          "height": 48
+        },
+        {
+          "text": "Shop Smart Tags",
+          "href": "/store",
+          "height": 48
+        },
+        {
+          "text": "Open Live Map",
+          "href": "/globe",
+          "height": 48
+        },
+        {
+          "text": "Shop Smart Tags",
+          "href": "/store",
+          "height": 48
+        }
+      ],
+      "compactGlobeNav": null,
+      "computedNav": {
+        "background": "linear-gradient(90deg, rgba(21, 29, 34, 0.94), rgba(29, 39, 45, 0.9)), linear-gradient(90deg, rgba(116, 184, 234, 0.08), rgba(0, 0, 0, 0) 42%, rgba(141, 216, 204, 0.08))",
+        "borderBottomColor": "rgba(118, 199, 184, 0.22)",
+        "borderRadius": "0px",
+        "boxShadow": "rgba(0, 0, 0, 0.26) 0px 12px 34px 0px",
+        "backdropFilter": "none"
+      }
+    },
+    {
+      "route": "/globe",
+      "viewport": "1280x720",
+      "media": {
+        "dark": true,
+        "reduced": false
+      },
+      "screenshotPath": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-13-navbar-css-ownership/evidence/screenshots/nav-globe-1280x720-dark.png",
+      "consoleMessages": [
+        {
+          "type": "error",
+          "text": "Error: {\"requestedAttributes\":{\"antialias\":false,\"preserveDrawingBuffer\":false,\"powerPreference\":\"high-performance\",\"failIfMajorPerformanceCaveat\":false,\"desynchronized\":false,\"alpha\":true,\"depth\":true,\"stencil\":true,\"premultipliedAlpha\":true},\"statusMessage\":\"Could not create a WebGL context, VENDOR = 0xffff, DEVICE = 0xffff, GL_VENDOR = Disabled, GL_RENDERER = Disabled, Sandboxed = no, Optimus = no, AMD switchable = no, Reset notification strategy = 0x0000, ErrorMessage = BindToCurrentSequence failed: .\",\"type\":\"webglcontextcreationerror\",\"message\":\"Failed to initialize WebGL\"}\n    at a$._setupPainter (http://localhost:3000/_next/static/chunks/02fabff66ba42dd1.js:53:103218)\n    at new a$ (http://localhost:3000/_next/static/chunks/02fabff66ba42dd1.js:53:82079)\n    at http://localhost:3000/_next/static/chunks/439ffcc348feee79.js:66:2298\n    at ih (http://localhost:3000/_next/static/chunks/aee6c7720838f8a2.js:1:102174)\n    at e (http://localhost:3000/_next/static/chunks/aee6c7720838f8a2.js:1:127147)\n    at e (http://localhost:3000/_next/static/chunks/aee6c7720838f8a2.js:1:127134)\n    at uf (http://localhost:3000/_next/static/chunks/aee6c7720838f8a2.js:1:127418)\n    at uc (http://localhost:3000/_next/static/chunks/aee6c7720838f8a2.js:1:125686)\n    at uf (http://localhost:3000/_next/static/chunks/aee6c7720838f8a2.js:1:126069)\n    at uc (http://localhost:3000/_next/static/chunks/aee6c7720838f8a2.js:1:125686)"
+        }
+      ],
+      "pageErrors": [],
+      "url": "http://localhost:3000/globe",
+      "title": "Live Pet Globe | PawPal",
+      "nonEmptyText": true,
+      "horizontalOverflow": false,
+      "frameworkOverlay": false,
+      "navRendered": true,
+      "navBox": {
+        "top": 12,
+        "left": 16,
+        "right": 1264,
+        "width": 1248,
+        "height": 58
+      },
+      "navLinks": [
+        {
+          "text": "PawPal",
+          "href": "/",
+          "height": 26,
+          "visible": true
+        },
+        {
+          "text": "Home",
+          "href": "/",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Globe",
+          "href": "/globe",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "About Us",
+          "href": "/about",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Store",
+          "href": "/store",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Login",
+          "href": "/auth",
+          "height": 44,
+          "visible": true
+        }
+      ],
+      "navButtons": [
+        {
+          "label": "Open navigation menu",
+          "height": 0,
+          "width": 0
+        }
+      ],
+      "homeHeroCtas": [],
+      "compactGlobeNav": true,
+      "computedNav": {
+        "background": "linear-gradient(90deg, rgba(21, 29, 34, 0.9), rgba(29, 39, 45, 0.84)), linear-gradient(90deg, rgba(116, 184, 234, 0.1), rgba(0, 0, 0, 0) 48%, rgba(141, 216, 204, 0.1))",
+        "borderBottomColor": "rgba(118, 199, 184, 0.26)",
+        "borderRadius": "8px",
+        "boxShadow": "rgba(0, 0, 0, 0.32) 0px 18px 46px 0px",
+        "backdropFilter": "none"
+      }
+    }
+  ],
+  "reducedChecks": [
+    {
+      "route": "/",
+      "viewport": "390x844",
+      "media": {
+        "dark": false,
+        "reduced": true
+      },
+      "screenshotPath": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-13-navbar-css-ownership/evidence/screenshots/nav-home-390x844-reduced.png",
+      "consoleMessages": [],
+      "pageErrors": [],
+      "url": "http://localhost:3000/",
+      "title": "Pet Safety Map, Smart Tags, and Local Pet Community",
+      "nonEmptyText": true,
+      "horizontalOverflow": false,
+      "frameworkOverlay": false,
+      "navRendered": true,
+      "navBox": {
+        "top": 0,
+        "left": 0,
+        "right": 390,
+        "width": 390,
+        "height": 81
+      },
+      "navLinks": [
+        {
+          "text": "PawPal",
+          "href": "/",
+          "height": 32,
+          "visible": true
+        },
+        {
+          "text": "Home",
+          "href": "/",
+          "height": 0,
+          "visible": false
+        },
+        {
+          "text": "Globe",
+          "href": "/globe",
+          "height": 0,
+          "visible": false
+        },
+        {
+          "text": "About Us",
+          "href": "/about",
+          "height": 0,
+          "visible": false
+        },
+        {
+          "text": "Store",
+          "href": "/store",
+          "height": 0,
+          "visible": false
+        },
+        {
+          "text": "Login",
+          "href": "/auth",
+          "height": 0,
+          "visible": false
+        },
+        {
+          "text": "Globe Map",
+          "href": "/globe",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "NFC Safety Tag",
+          "href": "/store",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "AI Assistant",
+          "href": "/globe",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Community",
+          "href": "/globe",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "About Us",
+          "href": "/about",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Store",
+          "href": "/store",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Help Center",
+          "href": "/help",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Privacy Policy",
+          "href": "/privacy",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Terms of Service",
+          "href": "/terms",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Contact",
+          "href": "mailto:hello@pawpal.be",
+          "height": 44,
+          "visible": true
+        }
+      ],
+      "navButtons": [
+        {
+          "label": "Open navigation menu",
+          "height": 44,
+          "width": 44
+        }
+      ],
+      "homeHeroCtas": [
+        {
+          "text": "Open Live Map",
+          "href": "/globe",
+          "height": 48
+        },
+        {
+          "text": "Shop Smart Tags",
+          "href": "/store",
+          "height": 48
+        },
+        {
+          "text": "Open Live Map",
+          "href": "/globe",
+          "height": 48
+        },
+        {
+          "text": "Shop Smart Tags",
+          "href": "/store",
+          "height": 48
+        }
+      ],
+      "compactGlobeNav": null,
+      "computedNav": {
+        "background": "linear-gradient(90deg, rgba(255, 255, 255, 0.94), rgba(246, 250, 254, 0.9)), linear-gradient(90deg, rgba(74, 144, 217, 0.05), rgba(0, 0, 0, 0) 42%, rgba(118, 199, 184, 0.05))",
+        "borderBottomColor": "rgba(227, 236, 244, 0.74)",
+        "borderRadius": "0px",
+        "boxShadow": "rgba(33, 55, 78, 0.05) 0px 8px 30px 0px",
+        "backdropFilter": "none"
+      }
+    },
+    {
+      "route": "/globe",
+      "viewport": "1280x720",
+      "media": {
+        "dark": false,
+        "reduced": true
+      },
+      "screenshotPath": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-13-navbar-css-ownership/evidence/screenshots/nav-globe-1280x720-reduced.png",
+      "consoleMessages": [
+        {
+          "type": "error",
+          "text": "Error: {\"requestedAttributes\":{\"antialias\":false,\"preserveDrawingBuffer\":false,\"powerPreference\":\"high-performance\",\"failIfMajorPerformanceCaveat\":false,\"desynchronized\":false,\"alpha\":true,\"depth\":true,\"stencil\":true,\"premultipliedAlpha\":true},\"statusMessage\":\"Could not create a WebGL context, VENDOR = 0xffff, DEVICE = 0xffff, GL_VENDOR = Disabled, GL_RENDERER = Disabled, Sandboxed = no, Optimus = no, AMD switchable = no, Reset notification strategy = 0x0000, ErrorMessage = BindToCurrentSequence failed: .\",\"type\":\"webglcontextcreationerror\",\"message\":\"Failed to initialize WebGL\"}\n    at a$._setupPainter (http://localhost:3000/_next/static/chunks/02fabff66ba42dd1.js:53:103218)\n    at new a$ (http://localhost:3000/_next/static/chunks/02fabff66ba42dd1.js:53:82079)\n    at http://localhost:3000/_next/static/chunks/439ffcc348feee79.js:66:2298\n    at ih (http://localhost:3000/_next/static/chunks/aee6c7720838f8a2.js:1:102174)\n    at e (http://localhost:3000/_next/static/chunks/aee6c7720838f8a2.js:1:127147)\n    at e (http://localhost:3000/_next/static/chunks/aee6c7720838f8a2.js:1:127134)\n    at uf (http://localhost:3000/_next/static/chunks/aee6c7720838f8a2.js:1:127418)\n    at uc (http://localhost:3000/_next/static/chunks/aee6c7720838f8a2.js:1:125686)\n    at uf (http://localhost:3000/_next/static/chunks/aee6c7720838f8a2.js:1:126069)\n    at uc (http://localhost:3000/_next/static/chunks/aee6c7720838f8a2.js:1:125686)"
+        }
+      ],
+      "pageErrors": [],
+      "url": "http://localhost:3000/globe",
+      "title": "Live Pet Globe | PawPal",
+      "nonEmptyText": true,
+      "horizontalOverflow": false,
+      "frameworkOverlay": false,
+      "navRendered": true,
+      "navBox": {
+        "top": 12,
+        "left": 16,
+        "right": 1264,
+        "width": 1248,
+        "height": 58
+      },
+      "navLinks": [
+        {
+          "text": "PawPal",
+          "href": "/",
+          "height": 26,
+          "visible": true
+        },
+        {
+          "text": "Home",
+          "href": "/",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Globe",
+          "href": "/globe",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "About Us",
+          "href": "/about",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Store",
+          "href": "/store",
+          "height": 44,
+          "visible": true
+        },
+        {
+          "text": "Login",
+          "href": "/auth",
+          "height": 44,
+          "visible": true
+        }
+      ],
+      "navButtons": [
+        {
+          "label": "Open navigation menu",
+          "height": 0,
+          "width": 0
+        }
+      ],
+      "homeHeroCtas": [],
+      "compactGlobeNav": true,
+      "computedNav": {
+        "background": "linear-gradient(90deg, rgba(255, 255, 255, 0.88), rgba(246, 250, 254, 0.8)), linear-gradient(90deg, rgba(74, 144, 217, 0.08), rgba(0, 0, 0, 0) 48%, rgba(118, 199, 184, 0.08))",
+        "borderBottomColor": "rgba(201, 216, 230, 0.72)",
+        "borderRadius": "8px",
+        "boxShadow": "rgba(33, 55, 78, 0.13) 0px 16px 42px 0px",
+        "backdropFilter": "none"
+      }
+    }
+  ],
+  "mobileMenu": {
+    "screenshotPath": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-13-navbar-css-ownership/evidence/screenshots/nav-home-390x844-mobile-menu-open.png",
+    "panelRendered": true,
+    "closeButtonVisible": true,
+    "linkHeightsAtLeast44": true,
+    "links": [
+      {
+        "text": "Home",
+        "href": "/",
+        "height": 48,
+        "visible": true
+      },
+      {
+        "text": "Globe",
+        "href": "/globe",
+        "height": 48,
+        "visible": true
+      },
+      {
+        "text": "About Us",
+        "href": "/about",
+        "height": 48,
+        "visible": true
+      },
+      {
+        "text": "Store",
+        "href": "/store",
+        "height": 48,
+        "visible": true
+      },
+      {
+        "text": "Login",
+        "href": "/auth",
+        "height": 44,
+        "visible": true
+      }
+    ],
+    "closeButtonGone": true,
+    "openButtonVisible": true
+  },
+  "focusCheck": {
+    "screenshotPath": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-13-navbar-css-ownership/evidence/screenshots/nav-home-1280x720-focus-keyboard.png",
+    "activeTag": "A",
+    "activeText": "PawPal",
+    "activeHref": "/",
+    "outlineStyle": "solid",
+    "outlineWidth": "3px",
+    "outlineColor": "rgba(74, 144, 217, 0.34)"
+  },
+  "chromeLog": "\nDevTools listening on ws://127.0.0.1:9353/devtools/browser/762e814a-d4ab-4fb2-be1b-f97bfccd4a4b\n[95802:10522937:0614/235925.585332:ERROR:ui/display/mac/cv_display_link_mac.mm:184] CVDisplayLinkCreateWithCGDisplay failed. CVReturn: -6670\n[95802:10522937:0614/235925.586471:ERROR:ui/display/mac/cv_display_link_mac.mm:184] CVDisplayLinkCreateWithCGDisplay failed. CVReturn: -6670\n[95802:10522937:0614/235925.586746:ERROR:ui/display/mac/cv_display_link_mac.mm:184] CVDisplayLinkCreateWithCGDisplay failed. CVReturn: -6670\n[95802:10522937:0614/235926.194087:ERROR:ui/display/mac/cv_display_link_mac.mm:184] CVDisplayLinkCreateWithCGDisplay failed. CVReturn: -6670\nTrying to load the allocator multiple times. This is *not* supported.\n[95802:10522937:0614/235929.251247:ERROR:ui/display/mac/cv_display_link_mac.mm:184] CVDisplayLinkCreateWithCGDisplay failed. CVReturn: -6670\n[95802:10522937:0614/235929.446855:ERROR:ui/display/mac/cv_display_link_mac.mm:184] CVDisplayLinkCreateWithCGDisplay failed. CVReturn: -6670\n[95802:10522937:0614/235929.891118:ERROR:ui/display/mac/cv_display_link_mac.mm:184] CVDisplayLinkCreateWithCGDisplay failed. CVReturn: -6670\n[95767:10522895:0614/235930.017891:ERROR:google_apis/gcm/engine/mcs_client.cc:702]   Error code: 401  Error message: Authentication Failed: wrong_secret\n[95767:10522895:0614/235930.017935:ERROR:google_apis/gcm/engine/mcs_client.cc:704] Failed to log in to GCM, resetting connection.\n[95767:10522895:0614/235930.018127:ERROR:google_apis/gcm/engine/registration_request.cc:291] Registration response error message: PHONE_REGISTRATION_ERROR\n[95767:10522895:0614/235930.018249:ERROR:google_apis/gcm/engine/registration_request.cc:291] Registration response error message: PHONE_REGISTRATION_ERROR\n[95767:10522895:0614/235930.018550:ERROR:google_apis/gcm/engine/registration_request.cc:291] Registration response error message: PHONE_REGISTRATION_ERROR\n[95802:10522937:0614/235930.461227:ERROR:ui/display/mac/cv_display_link_mac.mm:184] CVDisplayLinkCreateWithCGDisplay failed. CVReturn: -6670\n[95802:10522937:0614/235930.731179:ERROR:ui/display/mac/cv_display_link_mac.mm:184] CVDisplayLinkCreateWithCGDisplay failed. CVReturn: -6670\n[95802:10522937:0614/235931.002341:ERROR:ui/display/mac/cv_display_link_mac.mm:184] CVDisplayLinkCreateWithCGDisplay failed. CVReturn: -6670\n[95802:10522937:0614/235931.195874:ERROR:ui/display/mac/cv_display_link_mac.mm:184] CVDisplayLinkCreateWithCGDisplay failed. CVReturn: -6670\n[95802:10522937:0614/235931.579647:ERROR:ui/display/mac/cv_display_link_mac.mm:184] CVDisplayLinkCreateWithCGDisplay failed. CVReturn: -6670\nCreated TensorFlow Lite XNNPACK delegate for CPU.\n[96545:10524525:0614/235943.941480:VERBOSE1:chrome/updater/updater.cc:374] Version: 150.0.7863.0, opt, x86_64, command line: /Users/nuemann/Library/Application Support/Google/GoogleUpdater/150.0.7863.0/GoogleUpdater.app/Contents/MacOS/GoogleUpdater --wake-all --enable-logging --vmodule=*/components/update_client/*=2,*/chrome/enterprise_companion/*=2,*/chrome/updater/*=2\n[96545:10524525:0614/235943.942065:VERBOSE1:chrome/updater/updater.cc:377] OS version: 26.5.1, arch: x86_64, System uptime (seconds): 434460, parent pid: 95767\n[96545:10524525:0614/235943.953272:VERBOSE1:chrome/updater/updater.cc:382] Available disk space in install directory (/Users/nuemann/Library/Application Support/Google/GoogleUpdater): 450055102464B (419.146GiB) / 1000240963584B (931.547GiB)\n[96545:10524525:0614/235943.953346:VERBOSE1:chrome/updater/updater.cc:386] Available disk space in temporary directory (/var/folders/fq/rcsbsg7n2nq_w431zx54lgx40000gp/T/): 450055102464B (419.146GiB) / 1000240963584B (931.547GiB)\n[96545:10524525:0614/235943.953580:VERBOSE2:chrome/updater/event_history.cc:265] Emitted a UPDATER_PROCESS START event to the history log\n[96547:10524534:0614/235943.983243:VERBOSE1:chrome/updater/updater.cc:374] Version: 150.0.7863.0, opt, x86_64, command line: /Users/nuemann/Library/Application Support/Google/GoogleUpdater/150.0.7863.0/GoogleUpdater.app/Contents/MacOS/GoogleUpdater --crash-handler --database=/Users/nuemann/Library/Application Support/Google/GoogleUpdater/150.0.7863.0/Crashpad --url=https://clients2.google.com/cr/report --annotation=prod=Update4 --annotation=ver=150.0.7863.0 --handshake-fd=6 --enable-logging --vmodule=*/components/update_client/*=2,*/chrome/enterprise_companion/*=2,*/chrome/updater/*=2\n[96547:10524534:0614/235943.984166:VERBOSE1:chrome/updater/updater.cc:377] OS version: 26.5.1, arch: x86_64, System uptime (seconds): 434460, parent pid: 1\n[96547:10524534:0614/235943.991187:VERBOSE1:chrome/updater/updater.cc:382] Available disk space in install directory (/Users/nuemann/Library/Application Support/Google/GoogleUpdater): 450055102464B (419.146GiB) / 1000240963584B (931.547GiB)\n[96547:10524534:0614/235943.991313:VERBOSE1:chrome/updater/updater.cc:386] Available disk space in temporary directory (/var/folders/fq/rcsbsg7n2nq_w431zx54lgx40000gp/T/): 450055102464B (419.146GiB) / 1000240963584B (931.547GiB)\n[96547:10524534:0614/235943.991740:VERBOSE2:chrome/updater/event_history.cc:265] Emitted a UPDATER_PROCESS START event to the history log\n[96545:10524525:0614/235943.993684:VERBOSE1:chrome/updater/crash_reporter.cc:124] Crash handler launched and ready.\n[96545:10524525:0614/235943.996613:VERBOSE1:chrome/updater/crash_client.cc:108] Found 0 completed crash reports\n[96545:10524525:0614/235943.997083:VERBOSE1:chrome/updater/crash_client.cc:132] Found 0 pending crash reports\n[96545:10524525:0614/235943.997513:ERROR:third_party/crashpad/crashpad/util/file/file_io_posix.cc:145] open /Users/nuemann/Library/Application Support/Google/RLZ/Crashpad/settings.dat: No such file or directory (2)\n[96545:10524525:0614/235943.997590:ERROR:third_party/crashpad/crashpad/util/file/file_io_posix.cc:145] open /Users/nuemann/Library/Application Support/Google/Android File Transfer/Crashpad/settings.dat: No such file or directory (2)\n[96545:10524525:0614/235943.998091:VERBOSE1:chrome/updater/updater.cc:105] Crash reporting initialized.\n[96545:10524543:0614/235943.999188:VERBOSE1:chrome/updater/app/app_wakeall.cc:58] Launching `/Users/nuemann/Library/Application Support/Google/GoogleUpdater/150.0.7863.0/GoogleUpdater.app/Contents/MacOS/GoogleUpdater --wake`\n[96548:10524547:0614/235944.023892:VERBOSE1:chrome/updater/updater.cc:374] Version: 150.0.7863.0, opt, x86_64, command line: /Users/nuemann/Library/Application Support/Google/GoogleUpdater/150.0.7863.0/GoogleUpdater.app/Contents/MacOS/GoogleUpdater --wake --enable-logging --vmodule=*/components/update_client/*=2,*/chrome/enterprise_companion/*=2,*/chrome/updater/*=2\n[96548:10524547:0614/235944.024506:VERBOSE1:chrome/updater/updater.cc:377] OS version: 26.5.1, arch: x86_64, System uptime (seconds): 434460, parent pid: 96545\n[96548:10524547:0614/235944.030980:VERBOSE1:chrome/updater/updater.cc:382] Available disk space in install directory (/Users/nuemann/Library/Application Support/Google/GoogleUpdater): 450053984256B (419.145GiB) / 1000240963584B (931.547GiB)\n[96548:10524547:0614/235944.031103:VERBOSE1:chrome/updater/updater.cc:386] Available disk space in temporary directory (/var/folders/fq/rcsbsg7n2nq_w431zx54lgx40000gp/T/): 450053984256B (419.145GiB) / 1000240963584B (931.547GiB)\n[96548:10524547:0614/235944.031520:VERBOSE2:chrome/updater/event_history.cc:265] Emitted a UPDATER_PROCESS START event to the history log\n[96550:10524551:0614/235944.056602:VERBOSE1:chrome/updater/updater.cc:374] Version: 150.0.7863.0, opt, x86_64, command line: /Users/nuemann/Library/Application Support/Google/GoogleUpdater/150.0.7863.0/GoogleUpdater.app/Contents/MacOS/GoogleUpdater --crash-handler --database=/Users/nuemann/Library/Application Support/Google/GoogleUpdater/150.0.7863.0/Crashpad --url=https://clients2.google.com/cr/report --annotation=prod=Update4 --annotation=ver=150.0.7863.0 --handshake-fd=6 --enable-logging --vmodule=*/components/update_client/*=2,*/chrome/enterprise_companion/*=2,*/chrome/updater/*=2\n[96550:10524551:0614/235944.057196:VERBOSE1:chrome/updater/updater.cc:377] OS version: 26.5.1, arch: x86_64, System uptime (seconds): 434460, parent pid: 1\n[96550:10524551:0614/235944.062781:VERBOSE1:chrome/updater/updater.cc:382] Available disk space in install directory (/Users/nuemann/Library/Application Support/Google/GoogleUpdater): 450053984256B (419.145GiB) / 1000240963584B (931.547GiB)\n[96550:10524551:0614/235944.062851:VERBOSE1:chrome/updater/updater.cc:386] Available disk space in temporary directory (/var/folders/fq/rcsbsg7n2nq_w431zx54lgx40000gp/T/): 450053984256B (419.145GiB) / 1000240963584B (931.547GiB)\n[96550:10524551:0614/235944.063076:VERBOSE2:chrome/updater/event_history.cc:265] Emitted a UPDATER_PROCESS START event to the history log\n[96548:10524547:0614/235944.064283:VERBOSE1:chrome/updater/crash_reporter.cc:124] Crash handler launched and ready.\n[96548:10524547:0614/235944.066437:VERBOSE1:chrome/updater/crash_client.cc:108] Found 0 completed crash reports\n[96548:10524547:0614/235944.066704:VERBOSE1:chrome/updater/crash_client.cc:132] Found 0 pending crash reports\n[96548:10524547:0614/235944.066950:ERROR:third_party/crashpad/crashpad/util/file/file_io_posix.cc:145] open /Users/nuemann/Library/Application Support/Google/RLZ/Crashpad/settings.dat: No such file or directory (2)\n[96548:10524547:0614/235944.067015:ERROR:third_party/crashpad/crashpad/util/file/file_io_posix.cc:145] open /Users/nuemann/Library/Application Support/Google/Android File Transfer/Crashpad/settings.dat: No such file or directory (2)\n[96548:10524547:0614/235944.067461:VERBOSE1:chrome/updater/updater.cc:105] Crash reporting initialized.\n[96548:10524547:0614/235944.068051:VERBOSE1:chrome/updater/ipc/update_service_internal_proxy_mojo.cc:61] Run\n[95802:10522937:0614/235955.780303:ERROR:ui/display/mac/cv_display_link_mac.mm:184] CVDisplayLinkCreateWithCGDisplay failed. CVReturn: -6670\n"
+}

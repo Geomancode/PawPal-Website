@@ -1,0 +1,118 @@
+[
+  {
+    "route": "/",
+    "label": "desktop-1280x720",
+    "runStart": "2026-06-11T13:24:26.023Z",
+    "url": "http://localhost:3000/",
+    "title": "Pet Safety Map, Smart Tags, and Local Pet Community",
+    "snapshotLength": 6048,
+    "meaningfulText": true,
+    "navRect": {
+      "bottom": 81,
+      "height": 81,
+      "position": "fixed",
+      "right": 1265,
+      "width": 1265,
+      "x": 0,
+      "y": 0,
+      "zIndex": "10000"
+    },
+    "overflowX": 0,
+    "overflowY": 3429,
+    "textSample": "Skip to PawPal content PawPal Home Globe About Us Store Login PawPal pet safety for every walk Built in Belgium, PawPal connects fog-of-war walks, NFC finder profiles, AI care guidance, and local pet help in one calm product surface. Open Live Map Shop Smart Tags 1 tap Finder page 2.43 km Walk reveal 15 km Local help Finder-ready NFC safety profiles Privacy-first Owner-controlled details EU-ready 5-language product b",
+    "viewport": {
+      "height": 720,
+      "width": 1280
+    },
+    "visibleFrameworkOverlay": false,
+    "newLogs": [],
+    "screenshotPath": "/private/tmp/geopet-round04-globe/navbar-smoke/round04-navbar-home-desktop-1280x720.png"
+  },
+  {
+    "route": "/store",
+    "label": "desktop-1280x720",
+    "runStart": "2026-06-11T13:24:34.149Z",
+    "url": "http://localhost:3000/store",
+    "title": "Store | PawPal",
+    "snapshotLength": 7451,
+    "meaningfulText": true,
+    "navRect": {
+      "bottom": 81,
+      "height": 81,
+      "position": "fixed",
+      "right": 1265,
+      "width": 1265,
+      "x": 0,
+      "y": 0,
+      "zIndex": "10000"
+    },
+    "overflowX": 0,
+    "overflowY": 620,
+    "textSample": "Skip to PawPal content PawPal Home Globe About Us Store Login Smart tags and walk gear for safer pet days Start with PawPal NFC safety tags, then find practical gear for daily walks, travel, cleanup, and care. NFC safety ready Built for public finder pages and controlled owner details. EU-first fulfillment Catalog and checkout flows are prepared for Belgium-led rollout. Secure checkout Stripe-backed payment flow with",
+    "viewport": {
+      "height": 720,
+      "width": 1280
+    },
+    "visibleFrameworkOverlay": false,
+    "newLogs": [],
+    "screenshotPath": "/private/tmp/geopet-round04-globe/navbar-smoke/round04-navbar-store-desktop-1280x720.png"
+  },
+  {
+    "route": "/",
+    "label": "mobile-390x844",
+    "runStart": "2026-06-11T13:24:37.918Z",
+    "url": "http://localhost:3000/",
+    "title": "Pet Safety Map, Smart Tags, and Local Pet Community",
+    "snapshotLength": 5441,
+    "meaningfulText": true,
+    "navRect": {
+      "bottom": 81,
+      "height": 81,
+      "position": "fixed",
+      "right": 375,
+      "width": 375,
+      "x": 0,
+      "y": 0,
+      "zIndex": "10000"
+    },
+    "overflowX": 0,
+    "overflowY": 7032,
+    "textSample": "Skip to PawPal content PawPal PawPal pet safety for every walk Built in Belgium, PawPal connects fog-of-war walks, NFC finder profiles, AI care guidance, and local pet help in one calm product surface. Open Live Map Shop Smart Tags TODAY'S ROUTE 2.43 km revealed NFC SAFETY Finder-ready profile DRAG TO SPIN Lost Mode Finder pages with owner control Walk Map Routes, places, and nearby needs Local Help Community support",
+    "viewport": {
+      "height": 844,
+      "width": 390
+    },
+    "visibleFrameworkOverlay": false,
+    "newLogs": [],
+    "screenshotPath": "/private/tmp/geopet-round04-globe/navbar-smoke/round04-navbar-home-mobile-390x844.png"
+  },
+  {
+    "route": "/store",
+    "label": "mobile-390x844",
+    "runStart": "2026-06-11T13:24:41.852Z",
+    "url": "http://localhost:3000/store",
+    "title": "Store | PawPal",
+    "snapshotLength": 3406,
+    "meaningfulText": true,
+    "navRect": {
+      "bottom": 81,
+      "height": 81,
+      "position": "fixed",
+      "right": 375,
+      "width": 375,
+      "x": 0,
+      "y": 0,
+      "zIndex": "10000"
+    },
+    "overflowX": 0,
+    "overflowY": 2325,
+    "textSample": "Skip to PawPal content PawPal Smart tags and walk gear for safer pet days Start with PawPal NFC safety tags, then find practical gear for daily walks, travel, cleanup, and care. NFC safety ready EU-first fulfillment Secure checkout Filter by category All Products Food & Treats Toys & Play Accessories Health & Care 4 products Cart My Orders New PawPal Smart ID Tag €12.99 NFC-ready safety tag that links rescuers to you",
+    "viewport": {
+      "height": 844,
+      "width": 390
+    },
+    "visibleFrameworkOverlay": false,
+    "newLogs": [],
+    "screenshotPath": "/private/tmp/geopet-round04-globe/navbar-smoke/round04-navbar-store-mobile-390x844.png"
+  }
+]

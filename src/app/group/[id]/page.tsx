@@ -2,9 +2,10 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { UsersRound, PawPrint, Smartphone } from "lucide-react";
+import { UsersRound, PawPrint } from "lucide-react";
 
 import { supabaseServer as supabase } from "@/lib/supabaseServer";
+import { AppDeepLinkButton } from "@/components/ui";
 
 interface PageProps {
   params: Promise<{ id: string }>;
@@ -89,13 +90,7 @@ export default async function SharedGroupPage({ params }: PageProps) {
         </div>
 
         <div className="mx-auto mt-7 flex max-w-sm flex-col gap-3">
-          <a
-            href={`pawpal://group/${id}`}
-            className="inline-flex h-12 items-center justify-center gap-2 rounded-paw-md bg-paw-primary px-5 text-sm font-extrabold text-white shadow-paw-action transition hover:bg-paw-primary-hover"
-          >
-            <Smartphone className="h-4 w-4" />
-            Open in App
-          </a>
+          <AppDeepLinkButton href={`pawpal://group/${id}`} fallbackHref={`/group/${id}`} />
           <Link
             href="/"
             className="inline-flex h-12 items-center justify-center rounded-paw-md border border-paw-border bg-paw-panel-subtle px-5 text-sm font-extrabold text-paw-ink transition hover:border-paw-primary"

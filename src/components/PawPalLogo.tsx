@@ -2,7 +2,7 @@
  * PawPal Brand Logo Component
  *
  * Renders the official solid-P icon + wordmark from the brand system.
- * Supports the light white-background and dark Paw Blue-background variants.
+ * Supports the light white-background, dark Paw Blue-background, and adaptive variants.
  */
 
 import Image from "next/image";
@@ -12,8 +12,8 @@ interface PawPalLogoProps {
   iconSize?: number;
   /** Font size of the wordmark in pixels (default: 22) */
   fontSize?: number;
-  /** Use the white-background or Paw Blue-background variant */
-  variant?: "light" | "dark";
+  /** Use the white-background, Paw Blue-background, or color-scheme adaptive variant */
+  variant?: "light" | "dark" | "adaptive";
   /** Additional CSS classes */
   className?: string;
   /** Hide the wordmark, show icon only */
@@ -33,7 +33,8 @@ export default function PawPalLogo({
   iconOnly = false,
 }: PawPalLogoProps) {
   const isLight = variant === "light";
-  const iconSrc = LOGO_SRC[variant];
+  const isAdaptive = variant === "adaptive";
+  const iconSrc = isAdaptive ? LOGO_SRC.light : LOGO_SRC[variant];
 
   return (
     <span className={`inline-flex items-center gap-2.5 ${className}`}>
@@ -45,26 +46,44 @@ export default function PawPalLogo({
         aria-hidden="true"
         draggable={false}
         loading="eager"
-        className="block shrink-0"
+        className={isAdaptive ? "pawpal-logo-mark-light block shrink-0" : "block shrink-0"}
         style={{
           width: iconSize,
           height: iconSize,
           borderRadius: "22%",
-          boxShadow: isLight
+          boxShadow: isLight || isAdaptive
             ? "0 1px 4px rgba(27, 45, 64, 0.08)"
             : "0 2px 8px rgba(74, 144, 217, 0.22)",
-          outline: isLight ? "1px solid rgba(215, 231, 228, 0.82)" : undefined,
+          outline: isLight || isAdaptive ? "1px solid rgba(215, 231, 228, 0.82)" : undefined,
         }}
       />
+      {isAdaptive && (
+        <Image
+          src={LOGO_SRC.dark}
+          alt=""
+          width={iconSize}
+          height={iconSize}
+          aria-hidden="true"
+          draggable={false}
+          loading="eager"
+          className="pawpal-logo-mark-dark hidden shrink-0"
+          style={{
+            width: iconSize,
+            height: iconSize,
+            borderRadius: "22%",
+            boxShadow: "0 2px 8px rgba(74, 144, 217, 0.22)",
+          }}
+        />
+      )}
 
       {/* Wordmark */}
       {!iconOnly && (
         <span
-          className="font-brand font-extrabold tracking-tight leading-none"
+          className={isAdaptive ? "pawpal-logo-wordmark font-brand font-extrabold tracking-tight leading-none" : "font-brand font-extrabold tracking-tight leading-none"}
           style={{ fontSize }}
         >
-          <span style={{ color: isLight ? "var(--color-paw-brown)" : "#FFFFFF" }}>Paw</span>
-          <span style={{ color: isLight ? "var(--color-paw-accent)" : "#FFCD38" }}>Pal</span>
+          <span style={{ color: isAdaptive ? "var(--paw-logo-paw)" : isLight ? "var(--color-paw-brown)" : "#FFFFFF" }}>Paw</span>
+          <span style={{ color: isAdaptive ? "var(--paw-logo-pal)" : isLight ? "var(--color-paw-accent)" : "#FFCD38" }}>Pal</span>
         </span>
       )}
     </span>

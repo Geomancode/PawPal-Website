@@ -27,7 +27,7 @@ interface StripeSession {
 
 function LoadingState() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-paw-page text-paw-ink">
+    <div className="commerce-page-shell flex min-h-screen items-center justify-center bg-paw-page text-paw-ink">
       <div className="flex flex-col items-center gap-4">
         <Loader2 className="h-8 w-8 animate-spin text-paw-primary" aria-hidden="true" />
         <p className="text-sm font-bold text-paw-muted">Confirming your payment...</p>
@@ -109,26 +109,37 @@ function SuccessContent() {
 
   if (error) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-paw-page px-4 pt-24 text-paw-ink">
-        <Card className="w-full max-w-md p-8 text-center">
+      <div className="commerce-page-shell success-status-shell flex min-h-[100dvh] items-start justify-center bg-paw-page px-4 pb-16 pt-28 text-paw-ink">
+        <Card className="success-card-upgraded w-full max-w-lg p-7 text-center sm:p-8">
           <div className="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-paw-md bg-paw-danger-soft text-paw-danger">
             <AlertTriangle className="h-7 w-7" aria-hidden="true" />
           </div>
           <Badge tone="danger" className="mb-3">Checkout status</Badge>
           <h1 className="text-2xl font-extrabold text-paw-ink">We could not verify this payment</h1>
           <p className="mt-3 text-sm leading-6 text-paw-body">{error}</p>
-          <Button type="button" onClick={() => router.push("/store")} className="mt-6">
-            Back to Store
-          </Button>
+          <div className="mt-5 rounded-paw-md border border-paw-border bg-paw-panel-subtle p-4 text-left">
+            <p className="text-xs font-black uppercase tracking-[0.14em] text-paw-muted">What this means</p>
+            <p className="mt-2 text-sm leading-6 text-paw-body">
+              PawPal only saves an order after Stripe returns a confirmed checkout session. This page alone cannot create a charge or order.
+            </p>
+          </div>
+          <div className="success-action-row mt-6">
+            <Button type="button" onClick={() => router.push("/store")}>
+              Back to Store
+            </Button>
+            <Button type="button" variant="secondary" onClick={() => router.push("/store/orders")}>
+              View Orders
+            </Button>
+          </div>
         </Card>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-paw-page pt-28 pb-20 text-paw-ink">
+    <div className="commerce-page-shell min-h-screen bg-paw-page pt-28 pb-20 text-paw-ink">
       <div className="mx-auto max-w-2xl px-4">
-        <Card className="p-8 text-center sm:p-10">
+        <Card className="success-card-upgraded p-8 text-center sm:p-10">
           <div className="mx-auto mb-6 flex h-24 w-24 items-center justify-center rounded-full bg-paw-success-soft text-paw-success">
             <CheckCircle2 className="h-12 w-12" aria-hidden="true" />
           </div>
@@ -137,7 +148,7 @@ function SuccessContent() {
           <h1 className="text-3xl font-extrabold text-paw-ink">
             {isSubscription ? "Plan activated" : "Payment successful"}
           </h1>
-          <p className="mt-2 text-paw-body">
+          <p className="mx-auto mt-2 max-w-md text-paw-body">
             {isSubscription
               ? "Your PawPal AI access will be available as soon as the app refreshes your plan."
               : "Thank you for your PawPal purchase."}

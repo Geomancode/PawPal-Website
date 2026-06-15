@@ -1,0 +1,1237 @@
+{
+  "route": {
+    "path": "/tag/sample-id",
+    "slug": "tag-sample-id",
+    "character": "Trust/safety rescue",
+    "signals": [
+      "Contact",
+      "owner",
+      "Pet",
+      "Tag",
+      "not found",
+      "missing"
+    ]
+  },
+  "results": [
+    {
+      "route": "/tag/sample-id",
+      "slug": "tag-sample-id",
+      "routeCharacter": "Trust/safety rescue",
+      "requestedUrl": "http://localhost:3000/tag/sample-id",
+      "viewport": {
+        "label": "390x844",
+        "width": 390,
+        "height": 844
+      },
+      "started": "2026-06-11T11:23:56.295Z",
+      "navError": null,
+      "screenshotPath": "/private/tmp/geopet-round01-baseline/tag-sample-id-390x844.png",
+      "screenshotError": null,
+      "metrics": {
+        "blockingOverlay": true,
+        "bodyBackground": "rgb(255, 255, 255)",
+        "bodyColor": "rgb(58, 47, 42)",
+        "canvases": [],
+        "clientWidth": 390,
+        "colorSchemeStyle": "light",
+        "controls": [
+          {
+            "height": 44,
+            "inFirstViewport": false,
+            "left": 16,
+            "role": null,
+            "tag": "a",
+            "text": "Skip to PawPal content",
+            "top": -54,
+            "width": 194
+          },
+          {
+            "height": 32,
+            "inFirstViewport": true,
+            "left": 20,
+            "role": null,
+            "tag": "a",
+            "text": "PawPal",
+            "top": 24,
+            "width": 122
+          },
+          {
+            "height": 40,
+            "inFirstViewport": true,
+            "left": 330,
+            "role": null,
+            "tag": "button",
+            "text": "Open navigation menu",
+            "top": 20,
+            "width": 40
+          },
+          {
+            "height": 48,
+            "inFirstViewport": true,
+            "left": 20,
+            "role": null,
+            "tag": "a",
+            "text": "Back home",
+            "top": 545,
+            "width": 350
+          },
+          {
+            "height": 48,
+            "inFirstViewport": true,
+            "left": 20,
+            "role": null,
+            "tag": "a",
+            "text": "Shop smart tags",
+            "top": 605,
+            "width": 350
+          },
+          {
+            "height": 40,
+            "inFirstViewport": false,
+            "left": 20,
+            "role": null,
+            "tag": "a",
+            "text": "hello@pawpal.be",
+            "top": 1434,
+            "width": 176
+          },
+          {
+            "height": 17,
+            "inFirstViewport": false,
+            "left": 20,
+            "role": null,
+            "tag": "a",
+            "text": "Globe Map",
+            "top": 1551,
+            "width": 71
+          },
+          {
+            "height": 17,
+            "inFirstViewport": false,
+            "left": 20,
+            "role": null,
+            "tag": "a",
+            "text": "NFC Safety Tag",
+            "top": 1587,
+            "width": 102
+          },
+          {
+            "height": 17,
+            "inFirstViewport": false,
+            "left": 20,
+            "role": null,
+            "tag": "a",
+            "text": "AI Assistant",
+            "top": 1623,
+            "width": 78
+          },
+          {
+            "height": 17,
+            "inFirstViewport": false,
+            "left": 20,
+            "role": null,
+            "tag": "a",
+            "text": "Community",
+            "top": 1659,
+            "width": 76
+          },
+          {
+            "height": 17,
+            "inFirstViewport": false,
+            "left": 211,
+            "role": null,
+            "tag": "a",
+            "text": "About Us",
+            "top": 1551,
+            "width": 61
+          },
+          {
+            "height": 17,
+            "inFirstViewport": false,
+            "left": 211,
+            "role": null,
+            "tag": "a",
+            "text": "Store",
+            "top": 1587,
+            "width": 36
+          }
+        ],
+        "currentUrl": "http://localhost:3000/tag/sample-id",
+        "documentHeight": 2035,
+        "foundSignals": [
+          {
+            "element": {
+              "height": 17,
+              "inFirstViewport": false,
+              "left": 20,
+              "role": null,
+              "tag": "a",
+              "text": "Contact",
+              "top": 1819,
+              "width": 52
+            },
+            "found": true,
+            "signal": "Contact"
+          },
+          {
+            "element": null,
+            "found": false,
+            "signal": "owner"
+          },
+          {
+            "element": {
+              "height": 1132,
+              "inFirstViewport": true,
+              "left": 0,
+              "role": null,
+              "tag": "main",
+              "text": "PawPal PAGE NOT FOUND This PawPal route is not available. The link may be old, private, or missing a valid pet, post, gr",
+              "top": 81,
+              "width": 390
+            },
+            "found": true,
+            "signal": "Pet"
+          },
+          {
+            "element": {
+              "height": 1132,
+              "inFirstViewport": true,
+              "left": 0,
+              "role": null,
+              "tag": "main",
+              "text": "PawPal PAGE NOT FOUND This PawPal route is not available. The link may be old, private, or missing a valid pet, post, gr",
+              "top": 81,
+              "width": 390
+            },
+            "found": true,
+            "signal": "Tag"
+          },
+          {
+            "element": {
+              "height": 1132,
+              "inFirstViewport": true,
+              "left": 0,
+              "role": null,
+              "tag": "main",
+              "text": "PawPal PAGE NOT FOUND This PawPal route is not available. The link may be old, private, or missing a valid pet, post, gr",
+              "top": 81,
+              "width": 390
+            },
+            "found": true,
+            "signal": "not found"
+          },
+          {
+            "element": {
+              "height": 1132,
+              "inFirstViewport": true,
+              "left": 0,
+              "role": null,
+              "tag": "main",
+              "text": "PawPal PAGE NOT FOUND This PawPal route is not available. The link may be old, private, or missing a valid pet, post, gr",
+              "top": 81,
+              "width": 390
+            },
+            "found": true,
+            "signal": "missing"
+          }
+        ],
+        "headings": [
+          {
+            "height": 90,
+            "inFirstViewport": true,
+            "left": 20,
+            "role": null,
+            "tag": "h1",
+            "text": "This PawPal route is not available.",
+            "top": 307,
+            "width": 350
+          }
+        ],
+        "horizontalOverflow": false,
+        "images": [
+          {
+            "height": 32,
+            "inFirstViewport": true,
+            "left": 20,
+            "role": null,
+            "tag": "img",
+            "text": "IMG",
+            "top": 24,
+            "width": 32
+          },
+          {
+            "height": 44,
+            "inFirstViewport": true,
+            "left": 20,
+            "role": null,
+            "tag": "img",
+            "text": "IMG",
+            "top": 193,
+            "width": 44
+          },
+          {
+            "height": 30,
+            "inFirstViewport": false,
+            "left": 20,
+            "role": null,
+            "tag": "img",
+            "text": "IMG",
+            "top": 1270,
+            "width": 30
+          }
+        ],
+        "nonEmptyRender": true,
+        "overlayText": "",
+        "prefersDarkScheme": false,
+        "prefersReducedMotion": false,
+        "routeCharacter": "Trust/safety rescue",
+        "scrollWidth": 390,
+        "textLength": 838,
+        "textSample": "Skip to PawPal content PawPal PawPal PAGE NOT FOUND This PawPal route is not available. The link may be old, private, or missing a valid pet, post, group, or profile ID. Start from a trusted PawPal page instead. Back home Shop smart tags Scanned a tag? Check t",
+        "title": "PawPal | Pet Safety Map, Smart Tags, and Local Pet Community",
+        "viewport": {
+          "height": 844,
+          "width": 390
+        }
+      },
+      "focus": {
+        "height": 2035,
+        "left": 0,
+        "ok": true,
+        "role": null,
+        "tag": "body",
+        "text": "Skip to PawPal content PawPal PawPal PAGE NOT FOUND This PawPal route is not available. The link may be old, private, or",
+        "top": 0,
+        "width": 390
+      },
+      "logs": [],
+      "darkModeCapture": {
+        "captured": false,
+        "reason": "Browser viewport capability does not expose color-scheme emulation; current prefers-color-scheme value is recorded instead.",
+        "impact": "No separate dark-mode screenshot in this baseline round.",
+        "followUpRound": "First implementation verification round touching this route."
+      },
+      "reducedMotionCapture": {
+        "captured": false,
+        "reason": "Browser capability does not expose prefers-reduced-motion emulation; current matchMedia value is recorded instead.",
+        "impact": "No separate reduced-motion behavior emulation in this baseline round.",
+        "followUpRound": "First implementation verification round touching this route."
+      }
+    },
+    {
+      "route": "/tag/sample-id",
+      "slug": "tag-sample-id",
+      "routeCharacter": "Trust/safety rescue",
+      "requestedUrl": "http://localhost:3000/tag/sample-id",
+      "viewport": {
+        "label": "768x1024",
+        "width": 768,
+        "height": 1024
+      },
+      "started": "2026-06-11T11:23:58.379Z",
+      "navError": null,
+      "screenshotPath": "/private/tmp/geopet-round01-baseline/tag-sample-id-768x1024.png",
+      "screenshotError": null,
+      "metrics": {
+        "blockingOverlay": true,
+        "bodyBackground": "rgb(255, 255, 255)",
+        "bodyColor": "rgb(58, 47, 42)",
+        "canvases": [],
+        "clientWidth": 768,
+        "colorSchemeStyle": "light",
+        "controls": [
+          {
+            "height": 44,
+            "inFirstViewport": false,
+            "left": 16,
+            "role": null,
+            "tag": "a",
+            "text": "Skip to PawPal content",
+            "top": -54,
+            "width": 194
+          },
+          {
+            "height": 32,
+            "inFirstViewport": true,
+            "left": 24,
+            "role": null,
+            "tag": "a",
+            "text": "PawPal",
+            "top": 24,
+            "width": 122
+          },
+          {
+            "height": 36,
+            "inFirstViewport": true,
+            "left": 211,
+            "role": null,
+            "tag": "a",
+            "text": "Home",
+            "top": 22,
+            "width": 68
+          },
+          {
+            "height": 36,
+            "inFirstViewport": true,
+            "left": 311,
+            "role": null,
+            "tag": "a",
+            "text": "Globe",
+            "top": 22,
+            "width": 68
+          },
+          {
+            "height": 36,
+            "inFirstViewport": true,
+            "left": 411,
+            "role": null,
+            "tag": "a",
+            "text": "About Us",
+            "top": 22,
+            "width": 91
+          },
+          {
+            "height": 36,
+            "inFirstViewport": true,
+            "left": 534,
+            "role": null,
+            "tag": "a",
+            "text": "Store",
+            "top": 22,
+            "width": 65
+          },
+          {
+            "height": 40,
+            "inFirstViewport": true,
+            "left": 664,
+            "role": null,
+            "tag": "a",
+            "text": "Login",
+            "top": 20,
+            "width": 80
+          },
+          {
+            "height": 48,
+            "inFirstViewport": true,
+            "left": 20,
+            "role": null,
+            "tag": "a",
+            "text": "Back home",
+            "top": 573,
+            "width": 141
+          },
+          {
+            "height": 48,
+            "inFirstViewport": true,
+            "left": 173,
+            "role": null,
+            "tag": "a",
+            "text": "Shop smart tags",
+            "top": 573,
+            "width": 182
+          },
+          {
+            "height": 40,
+            "inFirstViewport": false,
+            "left": 24,
+            "role": null,
+            "tag": "a",
+            "text": "hello@pawpal.be",
+            "top": 1402,
+            "width": 176
+          },
+          {
+            "height": 17,
+            "inFirstViewport": false,
+            "left": 319,
+            "role": null,
+            "tag": "a",
+            "text": "Globe Map",
+            "top": 1275,
+            "width": 71
+          },
+          {
+            "height": 41,
+            "inFirstViewport": false,
+            "left": 319,
+            "role": null,
+            "tag": "a",
+            "text": "NFC Safety Tag",
+            "top": 1311,
+            "width": 74
+          }
+        ],
+        "currentUrl": "http://localhost:3000/tag/sample-id",
+        "documentHeight": 1647,
+        "foundSignals": [
+          {
+            "element": {
+              "height": 17,
+              "inFirstViewport": false,
+              "left": 548,
+              "role": null,
+              "tag": "a",
+              "text": "Contact",
+              "top": 1395,
+              "width": 52
+            },
+            "found": true,
+            "signal": "Contact"
+          },
+          {
+            "element": null,
+            "found": false,
+            "signal": "owner"
+          },
+          {
+            "element": {
+              "height": 1100,
+              "inFirstViewport": true,
+              "left": 0,
+              "role": null,
+              "tag": "main",
+              "text": "PawPal PAGE NOT FOUND This PawPal route is not available. The link may be old, private, or missing a valid pet, post, gr",
+              "top": 81,
+              "width": 768
+            },
+            "found": true,
+            "signal": "Pet"
+          },
+          {
+            "element": {
+              "height": 1100,
+              "inFirstViewport": true,
+              "left": 0,
+              "role": null,
+              "tag": "main",
+              "text": "PawPal PAGE NOT FOUND This PawPal route is not available. The link may be old, private, or missing a valid pet, post, gr",
+              "top": 81,
+              "width": 768
+            },
+            "found": true,
+            "signal": "Tag"
+          },
+          {
+            "element": {
+              "height": 1100,
+              "inFirstViewport": true,
+              "left": 0,
+              "role": null,
+              "tag": "main",
+              "text": "PawPal PAGE NOT FOUND This PawPal route is not available. The link may be old, private, or missing a valid pet, post, gr",
+              "top": 81,
+              "width": 768
+            },
+            "found": true,
+            "signal": "not found"
+          },
+          {
+            "element": {
+              "height": 1100,
+              "inFirstViewport": true,
+              "left": 0,
+              "role": null,
+              "tag": "main",
+              "text": "PawPal PAGE NOT FOUND This PawPal route is not available. The link may be old, private, or missing a valid pet, post, gr",
+              "top": 81,
+              "width": 768
+            },
+            "found": true,
+            "signal": "missing"
+          }
+        ],
+        "headings": [
+          {
+            "height": 150,
+            "inFirstViewport": true,
+            "left": 20,
+            "role": null,
+            "tag": "h1",
+            "text": "This PawPal route is not available.",
+            "top": 307,
+            "width": 576
+          }
+        ],
+        "horizontalOverflow": false,
+        "images": [
+          {
+            "height": 32,
+            "inFirstViewport": true,
+            "left": 24,
+            "role": null,
+            "tag": "img",
+            "text": "IMG",
+            "top": 24,
+            "width": 32
+          },
+          {
+            "height": 44,
+            "inFirstViewport": true,
+            "left": 20,
+            "role": null,
+            "tag": "img",
+            "text": "IMG",
+            "top": 193,
+            "width": 44
+          },
+          {
+            "height": 30,
+            "inFirstViewport": false,
+            "left": 24,
+            "role": null,
+            "tag": "img",
+            "text": "IMG",
+            "top": 1238,
+            "width": 30
+          }
+        ],
+        "nonEmptyRender": true,
+        "overlayText": "",
+        "prefersDarkScheme": false,
+        "prefersReducedMotion": false,
+        "routeCharacter": "Trust/safety rescue",
+        "scrollWidth": 768,
+        "textLength": 870,
+        "textSample": "Skip to PawPal content PawPal Home Globe About Us Store Login PawPal PAGE NOT FOUND This PawPal route is not available. The link may be old, private, or missing a valid pet, post, group, or profile ID. Start from a trusted PawPal page instead. Back home Shop s",
+        "title": "PawPal | Pet Safety Map, Smart Tags, and Local Pet Community",
+        "viewport": {
+          "height": 1024,
+          "width": 768
+        }
+      },
+      "focus": {
+        "height": 1647,
+        "left": 0,
+        "ok": true,
+        "role": null,
+        "tag": "body",
+        "text": "Skip to PawPal content PawPal Home Globe About Us Store Login PawPal PAGE NOT FOUND This PawPal route is not available. ",
+        "top": 0,
+        "width": 768
+      },
+      "logs": [],
+      "darkModeCapture": {
+        "captured": false,
+        "reason": "Browser viewport capability does not expose color-scheme emulation; current prefers-color-scheme value is recorded instead.",
+        "impact": "No separate dark-mode screenshot in this baseline round.",
+        "followUpRound": "First implementation verification round touching this route."
+      },
+      "reducedMotionCapture": {
+        "captured": false,
+        "reason": "Browser capability does not expose prefers-reduced-motion emulation; current matchMedia value is recorded instead.",
+        "impact": "No separate reduced-motion behavior emulation in this baseline round.",
+        "followUpRound": "First implementation verification round touching this route."
+      }
+    },
+    {
+      "route": "/tag/sample-id",
+      "slug": "tag-sample-id",
+      "routeCharacter": "Trust/safety rescue",
+      "requestedUrl": "http://localhost:3000/tag/sample-id",
+      "viewport": {
+        "label": "1280x720",
+        "width": 1280,
+        "height": 720
+      },
+      "started": "2026-06-11T11:24:00.332Z",
+      "navError": null,
+      "screenshotPath": "/private/tmp/geopet-round01-baseline/tag-sample-id-1280x720.png",
+      "screenshotError": null,
+      "metrics": {
+        "blockingOverlay": true,
+        "bodyBackground": "rgb(255, 255, 255)",
+        "bodyColor": "rgb(58, 47, 42)",
+        "canvases": [],
+        "clientWidth": 1280,
+        "colorSchemeStyle": "light",
+        "controls": [
+          {
+            "height": 44,
+            "inFirstViewport": false,
+            "left": 16,
+            "role": null,
+            "tag": "a",
+            "text": "Skip to PawPal content",
+            "top": -54,
+            "width": 194
+          },
+          {
+            "height": 32,
+            "inFirstViewport": true,
+            "left": 32,
+            "role": null,
+            "tag": "a",
+            "text": "PawPal",
+            "top": 24,
+            "width": 122
+          },
+          {
+            "height": 36,
+            "inFirstViewport": true,
+            "left": 467,
+            "role": null,
+            "tag": "a",
+            "text": "Home",
+            "top": 22,
+            "width": 68
+          },
+          {
+            "height": 36,
+            "inFirstViewport": true,
+            "left": 567,
+            "role": null,
+            "tag": "a",
+            "text": "Globe",
+            "top": 22,
+            "width": 68
+          },
+          {
+            "height": 36,
+            "inFirstViewport": true,
+            "left": 667,
+            "role": null,
+            "tag": "a",
+            "text": "About Us",
+            "top": 22,
+            "width": 91
+          },
+          {
+            "height": 36,
+            "inFirstViewport": true,
+            "left": 790,
+            "role": null,
+            "tag": "a",
+            "text": "Store",
+            "top": 22,
+            "width": 65
+          },
+          {
+            "height": 40,
+            "inFirstViewport": true,
+            "left": 1168,
+            "role": null,
+            "tag": "a",
+            "text": "Login",
+            "top": 20,
+            "width": 80
+          },
+          {
+            "height": 48,
+            "inFirstViewport": true,
+            "left": 128,
+            "role": null,
+            "tag": "a",
+            "text": "Back home",
+            "top": 648,
+            "width": 141
+          },
+          {
+            "height": 48,
+            "inFirstViewport": true,
+            "left": 281,
+            "role": null,
+            "tag": "a",
+            "text": "Shop smart tags",
+            "top": 648,
+            "width": 182
+          },
+          {
+            "height": 40,
+            "inFirstViewport": false,
+            "left": 32,
+            "role": null,
+            "tag": "a",
+            "text": "hello@pawpal.be",
+            "top": 1029,
+            "width": 176
+          },
+          {
+            "height": 17,
+            "inFirstViewport": false,
+            "left": 513,
+            "role": null,
+            "tag": "a",
+            "text": "Globe Map",
+            "top": 902,
+            "width": 71
+          },
+          {
+            "height": 17,
+            "inFirstViewport": false,
+            "left": 513,
+            "role": null,
+            "tag": "a",
+            "text": "NFC Safety Tag",
+            "top": 938,
+            "width": 102
+          }
+        ],
+        "currentUrl": "http://localhost:3000/tag/sample-id",
+        "documentHeight": 1182,
+        "foundSignals": [
+          {
+            "element": {
+              "height": 17,
+              "inFirstViewport": false,
+              "left": 897,
+              "role": null,
+              "tag": "a",
+              "text": "Contact",
+              "top": 974,
+              "width": 52
+            },
+            "found": true,
+            "signal": "Contact"
+          },
+          {
+            "element": null,
+            "found": false,
+            "signal": "owner"
+          },
+          {
+            "element": {
+              "height": 727,
+              "inFirstViewport": true,
+              "left": 0,
+              "role": null,
+              "tag": "main",
+              "text": "PawPal PAGE NOT FOUND This PawPal route is not available. The link may be old, private, or missing a valid pet, post, gr",
+              "top": 81,
+              "width": 1280
+            },
+            "found": true,
+            "signal": "Pet"
+          },
+          {
+            "element": {
+              "height": 727,
+              "inFirstViewport": true,
+              "left": 0,
+              "role": null,
+              "tag": "main",
+              "text": "PawPal PAGE NOT FOUND This PawPal route is not available. The link may be old, private, or missing a valid pet, post, gr",
+              "top": 81,
+              "width": 1280
+            },
+            "found": true,
+            "signal": "Tag"
+          },
+          {
+            "element": {
+              "height": 727,
+              "inFirstViewport": true,
+              "left": 0,
+              "role": null,
+              "tag": "main",
+              "text": "PawPal PAGE NOT FOUND This PawPal route is not available. The link may be old, private, or missing a valid pet, post, gr",
+              "top": 81,
+              "width": 1280
+            },
+            "found": true,
+            "signal": "not found"
+          },
+          {
+            "element": {
+              "height": 727,
+              "inFirstViewport": true,
+              "left": 0,
+              "role": null,
+              "tag": "main",
+              "text": "PawPal PAGE NOT FOUND This PawPal route is not available. The link may be old, private, or missing a valid pet, post, gr",
+              "top": 81,
+              "width": 1280
+            },
+            "found": true,
+            "signal": "missing"
+          }
+        ],
+        "headings": [
+          {
+            "height": 225,
+            "inFirstViewport": true,
+            "left": 128,
+            "role": null,
+            "tag": "h1",
+            "text": "This PawPal route is not available.",
+            "top": 307,
+            "width": 446
+          }
+        ],
+        "horizontalOverflow": false,
+        "images": [
+          {
+            "height": 32,
+            "inFirstViewport": true,
+            "left": 32,
+            "role": null,
+            "tag": "img",
+            "text": "IMG",
+            "top": 24,
+            "width": 32
+          },
+          {
+            "height": 44,
+            "inFirstViewport": true,
+            "left": 128,
+            "role": null,
+            "tag": "img",
+            "text": "IMG",
+            "top": 193,
+            "width": 44
+          },
+          {
+            "height": 30,
+            "inFirstViewport": false,
+            "left": 32,
+            "role": null,
+            "tag": "img",
+            "text": "IMG",
+            "top": 865,
+            "width": 30
+          }
+        ],
+        "nonEmptyRender": true,
+        "overlayText": "",
+        "prefersDarkScheme": false,
+        "prefersReducedMotion": false,
+        "routeCharacter": "Trust/safety rescue",
+        "scrollWidth": 1280,
+        "textLength": 870,
+        "textSample": "Skip to PawPal content PawPal Home Globe About Us Store Login PawPal PAGE NOT FOUND This PawPal route is not available. The link may be old, private, or missing a valid pet, post, group, or profile ID. Start from a trusted PawPal page instead. Back home Shop s",
+        "title": "PawPal | Pet Safety Map, Smart Tags, and Local Pet Community",
+        "viewport": {
+          "height": 720,
+          "width": 1280
+        }
+      },
+      "focus": {
+        "height": 1182,
+        "left": 0,
+        "ok": true,
+        "role": null,
+        "tag": "body",
+        "text": "Skip to PawPal content PawPal Home Globe About Us Store Login PawPal PAGE NOT FOUND This PawPal route is not available. ",
+        "top": 0,
+        "width": 1280
+      },
+      "logs": [],
+      "darkModeCapture": {
+        "captured": false,
+        "reason": "Browser viewport capability does not expose color-scheme emulation; current prefers-color-scheme value is recorded instead.",
+        "impact": "No separate dark-mode screenshot in this baseline round.",
+        "followUpRound": "First implementation verification round touching this route."
+      },
+      "reducedMotionCapture": {
+        "captured": false,
+        "reason": "Browser capability does not expose prefers-reduced-motion emulation; current matchMedia value is recorded instead.",
+        "impact": "No separate reduced-motion behavior emulation in this baseline round.",
+        "followUpRound": "First implementation verification round touching this route."
+      }
+    },
+    {
+      "route": "/tag/sample-id",
+      "slug": "tag-sample-id",
+      "routeCharacter": "Trust/safety rescue",
+      "requestedUrl": "http://localhost:3000/tag/sample-id",
+      "viewport": {
+        "label": "1440x900",
+        "width": 1440,
+        "height": 900
+      },
+      "started": "2026-06-11T11:24:02.364Z",
+      "navError": null,
+      "screenshotPath": "/private/tmp/geopet-round01-baseline/tag-sample-id-1440x900.png",
+      "screenshotError": null,
+      "metrics": {
+        "blockingOverlay": true,
+        "bodyBackground": "rgb(255, 255, 255)",
+        "bodyColor": "rgb(58, 47, 42)",
+        "canvases": [],
+        "clientWidth": 1440,
+        "colorSchemeStyle": "light",
+        "controls": [
+          {
+            "height": 44,
+            "inFirstViewport": false,
+            "left": 16,
+            "role": null,
+            "tag": "a",
+            "text": "Skip to PawPal content",
+            "top": -54,
+            "width": 194
+          },
+          {
+            "height": 32,
+            "inFirstViewport": true,
+            "left": 112,
+            "role": null,
+            "tag": "a",
+            "text": "PawPal",
+            "top": 24,
+            "width": 122
+          },
+          {
+            "height": 36,
+            "inFirstViewport": true,
+            "left": 547,
+            "role": null,
+            "tag": "a",
+            "text": "Home",
+            "top": 22,
+            "width": 68
+          },
+          {
+            "height": 36,
+            "inFirstViewport": true,
+            "left": 647,
+            "role": null,
+            "tag": "a",
+            "text": "Globe",
+            "top": 22,
+            "width": 68
+          },
+          {
+            "height": 36,
+            "inFirstViewport": true,
+            "left": 747,
+            "role": null,
+            "tag": "a",
+            "text": "About Us",
+            "top": 22,
+            "width": 91
+          },
+          {
+            "height": 36,
+            "inFirstViewport": true,
+            "left": 870,
+            "role": null,
+            "tag": "a",
+            "text": "Store",
+            "top": 22,
+            "width": 65
+          },
+          {
+            "height": 40,
+            "inFirstViewport": true,
+            "left": 1248,
+            "role": null,
+            "tag": "a",
+            "text": "Login",
+            "top": 20,
+            "width": 80
+          },
+          {
+            "height": 48,
+            "inFirstViewport": true,
+            "left": 208,
+            "role": null,
+            "tag": "a",
+            "text": "Back home",
+            "top": 648,
+            "width": 141
+          },
+          {
+            "height": 48,
+            "inFirstViewport": true,
+            "left": 361,
+            "role": null,
+            "tag": "a",
+            "text": "Shop smart tags",
+            "top": 648,
+            "width": 182
+          },
+          {
+            "height": 40,
+            "inFirstViewport": false,
+            "left": 112,
+            "role": null,
+            "tag": "a",
+            "text": "hello@pawpal.be",
+            "top": 1202,
+            "width": 176
+          },
+          {
+            "height": 17,
+            "inFirstViewport": false,
+            "left": 593,
+            "role": null,
+            "tag": "a",
+            "text": "Globe Map",
+            "top": 1075,
+            "width": 71
+          },
+          {
+            "height": 17,
+            "inFirstViewport": false,
+            "left": 593,
+            "role": null,
+            "tag": "a",
+            "text": "NFC Safety Tag",
+            "top": 1111,
+            "width": 102
+          }
+        ],
+        "currentUrl": "http://localhost:3000/tag/sample-id",
+        "documentHeight": 1355,
+        "foundSignals": [
+          {
+            "element": {
+              "height": 17,
+              "inFirstViewport": false,
+              "left": 977,
+              "role": null,
+              "tag": "a",
+              "text": "Contact",
+              "top": 1147,
+              "width": 52
+            },
+            "found": true,
+            "signal": "Contact"
+          },
+          {
+            "element": null,
+            "found": false,
+            "signal": "owner"
+          },
+          {
+            "element": {
+              "height": 900,
+              "inFirstViewport": true,
+              "left": 0,
+              "role": null,
+              "tag": "main",
+              "text": "PawPal PAGE NOT FOUND This PawPal route is not available. The link may be old, private, or missing a valid pet, post, gr",
+              "top": 81,
+              "width": 1440
+            },
+            "found": true,
+            "signal": "Pet"
+          },
+          {
+            "element": {
+              "height": 900,
+              "inFirstViewport": true,
+              "left": 0,
+              "role": null,
+              "tag": "main",
+              "text": "PawPal PAGE NOT FOUND This PawPal route is not available. The link may be old, private, or missing a valid pet, post, gr",
+              "top": 81,
+              "width": 1440
+            },
+            "found": true,
+            "signal": "Tag"
+          },
+          {
+            "element": {
+              "height": 900,
+              "inFirstViewport": true,
+              "left": 0,
+              "role": null,
+              "tag": "main",
+              "text": "PawPal PAGE NOT FOUND This PawPal route is not available. The link may be old, private, or missing a valid pet, post, gr",
+              "top": 81,
+              "width": 1440
+            },
+            "found": true,
+            "signal": "not found"
+          },
+          {
+            "element": {
+              "height": 900,
+              "inFirstViewport": true,
+              "left": 0,
+              "role": null,
+              "tag": "main",
+              "text": "PawPal PAGE NOT FOUND This PawPal route is not available. The link may be old, private, or missing a valid pet, post, gr",
+              "top": 81,
+              "width": 1440
+            },
+            "found": true,
+            "signal": "missing"
+          }
+        ],
+        "headings": [
+          {
+            "height": 225,
+            "inFirstViewport": true,
+            "left": 208,
+            "role": null,
+            "tag": "h1",
+            "text": "This PawPal route is not available.",
+            "top": 307,
+            "width": 446
+          }
+        ],
+        "horizontalOverflow": false,
+        "images": [
+          {
+            "height": 32,
+            "inFirstViewport": true,
+            "left": 112,
+            "role": null,
+            "tag": "img",
+            "text": "IMG",
+            "top": 24,
+            "width": 32
+          },
+          {
+            "height": 44,
+            "inFirstViewport": true,
+            "left": 208,
+            "role": null,
+            "tag": "img",
+            "text": "IMG",
+            "top": 193,
+            "width": 44
+          },
+          {
+            "height": 30,
+            "inFirstViewport": false,
+            "left": 112,
+            "role": null,
+            "tag": "img",
+            "text": "IMG",
+            "top": 1038,
+            "width": 30
+          }
+        ],
+        "nonEmptyRender": true,
+        "overlayText": "",
+        "prefersDarkScheme": false,
+        "prefersReducedMotion": false,
+        "routeCharacter": "Trust/safety rescue",
+        "scrollWidth": 1440,
+        "textLength": 870,
+        "textSample": "Skip to PawPal content PawPal Home Globe About Us Store Login PawPal PAGE NOT FOUND This PawPal route is not available. The link may be old, private, or missing a valid pet, post, group, or profile ID. Start from a trusted PawPal page instead. Back home Shop s",
+        "title": "PawPal | Pet Safety Map, Smart Tags, and Local Pet Community",
+        "viewport": {
+          "height": 900,
+          "width": 1440
+        }
+      },
+      "focus": {
+        "height": 1355,
+        "left": 0,
+        "ok": true,
+        "role": null,
+        "tag": "body",
+        "text": "Skip to PawPal content PawPal Home Globe About Us Store Login PawPal PAGE NOT FOUND This PawPal route is not available. ",
+        "top": 0,
+        "width": 1440
+      },
+      "logs": [],
+      "darkModeCapture": {
+        "captured": false,
+        "reason": "Browser viewport capability does not expose color-scheme emulation; current prefers-color-scheme value is recorded instead.",
+        "impact": "No separate dark-mode screenshot in this baseline round.",
+        "followUpRound": "First implementation verification round touching this route."
+      },
+      "reducedMotionCapture": {
+        "captured": false,
+        "reason": "Browser capability does not expose prefers-reduced-motion emulation; current matchMedia value is recorded instead.",
+        "impact": "No separate reduced-motion behavior emulation in this baseline round.",
+        "followUpRound": "First implementation verification round touching this route."
+      }
+    }
+  ]
+}

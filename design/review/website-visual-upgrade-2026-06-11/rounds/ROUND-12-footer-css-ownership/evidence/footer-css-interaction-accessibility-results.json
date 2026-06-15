@@ -1,0 +1,380 @@
+{
+  "pass": true,
+  "focusPathPass": true,
+  "staticMetrics": {
+    "footerFound": true,
+    "contentinfoCount": 1,
+    "heading": "PawPal site footer",
+    "links": [
+      {
+        "text": "hello@pawpal.be",
+        "href": "mailto:hello@pawpal.be",
+        "absoluteHref": "mailto:hello@pawpal.be",
+        "className": "Footer-module__S6Hkya__emailLink mt-6 inline-flex items-center gap-2 rounded-paw-sm border border-paw-border bg-white/86 px-4 text-sm font-bold text-paw-ink shadow-[0_10px_24px_rgba(33,55,78,0.06)] transition hover:border-paw-primary hover:text-paw-primary",
+        "width": 176,
+        "height": 44,
+        "accessibleNamePresent": true
+      },
+      {
+        "text": "Globe Map",
+        "href": "/globe",
+        "absoluteHref": "http://localhost:3001/globe",
+        "className": "Footer-module__S6Hkya__link text-sm font-medium text-paw-body transition",
+        "width": 87,
+        "height": 44,
+        "accessibleNamePresent": true
+      },
+      {
+        "text": "NFC Safety Tag",
+        "href": "/store",
+        "absoluteHref": "http://localhost:3001/store",
+        "className": "Footer-module__S6Hkya__link text-sm font-medium text-paw-body transition",
+        "width": 118,
+        "height": 44,
+        "accessibleNamePresent": true
+      },
+      {
+        "text": "AI Assistant",
+        "href": "/globe",
+        "absoluteHref": "http://localhost:3001/globe",
+        "className": "Footer-module__S6Hkya__link text-sm font-medium text-paw-body transition",
+        "width": 94,
+        "height": 44,
+        "accessibleNamePresent": true
+      },
+      {
+        "text": "Community",
+        "href": "/globe",
+        "absoluteHref": "http://localhost:3001/globe",
+        "className": "Footer-module__S6Hkya__link text-sm font-medium text-paw-body transition",
+        "width": 92,
+        "height": 44,
+        "accessibleNamePresent": true
+      },
+      {
+        "text": "About Us",
+        "href": "/about",
+        "absoluteHref": "http://localhost:3001/about",
+        "className": "Footer-module__S6Hkya__link text-sm font-medium text-paw-body transition",
+        "width": 77,
+        "height": 44,
+        "accessibleNamePresent": true
+      },
+      {
+        "text": "Store",
+        "href": "/store",
+        "absoluteHref": "http://localhost:3001/store",
+        "className": "Footer-module__S6Hkya__link text-sm font-medium text-paw-body transition",
+        "width": 52,
+        "height": 44,
+        "accessibleNamePresent": true
+      },
+      {
+        "text": "Help Center",
+        "href": "/help",
+        "absoluteHref": "http://localhost:3001/help",
+        "className": "Footer-module__S6Hkya__link text-sm font-medium text-paw-body transition",
+        "width": 95,
+        "height": 44,
+        "accessibleNamePresent": true
+      },
+      {
+        "text": "Privacy Policy",
+        "href": "/privacy",
+        "absoluteHref": "http://localhost:3001/privacy",
+        "className": "Footer-module__S6Hkya__link text-sm font-medium text-paw-body transition",
+        "width": 108,
+        "height": 44,
+        "accessibleNamePresent": true
+      },
+      {
+        "text": "Terms of Service",
+        "href": "/terms",
+        "absoluteHref": "http://localhost:3001/terms",
+        "className": "Footer-module__S6Hkya__link text-sm font-medium text-paw-body transition",
+        "width": 127,
+        "height": 44,
+        "accessibleNamePresent": true
+      },
+      {
+        "text": "Contact",
+        "href": "mailto:hello@pawpal.be",
+        "absoluteHref": "mailto:hello@pawpal.be",
+        "className": "Footer-module__S6Hkya__link text-sm font-medium text-paw-body transition",
+        "width": 68,
+        "height": 44,
+        "accessibleNamePresent": true
+      },
+      {
+        "text": "Contact PawPal",
+        "href": "mailto:hello@pawpal.be?subject=PawPal%20partnership",
+        "absoluteHref": "mailto:hello@pawpal.be?subject=PawPal%20partnership",
+        "className": "Footer-module__S6Hkya__actionLink mt-5 inline-flex items-center gap-2 rounded-paw-sm bg-paw-primary px-4 text-xs font-bold text-white transition hover:bg-paw-primary-hover",
+        "width": 148,
+        "height": 44,
+        "accessibleNamePresent": true
+      }
+    ],
+    "linkExpectations": [
+      {
+        "text": "hello@pawpal.be",
+        "href": "mailto:hello@pawpal.be",
+        "found": true,
+        "actualHref": "mailto:hello@pawpal.be"
+      },
+      {
+        "text": "Globe Map",
+        "href": "/globe",
+        "found": true,
+        "actualHref": "/globe"
+      },
+      {
+        "text": "NFC Safety Tag",
+        "href": "/store",
+        "found": true,
+        "actualHref": "/store"
+      },
+      {
+        "text": "AI Assistant",
+        "href": "/globe",
+        "found": true,
+        "actualHref": "/globe"
+      },
+      {
+        "text": "Community",
+        "href": "/globe",
+        "found": true,
+        "actualHref": "/globe"
+      },
+      {
+        "text": "About Us",
+        "href": "/about",
+        "found": true,
+        "actualHref": "/about"
+      },
+      {
+        "text": "Store",
+        "href": "/store",
+        "found": true,
+        "actualHref": "/store"
+      },
+      {
+        "text": "Help Center",
+        "href": "/help",
+        "found": true,
+        "actualHref": "/help"
+      },
+      {
+        "text": "Privacy Policy",
+        "href": "/privacy",
+        "found": true,
+        "actualHref": "/privacy"
+      },
+      {
+        "text": "Terms of Service",
+        "href": "/terms",
+        "found": true,
+        "actualHref": "/terms"
+      },
+      {
+        "text": "Contact",
+        "href": "mailto:hello@pawpal.be",
+        "found": true,
+        "actualHref": "mailto:hello@pawpal.be"
+      },
+      {
+        "text": "Contact PawPal",
+        "href": "mailto:hello@pawpal.be?subject=PawPal%20partnership",
+        "found": true,
+        "actualHref": "mailto:hello@pawpal.be?subject=PawPal%20partnership"
+      }
+    ],
+    "allExpectedLinksFound": true,
+    "allAccessibleNamesPresent": true,
+    "allTapTargetsPass": true,
+    "mailtoLinks": [
+      {
+        "text": "hello@pawpal.be",
+        "href": "mailto:hello@pawpal.be",
+        "absoluteHref": "mailto:hello@pawpal.be",
+        "className": "Footer-module__S6Hkya__emailLink mt-6 inline-flex items-center gap-2 rounded-paw-sm border border-paw-border bg-white/86 px-4 text-sm font-bold text-paw-ink shadow-[0_10px_24px_rgba(33,55,78,0.06)] transition hover:border-paw-primary hover:text-paw-primary",
+        "width": 176,
+        "height": 44,
+        "accessibleNamePresent": true
+      },
+      {
+        "text": "Contact",
+        "href": "mailto:hello@pawpal.be",
+        "absoluteHref": "mailto:hello@pawpal.be",
+        "className": "Footer-module__S6Hkya__link text-sm font-medium text-paw-body transition",
+        "width": 68,
+        "height": 44,
+        "accessibleNamePresent": true
+      },
+      {
+        "text": "Contact PawPal",
+        "href": "mailto:hello@pawpal.be?subject=PawPal%20partnership",
+        "absoluteHref": "mailto:hello@pawpal.be?subject=PawPal%20partnership",
+        "className": "Footer-module__S6Hkya__actionLink mt-5 inline-flex items-center gap-2 rounded-paw-sm bg-paw-primary px-4 text-xs font-bold text-white transition hover:bg-paw-primary-hover",
+        "width": 148,
+        "height": 44,
+        "accessibleNamePresent": true
+      }
+    ],
+    "moduleClassPresent": true,
+    "legacyFooterClassesPresent": false
+  },
+  "focusPath": [
+    {
+      "inFooter": true,
+      "tagName": "a",
+      "text": "hello@pawpal.be",
+      "href": "mailto:hello@pawpal.be",
+      "outlineStyle": "solid",
+      "outlineWidth": "3px",
+      "outlineColor": "rgb(23, 20, 19)",
+      "focusVisible": true
+    },
+    {
+      "inFooter": true,
+      "tagName": "a",
+      "text": "Globe Map",
+      "href": "/globe",
+      "outlineStyle": "solid",
+      "outlineWidth": "3px",
+      "outlineColor": "rgb(75, 88, 99)",
+      "focusVisible": true
+    },
+    {
+      "inFooter": true,
+      "tagName": "a",
+      "text": "NFC Safety Tag",
+      "href": "/store",
+      "outlineStyle": "solid",
+      "outlineWidth": "3px",
+      "outlineColor": "rgb(75, 88, 99)",
+      "focusVisible": true
+    },
+    {
+      "inFooter": true,
+      "tagName": "a",
+      "text": "AI Assistant",
+      "href": "/globe",
+      "outlineStyle": "solid",
+      "outlineWidth": "3px",
+      "outlineColor": "rgb(75, 88, 99)",
+      "focusVisible": true
+    },
+    {
+      "inFooter": true,
+      "tagName": "a",
+      "text": "Community",
+      "href": "/globe",
+      "outlineStyle": "solid",
+      "outlineWidth": "3px",
+      "outlineColor": "rgb(75, 88, 99)",
+      "focusVisible": true
+    },
+    {
+      "inFooter": true,
+      "tagName": "a",
+      "text": "About Us",
+      "href": "/about",
+      "outlineStyle": "solid",
+      "outlineWidth": "3px",
+      "outlineColor": "rgb(75, 88, 99)",
+      "focusVisible": true
+    },
+    {
+      "inFooter": true,
+      "tagName": "a",
+      "text": "Store",
+      "href": "/store",
+      "outlineStyle": "solid",
+      "outlineWidth": "3px",
+      "outlineColor": "rgb(75, 88, 99)",
+      "focusVisible": true
+    },
+    {
+      "inFooter": true,
+      "tagName": "a",
+      "text": "Help Center",
+      "href": "/help",
+      "outlineStyle": "solid",
+      "outlineWidth": "3px",
+      "outlineColor": "rgb(75, 88, 99)",
+      "focusVisible": true
+    },
+    {
+      "inFooter": true,
+      "tagName": "a",
+      "text": "Privacy Policy",
+      "href": "/privacy",
+      "outlineStyle": "solid",
+      "outlineWidth": "3px",
+      "outlineColor": "rgb(75, 88, 99)",
+      "focusVisible": true
+    },
+    {
+      "inFooter": true,
+      "tagName": "a",
+      "text": "Terms of Service",
+      "href": "/terms",
+      "outlineStyle": "solid",
+      "outlineWidth": "3px",
+      "outlineColor": "rgb(75, 88, 99)",
+      "focusVisible": true
+    },
+    {
+      "inFooter": true,
+      "tagName": "a",
+      "text": "Contact",
+      "href": "mailto:hello@pawpal.be",
+      "outlineStyle": "solid",
+      "outlineWidth": "3px",
+      "outlineColor": "rgb(75, 88, 99)",
+      "focusVisible": true
+    },
+    {
+      "inFooter": true,
+      "tagName": "a",
+      "text": "Contact PawPal",
+      "href": "mailto:hello@pawpal.be?subject=PawPal%20partnership",
+      "outlineStyle": "solid",
+      "outlineWidth": "3px",
+      "outlineColor": "rgb(255, 255, 255)",
+      "focusVisible": true
+    }
+  ],
+  "consoleMessages": [
+    {
+      "type": "warning",
+      "text": "[.WebGL-0x1140355ee00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels"
+    },
+    {
+      "type": "warning",
+      "text": "[.WebGL-0x11405cf4000]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels"
+    },
+    {
+      "type": "warning",
+      "text": "[.WebGL-0x11405cf4000]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels"
+    }
+  ],
+  "knownBenignConsoleMessages": [
+    {
+      "type": "warning",
+      "text": "[.WebGL-0x1140355ee00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels"
+    },
+    {
+      "type": "warning",
+      "text": "[.WebGL-0x11405cf4000]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels"
+    },
+    {
+      "type": "warning",
+      "text": "[.WebGL-0x11405cf4000]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels"
+    }
+  ],
+  "relevantConsoleMessages": [],
+  "hydrationWarnings": [],
+  "pageErrors": []
+}

@@ -1,0 +1,1516 @@
+{
+  "route": {
+    "path": "/",
+    "slug": "home",
+    "character": "Marketing/editorial",
+    "signals": [
+      "Open Live Map",
+      "Shop Smart Tags",
+      "Pet Safety Map",
+      "Smart Tags"
+    ]
+  },
+  "results": [
+    {
+      "route": "/",
+      "slug": "home",
+      "routeCharacter": "Marketing/editorial",
+      "requestedUrl": "http://localhost:3000/",
+      "viewport": {
+        "label": "390x844",
+        "width": 390,
+        "height": 844
+      },
+      "started": "2026-06-11T11:22:18.089Z",
+      "navError": null,
+      "screenshotPath": "/private/tmp/geopet-round01-baseline/home-390x844.png",
+      "screenshotError": null,
+      "metrics": {
+        "blockingOverlay": true,
+        "bodyBackground": "rgb(255, 255, 255)",
+        "bodyColor": "rgb(58, 47, 42)",
+        "canvases": [
+          {
+            "height": 350,
+            "inFirstViewport": false,
+            "left": 20,
+            "role": null,
+            "tag": "canvas",
+            "text": "CANVAS",
+            "top": 1284,
+            "width": 350
+          }
+        ],
+        "clientWidth": 390,
+        "colorSchemeStyle": "light",
+        "controls": [
+          {
+            "height": 44,
+            "inFirstViewport": false,
+            "left": 16,
+            "role": null,
+            "tag": "a",
+            "text": "Skip to PawPal content",
+            "top": -54,
+            "width": 194
+          },
+          {
+            "height": 32,
+            "inFirstViewport": true,
+            "left": 20,
+            "role": null,
+            "tag": "a",
+            "text": "PawPal",
+            "top": 24,
+            "width": 122
+          },
+          {
+            "height": 40,
+            "inFirstViewport": true,
+            "left": 330,
+            "role": null,
+            "tag": "button",
+            "text": "Open navigation menu",
+            "top": 20,
+            "width": 40
+          },
+          {
+            "height": 48,
+            "inFirstViewport": true,
+            "left": 20,
+            "role": null,
+            "tag": "a",
+            "text": "Open Live Map",
+            "top": 803,
+            "width": 350
+          },
+          {
+            "height": 48,
+            "inFirstViewport": false,
+            "left": 20,
+            "role": null,
+            "tag": "a",
+            "text": "Shop Smart Tags",
+            "top": 863,
+            "width": 350
+          },
+          {
+            "height": 48,
+            "inFirstViewport": false,
+            "left": 45,
+            "role": null,
+            "tag": "a",
+            "text": "Open Live Map",
+            "top": 7492,
+            "width": 300
+          },
+          {
+            "height": 48,
+            "inFirstViewport": false,
+            "left": 45,
+            "role": null,
+            "tag": "a",
+            "text": "Shop Smart Tags",
+            "top": 7552,
+            "width": 300
+          },
+          {
+            "height": 40,
+            "inFirstViewport": false,
+            "left": 20,
+            "role": null,
+            "tag": "a",
+            "text": "hello@pawpal.be",
+            "top": 7918,
+            "width": 176
+          },
+          {
+            "height": 17,
+            "inFirstViewport": false,
+            "left": 20,
+            "role": null,
+            "tag": "a",
+            "text": "Globe Map",
+            "top": 8034,
+            "width": 71
+          },
+          {
+            "height": 17,
+            "inFirstViewport": false,
+            "left": 20,
+            "role": null,
+            "tag": "a",
+            "text": "NFC Safety Tag",
+            "top": 8070,
+            "width": 102
+          },
+          {
+            "height": 17,
+            "inFirstViewport": false,
+            "left": 20,
+            "role": null,
+            "tag": "a",
+            "text": "AI Assistant",
+            "top": 8106,
+            "width": 78
+          },
+          {
+            "height": 17,
+            "inFirstViewport": false,
+            "left": 20,
+            "role": null,
+            "tag": "a",
+            "text": "Community",
+            "top": 8142,
+            "width": 76
+          }
+        ],
+        "currentUrl": "http://localhost:3000/",
+        "documentHeight": 8519,
+        "foundSignals": [
+          {
+            "element": {
+              "height": 7616,
+              "inFirstViewport": true,
+              "left": 0,
+              "role": null,
+              "tag": "main",
+              "text": "PawPal pet safety for every walk Built in Belgium, PawPal connects fog-of-war walks, NFC finder profiles, AI care guidan",
+              "top": 81,
+              "width": 390
+            },
+            "found": true,
+            "signal": "Open Live Map"
+          },
+          {
+            "element": {
+              "height": 7616,
+              "inFirstViewport": true,
+              "left": 0,
+              "role": null,
+              "tag": "main",
+              "text": "PawPal pet safety for every walk Built in Belgium, PawPal connects fog-of-war walks, NFC finder profiles, AI care guidan",
+              "top": 81,
+              "width": 390
+            },
+            "found": true,
+            "signal": "Shop Smart Tags"
+          },
+          {
+            "element": null,
+            "found": false,
+            "signal": "Pet Safety Map"
+          },
+          {
+            "element": {
+              "height": 7616,
+              "inFirstViewport": true,
+              "left": 0,
+              "role": null,
+              "tag": "main",
+              "text": "PawPal pet safety for every walk Built in Belgium, PawPal connects fog-of-war walks, NFC finder profiles, AI care guidan",
+              "top": 81,
+              "width": 390
+            },
+            "found": true,
+            "signal": "Smart Tags"
+          }
+        ],
+        "headings": [
+          {
+            "height": 196,
+            "inFirstViewport": true,
+            "left": 20,
+            "role": null,
+            "tag": "h1",
+            "text": "PawPal pet safety for every walk",
+            "top": 201,
+            "width": 350
+          },
+          {
+            "height": 24,
+            "inFirstViewport": false,
+            "left": 41,
+            "role": null,
+            "tag": "h2",
+            "text": "Instant finder profile",
+            "top": 2448,
+            "width": 308
+          },
+          {
+            "height": 24,
+            "inFirstViewport": false,
+            "left": 41,
+            "role": null,
+            "tag": "h2",
+            "text": "Fog-of-war walks",
+            "top": 2670,
+            "width": 308
+          },
+          {
+            "height": 24,
+            "inFirstViewport": false,
+            "left": 41,
+            "role": null,
+            "tag": "h2",
+            "text": "Care copilot",
+            "top": 2868,
+            "width": 308
+          },
+          {
+            "height": 24,
+            "inFirstViewport": false,
+            "left": 41,
+            "role": null,
+            "tag": "h2",
+            "text": "Local community base",
+            "top": 3066,
+            "width": 308
+          },
+          {
+            "height": 72,
+            "inFirstViewport": false,
+            "left": 20,
+            "role": null,
+            "tag": "h2",
+            "text": "From walk to rescue, one connected flow.",
+            "top": 3295,
+            "width": 350
+          }
+        ],
+        "horizontalOverflow": false,
+        "images": [
+          {
+            "height": 32,
+            "inFirstViewport": true,
+            "left": 20,
+            "role": null,
+            "tag": "img",
+            "text": "IMG",
+            "top": 24,
+            "width": 32
+          },
+          {
+            "height": 265,
+            "inFirstViewport": false,
+            "left": 38,
+            "role": null,
+            "tag": "img",
+            "text": "PawPal pet profile screen",
+            "top": 5377,
+            "width": 148
+          },
+          {
+            "height": 265,
+            "inFirstViewport": false,
+            "left": 204,
+            "role": null,
+            "tag": "img",
+            "text": "PawPal NFC safety screen",
+            "top": 5413,
+            "width": 148
+          },
+          {
+            "height": 265,
+            "inFirstViewport": false,
+            "left": 38,
+            "role": null,
+            "tag": "img",
+            "text": "PawPal AI assistant screen",
+            "top": 5696,
+            "width": 148
+          },
+          {
+            "height": 265,
+            "inFirstViewport": false,
+            "left": 204,
+            "role": null,
+            "tag": "img",
+            "text": "PawPal community screen",
+            "top": 5732,
+            "width": 148
+          },
+          {
+            "height": 210,
+            "inFirstViewport": false,
+            "left": 53,
+            "role": null,
+            "tag": "img",
+            "text": "PawPal main app screen",
+            "top": 6744,
+            "width": 210
+          },
+          {
+            "height": 30,
+            "inFirstViewport": false,
+            "left": 20,
+            "role": null,
+            "tag": "img",
+            "text": "IMG",
+            "top": 7754,
+            "width": 30
+          }
+        ],
+        "nonEmptyRender": true,
+        "overlayText": "",
+        "prefersDarkScheme": false,
+        "prefersReducedMotion": false,
+        "routeCharacter": "Marketing/editorial",
+        "scrollWidth": 390,
+        "textLength": 2875,
+        "textSample": "Skip to PawPal content PawPal PawPal pet safety for every walk Built in Belgium, PawPal connects fog-of-war walks, NFC finder profiles, AI care guidance, and local pet help in one calm product surface. 1 tap Finder page 2.43 km Walk reveal 15 km Local help Ope",
+        "title": "Pet Safety Map, Smart Tags, and Local Pet Community",
+        "viewport": {
+          "height": 844,
+          "width": 390
+        }
+      },
+      "focus": {
+        "height": 8519,
+        "left": 0,
+        "ok": true,
+        "role": null,
+        "tag": "body",
+        "text": "Skip to PawPal content PawPal PawPal pet safety for every walk Built in Belgium, PawPal connects fog-of-war walks, NFC f",
+        "top": 0,
+        "width": 390
+      },
+      "logs": [],
+      "darkModeCapture": {
+        "captured": false,
+        "reason": "Browser viewport capability does not expose color-scheme emulation; current prefers-color-scheme value is recorded instead.",
+        "impact": "No separate dark-mode screenshot in this baseline round.",
+        "followUpRound": "First implementation verification round touching this route."
+      },
+      "reducedMotionCapture": {
+        "captured": false,
+        "reason": "Browser capability does not expose prefers-reduced-motion emulation; current matchMedia value is recorded instead.",
+        "impact": "No separate reduced-motion behavior emulation in this baseline round.",
+        "followUpRound": "First implementation verification round touching this route."
+      }
+    },
+    {
+      "route": "/",
+      "slug": "home",
+      "routeCharacter": "Marketing/editorial",
+      "requestedUrl": "http://localhost:3000/",
+      "viewport": {
+        "label": "768x1024",
+        "width": 768,
+        "height": 1024
+      },
+      "started": "2026-06-11T11:22:23.604Z",
+      "navError": null,
+      "screenshotPath": "/private/tmp/geopet-round01-baseline/home-768x1024.png",
+      "screenshotError": null,
+      "metrics": {
+        "blockingOverlay": true,
+        "bodyBackground": "rgb(255, 255, 255)",
+        "bodyColor": "rgb(58, 47, 42)",
+        "canvases": [],
+        "clientWidth": 768,
+        "colorSchemeStyle": "light",
+        "controls": [
+          {
+            "height": 44,
+            "inFirstViewport": false,
+            "left": 16,
+            "role": null,
+            "tag": "a",
+            "text": "Skip to PawPal content",
+            "top": -54,
+            "width": 194
+          },
+          {
+            "height": 32,
+            "inFirstViewport": true,
+            "left": 24,
+            "role": null,
+            "tag": "a",
+            "text": "PawPal",
+            "top": 24,
+            "width": 122
+          },
+          {
+            "height": 36,
+            "inFirstViewport": true,
+            "left": 211,
+            "role": null,
+            "tag": "a",
+            "text": "Home",
+            "top": 22,
+            "width": 68
+          },
+          {
+            "height": 36,
+            "inFirstViewport": true,
+            "left": 311,
+            "role": null,
+            "tag": "a",
+            "text": "Globe",
+            "top": 22,
+            "width": 68
+          },
+          {
+            "height": 36,
+            "inFirstViewport": true,
+            "left": 411,
+            "role": null,
+            "tag": "a",
+            "text": "About Us",
+            "top": 22,
+            "width": 91
+          },
+          {
+            "height": 36,
+            "inFirstViewport": true,
+            "left": 534,
+            "role": null,
+            "tag": "a",
+            "text": "Store",
+            "top": 22,
+            "width": 65
+          },
+          {
+            "height": 40,
+            "inFirstViewport": true,
+            "left": 664,
+            "role": null,
+            "tag": "a",
+            "text": "Login",
+            "top": 20,
+            "width": 80
+          },
+          {
+            "height": 48,
+            "inFirstViewport": true,
+            "left": 24,
+            "role": null,
+            "tag": "a",
+            "text": "Open Live Map",
+            "top": 544,
+            "width": 173
+          },
+          {
+            "height": 48,
+            "inFirstViewport": true,
+            "left": 209,
+            "role": null,
+            "tag": "a",
+            "text": "Shop Smart Tags",
+            "top": 544,
+            "width": 191
+          },
+          {
+            "height": 48,
+            "inFirstViewport": false,
+            "left": 65,
+            "role": null,
+            "tag": "a",
+            "text": "Open Live Map",
+            "top": 6034,
+            "width": 173
+          },
+          {
+            "height": 48,
+            "inFirstViewport": false,
+            "left": 250,
+            "role": null,
+            "tag": "a",
+            "text": "Shop Smart Tags",
+            "top": 6034,
+            "width": 191
+          },
+          {
+            "height": 40,
+            "inFirstViewport": false,
+            "left": 24,
+            "role": null,
+            "tag": "a",
+            "text": "hello@pawpal.be",
+            "top": 6416,
+            "width": 176
+          }
+        ],
+        "currentUrl": "http://localhost:3000/",
+        "documentHeight": 6661,
+        "foundSignals": [
+          {
+            "element": {
+              "height": 6114,
+              "inFirstViewport": true,
+              "left": 0,
+              "role": null,
+              "tag": "main",
+              "text": "PawPal pet safety for every walk Built in Belgium, PawPal connects fog-of-war walks, NFC finder profiles, AI care guidan",
+              "top": 81,
+              "width": 768
+            },
+            "found": true,
+            "signal": "Open Live Map"
+          },
+          {
+            "element": {
+              "height": 6114,
+              "inFirstViewport": true,
+              "left": 0,
+              "role": null,
+              "tag": "main",
+              "text": "PawPal pet safety for every walk Built in Belgium, PawPal connects fog-of-war walks, NFC finder profiles, AI care guidan",
+              "top": 81,
+              "width": 768
+            },
+            "found": true,
+            "signal": "Shop Smart Tags"
+          },
+          {
+            "element": null,
+            "found": false,
+            "signal": "Pet Safety Map"
+          },
+          {
+            "element": {
+              "height": 6114,
+              "inFirstViewport": true,
+              "left": 0,
+              "role": null,
+              "tag": "main",
+              "text": "PawPal pet safety for every walk Built in Belgium, PawPal connects fog-of-war walks, NFC finder profiles, AI care guidan",
+              "top": 81,
+              "width": 768
+            },
+            "found": true,
+            "signal": "Smart Tags"
+          }
+        ],
+        "headings": [
+          {
+            "height": 118,
+            "inFirstViewport": true,
+            "left": 24,
+            "role": null,
+            "tag": "h1",
+            "text": "PawPal pet safety for every walk",
+            "top": 201,
+            "width": 672
+          },
+          {
+            "height": 48,
+            "inFirstViewport": false,
+            "left": 45,
+            "role": null,
+            "tag": "h2",
+            "text": "Instant finder profile",
+            "top": 1759,
+            "width": 129
+          },
+          {
+            "height": 48,
+            "inFirstViewport": false,
+            "left": 228,
+            "role": null,
+            "tag": "h2",
+            "text": "Fog-of-war walks",
+            "top": 1759,
+            "width": 129
+          },
+          {
+            "height": 24,
+            "inFirstViewport": false,
+            "left": 411,
+            "role": null,
+            "tag": "h2",
+            "text": "Care copilot",
+            "top": 1759,
+            "width": 129
+          },
+          {
+            "height": 72,
+            "inFirstViewport": false,
+            "left": 594,
+            "role": null,
+            "tag": "h2",
+            "text": "Local community base",
+            "top": 1759,
+            "width": 129
+          },
+          {
+            "height": 80,
+            "inFirstViewport": false,
+            "left": 24,
+            "role": null,
+            "tag": "h2",
+            "text": "From walk to rescue, one connected flow.",
+            "top": 2148,
+            "width": 720
+          }
+        ],
+        "horizontalOverflow": false,
+        "images": [
+          {
+            "height": 32,
+            "inFirstViewport": true,
+            "left": 24,
+            "role": null,
+            "tag": "img",
+            "text": "IMG",
+            "top": 24,
+            "width": 32
+          },
+          {
+            "height": 238,
+            "inFirstViewport": false,
+            "left": 85,
+            "role": null,
+            "tag": "img",
+            "text": "PawPal pet profile screen",
+            "top": 4232,
+            "width": 133
+          },
+          {
+            "height": 238,
+            "inFirstViewport": false,
+            "left": 240,
+            "role": null,
+            "tag": "img",
+            "text": "PawPal NFC safety screen",
+            "top": 4232,
+            "width": 133
+          },
+          {
+            "height": 238,
+            "inFirstViewport": false,
+            "left": 395,
+            "role": null,
+            "tag": "img",
+            "text": "PawPal AI assistant screen",
+            "top": 4232,
+            "width": 133
+          },
+          {
+            "height": 238,
+            "inFirstViewport": false,
+            "left": 550,
+            "role": null,
+            "tag": "img",
+            "text": "PawPal community screen",
+            "top": 4232,
+            "width": 133
+          },
+          {
+            "height": 260,
+            "inFirstViewport": false,
+            "left": 89,
+            "role": null,
+            "tag": "img",
+            "text": "PawPal main app screen",
+            "top": 5312,
+            "width": 260
+          },
+          {
+            "height": 30,
+            "inFirstViewport": false,
+            "left": 24,
+            "role": null,
+            "tag": "img",
+            "text": "IMG",
+            "top": 6252,
+            "width": 30
+          }
+        ],
+        "nonEmptyRender": true,
+        "overlayText": "",
+        "prefersDarkScheme": false,
+        "prefersReducedMotion": false,
+        "routeCharacter": "Marketing/editorial",
+        "scrollWidth": 768,
+        "textLength": 2932,
+        "textSample": "Skip to PawPal content PawPal Home Globe About Us Store Login PawPal pet safety for every walk Built in Belgium, PawPal connects fog-of-war walks, NFC finder profiles, AI care guidance, and local pet help in one calm product surface. 1 tap Finder page 2.43 km ",
+        "title": "Pet Safety Map, Smart Tags, and Local Pet Community",
+        "viewport": {
+          "height": 1024,
+          "width": 768
+        }
+      },
+      "focus": {
+        "height": 6661,
+        "left": 0,
+        "ok": true,
+        "role": null,
+        "tag": "body",
+        "text": "Skip to PawPal content PawPal Home Globe About Us Store Login PawPal pet safety for every walk Built in Belgium, PawPal ",
+        "top": 0,
+        "width": 768
+      },
+      "logs": [],
+      "darkModeCapture": {
+        "captured": false,
+        "reason": "Browser viewport capability does not expose color-scheme emulation; current prefers-color-scheme value is recorded instead.",
+        "impact": "No separate dark-mode screenshot in this baseline round.",
+        "followUpRound": "First implementation verification round touching this route."
+      },
+      "reducedMotionCapture": {
+        "captured": false,
+        "reason": "Browser capability does not expose prefers-reduced-motion emulation; current matchMedia value is recorded instead.",
+        "impact": "No separate reduced-motion behavior emulation in this baseline round.",
+        "followUpRound": "First implementation verification round touching this route."
+      }
+    },
+    {
+      "route": "/",
+      "slug": "home",
+      "routeCharacter": "Marketing/editorial",
+      "requestedUrl": "http://localhost:3000/",
+      "viewport": {
+        "label": "1280x720",
+        "width": 1280,
+        "height": 720
+      },
+      "started": "2026-06-11T11:22:27.163Z",
+      "navError": null,
+      "screenshotPath": "/private/tmp/geopet-round01-baseline/home-1280x720.png",
+      "screenshotError": null,
+      "metrics": {
+        "blockingOverlay": true,
+        "bodyBackground": "rgb(255, 255, 255)",
+        "bodyColor": "rgb(58, 47, 42)",
+        "canvases": [
+          {
+            "height": 538,
+            "inFirstViewport": true,
+            "left": 668,
+            "role": null,
+            "tag": "canvas",
+            "text": "CANVAS",
+            "top": 258,
+            "width": 538
+          }
+        ],
+        "clientWidth": 1280,
+        "colorSchemeStyle": "light",
+        "controls": [
+          {
+            "height": 44,
+            "inFirstViewport": false,
+            "left": 16,
+            "role": null,
+            "tag": "a",
+            "text": "Skip to PawPal content",
+            "top": -54,
+            "width": 194
+          },
+          {
+            "height": 32,
+            "inFirstViewport": true,
+            "left": 32,
+            "role": null,
+            "tag": "a",
+            "text": "PawPal",
+            "top": 24,
+            "width": 122
+          },
+          {
+            "height": 36,
+            "inFirstViewport": true,
+            "left": 467,
+            "role": null,
+            "tag": "a",
+            "text": "Home",
+            "top": 22,
+            "width": 68
+          },
+          {
+            "height": 36,
+            "inFirstViewport": true,
+            "left": 567,
+            "role": null,
+            "tag": "a",
+            "text": "Globe",
+            "top": 22,
+            "width": 68
+          },
+          {
+            "height": 36,
+            "inFirstViewport": true,
+            "left": 667,
+            "role": null,
+            "tag": "a",
+            "text": "About Us",
+            "top": 22,
+            "width": 91
+          },
+          {
+            "height": 36,
+            "inFirstViewport": true,
+            "left": 790,
+            "role": null,
+            "tag": "a",
+            "text": "Store",
+            "top": 22,
+            "width": 65
+          },
+          {
+            "height": 40,
+            "inFirstViewport": true,
+            "left": 1168,
+            "role": null,
+            "tag": "a",
+            "text": "Login",
+            "top": 20,
+            "width": 80
+          },
+          {
+            "height": 48,
+            "inFirstViewport": true,
+            "left": 32,
+            "role": null,
+            "tag": "a",
+            "text": "Open Live Map",
+            "top": 634,
+            "width": 173
+          },
+          {
+            "height": 48,
+            "inFirstViewport": true,
+            "left": 217,
+            "role": null,
+            "tag": "a",
+            "text": "Shop Smart Tags",
+            "top": 634,
+            "width": 191
+          },
+          {
+            "height": 48,
+            "inFirstViewport": false,
+            "left": 831,
+            "role": null,
+            "tag": "a",
+            "text": "Open Live Map",
+            "top": 3677,
+            "width": 173
+          },
+          {
+            "height": 48,
+            "inFirstViewport": false,
+            "left": 1016,
+            "role": null,
+            "tag": "a",
+            "text": "Shop Smart Tags",
+            "top": 3677,
+            "width": 191
+          },
+          {
+            "height": 40,
+            "inFirstViewport": false,
+            "left": 32,
+            "role": null,
+            "tag": "a",
+            "text": "hello@pawpal.be",
+            "top": 4077,
+            "width": 176
+          }
+        ],
+        "currentUrl": "http://localhost:3000/",
+        "documentHeight": 4230,
+        "foundSignals": [
+          {
+            "element": {
+              "height": 3775,
+              "inFirstViewport": true,
+              "left": 0,
+              "role": null,
+              "tag": "main",
+              "text": "PawPal pet safety for every walk Built in Belgium, PawPal connects fog-of-war walks, NFC finder profiles, AI care guidan",
+              "top": 81,
+              "width": 1280
+            },
+            "found": true,
+            "signal": "Open Live Map"
+          },
+          {
+            "element": {
+              "height": 3775,
+              "inFirstViewport": true,
+              "left": 0,
+              "role": null,
+              "tag": "main",
+              "text": "PawPal pet safety for every walk Built in Belgium, PawPal connects fog-of-war walks, NFC finder profiles, AI care guidan",
+              "top": 81,
+              "width": 1280
+            },
+            "found": true,
+            "signal": "Shop Smart Tags"
+          },
+          {
+            "element": null,
+            "found": false,
+            "signal": "Pet Safety Map"
+          },
+          {
+            "element": {
+              "height": 3775,
+              "inFirstViewport": true,
+              "left": 0,
+              "role": null,
+              "tag": "main",
+              "text": "PawPal pet safety for every walk Built in Belgium, PawPal connects fog-of-war walks, NFC finder profiles, AI care guidan",
+              "top": 81,
+              "width": 1280
+            },
+            "found": true,
+            "signal": "Smart Tags"
+          }
+        ],
+        "headings": [
+          {
+            "height": 122,
+            "inFirstViewport": true,
+            "left": 32,
+            "role": null,
+            "tag": "h1",
+            "text": "PawPal pet safety for every walk",
+            "top": 242,
+            "width": 516
+          },
+          {
+            "height": 24,
+            "inFirstViewport": false,
+            "left": 53,
+            "role": null,
+            "tag": "h2",
+            "text": "Instant finder profile",
+            "top": 1148,
+            "width": 253
+          },
+          {
+            "height": 24,
+            "inFirstViewport": false,
+            "left": 360,
+            "role": null,
+            "tag": "h2",
+            "text": "Fog-of-war walks",
+            "top": 1148,
+            "width": 253
+          },
+          {
+            "height": 24,
+            "inFirstViewport": false,
+            "left": 667,
+            "role": null,
+            "tag": "h2",
+            "text": "Care copilot",
+            "top": 1148,
+            "width": 253
+          },
+          {
+            "height": 24,
+            "inFirstViewport": false,
+            "left": 974,
+            "role": null,
+            "tag": "h2",
+            "text": "Local community base",
+            "top": 1148,
+            "width": 253
+          },
+          {
+            "height": 40,
+            "inFirstViewport": false,
+            "left": 96,
+            "role": null,
+            "tag": "h2",
+            "text": "From walk to rescue, one connected flow.",
+            "top": 1417,
+            "width": 1088
+          }
+        ],
+        "horizontalOverflow": false,
+        "images": [
+          {
+            "height": 32,
+            "inFirstViewport": true,
+            "left": 32,
+            "role": null,
+            "tag": "img",
+            "text": "IMG",
+            "top": 24,
+            "width": 32
+          },
+          {
+            "height": 279,
+            "inFirstViewport": false,
+            "left": 442,
+            "role": null,
+            "tag": "img",
+            "text": "PawPal pet profile screen",
+            "top": 2265,
+            "width": 156
+          },
+          {
+            "height": 279,
+            "inFirstViewport": false,
+            "left": 620,
+            "role": null,
+            "tag": "img",
+            "text": "PawPal NFC safety screen",
+            "top": 2265,
+            "width": 156
+          },
+          {
+            "height": 279,
+            "inFirstViewport": false,
+            "left": 798,
+            "role": null,
+            "tag": "img",
+            "text": "PawPal AI assistant screen",
+            "top": 2265,
+            "width": 156
+          },
+          {
+            "height": 279,
+            "inFirstViewport": false,
+            "left": 976,
+            "role": null,
+            "tag": "img",
+            "text": "PawPal community screen",
+            "top": 2265,
+            "width": 156
+          },
+          {
+            "height": 260,
+            "inFirstViewport": false,
+            "left": 671,
+            "role": null,
+            "tag": "img",
+            "text": "PawPal main app screen",
+            "top": 3021,
+            "width": 260
+          },
+          {
+            "height": 30,
+            "inFirstViewport": false,
+            "left": 32,
+            "role": null,
+            "tag": "img",
+            "text": "IMG",
+            "top": 3913,
+            "width": 30
+          }
+        ],
+        "nonEmptyRender": true,
+        "overlayText": "",
+        "prefersDarkScheme": false,
+        "prefersReducedMotion": false,
+        "routeCharacter": "Marketing/editorial",
+        "scrollWidth": 1280,
+        "textLength": 2932,
+        "textSample": "Skip to PawPal content PawPal Home Globe About Us Store Login PawPal pet safety for every walk Built in Belgium, PawPal connects fog-of-war walks, NFC finder profiles, AI care guidance, and local pet help in one calm product surface. 1 tap Finder page 2.43 km ",
+        "title": "Pet Safety Map, Smart Tags, and Local Pet Community",
+        "viewport": {
+          "height": 720,
+          "width": 1280
+        }
+      },
+      "focus": {
+        "height": 4230,
+        "left": 0,
+        "ok": true,
+        "role": null,
+        "tag": "body",
+        "text": "Skip to PawPal content PawPal Home Globe About Us Store Login PawPal pet safety for every walk Built in Belgium, PawPal ",
+        "top": 0,
+        "width": 1280
+      },
+      "logs": [],
+      "darkModeCapture": {
+        "captured": false,
+        "reason": "Browser viewport capability does not expose color-scheme emulation; current prefers-color-scheme value is recorded instead.",
+        "impact": "No separate dark-mode screenshot in this baseline round.",
+        "followUpRound": "First implementation verification round touching this route."
+      },
+      "reducedMotionCapture": {
+        "captured": false,
+        "reason": "Browser capability does not expose prefers-reduced-motion emulation; current matchMedia value is recorded instead.",
+        "impact": "No separate reduced-motion behavior emulation in this baseline round.",
+        "followUpRound": "First implementation verification round touching this route."
+      }
+    },
+    {
+      "route": "/",
+      "slug": "home",
+      "routeCharacter": "Marketing/editorial",
+      "requestedUrl": "http://localhost:3000/",
+      "viewport": {
+        "label": "1440x900",
+        "width": 1440,
+        "height": 900
+      },
+      "started": "2026-06-11T11:22:30.857Z",
+      "navError": null,
+      "screenshotPath": "/private/tmp/geopet-round01-baseline/home-1440x900.png",
+      "screenshotError": null,
+      "metrics": {
+        "blockingOverlay": true,
+        "bodyBackground": "rgb(255, 255, 255)",
+        "bodyColor": "rgb(58, 47, 42)",
+        "canvases": [
+          {
+            "height": 605,
+            "inFirstViewport": true,
+            "left": 715,
+            "role": null,
+            "tag": "canvas",
+            "text": "CANVAS",
+            "top": 225,
+            "width": 605
+          }
+        ],
+        "clientWidth": 1440,
+        "colorSchemeStyle": "light",
+        "controls": [
+          {
+            "height": 44,
+            "inFirstViewport": false,
+            "left": 16,
+            "role": null,
+            "tag": "a",
+            "text": "Skip to PawPal content",
+            "top": -54,
+            "width": 194
+          },
+          {
+            "height": 32,
+            "inFirstViewport": true,
+            "left": 112,
+            "role": null,
+            "tag": "a",
+            "text": "PawPal",
+            "top": 24,
+            "width": 122
+          },
+          {
+            "height": 36,
+            "inFirstViewport": true,
+            "left": 547,
+            "role": null,
+            "tag": "a",
+            "text": "Home",
+            "top": 22,
+            "width": 68
+          },
+          {
+            "height": 36,
+            "inFirstViewport": true,
+            "left": 647,
+            "role": null,
+            "tag": "a",
+            "text": "Globe",
+            "top": 22,
+            "width": 68
+          },
+          {
+            "height": 36,
+            "inFirstViewport": true,
+            "left": 747,
+            "role": null,
+            "tag": "a",
+            "text": "About Us",
+            "top": 22,
+            "width": 91
+          },
+          {
+            "height": 36,
+            "inFirstViewport": true,
+            "left": 870,
+            "role": null,
+            "tag": "a",
+            "text": "Store",
+            "top": 22,
+            "width": 65
+          },
+          {
+            "height": 40,
+            "inFirstViewport": true,
+            "left": 1248,
+            "role": null,
+            "tag": "a",
+            "text": "Login",
+            "top": 20,
+            "width": 80
+          },
+          {
+            "height": 48,
+            "inFirstViewport": true,
+            "left": 112,
+            "role": null,
+            "tag": "a",
+            "text": "Open Live Map",
+            "top": 675,
+            "width": 173
+          },
+          {
+            "height": 48,
+            "inFirstViewport": true,
+            "left": 297,
+            "role": null,
+            "tag": "a",
+            "text": "Shop Smart Tags",
+            "top": 675,
+            "width": 191
+          },
+          {
+            "height": 48,
+            "inFirstViewport": false,
+            "left": 911,
+            "role": null,
+            "tag": "a",
+            "text": "Open Live Map",
+            "top": 3677,
+            "width": 173
+          },
+          {
+            "height": 48,
+            "inFirstViewport": false,
+            "left": 1096,
+            "role": null,
+            "tag": "a",
+            "text": "Shop Smart Tags",
+            "top": 3677,
+            "width": 191
+          },
+          {
+            "height": 40,
+            "inFirstViewport": false,
+            "left": 112,
+            "role": null,
+            "tag": "a",
+            "text": "hello@pawpal.be",
+            "top": 4077,
+            "width": 176
+          }
+        ],
+        "currentUrl": "http://localhost:3000/",
+        "documentHeight": 4230,
+        "foundSignals": [
+          {
+            "element": {
+              "height": 3775,
+              "inFirstViewport": true,
+              "left": 0,
+              "role": null,
+              "tag": "main",
+              "text": "PawPal pet safety for every walk Built in Belgium, PawPal connects fog-of-war walks, NFC finder profiles, AI care guidan",
+              "top": 81,
+              "width": 1440
+            },
+            "found": true,
+            "signal": "Open Live Map"
+          },
+          {
+            "element": {
+              "height": 3775,
+              "inFirstViewport": true,
+              "left": 0,
+              "role": null,
+              "tag": "main",
+              "text": "PawPal pet safety for every walk Built in Belgium, PawPal connects fog-of-war walks, NFC finder profiles, AI care guidan",
+              "top": 81,
+              "width": 1440
+            },
+            "found": true,
+            "signal": "Shop Smart Tags"
+          },
+          {
+            "element": null,
+            "found": false,
+            "signal": "Pet Safety Map"
+          },
+          {
+            "element": {
+              "height": 3775,
+              "inFirstViewport": true,
+              "left": 0,
+              "role": null,
+              "tag": "main",
+              "text": "PawPal pet safety for every walk Built in Belgium, PawPal connects fog-of-war walks, NFC finder profiles, AI care guidan",
+              "top": 81,
+              "width": 1440
+            },
+            "found": true,
+            "signal": "Smart Tags"
+          }
+        ],
+        "headings": [
+          {
+            "height": 205,
+            "inFirstViewport": true,
+            "left": 112,
+            "role": null,
+            "tag": "h1",
+            "text": "PawPal pet safety for every walk",
+            "top": 201,
+            "width": 516
+          },
+          {
+            "height": 24,
+            "inFirstViewport": false,
+            "left": 133,
+            "role": null,
+            "tag": "h2",
+            "text": "Instant finder profile",
+            "top": 1148,
+            "width": 253
+          },
+          {
+            "height": 24,
+            "inFirstViewport": false,
+            "left": 440,
+            "role": null,
+            "tag": "h2",
+            "text": "Fog-of-war walks",
+            "top": 1148,
+            "width": 253
+          },
+          {
+            "height": 24,
+            "inFirstViewport": false,
+            "left": 747,
+            "role": null,
+            "tag": "h2",
+            "text": "Care copilot",
+            "top": 1148,
+            "width": 253
+          },
+          {
+            "height": 24,
+            "inFirstViewport": false,
+            "left": 1054,
+            "role": null,
+            "tag": "h2",
+            "text": "Local community base",
+            "top": 1148,
+            "width": 253
+          },
+          {
+            "height": 40,
+            "inFirstViewport": false,
+            "left": 176,
+            "role": null,
+            "tag": "h2",
+            "text": "From walk to rescue, one connected flow.",
+            "top": 1417,
+            "width": 1088
+          }
+        ],
+        "horizontalOverflow": false,
+        "images": [
+          {
+            "height": 32,
+            "inFirstViewport": true,
+            "left": 112,
+            "role": null,
+            "tag": "img",
+            "text": "IMG",
+            "top": 24,
+            "width": 32
+          },
+          {
+            "height": 279,
+            "inFirstViewport": false,
+            "left": 522,
+            "role": null,
+            "tag": "img",
+            "text": "PawPal pet profile screen",
+            "top": 2265,
+            "width": 156
+          },
+          {
+            "height": 279,
+            "inFirstViewport": false,
+            "left": 700,
+            "role": null,
+            "tag": "img",
+            "text": "PawPal NFC safety screen",
+            "top": 2265,
+            "width": 156
+          },
+          {
+            "height": 279,
+            "inFirstViewport": false,
+            "left": 878,
+            "role": null,
+            "tag": "img",
+            "text": "PawPal AI assistant screen",
+            "top": 2265,
+            "width": 156
+          },
+          {
+            "height": 279,
+            "inFirstViewport": false,
+            "left": 1056,
+            "role": null,
+            "tag": "img",
+            "text": "PawPal community screen",
+            "top": 2265,
+            "width": 156
+          },
+          {
+            "height": 260,
+            "inFirstViewport": false,
+            "left": 751,
+            "role": null,
+            "tag": "img",
+            "text": "PawPal main app screen",
+            "top": 3021,
+            "width": 260
+          },
+          {
+            "height": 30,
+            "inFirstViewport": false,
+            "left": 112,
+            "role": null,
+            "tag": "img",
+            "text": "IMG",
+            "top": 3913,
+            "width": 30
+          }
+        ],
+        "nonEmptyRender": true,
+        "overlayText": "",
+        "prefersDarkScheme": false,
+        "prefersReducedMotion": false,
+        "routeCharacter": "Marketing/editorial",
+        "scrollWidth": 1440,
+        "textLength": 2932,
+        "textSample": "Skip to PawPal content PawPal Home Globe About Us Store Login PawPal pet safety for every walk Built in Belgium, PawPal connects fog-of-war walks, NFC finder profiles, AI care guidance, and local pet help in one calm product surface. 1 tap Finder page 2.43 km ",
+        "title": "Pet Safety Map, Smart Tags, and Local Pet Community",
+        "viewport": {
+          "height": 900,
+          "width": 1440
+        }
+      },
+      "focus": {
+        "height": 4230,
+        "left": 0,
+        "ok": true,
+        "role": null,
+        "tag": "body",
+        "text": "Skip to PawPal content PawPal Home Globe About Us Store Login PawPal pet safety for every walk Built in Belgium, PawPal ",
+        "top": 0,
+        "width": 1440
+      },
+      "logs": [],
+      "darkModeCapture": {
+        "captured": false,
+        "reason": "Browser viewport capability does not expose color-scheme emulation; current prefers-color-scheme value is recorded instead.",
+        "impact": "No separate dark-mode screenshot in this baseline round.",
+        "followUpRound": "First implementation verification round touching this route."
+      },
+      "reducedMotionCapture": {
+        "captured": false,
+        "reason": "Browser capability does not expose prefers-reduced-motion emulation; current matchMedia value is recorded instead.",
+        "impact": "No separate reduced-motion behavior emulation in this baseline round.",
+        "followUpRound": "First implementation verification round touching this route."
+      }
+    }
+  ]
+}

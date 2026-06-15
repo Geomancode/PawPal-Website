@@ -1,0 +1,64 @@
+import type { Metadata } from "next";
+import { supabaseServer as supabase } from "@/lib/supabaseServer";
+import { notFound } from "next/navigation";
+import TagPageClient from "./TagPageClient";
+import { siteConfig } from "@/lib/site";
+
+interface PageProps {
+  params: Promise<{ id: string }>;
+}
+
+async function loadTagPet(id: string) {
+  // Fetch pet data (public, no auth required)
+  const { data: pet, error } = await supabase
+    .from("pets")
+    .select("id, name, breed, age, avatar_url, social_traits, blood_type, owner_contact, created_at, owner_id")
+    .eq("id", id)
+    .maybeSingle();
+
+  if (!pet || error) return null;
+
+  // Fetch owner display name
+  const { data: owner } = await supabase
+    .from("profiles")
+    .select("display_name, username, avatar_url")
+    .eq("id", pet.owner_id)
+    .maybeSingle();
+
+  return { pet, owner };
+}
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { id } = await params;
+  const data = await loadTagPet(id);
+  if (!data) {
+    return notFound();
+  }
+
+  const ownerName = data.owner?.display_name ?? data.owner?.username ?? "their owner";
+  const description = `${data.pet.name} has a PawPal safety profile. Help ${data.pet.name} get back to ${ownerName} safely.`;
+
+  return {
+    title: `${data.pet.name} PawPal safety profile`,
+    description,
+    alternates: {
+      canonical: `/tag/${id}`,
+    },
+    openGraph: {
+      title: `${data.pet.name} on PawPal`,
+      description,
+      url: `${siteConfig.url}/tag/${id}`,
+      images: data.pet.avatar_url
+        ? [{ url: data.pet.avatar_url, alt: `${data.pet.name} pet profile photo` }]
+        : undefined,
+    },
+  };
+}
+
+export default async function TagPage({ params }: PageProps) {
+  const { id } = await params;
+  const data = await loadTagPet(id);
+  if (!data) return notFound();
+
+  return <TagPageClient pet={data.pet} owner={data.owner} />;
+}

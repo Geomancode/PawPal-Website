@@ -69,6 +69,7 @@ const DRAG_DEBOUNCE_MS = 800;
 export default function WeatherTicker({ mapCenter, onRecenterRequest }: WeatherTickerProps) {
   const [weather, setWeather] = useState<WeatherData | null>(null);
   const [loading, setLoading] = useState(false);
+  const [weatherIssue, setWeatherIssue] = useState(false);
   const [userCoords, setUserCoords] = useState<{ lat: number; lng: number } | null>(null);
   const refreshTimerRef = useRef<NodeJS.Timeout | null>(null);
   const debounceTimerRef = useRef<NodeJS.Timeout | null>(null);
@@ -82,6 +83,7 @@ export default function WeatherTicker({ mapCenter, onRecenterRequest }: WeatherT
     lastFetchedRef.current = coordKey;
 
     setLoading(true);
+    setWeatherIssue(false);
     try {
       // Parallel fetch: geocoding + weather
       const [geoRes, weatherRes] = await Promise.all([
@@ -110,8 +112,8 @@ export default function WeatherTicker({ mapCenter, onRecenterRequest }: WeatherT
         city,
         isUserLocation: isUser,
       });
-    } catch (e) {
-      console.error("Weather fetch error", e);
+    } catch {
+      setWeatherIssue(true);
     } finally {
       setLoading(false);
     }
@@ -182,9 +184,17 @@ export default function WeatherTicker({ mapCenter, onRecenterRequest }: WeatherT
 
   if (!weather) {
     return (
-      <div className="absolute top-[80px] left-0 w-full z-40 bg-black/40 backdrop-blur-md border-b border-white/10 text-white/70 overflow-hidden py-3">
+      <div className="globe-weather-bar absolute z-40 overflow-hidden text-white/80">
         <div className="flex items-center justify-center gap-2 text-sm">
-          <RefreshCw className="w-4 h-4 animate-spin" /> Loading weather…
+          {loading && !weatherIssue ? (
+            <>
+              <RefreshCw className="w-4 h-4 animate-spin" /> Loading weather...
+            </>
+          ) : (
+            <>
+              <Cloud className="w-4 h-4 text-white/70" /> Weather temporarily unavailable
+            </>
+          )}
         </div>
       </div>
     );
@@ -192,24 +202,56 @@ export default function WeatherTicker({ mapCenter, onRecenterRequest }: WeatherT
 
   const weatherInfo = getWeatherInfo(weather.weatherCode);
   const walkAdvice = getWalkAdvice(weather.temp, weather.windSpeed, weather.rainProb, weather.uvIndex, weather.weatherCode);
+  const weatherItems = [
+    {
+      key: "place",
+      className: "text-paw-primary",
+      icon: <MapPin className="w-4 h-4" aria-hidden="true" />,
+      label: weather.city,
+      suffix: !weather.isUserLocation ? "MAP" : "",
+    },
+    {
+      key: "condition",
+      icon: weatherInfo.icon,
+      label: weatherInfo.label,
+    },
+    {
+      key: "temperature",
+      icon: <Thermometer className="w-4 h-4 text-paw-success" aria-hidden="true" />,
+      label: `${weather.temp}°C`,
+      suffix: `feels ${weather.feelsLike}°C`,
+    },
+    {
+      key: "wind",
+      icon: <Wind className="w-4 h-4 text-paw-trust" aria-hidden="true" />,
+      label: `${weather.windSpeed} km/h`,
+    },
+    {
+      key: "humidity",
+      icon: <Droplets className="w-4 h-4 text-paw-trust" aria-hidden="true" />,
+      label: `${weather.humidity}%`,
+    },
+    {
+      key: "rain",
+      icon: <CloudRain className="w-4 h-4 text-paw-trust" aria-hidden="true" />,
+      label: weather.rainProb > 0 ? `${weather.rainProb}% rain` : "No rain",
+    },
+    {
+      key: "uv",
+      icon: <Sun className="w-4 h-4 text-paw-warning" aria-hidden="true" />,
+      label: `UV ${weather.uvIndex}`,
+    },
+    {
+      key: "advice",
+      className: "text-paw-primary/90",
+      icon: <Dog className="w-4 h-4 text-paw-primary" aria-hidden="true" />,
+      label: `${walkAdvice.emoji} ${walkAdvice.text}`,
+    },
+  ];
 
   return (
-    <div className="absolute top-[80px] left-0 w-full z-40 bg-black/50 backdrop-blur-md border-b border-white/10 text-white/90 overflow-hidden py-2.5">
-      <style dangerouslySetInnerHTML={{__html: `
-        @keyframes weather-marquee {
-          0% { transform: translateX(0); }
-          100% { transform: translateX(-50%); }
-        }
-        .weather-marquee-track {
-          animation: weather-marquee 40s linear infinite;
-          width: fit-content;
-        }
-        .weather-marquee-track:hover {
-          animation-play-state: paused;
-        }
-      `}} />
-
-      <div className="flex items-center">
+    <div className="globe-weather-bar absolute z-40 overflow-hidden text-white/90">
+      <div className="globe-weather-content flex items-center">
         {/* Recenter button (shows when viewing map-center weather) */}
         {!weather.isUserLocation && (
           <button
@@ -222,64 +264,16 @@ export default function WeatherTicker({ mapCenter, onRecenterRequest }: WeatherT
           </button>
         )}
 
-        {/* Scrolling weather ticker */}
-        <div className="flex-1 overflow-hidden">
-          <div className="weather-marquee-track flex whitespace-nowrap items-center">
-            {[...Array(4)].map((_, i) => (
-              <div key={i} className="flex items-center space-x-8 shrink-0 px-6 font-medium tracking-wide text-sm">
-                {/* Location */}
-                <span className="flex items-center gap-1.5 text-paw-primary">
-                  <MapPin className="w-4 h-4" />
-                  {weather.city}
-                  {!weather.isUserLocation && (
-                    <span className="text-[9px] bg-white/15 px-1.5 py-0.5 rounded-full ml-1 text-white/60">MAP</span>
-                  )}
-                </span>
-
-                {/* Weather condition */}
-                <span className="flex items-center gap-1.5">
-                  {weatherInfo.icon} {weatherInfo.label}
-                </span>
-
-                {/* Temperature */}
-                <span className="flex items-center gap-1.5">
-                  <Thermometer className="w-4 h-4 text-paw-success" />
-                  {weather.temp}°C
-                  <span className="text-white/40 text-xs">(feels {weather.feelsLike}°C)</span>
-                </span>
-
-                {/* Wind */}
-                <span className="flex items-center gap-1.5">
-                  <Wind className="w-4 h-4 text-paw-trust" /> {weather.windSpeed} km/h
-                </span>
-
-                {/* Humidity */}
-                <span className="flex items-center gap-1.5">
-                  <Droplets className="w-4 h-4 text-paw-trust" /> {weather.humidity}%
-                </span>
-
-                {/* Rain Probability */}
-                <span className="flex items-center gap-1.5">
-                  <CloudRain className="w-4 h-4 text-paw-trust" />
-                  {weather.rainProb > 0 ? `${weather.rainProb}% rain` : "No rain"}
-                </span>
-
-                {/* UV Index */}
-                <span className="flex items-center gap-1.5">
-                  <Sun className="w-4 h-4 text-paw-warning" /> UV {weather.uvIndex}
-                </span>
-
-                {/* Dog Walk Advice */}
-                <span className="flex items-center gap-1.5 text-paw-primary/90">
-                  <Dog className="w-4 h-4 text-paw-primary" />
-                  {walkAdvice.emoji} {walkAdvice.text}
-                </span>
-
-                {/* Separator */}
-                <span className="text-white/20 text-lg">•</span>
-              </div>
-            ))}
-          </div>
+        <div className="globe-weather-items">
+          {weatherItems.map((item) => (
+            <span key={item.key} className={`globe-weather-item ${item.className ?? ""}`.trim()}>
+              {item.icon}
+              <span className="truncate">{item.label}</span>
+              {item.suffix && (
+                <span className="globe-weather-suffix">{item.suffix}</span>
+              )}
+            </span>
+          ))}
         </div>
 
         {/* Loading indicator */}

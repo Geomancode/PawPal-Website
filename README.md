@@ -1,36 +1,93 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# PawPal Website
 
-## Getting Started
+PawPal Website is the public web surface for PawPal: pet safety profiles, NFC tag finder pages, the community map, app-share previews, and the PawPal store.
 
-First, run the development server:
+## Stack
+
+- Next.js App Router
+- React
+- Tailwind CSS v4
+- Framer Motion
+- MapLibre GL
+- Supabase
+- Stripe Checkout
+- Service worker and web manifest for install/offline support
+
+## Local Development
+
+Install dependencies from this directory:
+
+```bash
+npm install
+```
+
+Run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Quality Gates
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Run these before shipping web changes:
 
-## Learn More
+```bash
+npm run lint
+npm run build
+```
 
-To learn more about Next.js, take a look at the following resources:
+Useful smoke routes:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- `/`
+- `/globe`
+- `/store`
+- `/store/checkout`
+- `/store/orders`
+- `/about`
+- `/help`
+- `/privacy`
+- `/terms`
+- `/tag/[id]`
+- `/user/[id]`
+- `/group/[id]`
+- `/post/[id]`
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Environment
 
-## Deploy on Vercel
+The site expects Supabase and Stripe configuration through environment variables. Keep production secrets out of the repository and configure them in the deploy platform.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Common variables used by the website:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+NEXT_PUBLIC_SUPABASE_URL=
+NEXT_PUBLIC_SUPABASE_ANON_KEY=
+SUPABASE_SERVICE_ROLE_KEY=
+NEXT_PUBLIC_SITE_URL=
+STRIPE_SECRET_KEY=
+STRIPE_WEBHOOK_SECRET=
+NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=
+```
+
+Check the API route or integration you are changing for any additional required variables.
+
+## Design System
+
+Follow `DESIGN.md` and `design/tokens/pawpal.tokens.json`.
+
+The site uses Paw Blue as the primary action color, Warm Orange as the accent, and Mint Teal for trust/success moments. Prefer existing PawPal primitives in `src/components/ui` and keep rounded corners, focus states, shadows, and status messages consistent.
+
+## Public Surfaces
+
+- Home: communicates the loop between pet safety map, NFC tags, local community, and the app.
+- Globe: renders the community map and gracefully falls back when location, tiles, or live data fail.
+- Store: supports catalog fallback, cart persistence, Stripe checkout, and order history.
+- Tag finder pages: prioritize emergency owner contact and privacy-first pet details.
+- Share pages: route app deep links through a web fallback for user, group, and post shares.
+
+## PWA Notes
+
+`public/sw.js` caches the app shell and serves `/offline.html` for unavailable HTML requests. `PwaRuntime` registers the service worker and shows lightweight UI for offline mode, pending updates, and install prompts.
+
+After changing `public/sw.js`, test both a clean install and an update from an already-open tab.

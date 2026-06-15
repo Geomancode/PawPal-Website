@@ -1,0 +1,8 @@
+{
+  "baseUrl": "http://localhost:3001",
+  "matrixTotal": 38,
+  "matrixPassed": 38,
+  "interactionPassed": true,
+  "failures": [],
+  "interactionFailures": []
+}

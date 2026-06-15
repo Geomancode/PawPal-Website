@@ -1,0 +1,15 @@
+{
+  "generatedAt": "2026-06-11T13:59:58.215Z",
+  "viewport": {
+    "width": 390,
+    "height": 844
+  },
+  "url": "http://localhost:3000/auth",
+  "passwordTypeAfterShow": "text",
+  "errorText": "Password must be at least 6 characters.",
+  "errorVisible": true,
+  "logs": [],
+  "screenshots": [
+    "interaction-auth-error-390x844.png"
+  ]
+}

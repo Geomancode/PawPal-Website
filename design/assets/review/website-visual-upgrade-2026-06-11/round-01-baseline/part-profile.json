@@ -1,0 +1,1182 @@
+{
+  "route": {
+    "path": "/profile",
+    "slug": "profile",
+    "character": "Trust/safety account",
+    "signals": [
+      "Sign in",
+      "Log in",
+      "Email",
+      "Password",
+      "Profile"
+    ]
+  },
+  "results": [
+    {
+      "route": "/profile",
+      "slug": "profile",
+      "routeCharacter": "Trust/safety account",
+      "requestedUrl": "http://localhost:3000/profile",
+      "viewport": {
+        "label": "390x844",
+        "width": 390,
+        "height": 844
+      },
+      "started": "2026-06-11T11:23:23.824Z",
+      "navError": null,
+      "screenshotPath": "/private/tmp/geopet-round01-baseline/profile-390x844.png",
+      "screenshotError": null,
+      "metrics": {
+        "blockingOverlay": true,
+        "bodyBackground": "rgb(255, 255, 255)",
+        "bodyColor": "rgb(58, 47, 42)",
+        "canvases": [],
+        "clientWidth": 390,
+        "colorSchemeStyle": "light",
+        "controls": [
+          {
+            "height": 44,
+            "inFirstViewport": false,
+            "left": 16,
+            "role": null,
+            "tag": "a",
+            "text": "Skip to PawPal content",
+            "top": -54,
+            "width": 194
+          },
+          {
+            "height": 32,
+            "inFirstViewport": true,
+            "left": 20,
+            "role": null,
+            "tag": "a",
+            "text": "PawPal",
+            "top": 24,
+            "width": 122
+          },
+          {
+            "height": 40,
+            "inFirstViewport": true,
+            "left": 330,
+            "role": null,
+            "tag": "button",
+            "text": "Open navigation menu",
+            "top": 20,
+            "width": 40
+          },
+          {
+            "height": 36,
+            "inFirstViewport": true,
+            "left": 53,
+            "role": null,
+            "tag": "button",
+            "text": "Sign In",
+            "top": 392,
+            "width": 140
+          },
+          {
+            "height": 36,
+            "inFirstViewport": true,
+            "left": 197,
+            "role": null,
+            "tag": "button",
+            "text": "Sign Up",
+            "top": 392,
+            "width": 140
+          },
+          {
+            "height": 46,
+            "inFirstViewport": true,
+            "left": 49,
+            "role": null,
+            "tag": "input",
+            "text": "you@example.com",
+            "top": 480,
+            "width": 292
+          },
+          {
+            "height": 46,
+            "inFirstViewport": true,
+            "left": 49,
+            "role": null,
+            "tag": "input",
+            "text": "••••••••",
+            "top": 566,
+            "width": 292
+          },
+          {
+            "height": 16,
+            "inFirstViewport": true,
+            "left": 313,
+            "role": null,
+            "tag": "button",
+            "text": "Show password",
+            "top": 581,
+            "width": 16
+          },
+          {
+            "height": 48,
+            "inFirstViewport": true,
+            "left": 49,
+            "role": null,
+            "tag": "button",
+            "text": "Sign In",
+            "top": 628,
+            "width": 292
+          },
+          {
+            "height": 42,
+            "inFirstViewport": true,
+            "left": 49,
+            "role": null,
+            "tag": "button",
+            "text": "Google",
+            "top": 740,
+            "width": 140
+          },
+          {
+            "height": 42,
+            "inFirstViewport": true,
+            "left": 201,
+            "role": null,
+            "tag": "button",
+            "text": "Apple",
+            "top": 740,
+            "width": 140
+          },
+          {
+            "height": 14,
+            "inFirstViewport": true,
+            "left": 230,
+            "role": null,
+            "tag": "a",
+            "text": "Terms",
+            "top": 840,
+            "width": 35
+          }
+        ],
+        "currentUrl": "http://localhost:3000/auth",
+        "documentHeight": 1747,
+        "foundSignals": [
+          {
+            "element": {
+              "height": 844,
+              "inFirstViewport": true,
+              "left": 0,
+              "role": null,
+              "tag": "main",
+              "text": "Welcome Back Sign in to continue your journey Sign In Sign Up Email Password Sign In or continue with Google Apple By co",
+              "top": 81,
+              "width": 390
+            },
+            "found": true,
+            "signal": "Sign in"
+          },
+          {
+            "element": null,
+            "found": false,
+            "signal": "Log in"
+          },
+          {
+            "element": {
+              "height": 844,
+              "inFirstViewport": true,
+              "left": 0,
+              "role": null,
+              "tag": "main",
+              "text": "Welcome Back Sign in to continue your journey Sign In Sign Up Email Password Sign In or continue with Google Apple By co",
+              "top": 81,
+              "width": 390
+            },
+            "found": true,
+            "signal": "Email"
+          },
+          {
+            "element": {
+              "height": 844,
+              "inFirstViewport": true,
+              "left": 0,
+              "role": null,
+              "tag": "main",
+              "text": "Welcome Back Sign in to continue your journey Sign In Sign Up Email Password Sign In or continue with Google Apple By co",
+              "top": 81,
+              "width": 390
+            },
+            "found": true,
+            "signal": "Password"
+          },
+          {
+            "element": null,
+            "found": false,
+            "signal": "Profile"
+          }
+        ],
+        "headings": [
+          {
+            "height": 32,
+            "inFirstViewport": true,
+            "left": 49,
+            "role": null,
+            "tag": "h1",
+            "text": "Welcome Back",
+            "top": 300,
+            "width": 292
+          }
+        ],
+        "horizontalOverflow": false,
+        "images": [
+          {
+            "height": 32,
+            "inFirstViewport": true,
+            "left": 20,
+            "role": null,
+            "tag": "img",
+            "text": "IMG",
+            "top": 24,
+            "width": 32
+          },
+          {
+            "height": 56,
+            "inFirstViewport": true,
+            "left": 167,
+            "role": null,
+            "tag": "img",
+            "text": "IMG",
+            "top": 232,
+            "width": 56
+          },
+          {
+            "height": 30,
+            "inFirstViewport": false,
+            "left": 20,
+            "role": null,
+            "tag": "img",
+            "text": "IMG",
+            "top": 982,
+            "width": 30
+          }
+        ],
+        "nonEmptyRender": true,
+        "overlayText": "",
+        "prefersDarkScheme": false,
+        "prefersReducedMotion": false,
+        "routeCharacter": "Trust/safety account",
+        "scrollWidth": 390,
+        "textLength": 641,
+        "textSample": "Skip to PawPal content PawPal Welcome Back Sign in to continue your journey Sign In Sign Up Email Password Sign In or continue with Google Apple By continuing, you agree to PawPal's Terms and Privacy Policy PawPal Smart walks. Safe pets. Stronger local communi",
+        "title": "PawPal | Pet Safety Map, Smart Tags, and Local Pet Community",
+        "viewport": {
+          "height": 844,
+          "width": 390
+        }
+      },
+      "focus": {
+        "height": 1747,
+        "left": 0,
+        "ok": true,
+        "role": null,
+        "tag": "body",
+        "text": "Skip to PawPal content PawPal Welcome Back Sign in to continue your journey Sign In Sign Up Email Password Sign In or co",
+        "top": 0,
+        "width": 390
+      },
+      "logs": [],
+      "darkModeCapture": {
+        "captured": false,
+        "reason": "Browser viewport capability does not expose color-scheme emulation; current prefers-color-scheme value is recorded instead.",
+        "impact": "No separate dark-mode screenshot in this baseline round.",
+        "followUpRound": "First implementation verification round touching this route."
+      },
+      "reducedMotionCapture": {
+        "captured": false,
+        "reason": "Browser capability does not expose prefers-reduced-motion emulation; current matchMedia value is recorded instead.",
+        "impact": "No separate reduced-motion behavior emulation in this baseline round.",
+        "followUpRound": "First implementation verification round touching this route."
+      }
+    },
+    {
+      "route": "/profile",
+      "slug": "profile",
+      "routeCharacter": "Trust/safety account",
+      "requestedUrl": "http://localhost:3000/profile",
+      "viewport": {
+        "label": "768x1024",
+        "width": 768,
+        "height": 1024
+      },
+      "started": "2026-06-11T11:23:25.817Z",
+      "navError": null,
+      "screenshotPath": "/private/tmp/geopet-round01-baseline/profile-768x1024.png",
+      "screenshotError": null,
+      "metrics": {
+        "blockingOverlay": true,
+        "bodyBackground": "rgb(255, 255, 255)",
+        "bodyColor": "rgb(58, 47, 42)",
+        "canvases": [],
+        "clientWidth": 768,
+        "colorSchemeStyle": "light",
+        "controls": [
+          {
+            "height": 44,
+            "inFirstViewport": false,
+            "left": 16,
+            "role": null,
+            "tag": "a",
+            "text": "Skip to PawPal content",
+            "top": -54,
+            "width": 194
+          },
+          {
+            "height": 32,
+            "inFirstViewport": true,
+            "left": 24,
+            "role": null,
+            "tag": "a",
+            "text": "PawPal",
+            "top": 24,
+            "width": 122
+          },
+          {
+            "height": 36,
+            "inFirstViewport": true,
+            "left": 211,
+            "role": null,
+            "tag": "a",
+            "text": "Home",
+            "top": 22,
+            "width": 68
+          },
+          {
+            "height": 36,
+            "inFirstViewport": true,
+            "left": 311,
+            "role": null,
+            "tag": "a",
+            "text": "Globe",
+            "top": 22,
+            "width": 68
+          },
+          {
+            "height": 36,
+            "inFirstViewport": true,
+            "left": 411,
+            "role": null,
+            "tag": "a",
+            "text": "About Us",
+            "top": 22,
+            "width": 91
+          },
+          {
+            "height": 36,
+            "inFirstViewport": true,
+            "left": 534,
+            "role": null,
+            "tag": "a",
+            "text": "Store",
+            "top": 22,
+            "width": 65
+          },
+          {
+            "height": 40,
+            "inFirstViewport": true,
+            "left": 664,
+            "role": null,
+            "tag": "a",
+            "text": "Login",
+            "top": 20,
+            "width": 80
+          },
+          {
+            "height": 36,
+            "inFirstViewport": true,
+            "left": 197,
+            "role": null,
+            "tag": "button",
+            "text": "Sign In",
+            "top": 482,
+            "width": 185
+          },
+          {
+            "height": 36,
+            "inFirstViewport": true,
+            "left": 386,
+            "role": null,
+            "tag": "button",
+            "text": "Sign Up",
+            "top": 482,
+            "width": 185
+          },
+          {
+            "height": 46,
+            "inFirstViewport": true,
+            "left": 193,
+            "role": null,
+            "tag": "input",
+            "text": "you@example.com",
+            "top": 570,
+            "width": 382
+          },
+          {
+            "height": 46,
+            "inFirstViewport": true,
+            "left": 193,
+            "role": null,
+            "tag": "input",
+            "text": "••••••••",
+            "top": 656,
+            "width": 382
+          },
+          {
+            "height": 16,
+            "inFirstViewport": true,
+            "left": 547,
+            "role": null,
+            "tag": "button",
+            "text": "Show password",
+            "top": 671,
+            "width": 16
+          }
+        ],
+        "currentUrl": "http://localhost:3000/auth",
+        "documentHeight": 1571,
+        "foundSignals": [
+          {
+            "element": {
+              "height": 1024,
+              "inFirstViewport": true,
+              "left": 0,
+              "role": null,
+              "tag": "main",
+              "text": "Welcome Back Sign in to continue your journey Sign In Sign Up Email Password Sign In or continue with Google Apple By co",
+              "top": 81,
+              "width": 768
+            },
+            "found": true,
+            "signal": "Sign in"
+          },
+          {
+            "element": null,
+            "found": false,
+            "signal": "Log in"
+          },
+          {
+            "element": {
+              "height": 1024,
+              "inFirstViewport": true,
+              "left": 0,
+              "role": null,
+              "tag": "main",
+              "text": "Welcome Back Sign in to continue your journey Sign In Sign Up Email Password Sign In or continue with Google Apple By co",
+              "top": 81,
+              "width": 768
+            },
+            "found": true,
+            "signal": "Email"
+          },
+          {
+            "element": {
+              "height": 1024,
+              "inFirstViewport": true,
+              "left": 0,
+              "role": null,
+              "tag": "main",
+              "text": "Welcome Back Sign in to continue your journey Sign In Sign Up Email Password Sign In or continue with Google Apple By co",
+              "top": 81,
+              "width": 768
+            },
+            "found": true,
+            "signal": "Password"
+          },
+          {
+            "element": null,
+            "found": false,
+            "signal": "Profile"
+          }
+        ],
+        "headings": [
+          {
+            "height": 32,
+            "inFirstViewport": true,
+            "left": 193,
+            "role": null,
+            "tag": "h1",
+            "text": "Welcome Back",
+            "top": 390,
+            "width": 382
+          }
+        ],
+        "horizontalOverflow": false,
+        "images": [
+          {
+            "height": 32,
+            "inFirstViewport": true,
+            "left": 24,
+            "role": null,
+            "tag": "img",
+            "text": "IMG",
+            "top": 24,
+            "width": 32
+          },
+          {
+            "height": 56,
+            "inFirstViewport": true,
+            "left": 356,
+            "role": null,
+            "tag": "img",
+            "text": "IMG",
+            "top": 322,
+            "width": 56
+          },
+          {
+            "height": 30,
+            "inFirstViewport": false,
+            "left": 24,
+            "role": null,
+            "tag": "img",
+            "text": "IMG",
+            "top": 1162,
+            "width": 30
+          }
+        ],
+        "nonEmptyRender": true,
+        "overlayText": "",
+        "prefersDarkScheme": false,
+        "prefersReducedMotion": false,
+        "routeCharacter": "Trust/safety account",
+        "scrollWidth": 768,
+        "textLength": 673,
+        "textSample": "Skip to PawPal content PawPal Home Globe About Us Store Login Welcome Back Sign in to continue your journey Sign In Sign Up Email Password Sign In or continue with Google Apple By continuing, you agree to PawPal's Terms and Privacy Policy PawPal Smart walks. S",
+        "title": "PawPal | Pet Safety Map, Smart Tags, and Local Pet Community",
+        "viewport": {
+          "height": 1024,
+          "width": 768
+        }
+      },
+      "focus": {
+        "height": 1571,
+        "left": 0,
+        "ok": true,
+        "role": null,
+        "tag": "body",
+        "text": "Skip to PawPal content PawPal Home Globe About Us Store Login Welcome Back Sign in to continue your journey Sign In Sign",
+        "top": 0,
+        "width": 768
+      },
+      "logs": [],
+      "darkModeCapture": {
+        "captured": false,
+        "reason": "Browser viewport capability does not expose color-scheme emulation; current prefers-color-scheme value is recorded instead.",
+        "impact": "No separate dark-mode screenshot in this baseline round.",
+        "followUpRound": "First implementation verification round touching this route."
+      },
+      "reducedMotionCapture": {
+        "captured": false,
+        "reason": "Browser capability does not expose prefers-reduced-motion emulation; current matchMedia value is recorded instead.",
+        "impact": "No separate reduced-motion behavior emulation in this baseline round.",
+        "followUpRound": "First implementation verification round touching this route."
+      }
+    },
+    {
+      "route": "/profile",
+      "slug": "profile",
+      "routeCharacter": "Trust/safety account",
+      "requestedUrl": "http://localhost:3000/profile",
+      "viewport": {
+        "label": "1280x720",
+        "width": 1280,
+        "height": 720
+      },
+      "started": "2026-06-11T11:23:27.836Z",
+      "navError": null,
+      "screenshotPath": "/private/tmp/geopet-round01-baseline/profile-1280x720.png",
+      "screenshotError": null,
+      "metrics": {
+        "blockingOverlay": true,
+        "bodyBackground": "rgb(255, 255, 255)",
+        "bodyColor": "rgb(58, 47, 42)",
+        "canvases": [],
+        "clientWidth": 1280,
+        "colorSchemeStyle": "light",
+        "controls": [
+          {
+            "height": 44,
+            "inFirstViewport": false,
+            "left": 16,
+            "role": null,
+            "tag": "a",
+            "text": "Skip to PawPal content",
+            "top": -54,
+            "width": 194
+          },
+          {
+            "height": 32,
+            "inFirstViewport": true,
+            "left": 32,
+            "role": null,
+            "tag": "a",
+            "text": "PawPal",
+            "top": 24,
+            "width": 122
+          },
+          {
+            "height": 36,
+            "inFirstViewport": true,
+            "left": 467,
+            "role": null,
+            "tag": "a",
+            "text": "Home",
+            "top": 22,
+            "width": 68
+          },
+          {
+            "height": 36,
+            "inFirstViewport": true,
+            "left": 567,
+            "role": null,
+            "tag": "a",
+            "text": "Globe",
+            "top": 22,
+            "width": 68
+          },
+          {
+            "height": 36,
+            "inFirstViewport": true,
+            "left": 667,
+            "role": null,
+            "tag": "a",
+            "text": "About Us",
+            "top": 22,
+            "width": 91
+          },
+          {
+            "height": 36,
+            "inFirstViewport": true,
+            "left": 790,
+            "role": null,
+            "tag": "a",
+            "text": "Store",
+            "top": 22,
+            "width": 65
+          },
+          {
+            "height": 40,
+            "inFirstViewport": true,
+            "left": 1168,
+            "role": null,
+            "tag": "a",
+            "text": "Login",
+            "top": 20,
+            "width": 80
+          },
+          {
+            "height": 36,
+            "inFirstViewport": true,
+            "left": 813,
+            "role": null,
+            "tag": "button",
+            "text": "Sign In",
+            "top": 375,
+            "width": 181
+          },
+          {
+            "height": 36,
+            "inFirstViewport": true,
+            "left": 998,
+            "role": null,
+            "tag": "button",
+            "text": "Sign Up",
+            "top": 375,
+            "width": 181
+          },
+          {
+            "height": 46,
+            "inFirstViewport": true,
+            "left": 809,
+            "role": null,
+            "tag": "input",
+            "text": "you@example.com",
+            "top": 463,
+            "width": 374
+          },
+          {
+            "height": 46,
+            "inFirstViewport": true,
+            "left": 809,
+            "role": null,
+            "tag": "input",
+            "text": "••••••••",
+            "top": 549,
+            "width": 374
+          },
+          {
+            "height": 16,
+            "inFirstViewport": true,
+            "left": 1155,
+            "role": null,
+            "tag": "button",
+            "text": "Show password",
+            "top": 564,
+            "width": 16
+          }
+        ],
+        "currentUrl": "http://localhost:3000/auth",
+        "documentHeight": 1265,
+        "foundSignals": [
+          {
+            "element": {
+              "height": 810,
+              "inFirstViewport": true,
+              "left": 0,
+              "role": null,
+              "tag": "main",
+              "text": "PawPal account One login for walks, tags, rescue pages, and store orders. Keep pet profiles, finder visibility, map acti",
+              "top": 81,
+              "width": 1280
+            },
+            "found": true,
+            "signal": "Sign in"
+          },
+          {
+            "element": null,
+            "found": false,
+            "signal": "Log in"
+          },
+          {
+            "element": {
+              "height": 810,
+              "inFirstViewport": true,
+              "left": 0,
+              "role": null,
+              "tag": "main",
+              "text": "PawPal account One login for walks, tags, rescue pages, and store orders. Keep pet profiles, finder visibility, map acti",
+              "top": 81,
+              "width": 1280
+            },
+            "found": true,
+            "signal": "Email"
+          },
+          {
+            "element": {
+              "height": 810,
+              "inFirstViewport": true,
+              "left": 0,
+              "role": null,
+              "tag": "main",
+              "text": "PawPal account One login for walks, tags, rescue pages, and store orders. Keep pet profiles, finder visibility, map acti",
+              "top": 81,
+              "width": 1280
+            },
+            "found": true,
+            "signal": "Password"
+          },
+          {
+            "element": {
+              "height": 810,
+              "inFirstViewport": true,
+              "left": 0,
+              "role": null,
+              "tag": "main",
+              "text": "PawPal account One login for walks, tags, rescue pages, and store orders. Keep pet profiles, finder visibility, map acti",
+              "top": 81,
+              "width": 1280
+            },
+            "found": true,
+            "signal": "Profile"
+          }
+        ],
+        "headings": [
+          {
+            "height": 180,
+            "inFirstViewport": true,
+            "left": 97,
+            "role": null,
+            "tag": "h1",
+            "text": "One login for walks, tags, rescue pages, and store orders.",
+            "top": 264,
+            "width": 576
+          },
+          {
+            "height": 32,
+            "inFirstViewport": true,
+            "left": 809,
+            "role": null,
+            "tag": "h1",
+            "text": "Welcome Back",
+            "top": 283,
+            "width": 374
+          }
+        ],
+        "horizontalOverflow": false,
+        "images": [
+          {
+            "height": 32,
+            "inFirstViewport": true,
+            "left": 32,
+            "role": null,
+            "tag": "img",
+            "text": "IMG",
+            "top": 24,
+            "width": 32
+          },
+          {
+            "height": 56,
+            "inFirstViewport": true,
+            "left": 968,
+            "role": null,
+            "tag": "img",
+            "text": "IMG",
+            "top": 215,
+            "width": 56
+          },
+          {
+            "height": 30,
+            "inFirstViewport": false,
+            "left": 32,
+            "role": null,
+            "tag": "img",
+            "text": "IMG",
+            "top": 948,
+            "width": 30
+          }
+        ],
+        "nonEmptyRender": true,
+        "overlayText": "",
+        "prefersDarkScheme": false,
+        "prefersReducedMotion": false,
+        "routeCharacter": "Trust/safety account",
+        "scrollWidth": 1280,
+        "textLength": 1051,
+        "textSample": "Skip to PawPal content PawPal Home Globe About Us Store Login PawPal account One login for walks, tags, rescue pages, and store orders. Keep pet profiles, finder visibility, map activity, and community support tied to a single secure account. NFC ready Connect",
+        "title": "PawPal | Pet Safety Map, Smart Tags, and Local Pet Community",
+        "viewport": {
+          "height": 720,
+          "width": 1280
+        }
+      },
+      "focus": {
+        "height": 1265,
+        "left": 0,
+        "ok": true,
+        "role": null,
+        "tag": "body",
+        "text": "Skip to PawPal content PawPal Home Globe About Us Store Login PawPal account One login for walks, tags, rescue pages, an",
+        "top": 0,
+        "width": 1280
+      },
+      "logs": [],
+      "darkModeCapture": {
+        "captured": false,
+        "reason": "Browser viewport capability does not expose color-scheme emulation; current prefers-color-scheme value is recorded instead.",
+        "impact": "No separate dark-mode screenshot in this baseline round.",
+        "followUpRound": "First implementation verification round touching this route."
+      },
+      "reducedMotionCapture": {
+        "captured": false,
+        "reason": "Browser capability does not expose prefers-reduced-motion emulation; current matchMedia value is recorded instead.",
+        "impact": "No separate reduced-motion behavior emulation in this baseline round.",
+        "followUpRound": "First implementation verification round touching this route."
+      }
+    },
+    {
+      "route": "/profile",
+      "slug": "profile",
+      "routeCharacter": "Trust/safety account",
+      "requestedUrl": "http://localhost:3000/profile",
+      "viewport": {
+        "label": "1440x900",
+        "width": 1440,
+        "height": 900
+      },
+      "started": "2026-06-11T11:23:29.968Z",
+      "navError": null,
+      "screenshotPath": "/private/tmp/geopet-round01-baseline/profile-1440x900.png",
+      "screenshotError": null,
+      "metrics": {
+        "blockingOverlay": true,
+        "bodyBackground": "rgb(255, 255, 255)",
+        "bodyColor": "rgb(58, 47, 42)",
+        "canvases": [],
+        "clientWidth": 1440,
+        "colorSchemeStyle": "light",
+        "controls": [
+          {
+            "height": 44,
+            "inFirstViewport": false,
+            "left": 16,
+            "role": null,
+            "tag": "a",
+            "text": "Skip to PawPal content",
+            "top": -54,
+            "width": 194
+          },
+          {
+            "height": 32,
+            "inFirstViewport": true,
+            "left": 112,
+            "role": null,
+            "tag": "a",
+            "text": "PawPal",
+            "top": 24,
+            "width": 122
+          },
+          {
+            "height": 36,
+            "inFirstViewport": true,
+            "left": 547,
+            "role": null,
+            "tag": "a",
+            "text": "Home",
+            "top": 22,
+            "width": 68
+          },
+          {
+            "height": 36,
+            "inFirstViewport": true,
+            "left": 647,
+            "role": null,
+            "tag": "a",
+            "text": "Globe",
+            "top": 22,
+            "width": 68
+          },
+          {
+            "height": 36,
+            "inFirstViewport": true,
+            "left": 747,
+            "role": null,
+            "tag": "a",
+            "text": "About Us",
+            "top": 22,
+            "width": 91
+          },
+          {
+            "height": 36,
+            "inFirstViewport": true,
+            "left": 870,
+            "role": null,
+            "tag": "a",
+            "text": "Store",
+            "top": 22,
+            "width": 65
+          },
+          {
+            "height": 40,
+            "inFirstViewport": true,
+            "left": 1248,
+            "role": null,
+            "tag": "a",
+            "text": "Login",
+            "top": 20,
+            "width": 80
+          },
+          {
+            "height": 36,
+            "inFirstViewport": true,
+            "left": 893,
+            "role": null,
+            "tag": "button",
+            "text": "Sign In",
+            "top": 420,
+            "width": 181
+          },
+          {
+            "height": 36,
+            "inFirstViewport": true,
+            "left": 1078,
+            "role": null,
+            "tag": "button",
+            "text": "Sign Up",
+            "top": 420,
+            "width": 181
+          },
+          {
+            "height": 46,
+            "inFirstViewport": true,
+            "left": 889,
+            "role": null,
+            "tag": "input",
+            "text": "you@example.com",
+            "top": 508,
+            "width": 374
+          },
+          {
+            "height": 46,
+            "inFirstViewport": true,
+            "left": 889,
+            "role": null,
+            "tag": "input",
+            "text": "••••••••",
+            "top": 594,
+            "width": 374
+          },
+          {
+            "height": 16,
+            "inFirstViewport": true,
+            "left": 1235,
+            "role": null,
+            "tag": "button",
+            "text": "Show password",
+            "top": 609,
+            "width": 16
+          }
+        ],
+        "currentUrl": "http://localhost:3000/auth",
+        "documentHeight": 1355,
+        "foundSignals": [
+          {
+            "element": {
+              "height": 900,
+              "inFirstViewport": true,
+              "left": 0,
+              "role": null,
+              "tag": "main",
+              "text": "PawPal account One login for walks, tags, rescue pages, and store orders. Keep pet profiles, finder visibility, map acti",
+              "top": 81,
+              "width": 1440
+            },
+            "found": true,
+            "signal": "Sign in"
+          },
+          {
+            "element": null,
+            "found": false,
+            "signal": "Log in"
+          },
+          {
+            "element": {
+              "height": 900,
+              "inFirstViewport": true,
+              "left": 0,
+              "role": null,
+              "tag": "main",
+              "text": "PawPal account One login for walks, tags, rescue pages, and store orders. Keep pet profiles, finder visibility, map acti",
+              "top": 81,
+              "width": 1440
+            },
+            "found": true,
+            "signal": "Email"
+          },
+          {
+            "element": {
+              "height": 900,
+              "inFirstViewport": true,
+              "left": 0,
+              "role": null,
+              "tag": "main",
+              "text": "PawPal account One login for walks, tags, rescue pages, and store orders. Keep pet profiles, finder visibility, map acti",
+              "top": 81,
+              "width": 1440
+            },
+            "found": true,
+            "signal": "Password"
+          },
+          {
+            "element": {
+              "height": 900,
+              "inFirstViewport": true,
+              "left": 0,
+              "role": null,
+              "tag": "main",
+              "text": "PawPal account One login for walks, tags, rescue pages, and store orders. Keep pet profiles, finder visibility, map acti",
+              "top": 81,
+              "width": 1440
+            },
+            "found": true,
+            "signal": "Profile"
+          }
+        ],
+        "headings": [
+          {
+            "height": 180,
+            "inFirstViewport": true,
+            "left": 177,
+            "role": null,
+            "tag": "h1",
+            "text": "One login for walks, tags, rescue pages, and store orders.",
+            "top": 309,
+            "width": 576
+          },
+          {
+            "height": 32,
+            "inFirstViewport": true,
+            "left": 889,
+            "role": null,
+            "tag": "h1",
+            "text": "Welcome Back",
+            "top": 328,
+            "width": 374
+          }
+        ],
+        "horizontalOverflow": false,
+        "images": [
+          {
+            "height": 32,
+            "inFirstViewport": true,
+            "left": 112,
+            "role": null,
+            "tag": "img",
+            "text": "IMG",
+            "top": 24,
+            "width": 32
+          },
+          {
+            "height": 56,
+            "inFirstViewport": true,
+            "left": 1048,
+            "role": null,
+            "tag": "img",
+            "text": "IMG",
+            "top": 260,
+            "width": 56
+          },
+          {
+            "height": 30,
+            "inFirstViewport": false,
+            "left": 112,
+            "role": null,
+            "tag": "img",
+            "text": "IMG",
+            "top": 1038,
+            "width": 30
+          }
+        ],
+        "nonEmptyRender": true,
+        "overlayText": "",
+        "prefersDarkScheme": false,
+        "prefersReducedMotion": false,
+        "routeCharacter": "Trust/safety account",
+        "scrollWidth": 1440,
+        "textLength": 1051,
+        "textSample": "Skip to PawPal content PawPal Home Globe About Us Store Login PawPal account One login for walks, tags, rescue pages, and store orders. Keep pet profiles, finder visibility, map activity, and community support tied to a single secure account. NFC ready Connect",
+        "title": "PawPal | Pet Safety Map, Smart Tags, and Local Pet Community",
+        "viewport": {
+          "height": 900,
+          "width": 1440
+        }
+      },
+      "focus": {
+        "height": 1355,
+        "left": 0,
+        "ok": true,
+        "role": null,
+        "tag": "body",
+        "text": "Skip to PawPal content PawPal Home Globe About Us Store Login PawPal account One login for walks, tags, rescue pages, an",
+        "top": 0,
+        "width": 1440
+      },
+      "logs": [],
+      "darkModeCapture": {
+        "captured": false,
+        "reason": "Browser viewport capability does not expose color-scheme emulation; current prefers-color-scheme value is recorded instead.",
+        "impact": "No separate dark-mode screenshot in this baseline round.",
+        "followUpRound": "First implementation verification round touching this route."
+      },
+      "reducedMotionCapture": {
+        "captured": false,
+        "reason": "Browser capability does not expose prefers-reduced-motion emulation; current matchMedia value is recorded instead.",
+        "impact": "No separate reduced-motion behavior emulation in this baseline round.",
+        "followUpRound": "First implementation verification round touching this route."
+      }
+    }
+  ]
+}

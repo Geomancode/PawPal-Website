@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState, useSyncExternalStore } from "react";
 import dynamic from "next/dynamic";
 import * as THREE from "three";
 
@@ -74,6 +74,36 @@ type RuntimeMesh = {
 
 const EARTH_RELIEF_TEXTURE_URL = "/earth-natural-relief.jpg";
 const LOCKED_GLOBE_ALTITUDE = 1.82;
+const REDUCED_MOTION_QUERY = "(prefers-reduced-motion: reduce)";
+const GLOBE_RENDERER_CONFIG = {
+  alpha: true,
+  antialias: true,
+  preserveDrawingBuffer: true,
+  powerPreference: "high-performance",
+} as const;
+
+function subscribeToReducedMotion(onStoreChange: () => void) {
+  if (typeof window === "undefined") return () => {};
+  const mediaQuery = window.matchMedia(REDUCED_MOTION_QUERY);
+  mediaQuery.addEventListener("change", onStoreChange);
+  return () => mediaQuery.removeEventListener("change", onStoreChange);
+}
+
+function getReducedMotionSnapshot() {
+  return typeof window !== "undefined" && window.matchMedia(REDUCED_MOTION_QUERY).matches;
+}
+
+function getServerReducedMotionSnapshot() {
+  return false;
+}
+
+function useReducedMotionPreference() {
+  return useSyncExternalStore(
+    subscribeToReducedMotion,
+    getReducedMotionSnapshot,
+    getServerReducedMotionSnapshot,
+  );
+}
 
 function seededRandom(seed: number) {
   let value = seed;
@@ -136,6 +166,11 @@ export default function GlobeComponent() {
   const globeEl = useRef<GlobeRef | null>(null);
   const [dimensions, setDimensions] = useState({ width: 420, height: 420 });
   const [canUseWebGL, setCanUseWebGL] = useState<boolean | null>(null);
+  const [isInView, setIsInView] = useState(true);
+  const [isDocumentVisible, setIsDocumentVisible] = useState(true);
+  const shouldReduceMotion = useReducedMotionPreference();
+  const shouldAnimateGlobe = canUseWebGL === true && !shouldReduceMotion && isInView && isDocumentVisible;
+  const globeState = canUseWebGL === null ? "checking" : canUseWebGL ? (shouldAnimateGlobe ? "animated" : "paused") : "fallback";
 
   useEffect(() => {
     const frame = window.requestAnimationFrame(() => {
@@ -178,6 +213,26 @@ export default function GlobeComponent() {
     return () => observer.disconnect();
   }, []);
 
+  useEffect(() => {
+    const element = containerRef.current;
+    if (!element || typeof IntersectionObserver === "undefined") return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => setIsInView(Boolean(entry?.isIntersecting)),
+      { threshold: 0.08 },
+    );
+
+    observer.observe(element);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const updateVisibility = () => setIsDocumentVisible(document.visibilityState === "visible");
+    updateVisibility();
+    document.addEventListener("visibilitychange", updateVisibility);
+    return () => document.removeEventListener("visibilitychange", updateVisibility);
+  }, []);
+
   // Globe controls — set up after mount + keep zoom disabled.
   useEffect(() => {
     const disableGlobeZoom = () => {
@@ -215,8 +270,8 @@ export default function GlobeComponent() {
           ONE: threeRuntime.TOUCH.ROTATE,
           TWO: threeRuntime.TOUCH.ROTATE,
         };
-        controls.autoRotate = true;
-        controls.autoRotateSpeed = 0.35;
+        controls.autoRotate = shouldAnimateGlobe;
+        controls.autoRotateSpeed = shouldAnimateGlobe ? 0.35 : 0;
         controls.enableDamping = true;
         controls.dampingFactor = 0.1;
         controls.minPolarAngle = Math.PI / 3.5;
@@ -233,7 +288,7 @@ export default function GlobeComponent() {
       clearTimeout(timer);
       clearInterval(interval);
     };
-  }, []);
+  }, [shouldAnimateGlobe]);
 
   useEffect(() => {
     const element = containerRef.current;
@@ -241,96 +296,64 @@ export default function GlobeComponent() {
 
     const BLOCK_OPTS: AddEventListenerOptions = { passive: false, capture: true };
 
-    // ── Helpers ──────────────────────────────────────────────────────
     const kill = (e: Event) => {
       e.preventDefault();
       e.stopImmediatePropagation();
       e.stopPropagation();
     };
 
-    const isOverGlobe = (e: Event) => {
-      if (e.target instanceof Node && element.contains(e.target)) return true;
-      if ("clientX" in e && "clientY" in e) {
-        const { clientX, clientY } = e as MouseEvent;
-        const r = element.getBoundingClientRect();
-        return clientX >= r.left && clientX <= r.right && clientY >= r.top && clientY <= r.bottom;
-      }
-      return false;
-    };
-
-    // ── Event handlers ──────────────────────────────────────────────
-    // Block ALL wheel/gesture/dblclick unconditionally on the container & canvas.
-    const blockDirect = (e: Event) => kill(e);
-
-    // At document/window level, block any event whose target is inside the globe.
-    const blockIfOverGlobe = (e: Event) => {
-      if (isOverGlobe(e)) kill(e);
-    };
-
-    // Multi-touch on the container/canvas: block when >1 finger.
-    const blockMultiTouchDirect = (e: Event) => {
+    const blockZoom = (e: Event) => kill(e);
+    const blockMultiTouch = (e: Event) => {
       const te = e as TouchEvent;
       if (te.touches?.length > 1) kill(e);
-    };
-
-    // Multi-touch at document/window: block when over globe & >1 finger.
-    const blockMultiTouchIfOverGlobe = (e: Event) => {
-      const te = e as TouchEvent;
-      if (te.touches?.length > 1 && isOverGlobe(e)) kill(e);
     };
 
     const ZOOM_EVENTS = ["wheel", "dblclick", "gesturestart", "gesturechange", "gestureend"] as const;
     const TOUCH_EVENTS = ["touchstart", "touchmove"] as const;
 
-    // ── Attach to a single target ───────────────────────────────────
-    const attachTo = (target: EventTarget, isDirect: boolean) => {
+    const attachTo = (target: EventTarget) => {
       ZOOM_EVENTS.forEach((evt) =>
-        target.addEventListener(evt, isDirect ? blockDirect : blockIfOverGlobe, BLOCK_OPTS),
+        target.addEventListener(evt, blockZoom, BLOCK_OPTS),
       );
       TOUCH_EVENTS.forEach((evt) =>
-        target.addEventListener(evt, isDirect ? blockMultiTouchDirect : blockMultiTouchIfOverGlobe, BLOCK_OPTS),
+        target.addEventListener(evt, blockMultiTouch, BLOCK_OPTS),
       );
     };
 
-    const detachFrom = (target: EventTarget, isDirect: boolean) => {
+    const detachFrom = (target: EventTarget) => {
       ZOOM_EVENTS.forEach((evt) =>
-        target.removeEventListener(evt, isDirect ? blockDirect : blockIfOverGlobe, BLOCK_OPTS),
+        target.removeEventListener(evt, blockZoom, BLOCK_OPTS),
       );
       TOUCH_EVENTS.forEach((evt) =>
-        target.removeEventListener(evt, isDirect ? blockMultiTouchDirect : blockMultiTouchIfOverGlobe, BLOCK_OPTS),
+        target.removeEventListener(evt, blockMultiTouch, BLOCK_OPTS),
       );
     };
 
-    // ── Wire up container + document/window immediately ─────────────
-    attachTo(element, true);
-    attachTo(document, false);
-    attachTo(window, false);
+    attachTo(element);
 
     // ── Canvas may mount asynchronously — observe for it ─────────────
     let canvas: HTMLCanvasElement | null =
       (globeEl.current?.renderer?.()?.domElement as HTMLCanvasElement | undefined) ??
       element.querySelector("canvas");
 
-    if (canvas) attachTo(canvas, true);
+    if (canvas) attachTo(canvas);
 
     const observer = new MutationObserver(() => {
       const c =
         (globeEl.current?.renderer?.()?.domElement as HTMLCanvasElement | undefined) ??
         element.querySelector("canvas");
       if (c && c !== canvas) {
-        if (canvas) detachFrom(canvas, true);
+        if (canvas) detachFrom(canvas);
         canvas = c;
-        attachTo(canvas, true);
+        attachTo(canvas);
       }
     });
     observer.observe(element, { childList: true, subtree: true });
 
     return () => {
       observer.disconnect();
-      detachFrom(element, true);
-      detachFrom(document, false);
-      detachFrom(window, false);
-      if (canvas) detachFrom(canvas, true);
+      detachFrom(element);
+      if (canvas) detachFrom(canvas);
     };
   }, []);
 
@@ -345,6 +368,8 @@ export default function GlobeComponent() {
 
   // Subtle procedural cloud shell, separate from the relief texture.
   useEffect(() => {
+    if (!shouldAnimateGlobe) return;
+
     let frame = 0;
     let clouds: RuntimeMesh | null = null;
     let cloudScene: RuntimeScene | null = null;
@@ -398,12 +423,23 @@ export default function GlobeComponent() {
       }
       texture?.dispose();
     };
-  }, []);
+  }, [shouldAnimateGlobe]);
 
   return (
-    <div ref={containerRef} className="flex h-full w-full touch-none items-center justify-center cursor-grab active:cursor-grabbing select-none">
+    <div
+      ref={containerRef}
+      className="flex h-full w-full touch-none select-none items-center justify-center cursor-grab active:cursor-grabbing"
+      role="img"
+      aria-label="Interactive PawPal Earth globe preview"
+      data-testid="home-globe"
+      data-globe-state={globeState}
+      data-webgl={canUseWebGL === null ? "checking" : canUseWebGL ? "available" : "unavailable"}
+      data-reduced-motion={shouldReduceMotion ? "true" : "false"}
+      data-in-view={isInView ? "true" : "false"}
+      data-document-visible={isDocumentVisible ? "true" : "false"}
+    >
       {canUseWebGL === null ? (
-        <div className="h-14 w-14 animate-spin rounded-full border-4 border-paw-primary-soft border-t-paw-primary" />
+        <div className={`${shouldReduceMotion ? "" : "animate-spin"} h-14 w-14 rounded-full border-4 border-paw-primary-soft border-t-paw-primary`} />
       ) : canUseWebGL ? (
         <GlobeT
           ref={globeEl}
@@ -418,6 +454,7 @@ export default function GlobeComponent() {
           atmosphereAltitude={0.2}
           showGraticules={false}
           animateIn={false}
+          rendererConfig={GLOBE_RENDERER_CONFIG}
           onZoom={keepGlobeZoomLocked}
         />
       ) : (

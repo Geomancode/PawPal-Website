@@ -1,0 +1,449 @@
+{
+  "phase": "round08-after-interaction-accessibility",
+  "completedAt": "2026-06-11T17:00:37.940Z",
+  "baseUrl": "http://localhost:3000",
+  "scheme": "dark",
+  "reducedMotion": "reduce",
+  "passCount": 6,
+  "totalCount": 6,
+  "interactions": [
+    {
+      "name": "primary contact mailto visible",
+      "pass": true,
+      "evidence": {
+        "pass": true,
+        "text": "Contact support",
+        "href": "mailto:hello@pawpal.be",
+        "rect": {
+          "top": 378,
+          "left": 16,
+          "width": 177,
+          "height": 46
+        },
+        "outlineStyle": "none",
+        "outlineWidth": "0px",
+        "matchCount": 2
+      }
+    },
+    {
+      "name": "support card email mailto visible",
+      "pass": true,
+      "evidence": {
+        "pass": true,
+        "text": "Email support",
+        "href": "mailto:hello@pawpal.be",
+        "rect": {
+          "top": 1717,
+          "left": 37,
+          "width": 118,
+          "height": 20
+        },
+        "outlineStyle": "none",
+        "outlineWidth": "0px",
+        "matchCount": 2
+      }
+    },
+    {
+      "name": "store support paths visible",
+      "pass": true,
+      "evidence": {
+        "store": {
+          "pass": true,
+          "text": "View store",
+          "href": "/store",
+          "rect": {
+            "top": 1422,
+            "left": 37,
+            "width": 95,
+            "height": 20
+          },
+          "outlineStyle": "none",
+          "outlineWidth": "0px",
+          "matchCount": 2
+        },
+        "replaceTag": {
+          "pass": true,
+          "text": "Shop or replace a tag",
+          "href": "/store",
+          "rect": {
+            "top": 1127,
+            "left": 37,
+            "width": 168,
+            "height": 20
+          },
+          "outlineStyle": "none",
+          "outlineWidth": "0px",
+          "matchCount": 2
+        }
+      }
+    },
+    {
+      "name": "globe link navigates to /globe",
+      "pass": true,
+      "evidence": {
+        "globe": {
+          "pass": true,
+          "text": "Open Globe",
+          "href": "/globe",
+          "rect": {
+            "top": 378,
+            "left": 205,
+            "width": 146,
+            "height": 46
+          },
+          "outlineStyle": "none",
+          "outlineWidth": "0px",
+          "matchCount": 4
+        },
+        "globeRoute": "http://localhost:3000/globe"
+      }
+    },
+    {
+      "name": "store link navigates to /store",
+      "pass": true,
+      "evidence": {
+        "storeRoute": "http://localhost:3000/store"
+      }
+    },
+    {
+      "name": "keyboard focus reaches meaningful help actions",
+      "pass": true,
+      "evidence": [
+        {
+          "tag": "a",
+          "text": "Skip to PawPal content",
+          "href": "#main-content",
+          "visible": true,
+          "outlineStyle": "solid",
+          "outlineWidth": "3px"
+        },
+        {
+          "tag": "a",
+          "text": "PawPal",
+          "href": "/",
+          "visible": true,
+          "outlineStyle": "solid",
+          "outlineWidth": "3px"
+        },
+        {
+          "tag": "button",
+          "text": "",
+          "href": null,
+          "visible": true,
+          "outlineStyle": "solid",
+          "outlineWidth": "3px"
+        },
+        {
+          "tag": "a",
+          "text": "Contact support",
+          "href": "mailto:hello@pawpal.be",
+          "visible": true,
+          "outlineStyle": "solid",
+          "outlineWidth": "3px"
+        },
+        {
+          "tag": "a",
+          "text": "Open Globe",
+          "href": "/globe",
+          "visible": true,
+          "outlineStyle": "solid",
+          "outlineWidth": "3px"
+        },
+        {
+          "tag": "a",
+          "text": "Shop or replace a tag",
+          "href": "/store",
+          "visible": true,
+          "outlineStyle": "solid",
+          "outlineWidth": "3px"
+        },
+        {
+          "tag": "a",
+          "text": "View store",
+          "href": "/store",
+          "visible": true,
+          "outlineStyle": "solid",
+          "outlineWidth": "3px"
+        },
+        {
+          "tag": "a",
+          "text": "Email support",
+          "href": "mailto:hello@pawpal.be",
+          "visible": true,
+          "outlineStyle": "solid",
+          "outlineWidth": "3px"
+        },
+        {
+          "tag": "a",
+          "text": "Open Globe",
+          "href": "/globe",
+          "visible": true,
+          "outlineStyle": "solid",
+          "outlineWidth": "3px"
+        },
+        {
+          "tag": "a",
+          "text": "hello@pawpal.be",
+          "href": "mailto:hello@pawpal.be",
+          "visible": true,
+          "outlineStyle": "solid",
+          "outlineWidth": "3px"
+        },
+        {
+          "tag": "a",
+          "text": "Globe Map",
+          "href": "/globe",
+          "visible": true,
+          "outlineStyle": "solid",
+          "outlineWidth": "3px"
+        },
+        {
+          "tag": "a",
+          "text": "NFC Safety Tag",
+          "href": "/store",
+          "visible": true,
+          "outlineStyle": "solid",
+          "outlineWidth": "3px"
+        },
+        {
+          "tag": "a",
+          "text": "AI Assistant",
+          "href": "/globe",
+          "visible": true,
+          "outlineStyle": "solid",
+          "outlineWidth": "3px"
+        },
+        {
+          "tag": "a",
+          "text": "Community",
+          "href": "/globe",
+          "visible": true,
+          "outlineStyle": "solid",
+          "outlineWidth": "3px"
+        }
+      ]
+    }
+  ],
+  "focusSteps": [
+    {
+      "tag": "a",
+      "text": "Skip to PawPal content",
+      "href": "#main-content",
+      "visible": true,
+      "outlineStyle": "solid",
+      "outlineWidth": "3px"
+    },
+    {
+      "tag": "a",
+      "text": "PawPal",
+      "href": "/",
+      "visible": true,
+      "outlineStyle": "solid",
+      "outlineWidth": "3px"
+    },
+    {
+      "tag": "button",
+      "text": "",
+      "href": null,
+      "visible": true,
+      "outlineStyle": "solid",
+      "outlineWidth": "3px"
+    },
+    {
+      "tag": "a",
+      "text": "Contact support",
+      "href": "mailto:hello@pawpal.be",
+      "visible": true,
+      "outlineStyle": "solid",
+      "outlineWidth": "3px"
+    },
+    {
+      "tag": "a",
+      "text": "Open Globe",
+      "href": "/globe",
+      "visible": true,
+      "outlineStyle": "solid",
+      "outlineWidth": "3px"
+    },
+    {
+      "tag": "a",
+      "text": "Shop or replace a tag",
+      "href": "/store",
+      "visible": true,
+      "outlineStyle": "solid",
+      "outlineWidth": "3px"
+    },
+    {
+      "tag": "a",
+      "text": "View store",
+      "href": "/store",
+      "visible": true,
+      "outlineStyle": "solid",
+      "outlineWidth": "3px"
+    },
+    {
+      "tag": "a",
+      "text": "Email support",
+      "href": "mailto:hello@pawpal.be",
+      "visible": true,
+      "outlineStyle": "solid",
+      "outlineWidth": "3px"
+    },
+    {
+      "tag": "a",
+      "text": "Open Globe",
+      "href": "/globe",
+      "visible": true,
+      "outlineStyle": "solid",
+      "outlineWidth": "3px"
+    },
+    {
+      "tag": "a",
+      "text": "hello@pawpal.be",
+      "href": "mailto:hello@pawpal.be",
+      "visible": true,
+      "outlineStyle": "solid",
+      "outlineWidth": "3px"
+    },
+    {
+      "tag": "a",
+      "text": "Globe Map",
+      "href": "/globe",
+      "visible": true,
+      "outlineStyle": "solid",
+      "outlineWidth": "3px"
+    },
+    {
+      "tag": "a",
+      "text": "NFC Safety Tag",
+      "href": "/store",
+      "visible": true,
+      "outlineStyle": "solid",
+      "outlineWidth": "3px"
+    },
+    {
+      "tag": "a",
+      "text": "AI Assistant",
+      "href": "/globe",
+      "visible": true,
+      "outlineStyle": "solid",
+      "outlineWidth": "3px"
+    },
+    {
+      "tag": "a",
+      "text": "Community",
+      "href": "/globe",
+      "visible": true,
+      "outlineStyle": "solid",
+      "outlineWidth": "3px"
+    }
+  ],
+  "relevantLogCount": 0,
+  "hydrationLogCount": 0,
+  "logs": [
+    {
+      "level": "info",
+      "message": "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold",
+      "location": {
+        "url": "http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js",
+        "line": 2297,
+        "column": 27,
+        "lineNumber": 2297,
+        "columnNumber": 27
+      },
+      "relevant": false,
+      "hydration": false
+    },
+    {
+      "level": "log",
+      "message": "[HMR] connected",
+      "location": {
+        "url": "http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js",
+        "line": 2297,
+        "column": 27,
+        "lineNumber": 2297,
+        "columnNumber": 27
+      },
+      "relevant": false,
+      "hydration": false
+    },
+    {
+      "level": "info",
+      "message": "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold",
+      "location": {
+        "url": "http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js",
+        "line": 2297,
+        "column": 27,
+        "lineNumber": 2297,
+        "columnNumber": 27
+      },
+      "relevant": false,
+      "hydration": false
+    },
+    {
+      "level": "log",
+      "message": "[HMR] connected",
+      "location": {
+        "url": "http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js",
+        "line": 2297,
+        "column": 27,
+        "lineNumber": 2297,
+        "columnNumber": 27
+      },
+      "relevant": false,
+      "hydration": false
+    },
+    {
+      "level": "info",
+      "message": "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold",
+      "location": {
+        "url": "http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js",
+        "line": 2297,
+        "column": 27,
+        "lineNumber": 2297,
+        "columnNumber": 27
+      },
+      "relevant": false,
+      "hydration": false
+    },
+    {
+      "level": "log",
+      "message": "[HMR] connected",
+      "location": {
+        "url": "http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js",
+        "line": 2297,
+        "column": 27,
+        "lineNumber": 2297,
+        "columnNumber": 27
+      },
+      "relevant": false,
+      "hydration": false
+    },
+    {
+      "level": "info",
+      "message": "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold",
+      "location": {
+        "url": "http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js",
+        "line": 2297,
+        "column": 27,
+        "lineNumber": 2297,
+        "columnNumber": 27
+      },
+      "relevant": false,
+      "hydration": false
+    },
+    {
+      "level": "log",
+      "message": "[HMR] connected",
+      "location": {
+        "url": "http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js",
+        "line": 2297,
+        "column": 27,
+        "lineNumber": 2297,
+        "columnNumber": 27
+      },
+      "relevant": false,
+      "hydration": false
+    }
+  ]
+}

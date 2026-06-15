@@ -1,0 +1,21 @@
+{
+  "baseUrl": "http://localhost:3001",
+  "matrixTotal": 10,
+  "matrixPassed": 10,
+  "interactionPassed": true,
+  "failures": [],
+  "interactionFailures": [],
+  "screenshots": [
+    "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-12A-homepage-focus-upgrade/evidence/screenshots/home-mobile-390x844-light-no-preference.png",
+    "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-12A-homepage-focus-upgrade/evidence/screenshots/home-tablet-768x1024-light-no-preference.png",
+    "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-12A-homepage-focus-upgrade/evidence/screenshots/home-desktop-1280x720-light-no-preference.png",
+    "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-12A-homepage-focus-upgrade/evidence/screenshots/home-wide-1440x900-light-no-preference.png",
+    "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-12A-homepage-focus-upgrade/evidence/screenshots/home-mobile-390x844-dark-no-preference.png",
+    "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-12A-homepage-focus-upgrade/evidence/screenshots/home-tablet-768x1024-dark-no-preference.png",
+    "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-12A-homepage-focus-upgrade/evidence/screenshots/home-desktop-1280x720-dark-no-preference.png",
+    "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-12A-homepage-focus-upgrade/evidence/screenshots/home-wide-1440x900-dark-no-preference.png",
+    "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-12A-homepage-focus-upgrade/evidence/screenshots/home-mobile-390x844-light-reduce.png",
+    "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-12A-homepage-focus-upgrade/evidence/screenshots/home-desktop-1280x720-light-reduce.png",
+    "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-12A-homepage-focus-upgrade/evidence/screenshots/home-interaction-focus-mobile-reduced.png"
+  ]
+}

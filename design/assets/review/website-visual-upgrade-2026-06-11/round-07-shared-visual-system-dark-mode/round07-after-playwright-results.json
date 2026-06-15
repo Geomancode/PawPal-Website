@@ -1,0 +1,1221 @@
+{
+  "phase": "round07-after-playwright-results.json",
+  "startedAt": "2026-06-11T16:26:07.813Z",
+  "completedAt": "2026-06-11T16:27:03.694Z",
+  "baseUrl": "http://localhost:3000",
+  "prefix": "after",
+  "routeCount": 6,
+  "totalCount": 24,
+  "passCount": 24,
+  "relevantLogCount": 0,
+  "hydrationLogCount": 0,
+  "overflowCount": 0,
+  "darkProofFailures": 0,
+  "entries": [
+    {
+      "route": "/",
+      "routeName": "home",
+      "viewport": "390x844",
+      "scheme": "light",
+      "requestedUrl": "http://localhost:3000/",
+      "responseStatus": 200,
+      "screenshot": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/assets/review/website-visual-upgrade-2026-06-11/round-07-shared-visual-system-dark-mode/after-light-home-390x844.png",
+      "pass": true,
+      "relevantLogCount": 0,
+      "hydrationLogCount": 0,
+      "logs": [
+        {
+          "level": "warning",
+          "message": "[.WebGL-0x13c00112e00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels",
+          "location": {
+            "url": "http://localhost:3000/",
+            "line": 0,
+            "column": 0,
+            "lineNumber": 0,
+            "columnNumber": 0
+          },
+          "relevant": false,
+          "hydration": false
+        },
+        {
+          "level": "warning",
+          "message": "[.WebGL-0x13c00c8be00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels",
+          "location": {
+            "url": "http://localhost:3000/",
+            "line": 0,
+            "column": 0,
+            "lineNumber": 0,
+            "columnNumber": 0
+          },
+          "relevant": false,
+          "hydration": false
+        }
+      ],
+      "path": "/",
+      "title": "Pet Safety Map, Smart Tags, and Local Pet Community",
+      "h1": [
+        "PawPal pet safetyfor every walk"
+      ],
+      "bodyTextLength": 2714,
+      "overlayMatches": [],
+      "overflowX": false,
+      "offenders": [
+        {
+          "tag": "div",
+          "className": "hero-globe-orbit-ring",
+          "text": "",
+          "right": 413,
+          "width": 435
+        }
+      ],
+      "prefersDark": false,
+      "prefersReducedMotion": true,
+      "htmlColorScheme": "light",
+      "bodyColorScheme": "light",
+      "bodyBg": "rgb(255, 255, 255)",
+      "pawPage": "#fff",
+      "activeElement": {
+        "tag": "body",
+        "type": null,
+        "text": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"Organization\",\"@id\":\"https:"
+      }
+    },
+    {
+      "route": "/store",
+      "routeName": "store",
+      "viewport": "390x844",
+      "scheme": "light",
+      "requestedUrl": "http://localhost:3000/store",
+      "responseStatus": 200,
+      "screenshot": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/assets/review/website-visual-upgrade-2026-06-11/round-07-shared-visual-system-dark-mode/after-light-store-390x844.png",
+      "pass": true,
+      "relevantLogCount": 0,
+      "hydrationLogCount": 0,
+      "logs": [],
+      "path": "/store",
+      "title": "Store | PawPal",
+      "h1": [
+        "Smart tags and walk gear for safer pet days"
+      ],
+      "bodyTextLength": 2491,
+      "overlayMatches": [],
+      "overflowX": false,
+      "offenders": [
+        {
+          "tag": "button",
+          "className": "inline-flex shrink-0 items-center gap-1.5 rounded-paw-md border px-3 py-2 text-xs font-bold transition cursor-pointer sm:gap-2 sm:px-4 sm:py",
+          "text": "Toys & Play",
+          "right": 396,
+          "width": 115
+        },
+        {
+          "tag": "button",
+          "className": "inline-flex shrink-0 items-center gap-1.5 rounded-paw-md border px-3 py-2 text-xs font-bold transition cursor-pointer sm:gap-2 sm:px-4 sm:py",
+          "text": "Accessories",
+          "right": 523,
+          "width": 119
+        },
+        {
+          "tag": "svg",
+          "className": "[object SVGAnimatedString]",
+          "text": "",
+          "right": 431,
+          "width": 14
+        },
+        {
+          "tag": "path",
+          "className": "[object SVGAnimatedString]",
+          "text": "",
+          "right": 429,
+          "width": 9
+        },
+        {
+          "tag": "path",
+          "className": "[object SVGAnimatedString]",
+          "text": "",
+          "right": 424,
+          "width": 6
+        },
+        {
+          "tag": "circle",
+          "className": "[object SVGAnimatedString]",
+          "text": "",
+          "right": 423,
+          "width": 1
+        },
+        {
+          "tag": "button",
+          "className": "inline-flex shrink-0 items-center gap-1.5 rounded-paw-md border px-3 py-2 text-xs font-bold transition cursor-pointer sm:gap-2 sm:px-4 sm:py",
+          "text": "Health & Care",
+          "right": 660,
+          "width": 129
+        },
+        {
+          "tag": "svg",
+          "className": "[object SVGAnimatedString]",
+          "text": "",
+          "right": 558,
+          "width": 14
+        }
+      ],
+      "prefersDark": false,
+      "prefersReducedMotion": true,
+      "htmlColorScheme": "light",
+      "bodyColorScheme": "light",
+      "bodyBg": "rgb(255, 255, 255)",
+      "pawPage": "#fff",
+      "activeElement": {
+        "tag": "body",
+        "type": null,
+        "text": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"Organization\",\"@id\":\"https:"
+      }
+    },
+    {
+      "route": "/auth",
+      "routeName": "auth",
+      "viewport": "390x844",
+      "scheme": "light",
+      "requestedUrl": "http://localhost:3000/auth",
+      "responseStatus": 200,
+      "screenshot": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/assets/review/website-visual-upgrade-2026-06-11/round-07-shared-visual-system-dark-mode/after-light-auth-390x844.png",
+      "pass": true,
+      "relevantLogCount": 0,
+      "hydrationLogCount": 0,
+      "logs": [],
+      "path": "/auth",
+      "title": "PawPal | Pet Safety Map, Smart Tags, and Local Pet Community",
+      "h1": [
+        "One login for walks, tags, rescue pages, and store orders.",
+        "Welcome Back"
+      ],
+      "bodyTextLength": 793,
+      "overlayMatches": [],
+      "overflowX": false,
+      "offenders": [],
+      "prefersDark": false,
+      "prefersReducedMotion": true,
+      "htmlColorScheme": "light",
+      "bodyColorScheme": "light",
+      "bodyBg": "rgb(255, 255, 255)",
+      "pawPage": "#fff",
+      "activeElement": {
+        "tag": "body",
+        "type": null,
+        "text": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"Organization\",\"@id\":\"https:"
+      }
+    },
+    {
+      "route": "/tag/sample-id",
+      "routeName": "tag-sample-id",
+      "viewport": "390x844",
+      "scheme": "light",
+      "requestedUrl": "http://localhost:3000/tag/sample-id",
+      "responseStatus": 200,
+      "screenshot": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/assets/review/website-visual-upgrade-2026-06-11/round-07-shared-visual-system-dark-mode/after-light-tag-sample-id-390x844.png",
+      "pass": true,
+      "relevantLogCount": 0,
+      "hydrationLogCount": 0,
+      "logs": [],
+      "path": "/tag/sample-id",
+      "title": "PawPal | Pet Safety Map, Smart Tags, and Local Pet Community",
+      "h1": [
+        "This PawPal route is not available."
+      ],
+      "bodyTextLength": 848,
+      "overlayMatches": [],
+      "overflowX": false,
+      "offenders": [],
+      "prefersDark": false,
+      "prefersReducedMotion": true,
+      "htmlColorScheme": "light",
+      "bodyColorScheme": "light",
+      "bodyBg": "rgb(255, 255, 255)",
+      "pawPage": "#fff",
+      "activeElement": {
+        "tag": "body",
+        "type": null,
+        "text": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"Organization\",\"@id\":\"https:"
+      }
+    },
+    {
+      "route": "/store/checkout",
+      "routeName": "checkout",
+      "viewport": "390x844",
+      "scheme": "light",
+      "requestedUrl": "http://localhost:3000/store/checkout",
+      "responseStatus": 200,
+      "screenshot": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/assets/review/website-visual-upgrade-2026-06-11/round-07-shared-visual-system-dark-mode/after-light-checkout-390x844.png",
+      "pass": true,
+      "relevantLogCount": 0,
+      "hydrationLogCount": 0,
+      "logs": [],
+      "path": "/store/checkout",
+      "title": "Store | PawPal",
+      "h1": [
+        "Secure checkout"
+      ],
+      "bodyTextLength": 939,
+      "overlayMatches": [],
+      "overflowX": false,
+      "offenders": [],
+      "prefersDark": false,
+      "prefersReducedMotion": true,
+      "htmlColorScheme": "light",
+      "bodyColorScheme": "light",
+      "bodyBg": "rgb(255, 255, 255)",
+      "pawPage": "#fff",
+      "activeElement": {
+        "tag": "body",
+        "type": null,
+        "text": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"Organization\",\"@id\":\"https:"
+      }
+    },
+    {
+      "route": "/globe",
+      "routeName": "globe",
+      "viewport": "390x844",
+      "scheme": "light",
+      "requestedUrl": "http://localhost:3000/globe",
+      "responseStatus": 200,
+      "screenshot": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/assets/review/website-visual-upgrade-2026-06-11/round-07-shared-visual-system-dark-mode/after-light-globe-390x844.png",
+      "pass": true,
+      "relevantLogCount": 0,
+      "hydrationLogCount": 0,
+      "logs": [],
+      "path": "/globe",
+      "title": "Live Pet Globe | PawPal",
+      "h1": [
+        "PawPal Globe"
+      ],
+      "bodyTextLength": 749,
+      "overlayMatches": [],
+      "overflowX": false,
+      "offenders": [
+        {
+          "tag": "div",
+          "className": "weather-marquee-track flex whitespace-nowrap items-center",
+          "text": "Ghent Drizzle13°C(feels 11°C) 15 km/h 86%100% rain UV 5🌧️ High chance of rain —",
+          "right": 4989,
+          "width": 5013
+        },
+        {
+          "tag": "div",
+          "className": "flex items-center space-x-8 shrink-0 px-6 font-medium tracking-wide text-sm",
+          "text": "Ghent Drizzle13°C(feels 11°C) 15 km/h 86%100% rain UV 5🌧️ High chance of rain —",
+          "right": 1229,
+          "width": 1253
+        },
+        {
+          "tag": "span",
+          "className": "flex items-center gap-1.5",
+          "text": "15 km/h",
+          "right": 438,
+          "width": 76
+        },
+        {
+          "tag": "span",
+          "className": "flex items-center gap-1.5",
+          "text": "86%",
+          "right": 524,
+          "width": 54
+        },
+        {
+          "tag": "svg",
+          "className": "[object SVGAnimatedString]",
+          "text": "",
+          "right": 486,
+          "width": 16
+        },
+        {
+          "tag": "path",
+          "className": "[object SVGAnimatedString]",
+          "text": "",
+          "right": 477,
+          "width": 5
+        },
+        {
+          "tag": "path",
+          "className": "[object SVGAnimatedString]",
+          "text": "",
+          "right": 484,
+          "width": 8
+        },
+        {
+          "tag": "span",
+          "className": "flex items-center gap-1.5",
+          "text": "100% rain",
+          "right": 648,
+          "width": 91
+        }
+      ],
+      "prefersDark": false,
+      "prefersReducedMotion": true,
+      "htmlColorScheme": "light",
+      "bodyColorScheme": "light",
+      "bodyBg": "rgb(255, 255, 255)",
+      "pawPage": "#fff",
+      "activeElement": {
+        "tag": "body",
+        "type": null,
+        "text": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"Organization\",\"@id\":\"https:"
+      }
+    },
+    {
+      "route": "/",
+      "routeName": "home",
+      "viewport": "1280x720",
+      "scheme": "light",
+      "requestedUrl": "http://localhost:3000/",
+      "responseStatus": 200,
+      "screenshot": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/assets/review/website-visual-upgrade-2026-06-11/round-07-shared-visual-system-dark-mode/after-light-home-1280x720.png",
+      "pass": true,
+      "relevantLogCount": 0,
+      "hydrationLogCount": 0,
+      "logs": [],
+      "path": "/",
+      "title": "Pet Safety Map, Smart Tags, and Local Pet Community",
+      "h1": [
+        "PawPal pet safetyfor every walk"
+      ],
+      "bodyTextLength": 2937,
+      "overlayMatches": [],
+      "overflowX": false,
+      "offenders": [],
+      "prefersDark": false,
+      "prefersReducedMotion": true,
+      "htmlColorScheme": "light",
+      "bodyColorScheme": "light",
+      "bodyBg": "rgb(255, 255, 255)",
+      "pawPage": "#fff",
+      "activeElement": {
+        "tag": "body",
+        "type": null,
+        "text": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"Organization\",\"@id\":\"https:"
+      }
+    },
+    {
+      "route": "/store",
+      "routeName": "store",
+      "viewport": "1280x720",
+      "scheme": "light",
+      "requestedUrl": "http://localhost:3000/store",
+      "responseStatus": 200,
+      "screenshot": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/assets/review/website-visual-upgrade-2026-06-11/round-07-shared-visual-system-dark-mode/after-light-store-1280x720.png",
+      "pass": true,
+      "relevantLogCount": 0,
+      "hydrationLogCount": 0,
+      "logs": [],
+      "path": "/store",
+      "title": "Store | PawPal",
+      "h1": [
+        "Smart tags and walk gear for safer pet days"
+      ],
+      "bodyTextLength": 1558,
+      "overlayMatches": [],
+      "overflowX": false,
+      "offenders": [],
+      "prefersDark": false,
+      "prefersReducedMotion": true,
+      "htmlColorScheme": "light",
+      "bodyColorScheme": "light",
+      "bodyBg": "rgb(255, 255, 255)",
+      "pawPage": "#fff",
+      "activeElement": {
+        "tag": "body",
+        "type": null,
+        "text": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"Organization\",\"@id\":\"https:"
+      }
+    },
+    {
+      "route": "/auth",
+      "routeName": "auth",
+      "viewport": "1280x720",
+      "scheme": "light",
+      "requestedUrl": "http://localhost:3000/auth",
+      "responseStatus": 200,
+      "screenshot": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/assets/review/website-visual-upgrade-2026-06-11/round-07-shared-visual-system-dark-mode/after-light-auth-1280x720.png",
+      "pass": true,
+      "relevantLogCount": 0,
+      "hydrationLogCount": 0,
+      "logs": [],
+      "path": "/auth",
+      "title": "PawPal | Pet Safety Map, Smart Tags, and Local Pet Community",
+      "h1": [
+        "One login for walks, tags, rescue pages, and store orders.",
+        "Welcome Back"
+      ],
+      "bodyTextLength": 1211,
+      "overlayMatches": [],
+      "overflowX": false,
+      "offenders": [],
+      "prefersDark": false,
+      "prefersReducedMotion": true,
+      "htmlColorScheme": "light",
+      "bodyColorScheme": "light",
+      "bodyBg": "rgb(255, 255, 255)",
+      "pawPage": "#fff",
+      "activeElement": {
+        "tag": "body",
+        "type": null,
+        "text": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"Organization\",\"@id\":\"https:"
+      }
+    },
+    {
+      "route": "/tag/sample-id",
+      "routeName": "tag-sample-id",
+      "viewport": "1280x720",
+      "scheme": "light",
+      "requestedUrl": "http://localhost:3000/tag/sample-id",
+      "responseStatus": 200,
+      "screenshot": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/assets/review/website-visual-upgrade-2026-06-11/round-07-shared-visual-system-dark-mode/after-light-tag-sample-id-1280x720.png",
+      "pass": true,
+      "relevantLogCount": 0,
+      "hydrationLogCount": 0,
+      "logs": [
+        {
+          "level": "pageerror",
+          "message": "Failed to execute 'measure' on 'Performance': '​TagPage' cannot have a negative time stamp.",
+          "location": {},
+          "relevant": false,
+          "hydration": false
+        }
+      ],
+      "path": "/tag/sample-id",
+      "title": "PawPal | Pet Safety Map, Smart Tags, and Local Pet Community",
+      "h1": [
+        "This PawPal route is not available."
+      ],
+      "bodyTextLength": 880,
+      "overlayMatches": [],
+      "overflowX": false,
+      "offenders": [],
+      "prefersDark": false,
+      "prefersReducedMotion": true,
+      "htmlColorScheme": "light",
+      "bodyColorScheme": "light",
+      "bodyBg": "rgb(255, 255, 255)",
+      "pawPage": "#fff",
+      "activeElement": {
+        "tag": "body",
+        "type": null,
+        "text": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"Organization\",\"@id\":\"https:"
+      }
+    },
+    {
+      "route": "/store/checkout",
+      "routeName": "checkout",
+      "viewport": "1280x720",
+      "scheme": "light",
+      "requestedUrl": "http://localhost:3000/store/checkout",
+      "responseStatus": 200,
+      "screenshot": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/assets/review/website-visual-upgrade-2026-06-11/round-07-shared-visual-system-dark-mode/after-light-checkout-1280x720.png",
+      "pass": true,
+      "relevantLogCount": 0,
+      "hydrationLogCount": 0,
+      "logs": [],
+      "path": "/store/checkout",
+      "title": "Store | PawPal",
+      "h1": [
+        "Secure checkout"
+      ],
+      "bodyTextLength": 995,
+      "overlayMatches": [],
+      "overflowX": false,
+      "offenders": [],
+      "prefersDark": false,
+      "prefersReducedMotion": true,
+      "htmlColorScheme": "light",
+      "bodyColorScheme": "light",
+      "bodyBg": "rgb(255, 255, 255)",
+      "pawPage": "#fff",
+      "activeElement": {
+        "tag": "body",
+        "type": null,
+        "text": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"Organization\",\"@id\":\"https:"
+      }
+    },
+    {
+      "route": "/globe",
+      "routeName": "globe",
+      "viewport": "1280x720",
+      "scheme": "light",
+      "requestedUrl": "http://localhost:3000/globe",
+      "responseStatus": 200,
+      "screenshot": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/assets/review/website-visual-upgrade-2026-06-11/round-07-shared-visual-system-dark-mode/after-light-globe-1280x720.png",
+      "pass": true,
+      "relevantLogCount": 0,
+      "hydrationLogCount": 0,
+      "logs": [],
+      "path": "/globe",
+      "title": "Live Pet Globe | PawPal",
+      "h1": [
+        "PawPal Globe"
+      ],
+      "bodyTextLength": 823,
+      "overlayMatches": [],
+      "overflowX": false,
+      "offenders": [
+        {
+          "tag": "div",
+          "className": "weather-marquee-track flex whitespace-nowrap items-center",
+          "text": "Ghent Drizzle13°C(feels 11°C) 15 km/h 86%100% rain UV 5🌧️ High chance of rain —",
+          "right": 5230,
+          "width": 5013
+        },
+        {
+          "tag": "div",
+          "className": "flex items-center space-x-8 shrink-0 px-6 font-medium tracking-wide text-sm",
+          "text": "Ghent Drizzle13°C(feels 11°C) 15 km/h 86%100% rain UV 5🌧️ High chance of rain —",
+          "right": 1470,
+          "width": 1253
+        },
+        {
+          "tag": "span",
+          "className": "flex items-center gap-1.5 text-paw-primary/90",
+          "text": "🌧️ High chance of rain — bring a raincoat for your pup",
+          "right": 1405,
+          "width": 397
+        },
+        {
+          "tag": "span",
+          "className": "text-white/20 text-lg",
+          "text": "•",
+          "right": 1446,
+          "width": 8
+        },
+        {
+          "tag": "div",
+          "className": "flex items-center space-x-8 shrink-0 px-6 font-medium tracking-wide text-sm",
+          "text": "Ghent Drizzle13°C(feels 11°C) 15 km/h 86%100% rain UV 5🌧️ High chance of rain —",
+          "right": 2723,
+          "width": 1253
+        },
+        {
+          "tag": "span",
+          "className": "flex items-center gap-1.5 text-paw-primary",
+          "text": "Ghent",
+          "right": 1557,
+          "width": 64
+        },
+        {
+          "tag": "svg",
+          "className": "[object SVGAnimatedString]",
+          "text": "",
+          "right": 1510,
+          "width": 16
+        },
+        {
+          "tag": "path",
+          "className": "[object SVGAnimatedString]",
+          "text": "",
+          "right": 1507,
+          "width": 11
+        }
+      ],
+      "prefersDark": false,
+      "prefersReducedMotion": true,
+      "htmlColorScheme": "light",
+      "bodyColorScheme": "light",
+      "bodyBg": "rgb(255, 255, 255)",
+      "pawPage": "#fff",
+      "activeElement": {
+        "tag": "body",
+        "type": null,
+        "text": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"Organization\",\"@id\":\"https:"
+      }
+    },
+    {
+      "route": "/",
+      "routeName": "home",
+      "viewport": "390x844",
+      "scheme": "dark",
+      "requestedUrl": "http://localhost:3000/",
+      "responseStatus": 200,
+      "screenshot": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/assets/review/website-visual-upgrade-2026-06-11/round-07-shared-visual-system-dark-mode/after-dark-home-390x844.png",
+      "pass": true,
+      "relevantLogCount": 0,
+      "hydrationLogCount": 0,
+      "logs": [],
+      "path": "/",
+      "title": "Pet Safety Map, Smart Tags, and Local Pet Community",
+      "h1": [
+        "PawPal pet safetyfor every walk"
+      ],
+      "bodyTextLength": 2779,
+      "overlayMatches": [],
+      "overflowX": false,
+      "offenders": [
+        {
+          "tag": "div",
+          "className": "hero-globe-orbit-ring",
+          "text": "",
+          "right": 413,
+          "width": 435
+        }
+      ],
+      "prefersDark": true,
+      "prefersReducedMotion": true,
+      "htmlColorScheme": "dark",
+      "bodyColorScheme": "dark",
+      "bodyBg": "rgb(21, 29, 34)",
+      "pawPage": "#151d22",
+      "activeElement": {
+        "tag": "body",
+        "type": null,
+        "text": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"Organization\",\"@id\":\"https:"
+      }
+    },
+    {
+      "route": "/store",
+      "routeName": "store",
+      "viewport": "390x844",
+      "scheme": "dark",
+      "requestedUrl": "http://localhost:3000/store",
+      "responseStatus": 200,
+      "screenshot": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/assets/review/website-visual-upgrade-2026-06-11/round-07-shared-visual-system-dark-mode/after-dark-store-390x844.png",
+      "pass": true,
+      "relevantLogCount": 0,
+      "hydrationLogCount": 0,
+      "logs": [],
+      "path": "/store",
+      "title": "Store | PawPal",
+      "h1": [
+        "Smart tags and walk gear for safer pet days"
+      ],
+      "bodyTextLength": 1334,
+      "overlayMatches": [],
+      "overflowX": false,
+      "offenders": [
+        {
+          "tag": "button",
+          "className": "inline-flex shrink-0 items-center gap-1.5 rounded-paw-md border px-3 py-2 text-xs font-bold transition cursor-pointer sm:gap-2 sm:px-4 sm:py",
+          "text": "Toys & Play",
+          "right": 396,
+          "width": 115
+        },
+        {
+          "tag": "button",
+          "className": "inline-flex shrink-0 items-center gap-1.5 rounded-paw-md border px-3 py-2 text-xs font-bold transition cursor-pointer sm:gap-2 sm:px-4 sm:py",
+          "text": "Accessories",
+          "right": 523,
+          "width": 119
+        },
+        {
+          "tag": "svg",
+          "className": "[object SVGAnimatedString]",
+          "text": "",
+          "right": 431,
+          "width": 14
+        },
+        {
+          "tag": "path",
+          "className": "[object SVGAnimatedString]",
+          "text": "",
+          "right": 429,
+          "width": 9
+        },
+        {
+          "tag": "path",
+          "className": "[object SVGAnimatedString]",
+          "text": "",
+          "right": 424,
+          "width": 6
+        },
+        {
+          "tag": "circle",
+          "className": "[object SVGAnimatedString]",
+          "text": "",
+          "right": 423,
+          "width": 1
+        },
+        {
+          "tag": "button",
+          "className": "inline-flex shrink-0 items-center gap-1.5 rounded-paw-md border px-3 py-2 text-xs font-bold transition cursor-pointer sm:gap-2 sm:px-4 sm:py",
+          "text": "Health & Care",
+          "right": 660,
+          "width": 129
+        },
+        {
+          "tag": "svg",
+          "className": "[object SVGAnimatedString]",
+          "text": "",
+          "right": 558,
+          "width": 14
+        }
+      ],
+      "prefersDark": true,
+      "prefersReducedMotion": true,
+      "htmlColorScheme": "dark",
+      "bodyColorScheme": "dark",
+      "bodyBg": "rgb(21, 29, 34)",
+      "pawPage": "#151d22",
+      "activeElement": {
+        "tag": "body",
+        "type": null,
+        "text": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"Organization\",\"@id\":\"https:"
+      }
+    },
+    {
+      "route": "/auth",
+      "routeName": "auth",
+      "viewport": "390x844",
+      "scheme": "dark",
+      "requestedUrl": "http://localhost:3000/auth",
+      "responseStatus": 200,
+      "screenshot": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/assets/review/website-visual-upgrade-2026-06-11/round-07-shared-visual-system-dark-mode/after-dark-auth-390x844.png",
+      "pass": true,
+      "relevantLogCount": 0,
+      "hydrationLogCount": 0,
+      "logs": [],
+      "path": "/auth",
+      "title": "PawPal | Pet Safety Map, Smart Tags, and Local Pet Community",
+      "h1": [
+        "One login for walks, tags, rescue pages, and store orders.",
+        "Welcome Back"
+      ],
+      "bodyTextLength": 793,
+      "overlayMatches": [],
+      "overflowX": false,
+      "offenders": [],
+      "prefersDark": true,
+      "prefersReducedMotion": true,
+      "htmlColorScheme": "dark",
+      "bodyColorScheme": "dark",
+      "bodyBg": "rgb(21, 29, 34)",
+      "pawPage": "#151d22",
+      "activeElement": {
+        "tag": "body",
+        "type": null,
+        "text": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"Organization\",\"@id\":\"https:"
+      }
+    },
+    {
+      "route": "/tag/sample-id",
+      "routeName": "tag-sample-id",
+      "viewport": "390x844",
+      "scheme": "dark",
+      "requestedUrl": "http://localhost:3000/tag/sample-id",
+      "responseStatus": 200,
+      "screenshot": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/assets/review/website-visual-upgrade-2026-06-11/round-07-shared-visual-system-dark-mode/after-dark-tag-sample-id-390x844.png",
+      "pass": true,
+      "relevantLogCount": 0,
+      "hydrationLogCount": 0,
+      "logs": [
+        {
+          "level": "pageerror",
+          "message": "Failed to execute 'measure' on 'Performance': '​TagPage' cannot have a negative time stamp.",
+          "location": {},
+          "relevant": false,
+          "hydration": false
+        }
+      ],
+      "path": "/tag/sample-id",
+      "title": "PawPal | Pet Safety Map, Smart Tags, and Local Pet Community",
+      "h1": [
+        "This PawPal route is not available."
+      ],
+      "bodyTextLength": 848,
+      "overlayMatches": [],
+      "overflowX": false,
+      "offenders": [],
+      "prefersDark": true,
+      "prefersReducedMotion": true,
+      "htmlColorScheme": "dark",
+      "bodyColorScheme": "dark",
+      "bodyBg": "rgb(21, 29, 34)",
+      "pawPage": "#151d22",
+      "activeElement": {
+        "tag": "body",
+        "type": null,
+        "text": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"Organization\",\"@id\":\"https:"
+      }
+    },
+    {
+      "route": "/store/checkout",
+      "routeName": "checkout",
+      "viewport": "390x844",
+      "scheme": "dark",
+      "requestedUrl": "http://localhost:3000/store/checkout",
+      "responseStatus": 200,
+      "screenshot": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/assets/review/website-visual-upgrade-2026-06-11/round-07-shared-visual-system-dark-mode/after-dark-checkout-390x844.png",
+      "pass": true,
+      "relevantLogCount": 0,
+      "hydrationLogCount": 0,
+      "logs": [],
+      "path": "/store/checkout",
+      "title": "Store | PawPal",
+      "h1": [
+        "Secure checkout"
+      ],
+      "bodyTextLength": 939,
+      "overlayMatches": [],
+      "overflowX": false,
+      "offenders": [],
+      "prefersDark": true,
+      "prefersReducedMotion": true,
+      "htmlColorScheme": "dark",
+      "bodyColorScheme": "dark",
+      "bodyBg": "rgb(21, 29, 34)",
+      "pawPage": "#151d22",
+      "activeElement": {
+        "tag": "body",
+        "type": null,
+        "text": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"Organization\",\"@id\":\"https:"
+      }
+    },
+    {
+      "route": "/globe",
+      "routeName": "globe",
+      "viewport": "390x844",
+      "scheme": "dark",
+      "requestedUrl": "http://localhost:3000/globe",
+      "responseStatus": 200,
+      "screenshot": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/assets/review/website-visual-upgrade-2026-06-11/round-07-shared-visual-system-dark-mode/after-dark-globe-390x844.png",
+      "pass": true,
+      "relevantLogCount": 0,
+      "hydrationLogCount": 0,
+      "logs": [],
+      "path": "/globe",
+      "title": "Live Pet Globe | PawPal",
+      "h1": [
+        "PawPal Globe"
+      ],
+      "bodyTextLength": 749,
+      "overlayMatches": [],
+      "overflowX": false,
+      "offenders": [
+        {
+          "tag": "div",
+          "className": "weather-marquee-track flex whitespace-nowrap items-center",
+          "text": "Ghent Drizzle13°C(feels 11°C) 15 km/h 86%100% rain UV 5🌧️ High chance of rain —",
+          "right": 4996,
+          "width": 5013
+        },
+        {
+          "tag": "div",
+          "className": "flex items-center space-x-8 shrink-0 px-6 font-medium tracking-wide text-sm",
+          "text": "Ghent Drizzle13°C(feels 11°C) 15 km/h 86%100% rain UV 5🌧️ High chance of rain —",
+          "right": 1237,
+          "width": 1253
+        },
+        {
+          "tag": "span",
+          "className": "flex items-center gap-1.5",
+          "text": "15 km/h",
+          "right": 445,
+          "width": 76
+        },
+        {
+          "tag": "span",
+          "className": "flex items-center gap-1.5",
+          "text": "86%",
+          "right": 532,
+          "width": 54
+        },
+        {
+          "tag": "svg",
+          "className": "[object SVGAnimatedString]",
+          "text": "",
+          "right": 493,
+          "width": 16
+        },
+        {
+          "tag": "path",
+          "className": "[object SVGAnimatedString]",
+          "text": "",
+          "right": 485,
+          "width": 5
+        },
+        {
+          "tag": "path",
+          "className": "[object SVGAnimatedString]",
+          "text": "",
+          "right": 491,
+          "width": 8
+        },
+        {
+          "tag": "span",
+          "className": "flex items-center gap-1.5",
+          "text": "100% rain",
+          "right": 655,
+          "width": 91
+        }
+      ],
+      "prefersDark": true,
+      "prefersReducedMotion": true,
+      "htmlColorScheme": "dark",
+      "bodyColorScheme": "dark",
+      "bodyBg": "rgb(21, 29, 34)",
+      "pawPage": "#151d22",
+      "activeElement": {
+        "tag": "body",
+        "type": null,
+        "text": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"Organization\",\"@id\":\"https:"
+      }
+    },
+    {
+      "route": "/",
+      "routeName": "home",
+      "viewport": "1280x720",
+      "scheme": "dark",
+      "requestedUrl": "http://localhost:3000/",
+      "responseStatus": 200,
+      "screenshot": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/assets/review/website-visual-upgrade-2026-06-11/round-07-shared-visual-system-dark-mode/after-dark-home-1280x720.png",
+      "pass": true,
+      "relevantLogCount": 0,
+      "hydrationLogCount": 0,
+      "logs": [],
+      "path": "/",
+      "title": "Pet Safety Map, Smart Tags, and Local Pet Community",
+      "h1": [
+        "PawPal pet safetyfor every walk"
+      ],
+      "bodyTextLength": 2937,
+      "overlayMatches": [],
+      "overflowX": false,
+      "offenders": [],
+      "prefersDark": true,
+      "prefersReducedMotion": true,
+      "htmlColorScheme": "dark",
+      "bodyColorScheme": "dark",
+      "bodyBg": "rgb(21, 29, 34)",
+      "pawPage": "#151d22",
+      "activeElement": {
+        "tag": "body",
+        "type": null,
+        "text": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"Organization\",\"@id\":\"https:"
+      }
+    },
+    {
+      "route": "/store",
+      "routeName": "store",
+      "viewport": "1280x720",
+      "scheme": "dark",
+      "requestedUrl": "http://localhost:3000/store",
+      "responseStatus": 200,
+      "screenshot": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/assets/review/website-visual-upgrade-2026-06-11/round-07-shared-visual-system-dark-mode/after-dark-store-1280x720.png",
+      "pass": true,
+      "relevantLogCount": 0,
+      "hydrationLogCount": 0,
+      "logs": [],
+      "path": "/store",
+      "title": "Store | PawPal",
+      "h1": [
+        "Smart tags and walk gear for safer pet days"
+      ],
+      "bodyTextLength": 2715,
+      "overlayMatches": [],
+      "overflowX": false,
+      "offenders": [],
+      "prefersDark": true,
+      "prefersReducedMotion": true,
+      "htmlColorScheme": "dark",
+      "bodyColorScheme": "dark",
+      "bodyBg": "rgb(21, 29, 34)",
+      "pawPage": "#151d22",
+      "activeElement": {
+        "tag": "body",
+        "type": null,
+        "text": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"Organization\",\"@id\":\"https:"
+      }
+    },
+    {
+      "route": "/auth",
+      "routeName": "auth",
+      "viewport": "1280x720",
+      "scheme": "dark",
+      "requestedUrl": "http://localhost:3000/auth",
+      "responseStatus": 200,
+      "screenshot": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/assets/review/website-visual-upgrade-2026-06-11/round-07-shared-visual-system-dark-mode/after-dark-auth-1280x720.png",
+      "pass": true,
+      "relevantLogCount": 0,
+      "hydrationLogCount": 0,
+      "logs": [],
+      "path": "/auth",
+      "title": "PawPal | Pet Safety Map, Smart Tags, and Local Pet Community",
+      "h1": [
+        "One login for walks, tags, rescue pages, and store orders.",
+        "Welcome Back"
+      ],
+      "bodyTextLength": 1211,
+      "overlayMatches": [],
+      "overflowX": false,
+      "offenders": [],
+      "prefersDark": true,
+      "prefersReducedMotion": true,
+      "htmlColorScheme": "dark",
+      "bodyColorScheme": "dark",
+      "bodyBg": "rgb(21, 29, 34)",
+      "pawPage": "#151d22",
+      "activeElement": {
+        "tag": "body",
+        "type": null,
+        "text": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"Organization\",\"@id\":\"https:"
+      }
+    },
+    {
+      "route": "/tag/sample-id",
+      "routeName": "tag-sample-id",
+      "viewport": "1280x720",
+      "scheme": "dark",
+      "requestedUrl": "http://localhost:3000/tag/sample-id",
+      "responseStatus": 200,
+      "screenshot": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/assets/review/website-visual-upgrade-2026-06-11/round-07-shared-visual-system-dark-mode/after-dark-tag-sample-id-1280x720.png",
+      "pass": true,
+      "relevantLogCount": 0,
+      "hydrationLogCount": 0,
+      "logs": [
+        {
+          "level": "pageerror",
+          "message": "Failed to execute 'measure' on 'Performance': '​TagPage' cannot have a negative time stamp.",
+          "location": {},
+          "relevant": false,
+          "hydration": false
+        }
+      ],
+      "path": "/tag/sample-id",
+      "title": "PawPal | Pet Safety Map, Smart Tags, and Local Pet Community",
+      "h1": [
+        "This PawPal route is not available."
+      ],
+      "bodyTextLength": 880,
+      "overlayMatches": [],
+      "overflowX": false,
+      "offenders": [],
+      "prefersDark": true,
+      "prefersReducedMotion": true,
+      "htmlColorScheme": "dark",
+      "bodyColorScheme": "dark",
+      "bodyBg": "rgb(21, 29, 34)",
+      "pawPage": "#151d22",
+      "activeElement": {
+        "tag": "body",
+        "type": null,
+        "text": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"Organization\",\"@id\":\"https:"
+      }
+    },
+    {
+      "route": "/store/checkout",
+      "routeName": "checkout",
+      "viewport": "1280x720",
+      "scheme": "dark",
+      "requestedUrl": "http://localhost:3000/store/checkout",
+      "responseStatus": 200,
+      "screenshot": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/assets/review/website-visual-upgrade-2026-06-11/round-07-shared-visual-system-dark-mode/after-dark-checkout-1280x720.png",
+      "pass": true,
+      "relevantLogCount": 0,
+      "hydrationLogCount": 0,
+      "logs": [],
+      "path": "/store/checkout",
+      "title": "Store | PawPal",
+      "h1": [
+        "Secure checkout"
+      ],
+      "bodyTextLength": 995,
+      "overlayMatches": [],
+      "overflowX": false,
+      "offenders": [],
+      "prefersDark": true,
+      "prefersReducedMotion": true,
+      "htmlColorScheme": "dark",
+      "bodyColorScheme": "dark",
+      "bodyBg": "rgb(21, 29, 34)",
+      "pawPage": "#151d22",
+      "activeElement": {
+        "tag": "body",
+        "type": null,
+        "text": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"Organization\",\"@id\":\"https:"
+      }
+    },
+    {
+      "route": "/globe",
+      "routeName": "globe",
+      "viewport": "1280x720",
+      "scheme": "dark",
+      "requestedUrl": "http://localhost:3000/globe",
+      "responseStatus": 200,
+      "screenshot": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/assets/review/website-visual-upgrade-2026-06-11/round-07-shared-visual-system-dark-mode/after-dark-globe-1280x720.png",
+      "pass": true,
+      "relevantLogCount": 0,
+      "hydrationLogCount": 0,
+      "logs": [],
+      "path": "/globe",
+      "title": "Live Pet Globe | PawPal",
+      "h1": [
+        "PawPal Globe"
+      ],
+      "bodyTextLength": 823,
+      "overlayMatches": [],
+      "overflowX": false,
+      "offenders": [
+        {
+          "tag": "div",
+          "className": "weather-marquee-track flex whitespace-nowrap items-center",
+          "text": "Ghent Drizzle13°C(feels 11°C) 15 km/h 86%100% rain UV 5🌧️ High chance of rain —",
+          "right": 5260,
+          "width": 5013
+        },
+        {
+          "tag": "div",
+          "className": "flex items-center space-x-8 shrink-0 px-6 font-medium tracking-wide text-sm",
+          "text": "Ghent Drizzle13°C(feels 11°C) 15 km/h 86%100% rain UV 5🌧️ High chance of rain —",
+          "right": 1500,
+          "width": 1253
+        },
+        {
+          "tag": "span",
+          "className": "flex items-center gap-1.5 text-paw-primary/90",
+          "text": "🌧️ High chance of rain — bring a raincoat for your pup",
+          "right": 1436,
+          "width": 397
+        },
+        {
+          "tag": "span",
+          "className": "text-white/20 text-lg",
+          "text": "•",
+          "right": 1476,
+          "width": 8
+        },
+        {
+          "tag": "div",
+          "className": "flex items-center space-x-8 shrink-0 px-6 font-medium tracking-wide text-sm",
+          "text": "Ghent Drizzle13°C(feels 11°C) 15 km/h 86%100% rain UV 5🌧️ High chance of rain —",
+          "right": 2753,
+          "width": 1253
+        },
+        {
+          "tag": "span",
+          "className": "flex items-center gap-1.5 text-paw-primary",
+          "text": "Ghent",
+          "right": 1588,
+          "width": 64
+        },
+        {
+          "tag": "svg",
+          "className": "[object SVGAnimatedString]",
+          "text": "",
+          "right": 1540,
+          "width": 16
+        },
+        {
+          "tag": "path",
+          "className": "[object SVGAnimatedString]",
+          "text": "",
+          "right": 1537,
+          "width": 11
+        }
+      ],
+      "prefersDark": true,
+      "prefersReducedMotion": true,
+      "htmlColorScheme": "dark",
+      "bodyColorScheme": "dark",
+      "bodyBg": "rgb(21, 29, 34)",
+      "pawPage": "#151d22",
+      "activeElement": {
+        "tag": "body",
+        "type": null,
+        "text": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"Organization\",\"@id\":\"https:"
+      }
+    }
+  ]
+}

@@ -1,0 +1,246 @@
+{
+  "startedAt": "2026-06-11T12:13:45.520Z",
+  "flows": [
+    {
+      "activeElement": {
+        "ariaLabel": null,
+        "placeholder": null,
+        "tag": "body",
+        "text": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"Organization\",\"@id\":\"https:"
+      },
+      "cartText": "Cart",
+      "checkoutLinkVisible": false,
+      "dialogText": null,
+      "inputValue": "",
+      "label": "search initial",
+      "overflow": false,
+      "overlayText": "",
+      "path": "/store",
+      "proceedButtonVisible": false,
+      "productCount": "4 products",
+      "title": "Store | PawPal",
+      "url": "http://localhost:3000/store?round02_final_flow=search"
+    },
+    {
+      "activeElement": {
+        "ariaLabel": null,
+        "placeholder": "Search products...",
+        "tag": "input",
+        "text": ""
+      },
+      "cartText": "Cart",
+      "checkoutLinkVisible": false,
+      "dialogText": null,
+      "inputValue": "tag",
+      "label": "search tag filters to 1 product",
+      "overflow": false,
+      "overlayText": "",
+      "path": "/store",
+      "proceedButtonVisible": false,
+      "productCount": "1 product",
+      "title": "Store | PawPal",
+      "url": "http://localhost:3000/store?round02_final_flow=search"
+    },
+    {
+      "activeElement": {
+        "ariaLabel": null,
+        "placeholder": null,
+        "tag": "button",
+        "text": "Food & Treats"
+      },
+      "cartText": "Cart",
+      "checkoutLinkVisible": false,
+      "dialogText": null,
+      "inputValue": "",
+      "label": "category Food & Treats applied",
+      "overflow": false,
+      "overlayText": "",
+      "path": "/store",
+      "proceedButtonVisible": false,
+      "productCount": "0 products",
+      "title": "Store | PawPal",
+      "url": "http://localhost:3000/store?round02_final_flow=category"
+    },
+    {
+      "activeElement": {
+        "ariaLabel": null,
+        "placeholder": null,
+        "tag": "button",
+        "text": "All Products"
+      },
+      "cartText": "Cart",
+      "checkoutLinkVisible": false,
+      "dialogText": null,
+      "inputValue": "",
+      "label": "category reset all products",
+      "overflow": false,
+      "overlayText": "",
+      "path": "/store",
+      "proceedButtonVisible": false,
+      "productCount": "4 products",
+      "title": "Store | PawPal",
+      "url": "http://localhost:3000/store?round02_final_flow=category"
+    },
+    {
+      "activeElement": {
+        "ariaLabel": null,
+        "placeholder": null,
+        "tag": "button",
+        "text": "Details"
+      },
+      "cartText": "Cart",
+      "checkoutLinkVisible": false,
+      "dialogText": "PawPal Smart ID TagNFC-ready safety tag that links rescuers to your pet profile and emergency contact flow.Product details€12.99New",
+      "inputValue": "",
+      "label": "details drawer opened",
+      "overflow": false,
+      "overlayText": "",
+      "path": "/store",
+      "proceedButtonVisible": false,
+      "productCount": "4 products",
+      "title": "Store | PawPal",
+      "url": "http://localhost:3000/store?round02_final_flow=details"
+    },
+    {
+      "activeElement": {
+        "ariaLabel": null,
+        "placeholder": null,
+        "tag": "body",
+        "text": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"Organization\",\"@id\":\"https:"
+      },
+      "cartText": "Cart",
+      "checkoutLinkVisible": false,
+      "dialogText": null,
+      "inputValue": "",
+      "label": "details drawer closed",
+      "overflow": false,
+      "overlayText": "",
+      "path": "/store",
+      "proceedButtonVisible": false,
+      "productCount": "4 products",
+      "title": "Store | PawPal",
+      "url": "http://localhost:3000/store?round02_final_flow=details"
+    },
+    {
+      "activeElement": {
+        "ariaLabel": null,
+        "placeholder": null,
+        "tag": "button",
+        "text": "Add"
+      },
+      "cartText": "Cart (1)",
+      "checkoutLinkVisible": true,
+      "dialogText": null,
+      "inputValue": "",
+      "label": "first product added",
+      "overflow": false,
+      "overlayText": "",
+      "path": "/store",
+      "proceedButtonVisible": false,
+      "productCount": "4 products",
+      "title": "Store | PawPal",
+      "url": "http://localhost:3000/store?round02_final_flow=addcart"
+    },
+    {
+      "activeElement": {
+        "ariaLabel": null,
+        "placeholder": null,
+        "tag": "button",
+        "text": "Cart (1)"
+      },
+      "cartText": "Cart (1)",
+      "checkoutLinkVisible": true,
+      "dialogText": "Your Cart (1)PawPal Smart ID Tag€12.991€12.99Subtotal€12.99Shipping€5.99Add €37.01 more for free shipping.Total€18.98Proceed to Checkout",
+      "inputValue": "",
+      "label": "cart drawer opened with item",
+      "overflow": false,
+      "overlayText": "",
+      "path": "/store",
+      "proceedButtonVisible": true,
+      "productCount": "4 products",
+      "title": "Store | PawPal",
+      "url": "http://localhost:3000/store?round02_final_flow=addcart"
+    }
+  ],
+  "screenshots": {
+    "detailsDrawer": "/private/tmp/geopet-round02-store/interactions-final/store-details-drawer.png",
+    "afterAdd": "/private/tmp/geopet-round02-store/interactions-final/store-after-add.png",
+    "cartDrawer": "/private/tmp/geopet-round02-store/interactions-final/store-cart-drawer.png"
+  },
+  "routes": {
+    "orders": {
+      "bodyStart": "Skip to PawPal content\nPawPal\nBack to Store\nPurchase history\nMy Orders\n\nTrack PawPal store purchases, delivery progress, and payment details in one place.\n\n0 orders\nNo orders yet\n\nStart shopping and y",
+      "hasContent": true,
+      "path": "/store/orders",
+      "title": "Store | PawPal"
+    },
+    "checkout": {
+      "bodyStart": "Skip to PawPal content\nPawPal\nBack to Store\n\nPAWPAL SHOP\n\nSecure checkout\n\nConfirm delivery details, review your pet essentials, and finish with Stripe-secured payment.\n\nStripe-secured\nFree shipping\nNFC-safe catalog\nShipping Information\nFull Name*\nEmail*\nPhone",
+      "hasCheckoutCopy": true,
+      "hasContent": true,
+      "path": "/store/checkout",
+      "title": "Store | PawPal"
+    }
+  },
+  "staticKeyboard": {
+    "add": {
+      "ariaLabel": null,
+      "disabled": false,
+      "placeholder": null,
+      "tabIndex": 0,
+      "tag": "button",
+      "text": "Add"
+    },
+    "cart": {
+      "ariaLabel": null,
+      "disabled": false,
+      "placeholder": null,
+      "tabIndex": 0,
+      "tag": "button",
+      "text": "Cart"
+    },
+    "darkSchemeCssRulePresent": true,
+    "details": {
+      "ariaLabel": null,
+      "disabled": false,
+      "placeholder": null,
+      "tabIndex": 0,
+      "tag": "button",
+      "text": "Details"
+    },
+    "firstCategory": {
+      "ariaLabel": null,
+      "disabled": false,
+      "placeholder": null,
+      "tabIndex": 0,
+      "tag": "button",
+      "text": "All Products"
+    },
+    "focusVisibleRulePresent": true,
+    "mediaQueries": {
+      "darkSchemeActive": false,
+      "reducedMotionActive": false
+    },
+    "reducedMotionCssRulePresent": true,
+    "search": {
+      "ariaLabel": null,
+      "disabled": false,
+      "placeholder": "Search products...",
+      "tabIndex": 0,
+      "tag": "input",
+      "text": ""
+    }
+  },
+  "browserLimitations": [
+    "Browser CUA Tab key did not advance document.activeElement in this environment; keyboard evidence uses focusable targets plus global focus-visible CSS presence."
+  ],
+  "logs": [],
+  "searchInputCount": 1,
+  "foodButtonCount": 1,
+  "allButtonCount": 1,
+  "detailsButtonCount": 4,
+  "closeButtonCount": 1,
+  "addButtonCount": 4,
+  "cartButtonCount": 1,
+  "proceedButtonCount": 1
+}

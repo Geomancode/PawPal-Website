@@ -1,0 +1,1464 @@
+[
+  {
+    "route": "/tag/sample-id",
+    "group": "tag-sample",
+    "state": "missing",
+    "mode": "light",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "url": "http://localhost:3000/tag/sample-id",
+    "title": "PawPal tag not found | PawPal",
+    "logs": [],
+    "pageErrors": [],
+    "metrics": {
+      "meaningfulRender": true,
+      "hasFrameworkOverlay": false,
+      "overlayCandidateCount": 1,
+      "visibleErrorOverlayCount": 0,
+      "horizontalOverflow": false,
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "bodyBackground": "rgb(255, 255, 255)",
+      "bodyColor": "rgb(58, 47, 42)",
+      "colorScheme": "light",
+      "matchDark": false,
+      "matchReducedMotion": false,
+      "firstViewport": {
+        "scannedTagContext": true,
+        "petIdentity": false,
+        "contactCta": false,
+        "hiddenContact": false,
+        "privacyOrUrgent": true,
+        "criticalDetails": false,
+        "contactDetail": false,
+        "notListed": false
+      },
+      "interactionTargets": {
+        "contactText": null,
+        "contactHref": null,
+        "phoneHref": null,
+        "emailHref": "mailto:hello@pawpal.be",
+        "deepLinkHref": null,
+        "storeHref": "/store",
+        "hasMisleadingHiddenContact": false
+      },
+      "headings": [
+        "This PawPal route is not available.",
+        "Product",
+        "Company",
+        "Support",
+        "Belgium Pilot"
+      ],
+      "links": [
+        {
+          "text": "Skip to PawPal content",
+          "href": "#main-content"
+        },
+        {
+          "text": "PawPal",
+          "href": "/"
+        },
+        {
+          "text": "Home",
+          "href": "/"
+        },
+        {
+          "text": "Globe",
+          "href": "/globe"
+        },
+        {
+          "text": "About Us",
+          "href": "/about"
+        },
+        {
+          "text": "Store",
+          "href": "/store"
+        },
+        {
+          "text": "Login",
+          "href": "/auth"
+        },
+        {
+          "text": "Back home",
+          "href": "/"
+        },
+        {
+          "text": "Shop smart tags",
+          "href": "/store"
+        },
+        {
+          "text": "hello@pawpal.be",
+          "href": "mailto:hello@pawpal.be"
+        },
+        {
+          "text": "Globe Map",
+          "href": "/globe"
+        },
+        {
+          "text": "NFC Safety Tag",
+          "href": "/store"
+        },
+        {
+          "text": "AI Assistant",
+          "href": "/globe"
+        },
+        {
+          "text": "Community",
+          "href": "/globe"
+        },
+        {
+          "text": "About Us",
+          "href": "/about"
+        },
+        {
+          "text": "Store",
+          "href": "/store"
+        }
+      ]
+    },
+    "screenshotPath": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-09-nfc-finder-emergency-states/evidence/screenshots/after-tag-sample-missing-light-390x844.png"
+  },
+  {
+    "route": "/tag/sample-id",
+    "group": "tag-sample",
+    "state": "missing",
+    "mode": "dark",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "url": "http://localhost:3000/tag/sample-id",
+    "title": "PawPal tag not found | PawPal",
+    "logs": [],
+    "pageErrors": [],
+    "metrics": {
+      "meaningfulRender": true,
+      "hasFrameworkOverlay": false,
+      "overlayCandidateCount": 1,
+      "visibleErrorOverlayCount": 0,
+      "horizontalOverflow": false,
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "bodyBackground": "rgb(21, 29, 34)",
+      "bodyColor": "rgb(251, 247, 242)",
+      "colorScheme": "dark",
+      "matchDark": true,
+      "matchReducedMotion": false,
+      "firstViewport": {
+        "scannedTagContext": true,
+        "petIdentity": false,
+        "contactCta": false,
+        "hiddenContact": false,
+        "privacyOrUrgent": true,
+        "criticalDetails": false,
+        "contactDetail": false,
+        "notListed": false
+      },
+      "interactionTargets": {
+        "contactText": null,
+        "contactHref": null,
+        "phoneHref": null,
+        "emailHref": "mailto:hello@pawpal.be",
+        "deepLinkHref": null,
+        "storeHref": "/store",
+        "hasMisleadingHiddenContact": false
+      },
+      "headings": [
+        "This PawPal route is not available.",
+        "Product",
+        "Company",
+        "Support",
+        "Belgium Pilot"
+      ],
+      "links": [
+        {
+          "text": "Skip to PawPal content",
+          "href": "#main-content"
+        },
+        {
+          "text": "PawPal",
+          "href": "/"
+        },
+        {
+          "text": "Home",
+          "href": "/"
+        },
+        {
+          "text": "Globe",
+          "href": "/globe"
+        },
+        {
+          "text": "About Us",
+          "href": "/about"
+        },
+        {
+          "text": "Store",
+          "href": "/store"
+        },
+        {
+          "text": "Login",
+          "href": "/auth"
+        },
+        {
+          "text": "Back home",
+          "href": "/"
+        },
+        {
+          "text": "Shop smart tags",
+          "href": "/store"
+        },
+        {
+          "text": "hello@pawpal.be",
+          "href": "mailto:hello@pawpal.be"
+        },
+        {
+          "text": "Globe Map",
+          "href": "/globe"
+        },
+        {
+          "text": "NFC Safety Tag",
+          "href": "/store"
+        },
+        {
+          "text": "AI Assistant",
+          "href": "/globe"
+        },
+        {
+          "text": "Community",
+          "href": "/globe"
+        },
+        {
+          "text": "About Us",
+          "href": "/about"
+        },
+        {
+          "text": "Store",
+          "href": "/store"
+        }
+      ]
+    },
+    "screenshotPath": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-09-nfc-finder-emergency-states/evidence/screenshots/after-tag-sample-missing-dark-390x844.png"
+  },
+  {
+    "route": "/tag/sample-id",
+    "group": "tag-sample",
+    "state": "missing",
+    "mode": "reduced",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "url": "http://localhost:3000/tag/sample-id",
+    "title": "PawPal tag not found | PawPal",
+    "logs": [],
+    "pageErrors": [],
+    "metrics": {
+      "meaningfulRender": true,
+      "hasFrameworkOverlay": false,
+      "overlayCandidateCount": 1,
+      "visibleErrorOverlayCount": 0,
+      "horizontalOverflow": false,
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "bodyBackground": "rgb(255, 255, 255)",
+      "bodyColor": "rgb(58, 47, 42)",
+      "colorScheme": "light",
+      "matchDark": false,
+      "matchReducedMotion": true,
+      "firstViewport": {
+        "scannedTagContext": true,
+        "petIdentity": false,
+        "contactCta": false,
+        "hiddenContact": false,
+        "privacyOrUrgent": true,
+        "criticalDetails": false,
+        "contactDetail": false,
+        "notListed": false
+      },
+      "interactionTargets": {
+        "contactText": null,
+        "contactHref": null,
+        "phoneHref": null,
+        "emailHref": "mailto:hello@pawpal.be",
+        "deepLinkHref": null,
+        "storeHref": "/store",
+        "hasMisleadingHiddenContact": false
+      },
+      "headings": [
+        "This PawPal route is not available.",
+        "Product",
+        "Company",
+        "Support",
+        "Belgium Pilot"
+      ],
+      "links": [
+        {
+          "text": "Skip to PawPal content",
+          "href": "#main-content"
+        },
+        {
+          "text": "PawPal",
+          "href": "/"
+        },
+        {
+          "text": "Home",
+          "href": "/"
+        },
+        {
+          "text": "Globe",
+          "href": "/globe"
+        },
+        {
+          "text": "About Us",
+          "href": "/about"
+        },
+        {
+          "text": "Store",
+          "href": "/store"
+        },
+        {
+          "text": "Login",
+          "href": "/auth"
+        },
+        {
+          "text": "Back home",
+          "href": "/"
+        },
+        {
+          "text": "Shop smart tags",
+          "href": "/store"
+        },
+        {
+          "text": "hello@pawpal.be",
+          "href": "mailto:hello@pawpal.be"
+        },
+        {
+          "text": "Globe Map",
+          "href": "/globe"
+        },
+        {
+          "text": "NFC Safety Tag",
+          "href": "/store"
+        },
+        {
+          "text": "AI Assistant",
+          "href": "/globe"
+        },
+        {
+          "text": "Community",
+          "href": "/globe"
+        },
+        {
+          "text": "About Us",
+          "href": "/about"
+        },
+        {
+          "text": "Store",
+          "href": "/store"
+        }
+      ]
+    },
+    "screenshotPath": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-09-nfc-finder-emergency-states/evidence/screenshots/after-tag-sample-missing-reduced-390x844.png"
+  },
+  {
+    "route": "/tag/sample-id",
+    "group": "tag-sample",
+    "state": "missing",
+    "mode": "light",
+    "viewport": {
+      "width": 768,
+      "height": 1024
+    },
+    "url": "http://localhost:3000/tag/sample-id",
+    "title": "PawPal tag not found | PawPal",
+    "logs": [],
+    "pageErrors": [],
+    "metrics": {
+      "meaningfulRender": true,
+      "hasFrameworkOverlay": false,
+      "overlayCandidateCount": 1,
+      "visibleErrorOverlayCount": 0,
+      "horizontalOverflow": false,
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "bodyBackground": "rgb(255, 255, 255)",
+      "bodyColor": "rgb(58, 47, 42)",
+      "colorScheme": "light",
+      "matchDark": false,
+      "matchReducedMotion": false,
+      "firstViewport": {
+        "scannedTagContext": true,
+        "petIdentity": false,
+        "contactCta": false,
+        "hiddenContact": false,
+        "privacyOrUrgent": true,
+        "criticalDetails": false,
+        "contactDetail": false,
+        "notListed": false
+      },
+      "interactionTargets": {
+        "contactText": null,
+        "contactHref": null,
+        "phoneHref": null,
+        "emailHref": "mailto:hello@pawpal.be",
+        "deepLinkHref": null,
+        "storeHref": "/store",
+        "hasMisleadingHiddenContact": false
+      },
+      "headings": [
+        "This PawPal route is not available.",
+        "Product",
+        "Company",
+        "Support",
+        "Belgium Pilot"
+      ],
+      "links": [
+        {
+          "text": "Skip to PawPal content",
+          "href": "#main-content"
+        },
+        {
+          "text": "PawPal",
+          "href": "/"
+        },
+        {
+          "text": "Home",
+          "href": "/"
+        },
+        {
+          "text": "Globe",
+          "href": "/globe"
+        },
+        {
+          "text": "About Us",
+          "href": "/about"
+        },
+        {
+          "text": "Store",
+          "href": "/store"
+        },
+        {
+          "text": "Login",
+          "href": "/auth"
+        },
+        {
+          "text": "Back home",
+          "href": "/"
+        },
+        {
+          "text": "Shop smart tags",
+          "href": "/store"
+        },
+        {
+          "text": "hello@pawpal.be",
+          "href": "mailto:hello@pawpal.be"
+        },
+        {
+          "text": "Globe Map",
+          "href": "/globe"
+        },
+        {
+          "text": "NFC Safety Tag",
+          "href": "/store"
+        },
+        {
+          "text": "AI Assistant",
+          "href": "/globe"
+        },
+        {
+          "text": "Community",
+          "href": "/globe"
+        },
+        {
+          "text": "About Us",
+          "href": "/about"
+        },
+        {
+          "text": "Store",
+          "href": "/store"
+        }
+      ]
+    },
+    "screenshotPath": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-09-nfc-finder-emergency-states/evidence/screenshots/after-tag-sample-missing-light-768x1024.png"
+  },
+  {
+    "route": "/tag/sample-id",
+    "group": "tag-sample",
+    "state": "missing",
+    "mode": "dark",
+    "viewport": {
+      "width": 768,
+      "height": 1024
+    },
+    "url": "http://localhost:3000/tag/sample-id",
+    "title": "PawPal tag not found | PawPal",
+    "logs": [],
+    "pageErrors": [],
+    "metrics": {
+      "meaningfulRender": true,
+      "hasFrameworkOverlay": false,
+      "overlayCandidateCount": 1,
+      "visibleErrorOverlayCount": 0,
+      "horizontalOverflow": false,
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "bodyBackground": "rgb(21, 29, 34)",
+      "bodyColor": "rgb(251, 247, 242)",
+      "colorScheme": "dark",
+      "matchDark": true,
+      "matchReducedMotion": false,
+      "firstViewport": {
+        "scannedTagContext": true,
+        "petIdentity": false,
+        "contactCta": false,
+        "hiddenContact": false,
+        "privacyOrUrgent": true,
+        "criticalDetails": false,
+        "contactDetail": false,
+        "notListed": false
+      },
+      "interactionTargets": {
+        "contactText": null,
+        "contactHref": null,
+        "phoneHref": null,
+        "emailHref": "mailto:hello@pawpal.be",
+        "deepLinkHref": null,
+        "storeHref": "/store",
+        "hasMisleadingHiddenContact": false
+      },
+      "headings": [
+        "This PawPal route is not available.",
+        "Product",
+        "Company",
+        "Support",
+        "Belgium Pilot"
+      ],
+      "links": [
+        {
+          "text": "Skip to PawPal content",
+          "href": "#main-content"
+        },
+        {
+          "text": "PawPal",
+          "href": "/"
+        },
+        {
+          "text": "Home",
+          "href": "/"
+        },
+        {
+          "text": "Globe",
+          "href": "/globe"
+        },
+        {
+          "text": "About Us",
+          "href": "/about"
+        },
+        {
+          "text": "Store",
+          "href": "/store"
+        },
+        {
+          "text": "Login",
+          "href": "/auth"
+        },
+        {
+          "text": "Back home",
+          "href": "/"
+        },
+        {
+          "text": "Shop smart tags",
+          "href": "/store"
+        },
+        {
+          "text": "hello@pawpal.be",
+          "href": "mailto:hello@pawpal.be"
+        },
+        {
+          "text": "Globe Map",
+          "href": "/globe"
+        },
+        {
+          "text": "NFC Safety Tag",
+          "href": "/store"
+        },
+        {
+          "text": "AI Assistant",
+          "href": "/globe"
+        },
+        {
+          "text": "Community",
+          "href": "/globe"
+        },
+        {
+          "text": "About Us",
+          "href": "/about"
+        },
+        {
+          "text": "Store",
+          "href": "/store"
+        }
+      ]
+    },
+    "screenshotPath": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-09-nfc-finder-emergency-states/evidence/screenshots/after-tag-sample-missing-dark-768x1024.png"
+  },
+  {
+    "route": "/tag/sample-id",
+    "group": "tag-sample",
+    "state": "missing",
+    "mode": "reduced",
+    "viewport": {
+      "width": 768,
+      "height": 1024
+    },
+    "url": "http://localhost:3000/tag/sample-id",
+    "title": "PawPal tag not found | PawPal",
+    "logs": [],
+    "pageErrors": [],
+    "metrics": {
+      "meaningfulRender": true,
+      "hasFrameworkOverlay": false,
+      "overlayCandidateCount": 1,
+      "visibleErrorOverlayCount": 0,
+      "horizontalOverflow": false,
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "bodyBackground": "rgb(255, 255, 255)",
+      "bodyColor": "rgb(58, 47, 42)",
+      "colorScheme": "light",
+      "matchDark": false,
+      "matchReducedMotion": true,
+      "firstViewport": {
+        "scannedTagContext": true,
+        "petIdentity": false,
+        "contactCta": false,
+        "hiddenContact": false,
+        "privacyOrUrgent": true,
+        "criticalDetails": false,
+        "contactDetail": false,
+        "notListed": false
+      },
+      "interactionTargets": {
+        "contactText": null,
+        "contactHref": null,
+        "phoneHref": null,
+        "emailHref": "mailto:hello@pawpal.be",
+        "deepLinkHref": null,
+        "storeHref": "/store",
+        "hasMisleadingHiddenContact": false
+      },
+      "headings": [
+        "This PawPal route is not available.",
+        "Product",
+        "Company",
+        "Support",
+        "Belgium Pilot"
+      ],
+      "links": [
+        {
+          "text": "Skip to PawPal content",
+          "href": "#main-content"
+        },
+        {
+          "text": "PawPal",
+          "href": "/"
+        },
+        {
+          "text": "Home",
+          "href": "/"
+        },
+        {
+          "text": "Globe",
+          "href": "/globe"
+        },
+        {
+          "text": "About Us",
+          "href": "/about"
+        },
+        {
+          "text": "Store",
+          "href": "/store"
+        },
+        {
+          "text": "Login",
+          "href": "/auth"
+        },
+        {
+          "text": "Back home",
+          "href": "/"
+        },
+        {
+          "text": "Shop smart tags",
+          "href": "/store"
+        },
+        {
+          "text": "hello@pawpal.be",
+          "href": "mailto:hello@pawpal.be"
+        },
+        {
+          "text": "Globe Map",
+          "href": "/globe"
+        },
+        {
+          "text": "NFC Safety Tag",
+          "href": "/store"
+        },
+        {
+          "text": "AI Assistant",
+          "href": "/globe"
+        },
+        {
+          "text": "Community",
+          "href": "/globe"
+        },
+        {
+          "text": "About Us",
+          "href": "/about"
+        },
+        {
+          "text": "Store",
+          "href": "/store"
+        }
+      ]
+    },
+    "screenshotPath": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-09-nfc-finder-emergency-states/evidence/screenshots/after-tag-sample-missing-reduced-768x1024.png"
+  },
+  {
+    "route": "/tag/sample-id",
+    "group": "tag-sample",
+    "state": "missing",
+    "mode": "light",
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "url": "http://localhost:3000/tag/sample-id",
+    "title": "PawPal tag not found | PawPal",
+    "logs": [],
+    "pageErrors": [],
+    "metrics": {
+      "meaningfulRender": true,
+      "hasFrameworkOverlay": false,
+      "overlayCandidateCount": 1,
+      "visibleErrorOverlayCount": 0,
+      "horizontalOverflow": false,
+      "scrollWidth": 1280,
+      "clientWidth": 1280,
+      "bodyBackground": "rgb(255, 255, 255)",
+      "bodyColor": "rgb(58, 47, 42)",
+      "colorScheme": "light",
+      "matchDark": false,
+      "matchReducedMotion": false,
+      "firstViewport": {
+        "scannedTagContext": true,
+        "petIdentity": false,
+        "contactCta": false,
+        "hiddenContact": false,
+        "privacyOrUrgent": true,
+        "criticalDetails": false,
+        "contactDetail": false,
+        "notListed": false
+      },
+      "interactionTargets": {
+        "contactText": null,
+        "contactHref": null,
+        "phoneHref": null,
+        "emailHref": "mailto:hello@pawpal.be",
+        "deepLinkHref": null,
+        "storeHref": "/store",
+        "hasMisleadingHiddenContact": false
+      },
+      "headings": [
+        "This PawPal route is not available.",
+        "Product",
+        "Company",
+        "Support",
+        "Belgium Pilot"
+      ],
+      "links": [
+        {
+          "text": "Skip to PawPal content",
+          "href": "#main-content"
+        },
+        {
+          "text": "PawPal",
+          "href": "/"
+        },
+        {
+          "text": "Home",
+          "href": "/"
+        },
+        {
+          "text": "Globe",
+          "href": "/globe"
+        },
+        {
+          "text": "About Us",
+          "href": "/about"
+        },
+        {
+          "text": "Store",
+          "href": "/store"
+        },
+        {
+          "text": "Login",
+          "href": "/auth"
+        },
+        {
+          "text": "Back home",
+          "href": "/"
+        },
+        {
+          "text": "Shop smart tags",
+          "href": "/store"
+        },
+        {
+          "text": "hello@pawpal.be",
+          "href": "mailto:hello@pawpal.be"
+        },
+        {
+          "text": "Globe Map",
+          "href": "/globe"
+        },
+        {
+          "text": "NFC Safety Tag",
+          "href": "/store"
+        },
+        {
+          "text": "AI Assistant",
+          "href": "/globe"
+        },
+        {
+          "text": "Community",
+          "href": "/globe"
+        },
+        {
+          "text": "About Us",
+          "href": "/about"
+        },
+        {
+          "text": "Store",
+          "href": "/store"
+        }
+      ]
+    },
+    "screenshotPath": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-09-nfc-finder-emergency-states/evidence/screenshots/after-tag-sample-missing-light-1280x720.png"
+  },
+  {
+    "route": "/tag/sample-id",
+    "group": "tag-sample",
+    "state": "missing",
+    "mode": "dark",
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "url": "http://localhost:3000/tag/sample-id",
+    "title": "PawPal tag not found | PawPal",
+    "logs": [],
+    "pageErrors": [
+      "Failed to execute 'measure' on 'Performance': '​TagPage' cannot have a negative time stamp."
+    ],
+    "metrics": {
+      "meaningfulRender": true,
+      "hasFrameworkOverlay": false,
+      "overlayCandidateCount": 1,
+      "visibleErrorOverlayCount": 0,
+      "horizontalOverflow": false,
+      "scrollWidth": 1280,
+      "clientWidth": 1280,
+      "bodyBackground": "rgb(21, 29, 34)",
+      "bodyColor": "rgb(251, 247, 242)",
+      "colorScheme": "dark",
+      "matchDark": true,
+      "matchReducedMotion": false,
+      "firstViewport": {
+        "scannedTagContext": true,
+        "petIdentity": false,
+        "contactCta": false,
+        "hiddenContact": false,
+        "privacyOrUrgent": true,
+        "criticalDetails": false,
+        "contactDetail": false,
+        "notListed": false
+      },
+      "interactionTargets": {
+        "contactText": null,
+        "contactHref": null,
+        "phoneHref": null,
+        "emailHref": "mailto:hello@pawpal.be",
+        "deepLinkHref": null,
+        "storeHref": "/store",
+        "hasMisleadingHiddenContact": false
+      },
+      "headings": [
+        "This PawPal route is not available.",
+        "Product",
+        "Company",
+        "Support",
+        "Belgium Pilot"
+      ],
+      "links": [
+        {
+          "text": "Skip to PawPal content",
+          "href": "#main-content"
+        },
+        {
+          "text": "PawPal",
+          "href": "/"
+        },
+        {
+          "text": "Home",
+          "href": "/"
+        },
+        {
+          "text": "Globe",
+          "href": "/globe"
+        },
+        {
+          "text": "About Us",
+          "href": "/about"
+        },
+        {
+          "text": "Store",
+          "href": "/store"
+        },
+        {
+          "text": "Login",
+          "href": "/auth"
+        },
+        {
+          "text": "Back home",
+          "href": "/"
+        },
+        {
+          "text": "Shop smart tags",
+          "href": "/store"
+        },
+        {
+          "text": "hello@pawpal.be",
+          "href": "mailto:hello@pawpal.be"
+        },
+        {
+          "text": "Globe Map",
+          "href": "/globe"
+        },
+        {
+          "text": "NFC Safety Tag",
+          "href": "/store"
+        },
+        {
+          "text": "AI Assistant",
+          "href": "/globe"
+        },
+        {
+          "text": "Community",
+          "href": "/globe"
+        },
+        {
+          "text": "About Us",
+          "href": "/about"
+        },
+        {
+          "text": "Store",
+          "href": "/store"
+        }
+      ]
+    },
+    "screenshotPath": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-09-nfc-finder-emergency-states/evidence/screenshots/after-tag-sample-missing-dark-1280x720.png"
+  },
+  {
+    "route": "/tag/sample-id",
+    "group": "tag-sample",
+    "state": "missing",
+    "mode": "reduced",
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "url": "http://localhost:3000/tag/sample-id",
+    "title": "PawPal tag not found | PawPal",
+    "logs": [],
+    "pageErrors": [
+      "Failed to execute 'measure' on 'Performance': '​TagPage' cannot have a negative time stamp.",
+      "Failed to execute 'measure' on 'Performance': '​TagPage' cannot have a negative time stamp."
+    ],
+    "metrics": {
+      "meaningfulRender": true,
+      "hasFrameworkOverlay": false,
+      "overlayCandidateCount": 1,
+      "visibleErrorOverlayCount": 0,
+      "horizontalOverflow": false,
+      "scrollWidth": 1280,
+      "clientWidth": 1280,
+      "bodyBackground": "rgb(255, 255, 255)",
+      "bodyColor": "rgb(58, 47, 42)",
+      "colorScheme": "light",
+      "matchDark": false,
+      "matchReducedMotion": true,
+      "firstViewport": {
+        "scannedTagContext": true,
+        "petIdentity": false,
+        "contactCta": false,
+        "hiddenContact": false,
+        "privacyOrUrgent": true,
+        "criticalDetails": false,
+        "contactDetail": false,
+        "notListed": false
+      },
+      "interactionTargets": {
+        "contactText": null,
+        "contactHref": null,
+        "phoneHref": null,
+        "emailHref": "mailto:hello@pawpal.be",
+        "deepLinkHref": null,
+        "storeHref": "/store",
+        "hasMisleadingHiddenContact": false
+      },
+      "headings": [
+        "This PawPal route is not available.",
+        "Product",
+        "Company",
+        "Support",
+        "Belgium Pilot"
+      ],
+      "links": [
+        {
+          "text": "Skip to PawPal content",
+          "href": "#main-content"
+        },
+        {
+          "text": "PawPal",
+          "href": "/"
+        },
+        {
+          "text": "Home",
+          "href": "/"
+        },
+        {
+          "text": "Globe",
+          "href": "/globe"
+        },
+        {
+          "text": "About Us",
+          "href": "/about"
+        },
+        {
+          "text": "Store",
+          "href": "/store"
+        },
+        {
+          "text": "Login",
+          "href": "/auth"
+        },
+        {
+          "text": "Back home",
+          "href": "/"
+        },
+        {
+          "text": "Shop smart tags",
+          "href": "/store"
+        },
+        {
+          "text": "hello@pawpal.be",
+          "href": "mailto:hello@pawpal.be"
+        },
+        {
+          "text": "Globe Map",
+          "href": "/globe"
+        },
+        {
+          "text": "NFC Safety Tag",
+          "href": "/store"
+        },
+        {
+          "text": "AI Assistant",
+          "href": "/globe"
+        },
+        {
+          "text": "Community",
+          "href": "/globe"
+        },
+        {
+          "text": "About Us",
+          "href": "/about"
+        },
+        {
+          "text": "Store",
+          "href": "/store"
+        }
+      ]
+    },
+    "screenshotPath": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-09-nfc-finder-emergency-states/evidence/screenshots/after-tag-sample-missing-reduced-1280x720.png"
+  },
+  {
+    "route": "/tag/sample-id",
+    "group": "tag-sample",
+    "state": "missing",
+    "mode": "light",
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "url": "http://localhost:3000/tag/sample-id",
+    "title": "PawPal tag not found | PawPal",
+    "logs": [],
+    "pageErrors": [
+      "Failed to execute 'measure' on 'Performance': '​TagPage' cannot have a negative time stamp.",
+      "Failed to execute 'measure' on 'Performance': '​TagPage' cannot have a negative time stamp."
+    ],
+    "metrics": {
+      "meaningfulRender": true,
+      "hasFrameworkOverlay": false,
+      "overlayCandidateCount": 1,
+      "visibleErrorOverlayCount": 0,
+      "horizontalOverflow": false,
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "bodyBackground": "rgb(255, 255, 255)",
+      "bodyColor": "rgb(58, 47, 42)",
+      "colorScheme": "light",
+      "matchDark": false,
+      "matchReducedMotion": false,
+      "firstViewport": {
+        "scannedTagContext": true,
+        "petIdentity": false,
+        "contactCta": false,
+        "hiddenContact": false,
+        "privacyOrUrgent": true,
+        "criticalDetails": false,
+        "contactDetail": false,
+        "notListed": false
+      },
+      "interactionTargets": {
+        "contactText": null,
+        "contactHref": null,
+        "phoneHref": null,
+        "emailHref": "mailto:hello@pawpal.be",
+        "deepLinkHref": null,
+        "storeHref": "/store",
+        "hasMisleadingHiddenContact": false
+      },
+      "headings": [
+        "This PawPal route is not available.",
+        "Product",
+        "Company",
+        "Support",
+        "Belgium Pilot"
+      ],
+      "links": [
+        {
+          "text": "Skip to PawPal content",
+          "href": "#main-content"
+        },
+        {
+          "text": "PawPal",
+          "href": "/"
+        },
+        {
+          "text": "Home",
+          "href": "/"
+        },
+        {
+          "text": "Globe",
+          "href": "/globe"
+        },
+        {
+          "text": "About Us",
+          "href": "/about"
+        },
+        {
+          "text": "Store",
+          "href": "/store"
+        },
+        {
+          "text": "Login",
+          "href": "/auth"
+        },
+        {
+          "text": "Back home",
+          "href": "/"
+        },
+        {
+          "text": "Shop smart tags",
+          "href": "/store"
+        },
+        {
+          "text": "hello@pawpal.be",
+          "href": "mailto:hello@pawpal.be"
+        },
+        {
+          "text": "Globe Map",
+          "href": "/globe"
+        },
+        {
+          "text": "NFC Safety Tag",
+          "href": "/store"
+        },
+        {
+          "text": "AI Assistant",
+          "href": "/globe"
+        },
+        {
+          "text": "Community",
+          "href": "/globe"
+        },
+        {
+          "text": "About Us",
+          "href": "/about"
+        },
+        {
+          "text": "Store",
+          "href": "/store"
+        }
+      ]
+    },
+    "screenshotPath": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-09-nfc-finder-emergency-states/evidence/screenshots/after-tag-sample-missing-light-1440x900.png"
+  },
+  {
+    "route": "/tag/sample-id",
+    "group": "tag-sample",
+    "state": "missing",
+    "mode": "dark",
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "url": "http://localhost:3000/tag/sample-id",
+    "title": "PawPal tag not found | PawPal",
+    "logs": [],
+    "pageErrors": [
+      "Failed to execute 'measure' on 'Performance': '​TagPage' cannot have a negative time stamp."
+    ],
+    "metrics": {
+      "meaningfulRender": true,
+      "hasFrameworkOverlay": false,
+      "overlayCandidateCount": 1,
+      "visibleErrorOverlayCount": 0,
+      "horizontalOverflow": false,
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "bodyBackground": "rgb(21, 29, 34)",
+      "bodyColor": "rgb(251, 247, 242)",
+      "colorScheme": "dark",
+      "matchDark": true,
+      "matchReducedMotion": false,
+      "firstViewport": {
+        "scannedTagContext": true,
+        "petIdentity": false,
+        "contactCta": false,
+        "hiddenContact": false,
+        "privacyOrUrgent": true,
+        "criticalDetails": false,
+        "contactDetail": false,
+        "notListed": false
+      },
+      "interactionTargets": {
+        "contactText": null,
+        "contactHref": null,
+        "phoneHref": null,
+        "emailHref": "mailto:hello@pawpal.be",
+        "deepLinkHref": null,
+        "storeHref": "/store",
+        "hasMisleadingHiddenContact": false
+      },
+      "headings": [
+        "This PawPal route is not available.",
+        "Product",
+        "Company",
+        "Support",
+        "Belgium Pilot"
+      ],
+      "links": [
+        {
+          "text": "Skip to PawPal content",
+          "href": "#main-content"
+        },
+        {
+          "text": "PawPal",
+          "href": "/"
+        },
+        {
+          "text": "Home",
+          "href": "/"
+        },
+        {
+          "text": "Globe",
+          "href": "/globe"
+        },
+        {
+          "text": "About Us",
+          "href": "/about"
+        },
+        {
+          "text": "Store",
+          "href": "/store"
+        },
+        {
+          "text": "Login",
+          "href": "/auth"
+        },
+        {
+          "text": "Back home",
+          "href": "/"
+        },
+        {
+          "text": "Shop smart tags",
+          "href": "/store"
+        },
+        {
+          "text": "hello@pawpal.be",
+          "href": "mailto:hello@pawpal.be"
+        },
+        {
+          "text": "Globe Map",
+          "href": "/globe"
+        },
+        {
+          "text": "NFC Safety Tag",
+          "href": "/store"
+        },
+        {
+          "text": "AI Assistant",
+          "href": "/globe"
+        },
+        {
+          "text": "Community",
+          "href": "/globe"
+        },
+        {
+          "text": "About Us",
+          "href": "/about"
+        },
+        {
+          "text": "Store",
+          "href": "/store"
+        }
+      ]
+    },
+    "screenshotPath": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-09-nfc-finder-emergency-states/evidence/screenshots/after-tag-sample-missing-dark-1440x900.png"
+  },
+  {
+    "route": "/tag/sample-id",
+    "group": "tag-sample",
+    "state": "missing",
+    "mode": "reduced",
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "url": "http://localhost:3000/tag/sample-id",
+    "title": "PawPal tag not found | PawPal",
+    "logs": [],
+    "pageErrors": [],
+    "metrics": {
+      "meaningfulRender": true,
+      "hasFrameworkOverlay": false,
+      "overlayCandidateCount": 1,
+      "visibleErrorOverlayCount": 0,
+      "horizontalOverflow": false,
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "bodyBackground": "rgb(255, 255, 255)",
+      "bodyColor": "rgb(58, 47, 42)",
+      "colorScheme": "light",
+      "matchDark": false,
+      "matchReducedMotion": true,
+      "firstViewport": {
+        "scannedTagContext": true,
+        "petIdentity": false,
+        "contactCta": false,
+        "hiddenContact": false,
+        "privacyOrUrgent": true,
+        "criticalDetails": false,
+        "contactDetail": false,
+        "notListed": false
+      },
+      "interactionTargets": {
+        "contactText": null,
+        "contactHref": null,
+        "phoneHref": null,
+        "emailHref": "mailto:hello@pawpal.be",
+        "deepLinkHref": null,
+        "storeHref": "/store",
+        "hasMisleadingHiddenContact": false
+      },
+      "headings": [
+        "This PawPal route is not available.",
+        "Product",
+        "Company",
+        "Support",
+        "Belgium Pilot"
+      ],
+      "links": [
+        {
+          "text": "Skip to PawPal content",
+          "href": "#main-content"
+        },
+        {
+          "text": "PawPal",
+          "href": "/"
+        },
+        {
+          "text": "Home",
+          "href": "/"
+        },
+        {
+          "text": "Globe",
+          "href": "/globe"
+        },
+        {
+          "text": "About Us",
+          "href": "/about"
+        },
+        {
+          "text": "Store",
+          "href": "/store"
+        },
+        {
+          "text": "Login",
+          "href": "/auth"
+        },
+        {
+          "text": "Back home",
+          "href": "/"
+        },
+        {
+          "text": "Shop smart tags",
+          "href": "/store"
+        },
+        {
+          "text": "hello@pawpal.be",
+          "href": "mailto:hello@pawpal.be"
+        },
+        {
+          "text": "Globe Map",
+          "href": "/globe"
+        },
+        {
+          "text": "NFC Safety Tag",
+          "href": "/store"
+        },
+        {
+          "text": "AI Assistant",
+          "href": "/globe"
+        },
+        {
+          "text": "Community",
+          "href": "/globe"
+        },
+        {
+          "text": "About Us",
+          "href": "/about"
+        },
+        {
+          "text": "Store",
+          "href": "/store"
+        }
+      ]
+    },
+    "screenshotPath": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-09-nfc-finder-emergency-states/evidence/screenshots/after-tag-sample-missing-reduced-1440x900.png"
+  }
+]

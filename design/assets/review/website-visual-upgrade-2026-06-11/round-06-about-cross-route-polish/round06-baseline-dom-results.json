@@ -1,0 +1,855 @@
+{
+  "generatedAt": "2026-06-11T14:18:51.929Z",
+  "baseUrl": "http://localhost:3000",
+  "captureMode": "Browser DOM/logs only; Browser screenshot timed out",
+  "results": [
+    {
+      "route": "about",
+      "requestedUrl": "/about",
+      "viewport": {
+        "key": "390x844",
+        "width": 390,
+        "height": 844
+      },
+      "currentUrl": "http://localhost:3000/about",
+      "title": "About | PawPal",
+      "startedAt": "2026-06-11T14:18:25.812Z",
+      "logs": [],
+      "h1": "Enhancing the Bond Between You & Your Pet",
+      "headings": [
+        "Enhancing the Bond Between You & Your Pet",
+        "App, Web, and NFC tags working as one loop.",
+        "The PawPal Ecosystem",
+        "What We Stand For",
+        "Meet the Founding Team",
+        "Our Journey",
+        "Join the PawPal Journey",
+        "Enhancing the Bond Between You & Your Pet"
+      ],
+      "linkCount": 23,
+      "meaningfulRender": true,
+      "meaningfulTextLength": 4683,
+      "overflowX": 0,
+      "overlayElement": false,
+      "overlayText": false,
+      "visibleTerms": [
+        {
+          "inFirstViewport": false,
+          "left": 0,
+          "term": "About",
+          "top": -80
+        },
+        {
+          "inFirstViewport": false,
+          "left": 16,
+          "term": "PawPal",
+          "top": -54
+        },
+        {
+          "inFirstViewport": true,
+          "left": 0,
+          "term": "mission",
+          "top": 0
+        },
+        {
+          "inFirstViewport": true,
+          "left": 0,
+          "term": "pet",
+          "top": 0
+        }
+      ]
+    },
+    {
+      "route": "help",
+      "requestedUrl": "/help",
+      "viewport": {
+        "key": "390x844",
+        "width": 390,
+        "height": 844
+      },
+      "currentUrl": "http://localhost:3000/help",
+      "title": "Help Center | PawPal",
+      "startedAt": "2026-06-11T14:18:27.341Z",
+      "logs": [],
+      "h1": "Help that keeps pet safety moving.",
+      "headings": [
+        "Help that keeps pet safety moving.",
+        "Pick the right lane",
+        "NFC tag or pet profile",
+        "Account and community",
+        "Safety or urgent pet issue",
+        "Help that keeps pet safety moving.",
+        "Pick the right lane",
+        "NFC tag or pet profile"
+      ],
+      "linkCount": 23,
+      "meaningfulRender": true,
+      "meaningfulTextLength": 1503,
+      "overflowX": 0,
+      "overlayElement": false,
+      "overlayText": false,
+      "visibleTerms": [
+        {
+          "inFirstViewport": true,
+          "left": 0,
+          "term": "Help",
+          "top": 0
+        },
+        {
+          "inFirstViewport": true,
+          "left": 0,
+          "term": "support",
+          "top": 0
+        },
+        {
+          "inFirstViewport": true,
+          "left": 0,
+          "term": "contact",
+          "top": 0
+        },
+        {
+          "inFirstViewport": false,
+          "left": 16,
+          "term": "PawPal",
+          "top": -54
+        }
+      ]
+    },
+    {
+      "route": "privacy",
+      "requestedUrl": "/privacy",
+      "viewport": {
+        "key": "390x844",
+        "width": 390,
+        "height": 844
+      },
+      "currentUrl": "http://localhost:3000/privacy",
+      "title": "Privacy Policy | PawPal",
+      "startedAt": "2026-06-11T14:18:29.548Z",
+      "logs": [],
+      "h1": "Controlled sharing for every pet safety flow.",
+      "headings": [
+        "Controlled sharing for every pet safety flow.",
+        "Data we use",
+        "Location and safety",
+        "Your choices",
+        "Controlled sharing for every pet safety flow.",
+        "Data we use",
+        "Location and safety",
+        "Your choices"
+      ],
+      "linkCount": 19,
+      "meaningfulRender": true,
+      "meaningfulTextLength": 1371,
+      "overflowX": 0,
+      "overlayElement": false,
+      "overlayText": false,
+      "visibleTerms": [
+        {
+          "inFirstViewport": true,
+          "left": 0,
+          "term": "Privacy",
+          "top": 0
+        },
+        {
+          "inFirstViewport": true,
+          "left": 0,
+          "term": "data",
+          "top": 0
+        },
+        {
+          "inFirstViewport": false,
+          "left": 16,
+          "term": "PawPal",
+          "top": -54
+        }
+      ]
+    },
+    {
+      "route": "terms",
+      "requestedUrl": "/terms",
+      "viewport": {
+        "key": "390x844",
+        "width": 390,
+        "height": 844
+      },
+      "currentUrl": "http://localhost:3000/terms",
+      "title": "Terms of Service | PawPal",
+      "startedAt": "2026-06-11T14:18:31.810Z",
+      "logs": [],
+      "h1": "Clear rules for pet care, commerce, and community.",
+      "headings": [
+        "Clear rules for pet care, commerce, and community.",
+        "Use PawPal responsibly",
+        "Store purchases",
+        "Community content",
+        "Clear rules for pet care, commerce, and community.",
+        "Use PawPal responsibly",
+        "Store purchases",
+        "Community content"
+      ],
+      "linkCount": 19,
+      "meaningfulRender": true,
+      "meaningfulTextLength": 1373,
+      "overflowX": 0,
+      "overlayElement": false,
+      "overlayText": false,
+      "visibleTerms": [
+        {
+          "inFirstViewport": true,
+          "left": 0,
+          "term": "Terms",
+          "top": 0
+        },
+        {
+          "inFirstViewport": true,
+          "left": 0,
+          "term": "service",
+          "top": 0
+        },
+        {
+          "inFirstViewport": false,
+          "left": 16,
+          "term": "PawPal",
+          "top": -54
+        }
+      ]
+    },
+    {
+      "route": "about",
+      "requestedUrl": "/about",
+      "viewport": {
+        "key": "768x1024",
+        "width": 768,
+        "height": 1024
+      },
+      "currentUrl": "http://localhost:3000/about",
+      "title": "About | PawPal",
+      "startedAt": "2026-06-11T14:18:33.894Z",
+      "logs": [],
+      "h1": "Enhancing the Bond Between You & Your Pet",
+      "headings": [
+        "Enhancing the Bond Between You & Your Pet",
+        "App, Web, and NFC tags working as one loop.",
+        "The PawPal Ecosystem",
+        "What We Stand For",
+        "Meet the Founding Team",
+        "Our Journey",
+        "Join the PawPal Journey",
+        "Enhancing the Bond Between You & Your Pet"
+      ],
+      "linkCount": 23,
+      "meaningfulRender": true,
+      "meaningfulTextLength": 4715,
+      "overflowX": 0,
+      "overlayElement": false,
+      "overlayText": false,
+      "visibleTerms": [
+        {
+          "inFirstViewport": false,
+          "left": 0,
+          "term": "About",
+          "top": -80
+        },
+        {
+          "inFirstViewport": false,
+          "left": 16,
+          "term": "PawPal",
+          "top": -54
+        },
+        {
+          "inFirstViewport": true,
+          "left": 0,
+          "term": "mission",
+          "top": 0
+        },
+        {
+          "inFirstViewport": true,
+          "left": 0,
+          "term": "pet",
+          "top": 0
+        }
+      ]
+    },
+    {
+      "route": "help",
+      "requestedUrl": "/help",
+      "viewport": {
+        "key": "768x1024",
+        "width": 768,
+        "height": 1024
+      },
+      "currentUrl": "http://localhost:3000/help",
+      "title": "Help Center | PawPal",
+      "startedAt": "2026-06-11T14:18:35.421Z",
+      "logs": [],
+      "h1": "Help that keeps pet safety moving.",
+      "headings": [
+        "Help that keeps pet safety moving.",
+        "Pick the right lane",
+        "NFC tag or pet profile",
+        "Account and community",
+        "Safety or urgent pet issue",
+        "Help that keeps pet safety moving.",
+        "Pick the right lane",
+        "NFC tag or pet profile"
+      ],
+      "linkCount": 23,
+      "meaningfulRender": true,
+      "meaningfulTextLength": 1535,
+      "overflowX": 0,
+      "overlayElement": false,
+      "overlayText": false,
+      "visibleTerms": [
+        {
+          "inFirstViewport": true,
+          "left": 0,
+          "term": "Help",
+          "top": 0
+        },
+        {
+          "inFirstViewport": true,
+          "left": 0,
+          "term": "support",
+          "top": 0
+        },
+        {
+          "inFirstViewport": true,
+          "left": 0,
+          "term": "contact",
+          "top": 0
+        },
+        {
+          "inFirstViewport": false,
+          "left": 16,
+          "term": "PawPal",
+          "top": -54
+        }
+      ]
+    },
+    {
+      "route": "privacy",
+      "requestedUrl": "/privacy",
+      "viewport": {
+        "key": "768x1024",
+        "width": 768,
+        "height": 1024
+      },
+      "currentUrl": "http://localhost:3000/privacy",
+      "title": "Privacy Policy | PawPal",
+      "startedAt": "2026-06-11T14:18:36.931Z",
+      "logs": [],
+      "h1": "Controlled sharing for every pet safety flow.",
+      "headings": [
+        "Controlled sharing for every pet safety flow.",
+        "Data we use",
+        "Location and safety",
+        "Your choices",
+        "Controlled sharing for every pet safety flow.",
+        "Data we use",
+        "Location and safety",
+        "Your choices"
+      ],
+      "linkCount": 19,
+      "meaningfulRender": true,
+      "meaningfulTextLength": 1403,
+      "overflowX": 0,
+      "overlayElement": false,
+      "overlayText": false,
+      "visibleTerms": [
+        {
+          "inFirstViewport": true,
+          "left": 0,
+          "term": "Privacy",
+          "top": 0
+        },
+        {
+          "inFirstViewport": true,
+          "left": 0,
+          "term": "data",
+          "top": 0
+        },
+        {
+          "inFirstViewport": false,
+          "left": 16,
+          "term": "PawPal",
+          "top": -54
+        }
+      ]
+    },
+    {
+      "route": "terms",
+      "requestedUrl": "/terms",
+      "viewport": {
+        "key": "768x1024",
+        "width": 768,
+        "height": 1024
+      },
+      "currentUrl": "http://localhost:3000/terms",
+      "title": "Terms of Service | PawPal",
+      "startedAt": "2026-06-11T14:18:38.419Z",
+      "logs": [],
+      "h1": "Clear rules for pet care, commerce, and community.",
+      "headings": [
+        "Clear rules for pet care, commerce, and community.",
+        "Use PawPal responsibly",
+        "Store purchases",
+        "Community content",
+        "Clear rules for pet care, commerce, and community.",
+        "Use PawPal responsibly",
+        "Store purchases",
+        "Community content"
+      ],
+      "linkCount": 19,
+      "meaningfulRender": true,
+      "meaningfulTextLength": 1405,
+      "overflowX": 0,
+      "overlayElement": false,
+      "overlayText": false,
+      "visibleTerms": [
+        {
+          "inFirstViewport": true,
+          "left": 0,
+          "term": "Terms",
+          "top": 0
+        },
+        {
+          "inFirstViewport": true,
+          "left": 0,
+          "term": "service",
+          "top": 0
+        },
+        {
+          "inFirstViewport": false,
+          "left": 16,
+          "term": "PawPal",
+          "top": -54
+        }
+      ]
+    },
+    {
+      "route": "about",
+      "requestedUrl": "/about",
+      "viewport": {
+        "key": "1280x720",
+        "width": 1280,
+        "height": 720
+      },
+      "currentUrl": "http://localhost:3000/about",
+      "title": "About | PawPal",
+      "startedAt": "2026-06-11T14:18:39.949Z",
+      "logs": [],
+      "h1": "Enhancing the Bond Between You & Your Pet",
+      "headings": [
+        "Enhancing the Bond Between You & Your Pet",
+        "App, Web, and NFC tags working as one loop.",
+        "The PawPal Ecosystem",
+        "What We Stand For",
+        "Meet the Founding Team",
+        "Our Journey",
+        "Join the PawPal Journey",
+        "Enhancing the Bond Between You & Your Pet"
+      ],
+      "linkCount": 23,
+      "meaningfulRender": true,
+      "meaningfulTextLength": 4715,
+      "overflowX": 0,
+      "overlayElement": false,
+      "overlayText": false,
+      "visibleTerms": [
+        {
+          "inFirstViewport": false,
+          "left": 0,
+          "term": "About",
+          "top": -80
+        },
+        {
+          "inFirstViewport": false,
+          "left": 16,
+          "term": "PawPal",
+          "top": -54
+        },
+        {
+          "inFirstViewport": true,
+          "left": 0,
+          "term": "mission",
+          "top": 0
+        },
+        {
+          "inFirstViewport": true,
+          "left": 0,
+          "term": "pet",
+          "top": 0
+        }
+      ]
+    },
+    {
+      "route": "help",
+      "requestedUrl": "/help",
+      "viewport": {
+        "key": "1280x720",
+        "width": 1280,
+        "height": 720
+      },
+      "currentUrl": "http://localhost:3000/help",
+      "title": "Help Center | PawPal",
+      "startedAt": "2026-06-11T14:18:41.428Z",
+      "logs": [],
+      "h1": "Help that keeps pet safety moving.",
+      "headings": [
+        "Help that keeps pet safety moving.",
+        "Pick the right lane",
+        "NFC tag or pet profile",
+        "Account and community",
+        "Safety or urgent pet issue",
+        "Help that keeps pet safety moving.",
+        "Pick the right lane",
+        "NFC tag or pet profile"
+      ],
+      "linkCount": 23,
+      "meaningfulRender": true,
+      "meaningfulTextLength": 1535,
+      "overflowX": 0,
+      "overlayElement": false,
+      "overlayText": false,
+      "visibleTerms": [
+        {
+          "inFirstViewport": true,
+          "left": 0,
+          "term": "Help",
+          "top": 0
+        },
+        {
+          "inFirstViewport": true,
+          "left": 0,
+          "term": "support",
+          "top": 0
+        },
+        {
+          "inFirstViewport": true,
+          "left": 0,
+          "term": "contact",
+          "top": 0
+        },
+        {
+          "inFirstViewport": false,
+          "left": 16,
+          "term": "PawPal",
+          "top": -54
+        }
+      ]
+    },
+    {
+      "route": "privacy",
+      "requestedUrl": "/privacy",
+      "viewport": {
+        "key": "1280x720",
+        "width": 1280,
+        "height": 720
+      },
+      "currentUrl": "http://localhost:3000/privacy",
+      "title": "Privacy Policy | PawPal",
+      "startedAt": "2026-06-11T14:18:42.898Z",
+      "logs": [],
+      "h1": "Controlled sharing for every pet safety flow.",
+      "headings": [
+        "Controlled sharing for every pet safety flow.",
+        "Data we use",
+        "Location and safety",
+        "Your choices",
+        "Controlled sharing for every pet safety flow.",
+        "Data we use",
+        "Location and safety",
+        "Your choices"
+      ],
+      "linkCount": 19,
+      "meaningfulRender": true,
+      "meaningfulTextLength": 1403,
+      "overflowX": 0,
+      "overlayElement": false,
+      "overlayText": false,
+      "visibleTerms": [
+        {
+          "inFirstViewport": true,
+          "left": 0,
+          "term": "Privacy",
+          "top": 0
+        },
+        {
+          "inFirstViewport": true,
+          "left": 0,
+          "term": "data",
+          "top": 0
+        },
+        {
+          "inFirstViewport": false,
+          "left": 16,
+          "term": "PawPal",
+          "top": -54
+        }
+      ]
+    },
+    {
+      "route": "terms",
+      "requestedUrl": "/terms",
+      "viewport": {
+        "key": "1280x720",
+        "width": 1280,
+        "height": 720
+      },
+      "currentUrl": "http://localhost:3000/terms",
+      "title": "Terms of Service | PawPal",
+      "startedAt": "2026-06-11T14:18:44.374Z",
+      "logs": [],
+      "h1": "Clear rules for pet care, commerce, and community.",
+      "headings": [
+        "Clear rules for pet care, commerce, and community.",
+        "Use PawPal responsibly",
+        "Store purchases",
+        "Community content",
+        "Clear rules for pet care, commerce, and community.",
+        "Use PawPal responsibly",
+        "Store purchases",
+        "Community content"
+      ],
+      "linkCount": 19,
+      "meaningfulRender": true,
+      "meaningfulTextLength": 1405,
+      "overflowX": 0,
+      "overlayElement": false,
+      "overlayText": false,
+      "visibleTerms": [
+        {
+          "inFirstViewport": true,
+          "left": 0,
+          "term": "Terms",
+          "top": 0
+        },
+        {
+          "inFirstViewport": true,
+          "left": 0,
+          "term": "service",
+          "top": 0
+        },
+        {
+          "inFirstViewport": false,
+          "left": 16,
+          "term": "PawPal",
+          "top": -54
+        }
+      ]
+    },
+    {
+      "route": "about",
+      "requestedUrl": "/about",
+      "viewport": {
+        "key": "1440x900",
+        "width": 1440,
+        "height": 900
+      },
+      "currentUrl": "http://localhost:3000/about",
+      "title": "About | PawPal",
+      "startedAt": "2026-06-11T14:18:45.885Z",
+      "logs": [],
+      "h1": "Enhancing the Bond Between You & Your Pet",
+      "headings": [
+        "Enhancing the Bond Between You & Your Pet",
+        "App, Web, and NFC tags working as one loop.",
+        "The PawPal Ecosystem",
+        "What We Stand For",
+        "Meet the Founding Team",
+        "Our Journey",
+        "Join the PawPal Journey",
+        "Enhancing the Bond Between You & Your Pet"
+      ],
+      "linkCount": 23,
+      "meaningfulRender": true,
+      "meaningfulTextLength": 4715,
+      "overflowX": 0,
+      "overlayElement": false,
+      "overlayText": false,
+      "visibleTerms": [
+        {
+          "inFirstViewport": false,
+          "left": 80,
+          "term": "About",
+          "top": -80
+        },
+        {
+          "inFirstViewport": false,
+          "left": 16,
+          "term": "PawPal",
+          "top": -54
+        },
+        {
+          "inFirstViewport": true,
+          "left": 0,
+          "term": "mission",
+          "top": 0
+        },
+        {
+          "inFirstViewport": true,
+          "left": 0,
+          "term": "pet",
+          "top": 0
+        }
+      ]
+    },
+    {
+      "route": "help",
+      "requestedUrl": "/help",
+      "viewport": {
+        "key": "1440x900",
+        "width": 1440,
+        "height": 900
+      },
+      "currentUrl": "http://localhost:3000/help",
+      "title": "Help Center | PawPal",
+      "startedAt": "2026-06-11T14:18:47.391Z",
+      "logs": [],
+      "h1": "Help that keeps pet safety moving.",
+      "headings": [
+        "Help that keeps pet safety moving.",
+        "Pick the right lane",
+        "NFC tag or pet profile",
+        "Account and community",
+        "Safety or urgent pet issue",
+        "Help that keeps pet safety moving.",
+        "Pick the right lane",
+        "NFC tag or pet profile"
+      ],
+      "linkCount": 23,
+      "meaningfulRender": true,
+      "meaningfulTextLength": 1535,
+      "overflowX": 0,
+      "overlayElement": false,
+      "overlayText": false,
+      "visibleTerms": [
+        {
+          "inFirstViewport": true,
+          "left": 0,
+          "term": "Help",
+          "top": 0
+        },
+        {
+          "inFirstViewport": true,
+          "left": 0,
+          "term": "support",
+          "top": 0
+        },
+        {
+          "inFirstViewport": true,
+          "left": 0,
+          "term": "contact",
+          "top": 0
+        },
+        {
+          "inFirstViewport": false,
+          "left": 16,
+          "term": "PawPal",
+          "top": -54
+        }
+      ]
+    },
+    {
+      "route": "privacy",
+      "requestedUrl": "/privacy",
+      "viewport": {
+        "key": "1440x900",
+        "width": 1440,
+        "height": 900
+      },
+      "currentUrl": "http://localhost:3000/privacy",
+      "title": "Privacy Policy | PawPal",
+      "startedAt": "2026-06-11T14:18:48.934Z",
+      "logs": [],
+      "h1": "Controlled sharing for every pet safety flow.",
+      "headings": [
+        "Controlled sharing for every pet safety flow.",
+        "Data we use",
+        "Location and safety",
+        "Your choices",
+        "Controlled sharing for every pet safety flow.",
+        "Data we use",
+        "Location and safety",
+        "Your choices"
+      ],
+      "linkCount": 19,
+      "meaningfulRender": true,
+      "meaningfulTextLength": 1403,
+      "overflowX": 0,
+      "overlayElement": false,
+      "overlayText": false,
+      "visibleTerms": [
+        {
+          "inFirstViewport": true,
+          "left": 0,
+          "term": "Privacy",
+          "top": 0
+        },
+        {
+          "inFirstViewport": true,
+          "left": 0,
+          "term": "data",
+          "top": 0
+        },
+        {
+          "inFirstViewport": false,
+          "left": 16,
+          "term": "PawPal",
+          "top": -54
+        }
+      ]
+    },
+    {
+      "route": "terms",
+      "requestedUrl": "/terms",
+      "viewport": {
+        "key": "1440x900",
+        "width": 1440,
+        "height": 900
+      },
+      "currentUrl": "http://localhost:3000/terms",
+      "title": "Terms of Service | PawPal",
+      "startedAt": "2026-06-11T14:18:50.437Z",
+      "logs": [],
+      "h1": "Clear rules for pet care, commerce, and community.",
+      "headings": [
+        "Clear rules for pet care, commerce, and community.",
+        "Use PawPal responsibly",
+        "Store purchases",
+        "Community content",
+        "Clear rules for pet care, commerce, and community.",
+        "Use PawPal responsibly",
+        "Store purchases",
+        "Community content"
+      ],
+      "linkCount": 19,
+      "meaningfulRender": true,
+      "meaningfulTextLength": 1405,
+      "overflowX": 0,
+      "overlayElement": false,
+      "overlayText": false,
+      "visibleTerms": [
+        {
+          "inFirstViewport": true,
+          "left": 0,
+          "term": "Terms",
+          "top": 0
+        },
+        {
+          "inFirstViewport": true,
+          "left": 0,
+          "term": "service",
+          "top": 0
+        },
+        {
+          "inFirstViewport": false,
+          "left": 16,
+          "term": "PawPal",
+          "top": -54
+        }
+      ]
+    }
+  ]
+}

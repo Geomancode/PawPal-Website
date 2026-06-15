@@ -1,0 +1,39 @@
+{
+  "generatedAt": "2026-06-14T23:44:59.590Z",
+  "sourceMatrix": "../ROUND-15-globe-market-readiness/evidence/round15_assertion_matrix.json",
+  "total": 11,
+  "passed": 11,
+  "failed": [],
+  "routes": {
+    "loaded-home-390x844": {
+      "pass": true,
+      "hasInstallPrompt": false,
+      "diagnostics": {
+        "consoleEntries": 0,
+        "runtimeExceptions": 0,
+        "networkFailures": 0
+      },
+      "screenshot": "../ROUND-15-globe-market-readiness/evidence/screenshots/round15-loaded-home-390x844.png"
+    },
+    "loaded-store-390x844": {
+      "pass": true,
+      "hasInstallPrompt": false,
+      "diagnostics": {
+        "consoleEntries": 0,
+        "runtimeExceptions": 0,
+        "networkFailures": 0
+      },
+      "screenshot": "../ROUND-15-globe-market-readiness/evidence/screenshots/round15-loaded-store-390x844.png"
+    },
+    "loaded-help-390x844": {
+      "pass": true,
+      "hasInstallPrompt": false,
+      "diagnostics": {
+        "consoleEntries": 0,
+        "runtimeExceptions": 0,
+        "networkFailures": 0
+      },
+      "screenshot": "../ROUND-15-globe-market-readiness/evidence/screenshots/round15-loaded-help-390x844.png"
+    }
+  }
+}

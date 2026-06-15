@@ -1,0 +1,717 @@
+{
+  "generatedAt": "2026-06-14T23:44:59.590Z",
+  "baseUrl": "http://localhost:3000",
+  "total": 11,
+  "passed": 11,
+  "failed": [],
+  "tests": [
+    "live-globe-390x844",
+    "live-globe-1280x720",
+    "fallback-globe-390x844",
+    "fallback-globe-1280x720",
+    "post-init-context-loss",
+    "fallback-keyboard-focus",
+    "fallback-dark-mode",
+    "fallback-reduced-motion",
+    "loaded-home-390x844",
+    "loaded-store-390x844",
+    "loaded-help-390x844"
+  ],
+  "results": [
+    {
+      "name": "live-globe-390x844",
+      "path": "/globe",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "pass": true,
+      "checks": {
+        "url": "http://localhost:3000/globe",
+        "title": "Live Pet Globe | PawPal",
+        "bodyLength": 301,
+        "textSample": "Skip to PawPal content\nPawPal\nPawPal Globe\nGhent\nOvercast\n14°C\n✂️\n🐾\n🐾\n🏥\n🛒\n🏥\n🐾\n🐾\n🏥\n🛒\n🏠\n🐾\n🏥\n🌳\n🌳\nMapLibre | © CARTO © OSM\n\nNEARBY NEEDS\n\n51.050, 3.720 · 15 km\n\n0\n\nUsing Ghent as the starting point. Enable location for nearby results.\n\nNo open needs in this area yet.\n\nMissions\nPlaces\n15\nAsk",
+        "fallbackVisible": false,
+        "mapContainerPresent": true,
+        "canvasPresent": 1,
+        "hasGlobalErrorPanel": false,
+        "hasFrameworkOverlayText": false,
+        "horizontalOverflow": false,
+        "viewport": {
+          "width": 390,
+          "height": 844,
+          "scrollWidth": 390
+        },
+        "fallbackActionCount": 0,
+        "fallbackActions": [],
+        "fallbackMinActionHeight": 0,
+        "reducedMotionMatches": false,
+        "darkModeMatches": false,
+        "tileResourceCount": 12,
+        "markerCount": 15,
+        "weather": {
+          "visible": true,
+          "width": 366,
+          "height": 42,
+          "itemCount": 8,
+          "visibleItemCount": 3,
+          "clippedRight": false,
+          "clippedLeft": false
+        }
+      },
+      "extra": {},
+      "diagnostics": {
+        "consoleEntries": [],
+        "runtimeExceptions": [],
+        "networkFailures": []
+      },
+      "screenshot": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-15-globe-market-readiness/evidence/screenshots/round15-live-globe-390x844.png"
+    },
+    {
+      "name": "live-globe-1280x720",
+      "path": "/globe",
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "pass": true,
+      "checks": {
+        "url": "http://localhost:3000/globe",
+        "title": "Live Pet Globe | PawPal",
+        "bodyLength": 453,
+        "textSample": "Skip to PawPal content\nPawPal\nHome\nGlobe\nAbout Us\nStore\nLogin\nPawPal Globe\nGhent\nOvercast\n14°C\nfeels 13°C\n8 km/h\n73%\n2% rain\nUV 7\n🧥 Cool & pleasant — great walking weather\n✂️\n🐾\n🐾\n🏥\n🛒\n🏥\n🐾\n🐾\n🏥\n🛒\n🏠\n🐾\n🏥\n🌳\n🌳\nMapLibre | © CARTO © OSM\n\nNEARBY NEEDS\n\n51.050, 3.720 · 15 km\n\n0\n\nUsing Ghent as the starting point. Enable location for nearby results.\n\nNo open needs in this area yet.\n\nMissions\nPlaces\n15\nGhent pilot\n0\nopen needs\n15\nmapped places\nAsk",
+        "fallbackVisible": false,
+        "mapContainerPresent": true,
+        "canvasPresent": 1,
+        "hasGlobalErrorPanel": false,
+        "hasFrameworkOverlayText": false,
+        "horizontalOverflow": false,
+        "viewport": {
+          "width": 1280,
+          "height": 720,
+          "scrollWidth": 1280
+        },
+        "fallbackActionCount": 0,
+        "fallbackActions": [],
+        "fallbackMinActionHeight": 0,
+        "reducedMotionMatches": false,
+        "darkModeMatches": false,
+        "tileResourceCount": 25,
+        "markerCount": 15,
+        "weather": {
+          "visible": true,
+          "width": 704,
+          "height": 42,
+          "itemCount": 8,
+          "visibleItemCount": 8,
+          "clippedRight": false,
+          "clippedLeft": false
+        }
+      },
+      "extra": {},
+      "diagnostics": {
+        "consoleEntries": [],
+        "runtimeExceptions": [],
+        "networkFailures": []
+      },
+      "screenshot": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-15-globe-market-readiness/evidence/screenshots/round15-live-globe-1280x720.png"
+    },
+    {
+      "name": "fallback-globe-390x844",
+      "path": "/globe",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "pass": true,
+      "checks": {
+        "url": "http://localhost:3000/globe",
+        "title": "Live Pet Globe | PawPal",
+        "bodyLength": 359,
+        "textSample": "Skip to PawPal content\nPawPal\nPawPal Globe\n\nPAWPAL GLOBE\n\nMap preview is still ready\n\nLive map rendering is unavailable in this browser. You can still review the PawPal pet-safety flow, smart tags, and local help paths while the live map is unavailable.\n\nTry live map\nShop smart tags\nLocal help\nGhent pilot\nNFC finder ready\n2.43 km revealed\nStatic map preview",
+        "fallbackVisible": true,
+        "mapContainerPresent": false,
+        "canvasPresent": 0,
+        "hasGlobalErrorPanel": false,
+        "hasFrameworkOverlayText": false,
+        "horizontalOverflow": false,
+        "viewport": {
+          "width": 390,
+          "height": 844,
+          "scrollWidth": 390
+        },
+        "fallbackActionCount": 3,
+        "fallbackActions": [
+          {
+            "label": "Try live map",
+            "tag": "button",
+            "height": 44,
+            "width": 131,
+            "focusable": true
+          },
+          {
+            "label": "Shop smart tags",
+            "tag": "a",
+            "height": 44,
+            "width": 159,
+            "focusable": true
+          },
+          {
+            "label": "Local help",
+            "tag": "a",
+            "height": 44,
+            "width": 118,
+            "focusable": true
+          }
+        ],
+        "fallbackMinActionHeight": 44,
+        "reducedMotionMatches": false,
+        "darkModeMatches": false,
+        "tileResourceCount": 0,
+        "markerCount": 0,
+        "weather": null
+      },
+      "extra": {},
+      "diagnostics": {
+        "consoleEntries": [],
+        "runtimeExceptions": [],
+        "networkFailures": []
+      },
+      "screenshot": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-15-globe-market-readiness/evidence/screenshots/round15-fallback-globe-390x844.png"
+    },
+    {
+      "name": "fallback-globe-1280x720",
+      "path": "/globe",
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "pass": true,
+      "checks": {
+        "url": "http://localhost:3000/globe",
+        "title": "Live Pet Globe | PawPal",
+        "bodyLength": 391,
+        "textSample": "Skip to PawPal content\nPawPal\nHome\nGlobe\nAbout Us\nStore\nLogin\nPawPal Globe\n\nPAWPAL GLOBE\n\nMap preview is still ready\n\nLive map rendering is unavailable in this browser. You can still review the PawPal pet-safety flow, smart tags, and local help paths while the live map is unavailable.\n\nTry live map\nShop smart tags\nLocal help\nGhent pilot\nNFC finder ready\n2.43 km revealed\nStatic map preview",
+        "fallbackVisible": true,
+        "mapContainerPresent": false,
+        "canvasPresent": 0,
+        "hasGlobalErrorPanel": false,
+        "hasFrameworkOverlayText": false,
+        "horizontalOverflow": false,
+        "viewport": {
+          "width": 1280,
+          "height": 720,
+          "scrollWidth": 1280
+        },
+        "fallbackActionCount": 3,
+        "fallbackActions": [
+          {
+            "label": "Try live map",
+            "tag": "button",
+            "height": 44,
+            "width": 145,
+            "focusable": true
+          },
+          {
+            "label": "Shop smart tags",
+            "tag": "a",
+            "height": 44,
+            "width": 176,
+            "focusable": true
+          },
+          {
+            "label": "Local help",
+            "tag": "a",
+            "height": 44,
+            "width": 131,
+            "focusable": true
+          }
+        ],
+        "fallbackMinActionHeight": 44,
+        "reducedMotionMatches": false,
+        "darkModeMatches": false,
+        "tileResourceCount": 0,
+        "markerCount": 0,
+        "weather": null
+      },
+      "extra": {},
+      "diagnostics": {
+        "consoleEntries": [],
+        "runtimeExceptions": [],
+        "networkFailures": []
+      },
+      "screenshot": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-15-globe-market-readiness/evidence/screenshots/round15-fallback-globe-1280x720.png"
+    },
+    {
+      "name": "post-init-context-loss",
+      "path": "/globe",
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "pass": true,
+      "checks": {
+        "url": "http://localhost:3000/globe",
+        "title": "Live Pet Globe | PawPal",
+        "bodyLength": 391,
+        "textSample": "Skip to PawPal content\nPawPal\nHome\nGlobe\nAbout Us\nStore\nLogin\nPawPal Globe\n\nPAWPAL GLOBE\n\nMap preview is still ready\n\nLive map rendering is unavailable in this browser. You can still review the PawPal pet-safety flow, smart tags, and local help paths while the live map is unavailable.\n\nTry live map\nShop smart tags\nLocal help\nGhent pilot\nNFC finder ready\n2.43 km revealed\nStatic map preview",
+        "fallbackVisible": true,
+        "mapContainerPresent": false,
+        "canvasPresent": 0,
+        "hasGlobalErrorPanel": false,
+        "hasFrameworkOverlayText": false,
+        "horizontalOverflow": false,
+        "viewport": {
+          "width": 1280,
+          "height": 720,
+          "scrollWidth": 1280
+        },
+        "fallbackActionCount": 3,
+        "fallbackActions": [
+          {
+            "label": "Try live map",
+            "tag": "button",
+            "height": 44,
+            "width": 145,
+            "focusable": true
+          },
+          {
+            "label": "Shop smart tags",
+            "tag": "a",
+            "height": 44,
+            "width": 176,
+            "focusable": true
+          },
+          {
+            "label": "Local help",
+            "tag": "a",
+            "height": 44,
+            "width": 131,
+            "focusable": true
+          }
+        ],
+        "fallbackMinActionHeight": 44,
+        "reducedMotionMatches": false,
+        "darkModeMatches": false,
+        "tileResourceCount": 25,
+        "markerCount": 0,
+        "weather": null
+      },
+      "extra": {
+        "before": {
+          "url": "http://localhost:3000/globe",
+          "title": "Live Pet Globe | PawPal",
+          "bodyLength": 453,
+          "textSample": "Skip to PawPal content\nPawPal\nHome\nGlobe\nAbout Us\nStore\nLogin\nPawPal Globe\nGhent\nOvercast\n14°C\nfeels 13°C\n8 km/h\n73%\n2% rain\nUV 7\n🧥 Cool & pleasant — great walking weather\n✂️\n🐾\n🐾\n🏥\n🛒\n🏥\n🐾\n🐾\n🏥\n🛒\n🏠\n🐾\n🏥\n🌳\n🌳\nMapLibre | © CARTO © OSM\n\nNEARBY NEEDS\n\n51.050, 3.720 · 15 km\n\n0\n\nUsing Ghent as the starting point. Enable location for nearby results.\n\nNo open needs in this area yet.\n\nMissions\nPlaces\n15\nGhent pilot\n0\nopen needs\n15\nmapped places\nAsk",
+          "fallbackVisible": false,
+          "mapContainerPresent": true,
+          "canvasPresent": 1,
+          "hasGlobalErrorPanel": false,
+          "hasFrameworkOverlayText": false,
+          "horizontalOverflow": false,
+          "viewport": {
+            "width": 1280,
+            "height": 720,
+            "scrollWidth": 1280
+          },
+          "fallbackActionCount": 0,
+          "fallbackActions": [],
+          "fallbackMinActionHeight": 0,
+          "reducedMotionMatches": false,
+          "darkModeMatches": false,
+          "tileResourceCount": 25,
+          "markerCount": 15,
+          "weather": {
+            "visible": true,
+            "width": 704,
+            "height": 42,
+            "itemCount": 8,
+            "visibleItemCount": 8,
+            "clippedRight": false,
+            "clippedLeft": false
+          }
+        },
+        "trigger": {
+          "dispatched": true,
+          "method": "WEBGL_lose_context",
+          "canvasCount": 1
+        },
+        "after": {
+          "url": "http://localhost:3000/globe",
+          "title": "Live Pet Globe | PawPal",
+          "bodyLength": 391,
+          "textSample": "Skip to PawPal content\nPawPal\nHome\nGlobe\nAbout Us\nStore\nLogin\nPawPal Globe\n\nPAWPAL GLOBE\n\nMap preview is still ready\n\nLive map rendering is unavailable in this browser. You can still review the PawPal pet-safety flow, smart tags, and local help paths while the live map is unavailable.\n\nTry live map\nShop smart tags\nLocal help\nGhent pilot\nNFC finder ready\n2.43 km revealed\nStatic map preview",
+          "fallbackVisible": true,
+          "mapContainerPresent": false,
+          "canvasPresent": 0,
+          "hasGlobalErrorPanel": false,
+          "hasFrameworkOverlayText": false,
+          "horizontalOverflow": false,
+          "viewport": {
+            "width": 1280,
+            "height": 720,
+            "scrollWidth": 1280
+          },
+          "fallbackActionCount": 3,
+          "fallbackActions": [
+            {
+              "label": "Try live map",
+              "tag": "button",
+              "height": 44,
+              "width": 145,
+              "focusable": true
+            },
+            {
+              "label": "Shop smart tags",
+              "tag": "a",
+              "height": 44,
+              "width": 176,
+              "focusable": true
+            },
+            {
+              "label": "Local help",
+              "tag": "a",
+              "height": 44,
+              "width": 131,
+              "focusable": true
+            }
+          ],
+          "fallbackMinActionHeight": 44,
+          "reducedMotionMatches": false,
+          "darkModeMatches": false,
+          "tileResourceCount": 25,
+          "markerCount": 0,
+          "weather": null
+        }
+      },
+      "diagnostics": {
+        "consoleEntries": [],
+        "runtimeExceptions": [],
+        "networkFailures": []
+      },
+      "screenshot": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-15-globe-market-readiness/evidence/screenshots/round15-post-init-context-loss-1280x720.png"
+    },
+    {
+      "name": "fallback-keyboard-focus",
+      "path": "/globe",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "pass": true,
+      "checks": {
+        "url": "http://localhost:3000/globe",
+        "title": "Live Pet Globe | PawPal",
+        "bodyLength": 359,
+        "textSample": "Skip to PawPal content\nPawPal\nPawPal Globe\n\nPAWPAL GLOBE\n\nMap preview is still ready\n\nLive map rendering is unavailable in this browser. You can still review the PawPal pet-safety flow, smart tags, and local help paths while the live map is unavailable.\n\nTry live map\nShop smart tags\nLocal help\nGhent pilot\nNFC finder ready\n2.43 km revealed\nStatic map preview",
+        "fallbackVisible": true,
+        "mapContainerPresent": false,
+        "canvasPresent": 0,
+        "hasGlobalErrorPanel": false,
+        "hasFrameworkOverlayText": false,
+        "horizontalOverflow": false,
+        "viewport": {
+          "width": 390,
+          "height": 844,
+          "scrollWidth": 390
+        },
+        "fallbackActionCount": 3,
+        "fallbackActions": [
+          {
+            "label": "Try live map",
+            "tag": "button",
+            "height": 44,
+            "width": 131,
+            "focusable": true
+          },
+          {
+            "label": "Shop smart tags",
+            "tag": "a",
+            "height": 44,
+            "width": 159,
+            "focusable": true
+          },
+          {
+            "label": "Local help",
+            "tag": "a",
+            "height": 44,
+            "width": 118,
+            "focusable": true
+          }
+        ],
+        "fallbackMinActionHeight": 44,
+        "reducedMotionMatches": false,
+        "darkModeMatches": false,
+        "tileResourceCount": 0,
+        "markerCount": 0,
+        "weather": null
+      },
+      "extra": {
+        "focusResult": {
+          "pass": true,
+          "count": 3,
+          "labels": [
+            "Try live map",
+            "Shop smart tags",
+            "Local help"
+          ]
+        }
+      },
+      "diagnostics": {
+        "consoleEntries": [],
+        "runtimeExceptions": [],
+        "networkFailures": []
+      },
+      "screenshot": null
+    },
+    {
+      "name": "fallback-dark-mode",
+      "path": "/globe",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "pass": true,
+      "checks": {
+        "url": "http://localhost:3000/globe",
+        "title": "Live Pet Globe | PawPal",
+        "bodyLength": 359,
+        "textSample": "Skip to PawPal content\nPawPal\nPawPal Globe\n\nPAWPAL GLOBE\n\nMap preview is still ready\n\nLive map rendering is unavailable in this browser. You can still review the PawPal pet-safety flow, smart tags, and local help paths while the live map is unavailable.\n\nTry live map\nShop smart tags\nLocal help\nGhent pilot\nNFC finder ready\n2.43 km revealed\nStatic map preview",
+        "fallbackVisible": true,
+        "mapContainerPresent": false,
+        "canvasPresent": 0,
+        "hasGlobalErrorPanel": false,
+        "hasFrameworkOverlayText": false,
+        "horizontalOverflow": false,
+        "viewport": {
+          "width": 390,
+          "height": 844,
+          "scrollWidth": 390
+        },
+        "fallbackActionCount": 3,
+        "fallbackActions": [
+          {
+            "label": "Try live map",
+            "tag": "button",
+            "height": 44,
+            "width": 131,
+            "focusable": true
+          },
+          {
+            "label": "Shop smart tags",
+            "tag": "a",
+            "height": 44,
+            "width": 159,
+            "focusable": true
+          },
+          {
+            "label": "Local help",
+            "tag": "a",
+            "height": 44,
+            "width": 118,
+            "focusable": true
+          }
+        ],
+        "fallbackMinActionHeight": 44,
+        "reducedMotionMatches": false,
+        "darkModeMatches": true,
+        "tileResourceCount": 0,
+        "markerCount": 0,
+        "weather": null
+      },
+      "extra": {},
+      "diagnostics": {
+        "consoleEntries": [],
+        "runtimeExceptions": [],
+        "networkFailures": []
+      },
+      "screenshot": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-15-globe-market-readiness/evidence/screenshots/round15-fallback-dark-mode-390x844.png"
+    },
+    {
+      "name": "fallback-reduced-motion",
+      "path": "/globe",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "pass": true,
+      "checks": {
+        "url": "http://localhost:3000/globe",
+        "title": "Live Pet Globe | PawPal",
+        "bodyLength": 359,
+        "textSample": "Skip to PawPal content\nPawPal\nPawPal Globe\n\nPAWPAL GLOBE\n\nMap preview is still ready\n\nLive map rendering is unavailable in this browser. You can still review the PawPal pet-safety flow, smart tags, and local help paths while the live map is unavailable.\n\nTry live map\nShop smart tags\nLocal help\nGhent pilot\nNFC finder ready\n2.43 km revealed\nStatic map preview",
+        "fallbackVisible": true,
+        "mapContainerPresent": false,
+        "canvasPresent": 0,
+        "hasGlobalErrorPanel": false,
+        "hasFrameworkOverlayText": false,
+        "horizontalOverflow": false,
+        "viewport": {
+          "width": 390,
+          "height": 844,
+          "scrollWidth": 390
+        },
+        "fallbackActionCount": 3,
+        "fallbackActions": [
+          {
+            "label": "Try live map",
+            "tag": "button",
+            "height": 44,
+            "width": 131,
+            "focusable": true
+          },
+          {
+            "label": "Shop smart tags",
+            "tag": "a",
+            "height": 44,
+            "width": 159,
+            "focusable": true
+          },
+          {
+            "label": "Local help",
+            "tag": "a",
+            "height": 44,
+            "width": 118,
+            "focusable": true
+          }
+        ],
+        "fallbackMinActionHeight": 44,
+        "reducedMotionMatches": true,
+        "darkModeMatches": false,
+        "tileResourceCount": 0,
+        "markerCount": 0,
+        "weather": null
+      },
+      "extra": {},
+      "diagnostics": {
+        "consoleEntries": [],
+        "runtimeExceptions": [],
+        "networkFailures": []
+      },
+      "screenshot": null
+    },
+    {
+      "name": "loaded-home-390x844",
+      "path": "/",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "pass": true,
+      "checks": {
+        "url": "http://localhost:3000/",
+        "title": "Pet Safety Map, Smart Tags, and Local Pet Community",
+        "bodyLength": 1681,
+        "textSample": "Skip to PawPal content\nPawPal\nPawPal pet safety\nfor every walk\n\nBuilt in Belgium, PawPal connects live walks, smart finder profiles, and local pet help in one calm product surface.\n\nOpen Live Map\nShop Smart Tags\nPawPal\nWalk map\n\nSee live walks and safe routes around you.\n\nSmart tag\n\nNFC finder profiles help get your pet home safely.\n\nLocal help\n\nConnect with nearby helpers and trusted pet services.\n\nFrom walk to rescue, one connected flow.\n1\nWalk & Explore\n\nReveal map places, route history, and PawPoints without turning the walk into admin.\n\n2\nProtect & Connect\n\nA smart tag gives finders the right profile, while owners control sensitive details.\n\n3\nCommunity & Care\n\nLocal pet parents, alerts",
+        "fallbackVisible": false,
+        "mapContainerPresent": false,
+        "canvasPresent": 0,
+        "hasGlobalErrorPanel": false,
+        "hasFrameworkOverlayText": false,
+        "horizontalOverflow": false,
+        "viewport": {
+          "width": 390,
+          "height": 844,
+          "scrollWidth": 390
+        },
+        "fallbackActionCount": 0,
+        "fallbackActions": [],
+        "fallbackMinActionHeight": 0,
+        "reducedMotionMatches": false,
+        "darkModeMatches": false,
+        "tileResourceCount": 0,
+        "markerCount": 0,
+        "weather": null
+      },
+      "extra": {},
+      "diagnostics": {
+        "consoleEntries": [],
+        "runtimeExceptions": [],
+        "networkFailures": []
+      },
+      "screenshot": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-15-globe-market-readiness/evidence/screenshots/round15-loaded-home-390x844.png"
+    },
+    {
+      "name": "loaded-store-390x844",
+      "path": "/store",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "pass": true,
+      "checks": {
+        "url": "http://localhost:3000/store",
+        "title": "Store | PawPal",
+        "bodyLength": 3046,
+        "textSample": "Skip to PawPal content\nPawPal\nSmart tags and walk gear for safer pet days\n\nStart with PawPal NFC safety tags, then find practical gear for daily walks, travel, cleanup, and care.\n\nNFC safety ready\n\nEU-first fulfillment\n\nSecure checkout\n\nFilter by category\nAll Products\nFood & Treats\nToys & Play\nAccessories\nHealth & Care\n\n4 products\n\nCart\nMy Orders\nBest Seller\n🐟\nOrganic Salmon Bites\n€14.99\n\nWild-caught salmon treats packed with Omega-3 for a shiny coat. Grain-free, single ingredient.\n\n4.8\n(342)\nDetails\nAdd\nSale\n🐔\nPremium Chicken Kibble\n€39.99\n€49.99\n\nVet-approved dry food with real chicken, brown rice, and sweet potato. All life stages.\n\n4.6\n(218)\nDetails\nAdd\n🐱\nKitty Tuna Pâté\n€24.99\n\nSmoot",
+        "fallbackVisible": false,
+        "mapContainerPresent": false,
+        "canvasPresent": 0,
+        "hasGlobalErrorPanel": false,
+        "hasFrameworkOverlayText": false,
+        "horizontalOverflow": false,
+        "viewport": {
+          "width": 390,
+          "height": 844,
+          "scrollWidth": 390
+        },
+        "fallbackActionCount": 0,
+        "fallbackActions": [],
+        "fallbackMinActionHeight": 0,
+        "reducedMotionMatches": false,
+        "darkModeMatches": false,
+        "tileResourceCount": 0,
+        "markerCount": 0,
+        "weather": null
+      },
+      "extra": {},
+      "diagnostics": {
+        "consoleEntries": [],
+        "runtimeExceptions": [],
+        "networkFailures": []
+      },
+      "screenshot": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-15-globe-market-readiness/evidence/screenshots/round15-loaded-store-390x844.png"
+    },
+    {
+      "name": "loaded-help-390x844",
+      "path": "/help",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "pass": true,
+      "checks": {
+        "url": "http://localhost:3000/help",
+        "title": "Help Center | PawPal",
+        "bodyLength": 1763,
+        "textSample": "Skip to PawPal content\nPawPal\nSupport\nFind the right PawPal help path.\n\nChoose a lane for tag scans, store orders, account access, community activity, or urgent pet safety.\n\nContact support\nOpen Globe\n\nSUPPORT ROUTE\n\nPick the right lane\n\nTAG SCAN\n\nTag ID + owner state\n\nSTORE\n\nOrder email + product\n\nACCOUNT\n\nEmail + affected screen\n\nURGENT\n\nLocal services first\n\nNFC tag or pet profile\n\nIf a scan does not open the expected pet profile, include the tag ID and whether the owner has shared contact details.\n\nFinder page, QR/NFC, lost mode\n\nShop or replace a tag\nStore or order help\n\nFor store questions, include the order email, product name, and the checkout or success screen you saw.\n\nSmart tags, ",
+        "fallbackVisible": false,
+        "mapContainerPresent": false,
+        "canvasPresent": 0,
+        "hasGlobalErrorPanel": false,
+        "hasFrameworkOverlayText": false,
+        "horizontalOverflow": false,
+        "viewport": {
+          "width": 390,
+          "height": 844,
+          "scrollWidth": 390
+        },
+        "fallbackActionCount": 0,
+        "fallbackActions": [],
+        "fallbackMinActionHeight": 0,
+        "reducedMotionMatches": false,
+        "darkModeMatches": false,
+        "tileResourceCount": 0,
+        "markerCount": 0,
+        "weather": null
+      },
+      "extra": {},
+      "diagnostics": {
+        "consoleEntries": [],
+        "runtimeExceptions": [],
+        "networkFailures": []
+      },
+      "screenshot": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-15-globe-market-readiness/evidence/screenshots/round15-loaded-help-390x844.png"
+    }
+  ]
+}
