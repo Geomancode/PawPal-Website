@@ -1,8 +1,20 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
-import { ArrowRight, Mail, Lock, User, Eye, EyeOff, AlertCircle, CheckCircle } from "lucide-react";
+import {
+  ArrowRight,
+  Mail,
+  Lock,
+  User,
+  Eye,
+  EyeOff,
+  AlertCircle,
+  CheckCircle,
+  Map,
+  Nfc,
+  ShieldCheck,
+  Sparkles,
+} from "lucide-react";
 import { useAuth } from "@/components/AuthProvider";
 import PawPalLogo from "@/components/PawPalLogo";
 import { useRouter } from "next/navigation";
@@ -64,20 +76,47 @@ export default function AuthPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-4 pt-20 pb-10 bg-paw-page">
+    <div className="auth-page-shell min-h-screen px-4 pt-24 pb-12 bg-paw-page">
       {/* Pet doodles */}
       <div className="absolute top-[15%] left-[8%] w-24 h-24 text-paw-primary/10 doodle-float hidden lg:block"><DoodleDog className="w-full h-full" /></div>
       <div className="absolute bottom-[20%] right-[10%] w-16 h-16 text-paw-primary/10 doodle-float-alt hidden lg:block" style={{ animationDelay: '2s' }}><DoodlePaw className="w-full h-full" /></div>
       <div className="absolute top-[60%] left-[5%] w-12 h-12 text-paw-trust/10 doodle-float hidden lg:block" style={{ animationDelay: '4s' }}><DoodleHeart className="w-full h-full" /></div>
 
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        className="w-full max-w-md"
-      >
+      <div className="auth-layout mx-auto grid w-full max-w-6xl gap-6 lg:grid-cols-[minmax(0,1fr)_440px] lg:items-center">
+        <aside className="auth-visual-panel hidden lg:block">
+          <div className="relative z-10">
+            <div className="inline-flex items-center gap-2 rounded-paw-md border border-white/45 bg-white/72 px-3 py-1.5 text-sm font-extrabold text-paw-primary shadow-sm">
+              <Sparkles className="h-4 w-4" aria-hidden="true" />
+              PawPal account
+            </div>
+            <h1 className="mt-5 max-w-xl text-5xl font-extrabold leading-tight text-paw-ink">
+              One login for walks, tags, rescue pages, and store orders.
+            </h1>
+            <p className="mt-5 max-w-lg text-base leading-7 text-paw-body">
+              Keep pet profiles, finder visibility, map activity, and community
+              support tied to a single secure account.
+            </p>
+          </div>
+          <div className="auth-signal-grid relative z-10 mt-8">
+            {[
+              { icon: Nfc, title: "NFC ready", copy: "Connect smart tags to controlled finder pages." },
+              { icon: Map, title: "Walk context", copy: "Map features and nearby help stay attached to your profile." },
+              { icon: ShieldCheck, title: "Privacy first", copy: "Owner details stay hidden until you choose to share." },
+            ].map((item) => (
+              <div key={item.title} className="auth-signal-card">
+                <item.icon className="h-5 w-5 text-paw-primary" aria-hidden="true" />
+                <div>
+                  <p className="text-sm font-extrabold text-paw-ink">{item.title}</p>
+                  <p className="mt-1 text-xs leading-5 text-paw-body">{item.copy}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </aside>
+
+      <div className="w-full max-w-md justify-self-center lg:justify-self-end">
         {/* Card */}
-        <div className="bg-paw-panel/90 backdrop-blur-xl rounded-paw-lg p-8 border border-paw-border shadow-paw-panel">
+        <div className="auth-card bg-paw-panel/90 backdrop-blur-xl rounded-paw-lg p-8 border border-paw-border shadow-paw-panel">
           {/* Logo */}
           <div className="text-center mb-8">
             <div className="mb-3 flex justify-center">
@@ -87,7 +126,7 @@ export default function AuthPage() {
               {isLogin ? "Welcome Back" : "Join PawPal"}
             </h1>
             <p className="text-paw-muted text-sm mt-1">
-              {isLogin ? "Sign in to continue your journey" : "Create your account and start helping pets"}
+              {isLogin ? "Access profiles, tags, and orders securely" : "Create one account for pet safety and orders"}
             </p>
           </div>
 
@@ -95,6 +134,7 @@ export default function AuthPage() {
           <div className="flex gap-1 bg-paw-panel-subtle rounded-paw-md p-1 mb-6">
             <button
               onClick={() => { setIsLogin(true); setError(null); }}
+              aria-pressed={isLogin}
               className={`flex-1 py-2 rounded-paw-sm text-sm font-semibold transition-all ${
                 isLogin ? "bg-paw-panel text-paw-ink shadow-sm" : "text-paw-muted hover:text-paw-body"
               }`}
@@ -103,6 +143,7 @@ export default function AuthPage() {
             </button>
             <button
               onClick={() => { setIsLogin(false); setError(null); }}
+              aria-pressed={!isLogin}
               className={`flex-1 py-2 rounded-paw-sm text-sm font-semibold transition-all ${
                 !isLogin ? "bg-paw-panel text-paw-ink shadow-sm" : "text-paw-muted hover:text-paw-body"
               }`}
@@ -113,38 +154,39 @@ export default function AuthPage() {
 
           {/* Error/Success banners */}
           {error && (
-            <motion.div
-              initial={{ opacity: 0, y: -5 }}
-              animate={{ opacity: 1, y: 0 }}
+            <div
+              id="auth-error"
               className="flex items-center gap-2 bg-paw-danger-soft border border-paw-danger/20 text-paw-danger text-sm px-4 py-3 rounded-paw-md mb-4"
+              role="alert"
             >
               <AlertCircle className="w-4 h-4 shrink-0" />
               {error}
-            </motion.div>
+            </div>
           )}
           {success && (
-            <motion.div
-              initial={{ opacity: 0, y: -5 }}
-              animate={{ opacity: 1, y: 0 }}
+            <div
+              id="auth-success"
               className="flex items-center gap-2 bg-paw-success-soft border border-paw-success/20 text-paw-success text-sm px-4 py-3 rounded-paw-md mb-4"
+              role="status"
             >
               <CheckCircle className="w-4 h-4 shrink-0" />
               {success}
-            </motion.div>
+            </div>
           )}
 
           {/* Form */}
-          <form className="space-y-4" onSubmit={handleSubmit}>
+          <form
+            className="space-y-4"
+            onSubmit={handleSubmit}
+            aria-describedby={error ? "auth-error" : success ? "auth-success" : undefined}
+          >
             {!isLogin && (
-              <motion.div
-                initial={{ opacity: 0, height: 0 }}
-                animate={{ opacity: 1, height: "auto" }}
-                exit={{ opacity: 0, height: 0 }}
-              >
-                <label className="block text-sm font-medium text-paw-body mb-1">Display Name</label>
+              <div>
+                <label htmlFor="auth-display-name" className="block text-sm font-medium text-paw-body mb-1">Display Name</label>
                 <div className="relative">
                   <User className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-paw-muted" />
                   <input
+                    id="auth-display-name"
                     type="text"
                     value={fullName}
                     onChange={(e) => setFullName(e.target.value)}
@@ -152,34 +194,38 @@ export default function AuthPage() {
                     className="w-full pl-10 pr-4 py-3 rounded-paw-md bg-paw-panel-subtle border border-paw-border text-paw-ink placeholder-paw-muted focus:outline-none focus:ring-4 focus:ring-paw-trust/15 focus:border-paw-trust transition-all text-sm"
                   />
                 </div>
-              </motion.div>
+              </div>
             )}
 
             <div>
-              <label className="block text-sm font-medium text-paw-body mb-1">Email</label>
+              <label htmlFor="auth-email" className="block text-sm font-medium text-paw-body mb-1">Email</label>
               <div className="relative">
                 <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-paw-muted" />
                 <input
+                  id="auth-email"
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="you@example.com"
                   required
+                  aria-invalid={Boolean(error && !email.includes("@"))}
                   className="w-full pl-10 pr-4 py-3 rounded-paw-md bg-paw-panel-subtle border border-paw-border text-paw-ink placeholder-paw-muted focus:outline-none focus:ring-4 focus:ring-paw-trust/15 focus:border-paw-trust transition-all text-sm"
                 />
               </div>
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-paw-body mb-1">Password</label>
+              <label htmlFor="auth-password" className="block text-sm font-medium text-paw-body mb-1">Password</label>
               <div className="relative">
                 <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-paw-muted" />
                 <input
+                  id="auth-password"
                   type={showPassword ? "text" : "password"}
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="••••••••"
                   required
+                  aria-invalid={Boolean(error && password.length > 0 && password.length < 6)}
                   className="w-full pl-10 pr-12 py-3 rounded-paw-md bg-paw-panel-subtle border border-paw-border text-paw-ink placeholder-paw-muted focus:outline-none focus:ring-4 focus:ring-paw-trust/15 focus:border-paw-trust transition-all text-sm"
                 />
                 <button
@@ -194,23 +240,22 @@ export default function AuthPage() {
             </div>
 
             {!isLogin && (
-              <motion.div
-                initial={{ opacity: 0, height: 0 }}
-                animate={{ opacity: 1, height: "auto" }}
-              >
-                <label className="block text-sm font-medium text-paw-body mb-1">Confirm Password</label>
+              <div>
+                <label htmlFor="auth-confirm-password" className="block text-sm font-medium text-paw-body mb-1">Confirm Password</label>
                 <div className="relative">
                   <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-paw-muted" />
                   <input
+                    id="auth-confirm-password"
                     type="password"
                     value={confirmPassword}
                     onChange={(e) => setConfirmPassword(e.target.value)}
                     placeholder="••••••••"
                     required
+                    aria-invalid={Boolean(error && !isLogin && confirmPassword.length > 0 && password !== confirmPassword)}
                     className="w-full pl-10 pr-4 py-3 rounded-paw-md bg-paw-panel-subtle border border-paw-border text-paw-ink placeholder-paw-muted focus:outline-none focus:ring-4 focus:ring-paw-trust/15 focus:border-paw-trust transition-all text-sm"
                   />
                 </div>
-              </motion.div>
+              </div>
             )}
 
             <button
@@ -229,30 +274,22 @@ export default function AuthPage() {
             </button>
           </form>
 
-          {/* Divider */}
-          <div className="flex items-center gap-4 my-6">
-            <div className="flex-1 h-px bg-paw-border" />
-            <span className="text-xs text-paw-muted">or continue with</span>
-            <div className="flex-1 h-px bg-paw-border" />
-          </div>
-
-          {/* Social login */}
-          <div className="grid grid-cols-2 gap-3">
-            <button className="flex items-center justify-center gap-2 bg-paw-panel border border-paw-border hover:border-paw-border-strong py-2.5 rounded-paw-md text-sm font-medium text-paw-body transition-all hover:shadow-sm">
-              <svg className="w-5 h-5" viewBox="0 0 24 24">
-                <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4"/>
-                <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
-                <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
-                <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
-              </svg>
-              Google
-            </button>
-            <button className="flex items-center justify-center gap-2 bg-paw-panel border border-paw-border hover:border-paw-border-strong py-2.5 rounded-paw-md text-sm font-medium text-paw-body transition-all hover:shadow-sm">
-              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
-              </svg>
-              Apple
-            </button>
+          <div className="auth-trust-panel mt-6">
+            <div className="flex items-start gap-3">
+              <span className="auth-trust-icon">
+                <ShieldCheck className="h-4 w-4" aria-hidden="true" />
+              </span>
+              <div>
+                <p className="text-sm font-extrabold text-paw-ink">Email account access only</p>
+                <p className="mt-1 text-xs leading-5 text-paw-body">
+                  PawPal keeps profile, rescue tag, and order access tied to the email credentials submitted above.
+                </p>
+              </div>
+            </div>
+            <div className="auth-trust-list" aria-label="Account trust checks">
+              <span><Nfc className="h-3.5 w-3.5" aria-hidden="true" /> Tag controls</span>
+              <span><Lock className="h-3.5 w-3.5" aria-hidden="true" /> Private owner details</span>
+            </div>
           </div>
         </div>
 
@@ -262,7 +299,8 @@ export default function AuthPage() {
           <a href="/terms" className="text-paw-primary hover:underline">Terms</a> and{" "}
           <a href="/privacy" className="text-paw-primary hover:underline">Privacy Policy</a>
         </p>
-      </motion.div>
+      </div>
+      </div>
     </div>
   );
 }

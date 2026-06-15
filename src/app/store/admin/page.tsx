@@ -332,7 +332,8 @@ export default function StoreAdminPage() {
   if (!user) {
     return (
       <PageShell
-        className="min-h-screen pt-28"
+        className="admin-page-shell min-h-screen pt-28"
+        headerClassName="admin-shell-header"
         eyebrow="Store admin"
         title="Sign in required"
         description="Use an approved store admin account to upload product assets and publish catalog items."
@@ -342,7 +343,7 @@ export default function StoreAdminPage() {
           </Button>
         }
       >
-        <Card className="p-8">
+        <Card className="admin-card-upgraded p-8">
           <EmptyState icon={ShieldCheck} title="No active session" description="After signing in, return to /store/admin." />
         </Card>
       </PageShell>
@@ -352,7 +353,8 @@ export default function StoreAdminPage() {
   if (!isAdmin) {
     return (
       <PageShell
-        className="min-h-screen pt-28"
+        className="admin-page-shell min-h-screen pt-28"
+        headerClassName="admin-shell-header"
         eyebrow="Store admin"
         title="Catalog access is restricted"
         description="This account is not listed in store_admins. Add the email in Supabase before uploading products."
@@ -363,7 +365,7 @@ export default function StoreAdminPage() {
           </Button>
         }
       >
-        <Card className="p-8">
+        <Card className="admin-card-upgraded p-8">
           <EmptyState icon={ShieldCheck} title="Not a store admin" description={user.email || "Current user is not authorized."} />
         </Card>
       </PageShell>
@@ -372,7 +374,8 @@ export default function StoreAdminPage() {
 
   return (
     <PageShell
-      className="min-h-screen pt-28"
+      className="admin-page-shell min-h-screen pt-28"
+      headerClassName="admin-shell-header"
       eyebrow="Store admin"
       title="Product catalog"
       description="Upload product assets, fill catalog data, and publish items to the website and app store."
@@ -390,7 +393,7 @@ export default function StoreAdminPage() {
       }
     >
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-[minmax(0,1.25fr)_minmax(320px,0.75fr)]">
-        <Card>
+        <Card className="admin-card-upgraded">
           <CardContent>
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="flex items-center gap-2">
@@ -470,7 +473,7 @@ export default function StoreAdminPage() {
                 </label>
               </div>
 
-              <div className="space-y-4 rounded-paw-lg border border-paw-border bg-paw-panel-subtle p-4">
+              <div className="admin-asset-panel space-y-4 rounded-paw-lg border border-paw-border bg-paw-panel-subtle p-4">
                 <div className="flex items-center gap-2">
                   <ImagePlus className="h-5 w-5 text-paw-trust" aria-hidden="true" />
                   <h3 className="font-extrabold text-paw-ink">Product asset</h3>
@@ -503,13 +506,13 @@ export default function StoreAdminPage() {
         </Card>
 
         <div className="space-y-6">
-          <Card>
+          <Card className="admin-preview-card">
             <CardContent className="space-y-4">
               <div className="flex items-center justify-between gap-3">
                 <h2 className="text-lg font-extrabold text-paw-ink">Preview</h2>
                 {previewProduct.badge && <Badge tone="accent">{previewProduct.badge}</Badge>}
               </div>
-              <div className="flex justify-center rounded-paw-md bg-paw-primary-soft p-6">
+              <div className="admin-preview-media flex justify-center rounded-paw-md bg-paw-primary-soft p-6">
                 <ProductVisual product={previewProduct} size="lg" />
               </div>
               <div>
@@ -520,7 +523,7 @@ export default function StoreAdminPage() {
             </CardContent>
           </Card>
 
-          <Card>
+          <Card className="admin-card-upgraded">
             <CardContent>
               <div className="mb-4 flex items-center justify-between">
                 <h2 className="text-lg font-extrabold text-paw-ink">Catalog</h2>
