@@ -1,0 +1,100 @@
+{
+  "pass": true,
+  "failures": [],
+  "screenshotPath": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-12A-homepage-focus-upgrade/evidence/screenshots/home-interaction-focus-mobile-reduced.png",
+  "links": [
+    {
+      "text": "Open Live Map",
+      "href": "/globe",
+      "ariaLabel": null,
+      "height": 48
+    },
+    {
+      "text": "Shop Smart Tags",
+      "href": "/store",
+      "ariaLabel": null,
+      "height": 48
+    },
+    {
+      "text": "Open Live Map",
+      "href": "/globe",
+      "ariaLabel": null,
+      "height": 48
+    },
+    {
+      "text": "Shop Smart Tags",
+      "href": "/store",
+      "ariaLabel": null,
+      "height": 48
+    }
+  ],
+  "focusPath": [
+    {
+      "tag": "a",
+      "text": "Skip to PawPal content",
+      "href": "#main-content",
+      "focusVisible": true,
+      "outlineWidth": "3px",
+      "height": 43
+    },
+    {
+      "tag": "a",
+      "text": "PawPal",
+      "href": "/",
+      "focusVisible": true,
+      "outlineWidth": "3px",
+      "height": 32
+    },
+    {
+      "tag": "button",
+      "text": "",
+      "href": null,
+      "focusVisible": true,
+      "outlineWidth": "3px",
+      "height": 40
+    },
+    {
+      "tag": "a",
+      "text": "Open Live Map",
+      "href": "/globe",
+      "focusVisible": true,
+      "outlineWidth": "3px",
+      "height": 48
+    },
+    {
+      "tag": "a",
+      "text": "Shop Smart Tags",
+      "href": "/store",
+      "focusVisible": true,
+      "outlineWidth": "3px",
+      "height": 48
+    },
+    {
+      "tag": "a",
+      "text": "Open Live Map",
+      "href": "/globe",
+      "focusVisible": true,
+      "outlineWidth": "3px",
+      "height": 48
+    },
+    {
+      "tag": "a",
+      "text": "Shop Smart Tags",
+      "href": "/store",
+      "focusVisible": true,
+      "outlineWidth": "3px",
+      "height": 48
+    },
+    {
+      "tag": "a",
+      "text": "hello@pawpal.be",
+      "href": "mailto:hello@pawpal.be",
+      "focusVisible": true,
+      "outlineWidth": "3px",
+      "height": 44
+    }
+  ],
+  "relevantConsoleWarningsErrors": [],
+  "knownBenignConsoleMessages": [],
+  "pageErrors": []
+}

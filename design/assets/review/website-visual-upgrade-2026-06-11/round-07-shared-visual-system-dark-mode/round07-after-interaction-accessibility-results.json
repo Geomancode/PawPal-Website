@@ -1,0 +1,511 @@
+{
+  "phase": "after-implementation-interaction-accessibility",
+  "completedAt": "2026-06-11T16:28:02.966Z",
+  "baseUrl": "http://localhost:3000",
+  "scheme": "dark",
+  "reducedMotion": "reduce",
+  "passCount": 5,
+  "totalCount": 5,
+  "interactions": [
+    {
+      "name": "store search accepts text",
+      "pass": true
+    },
+    {
+      "name": "store category filter clickable",
+      "pass": true
+    },
+    {
+      "name": "store product action buttons remain visible after filtering",
+      "pass": true,
+      "reason": null
+    },
+    {
+      "name": "auth visible email field accepts text",
+      "pass": true
+    },
+    {
+      "name": "checkout disabled state then review step",
+      "pass": true
+    }
+  ],
+  "focusEvidence": [
+    {
+      "route": "/",
+      "steps": [
+        {
+          "tag": "a",
+          "role": null,
+          "ariaLabel": null,
+          "text": "Skip to PawPal content",
+          "href": "#main-content",
+          "type": null,
+          "outlineStyle": "solid",
+          "outlineWidth": "3px",
+          "boxShadow": "rgba(33, 55, 78, 0.22) 0px 12px 30px 0px",
+          "visible": true
+        },
+        {
+          "tag": "a",
+          "role": null,
+          "ariaLabel": "PawPal home",
+          "text": "PawPal",
+          "href": "/",
+          "type": null,
+          "outlineStyle": "solid",
+          "outlineWidth": "3px",
+          "boxShadow": "none",
+          "visible": true
+        },
+        {
+          "tag": "a",
+          "role": null,
+          "ariaLabel": null,
+          "text": "Home",
+          "href": "/",
+          "type": null,
+          "outlineStyle": "solid",
+          "outlineWidth": "3px",
+          "boxShadow": "none",
+          "visible": true
+        },
+        {
+          "tag": "a",
+          "role": null,
+          "ariaLabel": null,
+          "text": "Globe",
+          "href": "/globe",
+          "type": null,
+          "outlineStyle": "solid",
+          "outlineWidth": "3px",
+          "boxShadow": "none",
+          "visible": true
+        },
+        {
+          "tag": "a",
+          "role": null,
+          "ariaLabel": null,
+          "text": "About Us",
+          "href": "/about",
+          "type": null,
+          "outlineStyle": "solid",
+          "outlineWidth": "3px",
+          "boxShadow": "none",
+          "visible": true
+        },
+        {
+          "tag": "a",
+          "role": null,
+          "ariaLabel": null,
+          "text": "Store",
+          "href": "/store",
+          "type": null,
+          "outlineStyle": "solid",
+          "outlineWidth": "3px",
+          "boxShadow": "none",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "route": "/store",
+      "steps": [
+        {
+          "tag": "a",
+          "role": null,
+          "ariaLabel": null,
+          "text": "Skip to PawPal content",
+          "href": "#main-content",
+          "type": null,
+          "outlineStyle": "solid",
+          "outlineWidth": "3px",
+          "boxShadow": "rgba(33, 55, 78, 0.22) 0px 12px 30px 0px",
+          "visible": true
+        },
+        {
+          "tag": "a",
+          "role": null,
+          "ariaLabel": "PawPal home",
+          "text": "PawPal",
+          "href": "/",
+          "type": null,
+          "outlineStyle": "solid",
+          "outlineWidth": "3px",
+          "boxShadow": "none",
+          "visible": true
+        },
+        {
+          "tag": "a",
+          "role": null,
+          "ariaLabel": null,
+          "text": "Home",
+          "href": "/",
+          "type": null,
+          "outlineStyle": "solid",
+          "outlineWidth": "3px",
+          "boxShadow": "none",
+          "visible": true
+        },
+        {
+          "tag": "a",
+          "role": null,
+          "ariaLabel": null,
+          "text": "Globe",
+          "href": "/globe",
+          "type": null,
+          "outlineStyle": "solid",
+          "outlineWidth": "3px",
+          "boxShadow": "none",
+          "visible": true
+        },
+        {
+          "tag": "a",
+          "role": null,
+          "ariaLabel": null,
+          "text": "About Us",
+          "href": "/about",
+          "type": null,
+          "outlineStyle": "solid",
+          "outlineWidth": "3px",
+          "boxShadow": "none",
+          "visible": true
+        },
+        {
+          "tag": "a",
+          "role": null,
+          "ariaLabel": null,
+          "text": "Store",
+          "href": "/store",
+          "type": null,
+          "outlineStyle": "solid",
+          "outlineWidth": "3px",
+          "boxShadow": "none",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "route": "/auth",
+      "steps": [
+        {
+          "tag": "a",
+          "role": null,
+          "ariaLabel": null,
+          "text": "Skip to PawPal content",
+          "href": "#main-content",
+          "type": null,
+          "outlineStyle": "solid",
+          "outlineWidth": "3px",
+          "boxShadow": "rgba(33, 55, 78, 0.22) 0px 12px 30px 0px",
+          "visible": true
+        },
+        {
+          "tag": "a",
+          "role": null,
+          "ariaLabel": "PawPal home",
+          "text": "PawPal",
+          "href": "/",
+          "type": null,
+          "outlineStyle": "solid",
+          "outlineWidth": "3px",
+          "boxShadow": "none",
+          "visible": true
+        },
+        {
+          "tag": "a",
+          "role": null,
+          "ariaLabel": null,
+          "text": "Home",
+          "href": "/",
+          "type": null,
+          "outlineStyle": "solid",
+          "outlineWidth": "3px",
+          "boxShadow": "none",
+          "visible": true
+        },
+        {
+          "tag": "a",
+          "role": null,
+          "ariaLabel": null,
+          "text": "Globe",
+          "href": "/globe",
+          "type": null,
+          "outlineStyle": "solid",
+          "outlineWidth": "3px",
+          "boxShadow": "none",
+          "visible": true
+        },
+        {
+          "tag": "a",
+          "role": null,
+          "ariaLabel": null,
+          "text": "About Us",
+          "href": "/about",
+          "type": null,
+          "outlineStyle": "solid",
+          "outlineWidth": "3px",
+          "boxShadow": "none",
+          "visible": true
+        },
+        {
+          "tag": "a",
+          "role": null,
+          "ariaLabel": null,
+          "text": "Store",
+          "href": "/store",
+          "type": null,
+          "outlineStyle": "solid",
+          "outlineWidth": "3px",
+          "boxShadow": "none",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "route": "/tag/sample-id",
+      "steps": [
+        {
+          "tag": "a",
+          "role": null,
+          "ariaLabel": null,
+          "text": "Skip to PawPal content",
+          "href": "#main-content",
+          "type": null,
+          "outlineStyle": "solid",
+          "outlineWidth": "3px",
+          "boxShadow": "rgba(33, 55, 78, 0.22) 0px 12px 30px 0px",
+          "visible": true
+        },
+        {
+          "tag": "a",
+          "role": null,
+          "ariaLabel": "PawPal home",
+          "text": "PawPal",
+          "href": "/",
+          "type": null,
+          "outlineStyle": "solid",
+          "outlineWidth": "3px",
+          "boxShadow": "none",
+          "visible": true
+        },
+        {
+          "tag": "a",
+          "role": null,
+          "ariaLabel": null,
+          "text": "Home",
+          "href": "/",
+          "type": null,
+          "outlineStyle": "solid",
+          "outlineWidth": "3px",
+          "boxShadow": "none",
+          "visible": true
+        },
+        {
+          "tag": "a",
+          "role": null,
+          "ariaLabel": null,
+          "text": "Globe",
+          "href": "/globe",
+          "type": null,
+          "outlineStyle": "solid",
+          "outlineWidth": "3px",
+          "boxShadow": "none",
+          "visible": true
+        },
+        {
+          "tag": "a",
+          "role": null,
+          "ariaLabel": null,
+          "text": "About Us",
+          "href": "/about",
+          "type": null,
+          "outlineStyle": "solid",
+          "outlineWidth": "3px",
+          "boxShadow": "none",
+          "visible": true
+        },
+        {
+          "tag": "a",
+          "role": null,
+          "ariaLabel": null,
+          "text": "Store",
+          "href": "/store",
+          "type": null,
+          "outlineStyle": "solid",
+          "outlineWidth": "3px",
+          "boxShadow": "none",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "route": "/store/checkout",
+      "steps": [
+        {
+          "tag": "a",
+          "role": null,
+          "ariaLabel": null,
+          "text": "Skip to PawPal content",
+          "href": "#main-content",
+          "type": null,
+          "outlineStyle": "solid",
+          "outlineWidth": "3px",
+          "boxShadow": "rgba(33, 55, 78, 0.22) 0px 12px 30px 0px",
+          "visible": true
+        },
+        {
+          "tag": "a",
+          "role": null,
+          "ariaLabel": "PawPal home",
+          "text": "PawPal",
+          "href": "/",
+          "type": null,
+          "outlineStyle": "solid",
+          "outlineWidth": "3px",
+          "boxShadow": "none",
+          "visible": true
+        },
+        {
+          "tag": "a",
+          "role": null,
+          "ariaLabel": null,
+          "text": "Home",
+          "href": "/",
+          "type": null,
+          "outlineStyle": "solid",
+          "outlineWidth": "3px",
+          "boxShadow": "none",
+          "visible": true
+        },
+        {
+          "tag": "a",
+          "role": null,
+          "ariaLabel": null,
+          "text": "Globe",
+          "href": "/globe",
+          "type": null,
+          "outlineStyle": "solid",
+          "outlineWidth": "3px",
+          "boxShadow": "none",
+          "visible": true
+        },
+        {
+          "tag": "a",
+          "role": null,
+          "ariaLabel": null,
+          "text": "About Us",
+          "href": "/about",
+          "type": null,
+          "outlineStyle": "solid",
+          "outlineWidth": "3px",
+          "boxShadow": "none",
+          "visible": true
+        },
+        {
+          "tag": "a",
+          "role": null,
+          "ariaLabel": null,
+          "text": "Store",
+          "href": "/store",
+          "type": null,
+          "outlineStyle": "solid",
+          "outlineWidth": "3px",
+          "boxShadow": "none",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "route": "/globe",
+      "steps": [
+        {
+          "tag": "a",
+          "role": null,
+          "ariaLabel": null,
+          "text": "Skip to PawPal content",
+          "href": "#main-content",
+          "type": null,
+          "outlineStyle": "solid",
+          "outlineWidth": "3px",
+          "boxShadow": "rgba(33, 55, 78, 0.22) 0px 12px 30px 0px",
+          "visible": true
+        },
+        {
+          "tag": "a",
+          "role": null,
+          "ariaLabel": "PawPal home",
+          "text": "PawPal",
+          "href": "/",
+          "type": null,
+          "outlineStyle": "solid",
+          "outlineWidth": "3px",
+          "boxShadow": "none",
+          "visible": true
+        },
+        {
+          "tag": "a",
+          "role": null,
+          "ariaLabel": null,
+          "text": "Home",
+          "href": "/",
+          "type": null,
+          "outlineStyle": "solid",
+          "outlineWidth": "3px",
+          "boxShadow": "none",
+          "visible": true
+        },
+        {
+          "tag": "a",
+          "role": null,
+          "ariaLabel": null,
+          "text": "Globe",
+          "href": "/globe",
+          "type": null,
+          "outlineStyle": "solid",
+          "outlineWidth": "3px",
+          "boxShadow": "none",
+          "visible": true
+        },
+        {
+          "tag": "a",
+          "role": null,
+          "ariaLabel": null,
+          "text": "About Us",
+          "href": "/about",
+          "type": null,
+          "outlineStyle": "solid",
+          "outlineWidth": "3px",
+          "boxShadow": "none",
+          "visible": true
+        },
+        {
+          "tag": "a",
+          "role": null,
+          "ariaLabel": null,
+          "text": "Store",
+          "href": "/store",
+          "type": null,
+          "outlineStyle": "solid",
+          "outlineWidth": "3px",
+          "boxShadow": "none",
+          "visible": true
+        }
+      ]
+    }
+  ],
+  "disabledAndStatus": {
+    "statusRoles": [],
+    "disabled": [
+      {
+        "tag": "button",
+        "text": "Ask",
+        "opacity": "0.4",
+        "color": "rgb(255, 255, 255)",
+        "background": "rgb(116, 184, 234)"
+      }
+    ]
+  },
+  "relevantLogCount": 0,
+  "hydrationLogCount": 0,
+  "logs": []
+}

@@ -1,0 +1,19 @@
+{
+  "files": 51,
+  "partFiles": 10,
+  "routeCount": 10,
+  "viewportCount": 4,
+  "screenshotCount": 40,
+  "routeSlugs": [
+    "about",
+    "auth",
+    "globe",
+    "home",
+    "profile",
+    "store",
+    "store-checkout",
+    "store-orders",
+    "store-success",
+    "tag-sample-id"
+  ]
+}

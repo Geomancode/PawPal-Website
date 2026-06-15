@@ -1,0 +1,381 @@
+{
+  "capturedAt": "2026-06-11T15:18:55.311Z",
+  "tool": "Playwright fallback using existing bundled runtime and existing Chromium binary",
+  "baseUrl": "http://localhost:3000",
+  "results": [
+    {
+      "route": "/about",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "url": "http://localhost:3000/about",
+      "title": "About | PawPal",
+      "file": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/assets/review/website-visual-upgrade-2026-06-11/round-06-about-cross-route-polish/after-about-390x844.png",
+      "logs": [],
+      "metrics": {
+        "title": "About | PawPal",
+        "pathname": "/about",
+        "textLength": 4609,
+        "h1": "A connected safety layer for everyday pet care.",
+        "scrollWidth": 390,
+        "clientWidth": 390,
+        "bodyScrollWidth": 390,
+        "horizontalOverflow": false,
+        "frameworkOverlay": false
+      },
+      "pass": true
+    },
+    {
+      "route": "/about",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "url": "http://localhost:3000/about",
+      "title": "About | PawPal",
+      "file": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/assets/review/website-visual-upgrade-2026-06-11/round-06-about-cross-route-polish/after-about-768x1024.png",
+      "logs": [],
+      "metrics": {
+        "title": "About | PawPal",
+        "pathname": "/about",
+        "textLength": 4635,
+        "h1": "A connected safety layer for everyday pet care.",
+        "scrollWidth": 768,
+        "clientWidth": 768,
+        "bodyScrollWidth": 768,
+        "horizontalOverflow": false,
+        "frameworkOverlay": false
+      },
+      "pass": true
+    },
+    {
+      "route": "/about",
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "url": "http://localhost:3000/about",
+      "title": "About | PawPal",
+      "file": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/assets/review/website-visual-upgrade-2026-06-11/round-06-about-cross-route-polish/after-about-1280x720.png",
+      "logs": [],
+      "metrics": {
+        "title": "About | PawPal",
+        "pathname": "/about",
+        "textLength": 4641,
+        "h1": "A connected safety layer for everyday pet care.",
+        "scrollWidth": 1280,
+        "clientWidth": 1280,
+        "bodyScrollWidth": 1280,
+        "horizontalOverflow": false,
+        "frameworkOverlay": false
+      },
+      "pass": true
+    },
+    {
+      "route": "/about",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "url": "http://localhost:3000/about",
+      "title": "About | PawPal",
+      "file": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/assets/review/website-visual-upgrade-2026-06-11/round-06-about-cross-route-polish/after-about-1440x900.png",
+      "logs": [],
+      "metrics": {
+        "title": "About | PawPal",
+        "pathname": "/about",
+        "textLength": 4641,
+        "h1": "A connected safety layer for everyday pet care.",
+        "scrollWidth": 1440,
+        "clientWidth": 1440,
+        "bodyScrollWidth": 1440,
+        "horizontalOverflow": false,
+        "frameworkOverlay": false
+      },
+      "pass": true
+    },
+    {
+      "route": "/help",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "url": "http://localhost:3000/help",
+      "title": "Help Center | PawPal",
+      "file": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/assets/review/website-visual-upgrade-2026-06-11/round-06-about-cross-route-polish/after-help-390x844.png",
+      "logs": [],
+      "metrics": {
+        "title": "Help Center | PawPal",
+        "pathname": "/help",
+        "textLength": 1475,
+        "h1": "Help that keeps pet safety moving.",
+        "scrollWidth": 390,
+        "clientWidth": 390,
+        "bodyScrollWidth": 390,
+        "horizontalOverflow": false,
+        "frameworkOverlay": false
+      },
+      "pass": true
+    },
+    {
+      "route": "/help",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "url": "http://localhost:3000/help",
+      "title": "Help Center | PawPal",
+      "file": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/assets/review/website-visual-upgrade-2026-06-11/round-06-about-cross-route-polish/after-help-768x1024.png",
+      "logs": [],
+      "metrics": {
+        "title": "Help Center | PawPal",
+        "pathname": "/help",
+        "textLength": 1507,
+        "h1": "Help that keeps pet safety moving.",
+        "scrollWidth": 768,
+        "clientWidth": 768,
+        "bodyScrollWidth": 768,
+        "horizontalOverflow": false,
+        "frameworkOverlay": false
+      },
+      "pass": true
+    },
+    {
+      "route": "/help",
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "url": "http://localhost:3000/help",
+      "title": "Help Center | PawPal",
+      "file": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/assets/review/website-visual-upgrade-2026-06-11/round-06-about-cross-route-polish/after-help-1280x720.png",
+      "logs": [],
+      "metrics": {
+        "title": "Help Center | PawPal",
+        "pathname": "/help",
+        "textLength": 1507,
+        "h1": "Help that keeps pet safety moving.",
+        "scrollWidth": 1280,
+        "clientWidth": 1280,
+        "bodyScrollWidth": 1280,
+        "horizontalOverflow": false,
+        "frameworkOverlay": false
+      },
+      "pass": true
+    },
+    {
+      "route": "/help",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "url": "http://localhost:3000/help",
+      "title": "Help Center | PawPal",
+      "file": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/assets/review/website-visual-upgrade-2026-06-11/round-06-about-cross-route-polish/after-help-1440x900.png",
+      "logs": [],
+      "metrics": {
+        "title": "Help Center | PawPal",
+        "pathname": "/help",
+        "textLength": 1507,
+        "h1": "Help that keeps pet safety moving.",
+        "scrollWidth": 1440,
+        "clientWidth": 1440,
+        "bodyScrollWidth": 1440,
+        "horizontalOverflow": false,
+        "frameworkOverlay": false
+      },
+      "pass": true
+    },
+    {
+      "route": "/privacy",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "url": "http://localhost:3000/privacy",
+      "title": "Privacy Policy | PawPal",
+      "file": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/assets/review/website-visual-upgrade-2026-06-11/round-06-about-cross-route-polish/after-privacy-390x844.png",
+      "logs": [],
+      "metrics": {
+        "title": "Privacy Policy | PawPal",
+        "pathname": "/privacy",
+        "textLength": 1434,
+        "h1": "Controlled sharing for every pet safety flow.",
+        "scrollWidth": 390,
+        "clientWidth": 390,
+        "bodyScrollWidth": 390,
+        "horizontalOverflow": false,
+        "frameworkOverlay": false
+      },
+      "pass": true
+    },
+    {
+      "route": "/privacy",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "url": "http://localhost:3000/privacy",
+      "title": "Privacy Policy | PawPal",
+      "file": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/assets/review/website-visual-upgrade-2026-06-11/round-06-about-cross-route-polish/after-privacy-768x1024.png",
+      "logs": [],
+      "metrics": {
+        "title": "Privacy Policy | PawPal",
+        "pathname": "/privacy",
+        "textLength": 1466,
+        "h1": "Controlled sharing for every pet safety flow.",
+        "scrollWidth": 768,
+        "clientWidth": 768,
+        "bodyScrollWidth": 768,
+        "horizontalOverflow": false,
+        "frameworkOverlay": false
+      },
+      "pass": true
+    },
+    {
+      "route": "/privacy",
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "url": "http://localhost:3000/privacy",
+      "title": "Privacy Policy | PawPal",
+      "file": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/assets/review/website-visual-upgrade-2026-06-11/round-06-about-cross-route-polish/after-privacy-1280x720.png",
+      "logs": [],
+      "metrics": {
+        "title": "Privacy Policy | PawPal",
+        "pathname": "/privacy",
+        "textLength": 1460,
+        "h1": "Controlled sharing for every pet safety flow.",
+        "scrollWidth": 1280,
+        "clientWidth": 1280,
+        "bodyScrollWidth": 1280,
+        "horizontalOverflow": false,
+        "frameworkOverlay": false
+      },
+      "pass": true
+    },
+    {
+      "route": "/privacy",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "url": "http://localhost:3000/privacy",
+      "title": "Privacy Policy | PawPal",
+      "file": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/assets/review/website-visual-upgrade-2026-06-11/round-06-about-cross-route-polish/after-privacy-1440x900.png",
+      "logs": [],
+      "metrics": {
+        "title": "Privacy Policy | PawPal",
+        "pathname": "/privacy",
+        "textLength": 1466,
+        "h1": "Controlled sharing for every pet safety flow.",
+        "scrollWidth": 1440,
+        "clientWidth": 1440,
+        "bodyScrollWidth": 1440,
+        "horizontalOverflow": false,
+        "frameworkOverlay": false
+      },
+      "pass": true
+    },
+    {
+      "route": "/terms",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "url": "http://localhost:3000/terms",
+      "title": "Terms of Service | PawPal",
+      "file": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/assets/review/website-visual-upgrade-2026-06-11/round-06-about-cross-route-polish/after-terms-390x844.png",
+      "logs": [],
+      "metrics": {
+        "title": "Terms of Service | PawPal",
+        "pathname": "/terms",
+        "textLength": 1407,
+        "h1": "Clear rules for pet care, commerce, and community.",
+        "scrollWidth": 390,
+        "clientWidth": 390,
+        "bodyScrollWidth": 390,
+        "horizontalOverflow": false,
+        "frameworkOverlay": false
+      },
+      "pass": true
+    },
+    {
+      "route": "/terms",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "url": "http://localhost:3000/terms",
+      "title": "Terms of Service | PawPal",
+      "file": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/assets/review/website-visual-upgrade-2026-06-11/round-06-about-cross-route-polish/after-terms-768x1024.png",
+      "logs": [],
+      "metrics": {
+        "title": "Terms of Service | PawPal",
+        "pathname": "/terms",
+        "textLength": 1433,
+        "h1": "Clear rules for pet care, commerce, and community.",
+        "scrollWidth": 768,
+        "clientWidth": 768,
+        "bodyScrollWidth": 768,
+        "horizontalOverflow": false,
+        "frameworkOverlay": false
+      },
+      "pass": true
+    },
+    {
+      "route": "/terms",
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "url": "http://localhost:3000/terms",
+      "title": "Terms of Service | PawPal",
+      "file": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/assets/review/website-visual-upgrade-2026-06-11/round-06-about-cross-route-polish/after-terms-1280x720.png",
+      "logs": [],
+      "metrics": {
+        "title": "Terms of Service | PawPal",
+        "pathname": "/terms",
+        "textLength": 1439,
+        "h1": "Clear rules for pet care, commerce, and community.",
+        "scrollWidth": 1280,
+        "clientWidth": 1280,
+        "bodyScrollWidth": 1280,
+        "horizontalOverflow": false,
+        "frameworkOverlay": false
+      },
+      "pass": true
+    },
+    {
+      "route": "/terms",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "url": "http://localhost:3000/terms",
+      "title": "Terms of Service | PawPal",
+      "file": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/assets/review/website-visual-upgrade-2026-06-11/round-06-about-cross-route-polish/after-terms-1440x900.png",
+      "logs": [],
+      "metrics": {
+        "title": "Terms of Service | PawPal",
+        "pathname": "/terms",
+        "textLength": 1439,
+        "h1": "Clear rules for pet care, commerce, and community.",
+        "scrollWidth": 1440,
+        "clientWidth": 1440,
+        "bodyScrollWidth": 1440,
+        "horizontalOverflow": false,
+        "frameworkOverlay": false
+      },
+      "pass": true
+    }
+  ],
+  "summary": {
+    "totalScreenshots": 16,
+    "passedScreenshots": 16,
+    "failedScreenshots": 0,
+    "relevantLogCount": 0
+  }
+}

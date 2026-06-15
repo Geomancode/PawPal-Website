@@ -1,0 +1,56 @@
+{
+  "runStart": "2026-06-11T13:21:47.090Z",
+  "before": {
+    "chatRect": {
+      "bottom": 704,
+      "height": 68,
+      "right": 896,
+      "width": 512,
+      "x": 384,
+      "y": 636
+    },
+    "chatText": "Ask",
+    "inputFocused": false,
+    "overflowX": 0,
+    "title": "Live Pet Globe | PawPal",
+    "url": "http://localhost:3000/globe",
+    "visibleFrameworkOverlay": false
+  },
+  "inputCount": 1,
+  "expanded": {
+    "chatRect": {
+      "bottom": 720,
+      "height": 288,
+      "right": 1280,
+      "width": 1280,
+      "x": 0,
+      "y": 432
+    },
+    "chatText": "PawPal AISearch & ask in any languageFind vets, check food safety, explore breeds — or just chat about pets 🐾Find a vet nearby附近宠物店Is chocolate safe for dogs?Dierenarts GentGolden Retriever info遥歩任务Ask",
+    "inputFocused": true,
+    "overflowX": 0,
+    "title": "Live Pet Globe | PawPal",
+    "url": "http://localhost:3000/globe",
+    "visibleFrameworkOverlay": false
+  },
+  "expandedScreenshot": "/private/tmp/geopet-round04-globe/chat-final/round04-globe-chat-focused-expanded.png",
+  "closeCount": 1,
+  "closed": {
+    "chatRect": {
+      "bottom": 704,
+      "height": 68,
+      "right": 896,
+      "width": 512,
+      "x": 384,
+      "y": 636
+    },
+    "chatText": "Ask",
+    "inputFocused": false,
+    "overflowX": 0,
+    "title": "Live Pet Globe | PawPal",
+    "url": "http://localhost:3000/globe",
+    "visibleFrameworkOverlay": false
+  },
+  "closedScreenshot": "/private/tmp/geopet-round04-globe/chat-final/round04-globe-chat-closed.png",
+  "newLogs": []
+}

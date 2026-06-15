@@ -1,0 +1,2195 @@
+{
+  "phase": "round08-baseline-help",
+  "completedAt": "2026-06-11T16:55:00.949Z",
+  "baseUrl": "http://localhost:3000",
+  "totalCount": 8,
+  "passCount": 0,
+  "relevantLogCount": 0,
+  "hydrationLogCount": 0,
+  "overflowCount": 0,
+  "darkProofFailures": 0,
+  "entries": [
+    {
+      "route": "/help",
+      "viewport": "390x844",
+      "scheme": "light",
+      "requestedUrl": "http://localhost:3000/help",
+      "responseStatus": 200,
+      "screenshot": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/assets/review/website-visual-upgrade-2026-06-11/round-08-help-support-pathways/baseline-light-help-390x844.png",
+      "pass": false,
+      "relevantLogCount": 0,
+      "hydrationLogCount": 0,
+      "logs": [
+        {
+          "level": "info",
+          "message": "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold",
+          "location": {
+            "url": "http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js",
+            "line": 2297,
+            "column": 27,
+            "lineNumber": 2297,
+            "columnNumber": 27
+          },
+          "relevant": false,
+          "hydration": false
+        },
+        {
+          "level": "log",
+          "message": "[HMR] connected",
+          "location": {
+            "url": "http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js",
+            "line": 2297,
+            "column": 27,
+            "lineNumber": 2297,
+            "columnNumber": 27
+          },
+          "relevant": false,
+          "hydration": false
+        },
+        {
+          "level": "log",
+          "message": "[Fast Refresh] rebuilding",
+          "location": {
+            "url": "http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js",
+            "line": 2297,
+            "column": 27,
+            "lineNumber": 2297,
+            "columnNumber": 27
+          },
+          "relevant": false,
+          "hydration": false
+        },
+        {
+          "level": "log",
+          "message": "[Fast Refresh] done in 107ms",
+          "location": {
+            "url": "http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js",
+            "line": 2297,
+            "column": 27,
+            "lineNumber": 2297,
+            "columnNumber": 27
+          },
+          "relevant": false,
+          "hydration": false
+        },
+        {
+          "level": "info",
+          "message": "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold",
+          "location": {
+            "url": "http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js",
+            "line": 2297,
+            "column": 27,
+            "lineNumber": 2297,
+            "columnNumber": 27
+          },
+          "relevant": false,
+          "hydration": false
+        },
+        {
+          "level": "log",
+          "message": "[HMR] connected",
+          "location": {
+            "url": "http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js",
+            "line": 2297,
+            "column": 27,
+            "lineNumber": 2297,
+            "columnNumber": 27
+          },
+          "relevant": false,
+          "hydration": false
+        }
+      ],
+      "path": "/help",
+      "title": "Help Center | PawPal",
+      "h1": [
+        "Help that keeps pet safety moving."
+      ],
+      "bodyTextLength": 1503,
+      "overlayMatches": [
+        "nextjs-portal"
+      ],
+      "overflowX": false,
+      "prefersDark": false,
+      "prefersReducedMotion": true,
+      "htmlColorScheme": "light",
+      "bodyColorScheme": "light",
+      "bodyBg": "rgb(255, 255, 255)",
+      "pawPage": "#fff",
+      "headings": [
+        {
+          "tag": "h1",
+          "text": "Help that keeps pet safety moving."
+        },
+        {
+          "tag": "h2",
+          "text": "Pick the right lane"
+        },
+        {
+          "tag": "h2",
+          "text": "NFC tag or pet profile"
+        },
+        {
+          "tag": "h2",
+          "text": "Account and community"
+        },
+        {
+          "tag": "h2",
+          "text": "Safety or urgent pet issue"
+        },
+        {
+          "tag": "h3",
+          "text": "Product"
+        },
+        {
+          "tag": "h3",
+          "text": "Company"
+        },
+        {
+          "tag": "h3",
+          "text": "Support"
+        },
+        {
+          "tag": "h3",
+          "text": "Belgium Pilot"
+        }
+      ],
+      "links": [
+        {
+          "text": "Skip to PawPal content",
+          "href": "#main-content",
+          "visible": true
+        },
+        {
+          "text": "PawPal",
+          "href": "/",
+          "visible": true
+        },
+        {
+          "text": "Home",
+          "href": "/",
+          "visible": false
+        },
+        {
+          "text": "Globe",
+          "href": "/globe",
+          "visible": false
+        },
+        {
+          "text": "About Us",
+          "href": "/about",
+          "visible": false
+        },
+        {
+          "text": "Store",
+          "href": "/store",
+          "visible": false
+        },
+        {
+          "text": "Login",
+          "href": "/auth",
+          "visible": false
+        },
+        {
+          "text": "Contact support",
+          "href": "mailto:hello@pawpal.be",
+          "visible": true
+        },
+        {
+          "text": "Open Globe",
+          "href": "/globe",
+          "visible": true
+        },
+        {
+          "text": "hello@pawpal.be",
+          "href": "mailto:hello@pawpal.be",
+          "visible": true
+        },
+        {
+          "text": "Globe Map",
+          "href": "/globe",
+          "visible": true
+        },
+        {
+          "text": "NFC Safety Tag",
+          "href": "/store",
+          "visible": true
+        },
+        {
+          "text": "AI Assistant",
+          "href": "/globe",
+          "visible": true
+        },
+        {
+          "text": "Community",
+          "href": "/globe",
+          "visible": true
+        },
+        {
+          "text": "About Us",
+          "href": "/about",
+          "visible": true
+        },
+        {
+          "text": "Store",
+          "href": "/store",
+          "visible": true
+        },
+        {
+          "text": "Help Center",
+          "href": "/help",
+          "visible": true
+        },
+        {
+          "text": "Privacy Policy",
+          "href": "/privacy",
+          "visible": true
+        },
+        {
+          "text": "Terms of Service",
+          "href": "/terms",
+          "visible": true
+        },
+        {
+          "text": "Contact",
+          "href": "mailto:hello@pawpal.be",
+          "visible": true
+        },
+        {
+          "text": "Contact PawPal",
+          "href": "mailto:hello@pawpal.be?subject=PawPal%20partnership",
+          "visible": true
+        }
+      ],
+      "firstViewportText": [
+        "PawPalHomeGlobeAbout UsStoreLogin",
+        "PawPalHomeGlobeAbout UsStoreLogin",
+        "PawPal",
+        "SupportHelp that keeps pet safety moving.Quick guidance for NFC safety tags, finder pages, account access, community activity, and PawPal support routes.Contact supportOpen GlobeSupport routePick the right laneTag scanPublic rescue pageAccountEmail + affected screenSafetyLocal services firstNFC tag or pet profileIf a tag scan does not open the expected pet profile, check the tag ID and owner lost-mode settings.Finder page, QR/NFC, lost modeAccount and communityFor sign-in, posting, chat, or moderation questions, include your account email and the affected screen.Login, posts, chat, moderationSafety or urgent pet issueFor urgent rescue or safety situations, contact local services first, then use PawPal to notify the owner or community.Owner alerts, nearby help, rescueInclude the pet tag ID, account email, and screenshots when possible.That gives the team enough context to trace the correct profile, order, or map event without exposing unnecessary data.Belgium-first support",
+        "SupportHelp that keeps pet safety moving.Quick guidance for NFC safety tags, finder pages, account access, community activity, and PawPal support routes.Contact supportOpen GlobeSupport routePick the right laneTag scanPublic rescue pageAccountEmail + affected screenSafetyLocal services firstNFC tag or pet profileIf a tag scan does not open the expected pet profile, check the tag ID and owner lost-mode settings.Finder page, QR/NFC, lost modeAccount and communityFor sign-in, posting, chat, or moderation questions, include your account email and the affected screen.Login, posts, chat, moderationSafety or urgent pet issueFor urgent rescue or safety situations, contact local services first, then use PawPal to notify the owner or community.Owner alerts, nearby help, rescueInclude the pet tag ID, account email, and screenshots when possible.That gives the team enough context to trace the correct profile, order, or map event without exposing unnecessary data.Belgium-first support",
+        "SupportHelp that keeps pet safety moving.Quick guidance for NFC safety tags, finder pages, account access, community activity, and PawPal support routes.Contact supportOpen GlobeSupport routePick the right laneTag scanPublic rescue pageAccountEmail + affected screenSafetyLocal services first",
+        "SupportHelp that keeps pet safety moving.Quick guidance for NFC safety tags, finder pages, account access, community activity, and PawPal support routes.Contact supportOpen Globe",
+        "Support",
+        "Help that keeps pet safety moving.",
+        "Quick guidance for NFC safety tags, finder pages, account access, community activity, and PawPal support routes.",
+        "Contact supportOpen Globe",
+        "Contact support",
+        "Open Globe",
+        "Support routePick the right laneTag scanPublic rescue pageAccountEmail + affected screenSafetyLocal services first",
+        "Support routePick the right lane",
+        "Support routePick the right lane",
+        "Support route",
+        "Tag scanPublic rescue pageAccountEmail + affected screenSafetyLocal services first",
+        "Tag scanPublic rescue page",
+        "Tag scanPublic rescue page",
+        "Tag scan",
+        "Public rescue page",
+        "AccountEmail + affected screen",
+        "AccountEmail + affected screen",
+        "Account",
+        "Email + affected screen",
+        "SafetyLocal services first",
+        "SafetyLocal services first",
+        "Safety",
+        "Local services first",
+        "NFC tag or pet profileIf a tag scan does not open the expected pet profile, check the tag ID and owner lost-mode settings.Finder page, QR/NFC, lost modeAccount and communityFor sign-in, posting, chat, or moderation questions, include your account email and the affected screen.Login, posts, chat, moderationSafety or urgent pet issueFor urgent rescue or safety situations, contact local services first, then use PawPal to notify the owner or community.Owner alerts, nearby help, rescueInclude the pet tag ID, account email, and screenshots when possible.That gives the team enough context to trace the correct profile, order, or map event without exposing unnecessary data.Belgium-first support",
+        "NFC tag or pet profileIf a tag scan does not open the expected pet profile, check the tag ID and owner lost-mode settings.Finder page, QR/NFC, lost modeAccount and communityFor sign-in, posting, chat, or moderation questions, include your account email and the affected screen.Login, posts, chat, moderationSafety or urgent pet issueFor urgent rescue or safety situations, contact local services first, then use PawPal to notify the owner or community.Owner alerts, nearby help, rescue",
+        "NFC tag or pet profileIf a tag scan does not open the expected pet profile, check the tag ID and owner lost-mode settings.Finder page, QR/NFC, lost mode"
+      ]
+    },
+    {
+      "route": "/help",
+      "viewport": "390x844",
+      "scheme": "dark",
+      "requestedUrl": "http://localhost:3000/help",
+      "responseStatus": 200,
+      "screenshot": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/assets/review/website-visual-upgrade-2026-06-11/round-08-help-support-pathways/baseline-dark-help-390x844.png",
+      "pass": false,
+      "relevantLogCount": 0,
+      "hydrationLogCount": 0,
+      "logs": [
+        {
+          "level": "info",
+          "message": "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold",
+          "location": {
+            "url": "http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js",
+            "line": 2297,
+            "column": 27,
+            "lineNumber": 2297,
+            "columnNumber": 27
+          },
+          "relevant": false,
+          "hydration": false
+        },
+        {
+          "level": "log",
+          "message": "[HMR] connected",
+          "location": {
+            "url": "http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js",
+            "line": 2297,
+            "column": 27,
+            "lineNumber": 2297,
+            "columnNumber": 27
+          },
+          "relevant": false,
+          "hydration": false
+        },
+        {
+          "level": "info",
+          "message": "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold",
+          "location": {
+            "url": "http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js",
+            "line": 2297,
+            "column": 27,
+            "lineNumber": 2297,
+            "columnNumber": 27
+          },
+          "relevant": false,
+          "hydration": false
+        },
+        {
+          "level": "log",
+          "message": "[HMR] connected",
+          "location": {
+            "url": "http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js",
+            "line": 2297,
+            "column": 27,
+            "lineNumber": 2297,
+            "columnNumber": 27
+          },
+          "relevant": false,
+          "hydration": false
+        }
+      ],
+      "path": "/help",
+      "title": "Help Center | PawPal",
+      "h1": [
+        "Help that keeps pet safety moving."
+      ],
+      "bodyTextLength": 1503,
+      "overlayMatches": [
+        "nextjs-portal"
+      ],
+      "overflowX": false,
+      "prefersDark": true,
+      "prefersReducedMotion": true,
+      "htmlColorScheme": "dark",
+      "bodyColorScheme": "dark",
+      "bodyBg": "rgb(21, 29, 34)",
+      "pawPage": "#151d22",
+      "headings": [
+        {
+          "tag": "h1",
+          "text": "Help that keeps pet safety moving."
+        },
+        {
+          "tag": "h2",
+          "text": "Pick the right lane"
+        },
+        {
+          "tag": "h2",
+          "text": "NFC tag or pet profile"
+        },
+        {
+          "tag": "h2",
+          "text": "Account and community"
+        },
+        {
+          "tag": "h2",
+          "text": "Safety or urgent pet issue"
+        },
+        {
+          "tag": "h3",
+          "text": "Product"
+        },
+        {
+          "tag": "h3",
+          "text": "Company"
+        },
+        {
+          "tag": "h3",
+          "text": "Support"
+        },
+        {
+          "tag": "h3",
+          "text": "Belgium Pilot"
+        }
+      ],
+      "links": [
+        {
+          "text": "Skip to PawPal content",
+          "href": "#main-content",
+          "visible": true
+        },
+        {
+          "text": "PawPal",
+          "href": "/",
+          "visible": true
+        },
+        {
+          "text": "Home",
+          "href": "/",
+          "visible": false
+        },
+        {
+          "text": "Globe",
+          "href": "/globe",
+          "visible": false
+        },
+        {
+          "text": "About Us",
+          "href": "/about",
+          "visible": false
+        },
+        {
+          "text": "Store",
+          "href": "/store",
+          "visible": false
+        },
+        {
+          "text": "Login",
+          "href": "/auth",
+          "visible": false
+        },
+        {
+          "text": "Contact support",
+          "href": "mailto:hello@pawpal.be",
+          "visible": true
+        },
+        {
+          "text": "Open Globe",
+          "href": "/globe",
+          "visible": true
+        },
+        {
+          "text": "hello@pawpal.be",
+          "href": "mailto:hello@pawpal.be",
+          "visible": true
+        },
+        {
+          "text": "Globe Map",
+          "href": "/globe",
+          "visible": true
+        },
+        {
+          "text": "NFC Safety Tag",
+          "href": "/store",
+          "visible": true
+        },
+        {
+          "text": "AI Assistant",
+          "href": "/globe",
+          "visible": true
+        },
+        {
+          "text": "Community",
+          "href": "/globe",
+          "visible": true
+        },
+        {
+          "text": "About Us",
+          "href": "/about",
+          "visible": true
+        },
+        {
+          "text": "Store",
+          "href": "/store",
+          "visible": true
+        },
+        {
+          "text": "Help Center",
+          "href": "/help",
+          "visible": true
+        },
+        {
+          "text": "Privacy Policy",
+          "href": "/privacy",
+          "visible": true
+        },
+        {
+          "text": "Terms of Service",
+          "href": "/terms",
+          "visible": true
+        },
+        {
+          "text": "Contact",
+          "href": "mailto:hello@pawpal.be",
+          "visible": true
+        },
+        {
+          "text": "Contact PawPal",
+          "href": "mailto:hello@pawpal.be?subject=PawPal%20partnership",
+          "visible": true
+        }
+      ],
+      "firstViewportText": [
+        "PawPalHomeGlobeAbout UsStoreLogin",
+        "PawPalHomeGlobeAbout UsStoreLogin",
+        "PawPal",
+        "SupportHelp that keeps pet safety moving.Quick guidance for NFC safety tags, finder pages, account access, community activity, and PawPal support routes.Contact supportOpen GlobeSupport routePick the right laneTag scanPublic rescue pageAccountEmail + affected screenSafetyLocal services firstNFC tag or pet profileIf a tag scan does not open the expected pet profile, check the tag ID and owner lost-mode settings.Finder page, QR/NFC, lost modeAccount and communityFor sign-in, posting, chat, or moderation questions, include your account email and the affected screen.Login, posts, chat, moderationSafety or urgent pet issueFor urgent rescue or safety situations, contact local services first, then use PawPal to notify the owner or community.Owner alerts, nearby help, rescueInclude the pet tag ID, account email, and screenshots when possible.That gives the team enough context to trace the correct profile, order, or map event without exposing unnecessary data.Belgium-first support",
+        "SupportHelp that keeps pet safety moving.Quick guidance for NFC safety tags, finder pages, account access, community activity, and PawPal support routes.Contact supportOpen GlobeSupport routePick the right laneTag scanPublic rescue pageAccountEmail + affected screenSafetyLocal services firstNFC tag or pet profileIf a tag scan does not open the expected pet profile, check the tag ID and owner lost-mode settings.Finder page, QR/NFC, lost modeAccount and communityFor sign-in, posting, chat, or moderation questions, include your account email and the affected screen.Login, posts, chat, moderationSafety or urgent pet issueFor urgent rescue or safety situations, contact local services first, then use PawPal to notify the owner or community.Owner alerts, nearby help, rescueInclude the pet tag ID, account email, and screenshots when possible.That gives the team enough context to trace the correct profile, order, or map event without exposing unnecessary data.Belgium-first support",
+        "SupportHelp that keeps pet safety moving.Quick guidance for NFC safety tags, finder pages, account access, community activity, and PawPal support routes.Contact supportOpen GlobeSupport routePick the right laneTag scanPublic rescue pageAccountEmail + affected screenSafetyLocal services first",
+        "SupportHelp that keeps pet safety moving.Quick guidance for NFC safety tags, finder pages, account access, community activity, and PawPal support routes.Contact supportOpen Globe",
+        "Support",
+        "Help that keeps pet safety moving.",
+        "Quick guidance for NFC safety tags, finder pages, account access, community activity, and PawPal support routes.",
+        "Contact supportOpen Globe",
+        "Contact support",
+        "Open Globe",
+        "Support routePick the right laneTag scanPublic rescue pageAccountEmail + affected screenSafetyLocal services first",
+        "Support routePick the right lane",
+        "Support routePick the right lane",
+        "Support route",
+        "Tag scanPublic rescue pageAccountEmail + affected screenSafetyLocal services first",
+        "Tag scanPublic rescue page",
+        "Tag scanPublic rescue page",
+        "Tag scan",
+        "Public rescue page",
+        "AccountEmail + affected screen",
+        "AccountEmail + affected screen",
+        "Account",
+        "Email + affected screen",
+        "SafetyLocal services first",
+        "SafetyLocal services first",
+        "Safety",
+        "Local services first",
+        "NFC tag or pet profileIf a tag scan does not open the expected pet profile, check the tag ID and owner lost-mode settings.Finder page, QR/NFC, lost modeAccount and communityFor sign-in, posting, chat, or moderation questions, include your account email and the affected screen.Login, posts, chat, moderationSafety or urgent pet issueFor urgent rescue or safety situations, contact local services first, then use PawPal to notify the owner or community.Owner alerts, nearby help, rescueInclude the pet tag ID, account email, and screenshots when possible.That gives the team enough context to trace the correct profile, order, or map event without exposing unnecessary data.Belgium-first support",
+        "NFC tag or pet profileIf a tag scan does not open the expected pet profile, check the tag ID and owner lost-mode settings.Finder page, QR/NFC, lost modeAccount and communityFor sign-in, posting, chat, or moderation questions, include your account email and the affected screen.Login, posts, chat, moderationSafety or urgent pet issueFor urgent rescue or safety situations, contact local services first, then use PawPal to notify the owner or community.Owner alerts, nearby help, rescue",
+        "NFC tag or pet profileIf a tag scan does not open the expected pet profile, check the tag ID and owner lost-mode settings.Finder page, QR/NFC, lost mode"
+      ]
+    },
+    {
+      "route": "/help",
+      "viewport": "768x1024",
+      "scheme": "light",
+      "requestedUrl": "http://localhost:3000/help",
+      "responseStatus": 200,
+      "screenshot": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/assets/review/website-visual-upgrade-2026-06-11/round-08-help-support-pathways/baseline-light-help-768x1024.png",
+      "pass": false,
+      "relevantLogCount": 0,
+      "hydrationLogCount": 0,
+      "logs": [
+        {
+          "level": "info",
+          "message": "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold",
+          "location": {
+            "url": "http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js",
+            "line": 2297,
+            "column": 27,
+            "lineNumber": 2297,
+            "columnNumber": 27
+          },
+          "relevant": false,
+          "hydration": false
+        },
+        {
+          "level": "log",
+          "message": "[HMR] connected",
+          "location": {
+            "url": "http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js",
+            "line": 2297,
+            "column": 27,
+            "lineNumber": 2297,
+            "columnNumber": 27
+          },
+          "relevant": false,
+          "hydration": false
+        },
+        {
+          "level": "info",
+          "message": "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold",
+          "location": {
+            "url": "http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js",
+            "line": 2297,
+            "column": 27,
+            "lineNumber": 2297,
+            "columnNumber": 27
+          },
+          "relevant": false,
+          "hydration": false
+        },
+        {
+          "level": "log",
+          "message": "[HMR] connected",
+          "location": {
+            "url": "http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js",
+            "line": 2297,
+            "column": 27,
+            "lineNumber": 2297,
+            "columnNumber": 27
+          },
+          "relevant": false,
+          "hydration": false
+        }
+      ],
+      "path": "/help",
+      "title": "Help Center | PawPal",
+      "h1": [
+        "Help that keeps pet safety moving."
+      ],
+      "bodyTextLength": 1535,
+      "overlayMatches": [
+        "nextjs-portal"
+      ],
+      "overflowX": false,
+      "prefersDark": false,
+      "prefersReducedMotion": true,
+      "htmlColorScheme": "light",
+      "bodyColorScheme": "light",
+      "bodyBg": "rgb(255, 255, 255)",
+      "pawPage": "#fff",
+      "headings": [
+        {
+          "tag": "h1",
+          "text": "Help that keeps pet safety moving."
+        },
+        {
+          "tag": "h2",
+          "text": "Pick the right lane"
+        },
+        {
+          "tag": "h2",
+          "text": "NFC tag or pet profile"
+        },
+        {
+          "tag": "h2",
+          "text": "Account and community"
+        },
+        {
+          "tag": "h2",
+          "text": "Safety or urgent pet issue"
+        },
+        {
+          "tag": "h3",
+          "text": "Product"
+        },
+        {
+          "tag": "h3",
+          "text": "Company"
+        },
+        {
+          "tag": "h3",
+          "text": "Support"
+        },
+        {
+          "tag": "h3",
+          "text": "Belgium Pilot"
+        }
+      ],
+      "links": [
+        {
+          "text": "Skip to PawPal content",
+          "href": "#main-content",
+          "visible": true
+        },
+        {
+          "text": "PawPal",
+          "href": "/",
+          "visible": true
+        },
+        {
+          "text": "Home",
+          "href": "/",
+          "visible": true
+        },
+        {
+          "text": "Globe",
+          "href": "/globe",
+          "visible": true
+        },
+        {
+          "text": "About Us",
+          "href": "/about",
+          "visible": true
+        },
+        {
+          "text": "Store",
+          "href": "/store",
+          "visible": true
+        },
+        {
+          "text": "Login",
+          "href": "/auth",
+          "visible": true
+        },
+        {
+          "text": "Contact support",
+          "href": "mailto:hello@pawpal.be",
+          "visible": true
+        },
+        {
+          "text": "Open Globe",
+          "href": "/globe",
+          "visible": true
+        },
+        {
+          "text": "hello@pawpal.be",
+          "href": "mailto:hello@pawpal.be",
+          "visible": true
+        },
+        {
+          "text": "Globe Map",
+          "href": "/globe",
+          "visible": true
+        },
+        {
+          "text": "NFC Safety Tag",
+          "href": "/store",
+          "visible": true
+        },
+        {
+          "text": "AI Assistant",
+          "href": "/globe",
+          "visible": true
+        },
+        {
+          "text": "Community",
+          "href": "/globe",
+          "visible": true
+        },
+        {
+          "text": "About Us",
+          "href": "/about",
+          "visible": true
+        },
+        {
+          "text": "Store",
+          "href": "/store",
+          "visible": true
+        },
+        {
+          "text": "Help Center",
+          "href": "/help",
+          "visible": true
+        },
+        {
+          "text": "Privacy Policy",
+          "href": "/privacy",
+          "visible": true
+        },
+        {
+          "text": "Terms of Service",
+          "href": "/terms",
+          "visible": true
+        },
+        {
+          "text": "Contact",
+          "href": "mailto:hello@pawpal.be",
+          "visible": true
+        },
+        {
+          "text": "Contact PawPal",
+          "href": "mailto:hello@pawpal.be?subject=PawPal%20partnership",
+          "visible": true
+        }
+      ],
+      "firstViewportText": [
+        "PawPalHomeGlobeAbout UsStoreLogin",
+        "PawPalHomeGlobeAbout UsStoreLogin",
+        "PawPal",
+        "HomeGlobeAbout UsStore",
+        "Home",
+        "Globe",
+        "About Us",
+        "Store",
+        "Login",
+        "Login",
+        "SupportHelp that keeps pet safety moving.Quick guidance for NFC safety tags, finder pages, account access, community activity, and PawPal support routes.Contact supportOpen GlobeSupport routePick the right laneTag scanPublic rescue pageAccountEmail + affected screenSafetyLocal services firstNFC tag or pet profileIf a tag scan does not open the expected pet profile, check the tag ID and owner lost-mode settings.Finder page, QR/NFC, lost modeAccount and communityFor sign-in, posting, chat, or moderation questions, include your account email and the affected screen.Login, posts, chat, moderationSafety or urgent pet issueFor urgent rescue or safety situations, contact local services first, then use PawPal to notify the owner or community.Owner alerts, nearby help, rescueInclude the pet tag ID, account email, and screenshots when possible.That gives the team enough context to trace the correct profile, order, or map event without exposing unnecessary data.Belgium-first support",
+        "SupportHelp that keeps pet safety moving.Quick guidance for NFC safety tags, finder pages, account access, community activity, and PawPal support routes.Contact supportOpen GlobeSupport routePick the right laneTag scanPublic rescue pageAccountEmail + affected screenSafetyLocal services firstNFC tag or pet profileIf a tag scan does not open the expected pet profile, check the tag ID and owner lost-mode settings.Finder page, QR/NFC, lost modeAccount and communityFor sign-in, posting, chat, or moderation questions, include your account email and the affected screen.Login, posts, chat, moderationSafety or urgent pet issueFor urgent rescue or safety situations, contact local services first, then use PawPal to notify the owner or community.Owner alerts, nearby help, rescueInclude the pet tag ID, account email, and screenshots when possible.That gives the team enough context to trace the correct profile, order, or map event without exposing unnecessary data.Belgium-first support",
+        "SupportHelp that keeps pet safety moving.Quick guidance for NFC safety tags, finder pages, account access, community activity, and PawPal support routes.Contact supportOpen GlobeSupport routePick the right laneTag scanPublic rescue pageAccountEmail + affected screenSafetyLocal services first",
+        "SupportHelp that keeps pet safety moving.Quick guidance for NFC safety tags, finder pages, account access, community activity, and PawPal support routes.Contact supportOpen Globe",
+        "Support",
+        "Help that keeps pet safety moving.",
+        "Quick guidance for NFC safety tags, finder pages, account access, community activity, and PawPal support routes.",
+        "Contact supportOpen Globe",
+        "Contact support",
+        "Open Globe",
+        "Support routePick the right laneTag scanPublic rescue pageAccountEmail + affected screenSafetyLocal services first",
+        "Support routePick the right lane",
+        "Support routePick the right lane",
+        "Support route",
+        "Tag scanPublic rescue pageAccountEmail + affected screenSafetyLocal services first",
+        "Tag scanPublic rescue page",
+        "Tag scanPublic rescue page",
+        "Tag scan",
+        "Public rescue page",
+        "AccountEmail + affected screen",
+        "AccountEmail + affected screen",
+        "Account",
+        "Email + affected screen",
+        "SafetyLocal services first",
+        "SafetyLocal services first",
+        "Safety",
+        "Local services first",
+        "NFC tag or pet profileIf a tag scan does not open the expected pet profile, check the tag ID and owner lost-mode settings.Finder page, QR/NFC, lost modeAccount and communityFor sign-in, posting, chat, or moderation questions, include your account email and the affected screen.Login, posts, chat, moderationSafety or urgent pet issueFor urgent rescue or safety situations, contact local services first, then use PawPal to notify the owner or community.Owner alerts, nearby help, rescueInclude the pet tag ID, account email, and screenshots when possible.That gives the team enough context to trace the correct profile, order, or map event without exposing unnecessary data.Belgium-first support",
+        "NFC tag or pet profileIf a tag scan does not open the expected pet profile, check the tag ID and owner lost-mode settings.Finder page, QR/NFC, lost modeAccount and communityFor sign-in, posting, chat, or moderation questions, include your account email and the affected screen.Login, posts, chat, moderationSafety or urgent pet issueFor urgent rescue or safety situations, contact local services first, then use PawPal to notify the owner or community.Owner alerts, nearby help, rescue",
+        "NFC tag or pet profileIf a tag scan does not open the expected pet profile, check the tag ID and owner lost-mode settings.Finder page, QR/NFC, lost mode"
+      ]
+    },
+    {
+      "route": "/help",
+      "viewport": "768x1024",
+      "scheme": "dark",
+      "requestedUrl": "http://localhost:3000/help",
+      "responseStatus": 200,
+      "screenshot": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/assets/review/website-visual-upgrade-2026-06-11/round-08-help-support-pathways/baseline-dark-help-768x1024.png",
+      "pass": false,
+      "relevantLogCount": 0,
+      "hydrationLogCount": 0,
+      "logs": [
+        {
+          "level": "info",
+          "message": "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold",
+          "location": {
+            "url": "http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js",
+            "line": 2297,
+            "column": 27,
+            "lineNumber": 2297,
+            "columnNumber": 27
+          },
+          "relevant": false,
+          "hydration": false
+        },
+        {
+          "level": "log",
+          "message": "[HMR] connected",
+          "location": {
+            "url": "http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js",
+            "line": 2297,
+            "column": 27,
+            "lineNumber": 2297,
+            "columnNumber": 27
+          },
+          "relevant": false,
+          "hydration": false
+        },
+        {
+          "level": "info",
+          "message": "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold",
+          "location": {
+            "url": "http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js",
+            "line": 2297,
+            "column": 27,
+            "lineNumber": 2297,
+            "columnNumber": 27
+          },
+          "relevant": false,
+          "hydration": false
+        },
+        {
+          "level": "log",
+          "message": "[HMR] connected",
+          "location": {
+            "url": "http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js",
+            "line": 2297,
+            "column": 27,
+            "lineNumber": 2297,
+            "columnNumber": 27
+          },
+          "relevant": false,
+          "hydration": false
+        }
+      ],
+      "path": "/help",
+      "title": "Help Center | PawPal",
+      "h1": [
+        "Help that keeps pet safety moving."
+      ],
+      "bodyTextLength": 1535,
+      "overlayMatches": [
+        "nextjs-portal"
+      ],
+      "overflowX": false,
+      "prefersDark": true,
+      "prefersReducedMotion": true,
+      "htmlColorScheme": "dark",
+      "bodyColorScheme": "dark",
+      "bodyBg": "rgb(21, 29, 34)",
+      "pawPage": "#151d22",
+      "headings": [
+        {
+          "tag": "h1",
+          "text": "Help that keeps pet safety moving."
+        },
+        {
+          "tag": "h2",
+          "text": "Pick the right lane"
+        },
+        {
+          "tag": "h2",
+          "text": "NFC tag or pet profile"
+        },
+        {
+          "tag": "h2",
+          "text": "Account and community"
+        },
+        {
+          "tag": "h2",
+          "text": "Safety or urgent pet issue"
+        },
+        {
+          "tag": "h3",
+          "text": "Product"
+        },
+        {
+          "tag": "h3",
+          "text": "Company"
+        },
+        {
+          "tag": "h3",
+          "text": "Support"
+        },
+        {
+          "tag": "h3",
+          "text": "Belgium Pilot"
+        }
+      ],
+      "links": [
+        {
+          "text": "Skip to PawPal content",
+          "href": "#main-content",
+          "visible": true
+        },
+        {
+          "text": "PawPal",
+          "href": "/",
+          "visible": true
+        },
+        {
+          "text": "Home",
+          "href": "/",
+          "visible": true
+        },
+        {
+          "text": "Globe",
+          "href": "/globe",
+          "visible": true
+        },
+        {
+          "text": "About Us",
+          "href": "/about",
+          "visible": true
+        },
+        {
+          "text": "Store",
+          "href": "/store",
+          "visible": true
+        },
+        {
+          "text": "Login",
+          "href": "/auth",
+          "visible": true
+        },
+        {
+          "text": "Contact support",
+          "href": "mailto:hello@pawpal.be",
+          "visible": true
+        },
+        {
+          "text": "Open Globe",
+          "href": "/globe",
+          "visible": true
+        },
+        {
+          "text": "hello@pawpal.be",
+          "href": "mailto:hello@pawpal.be",
+          "visible": true
+        },
+        {
+          "text": "Globe Map",
+          "href": "/globe",
+          "visible": true
+        },
+        {
+          "text": "NFC Safety Tag",
+          "href": "/store",
+          "visible": true
+        },
+        {
+          "text": "AI Assistant",
+          "href": "/globe",
+          "visible": true
+        },
+        {
+          "text": "Community",
+          "href": "/globe",
+          "visible": true
+        },
+        {
+          "text": "About Us",
+          "href": "/about",
+          "visible": true
+        },
+        {
+          "text": "Store",
+          "href": "/store",
+          "visible": true
+        },
+        {
+          "text": "Help Center",
+          "href": "/help",
+          "visible": true
+        },
+        {
+          "text": "Privacy Policy",
+          "href": "/privacy",
+          "visible": true
+        },
+        {
+          "text": "Terms of Service",
+          "href": "/terms",
+          "visible": true
+        },
+        {
+          "text": "Contact",
+          "href": "mailto:hello@pawpal.be",
+          "visible": true
+        },
+        {
+          "text": "Contact PawPal",
+          "href": "mailto:hello@pawpal.be?subject=PawPal%20partnership",
+          "visible": true
+        }
+      ],
+      "firstViewportText": [
+        "PawPalHomeGlobeAbout UsStoreLogin",
+        "PawPalHomeGlobeAbout UsStoreLogin",
+        "PawPal",
+        "HomeGlobeAbout UsStore",
+        "Home",
+        "Globe",
+        "About Us",
+        "Store",
+        "Login",
+        "Login",
+        "SupportHelp that keeps pet safety moving.Quick guidance for NFC safety tags, finder pages, account access, community activity, and PawPal support routes.Contact supportOpen GlobeSupport routePick the right laneTag scanPublic rescue pageAccountEmail + affected screenSafetyLocal services firstNFC tag or pet profileIf a tag scan does not open the expected pet profile, check the tag ID and owner lost-mode settings.Finder page, QR/NFC, lost modeAccount and communityFor sign-in, posting, chat, or moderation questions, include your account email and the affected screen.Login, posts, chat, moderationSafety or urgent pet issueFor urgent rescue or safety situations, contact local services first, then use PawPal to notify the owner or community.Owner alerts, nearby help, rescueInclude the pet tag ID, account email, and screenshots when possible.That gives the team enough context to trace the correct profile, order, or map event without exposing unnecessary data.Belgium-first support",
+        "SupportHelp that keeps pet safety moving.Quick guidance for NFC safety tags, finder pages, account access, community activity, and PawPal support routes.Contact supportOpen GlobeSupport routePick the right laneTag scanPublic rescue pageAccountEmail + affected screenSafetyLocal services firstNFC tag or pet profileIf a tag scan does not open the expected pet profile, check the tag ID and owner lost-mode settings.Finder page, QR/NFC, lost modeAccount and communityFor sign-in, posting, chat, or moderation questions, include your account email and the affected screen.Login, posts, chat, moderationSafety or urgent pet issueFor urgent rescue or safety situations, contact local services first, then use PawPal to notify the owner or community.Owner alerts, nearby help, rescueInclude the pet tag ID, account email, and screenshots when possible.That gives the team enough context to trace the correct profile, order, or map event without exposing unnecessary data.Belgium-first support",
+        "SupportHelp that keeps pet safety moving.Quick guidance for NFC safety tags, finder pages, account access, community activity, and PawPal support routes.Contact supportOpen GlobeSupport routePick the right laneTag scanPublic rescue pageAccountEmail + affected screenSafetyLocal services first",
+        "SupportHelp that keeps pet safety moving.Quick guidance for NFC safety tags, finder pages, account access, community activity, and PawPal support routes.Contact supportOpen Globe",
+        "Support",
+        "Help that keeps pet safety moving.",
+        "Quick guidance for NFC safety tags, finder pages, account access, community activity, and PawPal support routes.",
+        "Contact supportOpen Globe",
+        "Contact support",
+        "Open Globe",
+        "Support routePick the right laneTag scanPublic rescue pageAccountEmail + affected screenSafetyLocal services first",
+        "Support routePick the right lane",
+        "Support routePick the right lane",
+        "Support route",
+        "Tag scanPublic rescue pageAccountEmail + affected screenSafetyLocal services first",
+        "Tag scanPublic rescue page",
+        "Tag scanPublic rescue page",
+        "Tag scan",
+        "Public rescue page",
+        "AccountEmail + affected screen",
+        "AccountEmail + affected screen",
+        "Account",
+        "Email + affected screen",
+        "SafetyLocal services first",
+        "SafetyLocal services first",
+        "Safety",
+        "Local services first",
+        "NFC tag or pet profileIf a tag scan does not open the expected pet profile, check the tag ID and owner lost-mode settings.Finder page, QR/NFC, lost modeAccount and communityFor sign-in, posting, chat, or moderation questions, include your account email and the affected screen.Login, posts, chat, moderationSafety or urgent pet issueFor urgent rescue or safety situations, contact local services first, then use PawPal to notify the owner or community.Owner alerts, nearby help, rescueInclude the pet tag ID, account email, and screenshots when possible.That gives the team enough context to trace the correct profile, order, or map event without exposing unnecessary data.Belgium-first support",
+        "NFC tag or pet profileIf a tag scan does not open the expected pet profile, check the tag ID and owner lost-mode settings.Finder page, QR/NFC, lost modeAccount and communityFor sign-in, posting, chat, or moderation questions, include your account email and the affected screen.Login, posts, chat, moderationSafety or urgent pet issueFor urgent rescue or safety situations, contact local services first, then use PawPal to notify the owner or community.Owner alerts, nearby help, rescue",
+        "NFC tag or pet profileIf a tag scan does not open the expected pet profile, check the tag ID and owner lost-mode settings.Finder page, QR/NFC, lost mode"
+      ]
+    },
+    {
+      "route": "/help",
+      "viewport": "1280x720",
+      "scheme": "light",
+      "requestedUrl": "http://localhost:3000/help",
+      "responseStatus": 200,
+      "screenshot": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/assets/review/website-visual-upgrade-2026-06-11/round-08-help-support-pathways/baseline-light-help-1280x720.png",
+      "pass": false,
+      "relevantLogCount": 0,
+      "hydrationLogCount": 0,
+      "logs": [
+        {
+          "level": "info",
+          "message": "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold",
+          "location": {
+            "url": "http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js",
+            "line": 2297,
+            "column": 27,
+            "lineNumber": 2297,
+            "columnNumber": 27
+          },
+          "relevant": false,
+          "hydration": false
+        },
+        {
+          "level": "log",
+          "message": "[HMR] connected",
+          "location": {
+            "url": "http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js",
+            "line": 2297,
+            "column": 27,
+            "lineNumber": 2297,
+            "columnNumber": 27
+          },
+          "relevant": false,
+          "hydration": false
+        },
+        {
+          "level": "info",
+          "message": "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold",
+          "location": {
+            "url": "http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js",
+            "line": 2297,
+            "column": 27,
+            "lineNumber": 2297,
+            "columnNumber": 27
+          },
+          "relevant": false,
+          "hydration": false
+        },
+        {
+          "level": "log",
+          "message": "[HMR] connected",
+          "location": {
+            "url": "http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js",
+            "line": 2297,
+            "column": 27,
+            "lineNumber": 2297,
+            "columnNumber": 27
+          },
+          "relevant": false,
+          "hydration": false
+        },
+        {
+          "level": "log",
+          "message": "[Fast Refresh] rebuilding",
+          "location": {
+            "url": "http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js",
+            "line": 2297,
+            "column": 27,
+            "lineNumber": 2297,
+            "columnNumber": 27
+          },
+          "relevant": false,
+          "hydration": false
+        },
+        {
+          "level": "log",
+          "message": "[Fast Refresh] done in 168ms",
+          "location": {
+            "url": "http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js",
+            "line": 2297,
+            "column": 27,
+            "lineNumber": 2297,
+            "columnNumber": 27
+          },
+          "relevant": false,
+          "hydration": false
+        }
+      ],
+      "path": "/help",
+      "title": "Help Center | PawPal",
+      "h1": [
+        "Help that keeps pet safety moving."
+      ],
+      "bodyTextLength": 1535,
+      "overlayMatches": [
+        "nextjs-portal"
+      ],
+      "overflowX": false,
+      "prefersDark": false,
+      "prefersReducedMotion": true,
+      "htmlColorScheme": "light",
+      "bodyColorScheme": "light",
+      "bodyBg": "rgb(255, 255, 255)",
+      "pawPage": "#fff",
+      "headings": [
+        {
+          "tag": "h1",
+          "text": "Help that keeps pet safety moving."
+        },
+        {
+          "tag": "h2",
+          "text": "Pick the right lane"
+        },
+        {
+          "tag": "h2",
+          "text": "NFC tag or pet profile"
+        },
+        {
+          "tag": "h2",
+          "text": "Account and community"
+        },
+        {
+          "tag": "h2",
+          "text": "Safety or urgent pet issue"
+        },
+        {
+          "tag": "h3",
+          "text": "Product"
+        },
+        {
+          "tag": "h3",
+          "text": "Company"
+        },
+        {
+          "tag": "h3",
+          "text": "Support"
+        },
+        {
+          "tag": "h3",
+          "text": "Belgium Pilot"
+        }
+      ],
+      "links": [
+        {
+          "text": "Skip to PawPal content",
+          "href": "#main-content",
+          "visible": true
+        },
+        {
+          "text": "PawPal",
+          "href": "/",
+          "visible": true
+        },
+        {
+          "text": "Home",
+          "href": "/",
+          "visible": true
+        },
+        {
+          "text": "Globe",
+          "href": "/globe",
+          "visible": true
+        },
+        {
+          "text": "About Us",
+          "href": "/about",
+          "visible": true
+        },
+        {
+          "text": "Store",
+          "href": "/store",
+          "visible": true
+        },
+        {
+          "text": "Login",
+          "href": "/auth",
+          "visible": true
+        },
+        {
+          "text": "Contact support",
+          "href": "mailto:hello@pawpal.be",
+          "visible": true
+        },
+        {
+          "text": "Open Globe",
+          "href": "/globe",
+          "visible": true
+        },
+        {
+          "text": "hello@pawpal.be",
+          "href": "mailto:hello@pawpal.be",
+          "visible": true
+        },
+        {
+          "text": "Globe Map",
+          "href": "/globe",
+          "visible": true
+        },
+        {
+          "text": "NFC Safety Tag",
+          "href": "/store",
+          "visible": true
+        },
+        {
+          "text": "AI Assistant",
+          "href": "/globe",
+          "visible": true
+        },
+        {
+          "text": "Community",
+          "href": "/globe",
+          "visible": true
+        },
+        {
+          "text": "About Us",
+          "href": "/about",
+          "visible": true
+        },
+        {
+          "text": "Store",
+          "href": "/store",
+          "visible": true
+        },
+        {
+          "text": "Help Center",
+          "href": "/help",
+          "visible": true
+        },
+        {
+          "text": "Privacy Policy",
+          "href": "/privacy",
+          "visible": true
+        },
+        {
+          "text": "Terms of Service",
+          "href": "/terms",
+          "visible": true
+        },
+        {
+          "text": "Contact",
+          "href": "mailto:hello@pawpal.be",
+          "visible": true
+        },
+        {
+          "text": "Contact PawPal",
+          "href": "mailto:hello@pawpal.be?subject=PawPal%20partnership",
+          "visible": true
+        }
+      ],
+      "firstViewportText": [
+        "PawPalHomeGlobeAbout UsStoreLogin",
+        "PawPalHomeGlobeAbout UsStoreLogin",
+        "PawPal",
+        "HomeGlobeAbout UsStore",
+        "Home",
+        "Globe",
+        "About Us",
+        "Store",
+        "Login",
+        "Login",
+        "SupportHelp that keeps pet safety moving.Quick guidance for NFC safety tags, finder pages, account access, community activity, and PawPal support routes.Contact supportOpen GlobeSupport routePick the right laneTag scanPublic rescue pageAccountEmail + affected screenSafetyLocal services firstNFC tag or pet profileIf a tag scan does not open the expected pet profile, check the tag ID and owner lost-mode settings.Finder page, QR/NFC, lost modeAccount and communityFor sign-in, posting, chat, or moderation questions, include your account email and the affected screen.Login, posts, chat, moderationSafety or urgent pet issueFor urgent rescue or safety situations, contact local services first, then use PawPal to notify the owner or community.Owner alerts, nearby help, rescueInclude the pet tag ID, account email, and screenshots when possible.That gives the team enough context to trace the correct profile, order, or map event without exposing unnecessary data.Belgium-first support",
+        "SupportHelp that keeps pet safety moving.Quick guidance for NFC safety tags, finder pages, account access, community activity, and PawPal support routes.Contact supportOpen GlobeSupport routePick the right laneTag scanPublic rescue pageAccountEmail + affected screenSafetyLocal services firstNFC tag or pet profileIf a tag scan does not open the expected pet profile, check the tag ID and owner lost-mode settings.Finder page, QR/NFC, lost modeAccount and communityFor sign-in, posting, chat, or moderation questions, include your account email and the affected screen.Login, posts, chat, moderationSafety or urgent pet issueFor urgent rescue or safety situations, contact local services first, then use PawPal to notify the owner or community.Owner alerts, nearby help, rescueInclude the pet tag ID, account email, and screenshots when possible.That gives the team enough context to trace the correct profile, order, or map event without exposing unnecessary data.Belgium-first support",
+        "SupportHelp that keeps pet safety moving.Quick guidance for NFC safety tags, finder pages, account access, community activity, and PawPal support routes.Contact supportOpen GlobeSupport routePick the right laneTag scanPublic rescue pageAccountEmail + affected screenSafetyLocal services first",
+        "SupportHelp that keeps pet safety moving.Quick guidance for NFC safety tags, finder pages, account access, community activity, and PawPal support routes.Contact supportOpen Globe",
+        "Support",
+        "Help that keeps pet safety moving.",
+        "Quick guidance for NFC safety tags, finder pages, account access, community activity, and PawPal support routes.",
+        "Contact supportOpen Globe",
+        "Contact support",
+        "Open Globe",
+        "Support routePick the right laneTag scanPublic rescue pageAccountEmail + affected screenSafetyLocal services first",
+        "Support routePick the right lane",
+        "Support routePick the right lane",
+        "Support route",
+        "Tag scanPublic rescue pageAccountEmail + affected screenSafetyLocal services first",
+        "Tag scanPublic rescue page",
+        "Tag scanPublic rescue page",
+        "Tag scan",
+        "Public rescue page",
+        "AccountEmail + affected screen",
+        "AccountEmail + affected screen",
+        "Account",
+        "Email + affected screen",
+        "SafetyLocal services first",
+        "SafetyLocal services first",
+        "Safety",
+        "Local services first",
+        "NFC tag or pet profileIf a tag scan does not open the expected pet profile, check the tag ID and owner lost-mode settings.Finder page, QR/NFC, lost modeAccount and communityFor sign-in, posting, chat, or moderation questions, include your account email and the affected screen.Login, posts, chat, moderationSafety or urgent pet issueFor urgent rescue or safety situations, contact local services first, then use PawPal to notify the owner or community.Owner alerts, nearby help, rescueInclude the pet tag ID, account email, and screenshots when possible.That gives the team enough context to trace the correct profile, order, or map event without exposing unnecessary data.Belgium-first support",
+        "NFC tag or pet profileIf a tag scan does not open the expected pet profile, check the tag ID and owner lost-mode settings.Finder page, QR/NFC, lost modeAccount and communityFor sign-in, posting, chat, or moderation questions, include your account email and the affected screen.Login, posts, chat, moderationSafety or urgent pet issueFor urgent rescue or safety situations, contact local services first, then use PawPal to notify the owner or community.Owner alerts, nearby help, rescue",
+        "NFC tag or pet profileIf a tag scan does not open the expected pet profile, check the tag ID and owner lost-mode settings.Finder page, QR/NFC, lost mode"
+      ]
+    },
+    {
+      "route": "/help",
+      "viewport": "1280x720",
+      "scheme": "dark",
+      "requestedUrl": "http://localhost:3000/help",
+      "responseStatus": 200,
+      "screenshot": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/assets/review/website-visual-upgrade-2026-06-11/round-08-help-support-pathways/baseline-dark-help-1280x720.png",
+      "pass": false,
+      "relevantLogCount": 0,
+      "hydrationLogCount": 0,
+      "logs": [
+        {
+          "level": "info",
+          "message": "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold",
+          "location": {
+            "url": "http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js",
+            "line": 2297,
+            "column": 27,
+            "lineNumber": 2297,
+            "columnNumber": 27
+          },
+          "relevant": false,
+          "hydration": false
+        },
+        {
+          "level": "log",
+          "message": "[HMR] connected",
+          "location": {
+            "url": "http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js",
+            "line": 2297,
+            "column": 27,
+            "lineNumber": 2297,
+            "columnNumber": 27
+          },
+          "relevant": false,
+          "hydration": false
+        },
+        {
+          "level": "info",
+          "message": "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold",
+          "location": {
+            "url": "http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js",
+            "line": 2297,
+            "column": 27,
+            "lineNumber": 2297,
+            "columnNumber": 27
+          },
+          "relevant": false,
+          "hydration": false
+        },
+        {
+          "level": "log",
+          "message": "[HMR] connected",
+          "location": {
+            "url": "http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js",
+            "line": 2297,
+            "column": 27,
+            "lineNumber": 2297,
+            "columnNumber": 27
+          },
+          "relevant": false,
+          "hydration": false
+        }
+      ],
+      "path": "/help",
+      "title": "Help Center | PawPal",
+      "h1": [
+        "Help that keeps pet safety moving."
+      ],
+      "bodyTextLength": 1535,
+      "overlayMatches": [
+        "nextjs-portal"
+      ],
+      "overflowX": false,
+      "prefersDark": true,
+      "prefersReducedMotion": true,
+      "htmlColorScheme": "dark",
+      "bodyColorScheme": "dark",
+      "bodyBg": "rgb(21, 29, 34)",
+      "pawPage": "#151d22",
+      "headings": [
+        {
+          "tag": "h1",
+          "text": "Help that keeps pet safety moving."
+        },
+        {
+          "tag": "h2",
+          "text": "Pick the right lane"
+        },
+        {
+          "tag": "h2",
+          "text": "NFC tag or pet profile"
+        },
+        {
+          "tag": "h2",
+          "text": "Account and community"
+        },
+        {
+          "tag": "h2",
+          "text": "Safety or urgent pet issue"
+        },
+        {
+          "tag": "h3",
+          "text": "Product"
+        },
+        {
+          "tag": "h3",
+          "text": "Company"
+        },
+        {
+          "tag": "h3",
+          "text": "Support"
+        },
+        {
+          "tag": "h3",
+          "text": "Belgium Pilot"
+        }
+      ],
+      "links": [
+        {
+          "text": "Skip to PawPal content",
+          "href": "#main-content",
+          "visible": true
+        },
+        {
+          "text": "PawPal",
+          "href": "/",
+          "visible": true
+        },
+        {
+          "text": "Home",
+          "href": "/",
+          "visible": true
+        },
+        {
+          "text": "Globe",
+          "href": "/globe",
+          "visible": true
+        },
+        {
+          "text": "About Us",
+          "href": "/about",
+          "visible": true
+        },
+        {
+          "text": "Store",
+          "href": "/store",
+          "visible": true
+        },
+        {
+          "text": "Login",
+          "href": "/auth",
+          "visible": true
+        },
+        {
+          "text": "Contact support",
+          "href": "mailto:hello@pawpal.be",
+          "visible": true
+        },
+        {
+          "text": "Open Globe",
+          "href": "/globe",
+          "visible": true
+        },
+        {
+          "text": "hello@pawpal.be",
+          "href": "mailto:hello@pawpal.be",
+          "visible": true
+        },
+        {
+          "text": "Globe Map",
+          "href": "/globe",
+          "visible": true
+        },
+        {
+          "text": "NFC Safety Tag",
+          "href": "/store",
+          "visible": true
+        },
+        {
+          "text": "AI Assistant",
+          "href": "/globe",
+          "visible": true
+        },
+        {
+          "text": "Community",
+          "href": "/globe",
+          "visible": true
+        },
+        {
+          "text": "About Us",
+          "href": "/about",
+          "visible": true
+        },
+        {
+          "text": "Store",
+          "href": "/store",
+          "visible": true
+        },
+        {
+          "text": "Help Center",
+          "href": "/help",
+          "visible": true
+        },
+        {
+          "text": "Privacy Policy",
+          "href": "/privacy",
+          "visible": true
+        },
+        {
+          "text": "Terms of Service",
+          "href": "/terms",
+          "visible": true
+        },
+        {
+          "text": "Contact",
+          "href": "mailto:hello@pawpal.be",
+          "visible": true
+        },
+        {
+          "text": "Contact PawPal",
+          "href": "mailto:hello@pawpal.be?subject=PawPal%20partnership",
+          "visible": true
+        }
+      ],
+      "firstViewportText": [
+        "PawPalHomeGlobeAbout UsStoreLogin",
+        "PawPalHomeGlobeAbout UsStoreLogin",
+        "PawPal",
+        "HomeGlobeAbout UsStore",
+        "Home",
+        "Globe",
+        "About Us",
+        "Store",
+        "Login",
+        "Login",
+        "SupportHelp that keeps pet safety moving.Quick guidance for NFC safety tags, finder pages, account access, community activity, and PawPal support routes.Contact supportOpen GlobeSupport routePick the right laneTag scanPublic rescue pageAccountEmail + affected screenSafetyLocal services firstNFC tag or pet profileIf a tag scan does not open the expected pet profile, check the tag ID and owner lost-mode settings.Finder page, QR/NFC, lost modeAccount and communityFor sign-in, posting, chat, or moderation questions, include your account email and the affected screen.Login, posts, chat, moderationSafety or urgent pet issueFor urgent rescue or safety situations, contact local services first, then use PawPal to notify the owner or community.Owner alerts, nearby help, rescueInclude the pet tag ID, account email, and screenshots when possible.That gives the team enough context to trace the correct profile, order, or map event without exposing unnecessary data.Belgium-first support",
+        "SupportHelp that keeps pet safety moving.Quick guidance for NFC safety tags, finder pages, account access, community activity, and PawPal support routes.Contact supportOpen GlobeSupport routePick the right laneTag scanPublic rescue pageAccountEmail + affected screenSafetyLocal services firstNFC tag or pet profileIf a tag scan does not open the expected pet profile, check the tag ID and owner lost-mode settings.Finder page, QR/NFC, lost modeAccount and communityFor sign-in, posting, chat, or moderation questions, include your account email and the affected screen.Login, posts, chat, moderationSafety or urgent pet issueFor urgent rescue or safety situations, contact local services first, then use PawPal to notify the owner or community.Owner alerts, nearby help, rescueInclude the pet tag ID, account email, and screenshots when possible.That gives the team enough context to trace the correct profile, order, or map event without exposing unnecessary data.Belgium-first support",
+        "SupportHelp that keeps pet safety moving.Quick guidance for NFC safety tags, finder pages, account access, community activity, and PawPal support routes.Contact supportOpen GlobeSupport routePick the right laneTag scanPublic rescue pageAccountEmail + affected screenSafetyLocal services first",
+        "SupportHelp that keeps pet safety moving.Quick guidance for NFC safety tags, finder pages, account access, community activity, and PawPal support routes.Contact supportOpen Globe",
+        "Support",
+        "Help that keeps pet safety moving.",
+        "Quick guidance for NFC safety tags, finder pages, account access, community activity, and PawPal support routes.",
+        "Contact supportOpen Globe",
+        "Contact support",
+        "Open Globe",
+        "Support routePick the right laneTag scanPublic rescue pageAccountEmail + affected screenSafetyLocal services first",
+        "Support routePick the right lane",
+        "Support routePick the right lane",
+        "Support route",
+        "Tag scanPublic rescue pageAccountEmail + affected screenSafetyLocal services first",
+        "Tag scanPublic rescue page",
+        "Tag scanPublic rescue page",
+        "Tag scan",
+        "Public rescue page",
+        "AccountEmail + affected screen",
+        "AccountEmail + affected screen",
+        "Account",
+        "Email + affected screen",
+        "SafetyLocal services first",
+        "SafetyLocal services first",
+        "Safety",
+        "Local services first",
+        "NFC tag or pet profileIf a tag scan does not open the expected pet profile, check the tag ID and owner lost-mode settings.Finder page, QR/NFC, lost modeAccount and communityFor sign-in, posting, chat, or moderation questions, include your account email and the affected screen.Login, posts, chat, moderationSafety or urgent pet issueFor urgent rescue or safety situations, contact local services first, then use PawPal to notify the owner or community.Owner alerts, nearby help, rescueInclude the pet tag ID, account email, and screenshots when possible.That gives the team enough context to trace the correct profile, order, or map event without exposing unnecessary data.Belgium-first support",
+        "NFC tag or pet profileIf a tag scan does not open the expected pet profile, check the tag ID and owner lost-mode settings.Finder page, QR/NFC, lost modeAccount and communityFor sign-in, posting, chat, or moderation questions, include your account email and the affected screen.Login, posts, chat, moderationSafety or urgent pet issueFor urgent rescue or safety situations, contact local services first, then use PawPal to notify the owner or community.Owner alerts, nearby help, rescue",
+        "NFC tag or pet profileIf a tag scan does not open the expected pet profile, check the tag ID and owner lost-mode settings.Finder page, QR/NFC, lost mode"
+      ]
+    },
+    {
+      "route": "/help",
+      "viewport": "1440x900",
+      "scheme": "light",
+      "requestedUrl": "http://localhost:3000/help",
+      "responseStatus": 200,
+      "screenshot": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/assets/review/website-visual-upgrade-2026-06-11/round-08-help-support-pathways/baseline-light-help-1440x900.png",
+      "pass": false,
+      "relevantLogCount": 0,
+      "hydrationLogCount": 0,
+      "logs": [
+        {
+          "level": "info",
+          "message": "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold",
+          "location": {
+            "url": "http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js",
+            "line": 2297,
+            "column": 27,
+            "lineNumber": 2297,
+            "columnNumber": 27
+          },
+          "relevant": false,
+          "hydration": false
+        },
+        {
+          "level": "log",
+          "message": "[HMR] connected",
+          "location": {
+            "url": "http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js",
+            "line": 2297,
+            "column": 27,
+            "lineNumber": 2297,
+            "columnNumber": 27
+          },
+          "relevant": false,
+          "hydration": false
+        },
+        {
+          "level": "info",
+          "message": "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold",
+          "location": {
+            "url": "http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js",
+            "line": 2297,
+            "column": 27,
+            "lineNumber": 2297,
+            "columnNumber": 27
+          },
+          "relevant": false,
+          "hydration": false
+        },
+        {
+          "level": "log",
+          "message": "[HMR] connected",
+          "location": {
+            "url": "http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js",
+            "line": 2297,
+            "column": 27,
+            "lineNumber": 2297,
+            "columnNumber": 27
+          },
+          "relevant": false,
+          "hydration": false
+        }
+      ],
+      "path": "/help",
+      "title": "Help Center | PawPal",
+      "h1": [
+        "Help that keeps pet safety moving."
+      ],
+      "bodyTextLength": 1535,
+      "overlayMatches": [
+        "nextjs-portal"
+      ],
+      "overflowX": false,
+      "prefersDark": false,
+      "prefersReducedMotion": true,
+      "htmlColorScheme": "light",
+      "bodyColorScheme": "light",
+      "bodyBg": "rgb(255, 255, 255)",
+      "pawPage": "#fff",
+      "headings": [
+        {
+          "tag": "h1",
+          "text": "Help that keeps pet safety moving."
+        },
+        {
+          "tag": "h2",
+          "text": "Pick the right lane"
+        },
+        {
+          "tag": "h2",
+          "text": "NFC tag or pet profile"
+        },
+        {
+          "tag": "h2",
+          "text": "Account and community"
+        },
+        {
+          "tag": "h2",
+          "text": "Safety or urgent pet issue"
+        },
+        {
+          "tag": "h3",
+          "text": "Product"
+        },
+        {
+          "tag": "h3",
+          "text": "Company"
+        },
+        {
+          "tag": "h3",
+          "text": "Support"
+        },
+        {
+          "tag": "h3",
+          "text": "Belgium Pilot"
+        }
+      ],
+      "links": [
+        {
+          "text": "Skip to PawPal content",
+          "href": "#main-content",
+          "visible": true
+        },
+        {
+          "text": "PawPal",
+          "href": "/",
+          "visible": true
+        },
+        {
+          "text": "Home",
+          "href": "/",
+          "visible": true
+        },
+        {
+          "text": "Globe",
+          "href": "/globe",
+          "visible": true
+        },
+        {
+          "text": "About Us",
+          "href": "/about",
+          "visible": true
+        },
+        {
+          "text": "Store",
+          "href": "/store",
+          "visible": true
+        },
+        {
+          "text": "Login",
+          "href": "/auth",
+          "visible": true
+        },
+        {
+          "text": "Contact support",
+          "href": "mailto:hello@pawpal.be",
+          "visible": true
+        },
+        {
+          "text": "Open Globe",
+          "href": "/globe",
+          "visible": true
+        },
+        {
+          "text": "hello@pawpal.be",
+          "href": "mailto:hello@pawpal.be",
+          "visible": true
+        },
+        {
+          "text": "Globe Map",
+          "href": "/globe",
+          "visible": true
+        },
+        {
+          "text": "NFC Safety Tag",
+          "href": "/store",
+          "visible": true
+        },
+        {
+          "text": "AI Assistant",
+          "href": "/globe",
+          "visible": true
+        },
+        {
+          "text": "Community",
+          "href": "/globe",
+          "visible": true
+        },
+        {
+          "text": "About Us",
+          "href": "/about",
+          "visible": true
+        },
+        {
+          "text": "Store",
+          "href": "/store",
+          "visible": true
+        },
+        {
+          "text": "Help Center",
+          "href": "/help",
+          "visible": true
+        },
+        {
+          "text": "Privacy Policy",
+          "href": "/privacy",
+          "visible": true
+        },
+        {
+          "text": "Terms of Service",
+          "href": "/terms",
+          "visible": true
+        },
+        {
+          "text": "Contact",
+          "href": "mailto:hello@pawpal.be",
+          "visible": true
+        },
+        {
+          "text": "Contact PawPal",
+          "href": "mailto:hello@pawpal.be?subject=PawPal%20partnership",
+          "visible": true
+        }
+      ],
+      "firstViewportText": [
+        "PawPalHomeGlobeAbout UsStoreLogin",
+        "PawPalHomeGlobeAbout UsStoreLogin",
+        "PawPal",
+        "HomeGlobeAbout UsStore",
+        "Home",
+        "Globe",
+        "About Us",
+        "Store",
+        "Login",
+        "Login",
+        "SupportHelp that keeps pet safety moving.Quick guidance for NFC safety tags, finder pages, account access, community activity, and PawPal support routes.Contact supportOpen GlobeSupport routePick the right laneTag scanPublic rescue pageAccountEmail + affected screenSafetyLocal services firstNFC tag or pet profileIf a tag scan does not open the expected pet profile, check the tag ID and owner lost-mode settings.Finder page, QR/NFC, lost modeAccount and communityFor sign-in, posting, chat, or moderation questions, include your account email and the affected screen.Login, posts, chat, moderationSafety or urgent pet issueFor urgent rescue or safety situations, contact local services first, then use PawPal to notify the owner or community.Owner alerts, nearby help, rescueInclude the pet tag ID, account email, and screenshots when possible.That gives the team enough context to trace the correct profile, order, or map event without exposing unnecessary data.Belgium-first support",
+        "SupportHelp that keeps pet safety moving.Quick guidance for NFC safety tags, finder pages, account access, community activity, and PawPal support routes.Contact supportOpen GlobeSupport routePick the right laneTag scanPublic rescue pageAccountEmail + affected screenSafetyLocal services firstNFC tag or pet profileIf a tag scan does not open the expected pet profile, check the tag ID and owner lost-mode settings.Finder page, QR/NFC, lost modeAccount and communityFor sign-in, posting, chat, or moderation questions, include your account email and the affected screen.Login, posts, chat, moderationSafety or urgent pet issueFor urgent rescue or safety situations, contact local services first, then use PawPal to notify the owner or community.Owner alerts, nearby help, rescueInclude the pet tag ID, account email, and screenshots when possible.That gives the team enough context to trace the correct profile, order, or map event without exposing unnecessary data.Belgium-first support",
+        "SupportHelp that keeps pet safety moving.Quick guidance for NFC safety tags, finder pages, account access, community activity, and PawPal support routes.Contact supportOpen GlobeSupport routePick the right laneTag scanPublic rescue pageAccountEmail + affected screenSafetyLocal services first",
+        "SupportHelp that keeps pet safety moving.Quick guidance for NFC safety tags, finder pages, account access, community activity, and PawPal support routes.Contact supportOpen Globe",
+        "Support",
+        "Help that keeps pet safety moving.",
+        "Quick guidance for NFC safety tags, finder pages, account access, community activity, and PawPal support routes.",
+        "Contact supportOpen Globe",
+        "Contact support",
+        "Open Globe",
+        "Support routePick the right laneTag scanPublic rescue pageAccountEmail + affected screenSafetyLocal services first",
+        "Support routePick the right lane",
+        "Support routePick the right lane",
+        "Support route",
+        "Tag scanPublic rescue pageAccountEmail + affected screenSafetyLocal services first",
+        "Tag scanPublic rescue page",
+        "Tag scanPublic rescue page",
+        "Tag scan",
+        "Public rescue page",
+        "AccountEmail + affected screen",
+        "AccountEmail + affected screen",
+        "Account",
+        "Email + affected screen",
+        "SafetyLocal services first",
+        "SafetyLocal services first",
+        "Safety",
+        "Local services first",
+        "NFC tag or pet profileIf a tag scan does not open the expected pet profile, check the tag ID and owner lost-mode settings.Finder page, QR/NFC, lost modeAccount and communityFor sign-in, posting, chat, or moderation questions, include your account email and the affected screen.Login, posts, chat, moderationSafety or urgent pet issueFor urgent rescue or safety situations, contact local services first, then use PawPal to notify the owner or community.Owner alerts, nearby help, rescueInclude the pet tag ID, account email, and screenshots when possible.That gives the team enough context to trace the correct profile, order, or map event without exposing unnecessary data.Belgium-first support",
+        "NFC tag or pet profileIf a tag scan does not open the expected pet profile, check the tag ID and owner lost-mode settings.Finder page, QR/NFC, lost modeAccount and communityFor sign-in, posting, chat, or moderation questions, include your account email and the affected screen.Login, posts, chat, moderationSafety or urgent pet issueFor urgent rescue or safety situations, contact local services first, then use PawPal to notify the owner or community.Owner alerts, nearby help, rescue",
+        "NFC tag or pet profileIf a tag scan does not open the expected pet profile, check the tag ID and owner lost-mode settings.Finder page, QR/NFC, lost mode"
+      ]
+    },
+    {
+      "route": "/help",
+      "viewport": "1440x900",
+      "scheme": "dark",
+      "requestedUrl": "http://localhost:3000/help",
+      "responseStatus": 200,
+      "screenshot": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/assets/review/website-visual-upgrade-2026-06-11/round-08-help-support-pathways/baseline-dark-help-1440x900.png",
+      "pass": false,
+      "relevantLogCount": 0,
+      "hydrationLogCount": 0,
+      "logs": [
+        {
+          "level": "info",
+          "message": "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold",
+          "location": {
+            "url": "http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js",
+            "line": 2297,
+            "column": 27,
+            "lineNumber": 2297,
+            "columnNumber": 27
+          },
+          "relevant": false,
+          "hydration": false
+        },
+        {
+          "level": "log",
+          "message": "[HMR] connected",
+          "location": {
+            "url": "http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js",
+            "line": 2297,
+            "column": 27,
+            "lineNumber": 2297,
+            "columnNumber": 27
+          },
+          "relevant": false,
+          "hydration": false
+        },
+        {
+          "level": "info",
+          "message": "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold",
+          "location": {
+            "url": "http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js",
+            "line": 2297,
+            "column": 27,
+            "lineNumber": 2297,
+            "columnNumber": 27
+          },
+          "relevant": false,
+          "hydration": false
+        },
+        {
+          "level": "log",
+          "message": "[HMR] connected",
+          "location": {
+            "url": "http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js",
+            "line": 2297,
+            "column": 27,
+            "lineNumber": 2297,
+            "columnNumber": 27
+          },
+          "relevant": false,
+          "hydration": false
+        }
+      ],
+      "path": "/help",
+      "title": "Help Center | PawPal",
+      "h1": [
+        "Help that keeps pet safety moving."
+      ],
+      "bodyTextLength": 1535,
+      "overlayMatches": [
+        "nextjs-portal"
+      ],
+      "overflowX": false,
+      "prefersDark": true,
+      "prefersReducedMotion": true,
+      "htmlColorScheme": "dark",
+      "bodyColorScheme": "dark",
+      "bodyBg": "rgb(21, 29, 34)",
+      "pawPage": "#151d22",
+      "headings": [
+        {
+          "tag": "h1",
+          "text": "Help that keeps pet safety moving."
+        },
+        {
+          "tag": "h2",
+          "text": "Pick the right lane"
+        },
+        {
+          "tag": "h2",
+          "text": "NFC tag or pet profile"
+        },
+        {
+          "tag": "h2",
+          "text": "Account and community"
+        },
+        {
+          "tag": "h2",
+          "text": "Safety or urgent pet issue"
+        },
+        {
+          "tag": "h3",
+          "text": "Product"
+        },
+        {
+          "tag": "h3",
+          "text": "Company"
+        },
+        {
+          "tag": "h3",
+          "text": "Support"
+        },
+        {
+          "tag": "h3",
+          "text": "Belgium Pilot"
+        }
+      ],
+      "links": [
+        {
+          "text": "Skip to PawPal content",
+          "href": "#main-content",
+          "visible": true
+        },
+        {
+          "text": "PawPal",
+          "href": "/",
+          "visible": true
+        },
+        {
+          "text": "Home",
+          "href": "/",
+          "visible": true
+        },
+        {
+          "text": "Globe",
+          "href": "/globe",
+          "visible": true
+        },
+        {
+          "text": "About Us",
+          "href": "/about",
+          "visible": true
+        },
+        {
+          "text": "Store",
+          "href": "/store",
+          "visible": true
+        },
+        {
+          "text": "Login",
+          "href": "/auth",
+          "visible": true
+        },
+        {
+          "text": "Contact support",
+          "href": "mailto:hello@pawpal.be",
+          "visible": true
+        },
+        {
+          "text": "Open Globe",
+          "href": "/globe",
+          "visible": true
+        },
+        {
+          "text": "hello@pawpal.be",
+          "href": "mailto:hello@pawpal.be",
+          "visible": true
+        },
+        {
+          "text": "Globe Map",
+          "href": "/globe",
+          "visible": true
+        },
+        {
+          "text": "NFC Safety Tag",
+          "href": "/store",
+          "visible": true
+        },
+        {
+          "text": "AI Assistant",
+          "href": "/globe",
+          "visible": true
+        },
+        {
+          "text": "Community",
+          "href": "/globe",
+          "visible": true
+        },
+        {
+          "text": "About Us",
+          "href": "/about",
+          "visible": true
+        },
+        {
+          "text": "Store",
+          "href": "/store",
+          "visible": true
+        },
+        {
+          "text": "Help Center",
+          "href": "/help",
+          "visible": true
+        },
+        {
+          "text": "Privacy Policy",
+          "href": "/privacy",
+          "visible": true
+        },
+        {
+          "text": "Terms of Service",
+          "href": "/terms",
+          "visible": true
+        },
+        {
+          "text": "Contact",
+          "href": "mailto:hello@pawpal.be",
+          "visible": true
+        },
+        {
+          "text": "Contact PawPal",
+          "href": "mailto:hello@pawpal.be?subject=PawPal%20partnership",
+          "visible": true
+        }
+      ],
+      "firstViewportText": [
+        "PawPalHomeGlobeAbout UsStoreLogin",
+        "PawPalHomeGlobeAbout UsStoreLogin",
+        "PawPal",
+        "HomeGlobeAbout UsStore",
+        "Home",
+        "Globe",
+        "About Us",
+        "Store",
+        "Login",
+        "Login",
+        "SupportHelp that keeps pet safety moving.Quick guidance for NFC safety tags, finder pages, account access, community activity, and PawPal support routes.Contact supportOpen GlobeSupport routePick the right laneTag scanPublic rescue pageAccountEmail + affected screenSafetyLocal services firstNFC tag or pet profileIf a tag scan does not open the expected pet profile, check the tag ID and owner lost-mode settings.Finder page, QR/NFC, lost modeAccount and communityFor sign-in, posting, chat, or moderation questions, include your account email and the affected screen.Login, posts, chat, moderationSafety or urgent pet issueFor urgent rescue or safety situations, contact local services first, then use PawPal to notify the owner or community.Owner alerts, nearby help, rescueInclude the pet tag ID, account email, and screenshots when possible.That gives the team enough context to trace the correct profile, order, or map event without exposing unnecessary data.Belgium-first support",
+        "SupportHelp that keeps pet safety moving.Quick guidance for NFC safety tags, finder pages, account access, community activity, and PawPal support routes.Contact supportOpen GlobeSupport routePick the right laneTag scanPublic rescue pageAccountEmail + affected screenSafetyLocal services firstNFC tag or pet profileIf a tag scan does not open the expected pet profile, check the tag ID and owner lost-mode settings.Finder page, QR/NFC, lost modeAccount and communityFor sign-in, posting, chat, or moderation questions, include your account email and the affected screen.Login, posts, chat, moderationSafety or urgent pet issueFor urgent rescue or safety situations, contact local services first, then use PawPal to notify the owner or community.Owner alerts, nearby help, rescueInclude the pet tag ID, account email, and screenshots when possible.That gives the team enough context to trace the correct profile, order, or map event without exposing unnecessary data.Belgium-first support",
+        "SupportHelp that keeps pet safety moving.Quick guidance for NFC safety tags, finder pages, account access, community activity, and PawPal support routes.Contact supportOpen GlobeSupport routePick the right laneTag scanPublic rescue pageAccountEmail + affected screenSafetyLocal services first",
+        "SupportHelp that keeps pet safety moving.Quick guidance for NFC safety tags, finder pages, account access, community activity, and PawPal support routes.Contact supportOpen Globe",
+        "Support",
+        "Help that keeps pet safety moving.",
+        "Quick guidance for NFC safety tags, finder pages, account access, community activity, and PawPal support routes.",
+        "Contact supportOpen Globe",
+        "Contact support",
+        "Open Globe",
+        "Support routePick the right laneTag scanPublic rescue pageAccountEmail + affected screenSafetyLocal services first",
+        "Support routePick the right lane",
+        "Support routePick the right lane",
+        "Support route",
+        "Tag scanPublic rescue pageAccountEmail + affected screenSafetyLocal services first",
+        "Tag scanPublic rescue page",
+        "Tag scanPublic rescue page",
+        "Tag scan",
+        "Public rescue page",
+        "AccountEmail + affected screen",
+        "AccountEmail + affected screen",
+        "Account",
+        "Email + affected screen",
+        "SafetyLocal services first",
+        "SafetyLocal services first",
+        "Safety",
+        "Local services first",
+        "NFC tag or pet profileIf a tag scan does not open the expected pet profile, check the tag ID and owner lost-mode settings.Finder page, QR/NFC, lost modeAccount and communityFor sign-in, posting, chat, or moderation questions, include your account email and the affected screen.Login, posts, chat, moderationSafety or urgent pet issueFor urgent rescue or safety situations, contact local services first, then use PawPal to notify the owner or community.Owner alerts, nearby help, rescueInclude the pet tag ID, account email, and screenshots when possible.That gives the team enough context to trace the correct profile, order, or map event without exposing unnecessary data.Belgium-first support",
+        "NFC tag or pet profileIf a tag scan does not open the expected pet profile, check the tag ID and owner lost-mode settings.Finder page, QR/NFC, lost modeAccount and communityFor sign-in, posting, chat, or moderation questions, include your account email and the affected screen.Login, posts, chat, moderationSafety or urgent pet issueFor urgent rescue or safety situations, contact local services first, then use PawPal to notify the owner or community.Owner alerts, nearby help, rescue",
+        "NFC tag or pet profileIf a tag scan does not open the expected pet profile, check the tag ID and owner lost-mode settings.Finder page, QR/NFC, lost mode"
+      ]
+    }
+  ]
+}

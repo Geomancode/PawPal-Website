@@ -1,0 +1,48 @@
+{
+  "generatedAt": "2026-06-11T14:04:08.614Z",
+  "viewport": {
+    "width": 390,
+    "height": 844
+  },
+  "interactions": [
+    {
+      "name": "auth-toggle-password-validation",
+      "url": "http://localhost:3000/auth",
+      "passwordTypeAfterShow": "text",
+      "errorText": "Password must be at least 6 characters.",
+      "errorVisible": true,
+      "logs": [],
+      "screenshots": [
+        "interaction-auth-signup-390x844.png",
+        "interaction-auth-error-390x844.png"
+      ]
+    },
+    {
+      "name": "orders-empty-browse-products",
+      "url": "http://localhost:3000/store",
+      "reachedStore": true,
+      "logs": [],
+      "screenshots": [
+        "interaction-orders-browse-store-390x844.png"
+      ]
+    },
+    {
+      "name": "success-missing-session-view-orders",
+      "url": "http://localhost:3000/store/orders",
+      "reachedOrders": true,
+      "logs": [],
+      "screenshots": [
+        "interaction-success-view-orders-390x844.png"
+      ]
+    },
+    {
+      "name": "tag-invalid-shop-smart-tags",
+      "url": "http://localhost:3000/store",
+      "reachedStore": true,
+      "logs": [],
+      "screenshots": [
+        "interaction-tag-shop-smart-tags-390x844.png"
+      ]
+    }
+  ]
+}

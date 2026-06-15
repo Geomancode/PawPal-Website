@@ -1,0 +1,1470 @@
+{
+  "generatedAt": "2026-06-11T14:03:09.622Z",
+  "baseUrl": "http://localhost:3000",
+  "results": [
+    {
+      "route": "auth",
+      "requestedUrl": "/auth",
+      "viewport": {
+        "key": "390x844",
+        "width": 390,
+        "height": 844
+      },
+      "currentUrl": "http://localhost:3000/auth",
+      "title": "PawPal | Pet Safety Map, Smart Tags, and Local Pet Community",
+      "startedAt": "2026-06-11T14:02:07.158Z",
+      "logs": [],
+      "screenshot": "/private/tmp/geopet-round05-after/after-auth-390x844.png",
+      "firstViewport": {
+        "cta": [
+          {
+            "inFirstViewport": true,
+            "left": 0,
+            "term": "Sign In",
+            "top": 0
+          },
+          {
+            "inFirstViewport": false,
+            "left": null,
+            "term": "Create Account",
+            "top": null
+          }
+        ],
+        "state": [
+          {
+            "inFirstViewport": true,
+            "left": 0,
+            "term": "Welcome Back",
+            "top": 0
+          },
+          {
+            "inFirstViewport": false,
+            "left": null,
+            "term": "Join PawPal",
+            "top": null
+          }
+        ],
+        "trust": [
+          {
+            "inFirstViewport": true,
+            "left": 0,
+            "term": "Email account access only",
+            "top": 0
+          },
+          {
+            "inFirstViewport": true,
+            "left": 0,
+            "term": "Private owner details",
+            "top": 0
+          }
+        ]
+      },
+      "meaningfulRender": true,
+      "meaningfulTextLength": 793,
+      "overflowX": 0,
+      "overlayElement": false,
+      "overlayText": false
+    },
+    {
+      "route": "profile",
+      "requestedUrl": "/profile",
+      "viewport": {
+        "key": "390x844",
+        "width": 390,
+        "height": 844
+      },
+      "currentUrl": "http://localhost:3000/auth",
+      "title": "PawPal | Pet Safety Map, Smart Tags, and Local Pet Community",
+      "startedAt": "2026-06-11T14:02:09.811Z",
+      "logs": [],
+      "screenshot": "/private/tmp/geopet-round05-after/after-profile-390x844.png",
+      "firstViewport": {
+        "cta": [
+          {
+            "inFirstViewport": true,
+            "left": 0,
+            "term": "Sign In",
+            "top": 0
+          }
+        ],
+        "state": [
+          {
+            "inFirstViewport": true,
+            "left": 0,
+            "term": "Welcome Back",
+            "top": 0
+          },
+          {
+            "inFirstViewport": false,
+            "left": null,
+            "term": "Join PawPal",
+            "top": null
+          }
+        ],
+        "trust": [
+          {
+            "inFirstViewport": true,
+            "left": 0,
+            "term": "Email account access only",
+            "top": 0
+          }
+        ]
+      },
+      "meaningfulRender": true,
+      "meaningfulTextLength": 793,
+      "overflowX": 0,
+      "overlayElement": false,
+      "overlayText": false
+    },
+    {
+      "route": "tag-sample-id",
+      "requestedUrl": "/tag/sample-id",
+      "viewport": {
+        "key": "390x844",
+        "width": 390,
+        "height": 844
+      },
+      "currentUrl": "http://localhost:3000/tag/sample-id",
+      "title": "PawPal | Pet Safety Map, Smart Tags, and Local Pet Community",
+      "startedAt": "2026-06-11T14:02:12.274Z",
+      "logs": [],
+      "screenshot": "/private/tmp/geopet-round05-after/after-tag-sample-id-390x844.png",
+      "firstViewport": {
+        "cta": [
+          {
+            "inFirstViewport": true,
+            "left": 20,
+            "term": "Back home",
+            "top": 112
+          },
+          {
+            "inFirstViewport": true,
+            "left": 20,
+            "term": "Shop smart tags",
+            "top": 112
+          }
+        ],
+        "state": [
+          {
+            "inFirstViewport": true,
+            "left": 20,
+            "term": "This PawPal route is not available",
+            "top": 112
+          },
+          {
+            "inFirstViewport": true,
+            "left": 20,
+            "term": "Page not found",
+            "top": 112
+          }
+        ],
+        "trust": [
+          {
+            "inFirstViewport": true,
+            "left": 20,
+            "term": "trusted PawPal page",
+            "top": 112
+          },
+          {
+            "inFirstViewport": true,
+            "left": 20,
+            "term": "Scanned a tag",
+            "top": 112
+          }
+        ]
+      },
+      "meaningfulRender": true,
+      "meaningfulTextLength": 848,
+      "overflowX": 0,
+      "overlayElement": false,
+      "overlayText": false
+    },
+    {
+      "route": "checkout",
+      "requestedUrl": "/store/checkout",
+      "viewport": {
+        "key": "390x844",
+        "width": 390,
+        "height": 844
+      },
+      "currentUrl": "http://localhost:3000/store",
+      "title": "Store | PawPal",
+      "startedAt": "2026-06-11T14:02:15.544Z",
+      "logs": [],
+      "screenshot": "/private/tmp/geopet-round05-after/after-checkout-390x844.png",
+      "firstViewport": {
+        "cta": [
+          {
+            "inFirstViewport": true,
+            "left": 0,
+            "term": "Cart",
+            "top": 0
+          },
+          {
+            "inFirstViewport": true,
+            "left": 0,
+            "term": "Orders",
+            "top": 0
+          }
+        ],
+        "state": [
+          {
+            "inFirstViewport": false,
+            "left": null,
+            "term": "PawPal Store",
+            "top": null
+          },
+          {
+            "inFirstViewport": true,
+            "left": 0,
+            "term": "Store",
+            "top": 0
+          },
+          {
+            "inFirstViewport": false,
+            "left": 0,
+            "term": "Shop",
+            "top": 7806
+          }
+        ],
+        "trust": [
+          {
+            "inFirstViewport": false,
+            "left": null,
+            "term": "Free shipping",
+            "top": null
+          },
+          {
+            "inFirstViewport": true,
+            "left": 0,
+            "term": "Secure",
+            "top": 0
+          }
+        ]
+      },
+      "meaningfulRender": true,
+      "meaningfulTextLength": 3027,
+      "overflowX": 0,
+      "overlayElement": false,
+      "overlayText": false
+    },
+    {
+      "route": "orders",
+      "requestedUrl": "/store/orders",
+      "viewport": {
+        "key": "390x844",
+        "width": 390,
+        "height": 844
+      },
+      "currentUrl": "http://localhost:3000/store/orders",
+      "title": "Store | PawPal",
+      "startedAt": "2026-06-11T14:02:18.217Z",
+      "logs": [],
+      "screenshot": "/private/tmp/geopet-round05-after/after-orders-390x844.png",
+      "firstViewport": {
+        "cta": [
+          {
+            "inFirstViewport": true,
+            "left": 0,
+            "term": "Browse Products",
+            "top": 0
+          }
+        ],
+        "state": [
+          {
+            "inFirstViewport": true,
+            "left": 0,
+            "term": "No orders yet",
+            "top": 0
+          },
+          {
+            "inFirstViewport": true,
+            "left": 0,
+            "term": "My Orders",
+            "top": 0
+          }
+        ],
+        "trust": [
+          {
+            "inFirstViewport": true,
+            "left": 0,
+            "term": "Stripe-confirmed",
+            "top": 0
+          },
+          {
+            "inFirstViewport": true,
+            "left": 0,
+            "term": "delivery and payment status",
+            "top": 0
+          }
+        ]
+      },
+      "meaningfulRender": true,
+      "meaningfulTextLength": 722,
+      "overflowX": 0,
+      "overlayElement": false,
+      "overlayText": false
+    },
+    {
+      "route": "success",
+      "requestedUrl": "/store/success",
+      "viewport": {
+        "key": "390x844",
+        "width": 390,
+        "height": 844
+      },
+      "currentUrl": "http://localhost:3000/store/success",
+      "title": "Store | PawPal",
+      "startedAt": "2026-06-11T14:02:20.567Z",
+      "logs": [],
+      "screenshot": "/private/tmp/geopet-round05-after/after-success-390x844.png",
+      "firstViewport": {
+        "cta": [
+          {
+            "inFirstViewport": true,
+            "left": 0,
+            "term": "Back to Store",
+            "top": 0
+          },
+          {
+            "inFirstViewport": true,
+            "left": 0,
+            "term": "View Orders",
+            "top": 0
+          }
+        ],
+        "state": [
+          {
+            "inFirstViewport": true,
+            "left": 0,
+            "term": "We could not verify this payment",
+            "top": 0
+          },
+          {
+            "inFirstViewport": true,
+            "left": 0,
+            "term": "Checkout status",
+            "top": 0
+          }
+        ],
+        "trust": [
+          {
+            "inFirstViewport": true,
+            "left": 0,
+            "term": "Stripe",
+            "top": 0
+          },
+          {
+            "inFirstViewport": true,
+            "left": 0,
+            "term": "cannot create a charge or order",
+            "top": 0
+          }
+        ]
+      },
+      "meaningfulRender": true,
+      "meaningfulTextLength": 712,
+      "overflowX": 0,
+      "overlayElement": false,
+      "overlayText": false
+    },
+    {
+      "route": "auth",
+      "requestedUrl": "/auth",
+      "viewport": {
+        "key": "768x1024",
+        "width": 768,
+        "height": 1024
+      },
+      "currentUrl": "http://localhost:3000/auth",
+      "title": "PawPal | Pet Safety Map, Smart Tags, and Local Pet Community",
+      "startedAt": "2026-06-11T14:02:22.936Z",
+      "logs": [],
+      "screenshot": "/private/tmp/geopet-round05-after/after-auth-768x1024.png",
+      "firstViewport": {
+        "cta": [
+          {
+            "inFirstViewport": true,
+            "left": 0,
+            "term": "Sign In",
+            "top": 0
+          },
+          {
+            "inFirstViewport": false,
+            "left": null,
+            "term": "Create Account",
+            "top": null
+          }
+        ],
+        "state": [
+          {
+            "inFirstViewport": true,
+            "left": 0,
+            "term": "Welcome Back",
+            "top": 0
+          },
+          {
+            "inFirstViewport": false,
+            "left": null,
+            "term": "Join PawPal",
+            "top": null
+          }
+        ],
+        "trust": [
+          {
+            "inFirstViewport": true,
+            "left": 0,
+            "term": "Email account access only",
+            "top": 0
+          },
+          {
+            "inFirstViewport": true,
+            "left": 0,
+            "term": "Private owner details",
+            "top": 0
+          }
+        ]
+      },
+      "meaningfulRender": true,
+      "meaningfulTextLength": 825,
+      "overflowX": 0,
+      "overlayElement": false,
+      "overlayText": false
+    },
+    {
+      "route": "profile",
+      "requestedUrl": "/profile",
+      "viewport": {
+        "key": "768x1024",
+        "width": 768,
+        "height": 1024
+      },
+      "currentUrl": "http://localhost:3000/auth",
+      "title": "PawPal | Pet Safety Map, Smart Tags, and Local Pet Community",
+      "startedAt": "2026-06-11T14:02:25.655Z",
+      "logs": [],
+      "screenshot": "/private/tmp/geopet-round05-after/after-profile-768x1024.png",
+      "firstViewport": {
+        "cta": [
+          {
+            "inFirstViewport": true,
+            "left": 0,
+            "term": "Sign In",
+            "top": 0
+          }
+        ],
+        "state": [
+          {
+            "inFirstViewport": true,
+            "left": 0,
+            "term": "Welcome Back",
+            "top": 0
+          },
+          {
+            "inFirstViewport": false,
+            "left": null,
+            "term": "Join PawPal",
+            "top": null
+          }
+        ],
+        "trust": [
+          {
+            "inFirstViewport": true,
+            "left": 0,
+            "term": "Email account access only",
+            "top": 0
+          }
+        ]
+      },
+      "meaningfulRender": true,
+      "meaningfulTextLength": 825,
+      "overflowX": 0,
+      "overlayElement": false,
+      "overlayText": false
+    },
+    {
+      "route": "tag-sample-id",
+      "requestedUrl": "/tag/sample-id",
+      "viewport": {
+        "key": "768x1024",
+        "width": 768,
+        "height": 1024
+      },
+      "currentUrl": "http://localhost:3000/tag/sample-id",
+      "title": "PawPal | Pet Safety Map, Smart Tags, and Local Pet Community",
+      "startedAt": "2026-06-11T14:02:28.188Z",
+      "logs": [],
+      "screenshot": "/private/tmp/geopet-round05-after/after-tag-sample-id-768x1024.png",
+      "firstViewport": {
+        "cta": [
+          {
+            "inFirstViewport": true,
+            "left": 20,
+            "term": "Back home",
+            "top": 112
+          },
+          {
+            "inFirstViewport": true,
+            "left": 20,
+            "term": "Shop smart tags",
+            "top": 112
+          }
+        ],
+        "state": [
+          {
+            "inFirstViewport": true,
+            "left": 20,
+            "term": "This PawPal route is not available",
+            "top": 112
+          },
+          {
+            "inFirstViewport": true,
+            "left": 20,
+            "term": "Page not found",
+            "top": 112
+          }
+        ],
+        "trust": [
+          {
+            "inFirstViewport": true,
+            "left": 20,
+            "term": "trusted PawPal page",
+            "top": 112
+          },
+          {
+            "inFirstViewport": true,
+            "left": 20,
+            "term": "Scanned a tag",
+            "top": 112
+          }
+        ]
+      },
+      "meaningfulRender": true,
+      "meaningfulTextLength": 880,
+      "overflowX": 0,
+      "overlayElement": false,
+      "overlayText": false
+    },
+    {
+      "route": "checkout",
+      "requestedUrl": "/store/checkout",
+      "viewport": {
+        "key": "768x1024",
+        "width": 768,
+        "height": 1024
+      },
+      "currentUrl": "http://localhost:3000/store",
+      "title": "Store | PawPal",
+      "startedAt": "2026-06-11T14:02:30.734Z",
+      "logs": [],
+      "screenshot": "/private/tmp/geopet-round05-after/after-checkout-768x1024.png",
+      "firstViewport": {
+        "cta": [
+          {
+            "inFirstViewport": true,
+            "left": 0,
+            "term": "Cart",
+            "top": 0
+          },
+          {
+            "inFirstViewport": true,
+            "left": 0,
+            "term": "Orders",
+            "top": 0
+          }
+        ],
+        "state": [
+          {
+            "inFirstViewport": false,
+            "left": null,
+            "term": "PawPal Store",
+            "top": null
+          },
+          {
+            "inFirstViewport": true,
+            "left": 0,
+            "term": "Store",
+            "top": 0
+          },
+          {
+            "inFirstViewport": false,
+            "left": 0,
+            "term": "Shop",
+            "top": 1483
+          }
+        ],
+        "trust": [
+          {
+            "inFirstViewport": false,
+            "left": null,
+            "term": "Free shipping",
+            "top": null
+          },
+          {
+            "inFirstViewport": true,
+            "left": 0,
+            "term": "Secure",
+            "top": 0
+          }
+        ]
+      },
+      "meaningfulRender": true,
+      "meaningfulTextLength": 1558,
+      "overflowX": 0,
+      "overlayElement": false,
+      "overlayText": false
+    },
+    {
+      "route": "orders",
+      "requestedUrl": "/store/orders",
+      "viewport": {
+        "key": "768x1024",
+        "width": 768,
+        "height": 1024
+      },
+      "currentUrl": "http://localhost:3000/store/orders",
+      "title": "Store | PawPal",
+      "startedAt": "2026-06-11T14:02:33.677Z",
+      "logs": [],
+      "screenshot": "/private/tmp/geopet-round05-after/after-orders-768x1024.png",
+      "firstViewport": {
+        "cta": [
+          {
+            "inFirstViewport": true,
+            "left": 0,
+            "term": "Browse Products",
+            "top": 0
+          }
+        ],
+        "state": [
+          {
+            "inFirstViewport": true,
+            "left": 0,
+            "term": "No orders yet",
+            "top": 0
+          },
+          {
+            "inFirstViewport": true,
+            "left": 0,
+            "term": "My Orders",
+            "top": 0
+          }
+        ],
+        "trust": [
+          {
+            "inFirstViewport": true,
+            "left": 0,
+            "term": "Stripe-confirmed",
+            "top": 0
+          },
+          {
+            "inFirstViewport": true,
+            "left": 0,
+            "term": "delivery and payment status",
+            "top": 0
+          }
+        ]
+      },
+      "meaningfulRender": true,
+      "meaningfulTextLength": 754,
+      "overflowX": 0,
+      "overlayElement": false,
+      "overlayText": false
+    },
+    {
+      "route": "success",
+      "requestedUrl": "/store/success",
+      "viewport": {
+        "key": "768x1024",
+        "width": 768,
+        "height": 1024
+      },
+      "currentUrl": "http://localhost:3000/store/success",
+      "title": "Store | PawPal",
+      "startedAt": "2026-06-11T14:02:36.024Z",
+      "logs": [],
+      "screenshot": "/private/tmp/geopet-round05-after/after-success-768x1024.png",
+      "firstViewport": {
+        "cta": [
+          {
+            "inFirstViewport": true,
+            "left": 0,
+            "term": "Back to Store",
+            "top": 0
+          },
+          {
+            "inFirstViewport": true,
+            "left": 0,
+            "term": "View Orders",
+            "top": 0
+          }
+        ],
+        "state": [
+          {
+            "inFirstViewport": true,
+            "left": 0,
+            "term": "We could not verify this payment",
+            "top": 0
+          },
+          {
+            "inFirstViewport": true,
+            "left": 0,
+            "term": "Checkout status",
+            "top": 0
+          }
+        ],
+        "trust": [
+          {
+            "inFirstViewport": true,
+            "left": 0,
+            "term": "Stripe",
+            "top": 0
+          },
+          {
+            "inFirstViewport": true,
+            "left": 0,
+            "term": "cannot create a charge or order",
+            "top": 0
+          }
+        ]
+      },
+      "meaningfulRender": true,
+      "meaningfulTextLength": 744,
+      "overflowX": 0,
+      "overlayElement": false,
+      "overlayText": false
+    },
+    {
+      "route": "auth",
+      "requestedUrl": "/auth",
+      "viewport": {
+        "key": "1280x720",
+        "width": 1280,
+        "height": 720
+      },
+      "currentUrl": "http://localhost:3000/auth",
+      "title": "PawPal | Pet Safety Map, Smart Tags, and Local Pet Community",
+      "startedAt": "2026-06-11T14:02:38.400Z",
+      "logs": [],
+      "screenshot": "/private/tmp/geopet-round05-after/after-auth-1280x720.png",
+      "firstViewport": {
+        "cta": [
+          {
+            "inFirstViewport": true,
+            "left": 0,
+            "term": "Sign In",
+            "top": 0
+          },
+          {
+            "inFirstViewport": false,
+            "left": null,
+            "term": "Create Account",
+            "top": null
+          }
+        ],
+        "state": [
+          {
+            "inFirstViewport": true,
+            "left": 0,
+            "term": "Welcome Back",
+            "top": 0
+          },
+          {
+            "inFirstViewport": false,
+            "left": null,
+            "term": "Join PawPal",
+            "top": null
+          }
+        ],
+        "trust": [
+          {
+            "inFirstViewport": true,
+            "left": 0,
+            "term": "Email account access only",
+            "top": 0
+          },
+          {
+            "inFirstViewport": true,
+            "left": 0,
+            "term": "Private owner details",
+            "top": 0
+          }
+        ]
+      },
+      "meaningfulRender": true,
+      "meaningfulTextLength": 1211,
+      "overflowX": 0,
+      "overlayElement": false,
+      "overlayText": false
+    },
+    {
+      "route": "profile",
+      "requestedUrl": "/profile",
+      "viewport": {
+        "key": "1280x720",
+        "width": 1280,
+        "height": 720
+      },
+      "currentUrl": "http://localhost:3000/auth",
+      "title": "PawPal | Pet Safety Map, Smart Tags, and Local Pet Community",
+      "startedAt": "2026-06-11T14:02:41.050Z",
+      "logs": [],
+      "screenshot": "/private/tmp/geopet-round05-after/after-profile-1280x720.png",
+      "firstViewport": {
+        "cta": [
+          {
+            "inFirstViewport": true,
+            "left": 0,
+            "term": "Sign In",
+            "top": 0
+          }
+        ],
+        "state": [
+          {
+            "inFirstViewport": true,
+            "left": 0,
+            "term": "Welcome Back",
+            "top": 0
+          },
+          {
+            "inFirstViewport": false,
+            "left": null,
+            "term": "Join PawPal",
+            "top": null
+          }
+        ],
+        "trust": [
+          {
+            "inFirstViewport": true,
+            "left": 0,
+            "term": "Email account access only",
+            "top": 0
+          }
+        ]
+      },
+      "meaningfulRender": true,
+      "meaningfulTextLength": 1211,
+      "overflowX": 0,
+      "overlayElement": false,
+      "overlayText": false
+    },
+    {
+      "route": "tag-sample-id",
+      "requestedUrl": "/tag/sample-id",
+      "viewport": {
+        "key": "1280x720",
+        "width": 1280,
+        "height": 720
+      },
+      "currentUrl": "http://localhost:3000/tag/sample-id",
+      "title": "PawPal | Pet Safety Map, Smart Tags, and Local Pet Community",
+      "startedAt": "2026-06-11T14:02:43.752Z",
+      "logs": [],
+      "screenshot": "/private/tmp/geopet-round05-after/after-tag-sample-id-1280x720.png",
+      "firstViewport": {
+        "cta": [
+          {
+            "inFirstViewport": true,
+            "left": 121,
+            "term": "Back home",
+            "top": 112
+          },
+          {
+            "inFirstViewport": true,
+            "left": 121,
+            "term": "Shop smart tags",
+            "top": 112
+          }
+        ],
+        "state": [
+          {
+            "inFirstViewport": true,
+            "left": 121,
+            "term": "This PawPal route is not available",
+            "top": 112
+          },
+          {
+            "inFirstViewport": true,
+            "left": 121,
+            "term": "Page not found",
+            "top": 112
+          }
+        ],
+        "trust": [
+          {
+            "inFirstViewport": true,
+            "left": 121,
+            "term": "trusted PawPal page",
+            "top": 112
+          },
+          {
+            "inFirstViewport": true,
+            "left": 121,
+            "term": "Scanned a tag",
+            "top": 112
+          }
+        ]
+      },
+      "meaningfulRender": true,
+      "meaningfulTextLength": 880,
+      "overflowX": 0,
+      "overlayElement": false,
+      "overlayText": false
+    },
+    {
+      "route": "checkout",
+      "requestedUrl": "/store/checkout",
+      "viewport": {
+        "key": "1280x720",
+        "width": 1280,
+        "height": 720
+      },
+      "currentUrl": "http://localhost:3000/store",
+      "title": "Store | PawPal",
+      "startedAt": "2026-06-11T14:02:46.334Z",
+      "logs": [],
+      "screenshot": "/private/tmp/geopet-round05-after/after-checkout-1280x720.png",
+      "firstViewport": {
+        "cta": [
+          {
+            "inFirstViewport": true,
+            "left": 0,
+            "term": "Cart",
+            "top": 0
+          },
+          {
+            "inFirstViewport": true,
+            "left": 0,
+            "term": "Orders",
+            "top": 0
+          }
+        ],
+        "state": [
+          {
+            "inFirstViewport": false,
+            "left": null,
+            "term": "PawPal Store",
+            "top": null
+          },
+          {
+            "inFirstViewport": true,
+            "left": 0,
+            "term": "Store",
+            "top": 0
+          },
+          {
+            "inFirstViewport": false,
+            "left": 0,
+            "term": "Shop",
+            "top": 968
+          }
+        ],
+        "trust": [
+          {
+            "inFirstViewport": false,
+            "left": null,
+            "term": "Free shipping",
+            "top": null
+          },
+          {
+            "inFirstViewport": true,
+            "left": 0,
+            "term": "Secure",
+            "top": 0
+          }
+        ]
+      },
+      "meaningfulRender": true,
+      "meaningfulTextLength": 1558,
+      "overflowX": 0,
+      "overlayElement": false,
+      "overlayText": false
+    },
+    {
+      "route": "orders",
+      "requestedUrl": "/store/orders",
+      "viewport": {
+        "key": "1280x720",
+        "width": 1280,
+        "height": 720
+      },
+      "currentUrl": "http://localhost:3000/store/orders",
+      "title": "Store | PawPal",
+      "startedAt": "2026-06-11T14:02:48.960Z",
+      "logs": [],
+      "screenshot": "/private/tmp/geopet-round05-after/after-orders-1280x720.png",
+      "firstViewport": {
+        "cta": [
+          {
+            "inFirstViewport": true,
+            "left": 0,
+            "term": "Browse Products",
+            "top": 0
+          }
+        ],
+        "state": [
+          {
+            "inFirstViewport": true,
+            "left": 0,
+            "term": "No orders yet",
+            "top": 0
+          },
+          {
+            "inFirstViewport": true,
+            "left": 0,
+            "term": "My Orders",
+            "top": 0
+          }
+        ],
+        "trust": [
+          {
+            "inFirstViewport": true,
+            "left": 0,
+            "term": "Stripe-confirmed",
+            "top": 0
+          },
+          {
+            "inFirstViewport": true,
+            "left": 0,
+            "term": "delivery and payment status",
+            "top": 0
+          }
+        ]
+      },
+      "meaningfulRender": true,
+      "meaningfulTextLength": 754,
+      "overflowX": 0,
+      "overlayElement": false,
+      "overlayText": false
+    },
+    {
+      "route": "success",
+      "requestedUrl": "/store/success",
+      "viewport": {
+        "key": "1280x720",
+        "width": 1280,
+        "height": 720
+      },
+      "currentUrl": "http://localhost:3000/store/success",
+      "title": "Store | PawPal",
+      "startedAt": "2026-06-11T14:02:51.347Z",
+      "logs": [],
+      "screenshot": "/private/tmp/geopet-round05-after/after-success-1280x720.png",
+      "firstViewport": {
+        "cta": [
+          {
+            "inFirstViewport": true,
+            "left": 0,
+            "term": "Back to Store",
+            "top": 0
+          },
+          {
+            "inFirstViewport": true,
+            "left": 0,
+            "term": "View Orders",
+            "top": 0
+          }
+        ],
+        "state": [
+          {
+            "inFirstViewport": true,
+            "left": 0,
+            "term": "We could not verify this payment",
+            "top": 0
+          },
+          {
+            "inFirstViewport": true,
+            "left": 0,
+            "term": "Checkout status",
+            "top": 0
+          }
+        ],
+        "trust": [
+          {
+            "inFirstViewport": true,
+            "left": 0,
+            "term": "Stripe",
+            "top": 0
+          },
+          {
+            "inFirstViewport": true,
+            "left": 0,
+            "term": "cannot create a charge or order",
+            "top": 0
+          }
+        ]
+      },
+      "meaningfulRender": true,
+      "meaningfulTextLength": 744,
+      "overflowX": 0,
+      "overlayElement": false,
+      "overlayText": false
+    },
+    {
+      "route": "auth",
+      "requestedUrl": "/auth",
+      "viewport": {
+        "key": "1440x900",
+        "width": 1440,
+        "height": 900
+      },
+      "currentUrl": "http://localhost:3000/auth",
+      "title": "PawPal | Pet Safety Map, Smart Tags, and Local Pet Community",
+      "startedAt": "2026-06-11T14:02:53.884Z",
+      "logs": [],
+      "screenshot": "/private/tmp/geopet-round05-after/after-auth-1440x900.png",
+      "firstViewport": {
+        "cta": [
+          {
+            "inFirstViewport": true,
+            "left": 0,
+            "term": "Sign In",
+            "top": 0
+          },
+          {
+            "inFirstViewport": false,
+            "left": null,
+            "term": "Create Account",
+            "top": null
+          }
+        ],
+        "state": [
+          {
+            "inFirstViewport": true,
+            "left": 0,
+            "term": "Welcome Back",
+            "top": 0
+          },
+          {
+            "inFirstViewport": false,
+            "left": null,
+            "term": "Join PawPal",
+            "top": null
+          }
+        ],
+        "trust": [
+          {
+            "inFirstViewport": true,
+            "left": 0,
+            "term": "Email account access only",
+            "top": 0
+          },
+          {
+            "inFirstViewport": true,
+            "left": 0,
+            "term": "Private owner details",
+            "top": 0
+          }
+        ]
+      },
+      "meaningfulRender": true,
+      "meaningfulTextLength": 1211,
+      "overflowX": 0,
+      "overlayElement": false,
+      "overlayText": false
+    },
+    {
+      "route": "profile",
+      "requestedUrl": "/profile",
+      "viewport": {
+        "key": "1440x900",
+        "width": 1440,
+        "height": 900
+      },
+      "currentUrl": "http://localhost:3000/auth",
+      "title": "PawPal | Pet Safety Map, Smart Tags, and Local Pet Community",
+      "startedAt": "2026-06-11T14:02:56.766Z",
+      "logs": [],
+      "screenshot": "/private/tmp/geopet-round05-after/after-profile-1440x900.png",
+      "firstViewport": {
+        "cta": [
+          {
+            "inFirstViewport": true,
+            "left": 0,
+            "term": "Sign In",
+            "top": 0
+          }
+        ],
+        "state": [
+          {
+            "inFirstViewport": true,
+            "left": 0,
+            "term": "Welcome Back",
+            "top": 0
+          },
+          {
+            "inFirstViewport": false,
+            "left": null,
+            "term": "Join PawPal",
+            "top": null
+          }
+        ],
+        "trust": [
+          {
+            "inFirstViewport": true,
+            "left": 0,
+            "term": "Email account access only",
+            "top": 0
+          }
+        ]
+      },
+      "meaningfulRender": true,
+      "meaningfulTextLength": 1211,
+      "overflowX": 0,
+      "overlayElement": false,
+      "overlayText": false
+    },
+    {
+      "route": "tag-sample-id",
+      "requestedUrl": "/tag/sample-id",
+      "viewport": {
+        "key": "1440x900",
+        "width": 1440,
+        "height": 900
+      },
+      "currentUrl": "http://localhost:3000/tag/sample-id",
+      "title": "PawPal | Pet Safety Map, Smart Tags, and Local Pet Community",
+      "startedAt": "2026-06-11T14:02:59.507Z",
+      "logs": [],
+      "screenshot": "/private/tmp/geopet-round05-after/after-tag-sample-id-1440x900.png",
+      "firstViewport": {
+        "cta": [
+          {
+            "inFirstViewport": true,
+            "left": 201,
+            "term": "Back home",
+            "top": 112
+          },
+          {
+            "inFirstViewport": true,
+            "left": 201,
+            "term": "Shop smart tags",
+            "top": 112
+          }
+        ],
+        "state": [
+          {
+            "inFirstViewport": true,
+            "left": 201,
+            "term": "This PawPal route is not available",
+            "top": 112
+          },
+          {
+            "inFirstViewport": true,
+            "left": 201,
+            "term": "Page not found",
+            "top": 112
+          }
+        ],
+        "trust": [
+          {
+            "inFirstViewport": true,
+            "left": 201,
+            "term": "trusted PawPal page",
+            "top": 112
+          },
+          {
+            "inFirstViewport": true,
+            "left": 201,
+            "term": "Scanned a tag",
+            "top": 112
+          }
+        ]
+      },
+      "meaningfulRender": true,
+      "meaningfulTextLength": 880,
+      "overflowX": 0,
+      "overlayElement": false,
+      "overlayText": false
+    },
+    {
+      "route": "checkout",
+      "requestedUrl": "/store/checkout",
+      "viewport": {
+        "key": "1440x900",
+        "width": 1440,
+        "height": 900
+      },
+      "currentUrl": "http://localhost:3000/store",
+      "title": "Store | PawPal",
+      "startedAt": "2026-06-11T14:03:02.018Z",
+      "logs": [],
+      "screenshot": "/private/tmp/geopet-round05-after/after-checkout-1440x900.png",
+      "firstViewport": {
+        "cta": [
+          {
+            "inFirstViewport": true,
+            "left": 0,
+            "term": "Cart",
+            "top": 0
+          },
+          {
+            "inFirstViewport": true,
+            "left": 0,
+            "term": "Orders",
+            "top": 0
+          }
+        ],
+        "state": [
+          {
+            "inFirstViewport": false,
+            "left": null,
+            "term": "PawPal Store",
+            "top": null
+          },
+          {
+            "inFirstViewport": true,
+            "left": 73,
+            "term": "Store",
+            "top": 0
+          },
+          {
+            "inFirstViewport": false,
+            "left": 73,
+            "term": "Shop",
+            "top": 968
+          }
+        ],
+        "trust": [
+          {
+            "inFirstViewport": false,
+            "left": null,
+            "term": "Free shipping",
+            "top": null
+          },
+          {
+            "inFirstViewport": true,
+            "left": 0,
+            "term": "Secure",
+            "top": 0
+          }
+        ]
+      },
+      "meaningfulRender": true,
+      "meaningfulTextLength": 1558,
+      "overflowX": 0,
+      "overlayElement": false,
+      "overlayText": false
+    },
+    {
+      "route": "orders",
+      "requestedUrl": "/store/orders",
+      "viewport": {
+        "key": "1440x900",
+        "width": 1440,
+        "height": 900
+      },
+      "currentUrl": "http://localhost:3000/store/orders",
+      "title": "Store | PawPal",
+      "startedAt": "2026-06-11T14:03:04.787Z",
+      "logs": [],
+      "screenshot": "/private/tmp/geopet-round05-after/after-orders-1440x900.png",
+      "firstViewport": {
+        "cta": [
+          {
+            "inFirstViewport": true,
+            "left": 0,
+            "term": "Browse Products",
+            "top": 0
+          }
+        ],
+        "state": [
+          {
+            "inFirstViewport": true,
+            "left": 0,
+            "term": "No orders yet",
+            "top": 0
+          },
+          {
+            "inFirstViewport": true,
+            "left": 0,
+            "term": "My Orders",
+            "top": 0
+          }
+        ],
+        "trust": [
+          {
+            "inFirstViewport": true,
+            "left": 0,
+            "term": "Stripe-confirmed",
+            "top": 0
+          },
+          {
+            "inFirstViewport": true,
+            "left": 0,
+            "term": "delivery and payment status",
+            "top": 0
+          }
+        ]
+      },
+      "meaningfulRender": true,
+      "meaningfulTextLength": 754,
+      "overflowX": 0,
+      "overlayElement": false,
+      "overlayText": false
+    },
+    {
+      "route": "success",
+      "requestedUrl": "/store/success",
+      "viewport": {
+        "key": "1440x900",
+        "width": 1440,
+        "height": 900
+      },
+      "currentUrl": "http://localhost:3000/store/success",
+      "title": "Store | PawPal",
+      "startedAt": "2026-06-11T14:03:07.170Z",
+      "logs": [],
+      "screenshot": "/private/tmp/geopet-round05-after/after-success-1440x900.png",
+      "firstViewport": {
+        "cta": [
+          {
+            "inFirstViewport": true,
+            "left": 0,
+            "term": "Back to Store",
+            "top": 0
+          },
+          {
+            "inFirstViewport": true,
+            "left": 0,
+            "term": "View Orders",
+            "top": 0
+          }
+        ],
+        "state": [
+          {
+            "inFirstViewport": true,
+            "left": 0,
+            "term": "We could not verify this payment",
+            "top": 0
+          },
+          {
+            "inFirstViewport": true,
+            "left": 0,
+            "term": "Checkout status",
+            "top": 0
+          }
+        ],
+        "trust": [
+          {
+            "inFirstViewport": true,
+            "left": 0,
+            "term": "Stripe",
+            "top": 0
+          },
+          {
+            "inFirstViewport": true,
+            "left": 0,
+            "term": "cannot create a charge or order",
+            "top": 0
+          }
+        ]
+      },
+      "meaningfulRender": true,
+      "meaningfulTextLength": 744,
+      "overflowX": 0,
+      "overlayElement": false,
+      "overlayText": false
+    }
+  ]
+}

@@ -1,0 +1,91 @@
+import {
+  CheckCircle2,
+  Database,
+  Eye,
+  LockKeyhole,
+  MapPinned,
+  ShieldCheck,
+  SlidersHorizontal,
+} from "lucide-react";
+
+const PRIVACY_SECTIONS = [
+  {
+    icon: Database,
+    title: "Data we use",
+    text: "PawPal uses account, pet profile, map, walk, store, and community data to provide the product features you choose to use.",
+    signal: "Feature-scoped",
+  },
+  {
+    icon: MapPinned,
+    title: "Location and safety",
+    text: "Location features are used for maps, walks, nearby places, and safety workflows. Public finder pages only show the information owners choose to expose.",
+    signal: "Controlled sharing",
+  },
+  {
+    icon: SlidersHorizontal,
+    title: "Your choices",
+    text: "You can update account details, pet profile visibility, lost-mode settings, and communication preferences from the app or by contacting support.",
+    signal: "Owner managed",
+  },
+];
+
+export default function PrivacyPage() {
+  return (
+    <div className="legal-page-shell min-h-screen bg-paw-page pt-28 pb-16 text-paw-ink">
+      <section className="mx-auto max-w-6xl px-4">
+        <div className="legal-hero-panel">
+          <div>
+            <div className="inline-flex items-center gap-2 rounded-paw-md border border-paw-primary/20 bg-white/80 px-3 py-1.5 text-sm font-extrabold text-paw-primary shadow-sm">
+              <ShieldCheck className="h-4 w-4" aria-hidden="true" />
+              Privacy
+            </div>
+            <h1 className="mt-5 max-w-3xl text-4xl font-extrabold tracking-tight sm:text-6xl">
+              Controlled sharing for every pet safety flow.
+            </h1>
+            <p className="mt-5 max-w-2xl text-base leading-7 text-paw-body sm:text-lg">
+              PawPal is designed around controlled sharing: owners decide what
+              is public, what stays private, and when lost-mode information
+              should be visible.
+            </p>
+          </div>
+
+          <aside className="legal-trust-panel">
+            {[
+              { icon: LockKeyhole, label: "Private by default", value: "Owner contact stays hidden until needed." },
+              { icon: Eye, label: "Finder pages", value: "Only chosen details appear publicly." },
+              { icon: CheckCircle2, label: "EU-first controls", value: "Support routes are ready for GDPR requests." },
+            ].map((item) => (
+              <div key={item.label} className="legal-trust-row">
+                <item.icon className="h-4 w-4 text-paw-primary" aria-hidden="true" />
+                <div>
+                  <p className="text-sm font-extrabold text-paw-ink">{item.label}</p>
+                  <p className="mt-1 text-xs leading-5 text-paw-body">{item.value}</p>
+                </div>
+              </div>
+            ))}
+          </aside>
+        </div>
+
+        <div className="mt-10 grid gap-4 md:grid-cols-3">
+          {PRIVACY_SECTIONS.map((section) => (
+            <article
+              key={section.title}
+              className="legal-info-card rounded-paw-lg border border-paw-border bg-paw-panel p-5 shadow-paw-panel"
+            >
+              <div className="legal-info-icon">
+                <section.icon className="h-5 w-5" aria-hidden="true" />
+              </div>
+              <h2 className="text-xl font-extrabold text-paw-ink">
+                {section.title}
+              </h2>
+              <p className="mt-2 text-sm leading-6 text-paw-body">{section.text}</p>
+              <p className="mt-4 text-xs font-black uppercase tracking-[0.14em] text-paw-primary">
+                {section.signal}
+              </p>
+            </article>
+          ))}
+        </div>
+      </section>
+    </div>
+  );
+}

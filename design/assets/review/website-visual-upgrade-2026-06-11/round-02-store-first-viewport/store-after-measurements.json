@@ -1,0 +1,366 @@
+{
+  "startedAt": "2026-06-11T12:07:13.436Z",
+  "results": [
+    {
+      "label": "390x844",
+      "screenshot": "/private/tmp/geopet-round02-store/final-reduced-motion/store-after-390x844.png",
+      "data": {
+        "blockingOverlay": false,
+        "darkSchemeQuery": false,
+        "documentHeight": 3280,
+        "firstViewport": {
+          "categoryVisible": true,
+          "firstAddVisible": false,
+          "productCardTopVisible": true,
+          "searchVisible": true
+        },
+        "horizontalOverflow": false,
+        "measurements": {
+          "cartButton": {
+            "bottom": 607,
+            "height": 20,
+            "left": 216,
+            "top": 587,
+            "width": 50
+          },
+          "checkoutFloating": null,
+          "filterLabel": {
+            "bottom": 533,
+            "height": 20,
+            "left": 16,
+            "top": 513,
+            "width": 358
+          },
+          "firstAddButton": {
+            "bottom": 1043,
+            "height": 36,
+            "left": 279,
+            "top": 1007,
+            "width": 74
+          },
+          "firstCategoryButton": {
+            "bottom": 575,
+            "height": 34,
+            "left": 16,
+            "top": 541,
+            "width": 120
+          },
+          "firstDetailsButton": {
+            "bottom": 1043,
+            "height": 36,
+            "left": 175,
+            "top": 1007,
+            "width": 96
+          },
+          "firstProductCard": {
+            "bottom": 1064,
+            "height": 445,
+            "left": 16,
+            "top": 619,
+            "width": 358
+          },
+          "searchInput": {
+            "bottom": 392,
+            "height": 48,
+            "left": 16,
+            "top": 344,
+            "width": 358
+          },
+          "trustStripFirstCard": {
+            "bottom": 484,
+            "height": 80,
+            "left": 0,
+            "top": 404,
+            "width": 390
+          }
+        },
+        "overlayText": "",
+        "pageTitle": "Store | PawPal",
+        "path": "/store",
+        "productCount": "4 products",
+        "reducedMotionQuery": false,
+        "scroll": {
+          "x": 0,
+          "y": 0
+        },
+        "viewport": {
+          "height": 844,
+          "width": 390
+        }
+      }
+    },
+    {
+      "label": "768x1024",
+      "screenshot": "/private/tmp/geopet-round02-store/final-reduced-motion/store-after-768x1024.png",
+      "data": {
+        "blockingOverlay": false,
+        "darkSchemeQuery": false,
+        "documentHeight": 2051,
+        "firstViewport": {
+          "categoryVisible": true,
+          "firstAddVisible": false,
+          "productCardTopVisible": true,
+          "searchVisible": true
+        },
+        "horizontalOverflow": false,
+        "measurements": {
+          "cartButton": {
+            "bottom": 649,
+            "height": 20,
+            "left": 594,
+            "top": 629,
+            "width": 50
+          },
+          "checkoutFloating": null,
+          "filterLabel": {
+            "bottom": 517,
+            "height": 20,
+            "left": 16,
+            "top": 497,
+            "width": 736
+          },
+          "firstAddButton": {
+            "bottom": 1086,
+            "height": 36,
+            "left": 281,
+            "top": 1050,
+            "width": 74
+          },
+          "firstCategoryButton": {
+            "bottom": 567,
+            "height": 42,
+            "left": 16,
+            "top": 525,
+            "width": 142
+          },
+          "firstDetailsButton": {
+            "bottom": 1086,
+            "height": 36,
+            "left": 177,
+            "top": 1050,
+            "width": 96
+          },
+          "firstProductCard": {
+            "bottom": 1107,
+            "height": 447,
+            "left": 16,
+            "top": 661,
+            "width": 360
+          },
+          "searchInput": {
+            "bottom": 350,
+            "height": 48,
+            "left": 16,
+            "top": 302,
+            "width": 736
+          },
+          "trustStripFirstCard": {
+            "bottom": 460,
+            "height": 98,
+            "left": 0,
+            "top": 362,
+            "width": 768
+          }
+        },
+        "overlayText": "",
+        "pageTitle": "Store | PawPal",
+        "path": "/store",
+        "productCount": "4 products",
+        "reducedMotionQuery": false,
+        "scroll": {
+          "x": 0,
+          "y": 0
+        },
+        "viewport": {
+          "height": 1024,
+          "width": 768
+        }
+      }
+    },
+    {
+      "label": "1280x720",
+      "screenshot": "/private/tmp/geopet-round02-store/final-reduced-motion/store-after-1280x720.png",
+      "data": {
+        "blockingOverlay": false,
+        "darkSchemeQuery": false,
+        "documentHeight": 1421,
+        "firstViewport": {
+          "categoryVisible": true,
+          "firstAddVisible": false,
+          "productCardTopVisible": true,
+          "searchVisible": true
+        },
+        "horizontalOverflow": false,
+        "measurements": {
+          "cartButton": {
+            "bottom": 590,
+            "height": 20,
+            "left": 1106,
+            "top": 570,
+            "width": 50
+          },
+          "checkoutFloating": null,
+          "filterLabel": {
+            "bottom": 508,
+            "height": 20,
+            "left": 16,
+            "top": 488,
+            "width": 1248
+          },
+          "firstAddButton": {
+            "bottom": 991,
+            "height": 36,
+            "left": 221,
+            "top": 955,
+            "width": 74
+          },
+          "firstCategoryButton": {
+            "bottom": 558,
+            "height": 42,
+            "left": 16,
+            "top": 516,
+            "width": 142
+          },
+          "firstDetailsButton": {
+            "bottom": 991,
+            "height": 36,
+            "left": 117,
+            "top": 955,
+            "width": 96
+          },
+          "firstProductCard": {
+            "bottom": 1012,
+            "height": 410,
+            "left": 16,
+            "top": 602,
+            "width": 300
+          },
+          "searchInput": {
+            "bottom": 361,
+            "height": 48,
+            "left": 748,
+            "top": 313,
+            "width": 516
+          },
+          "trustStripFirstCard": {
+            "bottom": 451,
+            "height": 78,
+            "left": 0,
+            "top": 373,
+            "width": 1280
+          }
+        },
+        "overlayText": "",
+        "pageTitle": "Store | PawPal",
+        "path": "/store",
+        "productCount": "4 products",
+        "reducedMotionQuery": false,
+        "scroll": {
+          "x": 0,
+          "y": 0
+        },
+        "viewport": {
+          "height": 720,
+          "width": 1280
+        }
+      }
+    },
+    {
+      "label": "1440x900",
+      "screenshot": "/private/tmp/geopet-round02-store/final-reduced-motion/store-after-1440x900.png",
+      "data": {
+        "blockingOverlay": false,
+        "darkSchemeQuery": false,
+        "documentHeight": 1421,
+        "firstViewport": {
+          "categoryVisible": true,
+          "firstAddVisible": false,
+          "productCardTopVisible": true,
+          "searchVisible": true
+        },
+        "horizontalOverflow": false,
+        "measurements": {
+          "cartButton": {
+            "bottom": 590,
+            "height": 20,
+            "left": 1186,
+            "top": 570,
+            "width": 50
+          },
+          "checkoutFloating": null,
+          "filterLabel": {
+            "bottom": 508,
+            "height": 20,
+            "left": 96,
+            "top": 488,
+            "width": 1248
+          },
+          "firstAddButton": {
+            "bottom": 991,
+            "height": 36,
+            "left": 301,
+            "top": 955,
+            "width": 74
+          },
+          "firstCategoryButton": {
+            "bottom": 558,
+            "height": 42,
+            "left": 96,
+            "top": 516,
+            "width": 142
+          },
+          "firstDetailsButton": {
+            "bottom": 991,
+            "height": 36,
+            "left": 197,
+            "top": 955,
+            "width": 96
+          },
+          "firstProductCard": {
+            "bottom": 1012,
+            "height": 410,
+            "left": 96,
+            "top": 602,
+            "width": 300
+          },
+          "searchInput": {
+            "bottom": 361,
+            "height": 48,
+            "left": 828,
+            "top": 313,
+            "width": 516
+          },
+          "trustStripFirstCard": {
+            "bottom": 451,
+            "height": 78,
+            "left": 80,
+            "top": 373,
+            "width": 1280
+          }
+        },
+        "overlayText": "",
+        "pageTitle": "Store | PawPal",
+        "path": "/store",
+        "productCount": "4 products",
+        "reducedMotionQuery": false,
+        "scroll": {
+          "x": 0,
+          "y": 0
+        },
+        "viewport": {
+          "height": 900,
+          "width": 1440
+        }
+      }
+    }
+  ],
+  "logs": [
+    {
+      "level": "error",
+      "message": "A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:\n\n- A server/client branch `if (typeof window !== 'undefined')`.\n- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.\n- Date formatting in a user's locale which doesn't match the server.\n- External changing data without sending a snapshot of it along with the HTML.\n- Invalid HTML tag nesting.\n\nIt can also happen if the client has a browser extension installed which messes with the HTML before React loaded.\n\n%s%s https://react.dev/link/hydration-mismatch \n\n  ...\n    <HTTPAccessFallbackBoundary notFound={undefined} forbidden={undefined} unauthorized={undefined}>\n      <RedirectBoundary>\n        <RedirectErrorBoundary router={{...}}>\n          <InnerLayoutRouter url=\"/store\" tree={[...]} params={{}} cacheNode={{rsc:<Fragment>, ...}} segmentPath={[...]} ...>\n            <SegmentViewNode type=\"page\" pagePath=\"store/page...\">\n              <SegmentTrieNode>\n              <ClientPageRoot Component={function StorePage} serverProvidedParams={{...}}>\n                <StorePage params={Promise} searchParams={Promise}>\n                  <Suspense fallback={<div>}>\n                    <StorePageContent>\n                      <div className=\"relative m...\">\n                        <section className=\"relative o...\">\n                          <div>\n                          <div>\n                          <motion.div initial={{opacity:0,y:14}} animate={{opacity:1,y:0}} transition={{delay:0.22}} ...>\n                            <div\n+                             className=\"mx-auto mt-3 grid max-w-7xl gap-2 px-4 sm:grid-cols-3\"\n-                             className=\"mx-auto mt-3 grid max-w-7xl grid-cols-3 gap-2 px-4\"\n                              style={{opacity:0,transform:\"translateY...\"}}\n                              ref={function useMotionRef.useCallback}\n                            >\n                              <div\n+                               className=\"flex items-start gap-3 rounded-paw-md border border-paw-border bg-white/82 ...\"\n-                               className=\"flex flex-col items-center gap-1.5 rounded-paw-md border border-paw-border ...\"\n                              >\n                                <span\n+                                 className=\"flex h-8 w-8 shrink-0 items-center justify-center rounded-paw-sm bg-paw-p...\"\n-                                 className=\"flex h-7 w-7 shrink-0 items-center justify-center rounded-paw-sm bg-paw-p...\"\n                                >\n                                  <ShieldCheck className=\"h-4 w-4\" aria-hidden=\"true\">\n                                    <svg\n                                      ref={null}\n                                      xmlns=\"http://www.w3.org/2000/svg\"\n                                      width={24}\n                                      height={24}\n                                      viewBox=\"0 0 24 24\"\n                                      fill=\"none\"\n                                      stroke=\"currentColor\"\n                                      strokeWidth={2}\n                                      strokeLinecap=\"round\"\n                                      strokeLinejoin=\"round\"\n+                                     className=\"lucide lucide-shield-check h-4 w-4\"\n-                                     className=\"lucide lucide-shield-check h-3.5 w-3.5 sm:h-4 sm:w-4\"\n                                      aria-hidden=\"true\"\n                                    >\n                                <div>\n                                  <p\n+                                   className=\"text-sm font-extrabold text-paw-ink\"\n-                                   className=\"text-[11px] font-extrabold leading-tight text-paw-ink sm:text-sm\"\n                                  >\n+                                   NFC safety ready\n                                  <p\n+                                   className=\"mt-0.5 text-xs leading-5 text-paw-body\"\n-                                   className=\"mt-0.5 hidden text-xs leading-5 text-paw-body sm:block\"\n                                  >\n+                                   Built for public finder pages and controlled owner details.\n                              <div\n+                               className=\"flex items-start gap-3 rounded-paw-md border border-paw-border bg-white/82 ...\"\n-                               className=\"flex flex-col items-center gap-1.5 rounded-paw-md border border-paw-border ...\"\n                              >\n                                <span\n+                                 className=\"flex h-8 w-8 shrink-0 items-center justify-center rounded-paw-sm bg-paw-p...\"\n-                                 className=\"flex h-7 w-7 shrink-0 items-center justify-center rounded-paw-sm bg-paw-p...\"\n                                >\n                                  <Truck className=\"h-4 w-4\" aria-hidden=\"true\">\n                                    <svg\n                                      ref={null}\n                                      xmlns=\"http://www.w3.org/2000/svg\"\n                                      width={24}\n                                      height={24}\n                                      viewBox=\"0 0 24 24\"\n                                      fill=\"none\"\n                                      stroke=\"currentColor\"\n                                      strokeWidth={2}\n                                      strokeLinecap=\"round\"\n                                      strokeLinejoin=\"round\"\n+                                     className=\"lucide lucide-truck h-4 w-4\"\n-                                     className=\"lucide lucide-truck h-3.5 w-3.5 sm:h-4 sm:w-4\"\n                                      aria-hidden=\"true\"\n                                    >\n                                <div>\n                                  <p\n+                                   className=\"text-sm font-extrabold text-paw-ink\"\n-                                   className=\"text-[11px] font-extrabold leading-tight text-paw-ink sm:text-sm\"\n                                  >\n+                                   EU-first fulfillment\n                                  <p\n+                                   className=\"mt-0.5 text-xs leading-5 text-paw-body\"\n-                                   className=\"mt-0.5 hidden text-xs leading-5 text-paw-body sm:block\"\n                                  >\n+                                   Catalog and checkout flows are prepared for Belgium-led rollout.\n                              <div\n+                               className=\"flex items-start gap-3 rounded-paw-md border border-paw-border bg-white/82 ...\"\n-                               className=\"flex flex-col items-center gap-1.5 rounded-paw-md border border-paw-border ...\"\n                              >\n                                <span\n+                                 className=\"flex h-8 w-8 shrink-0 items-center justify-center rounded-paw-sm bg-paw-p...\"\n-                                 className=\"flex h-7 w-7 shrink-0 items-center justify-center rounded-paw-sm bg-paw-p...\"\n                                >\n                                  <CircleCheck className=\"h-4 w-4\" aria-hidden=\"true\">\n                                    <svg\n                                      ref={null}\n                                      xmlns=\"http://www.w3.org/2000/svg\"\n                                      width={24}\n                                      height={24}\n                                      viewBox=\"0 0 24 24\"\n                                      fill=\"none\"\n                                      stroke=\"currentColor\"\n                                      strokeWidth={2}\n                                      strokeLinecap=\"round\"\n                                      strokeLinejoin=\"round\"\n+                                     className=\"lucide lucide-circle-check h-4 w-4\"\n-                                     className=\"lucide lucide-circle-check h-3.5 w-3.5 sm:h-4 sm:w-4\"\n                                      aria-hidden=\"true\"\n                                    >\n                                <div>\n                                  <p\n+                                   className=\"text-sm font-extrabold text-paw-ink\"\n-                                   className=\"text-[11px] font-extrabold leading-tight text-paw-ink sm:text-sm\"\n                                  >\n+                                   Secure checkout\n                                  <p\n+                                   className=\"mt-0.5 text-xs leading-5 text-paw-body\"\n-                                   className=\"mt-0.5 hidden text-xs leading-5 text-paw-body sm:block\"\n                                  >\n+                                   Stripe-backed payment flow with cart persistence across visits.\n                        <section className=\"bg-paw-acc...\">\n                          <div className=\"mx-auto ma...\">\n                            <div>\n                            <div\n+                             className=\"mb-3 flex flex-wrap gap-2\"\n-                             className=\"-mx-4 mb-2 flex gap-2 overflow-x-auto px-4 pb-1 sm:mx-0 sm:mb-3 sm:flex-wrap ...\"\n                            >\n                              <motion.button whileTap={{scale:0.95}} onClick={function onClick} className=\"inline-fle...\">\n                                <button\n                                  onClick={function onClick}\n+                                 className=\"inline-flex items-center gap-2 rounded-paw-md border px-4 py-2.5 text-sm ...\"\n-                                 className=\"inline-flex shrink-0 items-center gap-1.5 rounded-paw-md border px-3 py-2...\"\n                                  tabIndex={0}\n                                  style={{}}\n                                  ref={function useMotionRef.useCallback}\n                                >\n                                  <ShoppingBag className=\"h-4 w-4\" aria-hidden=\"true\">\n                                    <svg\n                                      ref={null}\n                                      xmlns=\"http://www.w3.org/2000/svg\"\n                                      width={24}\n                                      height={24}\n                                      viewBox=\"0 0 24 24\"\n                                      fill=\"none\"\n                                      stroke=\"currentColor\"\n                                      strokeWidth={2}\n                                      strokeLinecap=\"round\"\n                                      strokeLinejoin=\"round\"\n+                                     className=\"lucide lucide-shopping-bag h-4 w-4\"\n-                                     className=\"lucide lucide-shopping-bag h-3.5 w-3.5 sm:h-4 sm:w-4\"\n                                      aria-hidden=\"true\"\n                                    >\n                                  ...\n                              <motion.button whileTap={{scale:0.95}} onClick={function onClick} className=\"inline-fle...\">\n                                <button\n                                  onClick={function onClick}\n+                                 className=\"inline-flex items-center gap-2 rounded-paw-md border px-4 py-2.5 text-sm ...\"\n-                                 className=\"inline-flex shrink-0 items-center gap-1.5 rounded-paw-md border px-3 py-2...\"\n                                  tabIndex={0}\n                                  style={{}}\n                                  ref={function useMotionRef.useCallback}\n                                >\n                                  <Bone className=\"h-4 w-4\" aria-hidden=\"true\">\n                                    <svg\n                                      ref={null}\n                                      xmlns=\"http://www.w3.org/2000/svg\"\n                                      width={24}\n                                      height={24}\n                                      viewBox=\"0 0 24 24\"\n                                      fill=\"none\"\n                                      stroke=\"currentColor\"\n                                      strokeWidth={2}\n                                      strokeLinecap=\"round\"\n                                      strokeLinejoin=\"round\"\n+                                     className=\"lucide lucide-bone h-4 w-4\"\n-                                     className=\"lucide lucide-bone h-3.5 w-3.5 sm:h-4 sm:w-4\"\n                                      aria-hidden=\"true\"\n                                    >\n                                  ...\n                              <motion.button whileTap={{scale:0.95}} onClick={function onClick} className=\"inline-fle...\">\n                                <button\n                                  onClick={function onClick}\n+                                 className=\"inline-flex items-center gap-2 rounded-paw-md border px-4 py-2.5 text-sm ...\"\n-                                 className=\"inline-flex shrink-0 items-center gap-1.5 rounded-paw-md border px-3 py-2...\"\n                                  tabIndex={0}\n                                  style={{}}\n                                  ref={function useMotionRef.useCallback}\n                                >\n                                  <Dumbbell className=\"h-4 w-4\" aria-hidden=\"true\">\n                                    <svg\n                                      ref={null}\n                                      xmlns=\"http://www.w3.org/2000/svg\"\n                                      width={24}\n                                      height={24}\n                                      viewBox=\"0 0 24 24\"\n                                      fill=\"none\"\n                                      stroke=\"currentColor\"\n                                      strokeWidth={2}\n                                      strokeLinecap=\"round\"\n                                      strokeLinejoin=\"round\"\n+                                     className=\"lucide lucide-dumbbell h-4 w-4\"\n-                                     className=\"lucide lucide-dumbbell h-3.5 w-3.5 sm:h-4 sm:w-4\"\n                                      aria-hidden=\"true\"\n                                    >\n                                  ...\n                              <motion.button whileTap={{scale:0.95}} onClick={function onClick} className=\"inline-fle...\">\n                                <button\n                                  onClick={function onClick}\n+                                 className=\"inline-flex items-center gap-2 rounded-paw-md border px-4 py-2.5 text-sm ...\"\n-                                 className=\"inline-flex shrink-0 items-center gap-1.5 rounded-paw-md border px-3 py-2...\"\n                                  tabIndex={0}\n                                  style={{}}\n                                  ref={function useMotionRef.useCallback}\n                                >\n                                  <Tags className=\"h-4 w-4\" aria-hidden=\"true\">\n                                    <svg\n                                      ref={null}\n                                      xmlns=\"http://www.w3.org/2000/svg\"\n                                      width={24}\n                                      height={24}\n                                      viewBox=\"0 0 24 24\"\n                                      fill=\"none\"\n                                      stroke=\"currentColor\"\n                                      strokeWidth={2}\n                                      strokeLinecap=\"round\"\n                                      strokeLinejoin=\"round\"\n+                                     className=\"lucide lucide-tags h-4 w-4\"\n-                                     className=\"lucide lucide-tags h-3.5 w-3.5 sm:h-4 sm:w-4\"\n                                      aria-hidden=\"true\"\n                                    >\n                                  ...\n                              <motion.button whileTap={{scale:0.95}} onClick={function onClick} className=\"inline-fle...\">\n                                <button\n                                  onClick={function onClick}\n+                                 className=\"inline-flex items-center gap-2 rounded-paw-md border px-4 py-2.5 text-sm ...\"\n-                                 className=\"inline-flex shrink-0 items-center gap-1.5 rounded-paw-md border px-3 py-2...\"\n                                  tabIndex={0}\n                                  style={{}}\n                                  ref={function useMotionRef.useCallback}\n                                >\n                                  <HeartPulse className=\"h-4 w-4\" aria-hidden=\"true\">\n                                    <svg\n                                      ref={null}\n                                      xmlns=\"http://www.w3.org/2000/svg\"\n                                      width={24}\n                                      height={24}\n                                      viewBox=\"0 0 24 24\"\n                                      fill=\"none\"\n                                      stroke=\"currentColor\"\n                                      strokeWidth={2}\n                                      strokeLinecap=\"round\"\n                                      strokeLinejoin=\"round\"\n+                                     className=\"lucide lucide-heart-pulse h-4 w-4\"\n-                                     className=\"lucide lucide-heart-pulse h-3.5 w-3.5 sm:h-4 sm:w-4\"\n                                      aria-hidden=\"true\"\n                                    >\n                                  ...\n                            ...\n                        ...\n            ...\n          ...\n",
+      "timestamp": "2026-06-11T11:59:31.105Z",
+      "url": "http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js"
+    }
+  ],
+  "newLogs": []
+}

@@ -1,0 +1,656 @@
+[
+  {
+    "route": "/auth",
+    "mode": "light",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "url": "http://localhost:3000/auth",
+    "title": "PawPal | Pet Safety Map, Smart Tags, and Local Pet Community",
+    "logs": [],
+    "pageErrors": [],
+    "metrics": {
+      "meaningfulRender": true,
+      "hasFrameworkOverlay": false,
+      "overlayCandidateCount": 1,
+      "visibleErrorOverlayCount": 0,
+      "horizontalOverflow": false,
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "bodyBackground": "rgb(255, 255, 255)",
+      "bodyColor": "rgb(58, 47, 42)",
+      "colorScheme": "light",
+      "matchDark": false,
+      "matchReducedMotion": false,
+      "headings": [
+        "One login for walks, tags, rescue pages, and store orders.",
+        "Welcome Back",
+        "Product",
+        "Company",
+        "Support",
+        "Belgium Pilot"
+      ]
+    },
+    "screenshotPath": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-09-nfc-finder-emergency-states/evidence/screenshots/smoke-auth-light-390x844.png"
+  },
+  {
+    "route": "/auth",
+    "mode": "dark",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "url": "http://localhost:3000/auth",
+    "title": "PawPal | Pet Safety Map, Smart Tags, and Local Pet Community",
+    "logs": [],
+    "pageErrors": [],
+    "metrics": {
+      "meaningfulRender": true,
+      "hasFrameworkOverlay": false,
+      "overlayCandidateCount": 1,
+      "visibleErrorOverlayCount": 0,
+      "horizontalOverflow": false,
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "bodyBackground": "rgb(21, 29, 34)",
+      "bodyColor": "rgb(251, 247, 242)",
+      "colorScheme": "dark",
+      "matchDark": true,
+      "matchReducedMotion": false,
+      "headings": [
+        "One login for walks, tags, rescue pages, and store orders.",
+        "Welcome Back",
+        "Product",
+        "Company",
+        "Support",
+        "Belgium Pilot"
+      ]
+    },
+    "screenshotPath": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-09-nfc-finder-emergency-states/evidence/screenshots/smoke-auth-dark-390x844.png"
+  },
+  {
+    "route": "/auth",
+    "mode": "reduced",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "url": "http://localhost:3000/auth",
+    "title": "PawPal | Pet Safety Map, Smart Tags, and Local Pet Community",
+    "logs": [],
+    "pageErrors": [],
+    "metrics": {
+      "meaningfulRender": true,
+      "hasFrameworkOverlay": false,
+      "overlayCandidateCount": 1,
+      "visibleErrorOverlayCount": 0,
+      "horizontalOverflow": false,
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "bodyBackground": "rgb(255, 255, 255)",
+      "bodyColor": "rgb(58, 47, 42)",
+      "colorScheme": "light",
+      "matchDark": false,
+      "matchReducedMotion": true,
+      "headings": [
+        "One login for walks, tags, rescue pages, and store orders.",
+        "Welcome Back",
+        "Product",
+        "Company",
+        "Support",
+        "Belgium Pilot"
+      ]
+    },
+    "screenshotPath": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-09-nfc-finder-emergency-states/evidence/screenshots/smoke-auth-reduced-390x844.png"
+  },
+  {
+    "route": "/auth",
+    "mode": "light",
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "url": "http://localhost:3000/auth",
+    "title": "PawPal | Pet Safety Map, Smart Tags, and Local Pet Community",
+    "logs": [],
+    "pageErrors": [],
+    "metrics": {
+      "meaningfulRender": true,
+      "hasFrameworkOverlay": false,
+      "overlayCandidateCount": 1,
+      "visibleErrorOverlayCount": 0,
+      "horizontalOverflow": false,
+      "scrollWidth": 1280,
+      "clientWidth": 1280,
+      "bodyBackground": "rgb(255, 255, 255)",
+      "bodyColor": "rgb(58, 47, 42)",
+      "colorScheme": "light",
+      "matchDark": false,
+      "matchReducedMotion": false,
+      "headings": [
+        "One login for walks, tags, rescue pages, and store orders.",
+        "Welcome Back",
+        "Product",
+        "Company",
+        "Support",
+        "Belgium Pilot"
+      ]
+    },
+    "screenshotPath": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-09-nfc-finder-emergency-states/evidence/screenshots/smoke-auth-light-1280x720.png"
+  },
+  {
+    "route": "/auth",
+    "mode": "dark",
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "url": "http://localhost:3000/auth",
+    "title": "PawPal | Pet Safety Map, Smart Tags, and Local Pet Community",
+    "logs": [],
+    "pageErrors": [],
+    "metrics": {
+      "meaningfulRender": true,
+      "hasFrameworkOverlay": false,
+      "overlayCandidateCount": 1,
+      "visibleErrorOverlayCount": 0,
+      "horizontalOverflow": false,
+      "scrollWidth": 1280,
+      "clientWidth": 1280,
+      "bodyBackground": "rgb(21, 29, 34)",
+      "bodyColor": "rgb(251, 247, 242)",
+      "colorScheme": "dark",
+      "matchDark": true,
+      "matchReducedMotion": false,
+      "headings": [
+        "One login for walks, tags, rescue pages, and store orders.",
+        "Welcome Back",
+        "Product",
+        "Company",
+        "Support",
+        "Belgium Pilot"
+      ]
+    },
+    "screenshotPath": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-09-nfc-finder-emergency-states/evidence/screenshots/smoke-auth-dark-1280x720.png"
+  },
+  {
+    "route": "/auth",
+    "mode": "reduced",
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "url": "http://localhost:3000/auth",
+    "title": "PawPal | Pet Safety Map, Smart Tags, and Local Pet Community",
+    "logs": [],
+    "pageErrors": [],
+    "metrics": {
+      "meaningfulRender": true,
+      "hasFrameworkOverlay": false,
+      "overlayCandidateCount": 1,
+      "visibleErrorOverlayCount": 0,
+      "horizontalOverflow": false,
+      "scrollWidth": 1280,
+      "clientWidth": 1280,
+      "bodyBackground": "rgb(255, 255, 255)",
+      "bodyColor": "rgb(58, 47, 42)",
+      "colorScheme": "light",
+      "matchDark": false,
+      "matchReducedMotion": true,
+      "headings": [
+        "One login for walks, tags, rescue pages, and store orders.",
+        "Welcome Back",
+        "Product",
+        "Company",
+        "Support",
+        "Belgium Pilot"
+      ]
+    },
+    "screenshotPath": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-09-nfc-finder-emergency-states/evidence/screenshots/smoke-auth-reduced-1280x720.png"
+  },
+  {
+    "route": "/store/checkout",
+    "mode": "light",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "url": "http://localhost:3000/store",
+    "title": "Store | PawPal",
+    "logs": [],
+    "pageErrors": [],
+    "metrics": {
+      "meaningfulRender": true,
+      "hasFrameworkOverlay": false,
+      "overlayCandidateCount": 1,
+      "visibleErrorOverlayCount": 0,
+      "horizontalOverflow": false,
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "bodyBackground": "rgb(255, 255, 255)",
+      "bodyColor": "rgb(58, 47, 42)",
+      "colorScheme": "light",
+      "matchDark": false,
+      "matchReducedMotion": false,
+      "headings": [
+        "Smart tags and walk gear for safer pet days",
+        "PawPal Smart ID Tag",
+        "Portable Pet Water Bottle",
+        "PawPal Waste Bag Rolls",
+        "No-Touch Poop Scooper Kit",
+        "Product",
+        "Company",
+        "Support"
+      ]
+    },
+    "screenshotPath": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-09-nfc-finder-emergency-states/evidence/screenshots/smoke-store-checkout-light-390x844.png"
+  },
+  {
+    "route": "/store/checkout",
+    "mode": "dark",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "url": "http://localhost:3000/store",
+    "title": "Store | PawPal",
+    "logs": [],
+    "pageErrors": [],
+    "metrics": {
+      "meaningfulRender": true,
+      "hasFrameworkOverlay": false,
+      "overlayCandidateCount": 1,
+      "visibleErrorOverlayCount": 0,
+      "horizontalOverflow": false,
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "bodyBackground": "rgb(21, 29, 34)",
+      "bodyColor": "rgb(251, 247, 242)",
+      "colorScheme": "dark",
+      "matchDark": true,
+      "matchReducedMotion": false,
+      "headings": [
+        "Smart tags and walk gear for safer pet days",
+        "PawPal Smart ID Tag",
+        "Portable Pet Water Bottle",
+        "PawPal Waste Bag Rolls",
+        "No-Touch Poop Scooper Kit",
+        "Product",
+        "Company",
+        "Support"
+      ]
+    },
+    "screenshotPath": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-09-nfc-finder-emergency-states/evidence/screenshots/smoke-store-checkout-dark-390x844.png"
+  },
+  {
+    "route": "/store/checkout",
+    "mode": "reduced",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "url": "http://localhost:3000/store",
+    "title": "Store | PawPal",
+    "logs": [],
+    "pageErrors": [],
+    "metrics": {
+      "meaningfulRender": true,
+      "hasFrameworkOverlay": false,
+      "overlayCandidateCount": 1,
+      "visibleErrorOverlayCount": 0,
+      "horizontalOverflow": false,
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "bodyBackground": "rgb(255, 255, 255)",
+      "bodyColor": "rgb(58, 47, 42)",
+      "colorScheme": "light",
+      "matchDark": false,
+      "matchReducedMotion": true,
+      "headings": [
+        "Smart tags and walk gear for safer pet days",
+        "PawPal Smart ID Tag",
+        "Portable Pet Water Bottle",
+        "PawPal Waste Bag Rolls",
+        "No-Touch Poop Scooper Kit",
+        "Product",
+        "Company",
+        "Support"
+      ]
+    },
+    "screenshotPath": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-09-nfc-finder-emergency-states/evidence/screenshots/smoke-store-checkout-reduced-390x844.png"
+  },
+  {
+    "route": "/store/checkout",
+    "mode": "light",
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "url": "http://localhost:3000/store",
+    "title": "Store | PawPal",
+    "logs": [],
+    "pageErrors": [],
+    "metrics": {
+      "meaningfulRender": true,
+      "hasFrameworkOverlay": false,
+      "overlayCandidateCount": 1,
+      "visibleErrorOverlayCount": 0,
+      "horizontalOverflow": false,
+      "scrollWidth": 1280,
+      "clientWidth": 1280,
+      "bodyBackground": "rgb(255, 255, 255)",
+      "bodyColor": "rgb(58, 47, 42)",
+      "colorScheme": "light",
+      "matchDark": false,
+      "matchReducedMotion": false,
+      "headings": [
+        "Smart tags and walk gear for safer pet days",
+        "PawPal Smart ID Tag",
+        "Portable Pet Water Bottle",
+        "PawPal Waste Bag Rolls",
+        "No-Touch Poop Scooper Kit",
+        "Product",
+        "Company",
+        "Support"
+      ]
+    },
+    "screenshotPath": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-09-nfc-finder-emergency-states/evidence/screenshots/smoke-store-checkout-light-1280x720.png"
+  },
+  {
+    "route": "/store/checkout",
+    "mode": "dark",
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "url": "http://localhost:3000/store",
+    "title": "Store | PawPal",
+    "logs": [],
+    "pageErrors": [],
+    "metrics": {
+      "meaningfulRender": true,
+      "hasFrameworkOverlay": false,
+      "overlayCandidateCount": 1,
+      "visibleErrorOverlayCount": 0,
+      "horizontalOverflow": false,
+      "scrollWidth": 1280,
+      "clientWidth": 1280,
+      "bodyBackground": "rgb(21, 29, 34)",
+      "bodyColor": "rgb(251, 247, 242)",
+      "colorScheme": "dark",
+      "matchDark": true,
+      "matchReducedMotion": false,
+      "headings": [
+        "Smart tags and walk gear for safer pet days",
+        "PawPal Smart ID Tag",
+        "Portable Pet Water Bottle",
+        "PawPal Waste Bag Rolls",
+        "No-Touch Poop Scooper Kit",
+        "Product",
+        "Company",
+        "Support"
+      ]
+    },
+    "screenshotPath": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-09-nfc-finder-emergency-states/evidence/screenshots/smoke-store-checkout-dark-1280x720.png"
+  },
+  {
+    "route": "/store/checkout",
+    "mode": "reduced",
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "url": "http://localhost:3000/store",
+    "title": "Store | PawPal",
+    "logs": [],
+    "pageErrors": [],
+    "metrics": {
+      "meaningfulRender": true,
+      "hasFrameworkOverlay": false,
+      "overlayCandidateCount": 1,
+      "visibleErrorOverlayCount": 0,
+      "horizontalOverflow": false,
+      "scrollWidth": 1280,
+      "clientWidth": 1280,
+      "bodyBackground": "rgb(255, 255, 255)",
+      "bodyColor": "rgb(58, 47, 42)",
+      "colorScheme": "light",
+      "matchDark": false,
+      "matchReducedMotion": true,
+      "headings": [
+        "Smart tags and walk gear for safer pet days",
+        "PawPal Smart ID Tag",
+        "Portable Pet Water Bottle",
+        "PawPal Waste Bag Rolls",
+        "No-Touch Poop Scooper Kit",
+        "Product",
+        "Company",
+        "Support"
+      ]
+    },
+    "screenshotPath": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-09-nfc-finder-emergency-states/evidence/screenshots/smoke-store-checkout-reduced-1280x720.png"
+  },
+  {
+    "route": "/help",
+    "mode": "light",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "url": "http://localhost:3000/help",
+    "title": "Help Center | PawPal",
+    "logs": [],
+    "pageErrors": [],
+    "metrics": {
+      "meaningfulRender": true,
+      "hasFrameworkOverlay": false,
+      "overlayCandidateCount": 1,
+      "visibleErrorOverlayCount": 0,
+      "horizontalOverflow": false,
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "bodyBackground": "rgb(255, 255, 255)",
+      "bodyColor": "rgb(58, 47, 42)",
+      "colorScheme": "light",
+      "matchDark": false,
+      "matchReducedMotion": false,
+      "headings": [
+        "Find the right PawPal help path.",
+        "Pick the right lane",
+        "NFC tag or pet profile",
+        "Store or order help",
+        "Account and community",
+        "Safety or urgent pet issue",
+        "Product",
+        "Company"
+      ]
+    },
+    "screenshotPath": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-09-nfc-finder-emergency-states/evidence/screenshots/smoke-help-light-390x844.png"
+  },
+  {
+    "route": "/help",
+    "mode": "dark",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "url": "http://localhost:3000/help",
+    "title": "Help Center | PawPal",
+    "logs": [],
+    "pageErrors": [],
+    "metrics": {
+      "meaningfulRender": true,
+      "hasFrameworkOverlay": false,
+      "overlayCandidateCount": 1,
+      "visibleErrorOverlayCount": 0,
+      "horizontalOverflow": false,
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "bodyBackground": "rgb(21, 29, 34)",
+      "bodyColor": "rgb(251, 247, 242)",
+      "colorScheme": "dark",
+      "matchDark": true,
+      "matchReducedMotion": false,
+      "headings": [
+        "Find the right PawPal help path.",
+        "Pick the right lane",
+        "NFC tag or pet profile",
+        "Store or order help",
+        "Account and community",
+        "Safety or urgent pet issue",
+        "Product",
+        "Company"
+      ]
+    },
+    "screenshotPath": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-09-nfc-finder-emergency-states/evidence/screenshots/smoke-help-dark-390x844.png"
+  },
+  {
+    "route": "/help",
+    "mode": "reduced",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "url": "http://localhost:3000/help",
+    "title": "Help Center | PawPal",
+    "logs": [],
+    "pageErrors": [],
+    "metrics": {
+      "meaningfulRender": true,
+      "hasFrameworkOverlay": false,
+      "overlayCandidateCount": 1,
+      "visibleErrorOverlayCount": 0,
+      "horizontalOverflow": false,
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "bodyBackground": "rgb(255, 255, 255)",
+      "bodyColor": "rgb(58, 47, 42)",
+      "colorScheme": "light",
+      "matchDark": false,
+      "matchReducedMotion": true,
+      "headings": [
+        "Find the right PawPal help path.",
+        "Pick the right lane",
+        "NFC tag or pet profile",
+        "Store or order help",
+        "Account and community",
+        "Safety or urgent pet issue",
+        "Product",
+        "Company"
+      ]
+    },
+    "screenshotPath": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-09-nfc-finder-emergency-states/evidence/screenshots/smoke-help-reduced-390x844.png"
+  },
+  {
+    "route": "/help",
+    "mode": "light",
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "url": "http://localhost:3000/help",
+    "title": "Help Center | PawPal",
+    "logs": [],
+    "pageErrors": [],
+    "metrics": {
+      "meaningfulRender": true,
+      "hasFrameworkOverlay": false,
+      "overlayCandidateCount": 1,
+      "visibleErrorOverlayCount": 0,
+      "horizontalOverflow": false,
+      "scrollWidth": 1280,
+      "clientWidth": 1280,
+      "bodyBackground": "rgb(255, 255, 255)",
+      "bodyColor": "rgb(58, 47, 42)",
+      "colorScheme": "light",
+      "matchDark": false,
+      "matchReducedMotion": false,
+      "headings": [
+        "Find the right PawPal help path.",
+        "Pick the right lane",
+        "NFC tag or pet profile",
+        "Store or order help",
+        "Account and community",
+        "Safety or urgent pet issue",
+        "Product",
+        "Company"
+      ]
+    },
+    "screenshotPath": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-09-nfc-finder-emergency-states/evidence/screenshots/smoke-help-light-1280x720.png"
+  },
+  {
+    "route": "/help",
+    "mode": "dark",
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "url": "http://localhost:3000/help",
+    "title": "Help Center | PawPal",
+    "logs": [],
+    "pageErrors": [],
+    "metrics": {
+      "meaningfulRender": true,
+      "hasFrameworkOverlay": false,
+      "overlayCandidateCount": 1,
+      "visibleErrorOverlayCount": 0,
+      "horizontalOverflow": false,
+      "scrollWidth": 1280,
+      "clientWidth": 1280,
+      "bodyBackground": "rgb(21, 29, 34)",
+      "bodyColor": "rgb(251, 247, 242)",
+      "colorScheme": "dark",
+      "matchDark": true,
+      "matchReducedMotion": false,
+      "headings": [
+        "Find the right PawPal help path.",
+        "Pick the right lane",
+        "NFC tag or pet profile",
+        "Store or order help",
+        "Account and community",
+        "Safety or urgent pet issue",
+        "Product",
+        "Company"
+      ]
+    },
+    "screenshotPath": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-09-nfc-finder-emergency-states/evidence/screenshots/smoke-help-dark-1280x720.png"
+  },
+  {
+    "route": "/help",
+    "mode": "reduced",
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "url": "http://localhost:3000/help",
+    "title": "Help Center | PawPal",
+    "logs": [],
+    "pageErrors": [],
+    "metrics": {
+      "meaningfulRender": true,
+      "hasFrameworkOverlay": false,
+      "overlayCandidateCount": 1,
+      "visibleErrorOverlayCount": 0,
+      "horizontalOverflow": false,
+      "scrollWidth": 1280,
+      "clientWidth": 1280,
+      "bodyBackground": "rgb(255, 255, 255)",
+      "bodyColor": "rgb(58, 47, 42)",
+      "colorScheme": "light",
+      "matchDark": false,
+      "matchReducedMotion": true,
+      "headings": [
+        "Find the right PawPal help path.",
+        "Pick the right lane",
+        "NFC tag or pet profile",
+        "Store or order help",
+        "Account and community",
+        "Safety or urgent pet issue",
+        "Product",
+        "Company"
+      ]
+    },
+    "screenshotPath": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-09-nfc-finder-emergency-states/evidence/screenshots/smoke-help-reduced-1280x720.png"
+  }
+]

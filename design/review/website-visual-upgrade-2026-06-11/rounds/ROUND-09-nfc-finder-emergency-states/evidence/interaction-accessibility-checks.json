@@ -1,0 +1,706 @@
+{
+  "checks": [
+    {
+      "name": "phone contact visible",
+      "pass": true,
+      "state": {
+        "textChecks": {
+          "contactCta": true,
+          "hiddenContact": false,
+          "criticalDetails": true,
+          "localServices": true
+        },
+        "links": [
+          {
+            "text": "Skip to PawPal content",
+            "href": "#main-content"
+          },
+          {
+            "text": "PawPal",
+            "href": "/"
+          },
+          {
+            "text": "Home",
+            "href": "/"
+          },
+          {
+            "text": "Globe",
+            "href": "/globe"
+          },
+          {
+            "text": "About Us",
+            "href": "/about"
+          },
+          {
+            "text": "Store",
+            "href": "/store"
+          },
+          {
+            "text": "Login",
+            "href": "/auth"
+          },
+          {
+            "text": "Contact owner now",
+            "href": "tel:+32470123456"
+          },
+          {
+            "text": "Open this tag in PawPal",
+            "href": "pawpal://tag/round09-fixture"
+          },
+          {
+            "text": "Get a PawPal tag",
+            "href": "/store"
+          },
+          {
+            "text": "hello@pawpal.be",
+            "href": "mailto:hello@pawpal.be"
+          },
+          {
+            "text": "Globe Map",
+            "href": "/globe"
+          },
+          {
+            "text": "NFC Safety Tag",
+            "href": "/store"
+          },
+          {
+            "text": "AI Assistant",
+            "href": "/globe"
+          },
+          {
+            "text": "Community",
+            "href": "/globe"
+          },
+          {
+            "text": "About Us",
+            "href": "/about"
+          },
+          {
+            "text": "Store",
+            "href": "/store"
+          },
+          {
+            "text": "Help Center",
+            "href": "/help"
+          },
+          {
+            "text": "Privacy Policy",
+            "href": "/privacy"
+          },
+          {
+            "text": "Terms of Service",
+            "href": "/terms"
+          },
+          {
+            "text": "Contact",
+            "href": "mailto:hello@pawpal.be"
+          },
+          {
+            "text": "Contact PawPal",
+            "href": "mailto:hello@pawpal.be?subject=PawPal%20partnership"
+          }
+        ]
+      },
+      "focus": {
+        "focusables": [
+          {
+            "index": 0,
+            "tag": "a",
+            "text": "Skip to PawPal content",
+            "href": "#main-content",
+            "tabIndex": 0
+          },
+          {
+            "index": 1,
+            "tag": "a",
+            "text": "PawPal",
+            "href": "/",
+            "tabIndex": 0
+          },
+          {
+            "index": 2,
+            "tag": "button",
+            "text": "Open navigation menu",
+            "href": null,
+            "tabIndex": 0
+          },
+          {
+            "index": 3,
+            "tag": "a",
+            "text": "Contact owner now",
+            "href": "tel:+32470123456",
+            "tabIndex": 0
+          },
+          {
+            "index": 4,
+            "tag": "a",
+            "text": "Open this tag in PawPal",
+            "href": "pawpal://tag/round09-fixture",
+            "tabIndex": 0
+          },
+          {
+            "index": 5,
+            "tag": "a",
+            "text": "Get a PawPal tag",
+            "href": "/store",
+            "tabIndex": 0
+          },
+          {
+            "index": 6,
+            "tag": "a",
+            "text": "hello@pawpal.be",
+            "href": "mailto:hello@pawpal.be",
+            "tabIndex": 0
+          },
+          {
+            "index": 7,
+            "tag": "a",
+            "text": "Globe Map",
+            "href": "/globe",
+            "tabIndex": 0
+          },
+          {
+            "index": 8,
+            "tag": "a",
+            "text": "NFC Safety Tag",
+            "href": "/store",
+            "tabIndex": 0
+          },
+          {
+            "index": 9,
+            "tag": "a",
+            "text": "AI Assistant",
+            "href": "/globe",
+            "tabIndex": 0
+          },
+          {
+            "index": 10,
+            "tag": "a",
+            "text": "Community",
+            "href": "/globe",
+            "tabIndex": 0
+          },
+          {
+            "index": 11,
+            "tag": "a",
+            "text": "About Us",
+            "href": "/about",
+            "tabIndex": 0
+          },
+          {
+            "index": 12,
+            "tag": "a",
+            "text": "Store",
+            "href": "/store",
+            "tabIndex": 0
+          },
+          {
+            "index": 13,
+            "tag": "a",
+            "text": "Help Center",
+            "href": "/help",
+            "tabIndex": 0
+          },
+          {
+            "index": 14,
+            "tag": "a",
+            "text": "Privacy Policy",
+            "href": "/privacy",
+            "tabIndex": 0
+          },
+          {
+            "index": 15,
+            "tag": "a",
+            "text": "Terms of Service",
+            "href": "/terms",
+            "tabIndex": 0
+          },
+          {
+            "index": 16,
+            "tag": "a",
+            "text": "Contact",
+            "href": "mailto:hello@pawpal.be",
+            "tabIndex": 0
+          },
+          {
+            "index": 17,
+            "tag": "a",
+            "text": "Contact PawPal",
+            "href": "mailto:hello@pawpal.be?subject=PawPal%20partnership",
+            "tabIndex": 0
+          }
+        ],
+        "contactIndex": 3,
+        "deepLinkIndex": 4,
+        "storeIndex": 5,
+        "backHomeIndex": -1
+      }
+    },
+    {
+      "name": "email contact visible",
+      "pass": true,
+      "state": {
+        "textChecks": {
+          "contactCta": true,
+          "hiddenContact": false,
+          "criticalDetails": true,
+          "localServices": true
+        },
+        "links": [
+          {
+            "text": "Skip to PawPal content",
+            "href": "#main-content"
+          },
+          {
+            "text": "PawPal",
+            "href": "/"
+          },
+          {
+            "text": "Home",
+            "href": "/"
+          },
+          {
+            "text": "Globe",
+            "href": "/globe"
+          },
+          {
+            "text": "About Us",
+            "href": "/about"
+          },
+          {
+            "text": "Store",
+            "href": "/store"
+          },
+          {
+            "text": "Login",
+            "href": "/auth"
+          },
+          {
+            "text": "Contact owner now",
+            "href": "mailto:avery.finder-support@example.com"
+          },
+          {
+            "text": "Open this tag in PawPal",
+            "href": "pawpal://tag/round09-fixture-email"
+          },
+          {
+            "text": "Get a PawPal tag",
+            "href": "/store"
+          },
+          {
+            "text": "hello@pawpal.be",
+            "href": "mailto:hello@pawpal.be"
+          },
+          {
+            "text": "Globe Map",
+            "href": "/globe"
+          },
+          {
+            "text": "NFC Safety Tag",
+            "href": "/store"
+          },
+          {
+            "text": "AI Assistant",
+            "href": "/globe"
+          },
+          {
+            "text": "Community",
+            "href": "/globe"
+          },
+          {
+            "text": "About Us",
+            "href": "/about"
+          },
+          {
+            "text": "Store",
+            "href": "/store"
+          },
+          {
+            "text": "Help Center",
+            "href": "/help"
+          },
+          {
+            "text": "Privacy Policy",
+            "href": "/privacy"
+          },
+          {
+            "text": "Terms of Service",
+            "href": "/terms"
+          },
+          {
+            "text": "Contact",
+            "href": "mailto:hello@pawpal.be"
+          },
+          {
+            "text": "Contact PawPal",
+            "href": "mailto:hello@pawpal.be?subject=PawPal%20partnership"
+          }
+        ]
+      },
+      "focus": {
+        "focusables": [
+          {
+            "index": 0,
+            "tag": "a",
+            "text": "Skip to PawPal content",
+            "href": "#main-content",
+            "tabIndex": 0
+          },
+          {
+            "index": 1,
+            "tag": "a",
+            "text": "PawPal",
+            "href": "/",
+            "tabIndex": 0
+          },
+          {
+            "index": 2,
+            "tag": "button",
+            "text": "Open navigation menu",
+            "href": null,
+            "tabIndex": 0
+          },
+          {
+            "index": 3,
+            "tag": "a",
+            "text": "Contact owner now",
+            "href": "mailto:avery.finder-support@example.com",
+            "tabIndex": 0
+          },
+          {
+            "index": 4,
+            "tag": "a",
+            "text": "Open this tag in PawPal",
+            "href": "pawpal://tag/round09-fixture-email",
+            "tabIndex": 0
+          },
+          {
+            "index": 5,
+            "tag": "a",
+            "text": "Get a PawPal tag",
+            "href": "/store",
+            "tabIndex": 0
+          },
+          {
+            "index": 6,
+            "tag": "a",
+            "text": "hello@pawpal.be",
+            "href": "mailto:hello@pawpal.be",
+            "tabIndex": 0
+          },
+          {
+            "index": 7,
+            "tag": "a",
+            "text": "Globe Map",
+            "href": "/globe",
+            "tabIndex": 0
+          },
+          {
+            "index": 8,
+            "tag": "a",
+            "text": "NFC Safety Tag",
+            "href": "/store",
+            "tabIndex": 0
+          },
+          {
+            "index": 9,
+            "tag": "a",
+            "text": "AI Assistant",
+            "href": "/globe",
+            "tabIndex": 0
+          },
+          {
+            "index": 10,
+            "tag": "a",
+            "text": "Community",
+            "href": "/globe",
+            "tabIndex": 0
+          },
+          {
+            "index": 11,
+            "tag": "a",
+            "text": "About Us",
+            "href": "/about",
+            "tabIndex": 0
+          },
+          {
+            "index": 12,
+            "tag": "a",
+            "text": "Store",
+            "href": "/store",
+            "tabIndex": 0
+          },
+          {
+            "index": 13,
+            "tag": "a",
+            "text": "Help Center",
+            "href": "/help",
+            "tabIndex": 0
+          },
+          {
+            "index": 14,
+            "tag": "a",
+            "text": "Privacy Policy",
+            "href": "/privacy",
+            "tabIndex": 0
+          },
+          {
+            "index": 15,
+            "tag": "a",
+            "text": "Terms of Service",
+            "href": "/terms",
+            "tabIndex": 0
+          },
+          {
+            "index": 16,
+            "tag": "a",
+            "text": "Contact",
+            "href": "mailto:hello@pawpal.be",
+            "tabIndex": 0
+          },
+          {
+            "index": 17,
+            "tag": "a",
+            "text": "Contact PawPal",
+            "href": "mailto:hello@pawpal.be?subject=PawPal%20partnership",
+            "tabIndex": 0
+          }
+        ],
+        "contactIndex": 3,
+        "deepLinkIndex": 4,
+        "storeIndex": 5,
+        "backHomeIndex": -1
+      }
+    },
+    {
+      "name": "hidden contact has no misleading contact CTA",
+      "pass": true,
+      "state": {
+        "textChecks": {
+          "contactCta": false,
+          "hiddenContact": true,
+          "criticalDetails": true,
+          "localServices": true
+        },
+        "links": [
+          {
+            "text": "Skip to PawPal content",
+            "href": "#main-content"
+          },
+          {
+            "text": "PawPal",
+            "href": "/"
+          },
+          {
+            "text": "Home",
+            "href": "/"
+          },
+          {
+            "text": "Globe",
+            "href": "/globe"
+          },
+          {
+            "text": "About Us",
+            "href": "/about"
+          },
+          {
+            "text": "Store",
+            "href": "/store"
+          },
+          {
+            "text": "Login",
+            "href": "/auth"
+          },
+          {
+            "text": "Open this tag in PawPal",
+            "href": "pawpal://tag/round09-fixture-hidden"
+          },
+          {
+            "text": "Get a PawPal tag",
+            "href": "/store"
+          },
+          {
+            "text": "hello@pawpal.be",
+            "href": "mailto:hello@pawpal.be"
+          },
+          {
+            "text": "Globe Map",
+            "href": "/globe"
+          },
+          {
+            "text": "NFC Safety Tag",
+            "href": "/store"
+          },
+          {
+            "text": "AI Assistant",
+            "href": "/globe"
+          },
+          {
+            "text": "Community",
+            "href": "/globe"
+          },
+          {
+            "text": "About Us",
+            "href": "/about"
+          },
+          {
+            "text": "Store",
+            "href": "/store"
+          },
+          {
+            "text": "Help Center",
+            "href": "/help"
+          },
+          {
+            "text": "Privacy Policy",
+            "href": "/privacy"
+          },
+          {
+            "text": "Terms of Service",
+            "href": "/terms"
+          },
+          {
+            "text": "Contact",
+            "href": "mailto:hello@pawpal.be"
+          },
+          {
+            "text": "Contact PawPal",
+            "href": "mailto:hello@pawpal.be?subject=PawPal%20partnership"
+          }
+        ]
+      },
+      "focus": {
+        "focusables": [
+          {
+            "index": 0,
+            "tag": "a",
+            "text": "Skip to PawPal content",
+            "href": "#main-content",
+            "tabIndex": 0
+          },
+          {
+            "index": 1,
+            "tag": "a",
+            "text": "PawPal",
+            "href": "/",
+            "tabIndex": 0
+          },
+          {
+            "index": 2,
+            "tag": "button",
+            "text": "Open navigation menu",
+            "href": null,
+            "tabIndex": 0
+          },
+          {
+            "index": 3,
+            "tag": "a",
+            "text": "Open this tag in PawPal",
+            "href": "pawpal://tag/round09-fixture-hidden",
+            "tabIndex": 0
+          },
+          {
+            "index": 4,
+            "tag": "a",
+            "text": "Get a PawPal tag",
+            "href": "/store",
+            "tabIndex": 0
+          },
+          {
+            "index": 5,
+            "tag": "a",
+            "text": "hello@pawpal.be",
+            "href": "mailto:hello@pawpal.be",
+            "tabIndex": 0
+          },
+          {
+            "index": 6,
+            "tag": "a",
+            "text": "Globe Map",
+            "href": "/globe",
+            "tabIndex": 0
+          },
+          {
+            "index": 7,
+            "tag": "a",
+            "text": "NFC Safety Tag",
+            "href": "/store",
+            "tabIndex": 0
+          },
+          {
+            "index": 8,
+            "tag": "a",
+            "text": "AI Assistant",
+            "href": "/globe",
+            "tabIndex": 0
+          },
+          {
+            "index": 9,
+            "tag": "a",
+            "text": "Community",
+            "href": "/globe",
+            "tabIndex": 0
+          },
+          {
+            "index": 10,
+            "tag": "a",
+            "text": "About Us",
+            "href": "/about",
+            "tabIndex": 0
+          },
+          {
+            "index": 11,
+            "tag": "a",
+            "text": "Store",
+            "href": "/store",
+            "tabIndex": 0
+          },
+          {
+            "index": 12,
+            "tag": "a",
+            "text": "Help Center",
+            "href": "/help",
+            "tabIndex": 0
+          },
+          {
+            "index": 13,
+            "tag": "a",
+            "text": "Privacy Policy",
+            "href": "/privacy",
+            "tabIndex": 0
+          },
+          {
+            "index": 14,
+            "tag": "a",
+            "text": "Terms of Service",
+            "href": "/terms",
+            "tabIndex": 0
+          },
+          {
+            "index": 15,
+            "tag": "a",
+            "text": "Contact",
+            "href": "mailto:hello@pawpal.be",
+            "tabIndex": 0
+          },
+          {
+            "index": 16,
+            "tag": "a",
+            "text": "Contact PawPal",
+            "href": "mailto:hello@pawpal.be?subject=PawPal%20partnership",
+            "tabIndex": 0
+          }
+        ],
+        "contactIndex": -1,
+        "deepLinkIndex": 3,
+        "storeIndex": 4,
+        "backHomeIndex": -1
+      }
+    },
+    {
+      "name": "get pawpal tag routes to store",
+      "pass": true,
+      "finalUrl": "http://localhost:3000/store"
+    }
+  ]
+}

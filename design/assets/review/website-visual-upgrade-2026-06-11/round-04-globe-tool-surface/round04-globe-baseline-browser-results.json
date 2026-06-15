@@ -1,0 +1,544 @@
+{
+  "runId": "2026-06-11T12-51-54-541Z",
+  "runStartedAt": "2026-06-11T12:51:54.541Z",
+  "collectedAt": "2026-06-11T12:52:10.906Z",
+  "results": [
+    {
+      "name": "mobile-390x844",
+      "screenshotPath": "/private/tmp/geopet-round04-globe/baseline/globe-baseline-mobile-390x844.png",
+      "metrics": {
+        "actualViewport": {
+          "height": 844,
+          "width": 390
+        },
+        "expectedViewport": {
+          "height": 844,
+          "width": 390
+        },
+        "hasVisibleFrameworkOverlay": false,
+        "horizontalOverflowPx": 0,
+        "location": "http://localhost:3000/globe?round04_baseline=390x844&run=2026-06-11T12-51-54-541Z",
+        "mapCanvasPresent": true,
+        "meaningfulText": true,
+        "overlapPairs": [
+          [
+            "map",
+            "nearby"
+          ],
+          [
+            "map",
+            "layers"
+          ],
+          [
+            "map",
+            "mapControls"
+          ]
+        ],
+        "overlayCandidates": [],
+        "rects": {
+          "chatSheet": null,
+          "layers": {
+            "bottom": 288,
+            "display": "flex",
+            "height": 77,
+            "left": 231,
+            "opacity": 1,
+            "right": 359,
+            "text": "Missions Places 15",
+            "top": 211,
+            "visibility": "visible",
+            "visibleHeight": 77,
+            "visibleWidth": 128,
+            "width": 128
+          },
+          "map": {
+            "bottom": 925,
+            "display": "block",
+            "height": 844,
+            "left": 0,
+            "opacity": 1,
+            "right": 375,
+            "text": "✂️🐾🐾🏥🛒🏥🐾🐾🏥🛒🏠🐾🏥🌳🌳MapLibre | © CARTO © OSM",
+            "top": 81,
+            "visibility": "visible",
+            "visibleHeight": 763,
+            "visibleWidth": 375,
+            "width": 375
+          },
+          "mapControls": {
+            "bottom": 925,
+            "display": "block",
+            "height": 141,
+            "left": 162,
+            "opacity": 1,
+            "right": 375,
+            "text": "MapLibre | © CARTO © OSM",
+            "top": 784,
+            "visibility": "visible",
+            "visibleHeight": 60,
+            "visibleWidth": 213,
+            "width": 213
+          },
+          "nearby": {
+            "bottom": 439,
+            "display": "block",
+            "height": 136,
+            "left": 16,
+            "opacity": 1,
+            "right": 336,
+            "text": "Nearby needs51.050, 3.720 · 15 km0Using Ghent as the starting point. Enable location for nearby results.No open needs in this area yet.",
+            "top": 303,
+            "visibility": "visible",
+            "visibleHeight": 136,
+            "visibleWidth": 320,
+            "width": 320
+          },
+          "status": {
+            "bottom": 0,
+            "display": "none",
+            "height": 0,
+            "left": 0,
+            "opacity": 1,
+            "right": 0,
+            "text": "Ghent pilot0open needs15mapped places",
+            "top": 0,
+            "visibility": "visible",
+            "visibleHeight": 0,
+            "visibleWidth": 0,
+            "width": 0
+          },
+          "tutorial": null,
+          "weather": null
+        },
+        "title": "Live Pet Globe | PawPal",
+        "visiblePanels": [
+          {
+            "rect": {
+              "bottom": 925,
+              "display": "block",
+              "height": 141,
+              "left": 162,
+              "opacity": 1,
+              "right": 375,
+              "text": "MapLibre | © CARTO © OSM",
+              "top": 784,
+              "visibility": "visible",
+              "visibleHeight": 60,
+              "visibleWidth": 213,
+              "width": 213
+            },
+            "selector": "maplibregl-ctrl-bottom-right "
+          },
+          {
+            "rect": {
+              "bottom": 439,
+              "display": "block",
+              "height": 136,
+              "left": 16,
+              "opacity": 1,
+              "right": 336,
+              "text": "Nearby needs51.050, 3.720 · 15 km0Using Ghent as the starting point. Enable location for nearby results.No open needs in this area yet.",
+              "top": 303,
+              "visibility": "visible",
+              "visibleHeight": 136,
+              "visibleWidth": 320,
+              "width": 320
+            },
+            "selector": "globe-hud-panel globe-nearby-panel absolute top-[222px] left-4 z-40 w-[min(320px,calc(100vw-2rem))] rounded-paw-lg borde"
+          },
+          {
+            "rect": {
+              "bottom": 288,
+              "display": "flex",
+              "height": 77,
+              "left": 231,
+              "opacity": 1,
+              "right": 359,
+              "text": "Missions Places 15",
+              "top": 211,
+              "visibility": "visible",
+              "visibleHeight": 77,
+              "visibleWidth": 128,
+              "width": 128
+            },
+            "selector": "#globe-layers"
+          }
+        ]
+      },
+      "newLogs": [],
+      "allLogCount": 2
+    },
+    {
+      "name": "desktop-1280x720",
+      "screenshotPath": "/private/tmp/geopet-round04-globe/baseline/globe-baseline-desktop-1280x720.png",
+      "metrics": {
+        "actualViewport": {
+          "height": 720,
+          "width": 1280
+        },
+        "expectedViewport": {
+          "height": 720,
+          "width": 1280
+        },
+        "hasVisibleFrameworkOverlay": false,
+        "horizontalOverflowPx": 0,
+        "location": "http://localhost:3000/globe?round04_baseline=1280x720&run=2026-06-11T12-51-54-541Z",
+        "mapCanvasPresent": true,
+        "meaningfulText": true,
+        "overlapPairs": [
+          [
+            "map",
+            "nearby"
+          ],
+          [
+            "map",
+            "layers"
+          ],
+          [
+            "map",
+            "status"
+          ],
+          [
+            "map",
+            "mapControls"
+          ]
+        ],
+        "overlayCandidates": [],
+        "rects": {
+          "chatSheet": null,
+          "layers": {
+            "bottom": 288,
+            "display": "flex",
+            "height": 77,
+            "left": 1121,
+            "opacity": 1,
+            "right": 1249,
+            "text": "Missions Places 15",
+            "top": 211,
+            "visibility": "visible",
+            "visibleHeight": 77,
+            "visibleWidth": 128,
+            "width": 128
+          },
+          "map": {
+            "bottom": 801,
+            "display": "block",
+            "height": 720,
+            "left": 0,
+            "opacity": 1,
+            "right": 1265,
+            "text": "✂️🐾🐾🏥🛒🏥🐾🐾🏥🛒🏠🐾🏥🌳🌳MapLibre | © CARTO © OSM",
+            "top": 81,
+            "visibility": "visible",
+            "visibleHeight": 639,
+            "visibleWidth": 1265,
+            "width": 1265
+          },
+          "mapControls": {
+            "bottom": 801,
+            "display": "block",
+            "height": 141,
+            "left": 1052,
+            "opacity": 1,
+            "right": 1265,
+            "text": "MapLibre | © CARTO © OSM",
+            "top": 660,
+            "visibility": "visible",
+            "visibleHeight": 60,
+            "visibleWidth": 213,
+            "width": 213
+          },
+          "nearby": {
+            "bottom": 347,
+            "display": "block",
+            "height": 136,
+            "left": 16,
+            "opacity": 1,
+            "right": 336,
+            "text": "Nearby needs51.050, 3.720 · 15 km0Using Ghent as the starting point. Enable location for nearby results.No open needs in this area yet.",
+            "top": 211,
+            "visibility": "visible",
+            "visibleHeight": 136,
+            "visibleWidth": 320,
+            "width": 320
+          },
+          "status": {
+            "bottom": 721,
+            "display": "flex",
+            "height": 41,
+            "left": 16,
+            "opacity": 1,
+            "right": 336,
+            "text": "Ghent pilot0open needs15mapped places",
+            "top": 680,
+            "visibility": "visible",
+            "visibleHeight": 40,
+            "visibleWidth": 320,
+            "width": 320
+          },
+          "tutorial": null,
+          "weather": null
+        },
+        "title": "Live Pet Globe | PawPal",
+        "visiblePanels": [
+          {
+            "rect": {
+              "bottom": 801,
+              "display": "block",
+              "height": 141,
+              "left": 1052,
+              "opacity": 1,
+              "right": 1265,
+              "text": "MapLibre | © CARTO © OSM",
+              "top": 660,
+              "visibility": "visible",
+              "visibleHeight": 60,
+              "visibleWidth": 213,
+              "width": 213
+            },
+            "selector": "maplibregl-ctrl-bottom-right "
+          },
+          {
+            "rect": {
+              "bottom": 347,
+              "display": "block",
+              "height": 136,
+              "left": 16,
+              "opacity": 1,
+              "right": 336,
+              "text": "Nearby needs51.050, 3.720 · 15 km0Using Ghent as the starting point. Enable location for nearby results.No open needs in this area yet.",
+              "top": 211,
+              "visibility": "visible",
+              "visibleHeight": 136,
+              "visibleWidth": 320,
+              "width": 320
+            },
+            "selector": "globe-hud-panel globe-nearby-panel absolute top-[222px] left-4 z-40 w-[min(320px,calc(100vw-2rem))] rounded-paw-lg borde"
+          },
+          {
+            "rect": {
+              "bottom": 288,
+              "display": "flex",
+              "height": 77,
+              "left": 1121,
+              "opacity": 1,
+              "right": 1249,
+              "text": "Missions Places 15",
+              "top": 211,
+              "visibility": "visible",
+              "visibleHeight": 77,
+              "visibleWidth": 128,
+              "width": 128
+            },
+            "selector": "#globe-layers"
+          },
+          {
+            "rect": {
+              "bottom": 721,
+              "display": "flex",
+              "height": 41,
+              "left": 16,
+              "opacity": 1,
+              "right": 336,
+              "text": "Ghent pilot0open needs15mapped places",
+              "top": 680,
+              "visibility": "visible",
+              "visibleHeight": 40,
+              "visibleWidth": 320,
+              "width": 320
+            },
+            "selector": "globe-status-strip"
+          }
+        ]
+      },
+      "newLogs": [],
+      "allLogCount": 2
+    },
+    {
+      "name": "desktop-1440x900",
+      "screenshotPath": "/private/tmp/geopet-round04-globe/baseline/globe-baseline-desktop-1440x900.png",
+      "metrics": {
+        "actualViewport": {
+          "height": 900,
+          "width": 1440
+        },
+        "expectedViewport": {
+          "height": 900,
+          "width": 1440
+        },
+        "hasVisibleFrameworkOverlay": false,
+        "horizontalOverflowPx": 0,
+        "location": "http://localhost:3000/globe?round04_baseline=1440x900&run=2026-06-11T12-51-54-541Z",
+        "mapCanvasPresent": true,
+        "meaningfulText": true,
+        "overlapPairs": [
+          [
+            "map",
+            "nearby"
+          ],
+          [
+            "map",
+            "layers"
+          ],
+          [
+            "map",
+            "status"
+          ],
+          [
+            "map",
+            "mapControls"
+          ]
+        ],
+        "overlayCandidates": [],
+        "rects": {
+          "chatSheet": null,
+          "layers": {
+            "bottom": 288,
+            "display": "flex",
+            "height": 77,
+            "left": 1281,
+            "opacity": 1,
+            "right": 1409,
+            "text": "Missions Places 15",
+            "top": 211,
+            "visibility": "visible",
+            "visibleHeight": 77,
+            "visibleWidth": 128,
+            "width": 128
+          },
+          "map": {
+            "bottom": 981,
+            "display": "block",
+            "height": 900,
+            "left": 0,
+            "opacity": 1,
+            "right": 1425,
+            "text": "✂️🐾🐾🏥🛒🏥🐾🐾🏥🛒🏠🐾🏥🌳🌳MapLibre | © CARTO © OSM",
+            "top": 81,
+            "visibility": "visible",
+            "visibleHeight": 819,
+            "visibleWidth": 1425,
+            "width": 1425
+          },
+          "mapControls": {
+            "bottom": 981,
+            "display": "block",
+            "height": 141,
+            "left": 1212,
+            "opacity": 1,
+            "right": 1425,
+            "text": "MapLibre | © CARTO © OSM",
+            "top": 840,
+            "visibility": "visible",
+            "visibleHeight": 60,
+            "visibleWidth": 213,
+            "width": 213
+          },
+          "nearby": {
+            "bottom": 347,
+            "display": "block",
+            "height": 136,
+            "left": 16,
+            "opacity": 1,
+            "right": 336,
+            "text": "Nearby needs51.050, 3.720 · 15 km0Using Ghent as the starting point. Enable location for nearby results.No open needs in this area yet.",
+            "top": 211,
+            "visibility": "visible",
+            "visibleHeight": 136,
+            "visibleWidth": 320,
+            "width": 320
+          },
+          "status": {
+            "bottom": 901,
+            "display": "flex",
+            "height": 41,
+            "left": 16,
+            "opacity": 1,
+            "right": 336,
+            "text": "Ghent pilot0open needs15mapped places",
+            "top": 860,
+            "visibility": "visible",
+            "visibleHeight": 40,
+            "visibleWidth": 320,
+            "width": 320
+          },
+          "tutorial": null,
+          "weather": null
+        },
+        "title": "Live Pet Globe | PawPal",
+        "visiblePanels": [
+          {
+            "rect": {
+              "bottom": 981,
+              "display": "block",
+              "height": 141,
+              "left": 1212,
+              "opacity": 1,
+              "right": 1425,
+              "text": "MapLibre | © CARTO © OSM",
+              "top": 840,
+              "visibility": "visible",
+              "visibleHeight": 60,
+              "visibleWidth": 213,
+              "width": 213
+            },
+            "selector": "maplibregl-ctrl-bottom-right "
+          },
+          {
+            "rect": {
+              "bottom": 347,
+              "display": "block",
+              "height": 136,
+              "left": 16,
+              "opacity": 1,
+              "right": 336,
+              "text": "Nearby needs51.050, 3.720 · 15 km0Using Ghent as the starting point. Enable location for nearby results.No open needs in this area yet.",
+              "top": 211,
+              "visibility": "visible",
+              "visibleHeight": 136,
+              "visibleWidth": 320,
+              "width": 320
+            },
+            "selector": "globe-hud-panel globe-nearby-panel absolute top-[222px] left-4 z-40 w-[min(320px,calc(100vw-2rem))] rounded-paw-lg borde"
+          },
+          {
+            "rect": {
+              "bottom": 288,
+              "display": "flex",
+              "height": 77,
+              "left": 1281,
+              "opacity": 1,
+              "right": 1409,
+              "text": "Missions Places 15",
+              "top": 211,
+              "visibility": "visible",
+              "visibleHeight": 77,
+              "visibleWidth": 128,
+              "width": 128
+            },
+            "selector": "#globe-layers"
+          },
+          {
+            "rect": {
+              "bottom": 901,
+              "display": "flex",
+              "height": 41,
+              "left": 16,
+              "opacity": 1,
+              "right": 336,
+              "text": "Ghent pilot0open needs15mapped places",
+              "top": 860,
+              "visibility": "visible",
+              "visibleHeight": 40,
+              "visibleWidth": 320,
+              "width": 320
+            },
+            "selector": "globe-status-strip"
+          }
+        ]
+      },
+      "newLogs": [],
+      "allLogCount": 2
+    }
+  ]
+}

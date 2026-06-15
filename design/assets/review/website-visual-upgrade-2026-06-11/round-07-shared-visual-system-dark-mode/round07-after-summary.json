@@ -1,0 +1,27 @@
+{
+  "primary": {
+    "passCount": 24,
+    "totalCount": 24,
+    "relevantLogCount": 0,
+    "hydrationLogCount": 0,
+    "overflowCount": 0,
+    "darkProofFailures": 0,
+    "failures": []
+  },
+  "smoke": {
+    "passCount": 20,
+    "totalCount": 20,
+    "relevantLogCount": 0,
+    "hydrationLogCount": 0,
+    "overflowCount": 0,
+    "darkProofFailures": 0,
+    "failures": []
+  },
+  "interaction": {
+    "passCount": 5,
+    "totalCount": 5,
+    "relevantLogCount": 0,
+    "hydrationLogCount": 0,
+    "failures": []
+  }
+}

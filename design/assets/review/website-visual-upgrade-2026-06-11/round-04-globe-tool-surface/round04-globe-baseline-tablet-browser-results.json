@@ -1,0 +1,148 @@
+{
+  "runId": "2026-06-11T12-57-44-467Z",
+  "runStartedAt": "2026-06-11T12:57:44.467Z",
+  "collectedAt": "2026-06-11T12:57:52.106Z",
+  "result": {
+    "name": "tablet-768x1024",
+    "screenshotPath": "/private/tmp/geopet-round04-globe/baseline/globe-baseline-tablet-768x1024.png",
+    "metrics": {
+      "actualViewport": {
+        "height": 1024,
+        "width": 768
+      },
+      "hasVisibleFrameworkOverlay": false,
+      "horizontalOverflowPx": 0,
+      "location": "http://localhost:3000/globe?round04_baseline=768x1024&run=2026-06-11T12-57-44-467Z",
+      "mapCanvasPresent": true,
+      "meaningfulText": true,
+      "overlapPairs": [
+        [
+          "map",
+          "nearby"
+        ],
+        [
+          "map",
+          "layers"
+        ],
+        [
+          "map",
+          "mapControls"
+        ]
+      ],
+      "overlayCandidates": [],
+      "rects": {
+        "layers": {
+          "bottom": 288,
+          "display": "flex",
+          "height": 77,
+          "left": 609,
+          "opacity": 1,
+          "right": 737,
+          "text": "Missions Places 15",
+          "top": 211,
+          "visibility": "visible",
+          "width": 128
+        },
+        "map": {
+          "bottom": 1105,
+          "display": "block",
+          "height": 1024,
+          "left": 0,
+          "opacity": 1,
+          "right": 753,
+          "text": "✂️🐾🐾🏥🛒🏥🐾🐾🏥🛒🏠🐾🏥🌳🌳MapLibre | © CARTO © OSM",
+          "top": 81,
+          "visibility": "visible",
+          "width": 753
+        },
+        "mapControls": {
+          "bottom": 1105,
+          "display": "block",
+          "height": 141,
+          "left": 540,
+          "opacity": 1,
+          "right": 753,
+          "text": "MapLibre | © CARTO © OSM",
+          "top": 964,
+          "visibility": "visible",
+          "width": 213
+        },
+        "nearby": {
+          "bottom": 347,
+          "display": "block",
+          "height": 136,
+          "left": 16,
+          "opacity": 1,
+          "right": 336,
+          "text": "Nearby needs51.050, 3.720 · 15 km0Using Ghent as the starting point. Enable location for nearby results.No open needs in this area yet.",
+          "top": 211,
+          "visibility": "visible",
+          "width": 320
+        },
+        "status": {
+          "bottom": 0,
+          "display": "none",
+          "height": 0,
+          "left": 0,
+          "opacity": 1,
+          "right": 0,
+          "text": "Ghent pilot0open needs15mapped places",
+          "top": 0,
+          "visibility": "visible",
+          "width": 0
+        },
+        "weather": null
+      },
+      "title": "Live Pet Globe | PawPal",
+      "visiblePanels": [
+        {
+          "rect": {
+            "bottom": 1105,
+            "display": "block",
+            "height": 141,
+            "left": 540,
+            "opacity": 1,
+            "right": 753,
+            "text": "MapLibre | © CARTO © OSM",
+            "top": 964,
+            "visibility": "visible",
+            "width": 213
+          },
+          "selector": "maplibregl-ctrl-bottom-right "
+        },
+        {
+          "rect": {
+            "bottom": 347,
+            "display": "block",
+            "height": 136,
+            "left": 16,
+            "opacity": 1,
+            "right": 336,
+            "text": "Nearby needs51.050, 3.720 · 15 km0Using Ghent as the starting point. Enable location for nearby results.No open needs in this area yet.",
+            "top": 211,
+            "visibility": "visible",
+            "width": 320
+          },
+          "selector": "globe-hud-panel globe-nearby-panel absolute top-[222px] left-4 z-40 w-[min(320px,calc(100vw-2rem))] rounded-paw-lg borde"
+        },
+        {
+          "rect": {
+            "bottom": 288,
+            "display": "flex",
+            "height": 77,
+            "left": 609,
+            "opacity": 1,
+            "right": 737,
+            "text": "Missions Places 15",
+            "top": 211,
+            "visibility": "visible",
+            "width": 128
+          },
+          "selector": "#globe-layers"
+        }
+      ]
+    },
+    "newLogs": [],
+    "allLogCount": 2
+  }
+}

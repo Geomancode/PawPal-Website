@@ -1,0 +1,85 @@
+"use client";
+
+import Link from "next/link";
+import { ArrowRight, Mail } from "lucide-react";
+import PawPalLogo from "./PawPalLogo";
+import { siteConfig } from "@/lib/site";
+
+const FOOTER_NAV = {
+  Product: [
+    { label: "Globe Map", href: "/globe" },
+    { label: "NFC Safety Tag", href: "/store" },
+    { label: "AI Assistant", href: "/globe" },
+    { label: "Community", href: "/globe" },
+  ],
+  Company: [
+    { label: "About Us", href: "/about" },
+    { label: "Store", href: "/store" },
+    { label: "Help Center", href: "/help" },
+  ],
+  Support: [
+    { label: "Privacy Policy", href: "/privacy" },
+    { label: "Terms of Service", href: "/terms" },
+    { label: "Contact", href: `mailto:${siteConfig.email}` },
+  ],
+};
+
+export default function Footer() {
+  return (
+    <footer className="footer-visual border-t border-paw-border text-paw-body">
+      <div className="mx-auto grid max-w-7xl gap-10 px-5 py-14 sm:px-6 md:grid-cols-[1.2fr_2fr] lg:px-8">
+        <div>
+          <PawPalLogo iconSize={30} fontSize={22} variant="light" />
+          <p className="mt-5 max-w-xs text-sm leading-7 text-paw-body">
+            Smart walks. Safe pets. Stronger local communities for pet parents across Belgium and the EU.
+          </p>
+          <a
+            href={`mailto:${siteConfig.email}`}
+            className="mt-6 inline-flex h-10 items-center gap-2 rounded-paw-sm border border-paw-border bg-white/86 px-4 text-sm font-bold text-paw-ink shadow-[0_10px_24px_rgba(33,55,78,0.06)] transition hover:border-paw-primary hover:text-paw-primary"
+          >
+            <Mail className="h-4 w-4" aria-hidden="true" />
+            {siteConfig.email}
+          </a>
+        </div>
+
+        <div className="grid grid-cols-2 gap-8 sm:grid-cols-4">
+          {Object.entries(FOOTER_NAV).map(([title, links]) => (
+            <div key={title}>
+              <h3 className="mb-4 text-xs font-black uppercase tracking-[0.12em] text-paw-ink">{title}</h3>
+              <ul className="space-y-3">
+                {links.map((link) => (
+                  <li key={link.label}>
+                    <Link href={link.href} className="text-sm font-medium text-paw-body transition hover:text-paw-primary">
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+
+          <div>
+            <h3 className="mb-4 text-xs font-black uppercase tracking-[0.12em] text-paw-ink">Belgium Pilot</h3>
+            <p className="text-sm leading-6 text-paw-body">
+              Partnership, clinic, pet shop, or smart tag questions can go straight to the team.
+            </p>
+            <a
+              href={`mailto:${siteConfig.email}?subject=PawPal%20partnership`}
+              className="mt-4 inline-flex h-10 items-center gap-2 rounded-paw-sm bg-paw-primary px-4 text-xs font-bold text-white shadow-paw-action transition hover:bg-paw-primary-hover"
+            >
+              Contact PawPal
+              <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div className="border-t border-paw-border">
+        <div className="mx-auto flex max-w-7xl flex-col gap-3 px-5 py-5 text-xs font-medium text-paw-muted sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-8">
+          <p>© {new Date().getFullYear()} PawPal. All rights reserved.</p>
+          <p>Made in Belgium · English (EN)</p>
+        </div>
+      </div>
+    </footer>
+  );
+}

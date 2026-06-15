@@ -1,0 +1,495 @@
+{
+  "runId": "2026-06-11T12-41-39-674Z",
+  "runStartedAt": "2026-06-11T12:41:39.674Z",
+  "collectedAt": "2026-06-11T12:41:55.453Z",
+  "results": [
+    {
+      "name": "mobile-390x844",
+      "screenshotPath": "/private/tmp/geopet-round03-homepage/final/home-mobile-390x844.png",
+      "metrics": {
+        "actualViewport": {
+          "height": 844,
+          "width": 390
+        },
+        "calloutCount": 0,
+        "callouts": [],
+        "canvasNodePresent": true,
+        "ctaFocusability": {
+          "openLiveMap": {
+            "ariaRole": null,
+            "focusVisibleClass": true,
+            "href": "/globe",
+            "tabIndex": null,
+            "tagName": "A"
+          },
+          "shopSmartTags": {
+            "ariaRole": null,
+            "focusVisibleClass": true,
+            "href": "/store",
+            "tabIndex": null,
+            "tagName": "A"
+          }
+        },
+        "expectedViewport": {
+          "height": 844,
+          "width": 390
+        },
+        "globeCanvas": {
+          "bottom": 1064,
+          "display": "block",
+          "height": 350,
+          "left": 16,
+          "opacity": 1,
+          "right": 366,
+          "text": "",
+          "top": 714,
+          "visibility": "visible",
+          "visibleHeight": 130,
+          "visibleWidth": 350,
+          "width": 350
+        },
+        "h1": {
+          "bottom": 377,
+          "display": "block",
+          "height": 196,
+          "left": 16,
+          "opacity": 1,
+          "right": 366,
+          "text": "PawPal pet safetyfor every walk",
+          "top": 181,
+          "visibility": "visible",
+          "visibleHeight": 196,
+          "visibleWidth": 350,
+          "width": 350
+        },
+        "hasVisibleFrameworkOverlay": false,
+        "heroGlobeSection": {
+          "bottom": 1082,
+          "display": "flex",
+          "height": 385,
+          "left": 16,
+          "opacity": 1,
+          "right": 366,
+          "text": "Left-click: rotate, Mouse-wheel/middle-click: zoom, Right-click: panLive GlobeFog map activeToday's route2.43 km revealedNFC SafetyFinder-ready profileDrag to s",
+          "top": 697,
+          "visibility": "visible",
+          "visibleHeight": 147,
+          "visibleWidth": 350,
+          "width": 350
+        },
+        "horizontalOverflowPx": 0,
+        "location": "http://localhost:3000/?round03_final_verified=390x844&run=2026-06-11T12-41-39-674Z",
+        "meaningfulText": true,
+        "openLiveMap": {
+          "bottom": 601,
+          "display": "flex",
+          "height": 48,
+          "left": 16,
+          "opacity": 1,
+          "right": 366,
+          "text": "Open Live Map",
+          "top": 553,
+          "visibility": "visible",
+          "visibleHeight": 48,
+          "visibleWidth": 350,
+          "width": 350
+        },
+        "overlayCandidates": [],
+        "shopSmartTags": {
+          "bottom": 661,
+          "display": "flex",
+          "height": 48,
+          "left": 16,
+          "opacity": 1,
+          "right": 366,
+          "text": "Shop Smart Tags",
+          "top": 613,
+          "visibility": "visible",
+          "visibleHeight": 48,
+          "visibleWidth": 350,
+          "width": 350
+        },
+        "title": "Pet Safety Map, Smart Tags, and Local Pet Community"
+      },
+      "newLogs": [],
+      "allLogCount": 2
+    },
+    {
+      "name": "tablet-768x1024",
+      "screenshotPath": "/private/tmp/geopet-round03-homepage/final/home-tablet-768x1024.png",
+      "metrics": {
+        "actualViewport": {
+          "height": 1024,
+          "width": 768
+        },
+        "calloutCount": 0,
+        "callouts": [],
+        "canvasNodePresent": true,
+        "ctaFocusability": {
+          "openLiveMap": {
+            "ariaRole": null,
+            "focusVisibleClass": true,
+            "href": "/globe",
+            "tabIndex": null,
+            "tagName": "A"
+          },
+          "shopSmartTags": {
+            "ariaRole": null,
+            "focusVisibleClass": true,
+            "href": "/store",
+            "tabIndex": null,
+            "tagName": "A"
+          }
+        },
+        "expectedViewport": {
+          "height": 1024,
+          "width": 768
+        },
+        "globeCanvas": {
+          "bottom": 1154,
+          "display": "block",
+          "height": 390,
+          "left": 182,
+          "opacity": 1,
+          "right": 572,
+          "text": "",
+          "top": 764,
+          "visibility": "visible",
+          "visibleHeight": 260,
+          "visibleWidth": 390,
+          "width": 390
+        },
+        "h1": {
+          "bottom": 299,
+          "display": "block",
+          "height": 118,
+          "left": 24,
+          "opacity": 1,
+          "right": 696,
+          "text": "PawPal pet safetyfor every walk",
+          "top": 181,
+          "visibility": "visible",
+          "visibleHeight": 118,
+          "visibleWidth": 672,
+          "width": 672
+        },
+        "hasVisibleFrameworkOverlay": false,
+        "heroGlobeSection": {
+          "bottom": 1235,
+          "display": "flex",
+          "height": 553,
+          "left": 52,
+          "opacity": 1,
+          "right": 702,
+          "text": "Left-click: rotate, Mouse-wheel/middle-click: zoom, Right-click: panLive GlobeFog map activeToday's route2.43 km revealedNFC SafetyFinder-ready profileDrag to s",
+          "top": 682,
+          "visibility": "visible",
+          "visibleHeight": 342,
+          "visibleWidth": 650,
+          "width": 650
+        },
+        "horizontalOverflowPx": 0,
+        "location": "http://localhost:3000/?round03_final_verified=768x1024&run=2026-06-11T12-41-39-674Z",
+        "meaningfulText": true,
+        "openLiveMap": {
+          "bottom": 459,
+          "display": "flex",
+          "height": 48,
+          "left": 24,
+          "opacity": 1,
+          "right": 197,
+          "text": "Open Live Map",
+          "top": 411,
+          "visibility": "visible",
+          "visibleHeight": 48,
+          "visibleWidth": 173,
+          "width": 173
+        },
+        "overlayCandidates": [],
+        "shopSmartTags": {
+          "bottom": 459,
+          "display": "flex",
+          "height": 48,
+          "left": 209,
+          "opacity": 1,
+          "right": 400,
+          "text": "Shop Smart Tags",
+          "top": 411,
+          "visibility": "visible",
+          "visibleHeight": 48,
+          "visibleWidth": 191,
+          "width": 191
+        },
+        "title": "Pet Safety Map, Smart Tags, and Local Pet Community"
+      },
+      "newLogs": [],
+      "allLogCount": 2
+    },
+    {
+      "name": "desktop-1280x720",
+      "screenshotPath": "/private/tmp/geopet-round03-homepage/final/home-desktop-1280x720.png",
+      "metrics": {
+        "actualViewport": {
+          "height": 720,
+          "width": 1280
+        },
+        "calloutCount": 1,
+        "callouts": [
+          {
+            "bottom": 773,
+            "display": "flex",
+            "height": 66,
+            "left": 627,
+            "opacity": 1,
+            "right": 827,
+            "text": "Today's route2.43 km revealed",
+            "top": 707,
+            "visibility": "visible",
+            "visibleHeight": 13,
+            "visibleWidth": 200,
+            "width": 200
+          }
+        ],
+        "canvasNodePresent": true,
+        "ctaFocusability": {
+          "openLiveMap": {
+            "ariaRole": null,
+            "focusVisibleClass": true,
+            "href": "/globe",
+            "tabIndex": null,
+            "tagName": "A"
+          },
+          "shopSmartTags": {
+            "ariaRole": null,
+            "focusVisibleClass": true,
+            "href": "/store",
+            "tabIndex": null,
+            "tagName": "A"
+          }
+        },
+        "expectedViewport": {
+          "height": 720,
+          "width": 1280
+        },
+        "globeCanvas": {
+          "bottom": 796,
+          "display": "block",
+          "height": 538,
+          "left": 657,
+          "opacity": 1,
+          "right": 1195,
+          "text": "",
+          "top": 258,
+          "visibility": "visible",
+          "visibleHeight": 462,
+          "visibleWidth": 538,
+          "width": 538
+        },
+        "h1": {
+          "bottom": 364,
+          "display": "block",
+          "height": 122,
+          "left": 32,
+          "opacity": 1,
+          "right": 548,
+          "text": "PawPal pet safetyfor every walk",
+          "top": 242,
+          "visibility": "visible",
+          "visibleHeight": 122,
+          "visibleWidth": 516,
+          "width": 516
+        },
+        "hasVisibleFrameworkOverlay": false,
+        "heroGlobeSection": {
+          "bottom": 832,
+          "display": "flex",
+          "height": 610,
+          "left": 619,
+          "opacity": 1,
+          "right": 1233,
+          "text": "Left-click: rotate, Mouse-wheel/middle-click: zoom, Right-click: panLive GlobeFog map activeToday's route2.43 km revealedNFC SafetyFinder-ready profileDrag to s",
+          "top": 222,
+          "visibility": "visible",
+          "visibleHeight": 498,
+          "visibleWidth": 614,
+          "width": 614
+        },
+        "horizontalOverflowPx": 0,
+        "location": "http://localhost:3000/?round03_final_verified=1280x720&run=2026-06-11T12-41-39-674Z",
+        "meaningfulText": true,
+        "openLiveMap": {
+          "bottom": 584,
+          "display": "flex",
+          "height": 48,
+          "left": 32,
+          "opacity": 1,
+          "right": 205,
+          "text": "Open Live Map",
+          "top": 536,
+          "visibility": "visible",
+          "visibleHeight": 48,
+          "visibleWidth": 173,
+          "width": 173
+        },
+        "overlayCandidates": [],
+        "shopSmartTags": {
+          "bottom": 584,
+          "display": "flex",
+          "height": 48,
+          "left": 217,
+          "opacity": 1,
+          "right": 408,
+          "text": "Shop Smart Tags",
+          "top": 536,
+          "visibility": "visible",
+          "visibleHeight": 48,
+          "visibleWidth": 191,
+          "width": 191
+        },
+        "title": "Pet Safety Map, Smart Tags, and Local Pet Community"
+      },
+      "newLogs": [],
+      "allLogCount": 2
+    },
+    {
+      "name": "desktop-1440x900",
+      "screenshotPath": "/private/tmp/geopet-round03-homepage/final/home-desktop-1440x900.png",
+      "metrics": {
+        "actualViewport": {
+          "height": 900,
+          "width": 1440
+        },
+        "calloutCount": 2,
+        "callouts": [
+          {
+            "bottom": 773,
+            "display": "flex",
+            "height": 66,
+            "left": 707,
+            "opacity": 1,
+            "right": 907,
+            "text": "Today's route2.43 km revealed",
+            "top": 707,
+            "visibility": "visible",
+            "visibleHeight": 66,
+            "visibleWidth": 200,
+            "width": 200
+          },
+          {
+            "bottom": 800,
+            "display": "flex",
+            "height": 66,
+            "left": 1089,
+            "opacity": 1,
+            "right": 1308,
+            "text": "NFC SafetyFinder-ready profile",
+            "top": 734,
+            "visibility": "visible",
+            "visibleHeight": 66,
+            "visibleWidth": 219,
+            "width": 219
+          }
+        ],
+        "canvasNodePresent": true,
+        "ctaFocusability": {
+          "openLiveMap": {
+            "ariaRole": null,
+            "focusVisibleClass": true,
+            "href": "/globe",
+            "tabIndex": null,
+            "tagName": "A"
+          },
+          "shopSmartTags": {
+            "ariaRole": null,
+            "focusVisibleClass": true,
+            "href": "/store",
+            "tabIndex": null,
+            "tagName": "A"
+          }
+        },
+        "expectedViewport": {
+          "height": 900,
+          "width": 1440
+        },
+        "globeCanvas": {
+          "bottom": 830,
+          "display": "block",
+          "height": 605,
+          "left": 707,
+          "opacity": 1,
+          "right": 1312,
+          "text": "",
+          "top": 225,
+          "visibility": "visible",
+          "visibleHeight": 605,
+          "visibleWidth": 605,
+          "width": 605
+        },
+        "h1": {
+          "bottom": 406,
+          "display": "block",
+          "height": 205,
+          "left": 105,
+          "opacity": 1,
+          "right": 621,
+          "text": "PawPal pet safetyfor every walk",
+          "top": 201,
+          "visibility": "visible",
+          "visibleHeight": 205,
+          "visibleWidth": 516,
+          "width": 516
+        },
+        "hasVisibleFrameworkOverlay": false,
+        "heroGlobeSection": {
+          "bottom": 832,
+          "display": "flex",
+          "height": 610,
+          "left": 699,
+          "opacity": 1,
+          "right": 1320,
+          "text": "Left-click: rotate, Mouse-wheel/middle-click: zoom, Right-click: panLive GlobeFog map activeToday's route2.43 km revealedNFC SafetyFinder-ready profileDrag to s",
+          "top": 222,
+          "visibility": "visible",
+          "visibleHeight": 610,
+          "visibleWidth": 622,
+          "width": 622
+        },
+        "horizontalOverflowPx": 0,
+        "location": "http://localhost:3000/?round03_final_verified=1440x900&run=2026-06-11T12-41-39-674Z",
+        "meaningfulText": true,
+        "openLiveMap": {
+          "bottom": 626,
+          "display": "flex",
+          "height": 48,
+          "left": 105,
+          "opacity": 1,
+          "right": 278,
+          "text": "Open Live Map",
+          "top": 578,
+          "visibility": "visible",
+          "visibleHeight": 48,
+          "visibleWidth": 173,
+          "width": 173
+        },
+        "overlayCandidates": [],
+        "shopSmartTags": {
+          "bottom": 626,
+          "display": "flex",
+          "height": 48,
+          "left": 290,
+          "opacity": 1,
+          "right": 481,
+          "text": "Shop Smart Tags",
+          "top": 578,
+          "visibility": "visible",
+          "visibleHeight": 48,
+          "visibleWidth": 191,
+          "width": 191
+        },
+        "title": "Pet Safety Map, Smart Tags, and Local Pet Community"
+      },
+      "newLogs": [],
+      "allLogCount": 2
+    }
+  ]
+}

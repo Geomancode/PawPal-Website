@@ -1,0 +1,5856 @@
+[
+  {
+    "route": "/tag/sample-id",
+    "group": "tag-sample",
+    "state": "missing",
+    "mode": "light",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "url": "http://localhost:3000/tag/sample-id",
+    "title": "PawPal tag not found | PawPal",
+    "logs": [],
+    "pageErrors": [],
+    "metrics": {
+      "meaningfulRender": true,
+      "hasFrameworkOverlay": false,
+      "overlayCandidateCount": 1,
+      "visibleErrorOverlayCount": 0,
+      "horizontalOverflow": false,
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "bodyBackground": "rgb(255, 255, 255)",
+      "bodyColor": "rgb(58, 47, 42)",
+      "colorScheme": "light",
+      "matchDark": false,
+      "matchReducedMotion": false,
+      "firstViewport": {
+        "scannedTagContext": true,
+        "petIdentity": false,
+        "contactCta": false,
+        "hiddenContact": false,
+        "privacyOrUrgent": true,
+        "criticalDetails": false,
+        "contactDetail": false,
+        "notListed": false
+      },
+      "interactionTargets": {
+        "contactText": null,
+        "contactHref": null,
+        "phoneHref": null,
+        "emailHref": "mailto:hello@pawpal.be",
+        "deepLinkHref": null,
+        "storeHref": "/store",
+        "hasMisleadingHiddenContact": false
+      },
+      "headings": [
+        "This PawPal route is not available.",
+        "Product",
+        "Company",
+        "Support",
+        "Belgium Pilot"
+      ],
+      "links": [
+        {
+          "text": "Skip to PawPal content",
+          "href": "#main-content"
+        },
+        {
+          "text": "PawPal",
+          "href": "/"
+        },
+        {
+          "text": "Home",
+          "href": "/"
+        },
+        {
+          "text": "Globe",
+          "href": "/globe"
+        },
+        {
+          "text": "About Us",
+          "href": "/about"
+        },
+        {
+          "text": "Store",
+          "href": "/store"
+        },
+        {
+          "text": "Login",
+          "href": "/auth"
+        },
+        {
+          "text": "Back home",
+          "href": "/"
+        },
+        {
+          "text": "Shop smart tags",
+          "href": "/store"
+        },
+        {
+          "text": "hello@pawpal.be",
+          "href": "mailto:hello@pawpal.be"
+        },
+        {
+          "text": "Globe Map",
+          "href": "/globe"
+        },
+        {
+          "text": "NFC Safety Tag",
+          "href": "/store"
+        },
+        {
+          "text": "AI Assistant",
+          "href": "/globe"
+        },
+        {
+          "text": "Community",
+          "href": "/globe"
+        },
+        {
+          "text": "About Us",
+          "href": "/about"
+        },
+        {
+          "text": "Store",
+          "href": "/store"
+        }
+      ]
+    },
+    "screenshotPath": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-09-nfc-finder-emergency-states/evidence/screenshots/after-tag-sample-missing-light-390x844.png"
+  },
+  {
+    "route": "/tag/sample-id",
+    "group": "tag-sample",
+    "state": "missing",
+    "mode": "dark",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "url": "http://localhost:3000/tag/sample-id",
+    "title": "PawPal tag not found | PawPal",
+    "logs": [],
+    "pageErrors": [],
+    "metrics": {
+      "meaningfulRender": true,
+      "hasFrameworkOverlay": false,
+      "overlayCandidateCount": 1,
+      "visibleErrorOverlayCount": 0,
+      "horizontalOverflow": false,
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "bodyBackground": "rgb(21, 29, 34)",
+      "bodyColor": "rgb(251, 247, 242)",
+      "colorScheme": "dark",
+      "matchDark": true,
+      "matchReducedMotion": false,
+      "firstViewport": {
+        "scannedTagContext": true,
+        "petIdentity": false,
+        "contactCta": false,
+        "hiddenContact": false,
+        "privacyOrUrgent": true,
+        "criticalDetails": false,
+        "contactDetail": false,
+        "notListed": false
+      },
+      "interactionTargets": {
+        "contactText": null,
+        "contactHref": null,
+        "phoneHref": null,
+        "emailHref": "mailto:hello@pawpal.be",
+        "deepLinkHref": null,
+        "storeHref": "/store",
+        "hasMisleadingHiddenContact": false
+      },
+      "headings": [
+        "This PawPal route is not available.",
+        "Product",
+        "Company",
+        "Support",
+        "Belgium Pilot"
+      ],
+      "links": [
+        {
+          "text": "Skip to PawPal content",
+          "href": "#main-content"
+        },
+        {
+          "text": "PawPal",
+          "href": "/"
+        },
+        {
+          "text": "Home",
+          "href": "/"
+        },
+        {
+          "text": "Globe",
+          "href": "/globe"
+        },
+        {
+          "text": "About Us",
+          "href": "/about"
+        },
+        {
+          "text": "Store",
+          "href": "/store"
+        },
+        {
+          "text": "Login",
+          "href": "/auth"
+        },
+        {
+          "text": "Back home",
+          "href": "/"
+        },
+        {
+          "text": "Shop smart tags",
+          "href": "/store"
+        },
+        {
+          "text": "hello@pawpal.be",
+          "href": "mailto:hello@pawpal.be"
+        },
+        {
+          "text": "Globe Map",
+          "href": "/globe"
+        },
+        {
+          "text": "NFC Safety Tag",
+          "href": "/store"
+        },
+        {
+          "text": "AI Assistant",
+          "href": "/globe"
+        },
+        {
+          "text": "Community",
+          "href": "/globe"
+        },
+        {
+          "text": "About Us",
+          "href": "/about"
+        },
+        {
+          "text": "Store",
+          "href": "/store"
+        }
+      ]
+    },
+    "screenshotPath": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-09-nfc-finder-emergency-states/evidence/screenshots/after-tag-sample-missing-dark-390x844.png"
+  },
+  {
+    "route": "/tag/sample-id",
+    "group": "tag-sample",
+    "state": "missing",
+    "mode": "reduced",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "url": "http://localhost:3000/tag/sample-id",
+    "title": "PawPal tag not found | PawPal",
+    "logs": [],
+    "pageErrors": [],
+    "metrics": {
+      "meaningfulRender": true,
+      "hasFrameworkOverlay": false,
+      "overlayCandidateCount": 1,
+      "visibleErrorOverlayCount": 0,
+      "horizontalOverflow": false,
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "bodyBackground": "rgb(255, 255, 255)",
+      "bodyColor": "rgb(58, 47, 42)",
+      "colorScheme": "light",
+      "matchDark": false,
+      "matchReducedMotion": true,
+      "firstViewport": {
+        "scannedTagContext": true,
+        "petIdentity": false,
+        "contactCta": false,
+        "hiddenContact": false,
+        "privacyOrUrgent": true,
+        "criticalDetails": false,
+        "contactDetail": false,
+        "notListed": false
+      },
+      "interactionTargets": {
+        "contactText": null,
+        "contactHref": null,
+        "phoneHref": null,
+        "emailHref": "mailto:hello@pawpal.be",
+        "deepLinkHref": null,
+        "storeHref": "/store",
+        "hasMisleadingHiddenContact": false
+      },
+      "headings": [
+        "This PawPal route is not available.",
+        "Product",
+        "Company",
+        "Support",
+        "Belgium Pilot"
+      ],
+      "links": [
+        {
+          "text": "Skip to PawPal content",
+          "href": "#main-content"
+        },
+        {
+          "text": "PawPal",
+          "href": "/"
+        },
+        {
+          "text": "Home",
+          "href": "/"
+        },
+        {
+          "text": "Globe",
+          "href": "/globe"
+        },
+        {
+          "text": "About Us",
+          "href": "/about"
+        },
+        {
+          "text": "Store",
+          "href": "/store"
+        },
+        {
+          "text": "Login",
+          "href": "/auth"
+        },
+        {
+          "text": "Back home",
+          "href": "/"
+        },
+        {
+          "text": "Shop smart tags",
+          "href": "/store"
+        },
+        {
+          "text": "hello@pawpal.be",
+          "href": "mailto:hello@pawpal.be"
+        },
+        {
+          "text": "Globe Map",
+          "href": "/globe"
+        },
+        {
+          "text": "NFC Safety Tag",
+          "href": "/store"
+        },
+        {
+          "text": "AI Assistant",
+          "href": "/globe"
+        },
+        {
+          "text": "Community",
+          "href": "/globe"
+        },
+        {
+          "text": "About Us",
+          "href": "/about"
+        },
+        {
+          "text": "Store",
+          "href": "/store"
+        }
+      ]
+    },
+    "screenshotPath": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-09-nfc-finder-emergency-states/evidence/screenshots/after-tag-sample-missing-reduced-390x844.png"
+  },
+  {
+    "route": "/tag/sample-id",
+    "group": "tag-sample",
+    "state": "missing",
+    "mode": "light",
+    "viewport": {
+      "width": 768,
+      "height": 1024
+    },
+    "url": "http://localhost:3000/tag/sample-id",
+    "title": "PawPal tag not found | PawPal",
+    "logs": [],
+    "pageErrors": [],
+    "metrics": {
+      "meaningfulRender": true,
+      "hasFrameworkOverlay": false,
+      "overlayCandidateCount": 1,
+      "visibleErrorOverlayCount": 0,
+      "horizontalOverflow": false,
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "bodyBackground": "rgb(255, 255, 255)",
+      "bodyColor": "rgb(58, 47, 42)",
+      "colorScheme": "light",
+      "matchDark": false,
+      "matchReducedMotion": false,
+      "firstViewport": {
+        "scannedTagContext": true,
+        "petIdentity": false,
+        "contactCta": false,
+        "hiddenContact": false,
+        "privacyOrUrgent": true,
+        "criticalDetails": false,
+        "contactDetail": false,
+        "notListed": false
+      },
+      "interactionTargets": {
+        "contactText": null,
+        "contactHref": null,
+        "phoneHref": null,
+        "emailHref": "mailto:hello@pawpal.be",
+        "deepLinkHref": null,
+        "storeHref": "/store",
+        "hasMisleadingHiddenContact": false
+      },
+      "headings": [
+        "This PawPal route is not available.",
+        "Product",
+        "Company",
+        "Support",
+        "Belgium Pilot"
+      ],
+      "links": [
+        {
+          "text": "Skip to PawPal content",
+          "href": "#main-content"
+        },
+        {
+          "text": "PawPal",
+          "href": "/"
+        },
+        {
+          "text": "Home",
+          "href": "/"
+        },
+        {
+          "text": "Globe",
+          "href": "/globe"
+        },
+        {
+          "text": "About Us",
+          "href": "/about"
+        },
+        {
+          "text": "Store",
+          "href": "/store"
+        },
+        {
+          "text": "Login",
+          "href": "/auth"
+        },
+        {
+          "text": "Back home",
+          "href": "/"
+        },
+        {
+          "text": "Shop smart tags",
+          "href": "/store"
+        },
+        {
+          "text": "hello@pawpal.be",
+          "href": "mailto:hello@pawpal.be"
+        },
+        {
+          "text": "Globe Map",
+          "href": "/globe"
+        },
+        {
+          "text": "NFC Safety Tag",
+          "href": "/store"
+        },
+        {
+          "text": "AI Assistant",
+          "href": "/globe"
+        },
+        {
+          "text": "Community",
+          "href": "/globe"
+        },
+        {
+          "text": "About Us",
+          "href": "/about"
+        },
+        {
+          "text": "Store",
+          "href": "/store"
+        }
+      ]
+    },
+    "screenshotPath": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-09-nfc-finder-emergency-states/evidence/screenshots/after-tag-sample-missing-light-768x1024.png"
+  },
+  {
+    "route": "/tag/sample-id",
+    "group": "tag-sample",
+    "state": "missing",
+    "mode": "dark",
+    "viewport": {
+      "width": 768,
+      "height": 1024
+    },
+    "url": "http://localhost:3000/tag/sample-id",
+    "title": "PawPal tag not found | PawPal",
+    "logs": [],
+    "pageErrors": [],
+    "metrics": {
+      "meaningfulRender": true,
+      "hasFrameworkOverlay": false,
+      "overlayCandidateCount": 1,
+      "visibleErrorOverlayCount": 0,
+      "horizontalOverflow": false,
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "bodyBackground": "rgb(21, 29, 34)",
+      "bodyColor": "rgb(251, 247, 242)",
+      "colorScheme": "dark",
+      "matchDark": true,
+      "matchReducedMotion": false,
+      "firstViewport": {
+        "scannedTagContext": true,
+        "petIdentity": false,
+        "contactCta": false,
+        "hiddenContact": false,
+        "privacyOrUrgent": true,
+        "criticalDetails": false,
+        "contactDetail": false,
+        "notListed": false
+      },
+      "interactionTargets": {
+        "contactText": null,
+        "contactHref": null,
+        "phoneHref": null,
+        "emailHref": "mailto:hello@pawpal.be",
+        "deepLinkHref": null,
+        "storeHref": "/store",
+        "hasMisleadingHiddenContact": false
+      },
+      "headings": [
+        "This PawPal route is not available.",
+        "Product",
+        "Company",
+        "Support",
+        "Belgium Pilot"
+      ],
+      "links": [
+        {
+          "text": "Skip to PawPal content",
+          "href": "#main-content"
+        },
+        {
+          "text": "PawPal",
+          "href": "/"
+        },
+        {
+          "text": "Home",
+          "href": "/"
+        },
+        {
+          "text": "Globe",
+          "href": "/globe"
+        },
+        {
+          "text": "About Us",
+          "href": "/about"
+        },
+        {
+          "text": "Store",
+          "href": "/store"
+        },
+        {
+          "text": "Login",
+          "href": "/auth"
+        },
+        {
+          "text": "Back home",
+          "href": "/"
+        },
+        {
+          "text": "Shop smart tags",
+          "href": "/store"
+        },
+        {
+          "text": "hello@pawpal.be",
+          "href": "mailto:hello@pawpal.be"
+        },
+        {
+          "text": "Globe Map",
+          "href": "/globe"
+        },
+        {
+          "text": "NFC Safety Tag",
+          "href": "/store"
+        },
+        {
+          "text": "AI Assistant",
+          "href": "/globe"
+        },
+        {
+          "text": "Community",
+          "href": "/globe"
+        },
+        {
+          "text": "About Us",
+          "href": "/about"
+        },
+        {
+          "text": "Store",
+          "href": "/store"
+        }
+      ]
+    },
+    "screenshotPath": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-09-nfc-finder-emergency-states/evidence/screenshots/after-tag-sample-missing-dark-768x1024.png"
+  },
+  {
+    "route": "/tag/sample-id",
+    "group": "tag-sample",
+    "state": "missing",
+    "mode": "reduced",
+    "viewport": {
+      "width": 768,
+      "height": 1024
+    },
+    "url": "http://localhost:3000/tag/sample-id",
+    "title": "PawPal tag not found | PawPal",
+    "logs": [],
+    "pageErrors": [],
+    "metrics": {
+      "meaningfulRender": true,
+      "hasFrameworkOverlay": false,
+      "overlayCandidateCount": 1,
+      "visibleErrorOverlayCount": 0,
+      "horizontalOverflow": false,
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "bodyBackground": "rgb(255, 255, 255)",
+      "bodyColor": "rgb(58, 47, 42)",
+      "colorScheme": "light",
+      "matchDark": false,
+      "matchReducedMotion": true,
+      "firstViewport": {
+        "scannedTagContext": true,
+        "petIdentity": false,
+        "contactCta": false,
+        "hiddenContact": false,
+        "privacyOrUrgent": true,
+        "criticalDetails": false,
+        "contactDetail": false,
+        "notListed": false
+      },
+      "interactionTargets": {
+        "contactText": null,
+        "contactHref": null,
+        "phoneHref": null,
+        "emailHref": "mailto:hello@pawpal.be",
+        "deepLinkHref": null,
+        "storeHref": "/store",
+        "hasMisleadingHiddenContact": false
+      },
+      "headings": [
+        "This PawPal route is not available.",
+        "Product",
+        "Company",
+        "Support",
+        "Belgium Pilot"
+      ],
+      "links": [
+        {
+          "text": "Skip to PawPal content",
+          "href": "#main-content"
+        },
+        {
+          "text": "PawPal",
+          "href": "/"
+        },
+        {
+          "text": "Home",
+          "href": "/"
+        },
+        {
+          "text": "Globe",
+          "href": "/globe"
+        },
+        {
+          "text": "About Us",
+          "href": "/about"
+        },
+        {
+          "text": "Store",
+          "href": "/store"
+        },
+        {
+          "text": "Login",
+          "href": "/auth"
+        },
+        {
+          "text": "Back home",
+          "href": "/"
+        },
+        {
+          "text": "Shop smart tags",
+          "href": "/store"
+        },
+        {
+          "text": "hello@pawpal.be",
+          "href": "mailto:hello@pawpal.be"
+        },
+        {
+          "text": "Globe Map",
+          "href": "/globe"
+        },
+        {
+          "text": "NFC Safety Tag",
+          "href": "/store"
+        },
+        {
+          "text": "AI Assistant",
+          "href": "/globe"
+        },
+        {
+          "text": "Community",
+          "href": "/globe"
+        },
+        {
+          "text": "About Us",
+          "href": "/about"
+        },
+        {
+          "text": "Store",
+          "href": "/store"
+        }
+      ]
+    },
+    "screenshotPath": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-09-nfc-finder-emergency-states/evidence/screenshots/after-tag-sample-missing-reduced-768x1024.png"
+  },
+  {
+    "route": "/tag/sample-id",
+    "group": "tag-sample",
+    "state": "missing",
+    "mode": "light",
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "url": "http://localhost:3000/tag/sample-id",
+    "title": "PawPal tag not found | PawPal",
+    "logs": [],
+    "pageErrors": [],
+    "metrics": {
+      "meaningfulRender": true,
+      "hasFrameworkOverlay": false,
+      "overlayCandidateCount": 1,
+      "visibleErrorOverlayCount": 0,
+      "horizontalOverflow": false,
+      "scrollWidth": 1280,
+      "clientWidth": 1280,
+      "bodyBackground": "rgb(255, 255, 255)",
+      "bodyColor": "rgb(58, 47, 42)",
+      "colorScheme": "light",
+      "matchDark": false,
+      "matchReducedMotion": false,
+      "firstViewport": {
+        "scannedTagContext": true,
+        "petIdentity": false,
+        "contactCta": false,
+        "hiddenContact": false,
+        "privacyOrUrgent": true,
+        "criticalDetails": false,
+        "contactDetail": false,
+        "notListed": false
+      },
+      "interactionTargets": {
+        "contactText": null,
+        "contactHref": null,
+        "phoneHref": null,
+        "emailHref": "mailto:hello@pawpal.be",
+        "deepLinkHref": null,
+        "storeHref": "/store",
+        "hasMisleadingHiddenContact": false
+      },
+      "headings": [
+        "This PawPal route is not available.",
+        "Product",
+        "Company",
+        "Support",
+        "Belgium Pilot"
+      ],
+      "links": [
+        {
+          "text": "Skip to PawPal content",
+          "href": "#main-content"
+        },
+        {
+          "text": "PawPal",
+          "href": "/"
+        },
+        {
+          "text": "Home",
+          "href": "/"
+        },
+        {
+          "text": "Globe",
+          "href": "/globe"
+        },
+        {
+          "text": "About Us",
+          "href": "/about"
+        },
+        {
+          "text": "Store",
+          "href": "/store"
+        },
+        {
+          "text": "Login",
+          "href": "/auth"
+        },
+        {
+          "text": "Back home",
+          "href": "/"
+        },
+        {
+          "text": "Shop smart tags",
+          "href": "/store"
+        },
+        {
+          "text": "hello@pawpal.be",
+          "href": "mailto:hello@pawpal.be"
+        },
+        {
+          "text": "Globe Map",
+          "href": "/globe"
+        },
+        {
+          "text": "NFC Safety Tag",
+          "href": "/store"
+        },
+        {
+          "text": "AI Assistant",
+          "href": "/globe"
+        },
+        {
+          "text": "Community",
+          "href": "/globe"
+        },
+        {
+          "text": "About Us",
+          "href": "/about"
+        },
+        {
+          "text": "Store",
+          "href": "/store"
+        }
+      ]
+    },
+    "screenshotPath": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-09-nfc-finder-emergency-states/evidence/screenshots/after-tag-sample-missing-light-1280x720.png"
+  },
+  {
+    "route": "/tag/sample-id",
+    "group": "tag-sample",
+    "state": "missing",
+    "mode": "dark",
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "url": "http://localhost:3000/tag/sample-id",
+    "title": "PawPal tag not found | PawPal",
+    "logs": [],
+    "pageErrors": [
+      "Failed to execute 'measure' on 'Performance': '​TagPage' cannot have a negative time stamp."
+    ],
+    "metrics": {
+      "meaningfulRender": true,
+      "hasFrameworkOverlay": false,
+      "overlayCandidateCount": 1,
+      "visibleErrorOverlayCount": 0,
+      "horizontalOverflow": false,
+      "scrollWidth": 1280,
+      "clientWidth": 1280,
+      "bodyBackground": "rgb(21, 29, 34)",
+      "bodyColor": "rgb(251, 247, 242)",
+      "colorScheme": "dark",
+      "matchDark": true,
+      "matchReducedMotion": false,
+      "firstViewport": {
+        "scannedTagContext": true,
+        "petIdentity": false,
+        "contactCta": false,
+        "hiddenContact": false,
+        "privacyOrUrgent": true,
+        "criticalDetails": false,
+        "contactDetail": false,
+        "notListed": false
+      },
+      "interactionTargets": {
+        "contactText": null,
+        "contactHref": null,
+        "phoneHref": null,
+        "emailHref": "mailto:hello@pawpal.be",
+        "deepLinkHref": null,
+        "storeHref": "/store",
+        "hasMisleadingHiddenContact": false
+      },
+      "headings": [
+        "This PawPal route is not available.",
+        "Product",
+        "Company",
+        "Support",
+        "Belgium Pilot"
+      ],
+      "links": [
+        {
+          "text": "Skip to PawPal content",
+          "href": "#main-content"
+        },
+        {
+          "text": "PawPal",
+          "href": "/"
+        },
+        {
+          "text": "Home",
+          "href": "/"
+        },
+        {
+          "text": "Globe",
+          "href": "/globe"
+        },
+        {
+          "text": "About Us",
+          "href": "/about"
+        },
+        {
+          "text": "Store",
+          "href": "/store"
+        },
+        {
+          "text": "Login",
+          "href": "/auth"
+        },
+        {
+          "text": "Back home",
+          "href": "/"
+        },
+        {
+          "text": "Shop smart tags",
+          "href": "/store"
+        },
+        {
+          "text": "hello@pawpal.be",
+          "href": "mailto:hello@pawpal.be"
+        },
+        {
+          "text": "Globe Map",
+          "href": "/globe"
+        },
+        {
+          "text": "NFC Safety Tag",
+          "href": "/store"
+        },
+        {
+          "text": "AI Assistant",
+          "href": "/globe"
+        },
+        {
+          "text": "Community",
+          "href": "/globe"
+        },
+        {
+          "text": "About Us",
+          "href": "/about"
+        },
+        {
+          "text": "Store",
+          "href": "/store"
+        }
+      ]
+    },
+    "screenshotPath": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-09-nfc-finder-emergency-states/evidence/screenshots/after-tag-sample-missing-dark-1280x720.png"
+  },
+  {
+    "route": "/tag/sample-id",
+    "group": "tag-sample",
+    "state": "missing",
+    "mode": "reduced",
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "url": "http://localhost:3000/tag/sample-id",
+    "title": "PawPal tag not found | PawPal",
+    "logs": [],
+    "pageErrors": [
+      "Failed to execute 'measure' on 'Performance': '​TagPage' cannot have a negative time stamp.",
+      "Failed to execute 'measure' on 'Performance': '​TagPage' cannot have a negative time stamp."
+    ],
+    "metrics": {
+      "meaningfulRender": true,
+      "hasFrameworkOverlay": false,
+      "overlayCandidateCount": 1,
+      "visibleErrorOverlayCount": 0,
+      "horizontalOverflow": false,
+      "scrollWidth": 1280,
+      "clientWidth": 1280,
+      "bodyBackground": "rgb(255, 255, 255)",
+      "bodyColor": "rgb(58, 47, 42)",
+      "colorScheme": "light",
+      "matchDark": false,
+      "matchReducedMotion": true,
+      "firstViewport": {
+        "scannedTagContext": true,
+        "petIdentity": false,
+        "contactCta": false,
+        "hiddenContact": false,
+        "privacyOrUrgent": true,
+        "criticalDetails": false,
+        "contactDetail": false,
+        "notListed": false
+      },
+      "interactionTargets": {
+        "contactText": null,
+        "contactHref": null,
+        "phoneHref": null,
+        "emailHref": "mailto:hello@pawpal.be",
+        "deepLinkHref": null,
+        "storeHref": "/store",
+        "hasMisleadingHiddenContact": false
+      },
+      "headings": [
+        "This PawPal route is not available.",
+        "Product",
+        "Company",
+        "Support",
+        "Belgium Pilot"
+      ],
+      "links": [
+        {
+          "text": "Skip to PawPal content",
+          "href": "#main-content"
+        },
+        {
+          "text": "PawPal",
+          "href": "/"
+        },
+        {
+          "text": "Home",
+          "href": "/"
+        },
+        {
+          "text": "Globe",
+          "href": "/globe"
+        },
+        {
+          "text": "About Us",
+          "href": "/about"
+        },
+        {
+          "text": "Store",
+          "href": "/store"
+        },
+        {
+          "text": "Login",
+          "href": "/auth"
+        },
+        {
+          "text": "Back home",
+          "href": "/"
+        },
+        {
+          "text": "Shop smart tags",
+          "href": "/store"
+        },
+        {
+          "text": "hello@pawpal.be",
+          "href": "mailto:hello@pawpal.be"
+        },
+        {
+          "text": "Globe Map",
+          "href": "/globe"
+        },
+        {
+          "text": "NFC Safety Tag",
+          "href": "/store"
+        },
+        {
+          "text": "AI Assistant",
+          "href": "/globe"
+        },
+        {
+          "text": "Community",
+          "href": "/globe"
+        },
+        {
+          "text": "About Us",
+          "href": "/about"
+        },
+        {
+          "text": "Store",
+          "href": "/store"
+        }
+      ]
+    },
+    "screenshotPath": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-09-nfc-finder-emergency-states/evidence/screenshots/after-tag-sample-missing-reduced-1280x720.png"
+  },
+  {
+    "route": "/tag/sample-id",
+    "group": "tag-sample",
+    "state": "missing",
+    "mode": "light",
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "url": "http://localhost:3000/tag/sample-id",
+    "title": "PawPal tag not found | PawPal",
+    "logs": [],
+    "pageErrors": [
+      "Failed to execute 'measure' on 'Performance': '​TagPage' cannot have a negative time stamp.",
+      "Failed to execute 'measure' on 'Performance': '​TagPage' cannot have a negative time stamp."
+    ],
+    "metrics": {
+      "meaningfulRender": true,
+      "hasFrameworkOverlay": false,
+      "overlayCandidateCount": 1,
+      "visibleErrorOverlayCount": 0,
+      "horizontalOverflow": false,
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "bodyBackground": "rgb(255, 255, 255)",
+      "bodyColor": "rgb(58, 47, 42)",
+      "colorScheme": "light",
+      "matchDark": false,
+      "matchReducedMotion": false,
+      "firstViewport": {
+        "scannedTagContext": true,
+        "petIdentity": false,
+        "contactCta": false,
+        "hiddenContact": false,
+        "privacyOrUrgent": true,
+        "criticalDetails": false,
+        "contactDetail": false,
+        "notListed": false
+      },
+      "interactionTargets": {
+        "contactText": null,
+        "contactHref": null,
+        "phoneHref": null,
+        "emailHref": "mailto:hello@pawpal.be",
+        "deepLinkHref": null,
+        "storeHref": "/store",
+        "hasMisleadingHiddenContact": false
+      },
+      "headings": [
+        "This PawPal route is not available.",
+        "Product",
+        "Company",
+        "Support",
+        "Belgium Pilot"
+      ],
+      "links": [
+        {
+          "text": "Skip to PawPal content",
+          "href": "#main-content"
+        },
+        {
+          "text": "PawPal",
+          "href": "/"
+        },
+        {
+          "text": "Home",
+          "href": "/"
+        },
+        {
+          "text": "Globe",
+          "href": "/globe"
+        },
+        {
+          "text": "About Us",
+          "href": "/about"
+        },
+        {
+          "text": "Store",
+          "href": "/store"
+        },
+        {
+          "text": "Login",
+          "href": "/auth"
+        },
+        {
+          "text": "Back home",
+          "href": "/"
+        },
+        {
+          "text": "Shop smart tags",
+          "href": "/store"
+        },
+        {
+          "text": "hello@pawpal.be",
+          "href": "mailto:hello@pawpal.be"
+        },
+        {
+          "text": "Globe Map",
+          "href": "/globe"
+        },
+        {
+          "text": "NFC Safety Tag",
+          "href": "/store"
+        },
+        {
+          "text": "AI Assistant",
+          "href": "/globe"
+        },
+        {
+          "text": "Community",
+          "href": "/globe"
+        },
+        {
+          "text": "About Us",
+          "href": "/about"
+        },
+        {
+          "text": "Store",
+          "href": "/store"
+        }
+      ]
+    },
+    "screenshotPath": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-09-nfc-finder-emergency-states/evidence/screenshots/after-tag-sample-missing-light-1440x900.png"
+  },
+  {
+    "route": "/tag/sample-id",
+    "group": "tag-sample",
+    "state": "missing",
+    "mode": "dark",
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "url": "http://localhost:3000/tag/sample-id",
+    "title": "PawPal tag not found | PawPal",
+    "logs": [],
+    "pageErrors": [
+      "Failed to execute 'measure' on 'Performance': '​TagPage' cannot have a negative time stamp."
+    ],
+    "metrics": {
+      "meaningfulRender": true,
+      "hasFrameworkOverlay": false,
+      "overlayCandidateCount": 1,
+      "visibleErrorOverlayCount": 0,
+      "horizontalOverflow": false,
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "bodyBackground": "rgb(21, 29, 34)",
+      "bodyColor": "rgb(251, 247, 242)",
+      "colorScheme": "dark",
+      "matchDark": true,
+      "matchReducedMotion": false,
+      "firstViewport": {
+        "scannedTagContext": true,
+        "petIdentity": false,
+        "contactCta": false,
+        "hiddenContact": false,
+        "privacyOrUrgent": true,
+        "criticalDetails": false,
+        "contactDetail": false,
+        "notListed": false
+      },
+      "interactionTargets": {
+        "contactText": null,
+        "contactHref": null,
+        "phoneHref": null,
+        "emailHref": "mailto:hello@pawpal.be",
+        "deepLinkHref": null,
+        "storeHref": "/store",
+        "hasMisleadingHiddenContact": false
+      },
+      "headings": [
+        "This PawPal route is not available.",
+        "Product",
+        "Company",
+        "Support",
+        "Belgium Pilot"
+      ],
+      "links": [
+        {
+          "text": "Skip to PawPal content",
+          "href": "#main-content"
+        },
+        {
+          "text": "PawPal",
+          "href": "/"
+        },
+        {
+          "text": "Home",
+          "href": "/"
+        },
+        {
+          "text": "Globe",
+          "href": "/globe"
+        },
+        {
+          "text": "About Us",
+          "href": "/about"
+        },
+        {
+          "text": "Store",
+          "href": "/store"
+        },
+        {
+          "text": "Login",
+          "href": "/auth"
+        },
+        {
+          "text": "Back home",
+          "href": "/"
+        },
+        {
+          "text": "Shop smart tags",
+          "href": "/store"
+        },
+        {
+          "text": "hello@pawpal.be",
+          "href": "mailto:hello@pawpal.be"
+        },
+        {
+          "text": "Globe Map",
+          "href": "/globe"
+        },
+        {
+          "text": "NFC Safety Tag",
+          "href": "/store"
+        },
+        {
+          "text": "AI Assistant",
+          "href": "/globe"
+        },
+        {
+          "text": "Community",
+          "href": "/globe"
+        },
+        {
+          "text": "About Us",
+          "href": "/about"
+        },
+        {
+          "text": "Store",
+          "href": "/store"
+        }
+      ]
+    },
+    "screenshotPath": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-09-nfc-finder-emergency-states/evidence/screenshots/after-tag-sample-missing-dark-1440x900.png"
+  },
+  {
+    "route": "/tag/sample-id",
+    "group": "tag-sample",
+    "state": "missing",
+    "mode": "reduced",
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "url": "http://localhost:3000/tag/sample-id",
+    "title": "PawPal tag not found | PawPal",
+    "logs": [],
+    "pageErrors": [],
+    "metrics": {
+      "meaningfulRender": true,
+      "hasFrameworkOverlay": false,
+      "overlayCandidateCount": 1,
+      "visibleErrorOverlayCount": 0,
+      "horizontalOverflow": false,
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "bodyBackground": "rgb(255, 255, 255)",
+      "bodyColor": "rgb(58, 47, 42)",
+      "colorScheme": "light",
+      "matchDark": false,
+      "matchReducedMotion": true,
+      "firstViewport": {
+        "scannedTagContext": true,
+        "petIdentity": false,
+        "contactCta": false,
+        "hiddenContact": false,
+        "privacyOrUrgent": true,
+        "criticalDetails": false,
+        "contactDetail": false,
+        "notListed": false
+      },
+      "interactionTargets": {
+        "contactText": null,
+        "contactHref": null,
+        "phoneHref": null,
+        "emailHref": "mailto:hello@pawpal.be",
+        "deepLinkHref": null,
+        "storeHref": "/store",
+        "hasMisleadingHiddenContact": false
+      },
+      "headings": [
+        "This PawPal route is not available.",
+        "Product",
+        "Company",
+        "Support",
+        "Belgium Pilot"
+      ],
+      "links": [
+        {
+          "text": "Skip to PawPal content",
+          "href": "#main-content"
+        },
+        {
+          "text": "PawPal",
+          "href": "/"
+        },
+        {
+          "text": "Home",
+          "href": "/"
+        },
+        {
+          "text": "Globe",
+          "href": "/globe"
+        },
+        {
+          "text": "About Us",
+          "href": "/about"
+        },
+        {
+          "text": "Store",
+          "href": "/store"
+        },
+        {
+          "text": "Login",
+          "href": "/auth"
+        },
+        {
+          "text": "Back home",
+          "href": "/"
+        },
+        {
+          "text": "Shop smart tags",
+          "href": "/store"
+        },
+        {
+          "text": "hello@pawpal.be",
+          "href": "mailto:hello@pawpal.be"
+        },
+        {
+          "text": "Globe Map",
+          "href": "/globe"
+        },
+        {
+          "text": "NFC Safety Tag",
+          "href": "/store"
+        },
+        {
+          "text": "AI Assistant",
+          "href": "/globe"
+        },
+        {
+          "text": "Community",
+          "href": "/globe"
+        },
+        {
+          "text": "About Us",
+          "href": "/about"
+        },
+        {
+          "text": "Store",
+          "href": "/store"
+        }
+      ]
+    },
+    "screenshotPath": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-09-nfc-finder-emergency-states/evidence/screenshots/after-tag-sample-missing-reduced-1440x900.png"
+  },
+  {
+    "route": "/round09-fixture/phone",
+    "group": "valid-default",
+    "state": "phone",
+    "mode": "light",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "url": "http://localhost:3000/round09-fixture/phone",
+    "title": "PawPal | Pet Safety Map, Smart Tags, and Local Pet Community",
+    "logs": [],
+    "pageErrors": [],
+    "metrics": {
+      "meaningfulRender": true,
+      "hasFrameworkOverlay": false,
+      "overlayCandidateCount": 1,
+      "visibleErrorOverlayCount": 0,
+      "horizontalOverflow": false,
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "bodyBackground": "rgb(255, 255, 255)",
+      "bodyColor": "rgb(58, 47, 42)",
+      "colorScheme": "light",
+      "matchDark": false,
+      "matchReducedMotion": false,
+      "firstViewport": {
+        "scannedTagContext": true,
+        "petIdentity": false,
+        "contactCta": true,
+        "hiddenContact": false,
+        "privacyOrUrgent": true,
+        "criticalDetails": true,
+        "contactDetail": true,
+        "notListed": false
+      },
+      "interactionTargets": {
+        "contactText": "Contact owner now",
+        "contactHref": "tel:+32470123456",
+        "phoneHref": "tel:+32470123456",
+        "emailHref": "mailto:hello@pawpal.be",
+        "deepLinkHref": "pawpal://tag/round09-fixture",
+        "storeHref": "/store",
+        "hasMisleadingHiddenContact": false
+      },
+      "headings": [
+        "Help Milo get home.",
+        "What to know before moving Milo",
+        "Product",
+        "Company",
+        "Support",
+        "Belgium Pilot"
+      ],
+      "links": [
+        {
+          "text": "Skip to PawPal content",
+          "href": "#main-content"
+        },
+        {
+          "text": "PawPal",
+          "href": "/"
+        },
+        {
+          "text": "Home",
+          "href": "/"
+        },
+        {
+          "text": "Globe",
+          "href": "/globe"
+        },
+        {
+          "text": "About Us",
+          "href": "/about"
+        },
+        {
+          "text": "Store",
+          "href": "/store"
+        },
+        {
+          "text": "Login",
+          "href": "/auth"
+        },
+        {
+          "text": "Contact owner now",
+          "href": "tel:+32470123456"
+        },
+        {
+          "text": "Open this tag in PawPal",
+          "href": "pawpal://tag/round09-fixture"
+        },
+        {
+          "text": "Get a PawPal tag",
+          "href": "/store"
+        },
+        {
+          "text": "hello@pawpal.be",
+          "href": "mailto:hello@pawpal.be"
+        },
+        {
+          "text": "Globe Map",
+          "href": "/globe"
+        },
+        {
+          "text": "NFC Safety Tag",
+          "href": "/store"
+        },
+        {
+          "text": "AI Assistant",
+          "href": "/globe"
+        },
+        {
+          "text": "Community",
+          "href": "/globe"
+        },
+        {
+          "text": "About Us",
+          "href": "/about"
+        }
+      ]
+    },
+    "screenshotPath": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-09-nfc-finder-emergency-states/evidence/screenshots/after-valid-default-phone-light-390x844.png"
+  },
+  {
+    "route": "/round09-fixture/phone",
+    "group": "valid-default",
+    "state": "phone",
+    "mode": "dark",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "url": "http://localhost:3000/round09-fixture/phone",
+    "title": "PawPal | Pet Safety Map, Smart Tags, and Local Pet Community",
+    "logs": [],
+    "pageErrors": [],
+    "metrics": {
+      "meaningfulRender": true,
+      "hasFrameworkOverlay": false,
+      "overlayCandidateCount": 1,
+      "visibleErrorOverlayCount": 0,
+      "horizontalOverflow": false,
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "bodyBackground": "rgb(21, 29, 34)",
+      "bodyColor": "rgb(251, 247, 242)",
+      "colorScheme": "dark",
+      "matchDark": true,
+      "matchReducedMotion": false,
+      "firstViewport": {
+        "scannedTagContext": true,
+        "petIdentity": false,
+        "contactCta": true,
+        "hiddenContact": false,
+        "privacyOrUrgent": true,
+        "criticalDetails": true,
+        "contactDetail": true,
+        "notListed": false
+      },
+      "interactionTargets": {
+        "contactText": "Contact owner now",
+        "contactHref": "tel:+32470123456",
+        "phoneHref": "tel:+32470123456",
+        "emailHref": "mailto:hello@pawpal.be",
+        "deepLinkHref": "pawpal://tag/round09-fixture",
+        "storeHref": "/store",
+        "hasMisleadingHiddenContact": false
+      },
+      "headings": [
+        "Help Milo get home.",
+        "What to know before moving Milo",
+        "Product",
+        "Company",
+        "Support",
+        "Belgium Pilot"
+      ],
+      "links": [
+        {
+          "text": "Skip to PawPal content",
+          "href": "#main-content"
+        },
+        {
+          "text": "PawPal",
+          "href": "/"
+        },
+        {
+          "text": "Home",
+          "href": "/"
+        },
+        {
+          "text": "Globe",
+          "href": "/globe"
+        },
+        {
+          "text": "About Us",
+          "href": "/about"
+        },
+        {
+          "text": "Store",
+          "href": "/store"
+        },
+        {
+          "text": "Login",
+          "href": "/auth"
+        },
+        {
+          "text": "Contact owner now",
+          "href": "tel:+32470123456"
+        },
+        {
+          "text": "Open this tag in PawPal",
+          "href": "pawpal://tag/round09-fixture"
+        },
+        {
+          "text": "Get a PawPal tag",
+          "href": "/store"
+        },
+        {
+          "text": "hello@pawpal.be",
+          "href": "mailto:hello@pawpal.be"
+        },
+        {
+          "text": "Globe Map",
+          "href": "/globe"
+        },
+        {
+          "text": "NFC Safety Tag",
+          "href": "/store"
+        },
+        {
+          "text": "AI Assistant",
+          "href": "/globe"
+        },
+        {
+          "text": "Community",
+          "href": "/globe"
+        },
+        {
+          "text": "About Us",
+          "href": "/about"
+        }
+      ]
+    },
+    "screenshotPath": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-09-nfc-finder-emergency-states/evidence/screenshots/after-valid-default-phone-dark-390x844.png"
+  },
+  {
+    "route": "/round09-fixture/phone",
+    "group": "valid-default",
+    "state": "phone",
+    "mode": "reduced",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "url": "http://localhost:3000/round09-fixture/phone",
+    "title": "PawPal | Pet Safety Map, Smart Tags, and Local Pet Community",
+    "logs": [],
+    "pageErrors": [],
+    "metrics": {
+      "meaningfulRender": true,
+      "hasFrameworkOverlay": false,
+      "overlayCandidateCount": 1,
+      "visibleErrorOverlayCount": 0,
+      "horizontalOverflow": false,
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "bodyBackground": "rgb(255, 255, 255)",
+      "bodyColor": "rgb(58, 47, 42)",
+      "colorScheme": "light",
+      "matchDark": false,
+      "matchReducedMotion": true,
+      "firstViewport": {
+        "scannedTagContext": true,
+        "petIdentity": false,
+        "contactCta": true,
+        "hiddenContact": false,
+        "privacyOrUrgent": true,
+        "criticalDetails": true,
+        "contactDetail": true,
+        "notListed": false
+      },
+      "interactionTargets": {
+        "contactText": "Contact owner now",
+        "contactHref": "tel:+32470123456",
+        "phoneHref": "tel:+32470123456",
+        "emailHref": "mailto:hello@pawpal.be",
+        "deepLinkHref": "pawpal://tag/round09-fixture",
+        "storeHref": "/store",
+        "hasMisleadingHiddenContact": false
+      },
+      "headings": [
+        "Help Milo get home.",
+        "What to know before moving Milo",
+        "Product",
+        "Company",
+        "Support",
+        "Belgium Pilot"
+      ],
+      "links": [
+        {
+          "text": "Skip to PawPal content",
+          "href": "#main-content"
+        },
+        {
+          "text": "PawPal",
+          "href": "/"
+        },
+        {
+          "text": "Home",
+          "href": "/"
+        },
+        {
+          "text": "Globe",
+          "href": "/globe"
+        },
+        {
+          "text": "About Us",
+          "href": "/about"
+        },
+        {
+          "text": "Store",
+          "href": "/store"
+        },
+        {
+          "text": "Login",
+          "href": "/auth"
+        },
+        {
+          "text": "Contact owner now",
+          "href": "tel:+32470123456"
+        },
+        {
+          "text": "Open this tag in PawPal",
+          "href": "pawpal://tag/round09-fixture"
+        },
+        {
+          "text": "Get a PawPal tag",
+          "href": "/store"
+        },
+        {
+          "text": "hello@pawpal.be",
+          "href": "mailto:hello@pawpal.be"
+        },
+        {
+          "text": "Globe Map",
+          "href": "/globe"
+        },
+        {
+          "text": "NFC Safety Tag",
+          "href": "/store"
+        },
+        {
+          "text": "AI Assistant",
+          "href": "/globe"
+        },
+        {
+          "text": "Community",
+          "href": "/globe"
+        },
+        {
+          "text": "About Us",
+          "href": "/about"
+        }
+      ]
+    },
+    "screenshotPath": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-09-nfc-finder-emergency-states/evidence/screenshots/after-valid-default-phone-reduced-390x844.png"
+  },
+  {
+    "route": "/round09-fixture/phone",
+    "group": "valid-default",
+    "state": "phone",
+    "mode": "light",
+    "viewport": {
+      "width": 768,
+      "height": 1024
+    },
+    "url": "http://localhost:3000/round09-fixture/phone",
+    "title": "PawPal | Pet Safety Map, Smart Tags, and Local Pet Community",
+    "logs": [],
+    "pageErrors": [],
+    "metrics": {
+      "meaningfulRender": true,
+      "hasFrameworkOverlay": false,
+      "overlayCandidateCount": 1,
+      "visibleErrorOverlayCount": 0,
+      "horizontalOverflow": false,
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "bodyBackground": "rgb(255, 255, 255)",
+      "bodyColor": "rgb(58, 47, 42)",
+      "colorScheme": "light",
+      "matchDark": false,
+      "matchReducedMotion": false,
+      "firstViewport": {
+        "scannedTagContext": true,
+        "petIdentity": false,
+        "contactCta": true,
+        "hiddenContact": false,
+        "privacyOrUrgent": true,
+        "criticalDetails": true,
+        "contactDetail": true,
+        "notListed": false
+      },
+      "interactionTargets": {
+        "contactText": "Contact owner now",
+        "contactHref": "tel:+32470123456",
+        "phoneHref": "tel:+32470123456",
+        "emailHref": "mailto:hello@pawpal.be",
+        "deepLinkHref": "pawpal://tag/round09-fixture",
+        "storeHref": "/store",
+        "hasMisleadingHiddenContact": false
+      },
+      "headings": [
+        "Help Milo get home.",
+        "What to know before moving Milo",
+        "Product",
+        "Company",
+        "Support",
+        "Belgium Pilot"
+      ],
+      "links": [
+        {
+          "text": "Skip to PawPal content",
+          "href": "#main-content"
+        },
+        {
+          "text": "PawPal",
+          "href": "/"
+        },
+        {
+          "text": "Home",
+          "href": "/"
+        },
+        {
+          "text": "Globe",
+          "href": "/globe"
+        },
+        {
+          "text": "About Us",
+          "href": "/about"
+        },
+        {
+          "text": "Store",
+          "href": "/store"
+        },
+        {
+          "text": "Login",
+          "href": "/auth"
+        },
+        {
+          "text": "Contact owner now",
+          "href": "tel:+32470123456"
+        },
+        {
+          "text": "Open this tag in PawPal",
+          "href": "pawpal://tag/round09-fixture"
+        },
+        {
+          "text": "Get a PawPal tag",
+          "href": "/store"
+        },
+        {
+          "text": "hello@pawpal.be",
+          "href": "mailto:hello@pawpal.be"
+        },
+        {
+          "text": "Globe Map",
+          "href": "/globe"
+        },
+        {
+          "text": "NFC Safety Tag",
+          "href": "/store"
+        },
+        {
+          "text": "AI Assistant",
+          "href": "/globe"
+        },
+        {
+          "text": "Community",
+          "href": "/globe"
+        },
+        {
+          "text": "About Us",
+          "href": "/about"
+        }
+      ]
+    },
+    "screenshotPath": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-09-nfc-finder-emergency-states/evidence/screenshots/after-valid-default-phone-light-768x1024.png"
+  },
+  {
+    "route": "/round09-fixture/phone",
+    "group": "valid-default",
+    "state": "phone",
+    "mode": "dark",
+    "viewport": {
+      "width": 768,
+      "height": 1024
+    },
+    "url": "http://localhost:3000/round09-fixture/phone",
+    "title": "PawPal | Pet Safety Map, Smart Tags, and Local Pet Community",
+    "logs": [],
+    "pageErrors": [],
+    "metrics": {
+      "meaningfulRender": true,
+      "hasFrameworkOverlay": false,
+      "overlayCandidateCount": 1,
+      "visibleErrorOverlayCount": 0,
+      "horizontalOverflow": false,
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "bodyBackground": "rgb(21, 29, 34)",
+      "bodyColor": "rgb(251, 247, 242)",
+      "colorScheme": "dark",
+      "matchDark": true,
+      "matchReducedMotion": false,
+      "firstViewport": {
+        "scannedTagContext": true,
+        "petIdentity": false,
+        "contactCta": true,
+        "hiddenContact": false,
+        "privacyOrUrgent": true,
+        "criticalDetails": true,
+        "contactDetail": true,
+        "notListed": false
+      },
+      "interactionTargets": {
+        "contactText": "Contact owner now",
+        "contactHref": "tel:+32470123456",
+        "phoneHref": "tel:+32470123456",
+        "emailHref": "mailto:hello@pawpal.be",
+        "deepLinkHref": "pawpal://tag/round09-fixture",
+        "storeHref": "/store",
+        "hasMisleadingHiddenContact": false
+      },
+      "headings": [
+        "Help Milo get home.",
+        "What to know before moving Milo",
+        "Product",
+        "Company",
+        "Support",
+        "Belgium Pilot"
+      ],
+      "links": [
+        {
+          "text": "Skip to PawPal content",
+          "href": "#main-content"
+        },
+        {
+          "text": "PawPal",
+          "href": "/"
+        },
+        {
+          "text": "Home",
+          "href": "/"
+        },
+        {
+          "text": "Globe",
+          "href": "/globe"
+        },
+        {
+          "text": "About Us",
+          "href": "/about"
+        },
+        {
+          "text": "Store",
+          "href": "/store"
+        },
+        {
+          "text": "Login",
+          "href": "/auth"
+        },
+        {
+          "text": "Contact owner now",
+          "href": "tel:+32470123456"
+        },
+        {
+          "text": "Open this tag in PawPal",
+          "href": "pawpal://tag/round09-fixture"
+        },
+        {
+          "text": "Get a PawPal tag",
+          "href": "/store"
+        },
+        {
+          "text": "hello@pawpal.be",
+          "href": "mailto:hello@pawpal.be"
+        },
+        {
+          "text": "Globe Map",
+          "href": "/globe"
+        },
+        {
+          "text": "NFC Safety Tag",
+          "href": "/store"
+        },
+        {
+          "text": "AI Assistant",
+          "href": "/globe"
+        },
+        {
+          "text": "Community",
+          "href": "/globe"
+        },
+        {
+          "text": "About Us",
+          "href": "/about"
+        }
+      ]
+    },
+    "screenshotPath": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-09-nfc-finder-emergency-states/evidence/screenshots/after-valid-default-phone-dark-768x1024.png"
+  },
+  {
+    "route": "/round09-fixture/phone",
+    "group": "valid-default",
+    "state": "phone",
+    "mode": "reduced",
+    "viewport": {
+      "width": 768,
+      "height": 1024
+    },
+    "url": "http://localhost:3000/round09-fixture/phone",
+    "title": "PawPal | Pet Safety Map, Smart Tags, and Local Pet Community",
+    "logs": [],
+    "pageErrors": [],
+    "metrics": {
+      "meaningfulRender": true,
+      "hasFrameworkOverlay": false,
+      "overlayCandidateCount": 1,
+      "visibleErrorOverlayCount": 0,
+      "horizontalOverflow": false,
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "bodyBackground": "rgb(255, 255, 255)",
+      "bodyColor": "rgb(58, 47, 42)",
+      "colorScheme": "light",
+      "matchDark": false,
+      "matchReducedMotion": true,
+      "firstViewport": {
+        "scannedTagContext": true,
+        "petIdentity": false,
+        "contactCta": true,
+        "hiddenContact": false,
+        "privacyOrUrgent": true,
+        "criticalDetails": true,
+        "contactDetail": true,
+        "notListed": false
+      },
+      "interactionTargets": {
+        "contactText": "Contact owner now",
+        "contactHref": "tel:+32470123456",
+        "phoneHref": "tel:+32470123456",
+        "emailHref": "mailto:hello@pawpal.be",
+        "deepLinkHref": "pawpal://tag/round09-fixture",
+        "storeHref": "/store",
+        "hasMisleadingHiddenContact": false
+      },
+      "headings": [
+        "Help Milo get home.",
+        "What to know before moving Milo",
+        "Product",
+        "Company",
+        "Support",
+        "Belgium Pilot"
+      ],
+      "links": [
+        {
+          "text": "Skip to PawPal content",
+          "href": "#main-content"
+        },
+        {
+          "text": "PawPal",
+          "href": "/"
+        },
+        {
+          "text": "Home",
+          "href": "/"
+        },
+        {
+          "text": "Globe",
+          "href": "/globe"
+        },
+        {
+          "text": "About Us",
+          "href": "/about"
+        },
+        {
+          "text": "Store",
+          "href": "/store"
+        },
+        {
+          "text": "Login",
+          "href": "/auth"
+        },
+        {
+          "text": "Contact owner now",
+          "href": "tel:+32470123456"
+        },
+        {
+          "text": "Open this tag in PawPal",
+          "href": "pawpal://tag/round09-fixture"
+        },
+        {
+          "text": "Get a PawPal tag",
+          "href": "/store"
+        },
+        {
+          "text": "hello@pawpal.be",
+          "href": "mailto:hello@pawpal.be"
+        },
+        {
+          "text": "Globe Map",
+          "href": "/globe"
+        },
+        {
+          "text": "NFC Safety Tag",
+          "href": "/store"
+        },
+        {
+          "text": "AI Assistant",
+          "href": "/globe"
+        },
+        {
+          "text": "Community",
+          "href": "/globe"
+        },
+        {
+          "text": "About Us",
+          "href": "/about"
+        }
+      ]
+    },
+    "screenshotPath": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-09-nfc-finder-emergency-states/evidence/screenshots/after-valid-default-phone-reduced-768x1024.png"
+  },
+  {
+    "route": "/round09-fixture/phone",
+    "group": "valid-default",
+    "state": "phone",
+    "mode": "light",
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "url": "http://localhost:3000/round09-fixture/phone",
+    "title": "PawPal | Pet Safety Map, Smart Tags, and Local Pet Community",
+    "logs": [],
+    "pageErrors": [],
+    "metrics": {
+      "meaningfulRender": true,
+      "hasFrameworkOverlay": false,
+      "overlayCandidateCount": 1,
+      "visibleErrorOverlayCount": 0,
+      "horizontalOverflow": false,
+      "scrollWidth": 1280,
+      "clientWidth": 1280,
+      "bodyBackground": "rgb(255, 255, 255)",
+      "bodyColor": "rgb(58, 47, 42)",
+      "colorScheme": "light",
+      "matchDark": false,
+      "matchReducedMotion": false,
+      "firstViewport": {
+        "scannedTagContext": true,
+        "petIdentity": false,
+        "contactCta": true,
+        "hiddenContact": false,
+        "privacyOrUrgent": true,
+        "criticalDetails": true,
+        "contactDetail": true,
+        "notListed": false
+      },
+      "interactionTargets": {
+        "contactText": "Contact owner now",
+        "contactHref": "tel:+32470123456",
+        "phoneHref": "tel:+32470123456",
+        "emailHref": "mailto:hello@pawpal.be",
+        "deepLinkHref": "pawpal://tag/round09-fixture",
+        "storeHref": "/store",
+        "hasMisleadingHiddenContact": false
+      },
+      "headings": [
+        "Help Milo get home.",
+        "What to know before moving Milo",
+        "Product",
+        "Company",
+        "Support",
+        "Belgium Pilot"
+      ],
+      "links": [
+        {
+          "text": "Skip to PawPal content",
+          "href": "#main-content"
+        },
+        {
+          "text": "PawPal",
+          "href": "/"
+        },
+        {
+          "text": "Home",
+          "href": "/"
+        },
+        {
+          "text": "Globe",
+          "href": "/globe"
+        },
+        {
+          "text": "About Us",
+          "href": "/about"
+        },
+        {
+          "text": "Store",
+          "href": "/store"
+        },
+        {
+          "text": "Contact owner now",
+          "href": "tel:+32470123456"
+        },
+        {
+          "text": "Open this tag in PawPal",
+          "href": "pawpal://tag/round09-fixture"
+        },
+        {
+          "text": "Get a PawPal tag",
+          "href": "/store"
+        },
+        {
+          "text": "hello@pawpal.be",
+          "href": "mailto:hello@pawpal.be"
+        },
+        {
+          "text": "Globe Map",
+          "href": "/globe"
+        },
+        {
+          "text": "NFC Safety Tag",
+          "href": "/store"
+        },
+        {
+          "text": "AI Assistant",
+          "href": "/globe"
+        },
+        {
+          "text": "Community",
+          "href": "/globe"
+        },
+        {
+          "text": "About Us",
+          "href": "/about"
+        },
+        {
+          "text": "Store",
+          "href": "/store"
+        }
+      ]
+    },
+    "screenshotPath": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-09-nfc-finder-emergency-states/evidence/screenshots/after-valid-default-phone-light-1280x720.png"
+  },
+  {
+    "route": "/round09-fixture/phone",
+    "group": "valid-default",
+    "state": "phone",
+    "mode": "dark",
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "url": "http://localhost:3000/round09-fixture/phone",
+    "title": "PawPal | Pet Safety Map, Smart Tags, and Local Pet Community",
+    "logs": [],
+    "pageErrors": [],
+    "metrics": {
+      "meaningfulRender": true,
+      "hasFrameworkOverlay": false,
+      "overlayCandidateCount": 1,
+      "visibleErrorOverlayCount": 0,
+      "horizontalOverflow": false,
+      "scrollWidth": 1280,
+      "clientWidth": 1280,
+      "bodyBackground": "rgb(21, 29, 34)",
+      "bodyColor": "rgb(251, 247, 242)",
+      "colorScheme": "dark",
+      "matchDark": true,
+      "matchReducedMotion": false,
+      "firstViewport": {
+        "scannedTagContext": true,
+        "petIdentity": false,
+        "contactCta": true,
+        "hiddenContact": false,
+        "privacyOrUrgent": true,
+        "criticalDetails": true,
+        "contactDetail": true,
+        "notListed": false
+      },
+      "interactionTargets": {
+        "contactText": "Contact owner now",
+        "contactHref": "tel:+32470123456",
+        "phoneHref": "tel:+32470123456",
+        "emailHref": "mailto:hello@pawpal.be",
+        "deepLinkHref": "pawpal://tag/round09-fixture",
+        "storeHref": "/store",
+        "hasMisleadingHiddenContact": false
+      },
+      "headings": [
+        "Help Milo get home.",
+        "What to know before moving Milo",
+        "Product",
+        "Company",
+        "Support",
+        "Belgium Pilot"
+      ],
+      "links": [
+        {
+          "text": "Skip to PawPal content",
+          "href": "#main-content"
+        },
+        {
+          "text": "PawPal",
+          "href": "/"
+        },
+        {
+          "text": "Home",
+          "href": "/"
+        },
+        {
+          "text": "Globe",
+          "href": "/globe"
+        },
+        {
+          "text": "About Us",
+          "href": "/about"
+        },
+        {
+          "text": "Store",
+          "href": "/store"
+        },
+        {
+          "text": "Login",
+          "href": "/auth"
+        },
+        {
+          "text": "Contact owner now",
+          "href": "tel:+32470123456"
+        },
+        {
+          "text": "Open this tag in PawPal",
+          "href": "pawpal://tag/round09-fixture"
+        },
+        {
+          "text": "Get a PawPal tag",
+          "href": "/store"
+        },
+        {
+          "text": "hello@pawpal.be",
+          "href": "mailto:hello@pawpal.be"
+        },
+        {
+          "text": "Globe Map",
+          "href": "/globe"
+        },
+        {
+          "text": "NFC Safety Tag",
+          "href": "/store"
+        },
+        {
+          "text": "AI Assistant",
+          "href": "/globe"
+        },
+        {
+          "text": "Community",
+          "href": "/globe"
+        },
+        {
+          "text": "About Us",
+          "href": "/about"
+        }
+      ]
+    },
+    "screenshotPath": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-09-nfc-finder-emergency-states/evidence/screenshots/after-valid-default-phone-dark-1280x720.png"
+  },
+  {
+    "route": "/round09-fixture/phone",
+    "group": "valid-default",
+    "state": "phone",
+    "mode": "reduced",
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "url": "http://localhost:3000/round09-fixture/phone",
+    "title": "PawPal | Pet Safety Map, Smart Tags, and Local Pet Community",
+    "logs": [],
+    "pageErrors": [],
+    "metrics": {
+      "meaningfulRender": true,
+      "hasFrameworkOverlay": false,
+      "overlayCandidateCount": 1,
+      "visibleErrorOverlayCount": 0,
+      "horizontalOverflow": false,
+      "scrollWidth": 1280,
+      "clientWidth": 1280,
+      "bodyBackground": "rgb(255, 255, 255)",
+      "bodyColor": "rgb(58, 47, 42)",
+      "colorScheme": "light",
+      "matchDark": false,
+      "matchReducedMotion": true,
+      "firstViewport": {
+        "scannedTagContext": true,
+        "petIdentity": false,
+        "contactCta": true,
+        "hiddenContact": false,
+        "privacyOrUrgent": true,
+        "criticalDetails": true,
+        "contactDetail": true,
+        "notListed": false
+      },
+      "interactionTargets": {
+        "contactText": "Contact owner now",
+        "contactHref": "tel:+32470123456",
+        "phoneHref": "tel:+32470123456",
+        "emailHref": "mailto:hello@pawpal.be",
+        "deepLinkHref": "pawpal://tag/round09-fixture",
+        "storeHref": "/store",
+        "hasMisleadingHiddenContact": false
+      },
+      "headings": [
+        "Help Milo get home.",
+        "What to know before moving Milo",
+        "Product",
+        "Company",
+        "Support",
+        "Belgium Pilot"
+      ],
+      "links": [
+        {
+          "text": "Skip to PawPal content",
+          "href": "#main-content"
+        },
+        {
+          "text": "PawPal",
+          "href": "/"
+        },
+        {
+          "text": "Home",
+          "href": "/"
+        },
+        {
+          "text": "Globe",
+          "href": "/globe"
+        },
+        {
+          "text": "About Us",
+          "href": "/about"
+        },
+        {
+          "text": "Store",
+          "href": "/store"
+        },
+        {
+          "text": "Login",
+          "href": "/auth"
+        },
+        {
+          "text": "Contact owner now",
+          "href": "tel:+32470123456"
+        },
+        {
+          "text": "Open this tag in PawPal",
+          "href": "pawpal://tag/round09-fixture"
+        },
+        {
+          "text": "Get a PawPal tag",
+          "href": "/store"
+        },
+        {
+          "text": "hello@pawpal.be",
+          "href": "mailto:hello@pawpal.be"
+        },
+        {
+          "text": "Globe Map",
+          "href": "/globe"
+        },
+        {
+          "text": "NFC Safety Tag",
+          "href": "/store"
+        },
+        {
+          "text": "AI Assistant",
+          "href": "/globe"
+        },
+        {
+          "text": "Community",
+          "href": "/globe"
+        },
+        {
+          "text": "About Us",
+          "href": "/about"
+        }
+      ]
+    },
+    "screenshotPath": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-09-nfc-finder-emergency-states/evidence/screenshots/after-valid-default-phone-reduced-1280x720.png"
+  },
+  {
+    "route": "/round09-fixture/phone",
+    "group": "valid-default",
+    "state": "phone",
+    "mode": "light",
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "url": "http://localhost:3000/round09-fixture/phone",
+    "title": "PawPal | Pet Safety Map, Smart Tags, and Local Pet Community",
+    "logs": [],
+    "pageErrors": [],
+    "metrics": {
+      "meaningfulRender": true,
+      "hasFrameworkOverlay": false,
+      "overlayCandidateCount": 1,
+      "visibleErrorOverlayCount": 0,
+      "horizontalOverflow": false,
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "bodyBackground": "rgb(255, 255, 255)",
+      "bodyColor": "rgb(58, 47, 42)",
+      "colorScheme": "light",
+      "matchDark": false,
+      "matchReducedMotion": false,
+      "firstViewport": {
+        "scannedTagContext": true,
+        "petIdentity": false,
+        "contactCta": true,
+        "hiddenContact": false,
+        "privacyOrUrgent": true,
+        "criticalDetails": true,
+        "contactDetail": true,
+        "notListed": false
+      },
+      "interactionTargets": {
+        "contactText": "Contact owner now",
+        "contactHref": "tel:+32470123456",
+        "phoneHref": "tel:+32470123456",
+        "emailHref": "mailto:hello@pawpal.be",
+        "deepLinkHref": "pawpal://tag/round09-fixture",
+        "storeHref": "/store",
+        "hasMisleadingHiddenContact": false
+      },
+      "headings": [
+        "Help Milo get home.",
+        "What to know before moving Milo",
+        "Product",
+        "Company",
+        "Support",
+        "Belgium Pilot"
+      ],
+      "links": [
+        {
+          "text": "Skip to PawPal content",
+          "href": "#main-content"
+        },
+        {
+          "text": "PawPal",
+          "href": "/"
+        },
+        {
+          "text": "Home",
+          "href": "/"
+        },
+        {
+          "text": "Globe",
+          "href": "/globe"
+        },
+        {
+          "text": "About Us",
+          "href": "/about"
+        },
+        {
+          "text": "Store",
+          "href": "/store"
+        },
+        {
+          "text": "Login",
+          "href": "/auth"
+        },
+        {
+          "text": "Contact owner now",
+          "href": "tel:+32470123456"
+        },
+        {
+          "text": "Open this tag in PawPal",
+          "href": "pawpal://tag/round09-fixture"
+        },
+        {
+          "text": "Get a PawPal tag",
+          "href": "/store"
+        },
+        {
+          "text": "hello@pawpal.be",
+          "href": "mailto:hello@pawpal.be"
+        },
+        {
+          "text": "Globe Map",
+          "href": "/globe"
+        },
+        {
+          "text": "NFC Safety Tag",
+          "href": "/store"
+        },
+        {
+          "text": "AI Assistant",
+          "href": "/globe"
+        },
+        {
+          "text": "Community",
+          "href": "/globe"
+        },
+        {
+          "text": "About Us",
+          "href": "/about"
+        }
+      ]
+    },
+    "screenshotPath": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-09-nfc-finder-emergency-states/evidence/screenshots/after-valid-default-phone-light-1440x900.png"
+  },
+  {
+    "route": "/round09-fixture/phone",
+    "group": "valid-default",
+    "state": "phone",
+    "mode": "dark",
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "url": "http://localhost:3000/round09-fixture/phone",
+    "title": "PawPal | Pet Safety Map, Smart Tags, and Local Pet Community",
+    "logs": [],
+    "pageErrors": [],
+    "metrics": {
+      "meaningfulRender": true,
+      "hasFrameworkOverlay": false,
+      "overlayCandidateCount": 1,
+      "visibleErrorOverlayCount": 0,
+      "horizontalOverflow": false,
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "bodyBackground": "rgb(21, 29, 34)",
+      "bodyColor": "rgb(251, 247, 242)",
+      "colorScheme": "dark",
+      "matchDark": true,
+      "matchReducedMotion": false,
+      "firstViewport": {
+        "scannedTagContext": true,
+        "petIdentity": false,
+        "contactCta": true,
+        "hiddenContact": false,
+        "privacyOrUrgent": true,
+        "criticalDetails": true,
+        "contactDetail": true,
+        "notListed": false
+      },
+      "interactionTargets": {
+        "contactText": "Contact owner now",
+        "contactHref": "tel:+32470123456",
+        "phoneHref": "tel:+32470123456",
+        "emailHref": "mailto:hello@pawpal.be",
+        "deepLinkHref": "pawpal://tag/round09-fixture",
+        "storeHref": "/store",
+        "hasMisleadingHiddenContact": false
+      },
+      "headings": [
+        "Help Milo get home.",
+        "What to know before moving Milo",
+        "Product",
+        "Company",
+        "Support",
+        "Belgium Pilot"
+      ],
+      "links": [
+        {
+          "text": "Skip to PawPal content",
+          "href": "#main-content"
+        },
+        {
+          "text": "PawPal",
+          "href": "/"
+        },
+        {
+          "text": "Home",
+          "href": "/"
+        },
+        {
+          "text": "Globe",
+          "href": "/globe"
+        },
+        {
+          "text": "About Us",
+          "href": "/about"
+        },
+        {
+          "text": "Store",
+          "href": "/store"
+        },
+        {
+          "text": "Login",
+          "href": "/auth"
+        },
+        {
+          "text": "Contact owner now",
+          "href": "tel:+32470123456"
+        },
+        {
+          "text": "Open this tag in PawPal",
+          "href": "pawpal://tag/round09-fixture"
+        },
+        {
+          "text": "Get a PawPal tag",
+          "href": "/store"
+        },
+        {
+          "text": "hello@pawpal.be",
+          "href": "mailto:hello@pawpal.be"
+        },
+        {
+          "text": "Globe Map",
+          "href": "/globe"
+        },
+        {
+          "text": "NFC Safety Tag",
+          "href": "/store"
+        },
+        {
+          "text": "AI Assistant",
+          "href": "/globe"
+        },
+        {
+          "text": "Community",
+          "href": "/globe"
+        },
+        {
+          "text": "About Us",
+          "href": "/about"
+        }
+      ]
+    },
+    "screenshotPath": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-09-nfc-finder-emergency-states/evidence/screenshots/after-valid-default-phone-dark-1440x900.png"
+  },
+  {
+    "route": "/round09-fixture/phone",
+    "group": "valid-default",
+    "state": "phone",
+    "mode": "reduced",
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "url": "http://localhost:3000/round09-fixture/phone",
+    "title": "PawPal | Pet Safety Map, Smart Tags, and Local Pet Community",
+    "logs": [],
+    "pageErrors": [],
+    "metrics": {
+      "meaningfulRender": true,
+      "hasFrameworkOverlay": false,
+      "overlayCandidateCount": 1,
+      "visibleErrorOverlayCount": 0,
+      "horizontalOverflow": false,
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "bodyBackground": "rgb(255, 255, 255)",
+      "bodyColor": "rgb(58, 47, 42)",
+      "colorScheme": "light",
+      "matchDark": false,
+      "matchReducedMotion": true,
+      "firstViewport": {
+        "scannedTagContext": true,
+        "petIdentity": false,
+        "contactCta": true,
+        "hiddenContact": false,
+        "privacyOrUrgent": true,
+        "criticalDetails": true,
+        "contactDetail": true,
+        "notListed": false
+      },
+      "interactionTargets": {
+        "contactText": "Contact owner now",
+        "contactHref": "tel:+32470123456",
+        "phoneHref": "tel:+32470123456",
+        "emailHref": "mailto:hello@pawpal.be",
+        "deepLinkHref": "pawpal://tag/round09-fixture",
+        "storeHref": "/store",
+        "hasMisleadingHiddenContact": false
+      },
+      "headings": [
+        "Help Milo get home.",
+        "What to know before moving Milo",
+        "Product",
+        "Company",
+        "Support",
+        "Belgium Pilot"
+      ],
+      "links": [
+        {
+          "text": "Skip to PawPal content",
+          "href": "#main-content"
+        },
+        {
+          "text": "PawPal",
+          "href": "/"
+        },
+        {
+          "text": "Home",
+          "href": "/"
+        },
+        {
+          "text": "Globe",
+          "href": "/globe"
+        },
+        {
+          "text": "About Us",
+          "href": "/about"
+        },
+        {
+          "text": "Store",
+          "href": "/store"
+        },
+        {
+          "text": "Login",
+          "href": "/auth"
+        },
+        {
+          "text": "Contact owner now",
+          "href": "tel:+32470123456"
+        },
+        {
+          "text": "Open this tag in PawPal",
+          "href": "pawpal://tag/round09-fixture"
+        },
+        {
+          "text": "Get a PawPal tag",
+          "href": "/store"
+        },
+        {
+          "text": "hello@pawpal.be",
+          "href": "mailto:hello@pawpal.be"
+        },
+        {
+          "text": "Globe Map",
+          "href": "/globe"
+        },
+        {
+          "text": "NFC Safety Tag",
+          "href": "/store"
+        },
+        {
+          "text": "AI Assistant",
+          "href": "/globe"
+        },
+        {
+          "text": "Community",
+          "href": "/globe"
+        },
+        {
+          "text": "About Us",
+          "href": "/about"
+        }
+      ]
+    },
+    "screenshotPath": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-09-nfc-finder-emergency-states/evidence/screenshots/after-valid-default-phone-reduced-1440x900.png"
+  },
+  {
+    "route": "/round09-fixture/email",
+    "group": "edge",
+    "state": "email",
+    "mode": "light",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "url": "http://localhost:3000/round09-fixture/email",
+    "title": "PawPal | Pet Safety Map, Smart Tags, and Local Pet Community",
+    "logs": [],
+    "pageErrors": [],
+    "metrics": {
+      "meaningfulRender": true,
+      "hasFrameworkOverlay": false,
+      "overlayCandidateCount": 1,
+      "visibleErrorOverlayCount": 0,
+      "horizontalOverflow": false,
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "bodyBackground": "rgb(255, 255, 255)",
+      "bodyColor": "rgb(58, 47, 42)",
+      "colorScheme": "light",
+      "matchDark": false,
+      "matchReducedMotion": false,
+      "firstViewport": {
+        "scannedTagContext": true,
+        "petIdentity": false,
+        "contactCta": true,
+        "hiddenContact": false,
+        "privacyOrUrgent": true,
+        "criticalDetails": true,
+        "contactDetail": true,
+        "notListed": false
+      },
+      "interactionTargets": {
+        "contactText": "Contact owner now",
+        "contactHref": "mailto:avery.finder-support@example.com",
+        "phoneHref": null,
+        "emailHref": "mailto:avery.finder-support@example.com",
+        "deepLinkHref": "pawpal://tag/round09-fixture-email",
+        "storeHref": "/store",
+        "hasMisleadingHiddenContact": false
+      },
+      "headings": [
+        "Help Milo get home.",
+        "What to know before moving Milo",
+        "Product",
+        "Company",
+        "Support",
+        "Belgium Pilot"
+      ],
+      "links": [
+        {
+          "text": "Skip to PawPal content",
+          "href": "#main-content"
+        },
+        {
+          "text": "PawPal",
+          "href": "/"
+        },
+        {
+          "text": "Home",
+          "href": "/"
+        },
+        {
+          "text": "Globe",
+          "href": "/globe"
+        },
+        {
+          "text": "About Us",
+          "href": "/about"
+        },
+        {
+          "text": "Store",
+          "href": "/store"
+        },
+        {
+          "text": "Login",
+          "href": "/auth"
+        },
+        {
+          "text": "Contact owner now",
+          "href": "mailto:avery.finder-support@example.com"
+        },
+        {
+          "text": "Open this tag in PawPal",
+          "href": "pawpal://tag/round09-fixture-email"
+        },
+        {
+          "text": "Get a PawPal tag",
+          "href": "/store"
+        },
+        {
+          "text": "hello@pawpal.be",
+          "href": "mailto:hello@pawpal.be"
+        },
+        {
+          "text": "Globe Map",
+          "href": "/globe"
+        },
+        {
+          "text": "NFC Safety Tag",
+          "href": "/store"
+        },
+        {
+          "text": "AI Assistant",
+          "href": "/globe"
+        },
+        {
+          "text": "Community",
+          "href": "/globe"
+        },
+        {
+          "text": "About Us",
+          "href": "/about"
+        }
+      ]
+    },
+    "screenshotPath": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-09-nfc-finder-emergency-states/evidence/screenshots/after-edge-email-light-390x844.png"
+  },
+  {
+    "route": "/round09-fixture/email",
+    "group": "edge",
+    "state": "email",
+    "mode": "dark",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "url": "http://localhost:3000/round09-fixture/email",
+    "title": "PawPal | Pet Safety Map, Smart Tags, and Local Pet Community",
+    "logs": [],
+    "pageErrors": [],
+    "metrics": {
+      "meaningfulRender": true,
+      "hasFrameworkOverlay": false,
+      "overlayCandidateCount": 1,
+      "visibleErrorOverlayCount": 0,
+      "horizontalOverflow": false,
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "bodyBackground": "rgb(21, 29, 34)",
+      "bodyColor": "rgb(251, 247, 242)",
+      "colorScheme": "dark",
+      "matchDark": true,
+      "matchReducedMotion": false,
+      "firstViewport": {
+        "scannedTagContext": true,
+        "petIdentity": false,
+        "contactCta": true,
+        "hiddenContact": false,
+        "privacyOrUrgent": true,
+        "criticalDetails": true,
+        "contactDetail": true,
+        "notListed": false
+      },
+      "interactionTargets": {
+        "contactText": "Contact owner now",
+        "contactHref": "mailto:avery.finder-support@example.com",
+        "phoneHref": null,
+        "emailHref": "mailto:avery.finder-support@example.com",
+        "deepLinkHref": "pawpal://tag/round09-fixture-email",
+        "storeHref": "/store",
+        "hasMisleadingHiddenContact": false
+      },
+      "headings": [
+        "Help Milo get home.",
+        "What to know before moving Milo",
+        "Product",
+        "Company",
+        "Support",
+        "Belgium Pilot"
+      ],
+      "links": [
+        {
+          "text": "Skip to PawPal content",
+          "href": "#main-content"
+        },
+        {
+          "text": "PawPal",
+          "href": "/"
+        },
+        {
+          "text": "Home",
+          "href": "/"
+        },
+        {
+          "text": "Globe",
+          "href": "/globe"
+        },
+        {
+          "text": "About Us",
+          "href": "/about"
+        },
+        {
+          "text": "Store",
+          "href": "/store"
+        },
+        {
+          "text": "Login",
+          "href": "/auth"
+        },
+        {
+          "text": "Contact owner now",
+          "href": "mailto:avery.finder-support@example.com"
+        },
+        {
+          "text": "Open this tag in PawPal",
+          "href": "pawpal://tag/round09-fixture-email"
+        },
+        {
+          "text": "Get a PawPal tag",
+          "href": "/store"
+        },
+        {
+          "text": "hello@pawpal.be",
+          "href": "mailto:hello@pawpal.be"
+        },
+        {
+          "text": "Globe Map",
+          "href": "/globe"
+        },
+        {
+          "text": "NFC Safety Tag",
+          "href": "/store"
+        },
+        {
+          "text": "AI Assistant",
+          "href": "/globe"
+        },
+        {
+          "text": "Community",
+          "href": "/globe"
+        },
+        {
+          "text": "About Us",
+          "href": "/about"
+        }
+      ]
+    },
+    "screenshotPath": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-09-nfc-finder-emergency-states/evidence/screenshots/after-edge-email-dark-390x844.png"
+  },
+  {
+    "route": "/round09-fixture/email",
+    "group": "edge",
+    "state": "email",
+    "mode": "reduced",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "url": "http://localhost:3000/round09-fixture/email",
+    "title": "PawPal | Pet Safety Map, Smart Tags, and Local Pet Community",
+    "logs": [],
+    "pageErrors": [],
+    "metrics": {
+      "meaningfulRender": true,
+      "hasFrameworkOverlay": false,
+      "overlayCandidateCount": 1,
+      "visibleErrorOverlayCount": 0,
+      "horizontalOverflow": false,
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "bodyBackground": "rgb(255, 255, 255)",
+      "bodyColor": "rgb(58, 47, 42)",
+      "colorScheme": "light",
+      "matchDark": false,
+      "matchReducedMotion": true,
+      "firstViewport": {
+        "scannedTagContext": true,
+        "petIdentity": false,
+        "contactCta": true,
+        "hiddenContact": false,
+        "privacyOrUrgent": true,
+        "criticalDetails": true,
+        "contactDetail": true,
+        "notListed": false
+      },
+      "interactionTargets": {
+        "contactText": "Contact owner now",
+        "contactHref": "mailto:avery.finder-support@example.com",
+        "phoneHref": null,
+        "emailHref": "mailto:avery.finder-support@example.com",
+        "deepLinkHref": "pawpal://tag/round09-fixture-email",
+        "storeHref": "/store",
+        "hasMisleadingHiddenContact": false
+      },
+      "headings": [
+        "Help Milo get home.",
+        "What to know before moving Milo",
+        "Product",
+        "Company",
+        "Support",
+        "Belgium Pilot"
+      ],
+      "links": [
+        {
+          "text": "Skip to PawPal content",
+          "href": "#main-content"
+        },
+        {
+          "text": "PawPal",
+          "href": "/"
+        },
+        {
+          "text": "Home",
+          "href": "/"
+        },
+        {
+          "text": "Globe",
+          "href": "/globe"
+        },
+        {
+          "text": "About Us",
+          "href": "/about"
+        },
+        {
+          "text": "Store",
+          "href": "/store"
+        },
+        {
+          "text": "Login",
+          "href": "/auth"
+        },
+        {
+          "text": "Contact owner now",
+          "href": "mailto:avery.finder-support@example.com"
+        },
+        {
+          "text": "Open this tag in PawPal",
+          "href": "pawpal://tag/round09-fixture-email"
+        },
+        {
+          "text": "Get a PawPal tag",
+          "href": "/store"
+        },
+        {
+          "text": "hello@pawpal.be",
+          "href": "mailto:hello@pawpal.be"
+        },
+        {
+          "text": "Globe Map",
+          "href": "/globe"
+        },
+        {
+          "text": "NFC Safety Tag",
+          "href": "/store"
+        },
+        {
+          "text": "AI Assistant",
+          "href": "/globe"
+        },
+        {
+          "text": "Community",
+          "href": "/globe"
+        },
+        {
+          "text": "About Us",
+          "href": "/about"
+        }
+      ]
+    },
+    "screenshotPath": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-09-nfc-finder-emergency-states/evidence/screenshots/after-edge-email-reduced-390x844.png"
+  },
+  {
+    "route": "/round09-fixture/email",
+    "group": "edge",
+    "state": "email",
+    "mode": "light",
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "url": "http://localhost:3000/round09-fixture/email",
+    "title": "PawPal | Pet Safety Map, Smart Tags, and Local Pet Community",
+    "logs": [],
+    "pageErrors": [],
+    "metrics": {
+      "meaningfulRender": true,
+      "hasFrameworkOverlay": false,
+      "overlayCandidateCount": 1,
+      "visibleErrorOverlayCount": 0,
+      "horizontalOverflow": false,
+      "scrollWidth": 1280,
+      "clientWidth": 1280,
+      "bodyBackground": "rgb(255, 255, 255)",
+      "bodyColor": "rgb(58, 47, 42)",
+      "colorScheme": "light",
+      "matchDark": false,
+      "matchReducedMotion": false,
+      "firstViewport": {
+        "scannedTagContext": true,
+        "petIdentity": false,
+        "contactCta": true,
+        "hiddenContact": false,
+        "privacyOrUrgent": true,
+        "criticalDetails": true,
+        "contactDetail": true,
+        "notListed": false
+      },
+      "interactionTargets": {
+        "contactText": "Contact owner now",
+        "contactHref": "mailto:avery.finder-support@example.com",
+        "phoneHref": null,
+        "emailHref": "mailto:avery.finder-support@example.com",
+        "deepLinkHref": "pawpal://tag/round09-fixture-email",
+        "storeHref": "/store",
+        "hasMisleadingHiddenContact": false
+      },
+      "headings": [
+        "Help Milo get home.",
+        "What to know before moving Milo",
+        "Product",
+        "Company",
+        "Support",
+        "Belgium Pilot"
+      ],
+      "links": [
+        {
+          "text": "Skip to PawPal content",
+          "href": "#main-content"
+        },
+        {
+          "text": "PawPal",
+          "href": "/"
+        },
+        {
+          "text": "Home",
+          "href": "/"
+        },
+        {
+          "text": "Globe",
+          "href": "/globe"
+        },
+        {
+          "text": "About Us",
+          "href": "/about"
+        },
+        {
+          "text": "Store",
+          "href": "/store"
+        },
+        {
+          "text": "Login",
+          "href": "/auth"
+        },
+        {
+          "text": "Contact owner now",
+          "href": "mailto:avery.finder-support@example.com"
+        },
+        {
+          "text": "Open this tag in PawPal",
+          "href": "pawpal://tag/round09-fixture-email"
+        },
+        {
+          "text": "Get a PawPal tag",
+          "href": "/store"
+        },
+        {
+          "text": "hello@pawpal.be",
+          "href": "mailto:hello@pawpal.be"
+        },
+        {
+          "text": "Globe Map",
+          "href": "/globe"
+        },
+        {
+          "text": "NFC Safety Tag",
+          "href": "/store"
+        },
+        {
+          "text": "AI Assistant",
+          "href": "/globe"
+        },
+        {
+          "text": "Community",
+          "href": "/globe"
+        },
+        {
+          "text": "About Us",
+          "href": "/about"
+        }
+      ]
+    },
+    "screenshotPath": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-09-nfc-finder-emergency-states/evidence/screenshots/after-edge-email-light-1280x720.png"
+  },
+  {
+    "route": "/round09-fixture/email",
+    "group": "edge",
+    "state": "email",
+    "mode": "dark",
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "url": "http://localhost:3000/round09-fixture/email",
+    "title": "PawPal | Pet Safety Map, Smart Tags, and Local Pet Community",
+    "logs": [],
+    "pageErrors": [],
+    "metrics": {
+      "meaningfulRender": true,
+      "hasFrameworkOverlay": false,
+      "overlayCandidateCount": 1,
+      "visibleErrorOverlayCount": 0,
+      "horizontalOverflow": false,
+      "scrollWidth": 1280,
+      "clientWidth": 1280,
+      "bodyBackground": "rgb(21, 29, 34)",
+      "bodyColor": "rgb(251, 247, 242)",
+      "colorScheme": "dark",
+      "matchDark": true,
+      "matchReducedMotion": false,
+      "firstViewport": {
+        "scannedTagContext": true,
+        "petIdentity": false,
+        "contactCta": true,
+        "hiddenContact": false,
+        "privacyOrUrgent": true,
+        "criticalDetails": true,
+        "contactDetail": true,
+        "notListed": false
+      },
+      "interactionTargets": {
+        "contactText": "Contact owner now",
+        "contactHref": "mailto:avery.finder-support@example.com",
+        "phoneHref": null,
+        "emailHref": "mailto:avery.finder-support@example.com",
+        "deepLinkHref": "pawpal://tag/round09-fixture-email",
+        "storeHref": "/store",
+        "hasMisleadingHiddenContact": false
+      },
+      "headings": [
+        "Help Milo get home.",
+        "What to know before moving Milo",
+        "Product",
+        "Company",
+        "Support",
+        "Belgium Pilot"
+      ],
+      "links": [
+        {
+          "text": "Skip to PawPal content",
+          "href": "#main-content"
+        },
+        {
+          "text": "PawPal",
+          "href": "/"
+        },
+        {
+          "text": "Home",
+          "href": "/"
+        },
+        {
+          "text": "Globe",
+          "href": "/globe"
+        },
+        {
+          "text": "About Us",
+          "href": "/about"
+        },
+        {
+          "text": "Store",
+          "href": "/store"
+        },
+        {
+          "text": "Contact owner now",
+          "href": "mailto:avery.finder-support@example.com"
+        },
+        {
+          "text": "Open this tag in PawPal",
+          "href": "pawpal://tag/round09-fixture-email"
+        },
+        {
+          "text": "Get a PawPal tag",
+          "href": "/store"
+        },
+        {
+          "text": "hello@pawpal.be",
+          "href": "mailto:hello@pawpal.be"
+        },
+        {
+          "text": "Globe Map",
+          "href": "/globe"
+        },
+        {
+          "text": "NFC Safety Tag",
+          "href": "/store"
+        },
+        {
+          "text": "AI Assistant",
+          "href": "/globe"
+        },
+        {
+          "text": "Community",
+          "href": "/globe"
+        },
+        {
+          "text": "About Us",
+          "href": "/about"
+        },
+        {
+          "text": "Store",
+          "href": "/store"
+        }
+      ]
+    },
+    "screenshotPath": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-09-nfc-finder-emergency-states/evidence/screenshots/after-edge-email-dark-1280x720.png"
+  },
+  {
+    "route": "/round09-fixture/email",
+    "group": "edge",
+    "state": "email",
+    "mode": "reduced",
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "url": "http://localhost:3000/round09-fixture/email",
+    "title": "PawPal | Pet Safety Map, Smart Tags, and Local Pet Community",
+    "logs": [],
+    "pageErrors": [],
+    "metrics": {
+      "meaningfulRender": true,
+      "hasFrameworkOverlay": false,
+      "overlayCandidateCount": 1,
+      "visibleErrorOverlayCount": 0,
+      "horizontalOverflow": false,
+      "scrollWidth": 1280,
+      "clientWidth": 1280,
+      "bodyBackground": "rgb(255, 255, 255)",
+      "bodyColor": "rgb(58, 47, 42)",
+      "colorScheme": "light",
+      "matchDark": false,
+      "matchReducedMotion": true,
+      "firstViewport": {
+        "scannedTagContext": true,
+        "petIdentity": false,
+        "contactCta": true,
+        "hiddenContact": false,
+        "privacyOrUrgent": true,
+        "criticalDetails": true,
+        "contactDetail": true,
+        "notListed": false
+      },
+      "interactionTargets": {
+        "contactText": "Contact owner now",
+        "contactHref": "mailto:avery.finder-support@example.com",
+        "phoneHref": null,
+        "emailHref": "mailto:avery.finder-support@example.com",
+        "deepLinkHref": "pawpal://tag/round09-fixture-email",
+        "storeHref": "/store",
+        "hasMisleadingHiddenContact": false
+      },
+      "headings": [
+        "Help Milo get home.",
+        "What to know before moving Milo",
+        "Product",
+        "Company",
+        "Support",
+        "Belgium Pilot"
+      ],
+      "links": [
+        {
+          "text": "Skip to PawPal content",
+          "href": "#main-content"
+        },
+        {
+          "text": "PawPal",
+          "href": "/"
+        },
+        {
+          "text": "Home",
+          "href": "/"
+        },
+        {
+          "text": "Globe",
+          "href": "/globe"
+        },
+        {
+          "text": "About Us",
+          "href": "/about"
+        },
+        {
+          "text": "Store",
+          "href": "/store"
+        },
+        {
+          "text": "Login",
+          "href": "/auth"
+        },
+        {
+          "text": "Contact owner now",
+          "href": "mailto:avery.finder-support@example.com"
+        },
+        {
+          "text": "Open this tag in PawPal",
+          "href": "pawpal://tag/round09-fixture-email"
+        },
+        {
+          "text": "Get a PawPal tag",
+          "href": "/store"
+        },
+        {
+          "text": "hello@pawpal.be",
+          "href": "mailto:hello@pawpal.be"
+        },
+        {
+          "text": "Globe Map",
+          "href": "/globe"
+        },
+        {
+          "text": "NFC Safety Tag",
+          "href": "/store"
+        },
+        {
+          "text": "AI Assistant",
+          "href": "/globe"
+        },
+        {
+          "text": "Community",
+          "href": "/globe"
+        },
+        {
+          "text": "About Us",
+          "href": "/about"
+        }
+      ]
+    },
+    "screenshotPath": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-09-nfc-finder-emergency-states/evidence/screenshots/after-edge-email-reduced-1280x720.png"
+  },
+  {
+    "route": "/round09-fixture/hidden",
+    "group": "edge",
+    "state": "hidden",
+    "mode": "light",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "url": "http://localhost:3000/round09-fixture/hidden",
+    "title": "PawPal | Pet Safety Map, Smart Tags, and Local Pet Community",
+    "logs": [],
+    "pageErrors": [],
+    "metrics": {
+      "meaningfulRender": true,
+      "hasFrameworkOverlay": false,
+      "overlayCandidateCount": 1,
+      "visibleErrorOverlayCount": 0,
+      "horizontalOverflow": false,
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "bodyBackground": "rgb(255, 255, 255)",
+      "bodyColor": "rgb(58, 47, 42)",
+      "colorScheme": "light",
+      "matchDark": false,
+      "matchReducedMotion": false,
+      "firstViewport": {
+        "scannedTagContext": true,
+        "petIdentity": false,
+        "contactCta": false,
+        "hiddenContact": true,
+        "privacyOrUrgent": true,
+        "criticalDetails": true,
+        "contactDetail": true,
+        "notListed": false
+      },
+      "interactionTargets": {
+        "contactText": null,
+        "contactHref": null,
+        "phoneHref": null,
+        "emailHref": "mailto:hello@pawpal.be",
+        "deepLinkHref": "pawpal://tag/round09-fixture-hidden",
+        "storeHref": "/store",
+        "hasMisleadingHiddenContact": false
+      },
+      "headings": [
+        "Help Milo get home.",
+        "What to know before moving Milo",
+        "Product",
+        "Company",
+        "Support",
+        "Belgium Pilot"
+      ],
+      "links": [
+        {
+          "text": "Skip to PawPal content",
+          "href": "#main-content"
+        },
+        {
+          "text": "PawPal",
+          "href": "/"
+        },
+        {
+          "text": "Home",
+          "href": "/"
+        },
+        {
+          "text": "Globe",
+          "href": "/globe"
+        },
+        {
+          "text": "About Us",
+          "href": "/about"
+        },
+        {
+          "text": "Store",
+          "href": "/store"
+        },
+        {
+          "text": "Login",
+          "href": "/auth"
+        },
+        {
+          "text": "Open this tag in PawPal",
+          "href": "pawpal://tag/round09-fixture-hidden"
+        },
+        {
+          "text": "Get a PawPal tag",
+          "href": "/store"
+        },
+        {
+          "text": "hello@pawpal.be",
+          "href": "mailto:hello@pawpal.be"
+        },
+        {
+          "text": "Globe Map",
+          "href": "/globe"
+        },
+        {
+          "text": "NFC Safety Tag",
+          "href": "/store"
+        },
+        {
+          "text": "AI Assistant",
+          "href": "/globe"
+        },
+        {
+          "text": "Community",
+          "href": "/globe"
+        },
+        {
+          "text": "About Us",
+          "href": "/about"
+        },
+        {
+          "text": "Store",
+          "href": "/store"
+        }
+      ]
+    },
+    "screenshotPath": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-09-nfc-finder-emergency-states/evidence/screenshots/after-edge-hidden-light-390x844.png"
+  },
+  {
+    "route": "/round09-fixture/hidden",
+    "group": "edge",
+    "state": "hidden",
+    "mode": "dark",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "url": "http://localhost:3000/round09-fixture/hidden",
+    "title": "PawPal | Pet Safety Map, Smart Tags, and Local Pet Community",
+    "logs": [],
+    "pageErrors": [],
+    "metrics": {
+      "meaningfulRender": true,
+      "hasFrameworkOverlay": false,
+      "overlayCandidateCount": 1,
+      "visibleErrorOverlayCount": 0,
+      "horizontalOverflow": false,
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "bodyBackground": "rgb(21, 29, 34)",
+      "bodyColor": "rgb(251, 247, 242)",
+      "colorScheme": "dark",
+      "matchDark": true,
+      "matchReducedMotion": false,
+      "firstViewport": {
+        "scannedTagContext": true,
+        "petIdentity": false,
+        "contactCta": false,
+        "hiddenContact": true,
+        "privacyOrUrgent": true,
+        "criticalDetails": true,
+        "contactDetail": true,
+        "notListed": false
+      },
+      "interactionTargets": {
+        "contactText": null,
+        "contactHref": null,
+        "phoneHref": null,
+        "emailHref": "mailto:hello@pawpal.be",
+        "deepLinkHref": "pawpal://tag/round09-fixture-hidden",
+        "storeHref": "/store",
+        "hasMisleadingHiddenContact": false
+      },
+      "headings": [
+        "Help Milo get home.",
+        "What to know before moving Milo",
+        "Product",
+        "Company",
+        "Support",
+        "Belgium Pilot"
+      ],
+      "links": [
+        {
+          "text": "Skip to PawPal content",
+          "href": "#main-content"
+        },
+        {
+          "text": "PawPal",
+          "href": "/"
+        },
+        {
+          "text": "Home",
+          "href": "/"
+        },
+        {
+          "text": "Globe",
+          "href": "/globe"
+        },
+        {
+          "text": "About Us",
+          "href": "/about"
+        },
+        {
+          "text": "Store",
+          "href": "/store"
+        },
+        {
+          "text": "Login",
+          "href": "/auth"
+        },
+        {
+          "text": "Open this tag in PawPal",
+          "href": "pawpal://tag/round09-fixture-hidden"
+        },
+        {
+          "text": "Get a PawPal tag",
+          "href": "/store"
+        },
+        {
+          "text": "hello@pawpal.be",
+          "href": "mailto:hello@pawpal.be"
+        },
+        {
+          "text": "Globe Map",
+          "href": "/globe"
+        },
+        {
+          "text": "NFC Safety Tag",
+          "href": "/store"
+        },
+        {
+          "text": "AI Assistant",
+          "href": "/globe"
+        },
+        {
+          "text": "Community",
+          "href": "/globe"
+        },
+        {
+          "text": "About Us",
+          "href": "/about"
+        },
+        {
+          "text": "Store",
+          "href": "/store"
+        }
+      ]
+    },
+    "screenshotPath": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-09-nfc-finder-emergency-states/evidence/screenshots/after-edge-hidden-dark-390x844.png"
+  },
+  {
+    "route": "/round09-fixture/hidden",
+    "group": "edge",
+    "state": "hidden",
+    "mode": "reduced",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "url": "http://localhost:3000/round09-fixture/hidden",
+    "title": "PawPal | Pet Safety Map, Smart Tags, and Local Pet Community",
+    "logs": [],
+    "pageErrors": [],
+    "metrics": {
+      "meaningfulRender": true,
+      "hasFrameworkOverlay": false,
+      "overlayCandidateCount": 1,
+      "visibleErrorOverlayCount": 0,
+      "horizontalOverflow": false,
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "bodyBackground": "rgb(255, 255, 255)",
+      "bodyColor": "rgb(58, 47, 42)",
+      "colorScheme": "light",
+      "matchDark": false,
+      "matchReducedMotion": true,
+      "firstViewport": {
+        "scannedTagContext": true,
+        "petIdentity": false,
+        "contactCta": false,
+        "hiddenContact": true,
+        "privacyOrUrgent": true,
+        "criticalDetails": true,
+        "contactDetail": true,
+        "notListed": false
+      },
+      "interactionTargets": {
+        "contactText": null,
+        "contactHref": null,
+        "phoneHref": null,
+        "emailHref": "mailto:hello@pawpal.be",
+        "deepLinkHref": "pawpal://tag/round09-fixture-hidden",
+        "storeHref": "/store",
+        "hasMisleadingHiddenContact": false
+      },
+      "headings": [
+        "Help Milo get home.",
+        "What to know before moving Milo",
+        "Product",
+        "Company",
+        "Support",
+        "Belgium Pilot"
+      ],
+      "links": [
+        {
+          "text": "Skip to PawPal content",
+          "href": "#main-content"
+        },
+        {
+          "text": "PawPal",
+          "href": "/"
+        },
+        {
+          "text": "Home",
+          "href": "/"
+        },
+        {
+          "text": "Globe",
+          "href": "/globe"
+        },
+        {
+          "text": "About Us",
+          "href": "/about"
+        },
+        {
+          "text": "Store",
+          "href": "/store"
+        },
+        {
+          "text": "Login",
+          "href": "/auth"
+        },
+        {
+          "text": "Open this tag in PawPal",
+          "href": "pawpal://tag/round09-fixture-hidden"
+        },
+        {
+          "text": "Get a PawPal tag",
+          "href": "/store"
+        },
+        {
+          "text": "hello@pawpal.be",
+          "href": "mailto:hello@pawpal.be"
+        },
+        {
+          "text": "Globe Map",
+          "href": "/globe"
+        },
+        {
+          "text": "NFC Safety Tag",
+          "href": "/store"
+        },
+        {
+          "text": "AI Assistant",
+          "href": "/globe"
+        },
+        {
+          "text": "Community",
+          "href": "/globe"
+        },
+        {
+          "text": "About Us",
+          "href": "/about"
+        },
+        {
+          "text": "Store",
+          "href": "/store"
+        }
+      ]
+    },
+    "screenshotPath": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-09-nfc-finder-emergency-states/evidence/screenshots/after-edge-hidden-reduced-390x844.png"
+  },
+  {
+    "route": "/round09-fixture/hidden",
+    "group": "edge",
+    "state": "hidden",
+    "mode": "light",
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "url": "http://localhost:3000/round09-fixture/hidden",
+    "title": "PawPal | Pet Safety Map, Smart Tags, and Local Pet Community",
+    "logs": [],
+    "pageErrors": [],
+    "metrics": {
+      "meaningfulRender": true,
+      "hasFrameworkOverlay": false,
+      "overlayCandidateCount": 1,
+      "visibleErrorOverlayCount": 0,
+      "horizontalOverflow": false,
+      "scrollWidth": 1280,
+      "clientWidth": 1280,
+      "bodyBackground": "rgb(255, 255, 255)",
+      "bodyColor": "rgb(58, 47, 42)",
+      "colorScheme": "light",
+      "matchDark": false,
+      "matchReducedMotion": false,
+      "firstViewport": {
+        "scannedTagContext": true,
+        "petIdentity": false,
+        "contactCta": false,
+        "hiddenContact": true,
+        "privacyOrUrgent": true,
+        "criticalDetails": true,
+        "contactDetail": true,
+        "notListed": false
+      },
+      "interactionTargets": {
+        "contactText": null,
+        "contactHref": null,
+        "phoneHref": null,
+        "emailHref": "mailto:hello@pawpal.be",
+        "deepLinkHref": "pawpal://tag/round09-fixture-hidden",
+        "storeHref": "/store",
+        "hasMisleadingHiddenContact": false
+      },
+      "headings": [
+        "Help Milo get home.",
+        "What to know before moving Milo",
+        "Product",
+        "Company",
+        "Support",
+        "Belgium Pilot"
+      ],
+      "links": [
+        {
+          "text": "Skip to PawPal content",
+          "href": "#main-content"
+        },
+        {
+          "text": "PawPal",
+          "href": "/"
+        },
+        {
+          "text": "Home",
+          "href": "/"
+        },
+        {
+          "text": "Globe",
+          "href": "/globe"
+        },
+        {
+          "text": "About Us",
+          "href": "/about"
+        },
+        {
+          "text": "Store",
+          "href": "/store"
+        },
+        {
+          "text": "Login",
+          "href": "/auth"
+        },
+        {
+          "text": "Open this tag in PawPal",
+          "href": "pawpal://tag/round09-fixture-hidden"
+        },
+        {
+          "text": "Get a PawPal tag",
+          "href": "/store"
+        },
+        {
+          "text": "hello@pawpal.be",
+          "href": "mailto:hello@pawpal.be"
+        },
+        {
+          "text": "Globe Map",
+          "href": "/globe"
+        },
+        {
+          "text": "NFC Safety Tag",
+          "href": "/store"
+        },
+        {
+          "text": "AI Assistant",
+          "href": "/globe"
+        },
+        {
+          "text": "Community",
+          "href": "/globe"
+        },
+        {
+          "text": "About Us",
+          "href": "/about"
+        },
+        {
+          "text": "Store",
+          "href": "/store"
+        }
+      ]
+    },
+    "screenshotPath": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-09-nfc-finder-emergency-states/evidence/screenshots/after-edge-hidden-light-1280x720.png"
+  },
+  {
+    "route": "/round09-fixture/hidden",
+    "group": "edge",
+    "state": "hidden",
+    "mode": "dark",
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "url": "http://localhost:3000/round09-fixture/hidden",
+    "title": "PawPal | Pet Safety Map, Smart Tags, and Local Pet Community",
+    "logs": [],
+    "pageErrors": [],
+    "metrics": {
+      "meaningfulRender": true,
+      "hasFrameworkOverlay": false,
+      "overlayCandidateCount": 1,
+      "visibleErrorOverlayCount": 0,
+      "horizontalOverflow": false,
+      "scrollWidth": 1280,
+      "clientWidth": 1280,
+      "bodyBackground": "rgb(21, 29, 34)",
+      "bodyColor": "rgb(251, 247, 242)",
+      "colorScheme": "dark",
+      "matchDark": true,
+      "matchReducedMotion": false,
+      "firstViewport": {
+        "scannedTagContext": true,
+        "petIdentity": false,
+        "contactCta": false,
+        "hiddenContact": true,
+        "privacyOrUrgent": true,
+        "criticalDetails": true,
+        "contactDetail": true,
+        "notListed": false
+      },
+      "interactionTargets": {
+        "contactText": null,
+        "contactHref": null,
+        "phoneHref": null,
+        "emailHref": "mailto:hello@pawpal.be",
+        "deepLinkHref": "pawpal://tag/round09-fixture-hidden",
+        "storeHref": "/store",
+        "hasMisleadingHiddenContact": false
+      },
+      "headings": [
+        "Help Milo get home.",
+        "What to know before moving Milo",
+        "Product",
+        "Company",
+        "Support",
+        "Belgium Pilot"
+      ],
+      "links": [
+        {
+          "text": "Skip to PawPal content",
+          "href": "#main-content"
+        },
+        {
+          "text": "PawPal",
+          "href": "/"
+        },
+        {
+          "text": "Home",
+          "href": "/"
+        },
+        {
+          "text": "Globe",
+          "href": "/globe"
+        },
+        {
+          "text": "About Us",
+          "href": "/about"
+        },
+        {
+          "text": "Store",
+          "href": "/store"
+        },
+        {
+          "text": "Login",
+          "href": "/auth"
+        },
+        {
+          "text": "Open this tag in PawPal",
+          "href": "pawpal://tag/round09-fixture-hidden"
+        },
+        {
+          "text": "Get a PawPal tag",
+          "href": "/store"
+        },
+        {
+          "text": "hello@pawpal.be",
+          "href": "mailto:hello@pawpal.be"
+        },
+        {
+          "text": "Globe Map",
+          "href": "/globe"
+        },
+        {
+          "text": "NFC Safety Tag",
+          "href": "/store"
+        },
+        {
+          "text": "AI Assistant",
+          "href": "/globe"
+        },
+        {
+          "text": "Community",
+          "href": "/globe"
+        },
+        {
+          "text": "About Us",
+          "href": "/about"
+        },
+        {
+          "text": "Store",
+          "href": "/store"
+        }
+      ]
+    },
+    "screenshotPath": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-09-nfc-finder-emergency-states/evidence/screenshots/after-edge-hidden-dark-1280x720.png"
+  },
+  {
+    "route": "/round09-fixture/hidden",
+    "group": "edge",
+    "state": "hidden",
+    "mode": "reduced",
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "url": "http://localhost:3000/round09-fixture/hidden",
+    "title": "PawPal | Pet Safety Map, Smart Tags, and Local Pet Community",
+    "logs": [],
+    "pageErrors": [],
+    "metrics": {
+      "meaningfulRender": true,
+      "hasFrameworkOverlay": false,
+      "overlayCandidateCount": 1,
+      "visibleErrorOverlayCount": 0,
+      "horizontalOverflow": false,
+      "scrollWidth": 1280,
+      "clientWidth": 1280,
+      "bodyBackground": "rgb(255, 255, 255)",
+      "bodyColor": "rgb(58, 47, 42)",
+      "colorScheme": "light",
+      "matchDark": false,
+      "matchReducedMotion": true,
+      "firstViewport": {
+        "scannedTagContext": true,
+        "petIdentity": false,
+        "contactCta": false,
+        "hiddenContact": true,
+        "privacyOrUrgent": true,
+        "criticalDetails": true,
+        "contactDetail": true,
+        "notListed": false
+      },
+      "interactionTargets": {
+        "contactText": null,
+        "contactHref": null,
+        "phoneHref": null,
+        "emailHref": "mailto:hello@pawpal.be",
+        "deepLinkHref": "pawpal://tag/round09-fixture-hidden",
+        "storeHref": "/store",
+        "hasMisleadingHiddenContact": false
+      },
+      "headings": [
+        "Help Milo get home.",
+        "What to know before moving Milo",
+        "Product",
+        "Company",
+        "Support",
+        "Belgium Pilot"
+      ],
+      "links": [
+        {
+          "text": "Skip to PawPal content",
+          "href": "#main-content"
+        },
+        {
+          "text": "PawPal",
+          "href": "/"
+        },
+        {
+          "text": "Home",
+          "href": "/"
+        },
+        {
+          "text": "Globe",
+          "href": "/globe"
+        },
+        {
+          "text": "About Us",
+          "href": "/about"
+        },
+        {
+          "text": "Store",
+          "href": "/store"
+        },
+        {
+          "text": "Login",
+          "href": "/auth"
+        },
+        {
+          "text": "Open this tag in PawPal",
+          "href": "pawpal://tag/round09-fixture-hidden"
+        },
+        {
+          "text": "Get a PawPal tag",
+          "href": "/store"
+        },
+        {
+          "text": "hello@pawpal.be",
+          "href": "mailto:hello@pawpal.be"
+        },
+        {
+          "text": "Globe Map",
+          "href": "/globe"
+        },
+        {
+          "text": "NFC Safety Tag",
+          "href": "/store"
+        },
+        {
+          "text": "AI Assistant",
+          "href": "/globe"
+        },
+        {
+          "text": "Community",
+          "href": "/globe"
+        },
+        {
+          "text": "About Us",
+          "href": "/about"
+        },
+        {
+          "text": "Store",
+          "href": "/store"
+        }
+      ]
+    },
+    "screenshotPath": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-09-nfc-finder-emergency-states/evidence/screenshots/after-edge-hidden-reduced-1280x720.png"
+  },
+  {
+    "route": "/round09-fixture/long",
+    "group": "edge",
+    "state": "long",
+    "mode": "light",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "url": "http://localhost:3000/round09-fixture/long",
+    "title": "PawPal | Pet Safety Map, Smart Tags, and Local Pet Community",
+    "logs": [],
+    "pageErrors": [],
+    "metrics": {
+      "meaningfulRender": true,
+      "hasFrameworkOverlay": false,
+      "overlayCandidateCount": 1,
+      "visibleErrorOverlayCount": 0,
+      "horizontalOverflow": false,
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "bodyBackground": "rgb(255, 255, 255)",
+      "bodyColor": "rgb(58, 47, 42)",
+      "colorScheme": "light",
+      "matchDark": false,
+      "matchReducedMotion": false,
+      "firstViewport": {
+        "scannedTagContext": true,
+        "petIdentity": false,
+        "contactCta": true,
+        "hiddenContact": false,
+        "privacyOrUrgent": true,
+        "criticalDetails": true,
+        "contactDetail": true,
+        "notListed": true
+      },
+      "interactionTargets": {
+        "contactText": "Contact owner now",
+        "contactHref": "mailto:waffles.owner@example.com",
+        "phoneHref": null,
+        "emailHref": "mailto:waffles.owner@example.com",
+        "deepLinkHref": "pawpal://tag/round09-fixture-long",
+        "storeHref": "/store",
+        "hasMisleadingHiddenContact": false
+      },
+      "headings": [
+        "Help Sir Waffles von Very Long Name of the Canal District get home.",
+        "What to know before moving Sir Waffles von Very Long Name of the Canal District",
+        "Product",
+        "Company",
+        "Support",
+        "Belgium Pilot"
+      ],
+      "links": [
+        {
+          "text": "Skip to PawPal content",
+          "href": "#main-content"
+        },
+        {
+          "text": "PawPal",
+          "href": "/"
+        },
+        {
+          "text": "Home",
+          "href": "/"
+        },
+        {
+          "text": "Globe",
+          "href": "/globe"
+        },
+        {
+          "text": "About Us",
+          "href": "/about"
+        },
+        {
+          "text": "Store",
+          "href": "/store"
+        },
+        {
+          "text": "Login",
+          "href": "/auth"
+        },
+        {
+          "text": "Contact owner now",
+          "href": "mailto:waffles.owner@example.com"
+        },
+        {
+          "text": "Open this tag in PawPal",
+          "href": "pawpal://tag/round09-fixture-long"
+        },
+        {
+          "text": "Get a PawPal tag",
+          "href": "/store"
+        },
+        {
+          "text": "hello@pawpal.be",
+          "href": "mailto:hello@pawpal.be"
+        },
+        {
+          "text": "Globe Map",
+          "href": "/globe"
+        },
+        {
+          "text": "NFC Safety Tag",
+          "href": "/store"
+        },
+        {
+          "text": "AI Assistant",
+          "href": "/globe"
+        },
+        {
+          "text": "Community",
+          "href": "/globe"
+        },
+        {
+          "text": "About Us",
+          "href": "/about"
+        }
+      ]
+    },
+    "screenshotPath": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-09-nfc-finder-emergency-states/evidence/screenshots/after-edge-long-light-390x844.png"
+  },
+  {
+    "route": "/round09-fixture/long",
+    "group": "edge",
+    "state": "long",
+    "mode": "dark",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "url": "http://localhost:3000/round09-fixture/long",
+    "title": "PawPal | Pet Safety Map, Smart Tags, and Local Pet Community",
+    "logs": [],
+    "pageErrors": [],
+    "metrics": {
+      "meaningfulRender": true,
+      "hasFrameworkOverlay": false,
+      "overlayCandidateCount": 1,
+      "visibleErrorOverlayCount": 0,
+      "horizontalOverflow": false,
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "bodyBackground": "rgb(21, 29, 34)",
+      "bodyColor": "rgb(251, 247, 242)",
+      "colorScheme": "dark",
+      "matchDark": true,
+      "matchReducedMotion": false,
+      "firstViewport": {
+        "scannedTagContext": true,
+        "petIdentity": false,
+        "contactCta": true,
+        "hiddenContact": false,
+        "privacyOrUrgent": true,
+        "criticalDetails": true,
+        "contactDetail": true,
+        "notListed": true
+      },
+      "interactionTargets": {
+        "contactText": "Contact owner now",
+        "contactHref": "mailto:waffles.owner@example.com",
+        "phoneHref": null,
+        "emailHref": "mailto:waffles.owner@example.com",
+        "deepLinkHref": "pawpal://tag/round09-fixture-long",
+        "storeHref": "/store",
+        "hasMisleadingHiddenContact": false
+      },
+      "headings": [
+        "Help Sir Waffles von Very Long Name of the Canal District get home.",
+        "What to know before moving Sir Waffles von Very Long Name of the Canal District",
+        "Product",
+        "Company",
+        "Support",
+        "Belgium Pilot"
+      ],
+      "links": [
+        {
+          "text": "Skip to PawPal content",
+          "href": "#main-content"
+        },
+        {
+          "text": "PawPal",
+          "href": "/"
+        },
+        {
+          "text": "Home",
+          "href": "/"
+        },
+        {
+          "text": "Globe",
+          "href": "/globe"
+        },
+        {
+          "text": "About Us",
+          "href": "/about"
+        },
+        {
+          "text": "Store",
+          "href": "/store"
+        },
+        {
+          "text": "Login",
+          "href": "/auth"
+        },
+        {
+          "text": "Contact owner now",
+          "href": "mailto:waffles.owner@example.com"
+        },
+        {
+          "text": "Open this tag in PawPal",
+          "href": "pawpal://tag/round09-fixture-long"
+        },
+        {
+          "text": "Get a PawPal tag",
+          "href": "/store"
+        },
+        {
+          "text": "hello@pawpal.be",
+          "href": "mailto:hello@pawpal.be"
+        },
+        {
+          "text": "Globe Map",
+          "href": "/globe"
+        },
+        {
+          "text": "NFC Safety Tag",
+          "href": "/store"
+        },
+        {
+          "text": "AI Assistant",
+          "href": "/globe"
+        },
+        {
+          "text": "Community",
+          "href": "/globe"
+        },
+        {
+          "text": "About Us",
+          "href": "/about"
+        }
+      ]
+    },
+    "screenshotPath": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-09-nfc-finder-emergency-states/evidence/screenshots/after-edge-long-dark-390x844.png"
+  },
+  {
+    "route": "/round09-fixture/long",
+    "group": "edge",
+    "state": "long",
+    "mode": "reduced",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "url": "http://localhost:3000/round09-fixture/long",
+    "title": "PawPal | Pet Safety Map, Smart Tags, and Local Pet Community",
+    "logs": [],
+    "pageErrors": [],
+    "metrics": {
+      "meaningfulRender": true,
+      "hasFrameworkOverlay": false,
+      "overlayCandidateCount": 1,
+      "visibleErrorOverlayCount": 0,
+      "horizontalOverflow": false,
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "bodyBackground": "rgb(255, 255, 255)",
+      "bodyColor": "rgb(58, 47, 42)",
+      "colorScheme": "light",
+      "matchDark": false,
+      "matchReducedMotion": true,
+      "firstViewport": {
+        "scannedTagContext": true,
+        "petIdentity": false,
+        "contactCta": true,
+        "hiddenContact": false,
+        "privacyOrUrgent": true,
+        "criticalDetails": true,
+        "contactDetail": true,
+        "notListed": true
+      },
+      "interactionTargets": {
+        "contactText": "Contact owner now",
+        "contactHref": "mailto:waffles.owner@example.com",
+        "phoneHref": null,
+        "emailHref": "mailto:waffles.owner@example.com",
+        "deepLinkHref": "pawpal://tag/round09-fixture-long",
+        "storeHref": "/store",
+        "hasMisleadingHiddenContact": false
+      },
+      "headings": [
+        "Help Sir Waffles von Very Long Name of the Canal District get home.",
+        "What to know before moving Sir Waffles von Very Long Name of the Canal District",
+        "Product",
+        "Company",
+        "Support",
+        "Belgium Pilot"
+      ],
+      "links": [
+        {
+          "text": "Skip to PawPal content",
+          "href": "#main-content"
+        },
+        {
+          "text": "PawPal",
+          "href": "/"
+        },
+        {
+          "text": "Home",
+          "href": "/"
+        },
+        {
+          "text": "Globe",
+          "href": "/globe"
+        },
+        {
+          "text": "About Us",
+          "href": "/about"
+        },
+        {
+          "text": "Store",
+          "href": "/store"
+        },
+        {
+          "text": "Login",
+          "href": "/auth"
+        },
+        {
+          "text": "Contact owner now",
+          "href": "mailto:waffles.owner@example.com"
+        },
+        {
+          "text": "Open this tag in PawPal",
+          "href": "pawpal://tag/round09-fixture-long"
+        },
+        {
+          "text": "Get a PawPal tag",
+          "href": "/store"
+        },
+        {
+          "text": "hello@pawpal.be",
+          "href": "mailto:hello@pawpal.be"
+        },
+        {
+          "text": "Globe Map",
+          "href": "/globe"
+        },
+        {
+          "text": "NFC Safety Tag",
+          "href": "/store"
+        },
+        {
+          "text": "AI Assistant",
+          "href": "/globe"
+        },
+        {
+          "text": "Community",
+          "href": "/globe"
+        },
+        {
+          "text": "About Us",
+          "href": "/about"
+        }
+      ]
+    },
+    "screenshotPath": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-09-nfc-finder-emergency-states/evidence/screenshots/after-edge-long-reduced-390x844.png"
+  },
+  {
+    "route": "/round09-fixture/long",
+    "group": "edge",
+    "state": "long",
+    "mode": "light",
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "url": "http://localhost:3000/round09-fixture/long",
+    "title": "PawPal | Pet Safety Map, Smart Tags, and Local Pet Community",
+    "logs": [],
+    "pageErrors": [],
+    "metrics": {
+      "meaningfulRender": true,
+      "hasFrameworkOverlay": false,
+      "overlayCandidateCount": 1,
+      "visibleErrorOverlayCount": 0,
+      "horizontalOverflow": false,
+      "scrollWidth": 1280,
+      "clientWidth": 1280,
+      "bodyBackground": "rgb(255, 255, 255)",
+      "bodyColor": "rgb(58, 47, 42)",
+      "colorScheme": "light",
+      "matchDark": false,
+      "matchReducedMotion": false,
+      "firstViewport": {
+        "scannedTagContext": true,
+        "petIdentity": false,
+        "contactCta": true,
+        "hiddenContact": false,
+        "privacyOrUrgent": true,
+        "criticalDetails": true,
+        "contactDetail": true,
+        "notListed": true
+      },
+      "interactionTargets": {
+        "contactText": "Contact owner now",
+        "contactHref": "mailto:waffles.owner@example.com",
+        "phoneHref": null,
+        "emailHref": "mailto:waffles.owner@example.com",
+        "deepLinkHref": "pawpal://tag/round09-fixture-long",
+        "storeHref": "/store",
+        "hasMisleadingHiddenContact": false
+      },
+      "headings": [
+        "Help Sir Waffles von Very Long Name of the Canal District get home.",
+        "What to know before moving Sir Waffles von Very Long Name of the Canal District",
+        "Product",
+        "Company",
+        "Support",
+        "Belgium Pilot"
+      ],
+      "links": [
+        {
+          "text": "Skip to PawPal content",
+          "href": "#main-content"
+        },
+        {
+          "text": "PawPal",
+          "href": "/"
+        },
+        {
+          "text": "Home",
+          "href": "/"
+        },
+        {
+          "text": "Globe",
+          "href": "/globe"
+        },
+        {
+          "text": "About Us",
+          "href": "/about"
+        },
+        {
+          "text": "Store",
+          "href": "/store"
+        },
+        {
+          "text": "Login",
+          "href": "/auth"
+        },
+        {
+          "text": "Contact owner now",
+          "href": "mailto:waffles.owner@example.com"
+        },
+        {
+          "text": "Open this tag in PawPal",
+          "href": "pawpal://tag/round09-fixture-long"
+        },
+        {
+          "text": "Get a PawPal tag",
+          "href": "/store"
+        },
+        {
+          "text": "hello@pawpal.be",
+          "href": "mailto:hello@pawpal.be"
+        },
+        {
+          "text": "Globe Map",
+          "href": "/globe"
+        },
+        {
+          "text": "NFC Safety Tag",
+          "href": "/store"
+        },
+        {
+          "text": "AI Assistant",
+          "href": "/globe"
+        },
+        {
+          "text": "Community",
+          "href": "/globe"
+        },
+        {
+          "text": "About Us",
+          "href": "/about"
+        }
+      ]
+    },
+    "screenshotPath": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-09-nfc-finder-emergency-states/evidence/screenshots/after-edge-long-light-1280x720.png"
+  },
+  {
+    "route": "/round09-fixture/long",
+    "group": "edge",
+    "state": "long",
+    "mode": "dark",
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "url": "http://localhost:3000/round09-fixture/long",
+    "title": "PawPal | Pet Safety Map, Smart Tags, and Local Pet Community",
+    "logs": [],
+    "pageErrors": [],
+    "metrics": {
+      "meaningfulRender": true,
+      "hasFrameworkOverlay": false,
+      "overlayCandidateCount": 1,
+      "visibleErrorOverlayCount": 0,
+      "horizontalOverflow": false,
+      "scrollWidth": 1280,
+      "clientWidth": 1280,
+      "bodyBackground": "rgb(21, 29, 34)",
+      "bodyColor": "rgb(251, 247, 242)",
+      "colorScheme": "dark",
+      "matchDark": true,
+      "matchReducedMotion": false,
+      "firstViewport": {
+        "scannedTagContext": true,
+        "petIdentity": false,
+        "contactCta": true,
+        "hiddenContact": false,
+        "privacyOrUrgent": true,
+        "criticalDetails": true,
+        "contactDetail": true,
+        "notListed": true
+      },
+      "interactionTargets": {
+        "contactText": "Contact owner now",
+        "contactHref": "mailto:waffles.owner@example.com",
+        "phoneHref": null,
+        "emailHref": "mailto:waffles.owner@example.com",
+        "deepLinkHref": "pawpal://tag/round09-fixture-long",
+        "storeHref": "/store",
+        "hasMisleadingHiddenContact": false
+      },
+      "headings": [
+        "Help Sir Waffles von Very Long Name of the Canal District get home.",
+        "What to know before moving Sir Waffles von Very Long Name of the Canal District",
+        "Product",
+        "Company",
+        "Support",
+        "Belgium Pilot"
+      ],
+      "links": [
+        {
+          "text": "Skip to PawPal content",
+          "href": "#main-content"
+        },
+        {
+          "text": "PawPal",
+          "href": "/"
+        },
+        {
+          "text": "Home",
+          "href": "/"
+        },
+        {
+          "text": "Globe",
+          "href": "/globe"
+        },
+        {
+          "text": "About Us",
+          "href": "/about"
+        },
+        {
+          "text": "Store",
+          "href": "/store"
+        },
+        {
+          "text": "Login",
+          "href": "/auth"
+        },
+        {
+          "text": "Contact owner now",
+          "href": "mailto:waffles.owner@example.com"
+        },
+        {
+          "text": "Open this tag in PawPal",
+          "href": "pawpal://tag/round09-fixture-long"
+        },
+        {
+          "text": "Get a PawPal tag",
+          "href": "/store"
+        },
+        {
+          "text": "hello@pawpal.be",
+          "href": "mailto:hello@pawpal.be"
+        },
+        {
+          "text": "Globe Map",
+          "href": "/globe"
+        },
+        {
+          "text": "NFC Safety Tag",
+          "href": "/store"
+        },
+        {
+          "text": "AI Assistant",
+          "href": "/globe"
+        },
+        {
+          "text": "Community",
+          "href": "/globe"
+        },
+        {
+          "text": "About Us",
+          "href": "/about"
+        }
+      ]
+    },
+    "screenshotPath": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-09-nfc-finder-emergency-states/evidence/screenshots/after-edge-long-dark-1280x720.png"
+  },
+  {
+    "route": "/round09-fixture/long",
+    "group": "edge",
+    "state": "long",
+    "mode": "reduced",
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "url": "http://localhost:3000/round09-fixture/long",
+    "title": "PawPal | Pet Safety Map, Smart Tags, and Local Pet Community",
+    "logs": [],
+    "pageErrors": [],
+    "metrics": {
+      "meaningfulRender": true,
+      "hasFrameworkOverlay": false,
+      "overlayCandidateCount": 1,
+      "visibleErrorOverlayCount": 0,
+      "horizontalOverflow": false,
+      "scrollWidth": 1280,
+      "clientWidth": 1280,
+      "bodyBackground": "rgb(255, 255, 255)",
+      "bodyColor": "rgb(58, 47, 42)",
+      "colorScheme": "light",
+      "matchDark": false,
+      "matchReducedMotion": true,
+      "firstViewport": {
+        "scannedTagContext": true,
+        "petIdentity": false,
+        "contactCta": true,
+        "hiddenContact": false,
+        "privacyOrUrgent": true,
+        "criticalDetails": true,
+        "contactDetail": true,
+        "notListed": true
+      },
+      "interactionTargets": {
+        "contactText": "Contact owner now",
+        "contactHref": "mailto:waffles.owner@example.com",
+        "phoneHref": null,
+        "emailHref": "mailto:waffles.owner@example.com",
+        "deepLinkHref": "pawpal://tag/round09-fixture-long",
+        "storeHref": "/store",
+        "hasMisleadingHiddenContact": false
+      },
+      "headings": [
+        "Help Sir Waffles von Very Long Name of the Canal District get home.",
+        "What to know before moving Sir Waffles von Very Long Name of the Canal District",
+        "Product",
+        "Company",
+        "Support",
+        "Belgium Pilot"
+      ],
+      "links": [
+        {
+          "text": "Skip to PawPal content",
+          "href": "#main-content"
+        },
+        {
+          "text": "PawPal",
+          "href": "/"
+        },
+        {
+          "text": "Home",
+          "href": "/"
+        },
+        {
+          "text": "Globe",
+          "href": "/globe"
+        },
+        {
+          "text": "About Us",
+          "href": "/about"
+        },
+        {
+          "text": "Store",
+          "href": "/store"
+        },
+        {
+          "text": "Login",
+          "href": "/auth"
+        },
+        {
+          "text": "Contact owner now",
+          "href": "mailto:waffles.owner@example.com"
+        },
+        {
+          "text": "Open this tag in PawPal",
+          "href": "pawpal://tag/round09-fixture-long"
+        },
+        {
+          "text": "Get a PawPal tag",
+          "href": "/store"
+        },
+        {
+          "text": "hello@pawpal.be",
+          "href": "mailto:hello@pawpal.be"
+        },
+        {
+          "text": "Globe Map",
+          "href": "/globe"
+        },
+        {
+          "text": "NFC Safety Tag",
+          "href": "/store"
+        },
+        {
+          "text": "AI Assistant",
+          "href": "/globe"
+        },
+        {
+          "text": "Community",
+          "href": "/globe"
+        },
+        {
+          "text": "About Us",
+          "href": "/about"
+        }
+      ]
+    },
+    "screenshotPath": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-09-nfc-finder-emergency-states/evidence/screenshots/after-edge-long-reduced-1280x720.png"
+  },
+  {
+    "route": "/round09-fixture/empty",
+    "group": "edge",
+    "state": "empty",
+    "mode": "light",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "url": "http://localhost:3000/round09-fixture/empty",
+    "title": "PawPal | Pet Safety Map, Smart Tags, and Local Pet Community",
+    "logs": [],
+    "pageErrors": [],
+    "metrics": {
+      "meaningfulRender": true,
+      "hasFrameworkOverlay": false,
+      "overlayCandidateCount": 1,
+      "visibleErrorOverlayCount": 0,
+      "horizontalOverflow": false,
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "bodyBackground": "rgb(255, 255, 255)",
+      "bodyColor": "rgb(58, 47, 42)",
+      "colorScheme": "light",
+      "matchDark": false,
+      "matchReducedMotion": false,
+      "firstViewport": {
+        "scannedTagContext": true,
+        "petIdentity": false,
+        "contactCta": false,
+        "hiddenContact": true,
+        "privacyOrUrgent": true,
+        "criticalDetails": true,
+        "contactDetail": true,
+        "notListed": true
+      },
+      "interactionTargets": {
+        "contactText": null,
+        "contactHref": null,
+        "phoneHref": null,
+        "emailHref": "mailto:hello@pawpal.be",
+        "deepLinkHref": "pawpal://tag/round09-fixture-empty",
+        "storeHref": "/store",
+        "hasMisleadingHiddenContact": false
+      },
+      "headings": [
+        "Help Nori get home.",
+        "What to know before moving Nori",
+        "Product",
+        "Company",
+        "Support",
+        "Belgium Pilot"
+      ],
+      "links": [
+        {
+          "text": "Skip to PawPal content",
+          "href": "#main-content"
+        },
+        {
+          "text": "PawPal",
+          "href": "/"
+        },
+        {
+          "text": "Home",
+          "href": "/"
+        },
+        {
+          "text": "Globe",
+          "href": "/globe"
+        },
+        {
+          "text": "About Us",
+          "href": "/about"
+        },
+        {
+          "text": "Store",
+          "href": "/store"
+        },
+        {
+          "text": "Login",
+          "href": "/auth"
+        },
+        {
+          "text": "Open this tag in PawPal",
+          "href": "pawpal://tag/round09-fixture-empty"
+        },
+        {
+          "text": "Get a PawPal tag",
+          "href": "/store"
+        },
+        {
+          "text": "hello@pawpal.be",
+          "href": "mailto:hello@pawpal.be"
+        },
+        {
+          "text": "Globe Map",
+          "href": "/globe"
+        },
+        {
+          "text": "NFC Safety Tag",
+          "href": "/store"
+        },
+        {
+          "text": "AI Assistant",
+          "href": "/globe"
+        },
+        {
+          "text": "Community",
+          "href": "/globe"
+        },
+        {
+          "text": "About Us",
+          "href": "/about"
+        },
+        {
+          "text": "Store",
+          "href": "/store"
+        }
+      ]
+    },
+    "screenshotPath": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-09-nfc-finder-emergency-states/evidence/screenshots/after-edge-empty-light-390x844.png"
+  },
+  {
+    "route": "/round09-fixture/empty",
+    "group": "edge",
+    "state": "empty",
+    "mode": "dark",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "url": "http://localhost:3000/round09-fixture/empty",
+    "title": "PawPal | Pet Safety Map, Smart Tags, and Local Pet Community",
+    "logs": [],
+    "pageErrors": [],
+    "metrics": {
+      "meaningfulRender": true,
+      "hasFrameworkOverlay": false,
+      "overlayCandidateCount": 1,
+      "visibleErrorOverlayCount": 0,
+      "horizontalOverflow": false,
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "bodyBackground": "rgb(21, 29, 34)",
+      "bodyColor": "rgb(251, 247, 242)",
+      "colorScheme": "dark",
+      "matchDark": true,
+      "matchReducedMotion": false,
+      "firstViewport": {
+        "scannedTagContext": true,
+        "petIdentity": false,
+        "contactCta": false,
+        "hiddenContact": true,
+        "privacyOrUrgent": true,
+        "criticalDetails": true,
+        "contactDetail": true,
+        "notListed": true
+      },
+      "interactionTargets": {
+        "contactText": null,
+        "contactHref": null,
+        "phoneHref": null,
+        "emailHref": "mailto:hello@pawpal.be",
+        "deepLinkHref": "pawpal://tag/round09-fixture-empty",
+        "storeHref": "/store",
+        "hasMisleadingHiddenContact": false
+      },
+      "headings": [
+        "Help Nori get home.",
+        "What to know before moving Nori",
+        "Product",
+        "Company",
+        "Support",
+        "Belgium Pilot"
+      ],
+      "links": [
+        {
+          "text": "Skip to PawPal content",
+          "href": "#main-content"
+        },
+        {
+          "text": "PawPal",
+          "href": "/"
+        },
+        {
+          "text": "Home",
+          "href": "/"
+        },
+        {
+          "text": "Globe",
+          "href": "/globe"
+        },
+        {
+          "text": "About Us",
+          "href": "/about"
+        },
+        {
+          "text": "Store",
+          "href": "/store"
+        },
+        {
+          "text": "Login",
+          "href": "/auth"
+        },
+        {
+          "text": "Open this tag in PawPal",
+          "href": "pawpal://tag/round09-fixture-empty"
+        },
+        {
+          "text": "Get a PawPal tag",
+          "href": "/store"
+        },
+        {
+          "text": "hello@pawpal.be",
+          "href": "mailto:hello@pawpal.be"
+        },
+        {
+          "text": "Globe Map",
+          "href": "/globe"
+        },
+        {
+          "text": "NFC Safety Tag",
+          "href": "/store"
+        },
+        {
+          "text": "AI Assistant",
+          "href": "/globe"
+        },
+        {
+          "text": "Community",
+          "href": "/globe"
+        },
+        {
+          "text": "About Us",
+          "href": "/about"
+        },
+        {
+          "text": "Store",
+          "href": "/store"
+        }
+      ]
+    },
+    "screenshotPath": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-09-nfc-finder-emergency-states/evidence/screenshots/after-edge-empty-dark-390x844.png"
+  },
+  {
+    "route": "/round09-fixture/empty",
+    "group": "edge",
+    "state": "empty",
+    "mode": "reduced",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "url": "http://localhost:3000/round09-fixture/empty",
+    "title": "PawPal | Pet Safety Map, Smart Tags, and Local Pet Community",
+    "logs": [],
+    "pageErrors": [],
+    "metrics": {
+      "meaningfulRender": true,
+      "hasFrameworkOverlay": false,
+      "overlayCandidateCount": 1,
+      "visibleErrorOverlayCount": 0,
+      "horizontalOverflow": false,
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "bodyBackground": "rgb(255, 255, 255)",
+      "bodyColor": "rgb(58, 47, 42)",
+      "colorScheme": "light",
+      "matchDark": false,
+      "matchReducedMotion": true,
+      "firstViewport": {
+        "scannedTagContext": true,
+        "petIdentity": false,
+        "contactCta": false,
+        "hiddenContact": true,
+        "privacyOrUrgent": true,
+        "criticalDetails": true,
+        "contactDetail": true,
+        "notListed": true
+      },
+      "interactionTargets": {
+        "contactText": null,
+        "contactHref": null,
+        "phoneHref": null,
+        "emailHref": "mailto:hello@pawpal.be",
+        "deepLinkHref": "pawpal://tag/round09-fixture-empty",
+        "storeHref": "/store",
+        "hasMisleadingHiddenContact": false
+      },
+      "headings": [
+        "Help Nori get home.",
+        "What to know before moving Nori",
+        "Product",
+        "Company",
+        "Support",
+        "Belgium Pilot"
+      ],
+      "links": [
+        {
+          "text": "Skip to PawPal content",
+          "href": "#main-content"
+        },
+        {
+          "text": "PawPal",
+          "href": "/"
+        },
+        {
+          "text": "Home",
+          "href": "/"
+        },
+        {
+          "text": "Globe",
+          "href": "/globe"
+        },
+        {
+          "text": "About Us",
+          "href": "/about"
+        },
+        {
+          "text": "Store",
+          "href": "/store"
+        },
+        {
+          "text": "Login",
+          "href": "/auth"
+        },
+        {
+          "text": "Open this tag in PawPal",
+          "href": "pawpal://tag/round09-fixture-empty"
+        },
+        {
+          "text": "Get a PawPal tag",
+          "href": "/store"
+        },
+        {
+          "text": "hello@pawpal.be",
+          "href": "mailto:hello@pawpal.be"
+        },
+        {
+          "text": "Globe Map",
+          "href": "/globe"
+        },
+        {
+          "text": "NFC Safety Tag",
+          "href": "/store"
+        },
+        {
+          "text": "AI Assistant",
+          "href": "/globe"
+        },
+        {
+          "text": "Community",
+          "href": "/globe"
+        },
+        {
+          "text": "About Us",
+          "href": "/about"
+        },
+        {
+          "text": "Store",
+          "href": "/store"
+        }
+      ]
+    },
+    "screenshotPath": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-09-nfc-finder-emergency-states/evidence/screenshots/after-edge-empty-reduced-390x844.png"
+  },
+  {
+    "route": "/round09-fixture/empty",
+    "group": "edge",
+    "state": "empty",
+    "mode": "light",
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "url": "http://localhost:3000/round09-fixture/empty",
+    "title": "PawPal | Pet Safety Map, Smart Tags, and Local Pet Community",
+    "logs": [],
+    "pageErrors": [],
+    "metrics": {
+      "meaningfulRender": true,
+      "hasFrameworkOverlay": false,
+      "overlayCandidateCount": 1,
+      "visibleErrorOverlayCount": 0,
+      "horizontalOverflow": false,
+      "scrollWidth": 1280,
+      "clientWidth": 1280,
+      "bodyBackground": "rgb(255, 255, 255)",
+      "bodyColor": "rgb(58, 47, 42)",
+      "colorScheme": "light",
+      "matchDark": false,
+      "matchReducedMotion": false,
+      "firstViewport": {
+        "scannedTagContext": true,
+        "petIdentity": false,
+        "contactCta": false,
+        "hiddenContact": true,
+        "privacyOrUrgent": true,
+        "criticalDetails": true,
+        "contactDetail": true,
+        "notListed": true
+      },
+      "interactionTargets": {
+        "contactText": null,
+        "contactHref": null,
+        "phoneHref": null,
+        "emailHref": "mailto:hello@pawpal.be",
+        "deepLinkHref": "pawpal://tag/round09-fixture-empty",
+        "storeHref": "/store",
+        "hasMisleadingHiddenContact": false
+      },
+      "headings": [
+        "Help Nori get home.",
+        "What to know before moving Nori",
+        "Product",
+        "Company",
+        "Support",
+        "Belgium Pilot"
+      ],
+      "links": [
+        {
+          "text": "Skip to PawPal content",
+          "href": "#main-content"
+        },
+        {
+          "text": "PawPal",
+          "href": "/"
+        },
+        {
+          "text": "Home",
+          "href": "/"
+        },
+        {
+          "text": "Globe",
+          "href": "/globe"
+        },
+        {
+          "text": "About Us",
+          "href": "/about"
+        },
+        {
+          "text": "Store",
+          "href": "/store"
+        },
+        {
+          "text": "Login",
+          "href": "/auth"
+        },
+        {
+          "text": "Open this tag in PawPal",
+          "href": "pawpal://tag/round09-fixture-empty"
+        },
+        {
+          "text": "Get a PawPal tag",
+          "href": "/store"
+        },
+        {
+          "text": "hello@pawpal.be",
+          "href": "mailto:hello@pawpal.be"
+        },
+        {
+          "text": "Globe Map",
+          "href": "/globe"
+        },
+        {
+          "text": "NFC Safety Tag",
+          "href": "/store"
+        },
+        {
+          "text": "AI Assistant",
+          "href": "/globe"
+        },
+        {
+          "text": "Community",
+          "href": "/globe"
+        },
+        {
+          "text": "About Us",
+          "href": "/about"
+        },
+        {
+          "text": "Store",
+          "href": "/store"
+        }
+      ]
+    },
+    "screenshotPath": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-09-nfc-finder-emergency-states/evidence/screenshots/after-edge-empty-light-1280x720.png"
+  },
+  {
+    "route": "/round09-fixture/empty",
+    "group": "edge",
+    "state": "empty",
+    "mode": "dark",
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "url": "http://localhost:3000/round09-fixture/empty",
+    "title": "PawPal | Pet Safety Map, Smart Tags, and Local Pet Community",
+    "logs": [],
+    "pageErrors": [],
+    "metrics": {
+      "meaningfulRender": true,
+      "hasFrameworkOverlay": false,
+      "overlayCandidateCount": 1,
+      "visibleErrorOverlayCount": 0,
+      "horizontalOverflow": false,
+      "scrollWidth": 1280,
+      "clientWidth": 1280,
+      "bodyBackground": "rgb(21, 29, 34)",
+      "bodyColor": "rgb(251, 247, 242)",
+      "colorScheme": "dark",
+      "matchDark": true,
+      "matchReducedMotion": false,
+      "firstViewport": {
+        "scannedTagContext": true,
+        "petIdentity": false,
+        "contactCta": false,
+        "hiddenContact": true,
+        "privacyOrUrgent": true,
+        "criticalDetails": true,
+        "contactDetail": true,
+        "notListed": true
+      },
+      "interactionTargets": {
+        "contactText": null,
+        "contactHref": null,
+        "phoneHref": null,
+        "emailHref": "mailto:hello@pawpal.be",
+        "deepLinkHref": "pawpal://tag/round09-fixture-empty",
+        "storeHref": "/store",
+        "hasMisleadingHiddenContact": false
+      },
+      "headings": [
+        "Help Nori get home.",
+        "What to know before moving Nori",
+        "Product",
+        "Company",
+        "Support",
+        "Belgium Pilot"
+      ],
+      "links": [
+        {
+          "text": "Skip to PawPal content",
+          "href": "#main-content"
+        },
+        {
+          "text": "PawPal",
+          "href": "/"
+        },
+        {
+          "text": "Home",
+          "href": "/"
+        },
+        {
+          "text": "Globe",
+          "href": "/globe"
+        },
+        {
+          "text": "About Us",
+          "href": "/about"
+        },
+        {
+          "text": "Store",
+          "href": "/store"
+        },
+        {
+          "text": "Login",
+          "href": "/auth"
+        },
+        {
+          "text": "Open this tag in PawPal",
+          "href": "pawpal://tag/round09-fixture-empty"
+        },
+        {
+          "text": "Get a PawPal tag",
+          "href": "/store"
+        },
+        {
+          "text": "hello@pawpal.be",
+          "href": "mailto:hello@pawpal.be"
+        },
+        {
+          "text": "Globe Map",
+          "href": "/globe"
+        },
+        {
+          "text": "NFC Safety Tag",
+          "href": "/store"
+        },
+        {
+          "text": "AI Assistant",
+          "href": "/globe"
+        },
+        {
+          "text": "Community",
+          "href": "/globe"
+        },
+        {
+          "text": "About Us",
+          "href": "/about"
+        },
+        {
+          "text": "Store",
+          "href": "/store"
+        }
+      ]
+    },
+    "screenshotPath": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-09-nfc-finder-emergency-states/evidence/screenshots/after-edge-empty-dark-1280x720.png"
+  },
+  {
+    "route": "/round09-fixture/empty",
+    "group": "edge",
+    "state": "empty",
+    "mode": "reduced",
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "url": "http://localhost:3000/round09-fixture/empty",
+    "title": "PawPal | Pet Safety Map, Smart Tags, and Local Pet Community",
+    "logs": [],
+    "pageErrors": [],
+    "metrics": {
+      "meaningfulRender": true,
+      "hasFrameworkOverlay": false,
+      "overlayCandidateCount": 1,
+      "visibleErrorOverlayCount": 0,
+      "horizontalOverflow": false,
+      "scrollWidth": 1280,
+      "clientWidth": 1280,
+      "bodyBackground": "rgb(255, 255, 255)",
+      "bodyColor": "rgb(58, 47, 42)",
+      "colorScheme": "light",
+      "matchDark": false,
+      "matchReducedMotion": true,
+      "firstViewport": {
+        "scannedTagContext": true,
+        "petIdentity": false,
+        "contactCta": false,
+        "hiddenContact": true,
+        "privacyOrUrgent": true,
+        "criticalDetails": true,
+        "contactDetail": true,
+        "notListed": true
+      },
+      "interactionTargets": {
+        "contactText": null,
+        "contactHref": null,
+        "phoneHref": null,
+        "emailHref": "mailto:hello@pawpal.be",
+        "deepLinkHref": "pawpal://tag/round09-fixture-empty",
+        "storeHref": "/store",
+        "hasMisleadingHiddenContact": false
+      },
+      "headings": [
+        "Help Nori get home.",
+        "What to know before moving Nori",
+        "Product",
+        "Company",
+        "Support",
+        "Belgium Pilot"
+      ],
+      "links": [
+        {
+          "text": "Skip to PawPal content",
+          "href": "#main-content"
+        },
+        {
+          "text": "PawPal",
+          "href": "/"
+        },
+        {
+          "text": "Home",
+          "href": "/"
+        },
+        {
+          "text": "Globe",
+          "href": "/globe"
+        },
+        {
+          "text": "About Us",
+          "href": "/about"
+        },
+        {
+          "text": "Store",
+          "href": "/store"
+        },
+        {
+          "text": "Login",
+          "href": "/auth"
+        },
+        {
+          "text": "Open this tag in PawPal",
+          "href": "pawpal://tag/round09-fixture-empty"
+        },
+        {
+          "text": "Get a PawPal tag",
+          "href": "/store"
+        },
+        {
+          "text": "hello@pawpal.be",
+          "href": "mailto:hello@pawpal.be"
+        },
+        {
+          "text": "Globe Map",
+          "href": "/globe"
+        },
+        {
+          "text": "NFC Safety Tag",
+          "href": "/store"
+        },
+        {
+          "text": "AI Assistant",
+          "href": "/globe"
+        },
+        {
+          "text": "Community",
+          "href": "/globe"
+        },
+        {
+          "text": "About Us",
+          "href": "/about"
+        },
+        {
+          "text": "Store",
+          "href": "/store"
+        }
+      ]
+    },
+    "screenshotPath": "/Users/nuemann/Desktop/GeoPet/PawPal-Website/design/review/website-visual-upgrade-2026-06-11/rounds/ROUND-09-nfc-finder-emergency-states/evidence/screenshots/after-edge-empty-reduced-1280x720.png"
+  }
+]
