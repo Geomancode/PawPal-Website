@@ -1,15 +1,17 @@
 "use client";
 
-import { Suspense, useState, useEffect, useCallback, useMemo } from "react";
+import { Suspense, useState, useEffect, useCallback, useMemo, useSyncExternalStore } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { useRouter, useSearchParams } from "next/navigation";
 import {
   ShoppingCart, Plus, Minus, Trash2, ArrowRight,
-  Package, Search, SlidersHorizontal, ChevronRight, RefreshCw,
+  Search, SlidersHorizontal, ChevronRight, RefreshCw,
   ShieldCheck, Sparkles, Crown, CheckCircle2, Loader2,
+  Bone, Dumbbell, HeartPulse, ShoppingBag, Tags, Truck,
 } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 import {
   PRODUCTS, CATEGORIES, Product, CartItem, Category,
   checkStoreAdmin,
@@ -21,7 +23,6 @@ import {
 } from "./storeData";
 import ProductVisual from "./ProductVisual";
 import { useAuth } from "@/components/AuthProvider";
-import { DoodleBowl, DoodlePaw } from "@/components/PetDoodles";
 import {
   paidTierFromValue,
   SUBSCRIPTION_PLANS,
@@ -29,11 +30,76 @@ import {
 } from "@/lib/subscriptions";
 import {
   Button,
+  buttonClassName,
   EmptyState,
   Input,
   ProductCard as StoreProductCard,
   Sheet,
 } from "@/components/ui";
+
+const CATEGORY_ICONS: Record<Category, LucideIcon> = {
+  all: ShoppingBag,
+  food: Bone,
+  toys: Dumbbell,
+  accessories: Tags,
+  health: HeartPulse,
+};
+
+const STORE_PROMISES = [
+  {
+    icon: ShieldCheck,
+    label: "NFC safety ready",
+    copy: "Built for public finder pages and controlled owner details.",
+  },
+  {
+    icon: Truck,
+    label: "EU-first fulfillment",
+    copy: "Catalog and checkout flows are prepared for Belgium-led rollout.",
+  },
+  {
+    icon: CheckCircle2,
+    label: "Secure checkout",
+    copy: "Stripe-backed payment flow with cart persistence across visits.",
+  },
+];
+
+const REDUCED_MOTION_QUERY = "(prefers-reduced-motion: reduce)";
+
+function fadeUpMotion(shouldReduceMotion: boolean | null, y: number, delay = 0) {
+  void y;
+  return {
+    initial: false,
+    animate: { opacity: 1, y: 0 },
+    transition: shouldReduceMotion
+      ? { duration: 0 }
+      : delay > 0
+        ? { delay }
+        : undefined,
+  };
+}
+
+function subscribeToReducedMotion(onStoreChange: () => void) {
+  if (typeof window === "undefined") return () => {};
+  const mediaQuery = window.matchMedia(REDUCED_MOTION_QUERY);
+  mediaQuery.addEventListener("change", onStoreChange);
+  return () => mediaQuery.removeEventListener("change", onStoreChange);
+}
+
+function getReducedMotionSnapshot() {
+  return typeof window !== "undefined" && window.matchMedia(REDUCED_MOTION_QUERY).matches;
+}
+
+function getServerReducedMotionSnapshot() {
+  return false;
+}
+
+function useHydratedReducedMotion() {
+  return useSyncExternalStore(
+    subscribeToReducedMotion,
+    getReducedMotionSnapshot,
+    getServerReducedMotionSnapshot,
+  );
+}
 
 function SubscriptionUpgradePanel({
   initialTier,
@@ -48,6 +114,7 @@ function SubscriptionUpgradePanel({
   appEmail: string | null;
   accessToken?: string;
 }) {
+  const shouldReduceMotion = useHydratedReducedMotion();
   const [selectedTier, setSelectedTier] =
     useState<Exclude<SubscriptionTier, "free">>(initialTier);
   const [loadingTier, setLoadingTier] =
@@ -114,8 +181,7 @@ function SubscriptionUpgradePanel({
             return (
               <motion.div
                 key={tier}
-                initial={{ opacity: 0, y: 18 }}
-                animate={{ opacity: 1, y: 0 }}
+                {...fadeUpMotion(shouldReduceMotion, 18)}
                 className={`rounded-paw-lg border bg-paw-panel p-6 shadow-paw-panel ${
                   active ? "border-paw-primary" : "border-paw-border"
                 }`}
@@ -196,6 +262,7 @@ function ProductCard({
   onDetails: (p: Product) => void;
   recommended?: boolean;
 }) {
+  const shouldReduceMotion = useHydratedReducedMotion();
   const badgeTone: Record<NonNullable<Product["badge"]>, "success" | "warning" | "accent"> = {
     New: "success",
     "Best Seller": "warning",
@@ -204,11 +271,11 @@ function ProductCard({
 
   return (
     <motion.div
-      layout
-      initial={{ opacity: 0, y: 20 }}
+      layout={!shouldReduceMotion}
+      initial={false}
       animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, scale: 0.95 }}
-      whileHover={{ y: -6 }}
+      exit={shouldReduceMotion ? undefined : { opacity: 0, scale: 0.95 }}
+      whileHover={shouldReduceMotion ? undefined : { y: -6 }}
       className="relative"
     >
       {recommended && (
@@ -222,7 +289,7 @@ function ProductCard({
         description={product.description}
         price={formatPrice(product)}
         originalPrice={formatOptionalPrice(product)}
-        image={<ProductVisual product={product} size="lg" className="bg-transparent" />}
+        image={<ProductVisual product={product} size="lg" className="store-product-preview" />}
         badge={product.badge}
         badgeTone={product.badge ? badgeTone[product.badge] : undefined}
         rating={product.rating}
@@ -286,7 +353,7 @@ function ProductDetailsDrawer({
                   height={1536}
                   sizes="(min-width: 768px) 640px, calc(100vw - 40px)"
                   style={{ width: "100%", height: "auto" }}
-                  className="w-full rounded-paw-md border border-paw-border bg-white object-contain shadow-paw-panel"
+                  className="w-full rounded-paw-md border border-paw-border bg-paw-panel object-contain shadow-paw-panel"
                   loading="lazy"
                 />
               ))}
@@ -304,15 +371,15 @@ function ProductDetailsDrawer({
 
 // ─── Cart Drawer ───────────────────────────────────────
 function CartDrawer({
-  isOpen, onClose, items, onUpdate, onRemove, onCheckout,
+  isOpen, onClose, items, onUpdate, onRemove,
 }: {
   isOpen: boolean;
   onClose: () => void;
   items: CartItem[];
   onUpdate: (id: string, qty: number) => void;
   onRemove: (id: string) => void;
-  onCheckout: () => void;
 }) {
+  const shouldReduceMotion = useHydratedReducedMotion();
   const subtotal = items.reduce((s, i) => s + i.product.price * i.quantity, 0);
   const shipping = subtotal > 50 ? 0 : 5.99;
   const total = subtotal + shipping;
@@ -354,14 +421,12 @@ function CartDrawer({
               <span>Total</span>
               <span>€{total.toFixed(2)}</span>
             </div>
-            <Button
-              type="button"
-              size="lg"
-              onClick={onCheckout}
-              className="w-full"
+            <Link
+              href="/store/checkout"
+              className={buttonClassName({ size: "lg", className: "w-full" })}
             >
               Proceed to Checkout <ArrowRight className="h-5 w-5" aria-hidden="true" />
-            </Button>
+            </Link>
           </div>
         ) : undefined
       }
@@ -378,10 +443,10 @@ function CartDrawer({
             {items.map((item) => (
               <motion.div
                 key={item.product.id}
-                layout
-                initial={{ opacity: 0, x: 20 }}
+                layout={!shouldReduceMotion}
+                initial={false}
                 animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -20 }}
+                exit={shouldReduceMotion ? undefined : { opacity: 0, x: -20 }}
                 className="flex gap-4 rounded-paw-md border border-paw-border bg-paw-panel-subtle p-3"
               >
                 <ProductVisual product={item.product} size="md" />
@@ -446,12 +511,13 @@ function CartDrawer({
 function StorePageContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
+  const shouldReduceMotion = useHydratedReducedMotion();
   const { user, session } = useAuth();
   const [products, setProducts] = useState<Product[]>(() => PRODUCTS.map(withProductAssetOverrides));
   const [cart, setCart] = useState<CartItem[]>([]);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [category, setCategory] = useState<Category>("all");
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useState(() => searchParams.get("search") ?? "");
   const [cartOpen, setCartOpen] = useState(false);
   const [toast, setToast] = useState<string | null>(null);
   const [catalogLoading, setCatalogLoading] = useState(true);
@@ -580,99 +646,115 @@ function StorePageContent() {
 
   return (
     <div className="relative min-h-screen w-full bg-paw-page text-paw-ink">
-      {/* ===== HERO ===== */}
-      <section className="relative pt-28 pb-16 overflow-hidden">
+      {/* ===== COMMERCE HEADER ===== */}
+      <section className="relative overflow-hidden border-b border-paw-border bg-paw-page pt-20 pb-4 md:pt-24 md:pb-5">
         <div className="absolute inset-0 -z-10">
-          <div className="absolute top-[-10%] right-[-10%] h-[50%] w-[50%] rounded-full bg-paw-accent-soft/60 blur-[120px]" />
-          <div className="absolute bottom-[-10%] left-[-10%] h-[40%] w-[40%] rounded-full bg-paw-primary-soft/70 blur-[100px]" />
+          <div className="hero-map-grid absolute inset-0 opacity-15" />
+          <div className="absolute inset-0 bg-gradient-to-b from-paw-page via-paw-page/95 to-paw-accent-soft/20" />
         </div>
-        {/* Pet doodles */}
-        <div className="absolute top-[20%] right-[5%] hidden h-12 w-20 text-paw-warning/15 doodle-float lg:block"><DoodleBowl className="h-full w-full" /></div>
-        <div className="absolute bottom-[10%] left-[3%] hidden h-14 w-14 text-paw-accent/15 doodle-float-alt lg:block" style={{ animationDelay: "2s" }}><DoodlePaw className="h-full w-full" /></div>
-        <div className="max-w-7xl mx-auto px-4 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="mb-6 inline-flex items-center gap-2 rounded-paw-md border border-paw-border bg-paw-panel/80 px-4 py-2 shadow-paw-panel backdrop-blur-sm"
-          >
-            <Package className="h-4 w-4 text-paw-primary" />
-            <span className="text-sm font-bold text-paw-primary">PawPal Shop</span>
-          </motion.div>
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
-            className="mb-4 text-4xl font-extrabold tracking-tight text-paw-ink md:text-6xl"
-          >
-            Everything Your Pet{" "}
-            <span className="text-gradient">Needs</span>
-          </motion.h1>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-            className="mx-auto mb-8 max-w-xl text-lg leading-8 text-paw-body"
-          >
-            Premium food, toys, accessories, and health products — curated with love.
-          </motion.p>
-          {recommendedProductIds.length > 0 && (
-            <motion.div
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.25 }}
-              className="mx-auto mb-7 flex max-w-xl flex-wrap items-center justify-center gap-2 rounded-paw-md border border-paw-primary/20 bg-paw-panel/90 px-4 py-3 text-sm font-bold text-paw-ink shadow-paw-panel backdrop-blur-sm"
+        <div className="mx-auto grid max-w-7xl gap-4 px-4 lg:grid-cols-[minmax(0,1fr)_minmax(360px,0.72fr)] lg:items-end">
+          <div>
+            <motion.h1
+              {...fadeUpMotion(shouldReduceMotion, 18)}
+              className="max-w-3xl text-3xl font-extrabold leading-tight tracking-tight text-paw-ink sm:text-4xl lg:text-5xl"
             >
-              <Sparkles className="h-4 w-4 text-paw-primary" aria-hidden="true" />
-              <span>
-                {recommendedMatchCount > 0
-                  ? `${recommendedMatchCount} AI recommended product${recommendedMatchCount !== 1 ? "s" : ""} highlighted`
-                  : "AI recommendations are not in this catalog yet"}
-              </span>
-            </motion.div>
-          )}
+              Smart tags and walk gear for{" "}
+              <span className="text-gradient">safer pet days</span>
+            </motion.h1>
+            <motion.p
+              {...fadeUpMotion(shouldReduceMotion, 16, 0.08)}
+              className="mt-2 max-w-2xl text-base leading-7 text-paw-body md:text-lg"
+            >
+              Start with PawPal NFC safety tags, then find practical gear for daily
+              walks, travel, cleanup, and care.
+            </motion.p>
+          </div>
 
-          {/* Search Bar */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
-            className="relative mx-auto mb-4 max-w-lg"
-          >
-            <Input
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              placeholder="Search products..."
-              leftSlot={<Search className="h-5 w-5" aria-hidden="true" />}
-              className="h-12 rounded-paw-lg bg-paw-panel/80"
-            />
-          </motion.div>
+          <div className="space-y-3">
+            {recommendedProductIds.length > 0 && (
+              <motion.div
+                {...fadeUpMotion(shouldReduceMotion, 10, 0.12)}
+                className="flex flex-wrap items-center gap-2 rounded-paw-md border border-paw-primary/20 bg-paw-panel/90 px-3 py-2 text-sm font-bold text-paw-ink shadow-paw-panel backdrop-blur-sm"
+              >
+                <Sparkles className="h-4 w-4 text-paw-primary" aria-hidden="true" />
+                <span>
+                  {recommendedMatchCount > 0
+                    ? `${recommendedMatchCount} AI recommended product${recommendedMatchCount !== 1 ? "s" : ""} highlighted`
+                    : "AI recommendations are not in this catalog yet"}
+                </span>
+              </motion.div>
+            )}
+
+            <motion.div
+              {...fadeUpMotion(shouldReduceMotion, 14, 0.16)}
+              className="relative"
+            >
+              <Input
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                placeholder="Search products..."
+                leftSlot={<Search className="h-5 w-5" aria-hidden="true" />}
+                className="h-12 rounded-paw-md bg-paw-panel/92 shadow-paw-panel"
+              />
+            </motion.div>
+          </div>
         </div>
+
+        <motion.div
+          {...fadeUpMotion(shouldReduceMotion, 14, 0.22)}
+          className="mx-auto mt-3 grid max-w-7xl grid-cols-3 gap-2 px-4"
+        >
+          {STORE_PROMISES.map((promise) => (
+            <div
+              key={promise.label}
+              className="flex flex-col items-center gap-1.5 rounded-paw-md border border-paw-border bg-paw-panel/82 px-2 py-2 text-center shadow-[0_8px_22px_rgba(33,55,78,0.06)] backdrop-blur sm:flex-row sm:items-start sm:gap-3 sm:px-3 sm:text-left"
+            >
+              <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-paw-sm bg-paw-primary-soft text-paw-primary sm:h-8 sm:w-8">
+                <promise.icon className="h-3.5 w-3.5 sm:h-4 sm:w-4" aria-hidden="true" />
+              </span>
+              <div>
+                <p className="text-[11px] font-extrabold leading-tight text-paw-ink sm:text-sm">
+                  {promise.label}
+                </p>
+                <p className="mt-0.5 hidden text-xs leading-5 text-paw-body sm:block">
+                  {promise.copy}
+                </p>
+              </div>
+            </div>
+          ))}
+        </motion.div>
       </section>
 
       {/* ===== CATEGORY TABS + PRODUCT GRID ===== */}
-      <section className="bg-paw-accent-soft/35 py-8">
+      <section className="bg-paw-accent-soft/35 py-3 md:py-4">
         <div className="mx-auto max-w-7xl px-4">
         <div className="mb-2 flex items-center gap-2">
           <SlidersHorizontal className="h-4 w-4 text-paw-muted" />
           <span className="text-sm font-bold text-paw-muted">Filter by category</span>
         </div>
-        <div className="mb-8 flex flex-wrap gap-2">
+        <div className="-mx-4 mb-2 flex gap-2 overflow-x-auto px-4 pb-1 sm:mx-0 sm:mb-3 sm:flex-wrap sm:overflow-visible sm:px-0 sm:pb-0">
           {CATEGORIES.map((cat) => (
-            <motion.button
-              key={cat.key}
-              whileTap={{ scale: 0.95 }}
-              onClick={() => setCategory(cat.key)}
-              className={`rounded-paw-md border px-5 py-2.5 text-sm font-bold transition cursor-pointer ${
-                category === cat.key
-                  ? "border-paw-primary bg-paw-primary text-white shadow-paw-action"
-                  : "border-paw-border bg-paw-panel/85 text-paw-ink hover:border-paw-primary/40 hover:bg-paw-primary-soft"
-              }`}
-            >
-              {cat.icon} {cat.label}
-            </motion.button>
+            (() => {
+              const CategoryIcon = CATEGORY_ICONS[cat.key];
+              return (
+                <motion.button
+                  key={cat.key}
+                  whileTap={shouldReduceMotion ? undefined : { scale: 0.95 }}
+                  onClick={() => setCategory(cat.key)}
+                  className={`inline-flex shrink-0 items-center gap-1.5 rounded-paw-md border px-3 py-2 text-xs font-bold transition cursor-pointer sm:gap-2 sm:px-4 sm:py-2.5 sm:text-sm ${
+                    category === cat.key
+                      ? "border-paw-primary bg-paw-primary text-white shadow-paw-action"
+                      : "border-paw-border bg-paw-panel/85 text-paw-ink hover:border-paw-primary/40 hover:bg-paw-primary-soft"
+                  }`}
+                >
+                  <CategoryIcon className="h-3.5 w-3.5 sm:h-4 sm:w-4" aria-hidden="true" />
+                  {cat.label}
+                </motion.button>
+              );
+            })()
           ))}
         </div>
-        <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
+        <div className="mb-3 flex flex-wrap items-center justify-between gap-3">
           <div className="flex flex-wrap items-center gap-3">
             <p className="text-sm font-semibold text-paw-muted">{filtered.length} product{filtered.length !== 1 ? "s" : ""}</p>
             {catalogLoading && (
@@ -688,6 +770,14 @@ function StorePageContent() {
             )}
           </div>
           <div className="flex items-center gap-4">
+            <button
+              type="button"
+              onClick={() => setCartOpen(true)}
+              className="inline-flex cursor-pointer items-center gap-1 text-sm font-bold text-paw-muted transition-colors hover:text-paw-primary"
+            >
+              <ShoppingCart className="h-4 w-4" aria-hidden="true" />
+              Cart {totalItems > 0 ? `(${totalItems})` : ""}
+            </button>
             {isAdmin && (
               <button
                 onClick={() => router.push("/store/admin")}
@@ -706,7 +796,7 @@ function StorePageContent() {
           </div>
         </div>
 
-        <motion.div layout className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        <motion.div layout={!shouldReduceMotion} className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           <AnimatePresence mode="popLayout">
             {filtered.map((product) => (
               <ProductCard
@@ -733,14 +823,14 @@ function StorePageContent() {
 
       {/* ===== FLOATING CART BUTTON ===== */}
       <AnimatePresence mode="wait">
-        {totalItems > 0 ? (
+        {totalItems > 0 && (
           <motion.div
             key="checkout-link"
-            initial={{ opacity: 0, scale: 0.9 }}
+            initial={false}
             animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.9 }}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+            exit={shouldReduceMotion ? undefined : { opacity: 0, scale: 0.9 }}
+            whileHover={shouldReduceMotion ? undefined : { scale: 1.05 }}
+            whileTap={shouldReduceMotion ? undefined : { scale: 0.95 }}
             className="fixed bottom-8 right-8 z-50"
           >
             <Link
@@ -750,7 +840,7 @@ function StorePageContent() {
             >
               <ShoppingCart className="h-6 w-6" aria-hidden="true" />
               <motion.span
-                initial={{ scale: 0 }}
+                initial={false}
                 animate={{ scale: 1 }}
                 className="absolute -right-1 -top-1 flex h-6 w-6 items-center justify-center rounded-paw-sm bg-paw-danger text-xs font-extrabold text-white"
               >
@@ -758,18 +848,6 @@ function StorePageContent() {
               </motion.span>
             </Link>
           </motion.div>
-        ) : (
-          <motion.button
-            key="open-cart"
-            type="button"
-            onClick={() => setCartOpen(true)}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="fixed bottom-8 right-8 z-50 flex h-16 w-16 cursor-pointer items-center justify-center rounded-paw-lg bg-paw-primary text-white shadow-paw-action transition-colors hover:bg-paw-primary-hover"
-            aria-label="Open cart"
-          >
-            <ShoppingCart className="h-6 w-6" aria-hidden="true" />
-          </motion.button>
         )}
       </AnimatePresence>
 
@@ -780,10 +858,6 @@ function StorePageContent() {
         items={cart}
         onUpdate={updateQuantity}
         onRemove={removeItem}
-        onCheckout={() => {
-          setCartOpen(false);
-          router.push("/store/checkout");
-        }}
       />
 
       <ProductDetailsDrawer
@@ -795,12 +869,12 @@ function StorePageContent() {
       <AnimatePresence>
         {toast && (
           <motion.div
-            initial={{ opacity: 0, y: 40 }}
+            initial={false}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 40 }}
+            exit={shouldReduceMotion ? undefined : { opacity: 0, y: 40 }}
             className="fixed bottom-28 left-1/2 z-50 flex -translate-x-1/2 items-center gap-2 rounded-paw-lg bg-paw-ink px-6 py-3 text-sm font-bold text-white shadow-paw-panel"
           >
-            <span className="text-base text-paw-success">🛒</span>
+            <CheckCircle2 className="h-4 w-4 text-paw-success" aria-hidden="true" />
             {toast}
           </motion.div>
         )}

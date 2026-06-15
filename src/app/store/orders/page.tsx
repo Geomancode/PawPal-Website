@@ -49,7 +49,7 @@ function OrderCard({ order }: { order: Order }) {
 
   return (
     <motion.div layout initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
-      <Card className="overflow-hidden transition-colors hover:border-paw-primary/35">
+      <Card className="order-card-upgraded overflow-hidden transition-colors hover:border-paw-primary/35">
         <button
           onClick={() => setExpanded(!expanded)}
           className="flex w-full cursor-pointer items-center gap-4 px-5 py-5 text-left transition-colors hover:bg-paw-panel-subtle sm:px-6"
@@ -182,7 +182,7 @@ export default function OrdersPage() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-paw-page pt-28 pb-20 text-paw-ink">
+    <div className="commerce-page-shell min-h-screen bg-paw-page pt-28 pb-20 text-paw-ink">
       <div className="mx-auto max-w-3xl px-4">
         <Button
           type="button"
@@ -195,15 +195,18 @@ export default function OrdersPage() {
           Back to Store
         </Button>
 
-        <div className="mb-8 flex items-end justify-between gap-4">
+        <div className="orders-hero-panel mb-8 flex items-end justify-between gap-4">
           <div>
             <Badge tone="primary" className="mb-3">Purchase history</Badge>
-            <h1 className="flex items-center gap-3 text-3xl font-extrabold text-paw-ink">
+            <h1 className="flex items-center gap-3 text-3xl font-extrabold text-paw-ink sm:text-4xl">
               <Package className="h-7 w-7 text-paw-primary" aria-hidden="true" />
               My Orders
             </h1>
+            <p className="mt-3 max-w-xl text-sm leading-6 text-paw-body">
+              Track PawPal store purchases, delivery progress, and payment details in one place.
+            </p>
           </div>
-          <span className="text-sm font-bold text-paw-muted">
+          <span className="orders-count-pill text-sm font-bold text-paw-muted">
             {orders.length} order{orders.length !== 1 ? "s" : ""}
           </span>
         </div>
@@ -212,7 +215,8 @@ export default function OrdersPage() {
           <EmptyState
             icon={ShoppingBag}
             title="No orders yet"
-            description="Start shopping and your orders will appear here."
+            description="Stripe-confirmed PawPal purchases will appear here with delivery and payment status."
+            className="orders-empty-state"
             action={
               <Button type="button" onClick={() => router.push("/store")}>
                 Browse Products

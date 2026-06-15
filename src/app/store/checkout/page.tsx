@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useState, useEffect, useSyncExternalStore } from "react";
+import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
 import {
   ArrowLeft, ArrowRight, Package, MapPin, CreditCard,
@@ -12,6 +12,7 @@ import {
   loadCart,
 } from "../storeData";
 import ProductVisual from "../ProductVisual";
+import { StatusMessage } from "@/components/ui";
 
 const STEPS = [
   { id: 1, label: "Shipping", icon: MapPin },
@@ -19,10 +20,44 @@ const STEPS = [
   { id: 3, label: "Payment", icon: CreditCard },
 ];
 
+const REDUCED_MOTION_QUERY = "(prefers-reduced-motion: reduce)";
+
+function subscribeToReducedMotion(onStoreChange: () => void) {
+  if (typeof window === "undefined") return () => {};
+  const mediaQuery = window.matchMedia(REDUCED_MOTION_QUERY);
+  mediaQuery.addEventListener("change", onStoreChange);
+  return () => mediaQuery.removeEventListener("change", onStoreChange);
+}
+
+function getReducedMotionSnapshot() {
+  return typeof window !== "undefined" && window.matchMedia(REDUCED_MOTION_QUERY).matches;
+}
+
+function getServerReducedMotionSnapshot() {
+  return false;
+}
+
+function useHydratedReducedMotion() {
+  return useSyncExternalStore(
+    subscribeToReducedMotion,
+    getReducedMotionSnapshot,
+    getServerReducedMotionSnapshot,
+  );
+}
+
+function checkoutStepMotion(shouldReduceMotion: boolean) {
+  return {
+    initial: false,
+    animate: { opacity: 1, x: 0 },
+    exit: shouldReduceMotion ? { opacity: 1, x: 0 } : { opacity: 0, x: -30 },
+    transition: shouldReduceMotion ? { duration: 0 } : undefined,
+  };
+}
+
 // ─── Step Indicator ────────────────────────────────────
 function StepIndicator({ current }: { current: number }) {
   return (
-    <div className="flex items-center justify-center gap-2 mb-10">
+    <div className="checkout-stepper mb-10 flex items-center justify-center gap-2">
       {STEPS.map((step, i) => {
         const done = current > step.id;
         const active = current === step.id;
@@ -69,7 +104,7 @@ function OrderSummary({ items }: { items: CartItem[] }) {
   const subtotal = items.reduce((s, i) => s + i.product.price * i.quantity, 0);
 
   return (
-    <div className="rounded-paw-lg border border-paw-border bg-paw-panel/80 p-6 shadow-paw-panel backdrop-blur-sm">
+    <div className="checkout-summary-card rounded-paw-lg border border-paw-border bg-paw-panel/80 p-6 shadow-paw-panel backdrop-blur-sm">
       <h3 className="mb-4 flex items-center gap-2 font-extrabold text-paw-ink">
         <Package className="h-4 w-4 text-paw-primary" /> Order Summary
       </h3>
@@ -104,9 +139,11 @@ function OrderSummary({ items }: { items: CartItem[] }) {
 // ─── Main Checkout Page ────────────────────────────────
 export default function CheckoutPage() {
   const router = useRouter();
+  const shouldReduceMotion = useHydratedReducedMotion();
   const [step, setStep] = useState(1);
   const [cart, setCart] = useState<CartItem[]>([]);
   const [redirecting, setRedirecting] = useState(false);
+  const [checkoutError, setCheckoutError] = useState<string | null>(null);
 
   const [shipping, setShipping] = useState<ShippingInfo>({
     fullName: "", email: "", address: "", city: "", zipCode: "", country: "", phone: "",
@@ -126,11 +163,20 @@ export default function CheckoutPage() {
   }, [router]);
 
   const subtotal = cart.reduce((s, i) => s + i.product.price * i.quantity, 0);
-  const canProceedShipping = shipping.fullName && shipping.email && shipping.address && shipping.city && shipping.zipCode && shipping.country;
+  const emailLooksValid = /^\S+@\S+\.\S+$/.test(shipping.email.trim());
+  const canProceedShipping = Boolean(
+    shipping.fullName &&
+    emailLooksValid &&
+    shipping.address &&
+    shipping.city &&
+    shipping.zipCode &&
+    shipping.country,
+  );
 
   // Redirect to Stripe Checkout
   const handleStripeCheckout = async () => {
     setRedirecting(true);
+    setCheckoutError(null);
     try {
       const res = await fetch("/api/checkout", {
         method: "POST",
@@ -148,21 +194,21 @@ export default function CheckoutPage() {
         }),
       });
 
-      const data = await res.json();
-      if (data.url) {
+      const data = (await res.json().catch(() => ({}))) as { url?: string; error?: string };
+      if (res.ok && data.url) {
         window.location.href = data.url;
       } else {
-        alert("Failed to create checkout session: " + (data.error || "Unknown error"));
+        setCheckoutError(data.error || "Could not start Stripe checkout. Please review your cart and try again.");
         setRedirecting(false);
       }
     } catch (err) {
-      alert("Network error: " + (err instanceof Error ? err.message : "Unknown"));
+      setCheckoutError(err instanceof Error ? err.message : "Network error. Please try again.");
       setRedirecting(false);
     }
   };
 
   return (
-    <div className="min-h-screen bg-paw-page pt-28 pb-20 text-paw-ink">
+    <div className="commerce-page-shell min-h-screen bg-paw-page pt-28 pb-20 text-paw-ink">
       <div className="max-w-5xl mx-auto px-4">
         {/* Back button */}
         <button
@@ -172,12 +218,26 @@ export default function CheckoutPage() {
           <ArrowLeft className="w-4 h-4" /> {step === 1 ? "Back to Store" : "Back"}
         </button>
 
-        <div className="mb-8">
-          <p className="text-sm font-bold uppercase tracking-[0.18em] text-paw-primary">PawPal Shop</p>
-          <h1 className="mt-2 text-3xl font-extrabold text-paw-ink sm:text-4xl">Secure checkout</h1>
-          <p className="mt-3 max-w-2xl text-sm leading-6 text-paw-body sm:text-base">
-            Confirm delivery details, review your pet essentials, and finish with Stripe-secured payment.
-          </p>
+        <div className="checkout-hero-panel mb-8">
+          <div>
+            <p className="text-sm font-bold uppercase tracking-[0.18em] text-paw-primary">PawPal Shop</p>
+            <h1 className="mt-2 text-3xl font-extrabold text-paw-ink sm:text-5xl">Secure checkout</h1>
+            <p className="mt-3 max-w-2xl text-sm leading-6 text-paw-body sm:text-base">
+              Confirm delivery details, review your pet essentials, and finish with Stripe-secured payment.
+            </p>
+          </div>
+          <div className="checkout-assurance-grid">
+            {[
+              { icon: Lock, label: "Stripe-secured" },
+              { icon: Truck, label: "Free shipping" },
+              { icon: ShieldCheck, label: "NFC-safe catalog" },
+            ].map((item) => (
+              <div key={item.label} className="checkout-assurance-chip">
+                <item.icon className="h-4 w-4" aria-hidden="true" />
+                {item.label}
+              </div>
+            ))}
+          </div>
         </div>
 
         <StepIndicator current={step} />
@@ -185,15 +245,13 @@ export default function CheckoutPage() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* ── Main Content ── */}
           <div className="lg:col-span-2">
-            <AnimatePresence mode="wait">
+            <>
               {/* ────── STEP 1: SHIPPING ────── */}
               {step === 1 && (
                 <motion.div
                   key="shipping"
-                  initial={{ opacity: 0, x: 30 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -30 }}
-                  className="rounded-paw-lg border border-paw-border bg-paw-panel/80 p-8 shadow-paw-panel backdrop-blur-sm"
+                  {...checkoutStepMotion(shouldReduceMotion)}
+                  className="checkout-main-card rounded-paw-lg border border-paw-border bg-paw-panel/80 p-8 shadow-paw-panel backdrop-blur-sm"
                 >
                   <h2 className="mb-6 flex items-center gap-2 text-2xl font-extrabold text-paw-ink">
                     <MapPin className="h-5 w-5 text-paw-primary" /> Shipping Information
@@ -214,13 +272,19 @@ export default function CheckoutPage() {
                     </div>
                   </div>
 
+                  {!emailLooksValid && shipping.email && (
+                    <StatusMessage tone="warning" className="mt-5" title="Check the email address">
+                      Enter a valid email so Stripe and PawPal can send the order confirmation.
+                    </StatusMessage>
+                  )}
+
                   <div className="mt-6 flex items-center gap-3 rounded-paw-md border border-paw-success/20 bg-paw-success-soft p-4">
                     <Truck className="h-5 w-5 shrink-0 text-paw-success" />
                     <p className="text-sm text-paw-body">Free shipping on all orders. Estimated delivery: 3-5 business days.</p>
                   </div>
 
                   <motion.button
-                    whileTap={{ scale: 0.97 }}
+                    whileTap={shouldReduceMotion ? undefined : { scale: 0.97 }}
                     disabled={!canProceedShipping}
                     onClick={() => setStep(2)}
                     className={`mt-6 flex w-full cursor-pointer items-center justify-center gap-2 rounded-paw-lg py-3.5 text-lg font-bold transition-all ${
@@ -236,10 +300,8 @@ export default function CheckoutPage() {
               {step === 2 && (
                 <motion.div
                   key="review"
-                  initial={{ opacity: 0, x: 30 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -30 }}
-                  className="rounded-paw-lg border border-paw-border bg-paw-panel/80 p-8 shadow-paw-panel backdrop-blur-sm"
+                  {...checkoutStepMotion(shouldReduceMotion)}
+                  className="checkout-main-card rounded-paw-lg border border-paw-border bg-paw-panel/80 p-8 shadow-paw-panel backdrop-blur-sm"
                 >
                   <h2 className="mb-6 flex items-center gap-2 text-2xl font-extrabold text-paw-ink">
                     <Package className="h-5 w-5 text-paw-primary" /> Review Your Order
@@ -280,17 +342,23 @@ export default function CheckoutPage() {
 
                   {/* Stripe Pay Button */}
                   <div className="space-y-3">
+                    {checkoutError && (
+                      <StatusMessage tone="danger" title="Payment could not start">
+                        {checkoutError}
+                      </StatusMessage>
+                    )}
+
                     <motion.button
-                      whileTap={{ scale: 0.97 }}
+                      whileTap={shouldReduceMotion ? undefined : { scale: 0.97 }}
                       onClick={handleStripeCheckout}
                       disabled={redirecting}
-                      className="w-full bg-paw-primary hover:bg-paw-primary-hover text-white py-4 rounded-full font-bold text-lg flex items-center justify-center gap-3 transition-all shadow-paw-action cursor-pointer disabled:opacity-60"
+                      className="w-full bg-paw-primary hover:bg-paw-primary-hover text-white py-4 rounded-paw-md font-bold text-lg flex items-center justify-center gap-3 transition-all shadow-paw-action cursor-pointer disabled:opacity-60"
                     >
                       {redirecting ? (
                         <>
                           <motion.div
-                            animate={{ rotate: 360 }}
-                            transition={{ repeat: Infinity, duration: 1, ease: "linear" }}
+                            animate={shouldReduceMotion ? { rotate: 0 } : { rotate: 360 }}
+                            transition={shouldReduceMotion ? { duration: 0 } : { repeat: Infinity, duration: 1, ease: "linear" }}
                           >
                             <Loader2 className="w-5 h-5" />
                           </motion.div>
@@ -319,7 +387,7 @@ export default function CheckoutPage() {
                   </div>
                 </motion.div>
               )}
-            </AnimatePresence>
+            </>
           </div>
 
           {/* ── Sidebar ── */}
