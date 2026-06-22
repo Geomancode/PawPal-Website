@@ -11,6 +11,7 @@ import {
 import { Sparkles, Search, X, ChevronDown } from "lucide-react";
 import ChatBubble, { type ChatMessageData } from "./ChatBubble";
 import { useAuth } from "./AuthProvider";
+import { createPawPalMapMarkerElement } from "@/lib/createPawPalMapMarkerElement";
 import type maplibregl from "maplibre-gl";
 
 // ── Species emoji map ────────────────────────────────────────────────────────
@@ -83,24 +84,12 @@ function createSearchMarker(
   lat: number,
   title: string
 ): maplibregl.Marker {
-  const el = document.createElement("div");
-  el.style.cssText = `
-    width: 36px; height: 36px;
-    background: ${color};
-    border: 2px solid white;
-    border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 18px; cursor: pointer;
-    box-shadow: var(--shadow-paw-panel);
-    animation: markerPop 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) both;
-  `;
-  el.textContent = emoji;
-  el.onmouseenter = () => {
-    el.style.transform = "scale(1.3)";
-  };
-  el.onmouseleave = () => {
-    el.style.transform = "scale(1)";
-  };
+  const el = createPawPalMapMarkerElement({
+    icon: emoji,
+    color,
+    label: title,
+    tone: "search",
+  });
 
   const popupContent = document.createElement("div");
   popupContent.style.fontFamily = "system-ui";
@@ -112,9 +101,9 @@ function createSearchMarker(
   popupTitle.textContent = `${emoji} ${title}`;
   popupContent.appendChild(popupTitle);
 
-  const popup = new maplibre.Popup({ offset: 20, closeButton: false }).setDOMContent(popupContent);
+  const popup = new maplibre.Popup({ offset: 28, closeButton: false }).setDOMContent(popupContent);
 
-  return new maplibre.Marker({ element: el })
+  return new maplibre.Marker({ element: el, anchor: "bottom" })
     .setLngLat([lng, lat])
     .setPopup(popup)
     .addTo(map);
@@ -526,20 +515,6 @@ export default function ChatBottomSheet({ mapRef }: ChatBottomSheetProps) {
 
   return (
     <>
-      {/* CSS animation for marker pop-in */}
-      <style jsx global>{`
-        @keyframes markerPop {
-          from {
-            transform: scale(0);
-            opacity: 0;
-          }
-          to {
-            transform: scale(1);
-            opacity: 1;
-          }
-        }
-      `}</style>
-
       <div
         ref={sheetRef}
         className={`globe-chat-sheet absolute z-50 flex flex-col overflow-hidden ${

@@ -8,6 +8,5 @@
     <circle cx="328" cy="574" r="51" fill="#FFCD38"/>
     <circle cx="328" cy="778" r="51" fill="#76C7B8"/>
   </svg>
-  <text x="144" y="88" font-family="'Baloo 2', 'Comfortaa', 'Nunito', sans-serif" font-weight="800" font-size="58" fill="#8F6A56">Paw</text>
-  <text x="294" y="88" font-family="'Baloo 2', 'Comfortaa', 'Nunito', sans-serif" font-weight="800" font-size="58" fill="#F28C44">Pal</text>
+  <text x="144" y="88" font-family="'Nunito', 'Avenir Next', 'Segoe UI', system-ui, sans-serif" font-weight="700" font-size="58" fill="#4A90D9">PawPal</text>
 </svg>

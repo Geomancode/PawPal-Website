@@ -4,6 +4,7 @@
   --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
   --font-mono: ui-monospace, "Cascadia Code", "Fira Code", monospace;
   --font-brand: "Avenir Next", "Nunito Sans", "Segoe UI", system-ui, sans-serif;
+  --font-app-logo: "Nunito", "Avenir Next", "Segoe UI", system-ui, sans-serif;
 
   /* ── PawPal canonical designer palette ── */
   --color-brand-blue: #4A90D9;       /* Paw Blue — Primary brand · Map · AI · Links */
@@ -63,8 +64,7 @@
   --foreground: var(--color-brand-ink);
   --primary: var(--color-brand-blue);
   --primary-glow: rgba(74, 144, 217, 0.35);
-  --paw-logo-paw: var(--color-paw-brown);
-  --paw-logo-pal: var(--color-paw-accent);
+  --paw-logo-wordmark: var(--color-paw-primary);
   color-scheme: light;
 }
 
@@ -185,8 +185,7 @@ li {
     --shadow-paw-panel: 0 14px 36px rgba(0, 0, 0, 0.32);
     --shadow-paw-action: 0 16px 34px rgba(74, 144, 217, 0.30);
     --shadow-paw-trust-action: 0 16px 34px rgba(118, 199, 184, 0.30);
-    --paw-logo-paw: #FFFFFF;
-    --paw-logo-pal: #FFCD38;
+    --paw-logo-wordmark: #74B8EA;
     color-scheme: dark;
   }
 
@@ -2448,7 +2447,8 @@ li {
 }
 
 .globe-layer-button.is-active-mission,
-.globe-layer-button.is-active-place {
+.globe-layer-button.is-active-place,
+.globe-layer-button.is-active-post {
   box-shadow: 0 14px 34px rgba(33, 55, 78, 0.16);
   color: #ffffff !important;
 }
@@ -2461,6 +2461,11 @@ li {
 .globe-layer-button.is-active-place {
   border-color: var(--color-paw-trust) !important;
   background: rgba(118, 199, 184, 0.94) !important;
+}
+
+.globe-layer-button.is-active-post {
+  border-color: var(--color-paw-primary) !important;
+  background: rgba(74, 144, 217, 0.94) !important;
 }
 
 .globe-inline-issue {

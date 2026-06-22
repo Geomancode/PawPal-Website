@@ -4,13 +4,15 @@ import { useEffect, useRef, useState, useCallback, useMemo } from "react";
 import Link from "next/link";
 import maplibregl from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
-import { AlertCircle, LifeBuoy, MapPin, PawPrint, RefreshCw, ShoppingBag, WifiOff } from "lucide-react";
+import { AlertCircle, LifeBuoy, MapPin, MessageCircle, PawPrint, RefreshCw, ShoppingBag, WifiOff } from "lucide-react";
 import WeatherTicker from "./WeatherTicker";
 import { fetchQuests, Quest } from "@/lib/fetchQuests";
 import { fetchPlaces, Place } from "@/lib/fetchPlaces";
+import { fetchPosts, MapPost } from "@/lib/fetchPosts";
 import GlobeTutorial from "./GlobeTutorial";
 import ChatBottomSheet from "./ChatBottomSheet";
 import GlobeStaticPreview from "./GlobeStaticPreview";
+import { createPawPalMapMarkerElement } from "@/lib/createPawPalMapMarkerElement";
 
 /* ── Quest type → emoji mapping ── */
 const QUEST_EMOJI: Record<string, string> = {
@@ -37,6 +39,36 @@ const PLACE_EMOJI: Record<string, string> = {
   zoo: "🦁", wildlife_centre: "🦅", other: "📍",
 };
 
+const POST_ICON: Record<string, string> = {
+  food: "🍽️",
+  vet: "🏥",
+  store: "🛒",
+  adoption: "🐾",
+  lostAndFound: "🔍",
+  walk: "🚶",
+  custom: "✨",
+};
+
+const POST_LABEL: Record<string, string> = {
+  food: "Food",
+  vet: "Vet",
+  store: "Store",
+  adoption: "Adoption",
+  lostAndFound: "Lost & Found",
+  walk: "Walk",
+  custom: "Update",
+};
+
+const POST_COLOR: Record<string, string> = {
+  food: "var(--color-paw-warning)",
+  vet: "var(--color-paw-success)",
+  store: "var(--color-paw-accent)",
+  adoption: "var(--color-paw-danger)",
+  lostAndFound: "var(--color-paw-accent)",
+  walk: "var(--color-paw-primary)",
+  custom: "var(--color-paw-trust)",
+};
+
 type MapWithSky = maplibregl.Map & {
   setSky?: (sky: { "atmosphere-blend": number }) => void;
 };
@@ -55,6 +87,28 @@ function getErrorMessage(error: unknown): string {
 
 function isWebGLFailureMessage(message: string): boolean {
   return /webgl|web gl|context|canvas|gpu/i.test(message);
+}
+
+function getPostCategoryKey(post: MapPost): string {
+  return post.pin_icon || post.category || "custom";
+}
+
+function getPostLabel(post: MapPost): string {
+  const key = getPostCategoryKey(post);
+  if (key === "custom") return post.custom_category_label?.trim() || POST_LABEL.custom;
+  return POST_LABEL[key] ?? key.replace(/_/g, " ");
+}
+
+function formatPostDate(isoDate: string): string {
+  const date = new Date(isoDate);
+  if (Number.isNaN(date.getTime())) return "";
+  return date.toLocaleDateString(undefined, { month: "short", day: "numeric" });
+}
+
+function truncatePostContent(content: string | null, maxLength = 74): string {
+  const normalized = (content ?? "").replace(/\s+/g, " ").trim();
+  if (normalized.length <= maxLength) return normalized;
+  return `${normalized.slice(0, maxLength - 1)}…`;
 }
 
 function hasUsableWebGL(): boolean {
@@ -114,56 +168,6 @@ function GlobeFallbackView({
   );
 }
 
-/* ── Marker badge style ── */
-function createMarkerEl(emoji: string, color: string, label?: string): HTMLElement {
-  const el = document.createElement("div");
-  el.style.cssText = `
-    min-width: 36px; height: 36px;
-    background: ${label ? "rgba(255,255,255,0.94)" : color};
-    border: 2px solid ${label ? color : "white"};
-    border-radius: 999px;
-    display: flex; align-items: center; justify-content: center;
-    gap: 6px;
-    font-size: 18px; cursor: pointer;
-    padding: ${label ? "0 10px 0 6px" : "0"};
-    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
-    transition: transform 0.15s;
-    color: var(--color-paw-ink);
-    white-space: nowrap;
-  `;
-  const icon = document.createElement("span");
-  icon.style.cssText = `
-    width: ${label ? "24px" : "32px"};
-    height: ${label ? "24px" : "32px"};
-    border-radius: 50%;
-    background: ${color};
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    line-height: 1;
-    flex: 0 0 auto;
-  `;
-  icon.textContent = emoji;
-  el.appendChild(icon);
-
-  if (label) {
-    const text = document.createElement("span");
-    text.style.cssText = `
-      max-width: 112px;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      font-size: 12px;
-      font-weight: 800;
-    `;
-    text.textContent = label;
-    el.appendChild(text);
-  }
-
-  el.onmouseenter = () => { el.style.transform = "scale(1.3)"; };
-  el.onmouseleave = () => { el.style.transform = "scale(1)"; };
-  return el;
-}
-
 function createPopupContent(
   title: string,
   rows: Array<{ label?: string; value: string }>
@@ -200,8 +204,10 @@ export default function MapGlobeComponent() {
   const mapRef = useRef<maplibregl.Map | null>(null);
   const [showQuests, setShowQuests] = useState(true);
   const [showPlaces, setShowPlaces] = useState(true);
+  const [showPosts, setShowPosts] = useState(true);
   const [quests, setQuests] = useState<Quest[]>([]);
   const [places, setPlaces] = useState<Place[]>([]);
+  const [posts, setPosts] = useState<MapPost[]>([]);
   const [nearbyLoading, setNearbyLoading] = useState(true);
   const [nearbyIssue, setNearbyIssue] = useState<string | null>(null);
   const [locationIssue, setLocationIssue] = useState<string | null>(null);
@@ -210,6 +216,7 @@ export default function MapGlobeComponent() {
   const [nearbyCenter, setNearbyCenter] = useState<{ lat: number; lng: number }>(DEFAULT_USER_LOCATION);
   const questMarkersRef = useRef<maplibregl.Marker[]>([]);
   const placeMarkersRef = useRef<maplibregl.Marker[]>([]);
+  const postMarkersRef = useRef<maplibregl.Marker[]>([]);
   const refreshTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   /* ── Map center state for WeatherTicker ── */
@@ -236,16 +243,19 @@ export default function MapGlobeComponent() {
     setNearbyLoading(true);
     setNearbyIssue(null);
     try {
-      const [questRows, placeRows] = await Promise.all([
+      const [questRows, placeRows, postRows] = await Promise.all([
         fetchQuests({ ...center, radiusKm: NEARBY_RADIUS_KM, limit: 80 }),
         fetchPlaces({ ...center, radiusKm: NEARBY_RADIUS_KM, limit: 120 }),
+        fetchPosts({ ...center, radiusKm: NEARBY_RADIUS_KM, limit: 120 }),
       ]);
       setQuests(questRows);
       setPlaces(placeRows);
+      setPosts(postRows);
       setNearbyCenter(center);
     } catch {
       setQuests([]);
       setPlaces([]);
+      setPosts([]);
       setNearbyIssue("Nearby data is unavailable. The map remains usable.");
     } finally {
       setNearbyLoading(false);
@@ -542,15 +552,20 @@ export default function MapGlobeComponent() {
       const emoji = QUEST_EMOJI[q.quest_type] || "🐾";
       const label = QUEST_LABEL[q.quest_type] ?? q.quest_type.replace(/_/g, " ");
       const distance = q.distance_km != null ? `${q.distance_km.toFixed(1)} km away` : "";
-      const el = createMarkerEl(emoji, "var(--color-paw-accent)", label);
-      const popup = new maplibregl.Popup({ offset: 20, closeButton: false })
+      const el = createPawPalMapMarkerElement({
+        icon: emoji,
+        color: "var(--color-paw-accent)",
+        label,
+        tone: "mission",
+      });
+      const popup = new maplibregl.Popup({ offset: 28, closeButton: false })
         .setDOMContent(createPopupContent(`${emoji} ${q.title || "Mission"}`, [
           { label: "Need", value: label },
           { label: "Status", value: q.status },
           { label: "Distance", value: distance },
           { label: "Reward", value: q.reward_type || "none" },
         ]));
-      const marker = new maplibregl.Marker({ element: el }).setLngLat([q.lng, q.lat]).setPopup(popup).addTo(map);
+      const marker = new maplibregl.Marker({ element: el, anchor: "bottom" }).setLngLat([q.lng, q.lat]).setPopup(popup).addTo(map);
       questMarkersRef.current.push(marker);
     });
   }, [quests, showQuests]);
@@ -565,20 +580,61 @@ export default function MapGlobeComponent() {
     places.forEach((p) => {
       if (p.lat == null || p.lng == null) return;
       const emoji = PLACE_EMOJI[p.place_type] || "📍";
-      const el = createMarkerEl(emoji, "var(--color-paw-trust)");
+      const el = createPawPalMapMarkerElement({
+        icon: emoji,
+        color: "var(--color-paw-trust)",
+        tone: "place",
+      });
       const ratingStr = p.rating_avg != null ? `⭐ ${Number(p.rating_avg).toFixed(1)}` : "";
       const distance = p.distance_km != null ? `${p.distance_km.toFixed(1)} km away` : "";
-      const popup = new maplibregl.Popup({ offset: 20, closeButton: false })
+      const popup = new maplibregl.Popup({ offset: 28, closeButton: false })
         .setDOMContent(createPopupContent(`${emoji} ${p.name}`, [
           { label: "Type", value: p.place_type },
           { value: p.city ? `📍 ${p.city}` : "" },
           { label: "Distance", value: distance },
           { value: ratingStr },
         ]));
-      const marker = new maplibregl.Marker({ element: el }).setLngLat([p.lng, p.lat]).setPopup(popup).addTo(map);
+      const marker = new maplibregl.Marker({ element: el, anchor: "bottom" }).setLngLat([p.lng, p.lat]).setPopup(popup).addTo(map);
       placeMarkersRef.current.push(marker);
     });
   }, [places, showPlaces]);
+
+  /* ── Render Post markers ── */
+  useEffect(() => {
+    const map = mapRef.current;
+    if (!map) return;
+    postMarkersRef.current.forEach((m) => m.remove());
+    postMarkersRef.current = [];
+    if (!showPosts) return;
+    posts.forEach((post) => {
+      if (post.lat == null || post.lng == null) return;
+      const key = getPostCategoryKey(post);
+      const icon = POST_ICON[key] ?? POST_ICON.custom;
+      const label = getPostLabel(post);
+      const color = POST_COLOR[key] ?? POST_COLOR.custom;
+      const content = truncatePostContent(post.content);
+      const distance = post.distance_km != null ? `${post.distance_km.toFixed(1)} km away` : "";
+      const activity = [
+        post.like_count ? `${post.like_count} likes` : "",
+        post.comment_count ? `${post.comment_count} comments` : "",
+      ].filter(Boolean).join(" · ");
+      const el = createPawPalMapMarkerElement({
+        icon,
+        color,
+        label,
+        tone: "post",
+      });
+      const popup = new maplibregl.Popup({ offset: 28, closeButton: false })
+        .setDOMContent(createPopupContent(`${icon} ${label}`, [
+          { value: content },
+          { label: "Distance", value: distance },
+          { label: "Posted", value: formatPostDate(post.created_at) },
+          { value: activity },
+        ]));
+      const marker = new maplibregl.Marker({ element: el, anchor: "bottom" }).setLngLat([post.lng, post.lat]).setPopup(popup).addTo(map);
+      postMarkersRef.current.push(marker);
+    });
+  }, [posts, showPosts]);
 
   return (
     <div className="globe-page-shell fixed inset-0 h-[100dvh] w-full overflow-hidden bg-paw-ink">
@@ -654,6 +710,10 @@ export default function MapGlobeComponent() {
               <MapPin className="h-3.5 w-3.5" aria-hidden="true" />
               Places {places.length > 0 && <span className="bg-white/30 px-1.5 py-0.5 rounded-full text-[10px]">{places.length}</span>}
             </button>
+            <button onClick={() => setShowPosts(!showPosts)} className={`globe-layer-button flex items-center gap-2 rounded-paw-sm border px-3 py-2 text-xs font-bold transition-all ${showPosts ? "is-active-post bg-paw-primary/90 text-white border-paw-primary" : "bg-paw-panel/80 text-paw-muted border-paw-border"}`}>
+              <MessageCircle className="h-3.5 w-3.5" aria-hidden="true" />
+              Posts {posts.length > 0 && <span className="bg-white/30 px-1.5 py-0.5 rounded-full text-[10px]">{posts.length}</span>}
+            </button>
           </div>
 
           <div className="globe-status-strip">
@@ -662,6 +722,8 @@ export default function MapGlobeComponent() {
             <span>open needs</span>
             <strong>{places.length}</strong>
             <span>mapped places</span>
+            <strong>{posts.length}</strong>
+            <span>public posts</span>
           </div>
 
           {/* AI Chat Bottom Sheet */}
