@@ -184,7 +184,7 @@ export default function WeatherTicker({ mapCenter, onRecenterRequest }: WeatherT
 
   if (!weather) {
     return (
-      <div className="globe-weather-bar absolute z-40 overflow-hidden text-white/80">
+      <div className="globe-weather-bar absolute z-40 text-white/80">
         <div className="flex items-center justify-center gap-2 text-sm">
           {loading && !weatherIssue ? (
             <>
@@ -205,7 +205,7 @@ export default function WeatherTicker({ mapCenter, onRecenterRequest }: WeatherT
   const weatherItems = [
     {
       key: "place",
-      className: "text-paw-primary",
+      className: "globe-weather-item-place",
       icon: <MapPin className="w-4 h-4" aria-hidden="true" />,
       label: weather.city,
       suffix: !weather.isUserLocation ? "MAP" : "",
@@ -243,14 +243,14 @@ export default function WeatherTicker({ mapCenter, onRecenterRequest }: WeatherT
     },
     {
       key: "advice",
-      className: "text-paw-primary/90",
+      className: "globe-weather-item-advice",
       icon: <Dog className="w-4 h-4 text-paw-primary" aria-hidden="true" />,
       label: `${walkAdvice.emoji} ${walkAdvice.text}`,
     },
   ];
 
   return (
-    <div className="globe-weather-bar absolute z-40 overflow-hidden text-white/90">
+    <div className="globe-weather-bar absolute z-40 text-white/90">
       <div className="globe-weather-content flex items-center">
         {/* Recenter button (shows when viewing map-center weather) */}
         {!weather.isUserLocation && (
@@ -268,7 +268,7 @@ export default function WeatherTicker({ mapCenter, onRecenterRequest }: WeatherT
           {weatherItems.map((item) => (
             <span key={item.key} className={`globe-weather-item ${item.className ?? ""}`.trim()}>
               {item.icon}
-              <span className="truncate">{item.label}</span>
+              <span className="globe-weather-label">{item.label}</span>
               {item.suffix && (
                 <span className="globe-weather-suffix">{item.suffix}</span>
               )}
