@@ -11,7 +11,18 @@ function hasRouteLink(source, href, label) {
   return pattern.test(source);
 }
 
-const [home, navbar, footer, manifestText, serviceWorker, pwaRuntime, globeComponent] = await Promise.all([
+const [
+  home,
+  navbar,
+  footer,
+  manifestText,
+  serviceWorker,
+  pwaRuntime,
+  globeComponent,
+  mapMarker,
+  weatherTicker,
+  globalStyles,
+] = await Promise.all([
   readFile(new URL("../src/components/HomeClientParts.tsx", import.meta.url), "utf8"),
   readFile(new URL("../src/components/Navbar.tsx", import.meta.url), "utf8"),
   readFile(new URL("../src/components/Footer.tsx", import.meta.url), "utf8"),
@@ -19,6 +30,9 @@ const [home, navbar, footer, manifestText, serviceWorker, pwaRuntime, globeCompo
   readFile(new URL("../public/sw.js", import.meta.url), "utf8"),
   readFile(new URL("../src/components/PwaRuntime.tsx", import.meta.url), "utf8"),
   readFile(new URL("../src/components/GlobeComponent.tsx", import.meta.url), "utf8"),
+  readFile(new URL("../src/lib/createPawPalMapMarkerElement.ts", import.meta.url), "utf8"),
+  readFile(new URL("../src/components/WeatherTicker.tsx", import.meta.url), "utf8"),
+  readFile(new URL("../src/app/globals.css", import.meta.url), "utf8"),
 ]);
 
 const manifest = JSON.parse(manifestText);
@@ -67,6 +81,18 @@ expect(
 expect(
   globeComponent.includes("isInView") && globeComponent.includes("isDocumentVisible") && globeComponent.includes("shouldAnimateGlobe"),
   "Homepage globe animation remains gated by viewport, visibility, and reduced-motion state.",
+);
+
+const rootStyleBlock = mapMarker.match(/root\.style\.cssText = `([\s\S]*?)`;/)?.[1] ?? "";
+expect(
+  !/position\s*:/.test(rootStyleBlock) && mapMarker.includes("className = \"pawpal-map-marker__visual\""),
+  "Map markers leave root positioning to MapLibre and keep layout on the inner visual layer.",
+);
+expect(
+  weatherTicker.includes("globe-weather-label") &&
+    !weatherTicker.includes('className="truncate"') &&
+    !globalStyles.includes(".globe-weather-item:nth-child(n + 4)"),
+  "Globe weather HUD keeps labels readable and does not hide later weather fields.",
 );
 
 const routeFiles = [

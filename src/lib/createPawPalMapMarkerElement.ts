@@ -24,7 +24,6 @@ export function createPawPalMapMarkerElement({
   root.className = "pawpal-map-marker";
   root.dataset.pawpalMapMarker = tone;
   root.style.cssText = `
-    position: relative;
     width: ${hasLabel ? ROOT_WIDTH : 82}px;
     height: ${hasLabel ? ROOT_HEIGHT_WITH_LABEL : ROOT_HEIGHT_COMPACT}px;
     cursor: pointer;

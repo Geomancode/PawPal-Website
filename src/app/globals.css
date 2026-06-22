@@ -2355,57 +2355,95 @@ li {
 .globe-weather-bar {
   top: calc(env(safe-area-inset-top, 0px) + 4.75rem);
   left: 50%;
-  width: min(calc(100vw - 2rem), 44rem);
-  min-height: 2.65rem;
+  width: min(calc(100vw - 2rem), 58rem);
+  min-height: 3rem;
   transform: translateX(-50%);
-  border: 1px solid rgba(255, 255, 255, 0.22);
+  overflow: visible;
+  border: 1px solid rgba(255, 255, 255, 0.34);
   border-radius: var(--radius-paw-md);
-  background: rgba(22, 32, 42, 0.58);
-  box-shadow: 0 18px 42px rgba(33, 55, 78, 0.14);
-  padding: 0.58rem 0.75rem;
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
+  background:
+    linear-gradient(180deg, rgba(18, 28, 39, 0.95), rgba(13, 21, 31, 0.91));
+  box-shadow:
+    0 22px 48px rgba(8, 15, 24, 0.24),
+    inset 0 1px 0 rgba(255, 255, 255, 0.18);
+  padding: 0.7rem 0.85rem;
+  color: #ffffff;
+  backdrop-filter: blur(22px) saturate(1.08);
+  -webkit-backdrop-filter: blur(22px) saturate(1.08);
 }
 
 .globe-weather-content {
+  align-items: center;
   min-width: 0;
-  gap: 0.45rem;
+  gap: 0.55rem;
 }
 
 .globe-weather-items {
   display: flex;
+  flex-wrap: wrap;
   min-width: 0;
   flex: 1 1 auto;
   align-items: center;
   justify-content: center;
-  gap: clamp(0.65rem, 1.6vw, 1.15rem);
-  overflow: hidden;
-  color: rgba(255, 255, 255, 0.86);
-  font-size: 0.84rem;
-  font-weight: 760;
+  gap: 0.45rem 0.55rem;
+  overflow: visible;
+  color: rgba(255, 255, 255, 0.96);
+  font-size: 0.78rem;
+  font-weight: 820;
   line-height: 1.2;
 }
 
 .globe-weather-item {
   display: inline-flex;
   min-width: 0;
-  max-width: 11rem;
+  max-width: none;
   flex: 0 1 auto;
   align-items: center;
-  gap: 0.38rem;
+  gap: 0.35rem;
+  min-height: 1.72rem;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 0.32rem 0.52rem;
+  color: rgba(255, 255, 255, 0.96);
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.24);
   white-space: nowrap;
+}
+
+.globe-weather-item-place {
+  border-color: rgba(74, 144, 217, 0.44);
+  background: rgba(74, 144, 217, 0.24);
+  color: #ffffff;
+  white-space: normal;
+}
+
+.globe-weather-item-advice {
+  flex: 1 1 100%;
+  justify-content: center;
+  border-color: rgba(255, 205, 56, 0.38);
+  border-radius: var(--radius-paw-sm);
+  background: rgba(255, 205, 56, 0.18);
+  color: #ffffff;
+  text-align: center;
+  white-space: normal;
 }
 
 .globe-weather-item svg {
   flex: 0 0 auto;
 }
 
+.globe-weather-label {
+  min-width: 0;
+  overflow: visible;
+  text-overflow: clip;
+}
+
 .globe-weather-suffix {
   flex: 0 0 auto;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.18);
   padding: 0.12rem 0.38rem;
-  color: rgba(255, 255, 255, 0.58);
+  color: rgba(255, 255, 255, 0.88);
   font-size: 0.68rem;
   font-weight: 900;
 }
@@ -2421,15 +2459,15 @@ li {
 }
 
 .globe-nearby-panel {
-  top: calc(env(safe-area-inset-top, 0px) + 8.35rem);
+  top: calc(env(safe-area-inset-top, 0px) + 10.8rem);
   left: 1rem;
-  max-height: min(14.5rem, calc(100dvh - 15rem));
+  max-height: min(14.5rem, calc(100dvh - 17.5rem));
   overflow: auto;
   border-radius: var(--radius-paw-md);
 }
 
 .globe-layer-stack {
-  top: calc(env(safe-area-inset-top, 0px) + 4.75rem);
+  top: calc(env(safe-area-inset-top, 0px) + 10.8rem);
   right: 1rem;
   align-items: center;
   border: 1px solid rgba(201, 216, 230, 0.86);
@@ -3036,39 +3074,46 @@ li {
     left: 0.75rem;
     right: 0.75rem;
     width: auto;
+    padding: 0.62rem 0.66rem;
     transform: none;
   }
 
   .globe-weather-items {
+    align-items: flex-start;
     justify-content: flex-start;
-    gap: 0.7rem;
-    font-size: 0.78rem;
+    gap: 0.38rem;
+    font-size: 0.72rem;
   }
 
   .globe-weather-item {
-    max-width: 8.5rem;
+    min-height: 1.55rem;
+    max-width: none;
+    padding: 0.28rem 0.42rem;
   }
 
-  .globe-weather-item:nth-child(n + 4) {
-    display: none;
+  .globe-weather-item-advice {
+    justify-content: flex-start;
+    text-align: left;
+    line-height: 1.32;
   }
 
   .globe-weather-suffix {
-    display: none;
+    padding-inline: 0.32rem;
+    font-size: 0.62rem;
   }
 
   .globe-layer-stack {
-    top: calc(env(safe-area-inset-top, 0px) + 8.15rem);
+    top: calc(env(safe-area-inset-top, 0px) + 13.2rem);
     right: 0.75rem;
     flex-direction: column;
     align-items: stretch;
   }
 
   .globe-nearby-panel {
-    top: calc(env(safe-area-inset-top, 0px) + 13.85rem);
+    top: calc(env(safe-area-inset-top, 0px) + 21.75rem);
     left: 0.75rem;
     width: min(20rem, calc(100vw - 1.5rem));
-    max-height: min(15rem, calc(100dvh - 19rem));
+    max-height: min(13rem, calc(100dvh - 25.8rem));
   }
 
   .globe-chat-sheet-peek {
