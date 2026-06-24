@@ -12,16 +12,17 @@ type ButtonSize = "sm" | "md" | "lg" | "icon";
 
 const variants: Record<ButtonVariant, string> = {
   primary:
-    "bg-paw-primary text-white hover:bg-paw-primary-hover shadow-paw-action",
+    "border-b-4 border-paw-primary-contrast bg-paw-primary text-white shadow-paw-action hover:bg-paw-primary-hover active:translate-y-1 active:border-b-2 active:shadow-none",
   trust:
-    "bg-paw-trust text-white hover:bg-paw-trust-hover shadow-paw-trust-action",
-  accent: "bg-paw-accent text-white hover:bg-paw-accent-hover shadow-paw-action",
+    "border-b-4 border-paw-trust-hover bg-paw-trust text-white shadow-paw-trust-action hover:bg-paw-trust-hover active:translate-y-1 active:border-b-2 active:shadow-none",
+  accent:
+    "border-b-4 border-paw-accent-hover bg-paw-accent text-white shadow-paw-action hover:bg-paw-accent-hover active:translate-y-1 active:border-b-2 active:shadow-none",
   secondary:
-    "bg-paw-panel text-paw-ink border border-paw-border hover:border-paw-primary/40 hover:bg-paw-primary-soft",
+    "border border-b-4 border-paw-border border-b-paw-border-strong bg-paw-panel text-paw-ink hover:border-paw-primary/40 hover:bg-paw-primary-soft active:translate-y-0.5 active:border-b-2",
   ghost:
     "bg-transparent text-paw-body hover:bg-paw-panel-subtle border border-transparent",
   danger:
-    "bg-paw-danger text-white hover:bg-paw-danger-hover shadow-paw-action",
+    "border-b-4 border-paw-danger-hover bg-paw-danger text-white shadow-paw-action hover:bg-paw-danger-hover active:translate-y-1 active:border-b-2 active:shadow-none",
 };
 
 const sizes: Record<ButtonSize, string> = {
@@ -42,6 +43,7 @@ export function buttonClassName({
 } = {}) {
   return cn(
     "inline-flex items-center justify-center gap-2 rounded-paw-md font-bold transition duration-200",
+    "transition-[transform,background-color,border-color,box-shadow,color]",
     "focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-paw-trust/20",
     "disabled:pointer-events-none disabled:opacity-50",
     variants[variant],

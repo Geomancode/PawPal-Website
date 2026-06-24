@@ -7,6 +7,7 @@ import {
   BottomCTA,
   AnimatedHeadline,
   HeroDescription,
+  HeroSignalRail,
   ScrollProgress,
   HeroBlobs,
   TrustMarquee,
@@ -35,6 +36,7 @@ export default function Home() {
             <AnimatedHeadline />
             <HeroDescription />
             <HeroCTA />
+            <HeroSignalRail />
           </FadeIn>
 
           <GlobeSection />

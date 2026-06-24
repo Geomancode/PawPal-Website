@@ -45,21 +45,29 @@ const CATEGORY_ICONS: Record<Category, LucideIcon> = {
   health: HeartPulse,
 };
 
+const CATEGORY_LABELS: Record<Category, string> = {
+  all: "All safety gear",
+  food: "Treats & rewards",
+  toys: "Play missions",
+  accessories: "Tags & walk kit",
+  health: "Care & rescue",
+};
+
 const STORE_PROMISES = [
   {
     icon: ShieldCheck,
-    label: "NFC safety ready",
-    copy: "Built for public finder pages and controlled owner details.",
+    label: "Finder-ready tags",
+    copy: "Designed for public pet profiles and owner-controlled details.",
   },
   {
     icon: Truck,
-    label: "EU-first fulfillment",
-    copy: "Catalog and checkout flows are prepared for Belgium-led rollout.",
+    label: "Belgium-led rollout",
+    copy: "EU-first catalog, fulfillment, and customer support flow.",
   },
   {
     icon: CheckCircle2,
     label: "Secure checkout",
-    copy: "Stripe-backed payment flow with cart persistence across visits.",
+    copy: "Stripe-backed payment with cart persistence across visits.",
   },
 ];
 
@@ -647,33 +655,57 @@ function StorePageContent() {
   return (
     <div className="relative min-h-screen w-full bg-paw-page text-paw-ink">
       {/* ===== COMMERCE HEADER ===== */}
-      <section className="relative overflow-hidden border-b border-paw-border bg-paw-page pt-20 pb-4 md:pt-24 md:pb-5">
+      <section className="relative overflow-hidden border-b border-paw-border bg-paw-page pt-20 pb-5 md:pt-24 md:pb-6">
         <div className="absolute inset-0 -z-10">
           <div className="hero-map-grid absolute inset-0 opacity-15" />
           <div className="absolute inset-0 bg-gradient-to-b from-paw-page via-paw-page/95 to-paw-accent-soft/20" />
         </div>
-        <div className="mx-auto grid max-w-7xl gap-4 px-4 lg:grid-cols-[minmax(0,1fr)_minmax(360px,0.72fr)] lg:items-end">
+        <div className="mx-auto grid max-w-7xl gap-5 px-4 lg:grid-cols-[minmax(0,1fr)_minmax(360px,0.72fr)] lg:items-end">
           <div>
+            <motion.div
+              {...fadeUpMotion(shouldReduceMotion, 12)}
+              className="mb-3 inline-flex items-center gap-2 rounded-paw-sm border border-paw-primary/20 bg-paw-primary-soft px-3 py-1.5 text-xs font-black uppercase tracking-[0.08em] text-paw-primary"
+            >
+              <ShieldCheck className="h-4 w-4" aria-hidden="true" />
+              PawPal safety store
+            </motion.div>
             <motion.h1
               {...fadeUpMotion(shouldReduceMotion, 18)}
               className="max-w-3xl text-3xl font-extrabold leading-tight tracking-tight text-paw-ink sm:text-4xl lg:text-5xl"
             >
-              Smart tags and walk gear for{" "}
+              Safety gear for every{" "}
               <span className="text-gradient">safer pet days</span>
             </motion.h1>
             <motion.p
               {...fadeUpMotion(shouldReduceMotion, 16, 0.08)}
               className="mt-2 max-w-2xl text-base leading-7 text-paw-body md:text-lg"
             >
-              Start with PawPal NFC safety tags, then find practical gear for daily
+              Start with a PawPal Smart Tag, then add practical gear for daily
               walks, travel, cleanup, and care.
             </motion.p>
           </div>
 
           <div className="space-y-3">
+            <motion.div
+              {...fadeUpMotion(shouldReduceMotion, 12, 0.1)}
+              className="rounded-paw-lg border border-paw-primary/20 bg-paw-panel/92 p-4 shadow-paw-panel backdrop-blur-sm"
+            >
+              <div className="flex items-start gap-3">
+                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-paw-sm bg-paw-primary text-white shadow-paw-action">
+                  <Tags className="h-5 w-5" aria-hidden="true" />
+                </span>
+                <div className="min-w-0">
+                  <p className="text-sm font-black text-paw-ink">Smart Tag first</p>
+                  <p className="mt-1 text-sm leading-6 text-paw-body">
+                    One scan can show the right finder profile, care notes, and owner contact rules.
+                  </p>
+                </div>
+              </div>
+            </motion.div>
+
             {recommendedProductIds.length > 0 && (
               <motion.div
-                {...fadeUpMotion(shouldReduceMotion, 10, 0.12)}
+                {...fadeUpMotion(shouldReduceMotion, 10, 0.14)}
                 className="flex flex-wrap items-center gap-2 rounded-paw-md border border-paw-primary/20 bg-paw-panel/90 px-3 py-2 text-sm font-bold text-paw-ink shadow-paw-panel backdrop-blur-sm"
               >
                 <Sparkles className="h-4 w-4 text-paw-primary" aria-hidden="true" />
@@ -686,13 +718,13 @@ function StorePageContent() {
             )}
 
             <motion.div
-              {...fadeUpMotion(shouldReduceMotion, 14, 0.16)}
+              {...fadeUpMotion(shouldReduceMotion, 14, 0.18)}
               className="relative"
             >
               <Input
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                placeholder="Search products..."
+                placeholder="Search tags, harnesses, first-aid..."
                 leftSlot={<Search className="h-5 w-5" aria-hidden="true" />}
                 className="h-12 rounded-paw-md bg-paw-panel/92 shadow-paw-panel"
               />
@@ -702,7 +734,7 @@ function StorePageContent() {
 
         <motion.div
           {...fadeUpMotion(shouldReduceMotion, 14, 0.22)}
-          className="mx-auto mt-3 grid max-w-7xl grid-cols-3 gap-2 px-4"
+          className="mx-auto mt-4 grid max-w-7xl grid-cols-3 gap-2 px-4"
         >
           {STORE_PROMISES.map((promise) => (
             <div
@@ -726,11 +758,11 @@ function StorePageContent() {
       </section>
 
       {/* ===== CATEGORY TABS + PRODUCT GRID ===== */}
-      <section className="bg-paw-accent-soft/35 py-3 md:py-4">
+      <section className="bg-paw-accent-soft/35 py-4 md:py-5">
         <div className="mx-auto max-w-7xl px-4">
         <div className="mb-2 flex items-center gap-2">
           <SlidersHorizontal className="h-4 w-4 text-paw-muted" />
-          <span className="text-sm font-bold text-paw-muted">Filter by category</span>
+          <span className="text-sm font-bold text-paw-muted">Choose a mission shelf</span>
         </div>
         <div className="-mx-4 mb-2 flex gap-2 overflow-x-auto px-4 pb-1 sm:mx-0 sm:mb-3 sm:flex-wrap sm:overflow-visible sm:px-0 sm:pb-0">
           {CATEGORIES.map((cat) => (
@@ -741,14 +773,14 @@ function StorePageContent() {
                   key={cat.key}
                   whileTap={shouldReduceMotion ? undefined : { scale: 0.95 }}
                   onClick={() => setCategory(cat.key)}
-                  className={`inline-flex shrink-0 items-center gap-1.5 rounded-paw-md border px-3 py-2 text-xs font-bold transition cursor-pointer sm:gap-2 sm:px-4 sm:py-2.5 sm:text-sm ${
+                  className={`inline-flex shrink-0 cursor-pointer items-center gap-1.5 rounded-paw-md border border-b-4 px-3 py-2 text-xs font-bold transition active:translate-y-0.5 active:border-b-2 sm:gap-2 sm:px-4 sm:py-2.5 sm:text-sm ${
                     category === cat.key
-                      ? "border-paw-primary bg-paw-primary text-white shadow-paw-action"
-                      : "border-paw-border bg-paw-panel/85 text-paw-ink hover:border-paw-primary/40 hover:bg-paw-primary-soft"
+                      ? "border-paw-primary border-b-paw-primary-contrast bg-paw-primary text-white shadow-paw-action"
+                      : "border-paw-border border-b-paw-border-strong bg-paw-panel/85 text-paw-ink hover:border-paw-primary/40 hover:bg-paw-primary-soft"
                   }`}
                 >
                   <CategoryIcon className="h-3.5 w-3.5 sm:h-4 sm:w-4" aria-hidden="true" />
-                  {cat.label}
+                  {CATEGORY_LABELS[cat.key]}
                 </motion.button>
               );
             })()

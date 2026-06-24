@@ -5,7 +5,6 @@ import Globe from "@/components/Globe";
 import Image from "next/image";
 import Link from "next/link";
 import {
-  ArrowRight,
   Bot,
   Footprints,
   HeartHandshake,
@@ -142,8 +141,8 @@ export function HeroDescription() {
       className="max-w-xl break-words text-base leading-7 text-paw-body sm:text-lg sm:leading-8"
       {...enterMotion(shouldReduceMotion, 18, 0.18)}
     >
-      Built in Belgium, PawPal connects live walks, smart finder
-      profiles, and local pet help in one calm product surface.
+      Built in Belgium, PawPal turns every walk into a safer route with
+      smart tags, finder profiles, and nearby pet help in one calm app.
     </motion.p>
   );
 }
@@ -158,16 +157,16 @@ export function HeroCTA() {
     >
       <Link
         href="/globe"
-        className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-paw-sm bg-paw-primary-contrast px-6 text-sm font-bold text-white shadow-paw-action transition hover:bg-paw-primary-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-paw-primary sm:w-auto"
+        className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-paw-sm border-b-4 border-paw-primary-contrast bg-paw-primary px-6 text-sm font-bold text-white shadow-paw-action transition hover:bg-paw-primary-hover active:translate-y-1 active:border-b-2 active:shadow-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-paw-primary sm:w-auto"
       >
-        Open Live Map
-        <ArrowRight className="h-4 w-4" />
+        Start a safe walk
+        <Footprints className="h-4 w-4" />
       </Link>
       <Link
         href="/store"
-        className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-paw-sm border border-paw-border-strong bg-paw-panel px-6 text-sm font-bold text-paw-ink transition hover:border-paw-primary hover:text-paw-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-paw-primary sm:w-auto"
+        className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-paw-sm border border-b-4 border-paw-border-strong bg-paw-panel px-6 text-sm font-bold text-paw-ink transition hover:border-paw-primary hover:bg-paw-primary-soft hover:text-paw-primary active:translate-y-0.5 active:border-b-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-paw-primary sm:w-auto"
       >
-        Shop Smart Tags
+        Get Smart Tag
         <Store className="h-4 w-4" />
       </Link>
     </motion.div>
@@ -177,9 +176,9 @@ export function HeroCTA() {
 export function HeroSignalRail() {
   const shouldReduceMotion = useHydratedReducedMotion();
   const signals = [
-    { label: "Finder page", value: "1 tap", icon: ScanLine },
-    { label: "Walk reveal", value: "2.43 km", icon: Route },
-    { label: "Local help", value: "15 km", icon: HeartHandshake },
+    { label: "Smart tag scan", value: "1 tap", icon: ScanLine },
+    { label: "Route revealed", value: "2.43 km", icon: Route },
+    { label: "Nearby helpers", value: "15 km", icon: HeartHandshake },
   ];
 
   return (
@@ -629,16 +628,16 @@ export function BottomCTA() {
     <div className="flex flex-col gap-3 sm:flex-row">
       <Link
         href="/globe"
-        className="inline-flex h-12 items-center justify-center gap-2 rounded-paw-sm bg-paw-primary-contrast px-6 text-sm font-bold text-white shadow-paw-action transition hover:bg-paw-primary-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-paw-primary"
+        className="inline-flex h-12 items-center justify-center gap-2 rounded-paw-sm border-b-4 border-paw-primary-contrast bg-paw-primary px-6 text-sm font-bold text-white shadow-paw-action transition hover:bg-paw-primary-hover active:translate-y-1 active:border-b-2 active:shadow-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-paw-primary"
       >
-        Open Live Map
-        <ArrowRight className="h-4 w-4" />
+        Start a safe walk
+        <Footprints className="h-4 w-4" />
       </Link>
       <Link
         href="/store"
-        className="inline-flex h-12 items-center justify-center gap-2 rounded-paw-sm border border-paw-border-strong bg-paw-panel px-6 text-sm font-bold text-paw-ink transition hover:border-paw-primary hover:text-paw-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-paw-primary"
+        className="inline-flex h-12 items-center justify-center gap-2 rounded-paw-sm border border-b-4 border-paw-border-strong bg-paw-panel px-6 text-sm font-bold text-paw-ink transition hover:border-paw-primary hover:bg-paw-primary-soft hover:text-paw-primary active:translate-y-0.5 active:border-b-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-paw-primary"
       >
-        Shop Smart Tags
+        Get Smart Tag
         <Store className="h-4 w-4" />
       </Link>
     </div>

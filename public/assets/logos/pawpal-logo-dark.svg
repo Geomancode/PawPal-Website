@@ -1,7 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" role="img" aria-labelledby="title">
-  <title>PawPal logo - blue background</title>
-  <rect width="1024" height="1024" rx="224" fill="#4A90D9"/>
-  <path fill="#FFFFFF" fill-rule="evenodd" d="M328 829c-28.2 0-51-22.8-51-51V329c0-119.3 96.7-216 216-216h39c118.7 0 215 96.3 215 215v82c0 118.7-96.3 215-215 215H379v153c0 28.2-22.8 51-51 51Zm51-307h153c62.4 0 113-50.6 113-113v-80c0-63-51-114-114-114h-38c-63 0-114 51-114 114v193Z"/>
-  <circle cx="328" cy="574" r="51" fill="#FFCD38"/>
-  <circle cx="328" cy="778" r="51" fill="#76C7B8"/>
+<svg width="520" height="140" viewBox="0 0 520 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <g transform="translate(24 18) scale(0.102)">
+    <path fill="#FFFFFF" fill-rule="evenodd" d="M328 829c-28.2 0-51-22.8-51-51V329c0-119.3 96.7-216 216-216h39c118.7 0 215 96.3 215 215v82c0 118.7-96.3 215-215 215H379v153c0 28.2-22.8 51-51 51Zm51-307h153c62.4 0 113-50.6 113-113v-80c0-63-51-114-114-114h-38c-63 0-114 51-114 114v193Z"/>
+    <circle cx="328" cy="574" r="51" fill="#FFCD38"/>
+    <circle cx="328" cy="778" r="51" fill="#76C7B8"/>
+  </g>
+  <text x="144" y="88" font-family="'Nunito', 'Avenir Next', 'Segoe UI', system-ui, sans-serif" font-weight="700" font-size="58" fill="#FFFFFF">PawPal</text>
 </svg>
