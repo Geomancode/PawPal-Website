@@ -8,7 +8,7 @@ interface GlobeStaticPreviewProps {
 
 export default function GlobeStaticPreview({
   className = "",
-  statusLabel = "Loading live globe",
+  statusLabel = "Static map preview",
   pulseStatus = true,
 }: GlobeStaticPreviewProps) {
   return (
@@ -27,18 +27,21 @@ export default function GlobeStaticPreview({
       </div>
       <div className="globe-static-preview-card left-2 top-8 sm:left-4">
         <MapPin className="h-4 w-4 text-paw-primary" aria-hidden="true" />
-        <span>Ghent pilot</span>
+        <span>Demo center · Ghent</span>
       </div>
-      <div className="globe-static-preview-card bottom-14 right-0 sm:right-3">
+      <div className="globe-static-preview-card bottom-24 right-0 sm:right-3">
         <ShieldCheck className="h-4 w-4 text-paw-trust" aria-hidden="true" />
-        <span>NFC finder ready</span>
+        <span>Finder flow preview</span>
       </div>
-      <div className="globe-static-preview-card bottom-4 left-8">
+      <div className="globe-static-preview-card bottom-12 left-3 sm:left-8">
         <Route className="h-4 w-4 text-paw-accent" aria-hidden="true" />
-        <span>2.43 km revealed</span>
+        <span>Demo route line</span>
       </div>
       <div className="globe-static-preview-loading">
         <Radio className={`h-4 w-4 ${pulseStatus ? "animate-pulse" : ""}`.trim()} aria-hidden="true" />
+        <span className="rounded-paw-sm border border-paw-primary/25 bg-paw-primary-soft px-2 py-1 text-[10px] font-black text-paw-primary">
+          STATIC
+        </span>
         {statusLabel}
       </div>
     </div>

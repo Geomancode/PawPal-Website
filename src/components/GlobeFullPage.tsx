@@ -4,7 +4,21 @@ import { useEffect, useRef, useState, useCallback, useMemo } from "react";
 import Link from "next/link";
 import maplibregl from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
-import { AlertCircle, LifeBuoy, MapPin, MessageCircle, PawPrint, RefreshCw, ShoppingBag, WifiOff } from "lucide-react";
+import {
+  AlertCircle,
+  CheckCircle2,
+  Compass,
+  Layers,
+  LifeBuoy,
+  MapPin,
+  MessageCircle,
+  PawPrint,
+  Radio,
+  RefreshCw,
+  ShieldCheck,
+  ShoppingBag,
+  WifiOff,
+} from "lucide-react";
 import WeatherTicker from "./WeatherTicker";
 import { fetchQuests, Quest } from "@/lib/fetchQuests";
 import { fetchPlaces, Place } from "@/lib/fetchPlaces";
@@ -76,6 +90,55 @@ type MapWithSky = maplibregl.Map & {
 const DEFAULT_USER_LOCATION = { lat: 51.05, lng: 3.72 };
 const NEARBY_RADIUS_KM = 15;
 const WEBGL_FALLBACK_MESSAGE = "Live map rendering is unavailable in this browser.";
+const STATUS_BADGE_CLASS: Record<StatusTone, string> = {
+  real: "border-paw-trust/30 bg-paw-trust-soft text-paw-trust",
+  demo: "border-paw-warning/35 bg-paw-warning-soft text-paw-body",
+  limited: "border-paw-accent/30 bg-paw-accent-soft text-paw-accent",
+  static: "border-paw-primary/30 bg-paw-primary-soft text-paw-primary",
+};
+
+type StatusTone = "real" | "demo" | "limited" | "static";
+
+function StatusBadge({
+  tone,
+  children,
+}: {
+  tone: StatusTone;
+  children: React.ReactNode;
+}) {
+  return (
+    <span className={`inline-flex shrink-0 items-center rounded-paw-sm border px-2 py-1 text-[10px] font-black leading-none ${STATUS_BADGE_CLASS[tone]}`}>
+      {children}
+    </span>
+  );
+}
+
+function StatusRow({
+  icon,
+  label,
+  value,
+  tone,
+  badge,
+}: {
+  icon: React.ReactNode;
+  label: string;
+  value: string;
+  tone: StatusTone;
+  badge: string;
+}) {
+  return (
+    <div className="flex items-start gap-2 rounded-paw-sm border border-paw-border/70 bg-white/72 px-2.5 py-2">
+      <span className="mt-0.5 text-paw-primary">{icon}</span>
+      <div className="min-w-0 flex-1">
+        <div className="flex items-center justify-between gap-2">
+          <span className="text-[11px] font-black text-paw-ink">{label}</span>
+          <StatusBadge tone={tone}>{badge}</StatusBadge>
+        </div>
+        <p className="mt-0.5 text-[11px] font-semibold leading-4 text-paw-muted">{value}</p>
+      </div>
+    </div>
+  );
+}
 
 function getErrorMessage(error: unknown): string {
   if (error instanceof Error) return error.message;
@@ -136,13 +199,30 @@ function GlobeFallbackView({
   return (
     <div className="globe-fallback-stage">
       <section className="globe-fallback-copy" aria-labelledby="globe-fallback-title">
-        <p className="text-xs font-black uppercase tracking-[0.18em] text-paw-trust">PawPal Globe</p>
+        <div className="flex flex-wrap items-center gap-2">
+          <p className="text-xs font-black uppercase tracking-[0.18em] text-paw-trust">PawPal Globe</p>
+          <StatusBadge tone="static">STATIC PREVIEW</StatusBadge>
+        </div>
         <h2 id="globe-fallback-title" className="mt-3 text-4xl font-black leading-tight text-white sm:text-5xl">
           Map preview is still ready
         </h2>
         <p className="mt-4 max-w-xl text-sm font-medium leading-6 text-white/72 sm:text-base">
-          {reason} You can still review the PawPal pet-safety flow, smart tags, and local help paths while the live map is unavailable.
+          {reason} This is a labeled static preview, not live map activity. You can still review the PawPal pet-safety flow, smart tags, and local help paths while WebGL is unavailable.
         </p>
+        <div className="globe-fallback-truth-grid mt-5 grid max-w-2xl gap-2 sm:grid-cols-3">
+          <div className="globe-fallback-truth-card rounded-paw-sm border border-white/14 bg-white/8 p-3">
+            <StatusBadge tone="static">STATIC</StatusBadge>
+            <p className="globe-fallback-truth-copy mt-2 text-xs font-bold leading-5 text-white/70">Rendered without WebGL or live map controls.</p>
+          </div>
+          <div className="globe-fallback-truth-card rounded-paw-sm border border-white/14 bg-white/8 p-3">
+            <StatusBadge tone="demo">DEMO</StatusBadge>
+            <p className="globe-fallback-truth-copy mt-2 text-xs font-bold leading-5 text-white/70">Preview pins and route lines are illustrative.</p>
+          </div>
+          <div className="globe-fallback-truth-card rounded-paw-sm border border-white/14 bg-white/8 p-3">
+            <StatusBadge tone="real">REAL</StatusBadge>
+            <p className="globe-fallback-truth-copy mt-2 text-xs font-bold leading-5 text-white/70">Store and help links keep their normal routes.</p>
+          </div>
+        </div>
         <div className="globe-fallback-actions mt-6 flex flex-wrap gap-3">
           <button type="button" onClick={onRetry} className="globe-fallback-action globe-fallback-action-primary">
             <RefreshCw className="h-4 w-4" aria-hidden="true" />
@@ -161,7 +241,7 @@ function GlobeFallbackView({
 
       <GlobeStaticPreview
         className="globe-fallback-preview"
-        statusLabel="Static map preview"
+        statusLabel="Static fallback · WebGL unavailable"
         pulseStatus={false}
       />
     </div>
@@ -214,6 +294,7 @@ export default function MapGlobeComponent() {
   const [isOffline, setIsOffline] = useState(false);
   const [mapUnavailableReason, setMapUnavailableReason] = useState<string | null>(null);
   const [nearbyCenter, setNearbyCenter] = useState<{ lat: number; lng: number }>(DEFAULT_USER_LOCATION);
+  const [locationSource, setLocationSource] = useState<"pilot" | "browser" | "fallback">("pilot");
   const questMarkersRef = useRef<maplibregl.Marker[]>([]);
   const placeMarkersRef = useRef<maplibregl.Marker[]>([]);
   const postMarkersRef = useRef<maplibregl.Marker[]>([]);
@@ -238,6 +319,70 @@ export default function MapGlobeComponent() {
       }))
       .sort((a, b) => b.count - a.count);
   }, [quests]);
+
+  const nearbyItemCount = quests.length + places.length + posts.length;
+  const nearbyStatus = useMemo(() => {
+    if (nearbyLoading) {
+      return {
+        tone: "limited" as const,
+        badge: "LOADING",
+        value: "Fetching public missions, places, and posts near the current center.",
+      };
+    }
+    if (nearbyIssue) {
+      return {
+        tone: "limited" as const,
+        badge: "LIMITED",
+        value: "Nearby endpoints are unavailable; existing map controls remain usable.",
+      };
+    }
+    if (nearbyItemCount === 0) {
+      return {
+        tone: "real" as const,
+        badge: "REAL",
+        value: "Nearby endpoints returned no public pins for this area.",
+      };
+    }
+    return {
+      tone: "real" as const,
+      badge: "REAL",
+      value: `${nearbyItemCount} public pins fetched for the ${NEARBY_RADIUS_KM} km area.`,
+    };
+  }, [nearbyIssue, nearbyItemCount, nearbyLoading]);
+
+  const centerStatus = useMemo(() => {
+    if (locationSource === "browser") {
+      return {
+        tone: "real" as const,
+        badge: "REAL",
+        value: "Browser location was accepted; dragging the map refreshes nearby context.",
+      };
+    }
+    if (locationSource === "fallback") {
+      return {
+        tone: "demo" as const,
+        badge: "DEMO",
+        value: "Using the Ghent pilot center because browser location is unavailable.",
+      };
+    }
+    return {
+      tone: "demo" as const,
+      badge: "DEMO",
+      value: "Starting from the Ghent pilot center until browser location is confirmed.",
+    };
+  }, [locationSource]);
+
+  const mapHealth = isOffline || nearbyIssue
+    ? {
+        tone: "limited" as const,
+        badge: "LIMITED",
+        label: "Limited public map",
+      }
+    : {
+        tone: "real" as const,
+        badge: "REAL",
+        label: "Real public map",
+      };
 
   const loadNearbyData = useCallback(async (center: { lat: number; lng: number }) => {
     setNearbyLoading(true);
@@ -408,6 +553,7 @@ export default function MapGlobeComponent() {
           if (!isCurrentMap()) return;
           const coords = { lat: pos.coords.latitude, lng: pos.coords.longitude };
           setLocationIssue(null);
+          setLocationSource("browser");
           setUserLocation(coords);
           setMapCenter(coords);
           void loadNearbyData(coords);
@@ -415,6 +561,7 @@ export default function MapGlobeComponent() {
         },
         () => {
           if (!isCurrentMap()) return;
+          setLocationSource("fallback");
           setUserLocation(DEFAULT_USER_LOCATION);
           setLocationIssue("Using Ghent as the starting point. Enable location for nearby results.");
         },
@@ -648,19 +795,57 @@ export default function MapGlobeComponent() {
           />
           <div ref={mapContainer} id="globe-map" className="absolute inset-0 w-full h-full" />
 
-          {/* Nearby need tags */}
-          <div className="globe-hud-panel globe-nearby-panel absolute z-40 w-[min(320px,calc(100vw-2rem))] rounded-paw-lg border border-paw-border bg-paw-panel/90 p-3 shadow-paw-panel backdrop-blur-md">
-            <div className="mb-2 flex items-center justify-between gap-3">
+          {/* Public map status */}
+          <div
+            id="globe-status-panel"
+            className="globe-hud-panel globe-nearby-panel absolute z-40 w-[min(340px,calc(100vw-2rem))] rounded-paw-lg border border-paw-border bg-paw-panel/90 p-3 shadow-paw-panel backdrop-blur-md"
+            style={{ width: "clamp(12.75rem, calc(100vw - 10rem), 21.25rem)" }}
+            aria-labelledby="globe-status-panel-title"
+          >
+            <div className="mb-3 flex items-start justify-between gap-3">
               <div>
-                <p className="text-xs font-black uppercase tracking-[0.16em] text-paw-accent">Nearby needs</p>
+                <p className="text-xs font-black uppercase tracking-[0.16em] text-paw-primary">PawPal Globe</p>
+                <h2 id="globe-status-panel-title" className="mt-0.5 text-sm font-black text-paw-ink">
+                  Public map status
+                </h2>
                 <p className="text-[11px] font-medium text-paw-muted">
                   {nearbyCenter.lat.toFixed(3)}, {nearbyCenter.lng.toFixed(3)} · {NEARBY_RADIUS_KM} km
                 </p>
               </div>
-              <span className="rounded-full bg-paw-accent-soft px-2 py-1 text-[11px] font-black text-paw-accent">
-                {nearbyLoading ? "..." : quests.length}
-              </span>
+              <StatusBadge tone={mapHealth.tone}>{mapHealth.badge}</StatusBadge>
             </div>
+
+            <div className="mb-3 grid gap-1.5">
+              <StatusRow
+                icon={<Radio className="h-3.5 w-3.5" aria-hidden="true" />}
+                label="Map source"
+                value="CARTO and OpenStreetMap tiles with PawPal public overlays."
+                tone="real"
+                badge="REAL"
+              />
+              <StatusRow
+                icon={<Compass className="h-3.5 w-3.5" aria-hidden="true" />}
+                label="Center"
+                value={centerStatus.value}
+                tone={centerStatus.tone}
+                badge={centerStatus.badge}
+              />
+              <StatusRow
+                icon={<ShieldCheck className="h-3.5 w-3.5" aria-hidden="true" />}
+                label="Nearby data"
+                value={nearbyStatus.value}
+                tone={nearbyStatus.tone}
+                badge={nearbyStatus.badge}
+              />
+              <StatusRow
+                icon={<CheckCircle2 className="h-3.5 w-3.5" aria-hidden="true" />}
+                label="Privacy"
+                value="Public proof only; no live pet tracking is shown on this page."
+                tone="real"
+                badge="REAL"
+              />
+            </div>
+
             {(isOffline || locationIssue || nearbyIssue) && (
               <div className="mb-2 space-y-1.5">
                 {isOffline && (
@@ -683,10 +868,18 @@ export default function MapGlobeComponent() {
                 )}
               </div>
             )}
+
+            <div className="mt-3 border-t border-paw-border/70 pt-3">
+              <div className="mb-2 flex items-center justify-between gap-3">
+                <p className="text-xs font-black text-paw-ink">Nearby needs</p>
+                <span className="rounded-paw-sm bg-paw-accent-soft px-2 py-1 text-[11px] font-black text-paw-accent">
+                  {nearbyLoading ? "..." : quests.length}
+                </span>
+              </div>
             {nearbyQuestTags.length > 0 ? (
               <div className="flex flex-wrap gap-1.5">
                 {nearbyQuestTags.slice(0, 6).map((tag) => (
-                  <span key={tag.type} className="inline-flex items-center gap-1 rounded-full border border-paw-accent/20 bg-paw-accent-soft px-2.5 py-1 text-[11px] font-bold text-paw-body">
+                  <span key={tag.type} className="inline-flex items-center gap-1 rounded-paw-sm border border-paw-accent/20 bg-paw-accent-soft px-2.5 py-1 text-[11px] font-bold text-paw-body">
                     <span>{tag.emoji}</span>
                     <span>{tag.label}</span>
                     <span className="text-paw-accent">{tag.count}</span>
@@ -698,32 +891,57 @@ export default function MapGlobeComponent() {
                 {nearbyLoading ? "Loading nearby needs..." : "No open needs in this area yet."}
               </p>
             )}
+            </div>
           </div>
 
           {/* Layer Toggle */}
-          <div id="globe-layers" className="globe-layer-stack absolute z-40 flex gap-1.5">
-            <button onClick={() => setShowQuests(!showQuests)} className={`globe-layer-button flex items-center gap-2 rounded-paw-sm border px-3 py-2 text-xs font-bold transition-all ${showQuests ? "is-active-mission bg-paw-accent/90 text-white border-paw-accent" : "bg-paw-panel/80 text-paw-muted border-paw-border"}`}>
+          <div id="globe-layers" className="globe-layer-stack absolute z-40 flex gap-1.5" role="group" aria-label="Toggle public map layers">
+            <span className="inline-flex items-center gap-1 px-2 text-[11px] font-black text-paw-body">
+              <Layers className="h-3.5 w-3.5 text-paw-primary" aria-hidden="true" />
+              Layers
+            </span>
+            <button
+              type="button"
+              aria-pressed={showQuests}
+              aria-label={`${showQuests ? "Hide" : "Show"} public mission pins`}
+              onClick={() => setShowQuests(!showQuests)}
+              className={`globe-layer-button flex min-h-11 items-center gap-2 rounded-paw-sm border px-3 py-2 text-xs font-bold transition-all ${showQuests ? "is-active-mission bg-paw-accent/90 text-white border-paw-accent" : "bg-paw-panel/80 text-paw-muted border-paw-border"}`}
+            >
               <PawPrint className="h-3.5 w-3.5" aria-hidden="true" />
               Missions {quests.length > 0 && <span className="bg-white/30 px-1.5 py-0.5 rounded-full text-[10px]">{quests.length}</span>}
             </button>
-            <button onClick={() => setShowPlaces(!showPlaces)} className={`globe-layer-button flex items-center gap-2 rounded-paw-sm border px-3 py-2 text-xs font-bold transition-all ${showPlaces ? "is-active-place bg-paw-trust/90 text-white border-paw-trust" : "bg-paw-panel/80 text-paw-muted border-paw-border"}`}>
+            <button
+              type="button"
+              aria-pressed={showPlaces}
+              aria-label={`${showPlaces ? "Hide" : "Show"} public place pins`}
+              onClick={() => setShowPlaces(!showPlaces)}
+              className={`globe-layer-button flex min-h-11 items-center gap-2 rounded-paw-sm border px-3 py-2 text-xs font-bold transition-all ${showPlaces ? "is-active-place bg-paw-trust/90 text-white border-paw-trust" : "bg-paw-panel/80 text-paw-muted border-paw-border"}`}
+            >
               <MapPin className="h-3.5 w-3.5" aria-hidden="true" />
               Places {places.length > 0 && <span className="bg-white/30 px-1.5 py-0.5 rounded-full text-[10px]">{places.length}</span>}
             </button>
-            <button onClick={() => setShowPosts(!showPosts)} className={`globe-layer-button flex items-center gap-2 rounded-paw-sm border px-3 py-2 text-xs font-bold transition-all ${showPosts ? "is-active-post bg-paw-primary/90 text-white border-paw-primary" : "bg-paw-panel/80 text-paw-muted border-paw-border"}`}>
+            <button
+              type="button"
+              aria-pressed={showPosts}
+              aria-label={`${showPosts ? "Hide" : "Show"} public post pins`}
+              onClick={() => setShowPosts(!showPosts)}
+              className={`globe-layer-button flex min-h-11 items-center gap-2 rounded-paw-sm border px-3 py-2 text-xs font-bold transition-all ${showPosts ? "is-active-post bg-paw-primary/90 text-white border-paw-primary" : "bg-paw-panel/80 text-paw-muted border-paw-border"}`}
+            >
               <MessageCircle className="h-3.5 w-3.5" aria-hidden="true" />
               Posts {posts.length > 0 && <span className="bg-white/30 px-1.5 py-0.5 rounded-full text-[10px]">{posts.length}</span>}
             </button>
           </div>
 
           <div className="globe-status-strip">
-            <span>Ghent pilot</span>
+            <span>{mapHealth.label}</span>
             <strong>{quests.length}</strong>
             <span>open needs</span>
             <strong>{places.length}</strong>
             <span>mapped places</span>
             <strong>{posts.length}</strong>
             <span>public posts</span>
+            <strong>{centerStatus.badge}</strong>
+            <span>center</span>
           </div>
 
           {/* AI Chat Bottom Sheet */}

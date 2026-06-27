@@ -7,6 +7,17 @@ export { default as EmptyState } from "./EmptyState";
 export { default as Input } from "./Input";
 export { default as NfcIdentityCard } from "./NfcIdentityCard";
 export { default as PageShell } from "./PageShell";
+export {
+  CompassCard,
+  CompassIconTile,
+  CompassLoop,
+  CompassSectionHeader,
+  CompassStatusChip,
+  PairingHandoffCard,
+  PermissionRecoveryPanel,
+  PetHeroCard,
+  SmartTagStatusCard,
+} from "./PetCompass";
 export { default as ProductCard } from "./ProductCard";
 export { default as ProfileStat } from "./ProfileStat";
 export { default as Sheet } from "./Sheet";

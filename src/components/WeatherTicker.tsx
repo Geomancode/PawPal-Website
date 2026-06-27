@@ -188,11 +188,11 @@ export default function WeatherTicker({ mapCenter, onRecenterRequest }: WeatherT
         <div className="flex items-center justify-center gap-2 text-sm">
           {loading && !weatherIssue ? (
             <>
-              <RefreshCw className="w-4 h-4 animate-spin" /> Loading weather...
+              <RefreshCw className="w-4 h-4 animate-spin" /> Loading weather API...
             </>
           ) : (
             <>
-              <Cloud className="w-4 h-4 text-white/70" /> Weather temporarily unavailable
+              <Cloud className="w-4 h-4 text-white/70" /> Weather API temporarily unavailable
             </>
           )}
         </div>
@@ -255,8 +255,10 @@ export default function WeatherTicker({ mapCenter, onRecenterRequest }: WeatherT
         {/* Recenter button (shows when viewing map-center weather) */}
         {!weather.isUserLocation && (
           <button
+            type="button"
             onClick={handleRecenter}
-            className="shrink-0 ml-3 mr-1 flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-paw-primary/90 hover:bg-paw-primary text-white text-[11px] font-bold transition-all z-10 shadow-paw-action"
+            className="z-10 ml-3 mr-1 flex min-h-11 shrink-0 items-center gap-1.5 rounded-paw-sm bg-paw-primary/90 px-3 py-1.5 text-[11px] font-bold text-white shadow-paw-action transition-all hover:bg-paw-primary"
+            aria-label="Back to my location weather"
             title="Back to my location"
           >
             <Navigation className="w-3.5 h-3.5" />

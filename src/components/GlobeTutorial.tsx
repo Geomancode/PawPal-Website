@@ -19,24 +19,24 @@ interface TourStep {
 
 const STEPS: TourStep[] = [
   {
-    targetId: "globe-map",
-    emoji: "👋",
-    title: "Welcome to the Globe!",
-    description: "This interactive 3D map shows real-time pet missions and pet-friendly places worldwide. Drag to spin, scroll to zoom in.",
+    targetId: "globe-status-panel",
+    emoji: "🧭",
+    title: "Read the map status",
+    description: "This panel labels what is real, demo, limited, or static before you use the public map proof.",
     position: "top",
   },
   {
     targetId: "globe-search",
     emoji: "🔍",
-    title: "AI-Powered Search",
-    description: "Ask anything in natural language — try \"dog parks near Ghent\" or \"adoption missions\". Our AI will find and highlight results on the map!",
+    title: "Search the public map",
+    description: "Ask for places, missions, or pet-safe context. Map results are pinned when the search API returns them.",
     position: "top",
   },
   {
     targetId: "globe-layers",
     emoji: "🗂️",
-    title: "Filter Layers",
-    description: "Toggle Missions (🐾 Coral accent) and Places (📍 Paw Blue) on or off. Each layer has its own markers with relevant info popups.",
+    title: "Filter public layers",
+    description: "Toggle missions, places, and posts without changing the source data. Counts only appear when pins are returned.",
     position: "left",
   },
 ];

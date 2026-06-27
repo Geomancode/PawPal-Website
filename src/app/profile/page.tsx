@@ -1,8 +1,8 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { AlertCircle, Loader2 } from "lucide-react";
+import { AlertCircle, Loader2, RefreshCw } from "lucide-react";
 import type { User } from "@supabase/supabase-js";
 import { useAuth } from "@/components/AuthProvider";
 import { supabase } from "@/lib/supabase";
@@ -30,6 +30,51 @@ function errorMessage(error: unknown): string {
     if (message) return message;
   }
   return "Something went wrong. Please try again.";
+}
+
+function ProfileLoadingState({ title, detail }: { title: string; detail: string }) {
+  return (
+    <div className="profile-page-shell min-h-screen bg-paw-page px-4 pt-24 pb-16">
+      <div className="mx-auto max-w-6xl">
+        <div className="mb-6 flex items-center gap-3 rounded-paw-lg border border-paw-border bg-paw-panel p-4 shadow-paw-panel" role="status" aria-live="polite">
+          <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-paw-md bg-paw-primary-soft text-paw-primary">
+            <Loader2 className="h-5 w-5 animate-spin" aria-hidden="true" />
+          </span>
+          <span className="min-w-0">
+            <span className="block text-sm font-extrabold text-paw-ink">{title}</span>
+            <span className="mt-0.5 block text-sm leading-6 text-paw-muted">{detail}</span>
+          </span>
+        </div>
+
+        <div className="profile-workspace-grid mb-6" aria-hidden="true">
+          <div className="rounded-paw-lg border border-paw-border bg-paw-panel p-5 shadow-paw-panel">
+            <div className="flex items-start gap-4">
+              <div className="h-20 w-20 animate-pulse rounded-paw-lg bg-paw-panel-subtle" />
+              <div className="min-w-0 flex-1 space-y-3 pt-1">
+                <div className="h-4 w-28 animate-pulse rounded-paw-sm bg-paw-panel-subtle" />
+                <div className="h-7 w-56 max-w-full animate-pulse rounded-paw-sm bg-paw-panel-subtle" />
+                <div className="h-4 w-40 animate-pulse rounded-paw-sm bg-paw-panel-subtle" />
+              </div>
+            </div>
+            <div className="mt-6 grid gap-3 sm:grid-cols-2">
+              <div className="h-16 animate-pulse rounded-paw-md bg-paw-panel-subtle" />
+              <div className="h-16 animate-pulse rounded-paw-md bg-paw-panel-subtle" />
+            </div>
+          </div>
+
+          <div className="rounded-paw-lg border border-paw-border bg-paw-panel p-5 shadow-paw-panel">
+            <div className="h-4 w-24 animate-pulse rounded-paw-sm bg-paw-panel-subtle" />
+            <div className="mt-3 h-6 w-44 animate-pulse rounded-paw-sm bg-paw-panel-subtle" />
+            <div className="mt-5 space-y-3">
+              <div className="h-16 animate-pulse rounded-paw-md bg-paw-panel-subtle" />
+              <div className="h-16 animate-pulse rounded-paw-md bg-paw-panel-subtle" />
+              <div className="h-16 animate-pulse rounded-paw-md bg-paw-panel-subtle" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 }
 
 async function loadOrCreateProfile(user: User): Promise<Profile> {
@@ -66,13 +111,14 @@ async function loadOrCreateProfile(user: User): Promise<Profile> {
 }
 
 export default function ProfilePage() {
-  const { user, loading: authLoading } = useAuth();
+  const { user, loading: authLoading, signOut } = useAuth();
   const router = useRouter();
   const [profile, setProfile] = useState<Profile | null>(null);
   const [pets, setPets] = useState<Pet[]>([]);
   const [loading, setLoading] = useState(true);
   const [editing, setEditing] = useState(false);
   const [saving, setSaving] = useState(false);
+  const [signingOut, setSigningOut] = useState(false);
   const [profileError, setProfileError] = useState<string | null>(null);
   const [petError, setPetError] = useState<string | null>(null);
   const [installPrompt, setInstallPrompt] = useState<BeforeInstallPromptEvent | null>(null);
@@ -121,33 +167,34 @@ export default function ProfilePage() {
     };
   }, []);
 
-  useEffect(() => {
+  const fetchProfileData = useCallback(async () => {
     if (!user) return;
 
-    async function fetchData() {
-      setLoading(true);
-      setProfileError(null);
-      try {
-        const [profileData, petsRes] = await Promise.all([
-          loadOrCreateProfile(user!),
-          supabase.from("pets").select("*").eq("owner_id", user!.id).order("created_at", { ascending: false }),
-        ]);
+    setLoading(true);
+    setProfileError(null);
+    try {
+      const [profileData, petsRes] = await Promise.all([
+        loadOrCreateProfile(user),
+        supabase.from("pets").select("*").eq("owner_id", user.id).order("created_at", { ascending: false }),
+      ]);
 
-        setProfile(profileData);
-        setEditName(profileData.display_name || "");
-        setEditBio(profileData.bio || "");
-        setEditCity(profileData.location_city || "");
+      setProfile(profileData);
+      setEditName(profileData.display_name || "");
+      setEditBio(profileData.bio || "");
+      setEditCity(profileData.location_city || "");
 
-        if (petsRes.error) throw petsRes.error;
-        setPets((petsRes.data ?? []) as Pet[]);
-      } catch (e) {
-        setProfileError(errorMessage(e));
-      } finally {
-        setLoading(false);
-      }
+      if (petsRes.error) throw petsRes.error;
+      setPets((petsRes.data ?? []) as Pet[]);
+    } catch (e) {
+      setProfileError(errorMessage(e));
+    } finally {
+      setLoading(false);
     }
-    fetchData();
   }, [user]);
+
+  useEffect(() => {
+    void fetchProfileData();
+  }, [fetchProfileData]);
 
   const handleSave = async () => {
     if (!user || !profile) return;
@@ -228,11 +275,37 @@ export default function ProfilePage() {
     );
   };
 
-  if (authLoading || loading) {
+  const handleSignOut = async () => {
+    setSigningOut(true);
+    await signOut();
+    router.push("/auth");
+    setSigningOut(false);
+  };
+
+  if (authLoading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-paw-page pt-20">
-        <Loader2 className="w-8 h-8 text-paw-primary animate-spin" />
-      </div>
+      <ProfileLoadingState
+        title="Checking account session"
+        detail="We are confirming your signed-in PawPal account before opening owner controls."
+      />
+    );
+  }
+
+  if (!user) {
+    return (
+      <ProfileLoadingState
+        title="Redirecting to sign in"
+        detail="Profile controls are available after email sign-in."
+      />
+    );
+  }
+
+  if (loading) {
+    return (
+      <ProfileLoadingState
+        title="Loading owner workspace"
+        detail="Fetching your profile and pet records from the account database."
+      />
     );
   }
 
@@ -243,6 +316,14 @@ export default function ProfilePage() {
           <AlertCircle className="mx-auto mb-3 h-8 w-8 text-paw-danger" />
           <h1 className="text-lg font-extrabold text-paw-ink">Profile unavailable</h1>
           <p className="mt-2 text-sm text-paw-muted">{profileError ?? "We could not load your profile."}</p>
+          <button
+            type="button"
+            onClick={() => void fetchProfileData()}
+            className="profile-action-button profile-action-button-primary mx-auto mt-5"
+          >
+            <RefreshCw className="h-4 w-4" aria-hidden="true" />
+            Try again
+          </button>
         </div>
       </div>
     );
@@ -252,9 +333,14 @@ export default function ProfilePage() {
     <ProfileWorkspaceView
       profile={profile}
       pets={pets}
+      accountEmail={user.email ?? null}
+      accountCreatedAt={user.created_at ?? null}
+      emailConfirmedAt={user.email_confirmed_at ?? null}
+      lastSignInAt={user.last_sign_in_at ?? null}
       profileError={profileError}
       editing={editing}
       saving={saving}
+      signingOut={signingOut}
       showAddPet={showAddPet}
       addingPet={addingPet}
       petError={petError}
@@ -273,6 +359,8 @@ export default function ProfilePage() {
       onStartEditing={() => setEditing(true)}
       onCancelEditing={() => setEditing(false)}
       onSaveProfile={handleSave}
+      onRetryProfile={() => void fetchProfileData()}
+      onSignOut={handleSignOut}
       onInstall={handleInstall}
       onSetShowAddPet={setShowAddPet}
       onAddPet={handleAddPet}

@@ -16,7 +16,7 @@ const MapGlobeComponent = dynamic(() => import("@/components/GlobeFullPage"), {
         </div>
         <p className="mt-4 text-sm font-bold text-white/70">Loading PawPal Globe</p>
         <p className="mt-1 text-xs text-white/42">
-          Preparing map layers, weather context, and nearby pet support.
+          Preparing real map layers, public nearby context, and the labeled static fallback.
         </p>
       </div>
     </div>

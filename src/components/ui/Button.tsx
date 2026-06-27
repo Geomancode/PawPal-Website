@@ -26,10 +26,10 @@ const variants: Record<ButtonVariant, string> = {
 };
 
 const sizes: Record<ButtonSize, string> = {
-  sm: "h-9 px-3 text-sm",
+  sm: "h-10 px-3 text-sm",
   md: "h-11 px-4 text-sm",
   lg: "h-12 px-5 text-base",
-  icon: "h-10 w-10 p-0",
+  icon: "h-11 w-11 p-0",
 };
 
 export function buttonClassName({
@@ -44,7 +44,7 @@ export function buttonClassName({
   return cn(
     "inline-flex items-center justify-center gap-2 rounded-paw-md font-bold transition duration-200",
     "transition-[transform,background-color,border-color,box-shadow,color]",
-    "focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-paw-trust/20",
+    "focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-paw-primary/25",
     "disabled:pointer-events-none disabled:opacity-50",
     variants[variant],
     sizes[size],

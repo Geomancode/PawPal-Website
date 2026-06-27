@@ -4,6 +4,7 @@ import {
   MapPin, Shield, PawPrint, Edit3, Save,
   X, Plus, Calendar, Droplets, Nfc, Loader2, Smartphone,
   AlertCircle, Download, CheckCircle, ExternalLink, HeartPulse,
+  KeyRound, LogOut, Mail, RefreshCw, UserCircle,
 } from "lucide-react";
 
 export interface Profile {
@@ -45,9 +46,14 @@ export interface Pet {
 type ProfileWorkspaceViewProps = {
   profile: Profile;
   pets: Pet[];
+  accountEmail: string | null;
+  accountCreatedAt: string | null;
+  emailConfirmedAt: string | null;
+  lastSignInAt: string | null;
   profileError: string | null;
   editing: boolean;
   saving: boolean;
+  signingOut: boolean;
   showAddPet: boolean;
   addingPet: boolean;
   petError: string | null;
@@ -66,6 +72,8 @@ type ProfileWorkspaceViewProps = {
   onStartEditing: () => void;
   onCancelEditing: () => void;
   onSaveProfile: () => void;
+  onRetryProfile: () => void;
+  onSignOut: () => void;
   onInstall: () => void;
   onSetShowAddPet: (value: boolean) => void;
   onAddPet: () => void;
@@ -79,14 +87,6 @@ type ProfileWorkspaceViewProps = {
   onPetContactChange: (value: string) => void;
   onToggleSocialTag: (tag: string) => void;
   onToggleHealthBadge: (tag: string) => void;
-};
-
-const TRUST_LABELS: Record<number, { label: string; color: string }> = {
-  1: { label: "Newcomer", color: "bg-paw-panel-subtle text-paw-muted" },
-  2: { label: "Friendly", color: "bg-paw-trust-soft text-paw-trust" },
-  3: { label: "Trusted", color: "bg-paw-success-soft text-paw-success" },
-  4: { label: "Veteran", color: "bg-paw-primary-soft text-paw-primary" },
-  5: { label: "Legend", color: "bg-paw-warning-soft text-paw-warning" },
 };
 
 const SPECIES_OPTIONS = [
@@ -115,12 +115,32 @@ function computeAge(birthDate: string | null): number | null {
   return age >= 0 ? age : null;
 }
 
+function hasText(value: string | null | undefined): boolean {
+  return Boolean(value?.trim());
+}
+
+function formatDate(value: string | null): string {
+  if (!value) return "Not recorded";
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return "Not recorded";
+  return date.toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" });
+}
+
+function readinessCount(ready: number, total: number): string {
+  return total === 0 ? "No pets" : `${ready}/${total}`;
+}
+
 export default function ProfileWorkspaceView({
   profile,
   pets,
+  accountEmail,
+  accountCreatedAt,
+  emailConfirmedAt,
+  lastSignInAt,
   profileError,
   editing,
   saving,
+  signingOut,
   showAddPet,
   addingPet,
   petError,
@@ -139,6 +159,8 @@ export default function ProfileWorkspaceView({
   onStartEditing,
   onCancelEditing,
   onSaveProfile,
+  onRetryProfile,
+  onSignOut,
   onInstall,
   onSetShowAddPet,
   onAddPet,
@@ -153,26 +175,46 @@ export default function ProfileWorkspaceView({
   onToggleSocialTag,
   onToggleHealthBadge,
 }: ProfileWorkspaceViewProps) {
-  const trust = TRUST_LABELS[profile.trust_level] || TRUST_LABELS[1];
-  const memberSince = new Date(profile.created_at).toLocaleDateString("en-US", { year: "numeric", month: "long" });
+  const memberSince = formatDate(profile.created_at);
+  const accountSince = formatDate(accountCreatedAt);
   const displayName = profile.display_name || profile.username;
-  const nfcReadyPets = pets.filter((pet) => Boolean(pet.nfc_tag_uid)).length;
-  const contactReadyPets = pets.filter((pet) => Boolean(pet.owner_contact?.trim())).length;
+  const nfcReadyPets = pets.filter((pet) => hasText(pet.nfc_tag_uid)).length;
+  const contactReadyPets = pets.filter((pet) => hasText(pet.owner_contact)).length;
+  const ownerDetailsReady = hasText(profile.display_name) || hasText(profile.bio) || hasText(profile.location_city);
+  const allContactsSaved = pets.length > 0 && contactReadyPets === pets.length;
+  const allTagsLinked = pets.length > 0 && nfcReadyPets === pets.length;
+  const readinessDone = [
+    ownerDetailsReady,
+    pets.length > 0,
+    allContactsSaved,
+    allTagsLinked,
+  ].filter(Boolean).length;
   const readinessRows = [
     {
-      label: "Pets",
+      label: "Owner details",
+      value: ownerDetailsReady ? "Saved" : "Needs info",
+      helper: ownerDetailsReady
+        ? "Profile has owner-facing details saved."
+        : "Add a display name, city, or short note.",
+    },
+    {
+      label: "Pet records",
       value: pets.length,
-      helper: pets.length === 0 ? "Add a pet profile to start." : "Profiles connected to this owner account.",
+      helper: pets.length === 0 ? "Add a pet profile to start." : "Pet profiles connected to this owner account.",
     },
     {
       label: "NFC tags",
-      value: `${nfcReadyPets}/${pets.length || 0}`,
-      helper: pets.length === 0 ? "Tags appear after a pet is added." : "Pets with a linked public finder page.",
+      value: readinessCount(nfcReadyPets, pets.length),
+      helper: pets.length === 0
+        ? "Add a pet before tag readiness can be checked."
+        : "Only pets with nfc_tag_uid count as NFC ready.",
     },
     {
-      label: "Public contact",
-      value: `${contactReadyPets}/${pets.length || 0}`,
-      helper: "Pets with owner contact saved for finder pages.",
+      label: "Finder contact",
+      value: readinessCount(contactReadyPets, pets.length),
+      helper: pets.length === 0
+        ? "Add a pet before contact readiness can be checked."
+        : "Only pets with owner_contact saved count here.",
     },
   ];
 
@@ -180,25 +222,33 @@ export default function ProfileWorkspaceView({
     <div className={`profile-page-shell ${showAddPet ? "profile-page-shell-add-mode" : ""} relative min-h-screen overflow-hidden bg-paw-page pt-24 pb-16`}>
       <div className="mx-auto max-w-6xl px-4">
         {profileError && (
-          <div className="mb-4 flex items-center gap-2 rounded-paw-md border border-paw-danger/20 bg-paw-danger-soft px-4 py-3 text-sm font-medium text-paw-danger">
+          <div className="mb-4 flex flex-wrap items-center gap-2 rounded-paw-md border border-paw-danger/20 bg-paw-danger-soft px-4 py-3 text-sm font-medium text-paw-danger" role="alert">
             <AlertCircle className="h-4 w-4 shrink-0" aria-hidden="true" />
-            {profileError}
+            <span className="min-w-0 flex-1">{profileError}</span>
+            <button
+              type="button"
+              onClick={onRetryProfile}
+              className="inline-flex items-center gap-1 rounded-paw-sm border border-paw-danger/20 bg-paw-panel px-2.5 py-1.5 text-xs font-extrabold text-paw-danger transition hover:bg-paw-danger-soft"
+            >
+              <RefreshCw className="h-3.5 w-3.5" aria-hidden="true" />
+              Retry
+            </button>
           </div>
         )}
 
         <div className="profile-command-header mb-6">
           <div>
-            <p className="text-xs font-black uppercase tracking-[0.14em] text-paw-primary">Account workspace</p>
+            <p className="text-xs font-black uppercase tracking-[0.14em] text-paw-primary">Owner workspace</p>
             <h1 className="mt-2 text-3xl font-extrabold tracking-tight text-paw-ink sm:text-4xl">
               Profile readiness
             </h1>
             <p className="mt-2 max-w-2xl text-sm leading-6 text-paw-body">
-              Manage owner details, pet safety profiles, install status, and NFC-ready finder information from one account surface.
+              Manage account access, owner details, pet records, and finder readiness without showing a tag or contact as ready until saved data confirms it.
             </p>
           </div>
           <div className="profile-command-chip">
-            <Shield className="h-4 w-4" aria-hidden="true" />
-            Trust level {profile.trust_level}/5
+            <UserCircle className="h-4 w-4" aria-hidden="true" />
+            <span className="max-w-[16rem] truncate">{accountEmail ?? "Signed in"}</span>
           </div>
         </div>
 
@@ -271,7 +321,7 @@ export default function ProfileWorkspaceView({
                   {profile.bio ? (
                     <p className="break-words text-sm leading-6 text-paw-body">{profile.bio}</p>
                   ) : (
-                    <p className="text-sm leading-6 text-paw-muted">Add a short owner note so trusted community members know who manages these pet profiles.</p>
+                    <p className="text-sm leading-6 text-paw-muted">Add a short owner note so visitors know who manages these pet profiles.</p>
                   )}
 
                   <div className="profile-meta-grid mt-5">
@@ -279,9 +329,9 @@ export default function ProfileWorkspaceView({
                       <MapPin className="h-3.5 w-3.5" aria-hidden="true" />
                       <span className="break-words">{profile.location_city || "City not listed"}</span>
                     </span>
-                    <span className={`profile-meta-chip ${trust.color}`}>
+                    <span className="profile-meta-chip">
                       <Shield className="h-3.5 w-3.5" aria-hidden="true" />
-                      {trust.label}
+                      {emailConfirmedAt ? "Email confirmed" : "Email status not recorded"}
                     </span>
                     <span className="profile-meta-chip text-paw-primary bg-paw-primary-soft">
                       <PawPrint className="h-3.5 w-3.5" aria-hidden="true" />
@@ -294,6 +344,59 @@ export default function ProfileWorkspaceView({
                   </div>
               </div>
             )}
+
+            <div className="mt-5 border-t border-paw-border pt-4">
+              <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
+                <div>
+                  <p className="text-xs font-black uppercase tracking-[0.12em] text-paw-muted">Account controls</p>
+                  <p className="mt-1 text-sm leading-6 text-paw-body">
+                    Email session details are read from the current authenticated account.
+                  </p>
+                </div>
+                <button
+                  type="button"
+                  onClick={onSignOut}
+                  disabled={signingOut}
+                  className="profile-action-button border border-paw-danger/20 bg-paw-danger-soft text-paw-danger hover:bg-paw-danger-soft"
+                >
+                  {signingOut ? <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" /> : <LogOut className="h-4 w-4" aria-hidden="true" />}
+                  {signingOut ? "Signing out" : "Sign out"}
+                </button>
+              </div>
+
+              <div className="grid gap-3 sm:grid-cols-2">
+                <div className="rounded-paw-md border border-paw-border bg-paw-panel-subtle p-3">
+                  <p className="flex items-center gap-2 text-xs font-black uppercase tracking-[0.12em] text-paw-muted">
+                    <Mail className="h-3.5 w-3.5" aria-hidden="true" />
+                    Email
+                  </p>
+                  <p className="mt-1 break-all text-sm font-extrabold text-paw-ink">{accountEmail ?? "Not available"}</p>
+                </div>
+                <div className="rounded-paw-md border border-paw-border bg-paw-panel-subtle p-3">
+                  <p className="flex items-center gap-2 text-xs font-black uppercase tracking-[0.12em] text-paw-muted">
+                    <KeyRound className="h-3.5 w-3.5" aria-hidden="true" />
+                    Email status
+                  </p>
+                  <p className="mt-1 text-sm font-extrabold text-paw-ink">
+                    {emailConfirmedAt ? `Confirmed ${formatDate(emailConfirmedAt)}` : "Not recorded"}
+                  </p>
+                </div>
+                <div className="rounded-paw-md border border-paw-border bg-paw-panel-subtle p-3">
+                  <p className="flex items-center gap-2 text-xs font-black uppercase tracking-[0.12em] text-paw-muted">
+                    <Calendar className="h-3.5 w-3.5" aria-hidden="true" />
+                    Account created
+                  </p>
+                  <p className="mt-1 text-sm font-extrabold text-paw-ink">{accountSince}</p>
+                </div>
+                <div className="rounded-paw-md border border-paw-border bg-paw-panel-subtle p-3">
+                  <p className="flex items-center gap-2 text-xs font-black uppercase tracking-[0.12em] text-paw-muted">
+                    <UserCircle className="h-3.5 w-3.5" aria-hidden="true" />
+                    Last sign-in
+                  </p>
+                  <p className="mt-1 text-sm font-extrabold text-paw-ink">{formatDate(lastSignInAt)}</p>
+                </div>
+              </div>
+            </div>
           </section>
 
           <aside
@@ -303,7 +406,10 @@ export default function ProfileWorkspaceView({
             <div className="flex items-start justify-between gap-4">
               <div>
                 <p className="text-xs font-black uppercase tracking-[0.12em] text-paw-primary">Readiness</p>
-                <h2 id="profile-readiness-heading" className="mt-1 text-xl font-extrabold text-paw-ink">Pet safety status</h2>
+                <h2 id="profile-readiness-heading" className="mt-1 text-xl font-extrabold text-paw-ink">Workspace checklist</h2>
+                <p className="mt-1 text-xs leading-5 text-paw-muted">
+                  {readinessDone}/4 readiness items complete from saved account data.
+                </p>
               </div>
               <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-paw-md bg-paw-trust-soft text-paw-trust">
                 <HeartPulse className="h-5 w-5" aria-hidden="true" />
@@ -330,7 +436,7 @@ export default function ProfileWorkspaceView({
                 <div className="min-w-0 flex-1">
                   <p className="text-sm font-extrabold text-paw-ink">{isInstalled ? "PawPal installed" : "Install PawPal"}</p>
                   <p className="mt-0.5 text-xs leading-5 text-paw-muted">
-                    {installStatus ?? (isInstalled ? "Open it from your home screen any time." : "Add profile, pets, and map access to this device.")}
+                    {installStatus ?? (isInstalled ? "Open it from your home screen any time." : "Add a faster shortcut to this same account on this device.")}
                   </p>
                 </div>
               </div>
@@ -473,8 +579,8 @@ export default function ProfileWorkspaceView({
                   <div className="bg-paw-trust-soft border border-paw-trust/15 rounded-paw-md px-4 py-3 flex items-start gap-3">
                     <Smartphone className="w-5 h-5 text-paw-trust shrink-0 mt-0.5" aria-hidden="true" />
                     <div>
-                      <p className="text-xs font-bold text-paw-trust">Want to write an NFC pet tag?</p>
-                      <p className="text-xs text-paw-body mt-0.5">Open the PawPal app on your phone to write pet info to an NFC tag. The data syncs automatically.</p>
+                      <p className="text-xs font-bold text-paw-trust">Need NFC setup?</p>
+                      <p className="text-xs text-paw-body mt-0.5">Write a real tag in the PawPal app. This page only marks NFC ready after a saved nfc_tag_uid is present.</p>
                     </div>
                   </div>
 
@@ -492,7 +598,7 @@ export default function ProfileWorkspaceView({
               <PawPrint className="w-10 h-10 text-paw-primary mx-auto mb-3" aria-hidden="true" />
               <h3 className="text-lg font-extrabold text-paw-ink">Add your first pet profile</h3>
               <p className="mx-auto mt-2 max-w-md text-sm leading-6 text-paw-muted">
-                Pet records power finder pages, NFC readiness, and safer community context.
+                Pet records power finder pages. Contact and NFC readiness appear only after those fields are saved.
               </p>
               <button
                 type="button"
@@ -510,6 +616,9 @@ export default function ProfileWorkspaceView({
                 const healthBadges: string[] = pet.social_traits?.health_badges ?? [];
                 const socialTags: string[] = pet.social_traits?.social_tags ?? [];
                 const quirk: string | undefined = pet.social_traits?.quirk;
+                const hasNfcTag = hasText(pet.nfc_tag_uid);
+                const hasOwnerContact = hasText(pet.owner_contact);
+                const petAge = computeAge(pet.birth_date);
 
                 return (
                   <article
@@ -527,19 +636,19 @@ export default function ProfileWorkspaceView({
                       <div className="min-w-0 flex-1">
                         <div className="flex flex-wrap items-center gap-2">
                           <h3 className="break-words text-base font-bold text-paw-ink">{pet.name}</h3>
-                          {pet.nfc_tag_uid ? (
+                          {hasNfcTag ? (
                             <span className="profile-pet-status profile-pet-status-ready">
                               <Nfc className="w-3 h-3" aria-hidden="true" /> NFC ready
                             </span>
                           ) : (
                             <span className="profile-pet-status">
-                              <Nfc className="w-3 h-3" aria-hidden="true" /> No NFC
+                              <Nfc className="w-3 h-3" aria-hidden="true" /> NFC not linked
                             </span>
                           )}
-                          {pet.owner_contact ? (
+                          {hasOwnerContact ? (
                             <span className="profile-pet-status profile-pet-status-contact">Contact saved</span>
                           ) : (
-                            <span className="profile-pet-status">Contact missing</span>
+                            <span className="profile-pet-status">Contact not saved</span>
                           )}
                         </div>
 
@@ -548,8 +657,8 @@ export default function ProfileWorkspaceView({
                         <div className="flex flex-wrap items-center gap-2 mt-3">
                           <span className="profile-pet-fact">{pet.breed || "Breed not listed"}</span>
                           <span className="profile-pet-fact">
-                            {computeAge(pet.birth_date) != null
-                              ? `${computeAge(pet.birth_date)} yr${computeAge(pet.birth_date) !== 1 ? "s" : ""}`
+                            {petAge != null
+                              ? `${petAge} yr${petAge !== 1 ? "s" : ""}`
                               : "Age not listed"}
                           </span>
                           <span className="profile-pet-fact profile-pet-fact-care">
@@ -577,8 +686,8 @@ export default function ProfileWorkspaceView({
                         target="_blank"
                         rel="noopener noreferrer"
                         className="profile-tag-link"
-                        aria-label={`View public tag page for ${pet.name}`}
-                        title="View public tag page"
+                        aria-label={`View public profile for ${pet.name}`}
+                        title="View public profile"
                       >
                         <ExternalLink className="w-4 h-4" aria-hidden="true" />
                       </a>

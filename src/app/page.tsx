@@ -7,6 +7,8 @@ import {
   BottomCTA,
   AnimatedHeadline,
   HeroDescription,
+  HeroMobileProof,
+  HeroNextHint,
   HeroSignalRail,
   ScrollProgress,
   HeroBlobs,
@@ -35,8 +37,10 @@ export default function Home() {
           <FadeIn className="z-10 min-w-0 max-w-2xl space-y-5 lg:space-y-6">
             <AnimatedHeadline />
             <HeroDescription />
+            <HeroMobileProof />
             <HeroCTA />
             <HeroSignalRail />
+            <HeroNextHint />
           </FadeIn>
 
           <GlobeSection />
@@ -49,11 +53,11 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="workflow" className="bg-paw-page py-16 md:py-20">
+      <section id="product-loop" className="bg-paw-page py-16 md:py-20">
         <div className="mx-auto max-w-6xl px-5 sm:px-6 lg:px-8">
           <FadeInView>
             <h2 className="text-center font-brand text-3xl font-extrabold text-paw-ink md:text-4xl">
-              From walk to rescue, one connected flow.
+              Pet identity -&gt; live context -&gt; trusted action.
             </h2>
           </FadeInView>
           <div className="mt-14">
@@ -73,10 +77,10 @@ export default function Home() {
           <div className="home-final-cta grid items-center gap-6 px-6 py-9 text-center sm:px-10 lg:grid-cols-[1fr_auto] lg:text-left">
             <FadeInView>
               <h2 className="font-brand text-3xl font-extrabold leading-tight text-white md:text-4xl">
-                Ready to make every walk safer?
+                Open the app context or shop the tag.
               </h2>
               <p className="mx-auto mt-3 max-w-2xl text-sm leading-7 text-white/78 md:text-base lg:mx-0">
-                Open the live map, prepare a smart tag, and connect your pet profile to real-world help.
+                PawPal keeps the map, public profile, and smart-tag handoff close without changing the store or checkout path.
               </p>
             </FadeInView>
             <FadeInView delay={0.08}>

@@ -99,7 +99,7 @@ export default function AuthPage() {
           </div>
           <div className="auth-signal-grid relative z-10 mt-8">
             {[
-              { icon: Nfc, title: "NFC ready", copy: "Connect smart tags to controlled finder pages." },
+              { icon: Nfc, title: "Tag setup", copy: "Control finder pages after a real tag is paired." },
               { icon: Map, title: "Walk context", copy: "Map features and nearby help stay attached to your profile." },
               { icon: ShieldCheck, title: "Privacy first", copy: "Owner details stay hidden until you choose to share." },
             ].map((item) => (

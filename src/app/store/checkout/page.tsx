@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import {
   ArrowLeft, ArrowRight, Package, MapPin, CreditCard,
   Truck, ShieldCheck, Lock, Loader2, ExternalLink,
+  CheckCircle2,
 } from "lucide-react";
 import {
   CartItem, ShippingInfo,
@@ -54,45 +55,61 @@ function checkoutStepMotion(shouldReduceMotion: boolean) {
   };
 }
 
+function formatEuro(value: number) {
+  return `€${value.toFixed(2)}`;
+}
+
+function getItemCount(items: CartItem[]) {
+  return items.reduce((sum, item) => sum + item.quantity, 0);
+}
+
 // ─── Step Indicator ────────────────────────────────────
 function StepIndicator({ current }: { current: number }) {
   return (
-    <div className="checkout-stepper mb-10 flex items-center justify-center gap-2">
+    <ol className="checkout-stepper mb-8 flex items-center justify-center gap-2" aria-label="Checkout progress">
       {STEPS.map((step, i) => {
         const done = current > step.id;
         const active = current === step.id;
         return (
-          <div key={step.id} className="flex items-center gap-2">
-            <div className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all ${
+          <li key={step.id} className="flex items-center gap-2">
+            <div
+              className={`flex min-h-11 items-center gap-2 rounded-paw-md px-3 py-2 text-sm font-extrabold transition-colors sm:px-4 ${
               active ? "bg-paw-primary text-white shadow-paw-action" : done ? "bg-paw-success-soft text-paw-success" : "bg-paw-panel-subtle text-paw-muted"
-            }`}>
+            }`}
+              aria-current={active ? "step" : undefined}
+            >
               <step.icon className="w-4 h-4" />
               <span className="hidden sm:inline">{step.label}</span>
             </div>
             {i < STEPS.length - 1 && (
               <div className={`h-0.5 w-8 ${done ? "bg-paw-success" : "bg-paw-border"}`} />
             )}
-          </div>
+          </li>
         );
       })}
-    </div>
+    </ol>
   );
 }
 
 // ─── Input Field ───────────────────────────────────────
-function Field({ label, value, onChange, placeholder, type = "text", required = true }: {
+function Field({ id, label, value, onChange, placeholder, type = "text", required = true, autoComplete }: {
+  id: string;
   label: string; value: string; onChange: (v: string) => void;
-  placeholder: string; type?: string; required?: boolean;
+  placeholder: string; type?: string; required?: boolean; autoComplete?: string;
 }) {
   return (
     <div>
-      <label className="mb-1.5 block text-sm font-bold text-paw-ink">{label}{required && <span className="text-paw-danger">*</span>}</label>
+      <label htmlFor={id} className="mb-1.5 block text-sm font-bold text-paw-ink">
+        {label}{required && <span className="text-paw-danger">*</span>}
+      </label>
       <input
+        id={id}
         type={type}
         value={value}
         onChange={(e) => onChange(e.target.value)}
         placeholder={placeholder}
         required={required}
+        autoComplete={autoComplete}
         className="w-full rounded-paw-md border border-paw-border bg-paw-panel px-4 py-3 text-paw-ink transition-all focus:border-paw-trust focus:outline-none focus:ring-4 focus:ring-paw-trust/20"
       />
     </div>
@@ -100,39 +117,87 @@ function Field({ label, value, onChange, placeholder, type = "text", required = 
 }
 
 // ─── Order Summary Sidebar ─────────────────────────────
-function OrderSummary({ items }: { items: CartItem[] }) {
+function OrderSummary({ items, loading }: { items: CartItem[]; loading: boolean }) {
   const subtotal = items.reduce((s, i) => s + i.product.price * i.quantity, 0);
+  const itemCount = getItemCount(items);
 
   return (
-    <div className="checkout-summary-card rounded-paw-lg border border-paw-border bg-paw-panel/80 p-6 shadow-paw-panel backdrop-blur-sm">
-      <h3 className="mb-4 flex items-center gap-2 font-extrabold text-paw-ink">
-        <Package className="h-4 w-4 text-paw-primary" /> Order Summary
-      </h3>
-      <div className="space-y-3 mb-4 max-h-48 overflow-y-auto">
-        {items.map((item) => (
-          <div key={item.product.id} className="flex items-center gap-3">
-            <ProductVisual product={item.product} size="sm" />
-            <div className="flex-1 min-w-0">
-              <p className="truncate text-sm font-bold text-paw-ink">{item.product.name}</p>
-              <p className="text-xs text-paw-muted">Qty: {item.quantity}</p>
-            </div>
-            <span className="text-sm font-extrabold text-paw-ink">€{(item.product.price * item.quantity).toFixed(2)}</span>
-          </div>
-        ))}
+    <aside className="checkout-summary-card rounded-paw-lg border border-paw-border bg-paw-panel/90 p-6 shadow-paw-panel backdrop-blur-sm lg:sticky lg:top-28" aria-label="Checkout summary">
+      <div className="mb-5 flex items-start justify-between gap-4">
+        <div>
+          <p className="text-xs font-extrabold uppercase tracking-[0.12em] text-paw-primary">Checkout summary</p>
+          <h2 className="mt-1 flex items-center gap-2 text-xl font-extrabold text-paw-ink">
+            <Package className="h-5 w-5 text-paw-primary" aria-hidden="true" />
+            Order summary
+          </h2>
+        </div>
+        <span className="shrink-0 rounded-paw-sm border border-paw-border bg-paw-panel-subtle px-2.5 py-1 text-xs font-bold text-paw-muted">
+          {loading ? "Loading" : `${itemCount} item${itemCount === 1 ? "" : "s"}`}
+        </span>
       </div>
-      <div className="space-y-2 border-t border-paw-border pt-3">
-        <div className="flex justify-between text-sm text-paw-body"><span>Subtotal</span><span>€{subtotal.toFixed(2)}</span></div>
+
+      {loading ? (
+        <div className="rounded-paw-md border border-paw-border bg-paw-panel-subtle p-4 text-sm font-bold text-paw-body">
+          Loading your cart before payment review...
+        </div>
+      ) : items.length === 0 ? (
+        <div className="rounded-paw-md border border-paw-warning/20 bg-paw-warning-soft p-4 text-sm font-bold text-paw-body">
+          Your cart is empty. Returning to the store...
+        </div>
+      ) : (
+        <div className="mb-5 max-h-[22rem] space-y-3 overflow-y-auto pr-1">
+          {items.map((item) => (
+            <div key={item.product.id} className="flex gap-3 rounded-paw-md border border-paw-border bg-paw-panel-subtle p-3">
+              <ProductVisual product={item.product} size="sm" className="border border-paw-border" />
+              <div className="min-w-0 flex-1">
+                <p className="truncate text-sm font-extrabold text-paw-ink">{item.product.name}</p>
+                <p className="mt-1 text-xs font-bold text-paw-muted">
+                  Qty {item.quantity} x {formatEuro(item.product.price)}
+                </p>
+              </div>
+              <span className="shrink-0 text-sm font-extrabold tabular-nums text-paw-ink">
+                {formatEuro(item.product.price * item.quantity)}
+              </span>
+            </div>
+          ))}
+        </div>
+      )}
+
+      <div className="space-y-2 border-t border-paw-border pt-4">
+        <div className="flex justify-between text-sm text-paw-body">
+          <span>Subtotal</span>
+          <span className="font-bold tabular-nums">{formatEuro(subtotal)}</span>
+        </div>
         <div className="flex justify-between text-sm text-paw-body">
           <span>Shipping</span>
           <span className="font-bold text-paw-success">Free</span>
         </div>
-        <div className="flex justify-between border-t border-paw-border pt-2 text-lg font-extrabold text-paw-ink"><span>Total</span><span>€{subtotal.toFixed(2)}</span></div>
+        <div className="flex justify-between border-t border-paw-border pt-3 text-xl font-extrabold text-paw-ink">
+          <span>Total due</span>
+          <span className="tabular-nums">{formatEuro(subtotal)}</span>
+        </div>
       </div>
-      <div className="mt-4 flex items-center gap-2 rounded-paw-sm border border-paw-trust/20 bg-paw-trust-soft p-3">
+
+      <div className="mt-5 space-y-2">
+        {[
+          "Stripe hosts the card and wallet payment step.",
+          "PawPal keeps your cart intact if payment does not start.",
+          "Free shipping is included before you leave this page.",
+        ].map((label) => (
+          <div key={label} className="flex items-start gap-2 text-xs leading-5 text-paw-body">
+            <CheckCircle2 className="mt-0.5 h-3.5 w-3.5 shrink-0 text-paw-success" aria-hidden="true" />
+            <span>{label}</span>
+          </div>
+        ))}
+      </div>
+
+      <div className="mt-5 flex items-center gap-2 rounded-paw-md border border-paw-trust/20 bg-paw-trust-soft p-3">
         <ShieldCheck className="h-4 w-4 shrink-0 text-paw-trust" />
-        <p className="text-xs text-paw-trust">Secured by <strong>Stripe</strong></p>
+        <p className="text-xs font-bold leading-5 text-paw-body">
+          Secure payment powered by <strong className="text-paw-ink">Stripe</strong>.
+        </p>
       </div>
-    </div>
+    </aside>
   );
 }
 
@@ -142,6 +207,7 @@ export default function CheckoutPage() {
   const shouldReduceMotion = useHydratedReducedMotion();
   const [step, setStep] = useState(1);
   const [cart, setCart] = useState<CartItem[]>([]);
+  const [cartLoaded, setCartLoaded] = useState(false);
   const [redirecting, setRedirecting] = useState(false);
   const [checkoutError, setCheckoutError] = useState<string | null>(null);
 
@@ -158,6 +224,7 @@ export default function CheckoutPage() {
         router.push("/store");
       }
       setCart(loaded);
+      setCartLoaded(true);
     });
     return () => { cancelled = true; };
   }, [router]);
@@ -212,6 +279,7 @@ export default function CheckoutPage() {
       <div className="max-w-5xl mx-auto px-4">
         {/* Back button */}
         <button
+          type="button"
           onClick={() => step === 1 ? router.push("/store") : setStep(step - 1)}
           className="mb-6 flex cursor-pointer items-center gap-1 text-paw-muted transition-colors hover:text-paw-primary"
         >
@@ -230,7 +298,7 @@ export default function CheckoutPage() {
             {[
               { icon: Lock, label: "Stripe-secured" },
               { icon: Truck, label: "Free shipping" },
-              { icon: ShieldCheck, label: "NFC-safe catalog" },
+              { icon: ShieldCheck, label: "Cart preserved on retry" },
             ].map((item) => (
               <div key={item.label} className="checkout-assurance-chip">
                 <item.icon className="h-4 w-4" aria-hidden="true" />
@@ -240,7 +308,7 @@ export default function CheckoutPage() {
           </div>
         </div>
 
-        <StepIndicator current={step} />
+        <StepIndicator current={redirecting ? 3 : step} />
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* ── Main Content ── */}
@@ -258,17 +326,17 @@ export default function CheckoutPage() {
                   </h2>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div className="sm:col-span-2">
-                      <Field label="Full Name" value={shipping.fullName} onChange={(v) => setShipping({ ...shipping, fullName: v })} placeholder="John Doe" />
+                      <Field id="fullName" label="Full Name" value={shipping.fullName} onChange={(v) => setShipping({ ...shipping, fullName: v })} placeholder="John Doe" autoComplete="name" />
                     </div>
-                    <Field label="Email" value={shipping.email} onChange={(v) => setShipping({ ...shipping, email: v })} placeholder="john@example.com" type="email" />
-                    <Field label="Phone" value={shipping.phone} onChange={(v) => setShipping({ ...shipping, phone: v })} placeholder="+32 XXX XXX XXX" type="tel" />
+                    <Field id="email" label="Email" value={shipping.email} onChange={(v) => setShipping({ ...shipping, email: v })} placeholder="john@example.com" type="email" autoComplete="email" />
+                    <Field id="phone" label="Phone" value={shipping.phone} onChange={(v) => setShipping({ ...shipping, phone: v })} placeholder="+32 XXX XXX XXX" type="tel" required={false} autoComplete="tel" />
                     <div className="sm:col-span-2">
-                      <Field label="Street Address" value={shipping.address} onChange={(v) => setShipping({ ...shipping, address: v })} placeholder="123 Pet Street" />
+                      <Field id="address" label="Street Address" value={shipping.address} onChange={(v) => setShipping({ ...shipping, address: v })} placeholder="123 Pet Street" autoComplete="street-address" />
                     </div>
-                    <Field label="City" value={shipping.city} onChange={(v) => setShipping({ ...shipping, city: v })} placeholder="Ghent" />
-                    <Field label="Zip Code" value={shipping.zipCode} onChange={(v) => setShipping({ ...shipping, zipCode: v })} placeholder="9000" />
+                    <Field id="city" label="City" value={shipping.city} onChange={(v) => setShipping({ ...shipping, city: v })} placeholder="Ghent" autoComplete="address-level2" />
+                    <Field id="zipCode" label="Zip Code" value={shipping.zipCode} onChange={(v) => setShipping({ ...shipping, zipCode: v })} placeholder="9000" autoComplete="postal-code" />
                     <div className="sm:col-span-2">
-                      <Field label="Country" value={shipping.country} onChange={(v) => setShipping({ ...shipping, country: v })} placeholder="Belgium" />
+                      <Field id="country" label="Country" value={shipping.country} onChange={(v) => setShipping({ ...shipping, country: v })} placeholder="Belgium" autoComplete="country-name" />
                     </div>
                   </div>
 
@@ -283,8 +351,14 @@ export default function CheckoutPage() {
                     <p className="text-sm text-paw-body">Free shipping on all orders. Estimated delivery: 3-5 business days.</p>
                   </div>
 
-                  <motion.button
-                    whileTap={shouldReduceMotion ? undefined : { scale: 0.97 }}
+                  {!canProceedShipping && (
+                    <p className="mt-4 text-sm font-bold text-paw-muted">
+                      Complete the required delivery details to review your order.
+                    </p>
+                  )}
+
+                  <button
+                    type="button"
                     disabled={!canProceedShipping}
                     onClick={() => setStep(2)}
                     className={`mt-6 flex w-full cursor-pointer items-center justify-center gap-2 rounded-paw-lg py-3.5 text-lg font-bold transition-all ${
@@ -292,7 +366,7 @@ export default function CheckoutPage() {
                     }`}
                   >
                     Review Order <ArrowRight className="w-5 h-5" />
-                  </motion.button>
+                  </button>
                 </motion.div>
               )}
 
@@ -309,25 +383,36 @@ export default function CheckoutPage() {
 
                   {/* Shipping summary */}
                   <div className="mb-6 rounded-paw-md border border-paw-border bg-paw-panel-subtle p-4">
-                    <h4 className="mb-2 flex items-center gap-2 font-bold text-paw-ink"><MapPin className="h-4 w-4 text-paw-primary" /> Shipping To</h4>
+                    <div className="mb-3 flex items-start justify-between gap-3">
+                      <h4 className="flex items-center gap-2 font-bold text-paw-ink"><MapPin className="h-4 w-4 text-paw-primary" /> Shipping to</h4>
+                      <button
+                        type="button"
+                        onClick={() => setStep(1)}
+                        className="text-sm font-extrabold text-paw-primary transition-colors hover:text-paw-primary-hover focus:outline-none focus:ring-4 focus:ring-paw-primary/20"
+                      >
+                        Edit
+                      </button>
+                    </div>
                     <p className="text-sm text-paw-body">{shipping.fullName}</p>
                     <p className="text-sm text-paw-muted">{shipping.address}</p>
                     <p className="text-sm text-paw-muted">{shipping.city}, {shipping.zipCode}, {shipping.country}</p>
-                    <p className="text-sm text-paw-muted">{shipping.email} · {shipping.phone}</p>
+                    <p className="text-sm text-paw-muted">{shipping.email}{shipping.phone ? ` · ${shipping.phone}` : ""}</p>
                   </div>
 
                   {/* Items */}
                   <div className="mb-6">
-                    <h4 className="mb-3 flex items-center gap-2 font-bold text-paw-ink"><Package className="h-4 w-4 text-paw-primary" /> Items ({cart.length})</h4>
+                    <h4 className="mb-3 flex items-center gap-2 font-bold text-paw-ink">
+                      <Package className="h-4 w-4 text-paw-primary" /> Items ({getItemCount(cart)})
+                    </h4>
                     <div className="space-y-2">
                       {cart.map((item) => (
                         <div key={item.product.id} className="flex items-center gap-3 rounded-paw-sm bg-paw-panel-subtle p-3">
                           <ProductVisual product={item.product} size="sm" />
-                          <div className="flex-1">
+                          <div className="min-w-0 flex-1">
                             <p className="text-sm font-bold text-paw-ink">{item.product.name}</p>
-                            <p className="text-xs text-paw-muted">Qty: {item.quantity}</p>
+                            <p className="text-xs text-paw-muted">Qty {item.quantity} x {formatEuro(item.product.price)}</p>
                           </div>
-                          <span className="font-bold text-sm">€{(item.product.price * item.quantity).toFixed(2)}</span>
+                          <span className="text-sm font-bold tabular-nums">{formatEuro(item.product.price * item.quantity)}</span>
                         </div>
                       ))}
                     </div>
@@ -335,45 +420,57 @@ export default function CheckoutPage() {
 
                   {/* Total */}
                   <div className="mb-6 space-y-2 border-t border-paw-border pt-4">
-                    <div className="flex justify-between text-sm text-paw-body"><span>Subtotal</span><span>€{subtotal.toFixed(2)}</span></div>
+                    <div className="flex justify-between text-sm text-paw-body"><span>Subtotal</span><span className="tabular-nums">{formatEuro(subtotal)}</span></div>
                     <div className="flex justify-between text-sm text-paw-body"><span>Shipping</span><span className="font-bold text-paw-success">Free</span></div>
-                    <div className="flex justify-between border-t border-paw-border pt-2 text-xl font-extrabold text-paw-ink"><span>Total</span><span>€{subtotal.toFixed(2)}</span></div>
+                    <div className="flex justify-between border-t border-paw-border pt-2 text-xl font-extrabold text-paw-ink"><span>Total due</span><span className="tabular-nums">{formatEuro(subtotal)}</span></div>
                   </div>
 
                   {/* Stripe Pay Button */}
                   <div className="space-y-3">
+                    <div className="rounded-paw-lg border border-paw-primary/20 bg-paw-primary-soft p-5">
+                      <h3 className="flex items-center gap-2 text-lg font-extrabold text-paw-ink">
+                        <Lock className="h-5 w-5 text-paw-primary" aria-hidden="true" />
+                        Secure Stripe payment
+                      </h3>
+                      <p className="mt-2 text-sm leading-6 text-paw-body">
+                        The next step opens Stripe Checkout for card and wallet payment. Review the amount here before continuing.
+                      </p>
+                    </div>
+
                     {checkoutError && (
                       <StatusMessage tone="danger" title="Payment could not start">
                         {checkoutError}
                       </StatusMessage>
                     )}
 
-                    <motion.button
-                      whileTap={shouldReduceMotion ? undefined : { scale: 0.97 }}
+                    {redirecting && (
+                      <StatusMessage tone="info" title="Opening Stripe Checkout">
+                        Keep this tab open while the secure payment page loads.
+                      </StatusMessage>
+                    )}
+
+                    <button
+                      type="button"
                       onClick={handleStripeCheckout}
                       disabled={redirecting}
-                      className="w-full bg-paw-primary hover:bg-paw-primary-hover text-white py-4 rounded-paw-md font-bold text-lg flex items-center justify-center gap-3 transition-all shadow-paw-action cursor-pointer disabled:opacity-60"
+                      aria-busy={redirecting}
+                      className="flex min-h-16 w-full cursor-pointer items-center justify-center gap-3 rounded-paw-md bg-paw-primary px-4 py-4 text-lg font-extrabold text-white shadow-paw-action transition-colors hover:bg-paw-primary-hover focus:outline-none focus:ring-4 focus:ring-paw-primary/25 disabled:cursor-wait disabled:opacity-80"
                     >
                       {redirecting ? (
                         <>
-                          <motion.div
-                            animate={shouldReduceMotion ? { rotate: 0 } : { rotate: 360 }}
-                            transition={shouldReduceMotion ? { duration: 0 } : { repeat: Infinity, duration: 1, ease: "linear" }}
-                          >
-                            <Loader2 className="w-5 h-5" />
-                          </motion.div>
-                          Redirecting to Stripe...
+                          <Loader2 className={`h-5 w-5 ${shouldReduceMotion ? "" : "animate-spin"}`} aria-hidden="true" />
+                          Opening secure Stripe payment...
                         </>
                       ) : (
                         <>
                           <Lock className="w-5 h-5" />
-                          Pay €{subtotal.toFixed(2)} with Stripe
+                          Pay {formatEuro(subtotal)} securely with Stripe
                           <ExternalLink className="w-4 h-4 opacity-60" />
                         </>
                       )}
-                    </motion.button>
+                    </button>
 
-                    <div className="flex items-center justify-center gap-2 text-xs text-paw-muted">
+                    <div className="flex items-start justify-center gap-2 text-center text-xs leading-5 text-paw-muted">
                       <ShieldCheck className="w-3.5 h-3.5" />
                       <span>Secure payment powered by Stripe · PCI DSS Level 1 certified</span>
                     </div>
@@ -392,7 +489,7 @@ export default function CheckoutPage() {
 
           {/* ── Sidebar ── */}
           <div className="lg:col-span-1">
-            <OrderSummary items={cart} />
+            <OrderSummary items={cart} loading={!cartLoaded} />
           </div>
         </div>
       </div>

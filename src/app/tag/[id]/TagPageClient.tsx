@@ -8,11 +8,14 @@ import {
   Calendar,
   Droplets,
   Heart,
+  Info,
+  LifeBuoy,
+  LockKeyhole,
   Mail,
+  Nfc,
   PawPrint,
   Phone,
   ScanLine,
-  ShieldCheck,
   UserRound,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
@@ -23,6 +26,12 @@ type PetSocialTraits = {
   social_tags?: string[];
   quirk?: string;
   achievements?: string[];
+  lost_mode?: boolean;
+  is_lost?: boolean;
+  lost?: boolean;
+  status?: string;
+  lost_note?: string;
+  last_seen?: string;
   [key: string]: unknown;
 };
 
@@ -52,6 +61,24 @@ export default function TagPageClient({ pet, owner }: TagPageClientProps) {
   const achievements: string[] = pet.social_traits?.achievements ?? [];
   const ownerName = owner?.display_name || owner?.username || "PawPal owner";
   const ownerLabel = owner ? ownerName : "Owner profile not public";
+  const normalizedStatus =
+    typeof pet.social_traits?.status === "string"
+      ? pet.social_traits.status.trim().toLowerCase()
+      : "";
+  const isLostMode =
+    pet.social_traits?.lost_mode === true ||
+    pet.social_traits?.is_lost === true ||
+    pet.social_traits?.lost === true ||
+    normalizedStatus === "lost" ||
+    normalizedStatus === "lost_mode";
+  const lostNote =
+    typeof pet.social_traits?.lost_note === "string" && pet.social_traits.lost_note.trim()
+      ? pet.social_traits.lost_note.trim()
+      : null;
+  const lastSeen =
+    typeof pet.social_traits?.last_seen === "string" && pet.social_traits.last_seen.trim()
+      ? pet.social_traits.last_seen.trim()
+      : null;
   const contactHref = pet.owner_contact
     ? pet.owner_contact.includes("@")
       ? `mailto:${pet.owner_contact}`
@@ -64,19 +91,34 @@ export default function TagPageClient({ pet, owner }: TagPageClientProps) {
       ? "Public email"
       : "Public phone"
     : "Contact hidden";
+  const contactSummary = contactHref
+    ? `Owner shared a public ${contactIsEmail ? "email" : "phone"} for this profile.`
+    : "Owner contact details are hidden on this public profile.";
   const ageLabel =
     pet.age != null ? `${pet.age} year${pet.age === 1 ? "" : "s"}` : "Not listed";
   const careLabel = healthBadges[0] ?? "No public notes";
 
   return (
     <div className="relative min-h-[100dvh] overflow-hidden bg-paw-page px-4 py-8 pt-24 text-paw-ink">
-      <main className="mx-auto grid max-w-6xl gap-5 lg:grid-cols-[0.82fr_1.18fr] lg:items-start">
+      <main className="mx-auto grid max-w-6xl gap-5 lg:grid-cols-[0.86fr_1.14fr] lg:items-start">
         <section className="tag-rescue-panel">
           <div className="relative z-10 flex h-full flex-col">
-            <p className="inline-flex w-fit items-center gap-2 rounded-paw-sm border border-paw-primary/20 bg-paw-primary-soft px-3 py-2 text-xs font-black uppercase tracking-[0.16em] text-paw-primary">
-              <ScanLine className="h-4 w-4" aria-hidden="true" />
-              Scanned PawPal tag
-            </p>
+            <div className="flex flex-wrap gap-2">
+              <span className="inline-flex w-fit items-center gap-2 rounded-paw-sm border border-paw-primary/20 bg-paw-primary-soft px-3 py-2 text-xs font-extrabold text-paw-primary">
+                <ScanLine className="h-4 w-4" aria-hidden="true" />
+                Public pet profile
+              </span>
+              <span
+                className={
+                  isLostMode
+                    ? "inline-flex w-fit items-center gap-2 rounded-paw-sm border border-paw-warning/30 bg-paw-warning-soft px-3 py-2 text-xs font-extrabold text-paw-warning"
+                    : "inline-flex w-fit items-center gap-2 rounded-paw-sm border border-paw-border bg-paw-panel px-3 py-2 text-xs font-extrabold text-paw-body"
+                }
+              >
+                <AlertTriangle className="h-4 w-4" aria-hidden="true" />
+                {isLostMode ? "Lost-pet help requested" : "Lost alert not displayed"}
+              </span>
+            </div>
 
             <div className="mt-4 flex items-start gap-4">
               <div className="relative flex h-20 w-20 shrink-0 items-center justify-center overflow-hidden rounded-paw-lg border-4 border-white bg-paw-primary-soft text-paw-primary shadow-paw-panel sm:h-24 sm:w-24">
@@ -94,32 +136,60 @@ export default function TagPageClient({ pet, owner }: TagPageClientProps) {
                 )}
               </div>
               <div className="min-w-0">
-                <h1 className="break-words font-brand text-3xl font-extrabold leading-tight text-paw-ink sm:text-4xl">
-                  Help {pet.name} get home.
+                <h1 className="break-words font-brand text-4xl font-extrabold leading-tight text-paw-ink sm:text-5xl">
+                  {pet.name}
                 </h1>
-                <p className="mt-2 text-sm font-bold leading-6 text-paw-body">
-                  Safety profile managed by {ownerLabel}.
+                <p className="mt-2 text-sm font-extrabold leading-6 text-paw-ink">
+                  {isLostMode ? `Help ${pet.name} get home safely.` : "Finder-facing PawPal safety profile."}
+                </p>
+                <p className="mt-1 text-sm leading-6 text-paw-body">
+                  Managed by {ownerLabel}.
                 </p>
               </div>
             </div>
+
+            {isLostMode && (
+              <StatusMessage tone="danger" className="mt-5" title="Lost-pet priority">
+                Use the owner-shared contact path if available. If {pet.name} is injured or in danger,
+                contact local animal services first.
+              </StatusMessage>
+            )}
 
             {contactHref ? (
               <div className="mt-5">
                 <a
                   href={contactHref}
-                  className="inline-flex h-14 w-full items-center justify-center gap-2 rounded-paw-md bg-paw-primary px-5 text-base font-extrabold text-white shadow-paw-action transition hover:bg-paw-primary-hover"
+                  aria-label={`Contact ${pet.name}'s owner by ${contactIsEmail ? "email" : "phone"}`}
+                  className={
+                    isLostMode
+                      ? "inline-flex min-h-14 w-full items-center justify-center gap-2 rounded-paw-md bg-paw-accent px-5 py-3 text-base font-extrabold text-white shadow-paw-action transition hover:bg-paw-accent-hover focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-paw-warning/25"
+                      : "inline-flex min-h-14 w-full items-center justify-center gap-2 rounded-paw-md bg-paw-primary px-5 py-3 text-base font-extrabold text-white shadow-paw-action transition hover:bg-paw-primary-hover focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-paw-primary/25"
+                  }
                 >
                   <ContactIcon className="h-5 w-5" aria-hidden="true" />
                   Contact owner now
                 </a>
-                <p className="mt-2 text-xs font-bold uppercase tracking-[0.12em] text-paw-muted">
-                  Owner shared a {contactIsEmail ? "public email" : "public phone"} for this tag
+                <p className="mt-2 text-xs font-bold leading-5 text-paw-muted">
+                  {contactSummary}
                 </p>
               </div>
             ) : (
-              <StatusMessage tone="warning" className="mt-7" title="Owner contact is hidden">
-                This profile is available, but direct contact details are not public right now.
-              </StatusMessage>
+              <div className="mt-5 grid gap-3">
+                <StatusMessage
+                  tone={isLostMode ? "danger" : "warning"}
+                  title={isLostMode ? "Lost-pet alert, contact hidden" : "Owner contact is hidden"}
+                >
+                  This profile is available, but direct contact details are not public right now.
+                  PawPal does not reveal private owner information from this page.
+                </StatusMessage>
+                <Link
+                  href="/help"
+                  className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-paw-md border border-paw-border bg-paw-panel px-4 py-3 text-sm font-extrabold text-paw-ink transition hover:border-paw-primary hover:text-paw-primary focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-paw-primary/20"
+                >
+                  <LifeBuoy className="h-4 w-4" aria-hidden="true" />
+                  Get help with this tag
+                </Link>
+              </div>
             )}
 
             <div className="mt-4 grid grid-cols-2 gap-2">
@@ -145,15 +215,74 @@ export default function TagPageClient({ pet, owner }: TagPageClientProps) {
           <div className="tag-detail-card">
             <div className="flex items-start justify-between gap-4">
               <div className="min-w-0">
-                <p className="text-xs font-black uppercase tracking-[0.16em] text-paw-muted">
-                  Critical details
+                <p className="text-xs font-black text-paw-muted">
+                  Profile and tag truth
                 </p>
                 <h2 className="mt-1 break-words text-2xl font-extrabold text-paw-ink">
-                  What to know before moving {pet.name}
+                  What this page can confirm
                 </h2>
+                <p className="mt-2 text-sm leading-6 text-paw-body">
+                  A public PawPal pet profile was found for this link. This page does not
+                  verify the physical tag hardware.
+                </p>
               </div>
               <span className="inline-flex h-11 w-11 items-center justify-center rounded-paw-sm bg-paw-primary-soft text-paw-primary">
-                <ShieldCheck className="h-5 w-5" aria-hidden="true" />
+                <Info className="h-5 w-5" aria-hidden="true" />
+              </span>
+            </div>
+
+            <div className="mt-5 grid gap-3 sm:grid-cols-2">
+              <TruthRow
+                icon={Info}
+                label="Public profile"
+                value="Profile found"
+                detail="Pet identity and owner-approved public fields are available."
+              />
+              <TruthRow
+                icon={Nfc}
+                label="Tag verification"
+                value="Not verified here"
+                detail="No verified tag state is displayed unless a real data source provides it."
+                tone="attention"
+              />
+              <TruthRow
+                icon={ContactIcon}
+                label="Contact path"
+                value={contactType}
+                detail={contactSummary}
+                tone={contactHref ? "default" : "attention"}
+              />
+              <TruthRow
+                icon={LockKeyhole}
+                label="Privacy"
+                value="Owner controlled"
+                detail="Private owner data stays hidden unless the owner has shared it."
+              />
+            </div>
+          </div>
+
+          {(lostNote || lastSeen) && (
+            <div className="tag-detail-card border-paw-warning/30 bg-paw-warning-soft">
+              <p className="text-xs font-black text-paw-muted">Lost-pet details</p>
+              {lostNote && (
+                <p className="mt-2 text-sm font-bold leading-6 text-paw-ink">{lostNote}</p>
+              )}
+              {lastSeen && (
+                <p className="mt-2 text-sm leading-6 text-paw-body">Last seen: {lastSeen}</p>
+              )}
+            </div>
+          )}
+
+          <div className="tag-detail-card">
+            <div className="flex items-start justify-between gap-4">
+              <div className="min-w-0">
+                <p className="text-xs font-black text-paw-muted">Critical details</p>
+                <h2 className="mt-1 break-words text-2xl font-extrabold text-paw-ink">
+                  Before moving {pet.name}
+                </h2>
+              </div>
+              <span className="inline-flex h-11 w-11 items-center justify-center rounded-paw-sm bg-paw-warning-soft text-paw-warning">
+                <AlertTriangle className="h-5 w-5" aria-hidden="true" />
               </span>
             </div>
 
@@ -167,7 +296,7 @@ export default function TagPageClient({ pet, owner }: TagPageClientProps) {
 
           <div className="grid gap-4 lg:grid-cols-2">
             <TagSection
-              icon={ShieldCheck}
+              icon={Droplets}
               title="Health and care"
               values={healthBadges}
               tone="success"
@@ -277,6 +406,47 @@ function InfoTile({
         <span className="mt-0.5 block break-words text-sm font-extrabold text-paw-ink">
           {value}
         </span>
+      </span>
+    </div>
+  );
+}
+
+function TruthRow({
+  icon: Icon,
+  label,
+  value,
+  detail,
+  tone = "default",
+}: {
+  icon: LucideIcon;
+  label: string;
+  value: string;
+  detail: string;
+  tone?: "default" | "attention";
+}) {
+  return (
+    <div
+      className={
+        tone === "attention"
+          ? "flex min-w-0 gap-3 rounded-paw-md border border-paw-warning/25 bg-paw-warning-soft p-3"
+          : "flex min-w-0 gap-3 rounded-paw-md border border-paw-border bg-paw-panel-subtle p-3"
+      }
+    >
+      <span
+        className={
+          tone === "attention"
+            ? "mt-0.5 inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-paw-sm bg-paw-warning text-white"
+            : "mt-0.5 inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-paw-sm bg-paw-primary-soft text-paw-primary"
+        }
+      >
+        <Icon className="h-4 w-4" aria-hidden="true" />
+      </span>
+      <span className="min-w-0">
+        <span className="block text-xs font-black text-paw-muted">{label}</span>
+        <span className="mt-0.5 block break-words text-sm font-extrabold text-paw-ink">
+          {value}
+        </span>
+        <span className="mt-1 block text-xs leading-5 text-paw-body">{detail}</span>
       </span>
     </div>
   );

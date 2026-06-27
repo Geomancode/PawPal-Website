@@ -50,7 +50,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
           aria-describedby={helperId}
           className={cn(
             "h-11 w-full rounded-paw-md border border-paw-border bg-paw-panel px-3 text-sm text-paw-ink shadow-sm transition",
-            "placeholder:text-paw-muted focus-visible:border-paw-trust focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-paw-trust/20",
+            "placeholder:text-paw-muted focus-visible:border-paw-primary focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-paw-primary/20",
             "disabled:cursor-not-allowed disabled:opacity-60",
             leftSlot ? "pl-10" : undefined,
             rightSlot ? "pr-10" : undefined,

@@ -91,7 +91,7 @@ export function FadeInView({
 
   return (
     <motion.div
-      initial={shouldReduceMotion ? false : { opacity: 0, y: 18 }}
+      initial={false}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-80px" }}
       transition={shouldReduceMotion ? { duration: 0 } : { delay, duration: 0.58, ease }}
@@ -128,7 +128,7 @@ export function AnimatedHeadline() {
     >
       <span className="block sm:whitespace-nowrap">PawPal pet safety</span>
       {" "}
-      <span className="block text-paw-primary">for every walk</span>
+      <span className="block text-paw-primary">PetCompass for every walk</span>
     </h1>
   );
 }
@@ -141,9 +141,58 @@ export function HeroDescription() {
       className="max-w-xl break-words text-base leading-7 text-paw-body sm:text-lg sm:leading-8"
       {...enterMotion(shouldReduceMotion, 18, 0.18)}
     >
-      Built in Belgium, PawPal turns every walk into a safer route with
-      smart tags, finder profiles, and nearby pet help in one calm app.
+      Built from Belgium outward, PetCompass brings your pet profile, the live map context,
+      and smart-tag recovery handoff into one calm PawPal app.
     </motion.p>
+  );
+}
+
+export function HeroMobileProof() {
+  const shouldReduceMotion = useHydratedReducedMotion();
+  const proofs = [
+    {
+      title: "App proof",
+      label: "Profile + map",
+      src: "/images/app-mockup.png",
+      alt: "PawPal app interface preview",
+    },
+    {
+      title: "Tag proof",
+      label: "Smart Tag",
+      src: "/assets/store-products/current/smart-tag/hero.webp",
+      alt: "PawPal smart tag product",
+    },
+  ];
+
+  return (
+    <motion.div
+      className="grid gap-2 sm:hidden"
+      {...enterMotion(shouldReduceMotion, 12, 0.22)}
+      aria-label="PawPal app and smart tag proof"
+    >
+      <div className="grid grid-cols-2 gap-2">
+        {proofs.map((proof) => (
+          <div
+            key={proof.title}
+            className="grid min-h-[5.6rem] grid-cols-[4rem_minmax(0,1fr)] items-center gap-2 rounded-paw-sm border border-paw-border bg-paw-panel/90 p-2 shadow-sm"
+          >
+            <span className="relative block h-16 overflow-hidden rounded-paw-sm bg-paw-panel-subtle">
+              <Image
+                src={proof.src}
+                alt={proof.alt}
+                fill
+                sizes="64px"
+                className="object-contain p-1"
+              />
+            </span>
+            <span className="min-w-0 text-xs leading-4">
+              <span className="block font-extrabold text-paw-ink">{proof.title}</span>
+              <span className="block font-semibold text-paw-muted">{proof.label}</span>
+            </span>
+          </div>
+        ))}
+      </div>
+    </motion.div>
   );
 }
 
@@ -159,14 +208,14 @@ export function HeroCTA() {
         href="/globe"
         className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-paw-sm border-b-4 border-paw-primary-contrast bg-paw-primary px-6 text-sm font-bold text-white shadow-paw-action transition hover:bg-paw-primary-hover active:translate-y-1 active:border-b-2 active:shadow-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-paw-primary sm:w-auto"
       >
-        Start a safe walk
+        Open Live Map
         <Footprints className="h-4 w-4" />
       </Link>
       <Link
         href="/store"
         className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-paw-sm border border-b-4 border-paw-border-strong bg-paw-panel px-6 text-sm font-bold text-paw-ink transition hover:border-paw-primary hover:bg-paw-primary-soft hover:text-paw-primary active:translate-y-0.5 active:border-b-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-paw-primary sm:w-auto"
       >
-        Get Smart Tag
+        Shop Smart Tags
         <Store className="h-4 w-4" />
       </Link>
     </motion.div>
@@ -176,28 +225,45 @@ export function HeroCTA() {
 export function HeroSignalRail() {
   const shouldReduceMotion = useHydratedReducedMotion();
   const signals = [
-    { label: "Smart tag scan", value: "1 tap", icon: ScanLine },
-    { label: "Route revealed", value: "2.43 km", icon: Route },
-    { label: "Nearby helpers", value: "15 km", icon: HeartHandshake },
+    { label: "Pet identity", value: "Profile", icon: ShieldCheck },
+    { label: "Live context", value: "Map + walk", icon: Route },
+    { label: "Trusted action", value: "Tag + help", icon: HeartHandshake },
   ];
 
   return (
+    <div className="hidden sm:block">
+      <motion.div
+        className="hero-signal-rail"
+        {...enterMotion(shouldReduceMotion, 14, 0.36)}
+        aria-label="PawPal product signals"
+      >
+        {signals.map((signal) => (
+          <div key={signal.label} className="hero-signal-item">
+            <span className="hero-signal-icon">
+              <signal.icon className="h-4 w-4" aria-hidden="true" />
+            </span>
+            <span>
+              <span className="block text-xs font-black text-paw-ink">{signal.value}</span>
+              <span className="block text-[11px] font-semibold text-paw-muted">{signal.label}</span>
+            </span>
+          </div>
+        ))}
+      </motion.div>
+    </div>
+  );
+}
+
+export function HeroNextHint() {
+  const shouldReduceMotion = useHydratedReducedMotion();
+
+  return (
     <motion.div
-      className="hero-signal-rail"
-      {...enterMotion(shouldReduceMotion, 14, 0.36)}
-      aria-label="PawPal product signals"
+      className="inline-flex max-w-full items-center gap-2 rounded-paw-sm border border-paw-border bg-paw-panel/82 px-3 py-2 text-xs font-extrabold text-paw-muted shadow-sm backdrop-blur"
+      {...enterMotion(shouldReduceMotion, 10, 0.44)}
+      aria-label="Next section previews the PetCompass product loop"
     >
-      {signals.map((signal) => (
-        <div key={signal.label} className="hero-signal-item">
-          <span className="hero-signal-icon">
-            <signal.icon className="h-4 w-4" aria-hidden="true" />
-          </span>
-          <span>
-            <span className="block text-xs font-black text-paw-ink">{signal.value}</span>
-            <span className="block text-[11px] font-semibold text-paw-muted">{signal.label}</span>
-          </span>
-        </div>
-      ))}
+      <Route className="h-4 w-4 shrink-0 text-paw-primary" aria-hidden="true" />
+      <span className="min-w-0">Next: pet identity -&gt; live context -&gt; trusted action</span>
     </motion.div>
   );
 }
@@ -256,10 +322,11 @@ export function GlobeSection() {
   return (
     <motion.div
       className="hero-globe-upgrade relative mx-auto flex w-full max-w-[calc(100vw-2.5rem)] items-center justify-center overflow-hidden sm:max-w-[680px]"
-      style={{ minHeight: "clamp(320px, 54vw, 560px)" }}
+      style={{ minHeight: "clamp(340px, 54vw, 580px)" }}
       initial={false}
       animate={{ opacity: 1, x: 0 }}
       transition={shouldReduceMotion ? { duration: 0 } : { delay: 0.14, duration: 0.7, ease }}
+      aria-label="PawPal PetCompass product proof with app, map, and smart tag"
     >
       <div className="hero-globe-orbit-ring" aria-hidden="true" />
 
@@ -267,20 +334,54 @@ export function GlobeSection() {
         <Globe />
       </div>
 
+      <div className="pointer-events-none absolute left-0 top-6 z-30 w-[7.2rem] sm:left-4 sm:top-12 sm:w-[8.8rem] md:w-[9.8rem]">
+        <div className="overflow-hidden rounded-paw-md border border-paw-border bg-paw-panel/92 p-1 shadow-paw-panel backdrop-blur">
+          <Image
+            src="/images/app-mockup.png"
+            alt="PawPal app interface preview"
+            width={1024}
+            height={1024}
+            sizes="(min-width: 768px) 156px, 116px"
+            className="h-auto w-full rounded-paw-sm"
+          />
+        </div>
+        <div className="mt-2 rounded-paw-sm border border-paw-border bg-paw-panel/88 px-2 py-1 text-[11px] font-extrabold leading-4 text-paw-ink shadow-sm backdrop-blur">
+          PawPal app
+          <span className="block font-semibold text-paw-muted">Profile + map</span>
+        </div>
+      </div>
+
+      <div className="pointer-events-none absolute bottom-3 right-0 z-30 w-[9.4rem] sm:bottom-7 sm:right-4 sm:w-[11.5rem] md:w-[12.5rem]">
+        <div className="overflow-hidden rounded-paw-md border border-paw-border bg-paw-panel/94 p-2 shadow-paw-panel backdrop-blur">
+          <Image
+            src="/assets/store-products/current/smart-tag/hero.webp"
+            alt="PawPal smart tag product"
+            width={520}
+            height={360}
+            sizes="(min-width: 768px) 200px, 150px"
+            className="h-auto w-full rounded-paw-sm object-contain"
+          />
+        </div>
+        <div className="mt-2 rounded-paw-sm border border-paw-border bg-paw-panel/88 px-2 py-1 text-[11px] font-extrabold leading-4 text-paw-ink shadow-sm backdrop-blur">
+          Smart Tag
+          <span className="block font-semibold text-paw-muted">NFC public profile</span>
+        </div>
+      </div>
+
       <div className="hero-product-tag" aria-hidden="true">
         <span className="hero-product-tag-mark">
           <ScanLine className="h-5 w-5" />
         </span>
-        <span className="mt-1 font-brand text-sm font-black text-paw-primary">PawPal</span>
+        <span className="mt-1 text-center font-brand text-[0.68rem] font-black leading-tight text-paw-primary sm:text-sm">PetCompass</span>
       </div>
     </motion.div>
   );
 }
 
 const proofItems: Array<{ icon: LucideIcon; title: string; copy: string; color: string }> = [
-  { icon: Map, title: "Walk map", copy: "See live walks and safe routes around you.", color: "text-paw-primary" },
-  { icon: ScanLine, title: "Smart tag", copy: "NFC finder profiles help get your pet home safely.", color: "text-paw-trust" },
-  { icon: HeartHandshake, title: "Local help", copy: "Connect with nearby helpers and trusted pet services.", color: "text-paw-accent" },
+  { icon: ShieldCheck, title: "Pet identity first", copy: "A public profile and tag context explain who needs help.", color: "text-paw-primary" },
+  { icon: Map, title: "Live context next", copy: "The map keeps walk, place, and recovery context close.", color: "text-paw-trust" },
+  { icon: Store, title: "Action stays clear", copy: "Open the app map or shop the smart tag from the same proof flow.", color: "text-paw-accent" },
 ];
 
 export function TrustMarquee() {
@@ -427,26 +528,26 @@ const flowSteps: Array<{
   surface: string;
 }> = [
   {
-    icon: Footprints,
+    icon: ShieldCheck,
     number: "01",
-    title: "Walk & Explore",
-    copy: "Reveal map places, route history, and PawPoints without turning the walk into admin.",
+    title: "Pet identity",
+    copy: "Start with the pet profile, public recovery details, and the smart-tag relationship that belongs to that pet.",
     color: "text-paw-primary",
     surface: "bg-paw-primary-soft",
   },
   {
-    icon: ShieldCheck,
+    icon: Map,
     number: "02",
-    title: "Protect & Connect",
-    copy: "A smart tag gives finders the right profile, while owners control sensitive details.",
+    title: "Live context",
+    copy: "Bring the map, walk route, and nearby place context forward so the next step is grounded in where the pet is.",
     color: "text-paw-trust",
     surface: "bg-paw-trust-soft",
   },
   {
-    icon: Users,
+    icon: HeartHandshake,
     number: "03",
-    title: "Community & Care",
-    copy: "Local pet parents, alerts, AI advice, and trusted services stay near the map.",
+    title: "Trusted action",
+    copy: "Open the live map, move into finder-safe profile help, or shop the tag without losing the PawPal flow.",
     color: "text-paw-accent",
     surface: "bg-paw-accent-soft",
   },
@@ -597,16 +698,16 @@ export function AppShowcase() {
       <FadeInView>
         <div className="homepage-showcase-copy">
           <h2 className="font-brand text-3xl font-extrabold leading-tight text-paw-ink md:text-5xl">
-            Everything you need, in one calm place.
+            App, map, and tag proof in one calm place.
           </h2>
           <p className="mt-4 max-w-lg text-base leading-7 text-paw-body md:text-lg md:leading-8">
-            The map, finder profile, and local help stay connected without turning the Homepage into a control panel.
+            The website now mirrors the product rhythm: identify the pet, understand the context, then choose a trusted action.
           </p>
           <div className="homepage-showcase-list">
             {[
-              { icon: Map, title: "Live map", copy: "See walks and safer routes in your area.", color: "text-paw-primary" },
-              { icon: ScanLine, title: "Finder profile", copy: "Share what matters, not everything.", color: "text-paw-trust" },
-              { icon: HeartHandshake, title: "Local help", copy: "Find nearby helpers and trusted services.", color: "text-paw-accent" },
+              { icon: ShieldCheck, title: "Pet profile", copy: "Keep identity, public profile, and privacy context together.", color: "text-paw-primary" },
+              { icon: Map, title: "Map context", copy: "Use the globe and walk surfaces as spatial product proof.", color: "text-paw-trust" },
+              { icon: ScanLine, title: "Smart tag", copy: "Send shoppers toward the real tag path and finder-safe profile value.", color: "text-paw-accent" },
             ].map((item) => (
               <div key={item.title} className="homepage-showcase-row">
                 <item.icon className={`h-6 w-6 ${item.color}`} aria-hidden="true" />
@@ -630,14 +731,14 @@ export function BottomCTA() {
         href="/globe"
         className="inline-flex h-12 items-center justify-center gap-2 rounded-paw-sm border-b-4 border-paw-primary-contrast bg-paw-primary px-6 text-sm font-bold text-white shadow-paw-action transition hover:bg-paw-primary-hover active:translate-y-1 active:border-b-2 active:shadow-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-paw-primary"
       >
-        Start a safe walk
+        Open Live Map
         <Footprints className="h-4 w-4" />
       </Link>
       <Link
         href="/store"
         className="inline-flex h-12 items-center justify-center gap-2 rounded-paw-sm border border-b-4 border-paw-border-strong bg-paw-panel px-6 text-sm font-bold text-paw-ink transition hover:border-paw-primary hover:bg-paw-primary-soft hover:text-paw-primary active:translate-y-0.5 active:border-b-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-paw-primary"
       >
-        Get Smart Tag
+        Shop Smart Tags
         <Store className="h-4 w-4" />
       </Link>
     </div>

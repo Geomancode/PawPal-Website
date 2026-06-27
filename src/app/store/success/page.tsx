@@ -10,9 +10,13 @@ import {
   AlertTriangle,
   Receipt,
   Sparkles,
+  Smartphone,
+  QrCode,
+  Truck,
+  ClipboardList,
 } from "lucide-react";
 import { saveOrder, saveCart, generateOrderId, loadCart } from "../storeData";
-import { Badge, Button, Card } from "@/components/ui";
+import { AppDeepLinkButton, Badge, Button, Card, PairingHandoffCard } from "@/components/ui";
 
 interface StripeSession {
   id: string;
@@ -32,6 +36,44 @@ function LoadingState() {
         <Loader2 className="h-8 w-8 animate-spin text-paw-primary" aria-hidden="true" />
         <p className="text-sm font-bold text-paw-muted">Confirming your payment...</p>
       </div>
+    </div>
+  );
+}
+
+const PAIRING_STEPS = [
+  {
+    icon: Truck,
+    title: "Wait for delivery",
+    copy: "Your payment is confirmed and the order can move into processing. Checkout does not pair the tag.",
+  },
+  {
+    icon: Smartphone,
+    title: "Choose the pet in PawPal",
+    copy: "Open the app and select the real pet profile that should own the tag.",
+  },
+  {
+    icon: QrCode,
+    title: "Scan or enter the code",
+    copy: "Use the tag QR/NFC when it arrives. If scanning is unavailable, enter the printed code manually.",
+  },
+];
+
+function StepCard({
+  icon: Icon,
+  title,
+  copy,
+}: {
+  icon: typeof Truck;
+  title: string;
+  copy: string;
+}) {
+  return (
+    <div className="rounded-paw-md border border-paw-border bg-paw-panel-subtle p-4 text-left">
+      <div className="flex h-11 w-11 items-center justify-center rounded-paw-md bg-paw-primary-soft text-paw-primary">
+        <Icon className="h-5 w-5" aria-hidden="true" />
+      </div>
+      <h3 className="mt-3 text-sm font-extrabold text-paw-ink">{title}</h3>
+      <p className="mt-1 text-xs leading-5 text-paw-body">{copy}</p>
     </div>
   );
 }
@@ -138,92 +180,149 @@ function SuccessContent() {
 
   return (
     <div className="commerce-page-shell min-h-screen bg-paw-page pt-28 pb-20 text-paw-ink">
-      <div className="mx-auto max-w-2xl px-4">
-        <Card className="success-card-upgraded p-8 text-center sm:p-10">
-          <div className="mx-auto mb-6 flex h-24 w-24 items-center justify-center rounded-full bg-paw-success-soft text-paw-success">
-            <CheckCircle2 className="h-12 w-12" aria-hidden="true" />
-          </div>
+      <div className="mx-auto max-w-5xl px-4">
+        <div className="grid gap-5 lg:grid-cols-[minmax(0,0.9fr)_minmax(320px,0.7fr)] lg:items-start">
+          <Card className="success-card-upgraded p-7 sm:p-8">
+            <div className="flex flex-col gap-5 text-left sm:flex-row sm:items-start">
+              <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-paw-lg bg-paw-success-soft text-paw-success">
+                <CheckCircle2 className="h-9 w-9" aria-hidden="true" />
+              </div>
+              <div className="min-w-0 flex-1">
+                <Badge tone="success" className="mb-3">Payment confirmed</Badge>
+                <h1 className="text-3xl font-extrabold leading-tight text-paw-ink sm:text-4xl">
+                  {isSubscription ? "Plan payment confirmed" : "Order received"}
+                </h1>
+                <p className="mt-3 max-w-2xl text-sm leading-6 text-paw-body sm:text-base">
+                  {isSubscription
+                    ? "Your PawPal AI plan will be available after the app refreshes your account."
+                    : "Your payment is complete. The next useful step is setup in PawPal after your tag arrives."}
+                </p>
 
-          <Badge tone="success" className="mb-3">Payment confirmed</Badge>
-          <h1 className="text-3xl font-extrabold text-paw-ink">
-            {isSubscription ? "Plan activated" : "Payment successful"}
-          </h1>
-          <p className="mx-auto mt-2 max-w-md text-paw-body">
-            {isSubscription
-              ? "Your PawPal AI access will be available as soon as the app refreshes your plan."
-              : "Thank you for your PawPal purchase."}
-          </p>
+                {isSubscription ? (
+                  <div className="mt-5 inline-flex items-center gap-2 rounded-paw-md border border-paw-primary/20 bg-paw-primary-soft px-4 py-2 text-sm font-extrabold text-paw-primary">
+                    <Sparkles className="h-4 w-4" aria-hidden="true" />
+                    Selected plan: PawPal {session?.metadata?.tier === "pro" ? "Pro" : "Basic"}
+                  </div>
+                ) : (
+                  <div className="mt-5 inline-flex max-w-full items-center gap-2 rounded-paw-md border border-paw-primary/20 bg-paw-primary-soft px-4 py-2 font-mono text-sm font-extrabold text-paw-primary">
+                    <Receipt className="h-4 w-4 shrink-0" aria-hidden="true" />
+                    <span className="truncate">Order #{orderId}</span>
+                  </div>
+                )}
+              </div>
+            </div>
+
+            {session && (
+              <div className="mt-7 grid gap-4 md:grid-cols-2">
+                <div className="rounded-paw-md border border-paw-success/20 bg-paw-success-soft p-4">
+                  <p className="text-xs font-black text-paw-success">Stripe payment</p>
+                  <p className="mt-2 text-sm leading-6 text-paw-body">
+                    Paid <strong className="text-paw-success">€{((session.amount_total || 0) / 100).toFixed(2)}</strong> via Stripe.
+                  </p>
+                </div>
+                <div className="rounded-paw-md border border-paw-border bg-paw-panel-subtle p-4">
+                  <p className="text-xs font-black text-paw-muted">Receipt</p>
+                  <p className="mt-2 text-sm leading-6 text-paw-body">
+                    Sent to <strong>{session.customer_email || "the checkout email"}</strong>.
+                  </p>
+                </div>
+              </div>
+            )}
+
+            {session?.line_items && session.line_items.length > 0 && (
+              <div className="mt-5 rounded-paw-md border border-paw-border bg-paw-panel-subtle p-4">
+                <h2 className="mb-3 flex items-center gap-2 text-sm font-extrabold text-paw-ink">
+                  <Package className="h-4 w-4 text-paw-primary" aria-hidden="true" />
+                  Purchased items
+                </h2>
+                <div className="space-y-2">
+                  {session.line_items.map((item, index) => (
+                    <div key={`${item.name}-${index}`} className="flex justify-between gap-3 text-sm">
+                      <span className="text-paw-body">{item.name} × {item.quantity}</span>
+                      <span className="font-extrabold text-paw-ink">€{(item.amount / 100).toFixed(2)}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            <div className="mt-7 flex flex-col gap-3 sm:flex-row">
+              {isSubscription ? (
+                <Button type="button" onClick={() => router.push("/store?intent=ai-upgrade")}>
+                  Manage Plans
+                  <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                </Button>
+              ) : (
+                <Button type="button" onClick={() => router.push("/store/orders")}>
+                  View My Orders
+                  <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                </Button>
+              )}
+              <Button type="button" variant="secondary" onClick={() => router.push("/store")}>
+                Continue Shopping
+              </Button>
+            </div>
+          </Card>
 
           {isSubscription ? (
-            <div className="mt-5 inline-flex items-center gap-2 rounded-paw-md border border-paw-primary/20 bg-paw-primary-soft px-4 py-2 text-sm font-extrabold text-paw-primary">
-              <Sparkles className="h-4 w-4" aria-hidden="true" />
-              PawPal {session?.metadata?.tier === "pro" ? "Pro" : "Basic"}
-            </div>
-          ) : (
-            <div className="mt-5 inline-flex items-center gap-2 rounded-paw-md border border-paw-primary/20 bg-paw-primary-soft px-4 py-2 font-mono text-sm font-extrabold text-paw-primary">
-              <Receipt className="h-4 w-4" aria-hidden="true" />
-              Order #{orderId}
-            </div>
-          )}
-
-          {session && (
-            <div className="mt-7 space-y-4 text-left">
-              <div className="rounded-paw-md border border-paw-success/20 bg-paw-success-soft p-4 text-center">
-                <p className="text-sm text-paw-success">
-                  Paid <strong>€{((session.amount_total || 0) / 100).toFixed(2)}</strong> via Stripe
-                </p>
-              </div>
-
-              {session.line_items && session.line_items.length > 0 && (
-                <div className="rounded-paw-md border border-paw-border bg-paw-panel-subtle p-4">
-                  <h2 className="mb-3 flex items-center gap-2 text-sm font-extrabold text-paw-ink">
-                    <Package className="h-4 w-4 text-paw-primary" aria-hidden="true" />
-                    Items
-                  </h2>
-                  <div className="space-y-2">
-                    {session.line_items.map((item, index) => (
-                      <div key={`${item.name}-${index}`} className="flex justify-between gap-3 text-sm">
-                        <span className="text-paw-body">{item.name} × {item.quantity}</span>
-                        <span className="font-extrabold text-paw-ink">€{(item.amount / 100).toFixed(2)}</span>
-                      </div>
-                    ))}
+            <Card className="success-card-upgraded p-5">
+              <div className="flex items-start gap-4">
+                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-paw-md bg-paw-trust-soft text-paw-trust">
+                  <Smartphone className="h-5 w-5" aria-hidden="true" />
+                </div>
+                <div>
+                  <h2 className="text-lg font-extrabold text-paw-ink">Next: refresh PawPal</h2>
+                  <p className="mt-2 text-sm leading-6 text-paw-body">
+                    Open the app and refresh your plan in Profile if AI access does not appear after sign-in.
+                  </p>
+                  <div className="mt-4">
+                    <AppDeepLinkButton href="pawpal://" fallbackHref="/store?intent=ai-upgrade" fallbackLabel="Manage plans on web">
+                      Open PawPal app
+                    </AppDeepLinkButton>
                   </div>
                 </div>
-              )}
+              </div>
+            </Card>
+          ) : (
+            <div className="space-y-5">
+              <PairingHandoffCard
+                title="Next: pair the tag in PawPal"
+                description="Pairing is not complete on this confirmation page. After delivery, use the PawPal app to connect the physical tag to a real pet profile."
+                primaryAction={
+                  <AppDeepLinkButton href="pawpal://" fallbackHref="/store/orders" fallbackLabel="View order on web">
+                    Open PawPal app
+                  </AppDeepLinkButton>
+                }
+                secondaryAction={
+                  <Button type="button" variant="secondary" size="lg" onClick={() => router.push("/help")}>
+                    Setup help
+                  </Button>
+                }
+              />
 
-              {isSubscription ? (
-                <div className="rounded-paw-md border border-paw-trust/20 bg-paw-trust-soft p-4">
-                  <p className="text-sm leading-6 text-paw-trust">
-                    Return to the PawPal app and tap <strong>Refresh plan</strong> in Profile if AI does not unlock immediately.
-                  </p>
+              <Card className="success-card-upgraded p-5">
+                <div className="flex items-start gap-4">
+                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-paw-md bg-paw-warning-soft text-paw-ink">
+                    <ClipboardList className="h-5 w-5" aria-hidden="true" />
+                  </div>
+                  <div>
+                    <Badge tone="warning" className="mb-2">Setup pending</Badge>
+                    <h2 className="text-lg font-extrabold text-paw-ink">No tag or profile state changed yet</h2>
+                    <p className="mt-2 text-sm leading-6 text-paw-body">
+                      This website confirms payment only. It does not show the tag as paired, connected, or attached to a public profile.
+                    </p>
+                  </div>
                 </div>
-              ) : (
-                <div className="rounded-paw-md border border-paw-warning/20 bg-paw-warning-soft p-4">
-                  <p className="text-sm leading-6 text-paw-warning">
-                    Receipt sent to <strong>{session.customer_email}</strong>. Your order will ship within 1-2 business days.
-                  </p>
-                </div>
-              )}
+              </Card>
+
+              <div className="grid gap-3 sm:grid-cols-3">
+                {PAIRING_STEPS.map((step) => (
+                  <StepCard key={step.title} {...step} />
+                ))}
+              </div>
             </div>
           )}
-
-          <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
-            {isSubscription ? (
-              <Button type="button" onClick={() => router.push("/store?intent=ai-upgrade")}>
-                Manage Plans
-                <ArrowRight className="h-4 w-4" aria-hidden="true" />
-              </Button>
-            ) : (
-              <Button type="button" onClick={() => router.push("/store/orders")}>
-                View My Orders
-                <ArrowRight className="h-4 w-4" aria-hidden="true" />
-              </Button>
-            )}
-            <Button type="button" variant="secondary" onClick={() => router.push("/store")}>
-              Continue Shopping
-            </Button>
-          </div>
-        </Card>
+        </div>
       </div>
     </div>
   );
