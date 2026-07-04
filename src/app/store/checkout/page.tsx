@@ -64,7 +64,7 @@ function StepIndicator({ current }: { current: number }) {
         return (
           <div key={step.id} className="flex items-center gap-2">
             <div className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all ${
-              active ? "bg-paw-primary text-white shadow-paw-action" : done ? "bg-paw-success-soft text-paw-success" : "bg-paw-panel-subtle text-paw-muted"
+              active ? "bg-paw-primary text-paw-accent-ink shadow-paw-action" : done ? "bg-paw-success-soft text-paw-success" : "bg-paw-panel-subtle text-paw-muted"
             }`}>
               <step.icon className="w-4 h-4" />
               <span className="hidden sm:inline">{step.label}</span>
@@ -288,7 +288,7 @@ export default function CheckoutPage() {
                     disabled={!canProceedShipping}
                     onClick={() => setStep(2)}
                     className={`mt-6 flex w-full cursor-pointer items-center justify-center gap-2 rounded-paw-lg py-3.5 text-lg font-bold transition-all ${
-                      canProceedShipping ? "bg-paw-primary text-white shadow-paw-action hover:bg-paw-primary-hover" : "cursor-not-allowed bg-paw-panel-subtle text-paw-muted"
+                      canProceedShipping ? "bg-paw-primary text-paw-accent-ink shadow-paw-action hover:bg-paw-primary-hover" : "cursor-not-allowed bg-paw-panel-subtle text-paw-muted"
                     }`}
                   >
                     Review Order <ArrowRight className="w-5 h-5" />
@@ -352,7 +352,7 @@ export default function CheckoutPage() {
                       whileTap={shouldReduceMotion ? undefined : { scale: 0.97 }}
                       onClick={handleStripeCheckout}
                       disabled={redirecting}
-                      className="w-full bg-paw-primary hover:bg-paw-primary-hover text-white py-4 rounded-paw-md font-bold text-lg flex items-center justify-center gap-3 transition-all shadow-paw-action cursor-pointer disabled:opacity-60"
+                      className="w-full bg-paw-primary hover:bg-paw-primary-hover text-paw-accent-ink py-4 rounded-paw-md font-bold text-lg flex items-center justify-center gap-3 transition-all shadow-paw-action cursor-pointer disabled:opacity-60"
                     >
                       {redirecting ? (
                         <>

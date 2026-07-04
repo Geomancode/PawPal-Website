@@ -261,10 +261,10 @@ export default function AuthPage() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full flex items-center justify-center gap-2 bg-paw-primary hover:bg-paw-primary-hover disabled:bg-paw-primary/45 text-white py-3.5 rounded-paw-md font-bold text-sm transition-all shadow-paw-action hover:-translate-y-0.5 disabled:hover:translate-y-0"
+              className="w-full flex items-center justify-center gap-2 bg-paw-primary hover:bg-paw-primary-hover disabled:bg-paw-primary/45 text-paw-accent-ink py-3.5 rounded-paw-md font-bold text-sm transition-all shadow-paw-action hover:-translate-y-0.5 disabled:hover:translate-y-0"
             >
               {loading ? (
-                <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                <div className="w-5 h-5 border-2 border-paw-accent-ink/30 border-t-paw-accent-ink rounded-full animate-spin" />
               ) : (
                 <>
                   {isLogin ? "Sign In" : "Create Account"}

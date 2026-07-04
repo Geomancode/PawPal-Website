@@ -21,7 +21,7 @@ export default function NotFound() {
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <Link
               href="/"
-              className="inline-flex h-12 items-center justify-center gap-2 rounded-paw-sm bg-paw-primary px-5 text-sm font-extrabold text-white shadow-paw-action transition hover:bg-paw-primary-hover"
+              className="inline-flex h-12 items-center justify-center gap-2 rounded-paw-sm bg-paw-primary px-5 text-sm font-extrabold text-paw-accent-ink shadow-paw-action transition hover:bg-paw-primary-hover"
             >
               <Home className="h-4 w-4" aria-hidden="true" />
               Back home

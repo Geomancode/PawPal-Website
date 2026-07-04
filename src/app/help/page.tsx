@@ -74,7 +74,7 @@ export default function HelpPage() {
           <div className="mt-7 flex flex-wrap gap-3">
             <a
               href="mailto:hello@pawpal.be"
-              className="inline-flex items-center gap-2 rounded-paw-md bg-paw-primary px-5 py-3 text-sm font-bold text-white shadow-paw-action transition hover:bg-paw-primary-hover"
+              className="inline-flex items-center gap-2 rounded-paw-md bg-paw-primary px-5 py-3 text-sm font-bold text-paw-accent-ink shadow-paw-action transition hover:bg-paw-primary-hover"
             >
               <Mail className="h-4 w-4" aria-hidden="true" />
               Contact support

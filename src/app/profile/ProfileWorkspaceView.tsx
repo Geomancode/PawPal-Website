@@ -405,7 +405,7 @@ export default function ProfileWorkspaceView({
                           aria-pressed={petSpecies === s.id}
                           className={`flex items-center gap-1.5 px-3 py-1.5 rounded-paw-sm text-xs font-medium transition-all border ${
                             petSpecies === s.id
-                              ? "bg-paw-primary text-white border-paw-primary"
+                              ? "bg-paw-primary text-paw-accent-ink border-paw-primary"
                               : "bg-paw-panel-subtle text-paw-body border-paw-border hover:border-paw-primary/40"
                           }`}>
                           <span aria-hidden="true">{s.emoji}</span> {s.label}
@@ -444,7 +444,7 @@ export default function ProfileWorkspaceView({
                           aria-pressed={petSocialTags.includes(tag)}
                           className={`px-3 py-1 rounded-paw-sm text-xs font-medium transition-all border ${
                             petSocialTags.includes(tag)
-                              ? "bg-paw-trust text-white border-paw-trust"
+                              ? "bg-paw-trust text-paw-accent-ink border-paw-trust"
                               : "bg-paw-trust-soft text-paw-trust border-paw-trust/15 hover:border-paw-trust/40"
                           }`}>
                           {tag}
@@ -461,7 +461,7 @@ export default function ProfileWorkspaceView({
                           aria-pressed={petHealthBadges.includes(tag)}
                           className={`px-3 py-1 rounded-paw-sm text-xs font-medium transition-all border ${
                             petHealthBadges.includes(tag)
-                              ? "bg-paw-success text-white border-paw-success"
+                              ? "bg-paw-success text-paw-accent-ink border-paw-success"
                               : "bg-paw-success-soft text-paw-success border-paw-success/15 hover:border-paw-success/40"
                           }`}>
                           {tag}

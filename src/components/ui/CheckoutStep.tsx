@@ -32,9 +32,9 @@ export default function CheckoutStep({
           className={cn(
             "flex h-8 w-8 shrink-0 items-center justify-center rounded-paw-sm text-sm font-extrabold",
             complete
-              ? "bg-paw-success text-white"
+              ? "bg-paw-success text-paw-accent-ink"
               : active
-                ? "bg-paw-primary text-white"
+                ? "bg-paw-primary text-paw-accent-ink"
                 : "bg-paw-panel-subtle text-paw-muted",
           )}
         >

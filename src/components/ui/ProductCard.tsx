@@ -39,7 +39,7 @@ export default function ProductCard({
   className,
 }: ProductCardProps) {
   return (
-    <Card className={cn("group overflow-hidden transition duration-200 hover:-translate-y-1 hover:border-paw-primary/30 hover:shadow-[0_22px_54px_rgba(33,55,78,0.13)]", className)}>
+    <Card className={cn("group overflow-hidden transition duration-200 hover:-translate-y-1 hover:border-paw-primary/30 hover:shadow-[0_22px_54px_rgba(58,47,42,0.13)]", className)}>
       <div className="store-product-media relative flex aspect-[4/3] items-center justify-center p-6">
         {badge && (
           <Badge tone={badgeTone} className="absolute left-4 top-4 z-20">

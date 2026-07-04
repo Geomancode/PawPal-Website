@@ -1,29 +1,36 @@
 /**
  * PawPal Brand Logo Component
  *
- * Renders the app-standard solid-P icon + PawPal wordmark.
- * The adaptive variant keeps the app's white logo tile on every surface.
+ * Renders the approved PawPal transparent SVG assets.
+ * Full logo usage must come from the horizontal lockup, not a recreated wordmark.
  */
 
 import Image from "next/image";
 
 interface PawPalLogoProps {
-  /** Size of the logo badge in pixels (default: 32) */
+  /** Height of the full logo or size of the icon-only mark in pixels (default: 32) */
   iconSize?: number;
-  /** Font size of the wordmark in pixels (default: 22) */
+  /** Legacy sizing hint kept for existing call sites */
   fontSize?: number;
-  /** Use the white-background, Paw Blue-background, or app-standard adaptive variant */
+  /** Use the light-mode asset, dark-mode asset, or adaptive asset */
   variant?: "light" | "dark" | "adaptive";
   /** Additional CSS classes */
   className?: string;
-  /** Hide the wordmark, show icon only */
+  /** Show the mark only */
   iconOnly?: boolean;
 }
 
-const LOGO_SRC = {
+const MARK_SRC = {
   light: "/assets/logos/pawpal-logo-light.svg",
   dark: "/assets/logos/pawpal-logo-dark.svg",
 } as const;
+
+const HORIZONTAL_SRC = {
+  light: "/pawpal_logo_horizontal.svg",
+  dark: "/pawpal_logo_horizontal_dark.svg",
+} as const;
+
+const HORIZONTAL_LOGO_RATIO = 520 / 140;
 
 export default function PawPalLogo({
   iconSize = 32,
@@ -32,44 +39,40 @@ export default function PawPalLogo({
   className = "",
   iconOnly = false,
 }: PawPalLogoProps) {
-  const useLightMark = variant === "light" || variant === "adaptive";
-  const iconSrc = useLightMark ? LOGO_SRC.light : LOGO_SRC.dark;
+  const logoHeight = iconOnly ? iconSize : Math.max(iconSize, Math.round(fontSize * 1.45));
+  const logoWidth = iconOnly ? iconSize : Math.round(logoHeight * HORIZONTAL_LOGO_RATIO);
+  const source = iconOnly ? MARK_SRC : HORIZONTAL_SRC;
+  const logoStyle = {
+    width: logoWidth,
+    height: logoHeight,
+  };
+  const renderLogo = (mode: keyof typeof source, adaptiveClass = "") => (
+    <Image
+      src={source[mode]}
+      alt=""
+      width={logoWidth}
+      height={logoHeight}
+      aria-hidden="true"
+      draggable={false}
+      loading="eager"
+      className={`shrink-0 ${adaptiveClass}`}
+      style={logoStyle}
+    />
+  );
 
   return (
-    <span className={`inline-flex items-center gap-2.5 ${className}`}>
-      <Image
-        src={iconSrc}
-        alt=""
-        width={iconSize}
-        height={iconSize}
-        aria-hidden="true"
-        draggable={false}
-        loading="eager"
-        className="block shrink-0"
-        style={{
-          width: iconSize,
-          height: iconSize,
-          borderRadius: "22%",
-          boxShadow: useLightMark
-            ? "0 1px 4px rgba(27, 45, 64, 0.08)"
-            : "0 2px 8px rgba(74, 144, 217, 0.22)",
-          outline: useLightMark ? "1px solid rgba(215, 231, 228, 0.82)" : undefined,
-        }}
-      />
-
-      {/* Wordmark */}
-      {!iconOnly && (
-        <span
-          className="pawpal-logo-wordmark font-bold leading-none tracking-normal"
-          style={{
-            color: variant === "dark" ? "#FFFFFF" : "var(--paw-logo-wordmark)",
-            fontFamily: "var(--font-app-logo)",
-            fontSize,
-            letterSpacing: 0,
-          }}
-        >
-          PawPal
-        </span>
+    <span
+      className={`inline-flex items-center ${className}`}
+      role={iconOnly ? undefined : "img"}
+      aria-label={iconOnly ? undefined : "PawPal"}
+    >
+      {variant === "adaptive" ? (
+        <>
+          {renderLogo("light", "pawpal-logo-light")}
+          {renderLogo("dark", "pawpal-logo-dark")}
+        </>
+      ) : (
+        renderLogo(variant)
       )}
     </span>
   );

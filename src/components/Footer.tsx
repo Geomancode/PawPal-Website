@@ -40,7 +40,7 @@ export default function Footer() {
           </p>
           <a
             href={`mailto:${siteConfig.email}`}
-            className={`${styles.emailLink} mt-6 inline-flex items-center gap-2 rounded-paw-sm border border-paw-border bg-white/86 px-4 text-sm font-bold text-paw-ink shadow-[0_10px_24px_rgba(33,55,78,0.06)] transition hover:border-paw-primary hover:text-paw-primary`}
+            className={`${styles.emailLink} mt-6 inline-flex items-center gap-2 rounded-paw-sm border border-paw-border bg-white/86 px-4 text-sm font-bold text-paw-ink shadow-[0_10px_24px_rgba(58,47,42,0.06)] transition hover:border-paw-primary hover:text-paw-primary`}
           >
             <Mail className="h-4 w-4" aria-hidden="true" />
             {siteConfig.email}
@@ -71,7 +71,7 @@ export default function Footer() {
           </p>
           <a
             href={`mailto:${siteConfig.email}?subject=PawPal%20partnership`}
-            className={`${styles.actionLink} mt-5 inline-flex items-center gap-2 rounded-paw-sm bg-paw-primary-contrast px-4 text-xs font-bold text-white transition hover:bg-paw-primary-hover`}
+            className={`${styles.actionLink} mt-5 inline-flex items-center gap-2 rounded-paw-sm bg-paw-primary px-4 text-xs font-bold text-paw-accent-ink transition hover:bg-paw-primary-hover`}
           >
             Contact PawPal
             <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />

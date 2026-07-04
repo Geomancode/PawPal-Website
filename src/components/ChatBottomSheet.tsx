@@ -679,7 +679,7 @@ export default function ChatBottomSheet({ mapRef }: ChatBottomSheetProps) {
           <button
             onClick={() => sendMessage(input)}
             disabled={!input.trim() || isStreaming}
-            className="bg-paw-primary hover:bg-paw-primary-hover disabled:opacity-40 disabled:hover:bg-paw-primary text-white px-4 py-2 rounded-full text-xs font-semibold transition-all shadow-paw-action flex items-center gap-1.5 shrink-0"
+            className="bg-paw-primary hover:bg-paw-primary-hover disabled:opacity-40 disabled:hover:bg-paw-primary text-paw-accent-ink px-4 py-2 rounded-full text-xs font-semibold transition-all shadow-paw-action flex items-center gap-1.5 shrink-0"
           >
             {isStreaming ? (
               <div className="w-3.5 h-3.5 border-2 border-white/30 border-t-white rounded-full animate-spin" />

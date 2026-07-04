@@ -1,7 +1,7 @@
 .visual {
   position: relative;
   overflow: hidden;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.99) 0%, rgba(248, 251, 253, 0.96) 100%);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.99) 0%, rgba(255, 253, 244, 0.96) 100%);
 }
 
 .visual::before {
@@ -54,7 +54,7 @@
 }
 
 .bottom {
-  background: rgba(246, 250, 254, 0.72);
+  background: rgba(255, 253, 244, 0.78);
 }
 
 .link:focus-visible,
@@ -83,8 +83,8 @@
 
 @media (prefers-color-scheme: dark) {
   .visual {
-    border-color: rgba(201, 216, 230, 0.16);
-    background: linear-gradient(180deg, #151D22 0%, rgba(29, 39, 45, 0.96) 100%);
+    border-color: rgba(66, 99, 93, 0.42);
+    background: linear-gradient(180deg, #141A20 0%, rgba(27, 35, 42, 0.96) 100%);
   }
 
   .link:hover {
@@ -93,18 +93,18 @@
   }
 
   .emailLink {
-    border-color: rgba(201, 216, 230, 0.18);
-    background: rgba(246, 250, 254, 0.06);
-    color: #F6FAFE;
+    border-color: rgba(66, 99, 93, 0.48);
+    background: rgba(36, 49, 57, 0.72);
+    color: #FFFFFF;
     box-shadow: none;
   }
 
   .contactBlock {
-    border-color: rgba(201, 216, 230, 0.16);
+    border-color: rgba(66, 99, 93, 0.42);
   }
 
   .bottom {
-    border-color: rgba(201, 216, 230, 0.16);
-    background: rgba(21, 29, 34, 0.72);
+    border-color: rgba(66, 99, 93, 0.42);
+    background: rgba(20, 26, 32, 0.72);
   }
 }

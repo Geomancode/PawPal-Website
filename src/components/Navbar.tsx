@@ -187,7 +187,7 @@ export default function Navbar() {
                 href="/auth"
                 className={`inline-flex h-11 items-center justify-center rounded-paw-sm border px-5 text-sm font-bold transition ${
                   pathname === "/auth"
-                    ? "border-paw-primary-contrast bg-paw-primary-contrast text-white"
+                    ? "border-paw-primary bg-paw-primary text-paw-accent-ink"
                     : "border-paw-border-strong bg-white text-paw-ink hover:border-paw-primary hover:text-paw-primary"
                 }`}
               >
@@ -263,7 +263,7 @@ export default function Navbar() {
                 ) : (
                   <Link
                     href="/auth"
-                    className="mt-2 inline-flex h-11 w-full items-center justify-center rounded-paw-sm bg-paw-primary-contrast px-5 text-sm font-bold text-white"
+                    className="mt-2 inline-flex h-11 w-full items-center justify-center rounded-paw-sm bg-paw-primary px-5 text-sm font-bold text-paw-accent-ink"
                     onClick={() => setIsOpen(false)}
                   >
                     Login
