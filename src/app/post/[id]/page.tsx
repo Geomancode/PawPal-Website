@@ -92,6 +92,7 @@ export default async function SharedPostPage({ params }: PageProps) {
                 fill
                 sizes="(min-width: 1024px) 58vw, 100vw"
                 unoptimized
+                priority
                 className="object-cover"
               />
             </div>
@@ -110,6 +111,7 @@ export default async function SharedPostPage({ params }: PageProps) {
                     fill
                     sizes="44px"
                     unoptimized
+                    loading="lazy"
                     className="object-cover"
                   />
                 ) : (

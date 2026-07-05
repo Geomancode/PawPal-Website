@@ -558,7 +558,14 @@ export function BentoFeatureGrid() {
                 whileHover={shouldReduceMotion ? undefined : { y: -8 }}
                 transition={shouldReduceMotion ? { duration: 0 } : { type: "spring", stiffness: 180, damping: 18 }}
               >
-                <Image src={image.src} alt={image.alt} fill sizes="(min-width: 1024px) 158px, 45vw" className="object-cover" />
+                <Image
+                  src={image.src}
+                  alt={image.alt}
+                  fill
+                  sizes="(min-width: 1024px) 158px, 45vw"
+                  loading="lazy"
+                  className="object-cover"
+                />
                 <span className="absolute left-3 top-3 rounded-paw-sm bg-white/86 px-2 py-1 text-[10px] font-black text-paw-ink shadow-sm backdrop-blur">
                   {image.title}
                 </span>
@@ -584,7 +591,7 @@ export function AppShowcase() {
               width={1024}
               height={1024}
               sizes="(min-width: 1024px) 250px, 58vw"
-              loading="eager"
+              priority
               className="h-auto w-full"
             />
           </div>

@@ -67,6 +67,7 @@ export default async function SharedGroupPage({ params }: PageProps) {
               fill
               sizes="96px"
               unoptimized
+              priority
               className="object-cover"
             />
           ) : (

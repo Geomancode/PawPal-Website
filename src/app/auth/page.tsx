@@ -120,7 +120,7 @@ export default function AuthPage() {
           {/* Logo */}
           <div className="text-center mb-8">
             <div className="mb-3 flex justify-center">
-              <PawPalLogo iconOnly iconSize={56} variant="light" />
+              <PawPalLogo iconOnly iconSize={56} variant="light" priority />
             </div>
             <h1 className="text-2xl font-bold text-paw-ink">
               {isLogin ? "Welcome Back" : "Join PawPal"}

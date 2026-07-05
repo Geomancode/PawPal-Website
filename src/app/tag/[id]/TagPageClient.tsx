@@ -87,6 +87,7 @@ export default function TagPageClient({ pet, owner }: TagPageClientProps) {
                     fill
                     sizes="96px"
                     unoptimized
+                    priority
                     className="object-cover"
                   />
                 ) : (
