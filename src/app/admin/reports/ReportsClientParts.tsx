@@ -21,6 +21,7 @@ import {
 import {
   useEffect,
   useMemo,
+  useRef,
   useState,
   useTransition,
   type ReactNode,
@@ -74,6 +75,8 @@ const actionLabels: Record<ReportResolutionAction, string> = {
   content_removed: "Remove content",
   user_banned: "Ban user",
 };
+
+const ACTION_REFRESH_DELAY_MS = 600;
 
 export default function ReportsClientParts({
   state,
@@ -235,11 +238,43 @@ function ReportsQueue({ payload }: { payload: ReportsPagePayload }) {
   } | null>(null);
   const [confirmation, setConfirmation] = useState<Confirmation | null>(null);
   const [, startTransition] = useTransition();
+  const refreshTimerRef = useRef<number | null>(null);
+
+  useEffect(() => {
+    return () => {
+      if (refreshTimerRef.current !== null) {
+        window.clearTimeout(refreshTimerRef.current);
+      }
+    };
+  }, []);
 
   const reports = useMemo(
     () => payload.reports.filter((report) => !resolvedReportIds.has(report.id)),
     [payload.reports, resolvedReportIds],
   );
+
+  const locallyResolvedCount = useMemo(
+    () =>
+      payload.reports.reduce(
+        (count, report) =>
+          resolvedReportIds.has(report.id) ? count + 1 : count,
+        0,
+      ),
+    [payload.reports, resolvedReportIds],
+  );
+
+  const displayPayload = useMemo(() => {
+    const total = Math.max(0, payload.total - locallyResolvedCount);
+    const totalPages = Math.max(1, Math.ceil(total / payload.pageSize));
+
+    return {
+      ...payload,
+      total,
+      totalPages,
+      hasPrevious: payload.page > 1,
+      hasNext: payload.page < totalPages,
+    };
+  }, [locallyResolvedCount, payload]);
 
   const counts = useMemo(() => {
     return reports.reduce(
@@ -250,6 +285,19 @@ function ReportsQueue({ payload }: { payload: ReportsPagePayload }) {
       { post: 0, comment: 0, user: 0 } satisfies Record<ReportTargetType, number>,
     );
   }, [reports]);
+
+  function scheduleRefresh() {
+    if (refreshTimerRef.current !== null) {
+      window.clearTimeout(refreshTimerRef.current);
+    }
+
+    refreshTimerRef.current = window.setTimeout(() => {
+      refreshTimerRef.current = null;
+      startTransition(() => {
+        router.refresh();
+      });
+    }, ACTION_REFRESH_DELAY_MS);
+  }
 
   async function resolveReport(
     report: PendingReportView,
@@ -272,9 +320,7 @@ function ReportsQueue({ payload }: { payload: ReportsPagePayload }) {
         text: result.message,
       });
       setConfirmation(null);
-      startTransition(() => {
-        router.refresh();
-      });
+      scheduleRefresh();
     } else {
       setToast({
         tone: "danger",
@@ -289,7 +335,7 @@ function ReportsQueue({ payload }: { payload: ReportsPagePayload }) {
   return (
     <div className="space-y-6">
       <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
-        <QueueMetric label="Pending" value={payload.total} tone="warning" />
+        <QueueMetric label="Pending" value={displayPayload.total} tone="warning" />
         <QueueMetric label="Posts" value={counts.post} tone="primary" />
         <QueueMetric label="Comments" value={counts.comment} tone="trust" />
         <QueueMetric label="Users" value={counts.user} tone="danger" />
@@ -343,7 +389,7 @@ function ReportsQueue({ payload }: { payload: ReportsPagePayload }) {
             </div>
           )}
 
-          <Pagination payload={payload} currentCount={reports.length} />
+          <Pagination payload={displayPayload} currentCount={reports.length} />
         </CardContent>
       </Card>
 
