@@ -3,6 +3,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Providers from "@/components/Providers";
 import ConditionalFooter from "@/components/ConditionalFooter";
+import CookieConsentBanner from "@/components/CookieConsentBanner";
 import { siteConfig } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -121,6 +122,7 @@ export default function RootLayout({
           <Navbar />
           <main id="main-content" className="relative" style={{ zIndex: 20 }} tabIndex={-1}>{children}</main>
           <ConditionalFooter />
+          <CookieConsentBanner />
         </Providers>
       </body>
     </html>

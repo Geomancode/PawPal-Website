@@ -1,5 +1,6 @@
 import {
   CheckCircle2,
+  Cookie,
   Database,
   Eye,
   LockKeyhole,
@@ -7,8 +8,21 @@ import {
   ShieldCheck,
   SlidersHorizontal,
 } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 
-const PRIVACY_SECTIONS = [
+type PrivacySection = {
+  id: string;
+  icon: LucideIcon;
+  title: string;
+  text: string;
+  signal: string;
+  items?: Array<{
+    label: string;
+    text: string;
+  }>;
+};
+
+const PRIVACY_SECTIONS: PrivacySection[] = [
   {
     id: "privacy-data",
     icon: Database,
@@ -29,6 +43,27 @@ const PRIVACY_SECTIONS = [
     title: "Your choices",
     text: "You can update account details, pet profile visibility, lost-mode settings, and communication preferences from the app or by contacting support.",
     signal: "Owner managed",
+  },
+  {
+    id: "privacy-cookies",
+    icon: Cookie,
+    title: "Cookies & local storage",
+    text: "PawPal currently does not run third-party analytics. Non-essential analytics must be gated by consent before loading.",
+    signal: "Consent gated",
+    items: [
+      {
+        label: "Auth",
+        text: "Necessary Supabase authentication cookies keep sign-in sessions working.",
+      },
+      {
+        label: "Checkout",
+        text: "Necessary Stripe checkout storage supports payment and order flows.",
+      },
+      {
+        label: "Preferences",
+        text: "Local preferences remember choices such as globe tutorials and store state.",
+      },
+    ],
   },
 ];
 
@@ -77,7 +112,7 @@ export default function PrivacyPage() {
           ))}
         </nav>
 
-        <div className="mt-10 grid gap-4 md:grid-cols-3">
+        <div className="mt-10 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
           {PRIVACY_SECTIONS.map((section) => (
             <article
               key={section.title}
@@ -91,6 +126,18 @@ export default function PrivacyPage() {
                 {section.title}
               </h2>
               <p className="mt-2 text-sm leading-6 text-paw-body">{section.text}</p>
+              {section.items ? (
+                <ul className="mt-4 space-y-3 text-sm leading-6 text-paw-body">
+                  {section.items.map((item) => (
+                    <li key={item.label}>
+                      <span className="font-extrabold text-paw-ink">
+                        {item.label}:
+                      </span>{" "}
+                      {item.text}
+                    </li>
+                  ))}
+                </ul>
+              ) : null}
               <p className="mt-4 text-xs font-black uppercase tracking-[0.14em] text-paw-primary">
                 {section.signal}
               </p>
