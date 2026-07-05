@@ -56,24 +56,11 @@ Useful smoke routes:
 
 ## Environment
 
-The site expects Supabase and Stripe configuration through environment variables. Keep production secrets out of the repository and configure them in the deploy platform.
+Copy `.env.example` to `.env.local` for local development and fill in local sandbox values. The example file lists every environment variable referenced by `src/`, including whether it is public, required, and where it comes from.
 
-Common variables used by the website:
+Keep production secrets out of the repository. `NEXT_PUBLIC_` values are exposed to browser code; server-only values such as `SUPABASE_SERVICE_ROLE_KEY`, `STRIPE_SECRET_KEY`, and `STRIPE_WEBHOOK_SECRET` must not use that prefix. Stripe remains test-mode only in the current deployment policy.
 
-```bash
-NEXT_PUBLIC_SUPABASE_URL=
-NEXT_PUBLIC_SUPABASE_ANON_KEY=
-SUPABASE_SERVICE_ROLE_KEY=
-NEXT_PUBLIC_SITE_URL=
-STRIPE_SECRET_KEY=
-STRIPE_WEBHOOK_SECRET=
-NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=
-SENTRY_DSN=
-```
-
-`SENTRY_DSN` is optional in this task. When it is absent, the shared error reporter writes structured logs with `console.error`; when it is present, the single SDK integration point is ready for a later Sentry SDK follow-up.
-
-Check the API route or integration you are changing for any additional required variables.
+For Vercel Preview/Production setup, health checks, and rollback steps, see [docs/DEPLOY.md](docs/DEPLOY.md).
 
 ## Design System
 
