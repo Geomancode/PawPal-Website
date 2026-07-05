@@ -7,6 +7,12 @@
 
 import { Type, type FunctionDeclaration } from "@google/genai";
 import { supabaseServer as supabase } from "@/lib/supabaseServer";
+import {
+  buildIlikeContainsPattern,
+  buildOrIlikeContainsFilter,
+  parseSearchPagination,
+  searchRange,
+} from "@/lib/searchQuery";
 
 // ── Tool Declarations (Gemini Function Calling schema) ───────────────────────
 
@@ -47,6 +53,14 @@ export const toolDeclarations: FunctionDeclaration[] = [
           type: Type.STRING,
           description: "Optional city filter, e.g. 'Ghent', 'Antwerp'",
         },
+        limit: {
+          type: Type.NUMBER,
+          description: "Optional page size, capped at 25.",
+        },
+        offset: {
+          type: Type.NUMBER,
+          description: "Optional result offset for pagination.",
+        },
       },
       required: ["query"],
     },
@@ -76,6 +90,14 @@ export const toolDeclarations: FunctionDeclaration[] = [
             "foster",
             "vet_accompany",
           ],
+        },
+        limit: {
+          type: Type.NUMBER,
+          description: "Optional page size, capped at 25.",
+        },
+        offset: {
+          type: Type.NUMBER,
+          description: "Optional result offset for pagination.",
         },
       },
       required: ["query"],
@@ -163,27 +185,44 @@ async function searchPlaces(
   const query = (args.query as string) || "";
   const placeType = args.place_type as string | undefined;
   const city = args.city as string | undefined;
+  const textFilter = buildOrIlikeContainsFilter(
+    ["name", "place_type", "city"],
+    query
+  );
+  const namePattern = buildIlikeContainsPattern(query);
+  const cityPattern = city ? buildIlikeContainsPattern(city) : null;
+  const pagination = parseSearchPagination(args, {
+    defaultLimit: 10,
+    maxLimit: 25,
+  });
+  const range = searchRange(pagination);
 
   let q = supabase
     .from("places")
     .select("id, name, place_type, lat, lng, city, rating_avg")
-    .limit(10);
+    .range(range.from, range.to);
 
   // Apply filters
   if (placeType) {
     q = q.eq("place_type", placeType);
   }
-  if (city) {
-    q = q.ilike("city", `%${city}%`);
+  if (cityPattern) {
+    q = q.ilike("city", cityPattern);
   }
 
   // Text search on name and place_type
-  if (query && !placeType) {
-    q = q.or(
-      `name.ilike.%${query}%,place_type.ilike.%${query}%,city.ilike.%${query}%`
-    );
-  } else if (query) {
-    q = q.ilike("name", `%${query}%`);
+  if (textFilter && !placeType) {
+    q = q.or(textFilter);
+  } else if (namePattern) {
+    q = q.ilike("name", namePattern);
+  } else if (!placeType && !cityPattern) {
+    return {
+      places: [],
+      count: 0,
+      query,
+      message: "No safe search text provided. Try a place type or keyword.",
+      pagination,
+    };
   }
 
   const { data, error } = await q;
@@ -196,6 +235,7 @@ async function searchPlaces(
     count: (data ?? []).length,
     query,
     filters: { place_type: placeType, city },
+    pagination,
   };
 }
 
@@ -206,20 +246,38 @@ async function searchMissions(
 ): Promise<Record<string, unknown>> {
   const query = (args.query as string) || "";
   const questType = args.quest_type as string | undefined;
+  const textFilter = buildOrIlikeContainsFilter(
+    ["title", "quest_type"],
+    query
+  );
+  const titlePattern = buildIlikeContainsPattern(query);
+  const pagination = parseSearchPagination(args, {
+    defaultLimit: 10,
+    maxLimit: 25,
+  });
+  const range = searchRange(pagination);
 
   let q = supabase
     .from("quests")
     .select("id, title, quest_type, status, reward_type, lat, lng")
-    .limit(10);
+    .range(range.from, range.to);
 
   if (questType) {
     q = q.eq("quest_type", questType);
   }
 
-  if (query && !questType) {
-    q = q.or(`title.ilike.%${query}%,quest_type.ilike.%${query}%`);
-  } else if (query) {
-    q = q.ilike("title", `%${query}%`);
+  if (textFilter && !questType) {
+    q = q.or(textFilter);
+  } else if (titlePattern) {
+    q = q.ilike("title", titlePattern);
+  } else if (!questType) {
+    return {
+      missions: [],
+      count: 0,
+      query,
+      message: "No safe search text provided. Try a mission keyword.",
+      pagination,
+    };
   }
 
   const { data, error } = await q;
@@ -232,6 +290,7 @@ async function searchMissions(
     count: (data ?? []).length,
     query,
     filters: { quest_type: questType },
+    pagination,
   };
 }
 
@@ -242,12 +301,23 @@ async function checkFoodSafety(
 ): Promise<Record<string, unknown>> {
   const itemName = (args.item_name as string) || "";
   const species = args.species as string | undefined;
+  const itemPattern = buildIlikeContainsPattern(itemName);
+
+  if (!itemPattern) {
+    return {
+      results: [],
+      found: false,
+      item_searched: itemName,
+      species_filter: species,
+      message: "No safe item name provided.",
+    };
+  }
 
   // DB columns: name_en, toxicity_level, species_affected, symptoms_en, action_en
   let q = supabase
     .from("toxicity_items")
     .select("id, name_en, name_nl, item_type, toxicity_level, species_affected, symptoms_en, action_en")
-    .ilike("name_en", `%${itemName}%`)
+    .ilike("name_en", itemPattern)
     .limit(5);
 
   if (species) {
@@ -285,12 +355,22 @@ async function breedEncyclopedia(
 ): Promise<Record<string, unknown>> {
   const breedName = (args.breed_name as string) || "";
   const speciesGroup = args.species_group as string | undefined;
+  const breedPattern = buildIlikeContainsPattern(breedName);
+
+  if (!breedPattern) {
+    return {
+      breeds: [],
+      found: false,
+      searched: breedName,
+      message: "No safe breed name provided.",
+    };
+  }
 
   // DB columns: name_en, species_group, origin_country, care_difficulty, avg_lifespan_years, legal_status_be
   let q = supabase
     .from("species_breeds")
     .select("id, name_en, species_group, origin_country, origin_region, care_difficulty, avg_lifespan_years, adult_weight_kg_min, adult_weight_kg_max, legal_status_be, suitable_for_children, energy_level, social_needs")
-    .ilike("name_en", `%${breedName}%`)
+    .ilike("name_en", breedPattern)
     .limit(5);
 
   if (speciesGroup) {

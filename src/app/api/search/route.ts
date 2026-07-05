@@ -1,10 +1,23 @@
 import { NextRequest, NextResponse } from "next/server";
 import { supabaseServer as supabase } from "@/lib/supabaseServer";
+import {
+  buildOrIlikeContainsFilter,
+  parseSearchPagination,
+  sanitizeSearchQuery,
+  searchRange,
+  type SearchPagination,
+} from "@/lib/searchQuery";
 
-const GEMINI_API_KEY = process.env.GEMINI_API_KEY!;
-const GEMINI_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_API_KEY}`;
+const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
+const GEMINI_URL = GEMINI_API_KEY
+  ? `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_API_KEY}`
+  : null;
+const EMPTY_SEARCH_MESSAGE =
+  "No search results yet. Try a pet place, mission type, or a broader keyword.";
 
 async function geminiChat(prompt: string): Promise<string | null> {
+  if (!GEMINI_URL) return null;
+
   try {
     const res = await fetch(GEMINI_URL, {
       method: "POST",
@@ -22,33 +35,59 @@ async function geminiChat(prompt: string): Promise<string | null> {
   }
 }
 
-async function searchSupabase(query: string) {
+async function searchSupabase(query: string, pagination: SearchPagination) {
+  const filter = buildOrIlikeContainsFilter(["title", "quest_type"], query);
+  if (!filter) return [];
+  const range = searchRange(pagination);
   const { data, error } = await supabase
     .from("quests")
     .select("id,title,quest_type,status,reward_type,lat,lng")
-    .or(`title.ilike.%${query}%,quest_type.ilike.%${query}%`)
-    .limit(10);
+    .or(filter)
+    .range(range.from, range.to);
   if (error) return [];
   return data ?? [];
 }
 
-async function searchPlaces(query: string) {
+async function searchPlaces(query: string, pagination: SearchPagination) {
+  const filter = buildOrIlikeContainsFilter(
+    ["name", "place_type", "city"],
+    query
+  );
+  if (!filter) return [];
+  const range = searchRange(pagination);
   const { data, error } = await supabase
     .from("places")
     .select("id,name,place_type,lat,lng,city,rating_avg")
-    .or(`name.ilike.%${query}%,place_type.ilike.%${query}%,city.ilike.%${query}%`)
-    .limit(10);
+    .or(filter)
+    .range(range.from, range.to);
   if (error) return [];
   return data ?? [];
 }
 
 export async function POST(req: NextRequest) {
-  const { query } = await req.json();
+  let body: { query?: unknown; limit?: unknown; offset?: unknown; page?: unknown };
+  try {
+    body = await req.json();
+  } catch {
+    return NextResponse.json({ error: "Invalid JSON" }, { status: 400 });
+  }
+
+  const { query } = body;
   if (!query || typeof query !== "string" || query.trim().length === 0) {
     return NextResponse.json({ error: "Empty query" }, { status: 400 });
   }
 
   const q = query.trim();
+  const safeQuery = sanitizeSearchQuery(q);
+  const pagination = parseSearchPagination(body);
+  if (!safeQuery) {
+    return NextResponse.json({
+      intent: "empty",
+      results: [],
+      aiMessage: EMPTY_SEARCH_MESSAGE,
+      pagination,
+    });
+  }
 
   // Phase 1: Ask Gemini to classify intent
   const classifyPrompt = `You are PawPal's AI assistant — a helpful, friendly expert on pets and animal welfare.
@@ -83,18 +122,18 @@ Reply ONLY as compact JSON:
 
   // Phase 2: Based on intent, fetch data or generate AI response
   if (intent === "search_missions") {
-    const quests = await searchSupabase(keywords);
+    const quests = await searchSupabase(keywords, pagination);
     // Also try broader text search with original query
-    const quests2 = keywords !== q ? await searchSupabase(q) : [];
-    const all = dedup([...quests, ...quests2]);
-    return NextResponse.json({ intent, results: all, aiMessage: all.length > 0 ? `Found ${all.length} mission(s) matching "${q}".` : `No missions found for "${q}". Try a broader search!` });
+    const quests2 = keywords !== q ? await searchSupabase(q, pagination) : [];
+    const all = dedup([...quests, ...quests2]).slice(0, pagination.limit);
+    return NextResponse.json({ intent, results: all, aiMessage: all.length > 0 ? `Found ${all.length} mission(s) matching "${q}".` : `No missions found for "${q}". Try a broader search!`, pagination });
   }
 
   if (intent === "search_places") {
-    const places = await searchPlaces(keywords);
-    const places2 = keywords !== q ? await searchPlaces(q) : [];
-    const all = dedup([...places, ...places2]);
-    return NextResponse.json({ intent, results: all, aiMessage: all.length > 0 ? `Found ${all.length} place(s) matching "${q}".` : `No places found for "${q}". Try a different keyword!` });
+    const places = await searchPlaces(keywords, pagination);
+    const places2 = keywords !== q ? await searchPlaces(q, pagination) : [];
+    const all = dedup([...places, ...places2]).slice(0, pagination.limit);
+    return NextResponse.json({ intent, results: all, aiMessage: all.length > 0 ? `Found ${all.length} place(s) matching "${q}".` : `No places found for "${q}". Try a different keyword!`, pagination });
   }
 
   if (intent === "pet_question") {
