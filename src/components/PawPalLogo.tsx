@@ -18,6 +18,8 @@ interface PawPalLogoProps {
   className?: string;
   /** Hide the wordmark, show icon only */
   iconOnly?: boolean;
+  /** Preload the logo icon when it is part of the first viewport. */
+  priority?: boolean;
 }
 
 const LOGO_SRC = {
@@ -31,6 +33,7 @@ export default function PawPalLogo({
   variant = "light",
   className = "",
   iconOnly = false,
+  priority = false,
 }: PawPalLogoProps) {
   const useLightMark = variant === "light" || variant === "adaptive";
   const iconSrc = useLightMark ? LOGO_SRC.light : LOGO_SRC.dark;
@@ -44,7 +47,8 @@ export default function PawPalLogo({
         height={iconSize}
         aria-hidden="true"
         draggable={false}
-        loading="eager"
+        priority={priority}
+        loading={priority ? undefined : "lazy"}
         className="block shrink-0"
         style={{
           width: iconSize,

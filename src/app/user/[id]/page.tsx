@@ -88,6 +88,7 @@ export default async function SharedUserPage({ params }: PageProps) {
                 fill
                 sizes="96px"
                 unoptimized
+                priority
                 className="object-cover"
               />
             ) : (
@@ -129,6 +130,7 @@ export default async function SharedUserPage({ params }: PageProps) {
                             fill
                             sizes="48px"
                             unoptimized
+                            loading="lazy"
                             className="object-cover"
                           />
                         ) : (

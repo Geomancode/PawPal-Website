@@ -100,6 +100,7 @@ export default function Navbar() {
               iconSize={isGlobeRoute ? 26 : scrolled ? 28 : 32}
               fontSize={isGlobeRoute ? 18 : scrolled ? 20 : 22}
               variant="adaptive"
+              priority
             />
           </Link>
 

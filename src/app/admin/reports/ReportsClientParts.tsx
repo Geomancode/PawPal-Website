@@ -860,6 +860,7 @@ function Avatar({
           fill
           sizes={`${size}px`}
           unoptimized
+          loading="lazy"
           className="object-cover"
         />
       ) : (
@@ -888,6 +889,7 @@ function MediaThumb({
           fill
           sizes="112px"
           unoptimized
+          loading="lazy"
           className="object-cover"
         />
       ) : (
