@@ -21,6 +21,7 @@ const FOOTER_NAV = {
   Support: [
     { label: "Privacy Policy", href: "/privacy" },
     { label: "Terms of Service", href: "/terms" },
+    { label: "Community Guidelines", href: "/guidelines" },
     { label: "Contact", href: `mailto:${siteConfig.email}` },
   ],
 };
