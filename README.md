@@ -68,7 +68,10 @@ NEXT_PUBLIC_SITE_URL=
 STRIPE_SECRET_KEY=
 STRIPE_WEBHOOK_SECRET=
 NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=
+SENTRY_DSN=
 ```
+
+`SENTRY_DSN` is optional in this task. When it is absent, the shared error reporter writes structured logs with `console.error`; when it is present, the single SDK integration point is ready for a later Sentry SDK follow-up.
 
 Check the API route or integration you are changing for any additional required variables.
 

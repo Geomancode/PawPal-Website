@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
+import { reportError } from "@/lib/errorReporting";
 import { getSupabaseAdmin } from "@/lib/supabaseAdmin";
 import {
   normalizeTier,
@@ -205,7 +206,7 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json({ received: true });
   } catch (err) {
-    console.error("Stripe webhook processing error:", err);
+    reportError(err, { route: "/api/stripe/webhook", method: "POST" });
     const message = err instanceof Error ? err.message : "Webhook processing failed";
     return NextResponse.json({ error: message }, { status: 500 });
   }

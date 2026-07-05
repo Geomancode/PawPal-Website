@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
+import { reportError } from "@/lib/errorReporting";
 import { supabaseServer } from "@/lib/supabaseServer";
 import { paidTierFromValue, SUBSCRIPTION_PLANS } from "@/lib/subscriptions";
 
@@ -98,7 +99,7 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json({ url: session.url, sessionId: session.id });
   } catch (err) {
-    console.error("Subscription checkout error:", err);
+    reportError(err, { route: "/api/subscriptions/checkout", method: "POST" });
     const message = err instanceof Error ? err.message : "Unknown error";
     return NextResponse.json({ error: message }, { status: 500 });
   }

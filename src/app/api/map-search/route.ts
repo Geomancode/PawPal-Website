@@ -18,6 +18,7 @@
 // NO SUBSCRIPTION REQUIRED — open to all users.
 
 import { NextRequest, NextResponse } from "next/server";
+import { reportError } from "@/lib/errorReporting";
 import { supabaseServer } from "@/lib/supabaseServer";
 
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY || "";
@@ -176,7 +177,7 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json({ results: candidates.slice(0, 15) });
   } catch (e) {
-    console.error("[map-search] Error:", e);
+    reportError(e, { route: "/api/map-search", method: "POST" });
     return NextResponse.json({ results: [], error: "Search failed" }, { status: 500 });
   }
 }

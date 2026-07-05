@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
+import { reportError } from "@/lib/errorReporting";
 
 function getStripe() {
   const key = process.env.STRIPE_SECRET_KEY;
@@ -87,7 +88,7 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json({ url: session.url, sessionId: session.id });
   } catch (err) {
-    console.error("Stripe checkout error:", err);
+    reportError(err, { route: "/api/checkout", method: "POST" });
     const message = err instanceof Error ? err.message : "Unknown error";
     return NextResponse.json({ error: message }, { status: 500 });
   }

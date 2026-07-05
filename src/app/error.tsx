@@ -1,8 +1,10 @@
 "use client";
 
+import { useEffect } from "react";
 import { RotateCcw } from "lucide-react";
 import Button from "@/components/ui/Button";
 import StatusMessage from "@/components/ui/StatusMessage";
+import { reportError } from "@/lib/errorReporting";
 
 export default function Error({
   error,
@@ -11,6 +13,13 @@ export default function Error({
   error: Error & { digest?: string };
   reset: () => void;
 }) {
+  useEffect(() => {
+    reportError(error, {
+      source: "app-error-boundary",
+      digest: error.digest,
+    });
+  }, [error]);
+
   return (
     <section className="deep-page-shell flex min-h-[100dvh] items-center justify-center bg-paw-page px-5 py-28 text-paw-ink">
       <div className="mx-auto w-full max-w-xl">
