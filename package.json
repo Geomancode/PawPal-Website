@@ -7,7 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "test:home-contract": "node scripts/homepage-contract-check.mjs"
+    "test:home-contract": "node scripts/homepage-contract-check.mjs",
+    "test:search-hardening": "node scripts/search-query-contract-check.mjs",
+    "probe:search-injection": "node scripts/search-injection-probe.mjs"
   },
   "dependencies": {
     "@google/genai": "^1.50.1",
