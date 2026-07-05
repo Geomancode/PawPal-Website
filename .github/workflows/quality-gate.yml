@@ -21,6 +21,9 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Dependency audit (high and critical)
+        run: npm audit --audit-level=high
+
       - name: Build verification (MUST pass)
         run: npm run build
         env:
