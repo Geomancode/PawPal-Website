@@ -77,6 +77,7 @@ const actionLabels: Record<ReportResolutionAction, string> = {
 };
 
 const ACTION_REFRESH_DELAY_MS = 600;
+const SESSION_REDIRECT_DELAY_MS = 1200;
 
 export default function ReportsClientParts({
   state,
@@ -97,10 +98,20 @@ export default function ReportsClientParts({
     let cancelled = false;
 
     if (!session?.access_token) {
-      void clearAdminReportsSession();
       const timer = window.setTimeout(() => {
-        router.replace("/auth?next=/admin/reports");
-      }, 900);
+        const redirectToSignIn = () => {
+          if (!cancelled) router.replace("/auth?next=/admin/reports");
+        };
+
+        if (state.kind !== "session-expired") {
+          redirectToSignIn();
+          return;
+        }
+
+        clearAdminReportsSession()
+          .catch(() => undefined)
+          .finally(redirectToSignIn);
+      }, SESSION_REDIRECT_DELAY_MS);
 
       return () => {
         cancelled = true;
@@ -120,8 +131,7 @@ export default function ReportsClientParts({
         }
         const target =
           bridgePage > 1 ? `/admin/reports?page=${bridgePage}` : "/admin/reports";
-        router.replace(target);
-        router.refresh();
+        window.location.replace(target);
       })
       .catch((error: unknown) => {
         if (cancelled) return;
