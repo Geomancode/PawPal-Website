@@ -12,10 +12,10 @@ type ButtonSize = "sm" | "md" | "lg" | "icon";
 
 const variants: Record<ButtonVariant, string> = {
   primary:
-    "bg-paw-primary text-white hover:bg-paw-primary-hover shadow-paw-action",
+    "bg-paw-primary text-paw-accent-ink hover:bg-paw-primary-hover shadow-paw-action",
   trust:
-    "bg-paw-trust text-white hover:bg-paw-trust-hover shadow-paw-trust-action",
-  accent: "bg-paw-accent text-white hover:bg-paw-accent-hover shadow-paw-action",
+    "bg-paw-trust text-paw-accent-ink hover:bg-paw-trust-hover shadow-paw-trust-action",
+  accent: "bg-paw-accent text-paw-accent-ink hover:bg-paw-accent-hover shadow-paw-action",
   secondary:
     "bg-paw-panel text-paw-ink border border-paw-border hover:border-paw-primary/40 hover:bg-paw-primary-soft",
   ghost:

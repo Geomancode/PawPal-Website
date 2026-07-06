@@ -279,7 +279,7 @@ function ProductCard({
       className="relative"
     >
       {recommended && (
-        <span className="absolute right-3 top-3 z-10 inline-flex items-center gap-1 rounded-paw-sm bg-paw-primary px-2.5 py-1 text-xs font-extrabold text-white shadow-paw-panel">
+        <span className="absolute right-3 top-3 z-10 inline-flex items-center gap-1 rounded-paw-sm bg-paw-primary px-2.5 py-1 text-xs font-extrabold text-paw-accent-ink shadow-paw-panel">
           <Sparkles className="h-3 w-3" aria-hidden="true" />
           AI pick
         </span>
@@ -707,7 +707,7 @@ function StorePageContent() {
           {STORE_PROMISES.map((promise) => (
             <div
               key={promise.label}
-              className="flex flex-col items-center gap-1.5 rounded-paw-md border border-paw-border bg-paw-panel/82 px-2 py-2 text-center shadow-[0_8px_22px_rgba(33,55,78,0.06)] backdrop-blur sm:flex-row sm:items-start sm:gap-3 sm:px-3 sm:text-left"
+              className="flex flex-col items-center gap-1.5 rounded-paw-md border border-paw-border bg-paw-panel/82 px-2 py-2 text-center shadow-[0_8px_22px_rgba(58,47,42,0.06)] backdrop-blur sm:flex-row sm:items-start sm:gap-3 sm:px-3 sm:text-left"
             >
               <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-paw-sm bg-paw-primary-soft text-paw-primary sm:h-8 sm:w-8">
                 <promise.icon className="h-3.5 w-3.5 sm:h-4 sm:w-4" aria-hidden="true" />
@@ -743,7 +743,7 @@ function StorePageContent() {
                   onClick={() => setCategory(cat.key)}
                   className={`inline-flex shrink-0 items-center gap-1.5 rounded-paw-md border px-3 py-2 text-xs font-bold transition cursor-pointer sm:gap-2 sm:px-4 sm:py-2.5 sm:text-sm ${
                     category === cat.key
-                      ? "border-paw-primary bg-paw-primary text-white shadow-paw-action"
+                      ? "border-paw-primary bg-paw-primary text-paw-accent-ink shadow-paw-action"
                       : "border-paw-border bg-paw-panel/85 text-paw-ink hover:border-paw-primary/40 hover:bg-paw-primary-soft"
                   }`}
                 >
@@ -835,7 +835,7 @@ function StorePageContent() {
           >
             <Link
               href="/store/checkout"
-              className="relative flex h-16 w-16 items-center justify-center rounded-paw-lg bg-paw-primary text-white shadow-paw-action transition-colors hover:bg-paw-primary-hover focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-paw-trust/20"
+              className="relative flex h-16 w-16 items-center justify-center rounded-paw-lg bg-paw-primary text-paw-accent-ink shadow-paw-action transition-colors hover:bg-paw-primary-hover focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-paw-trust/20"
               aria-label={`Proceed to checkout with ${totalItems} item${totalItems !== 1 ? "s" : ""}`}
             >
               <ShoppingCart className="h-6 w-6" aria-hidden="true" />

@@ -6,7 +6,6 @@ import {
   Smartphone, Map, ArrowRight, Mail,
 } from "lucide-react";
 import Link from "next/link";
-import Image from "next/image";
 
 /* ── Animation helpers ── */
 const fadeUp = (delay = 0) => ({
@@ -19,26 +18,20 @@ const fadeUp = (delay = 0) => ({
 /* ── Real Team Data ── */
 const TEAM = [
   {
-    name: "Sean Xiao",
-    nameCn: "肖轩",
+    name: "Alexie",
     role: "Co-founder & CEO",
-    photo: "/team/sean.jpg",
     color: "from-paw-primary to-paw-primary-hover",
     desc: "PhD candidate in GIS & Remote Sensing at Ghent University. Leads product strategy, technical architecture, and fundraising.",
   },
   {
-    name: "Lingfeng Li",
-    nameCn: "李凌枫",
+    name: "Neumann",
     role: "Co-founder & CPO",
-    photo: "/team/lingfeng.png",
     color: "from-paw-trust to-paw-trust-hover",
     desc: "Business & Marketing background. Drives business model, go-to-market strategy, operations, and supply chain.",
   },
   {
-    name: "Jieqiong",
-    nameCn: "洁琼",
+    name: "Carlo",
     role: "Co-founder & CDO",
-    photo: "/team/jieqiong.jpg",
     color: "from-paw-success to-paw-trust",
     desc: "Design background. Leads UI/UX design, brand visual identity, and user research across all PawPal platforms.",
   },
@@ -115,7 +108,7 @@ export default function About() {
             <motion.div {...fadeUp(0.3)} className="mt-7 flex flex-wrap gap-3">
               <Link
                 href="/globe"
-                className="inline-flex items-center gap-2 rounded-paw-md bg-paw-primary px-5 py-3 text-sm font-bold text-white shadow-paw-action transition hover:bg-paw-primary-hover"
+                className="inline-flex items-center gap-2 rounded-paw-md bg-paw-primary px-5 py-3 text-sm font-bold text-paw-accent-ink shadow-paw-action transition hover:bg-paw-primary-hover"
               >
                 Explore Globe
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
@@ -240,22 +233,13 @@ export default function About() {
           {TEAM.map((member, i) => (
             <motion.div key={i} {...fadeUp(i * 0.1)}
               className="bg-paw-panel rounded-paw-lg border border-paw-border overflow-hidden hover:shadow-paw-panel transition-all group">
-              {/* Gradient header with photo */}
               <div className={`h-28 bg-gradient-to-r ${member.color} relative flex items-end justify-center`}>
-                <div className="absolute -bottom-10 w-20 h-20 rounded-full border-4 border-paw-panel overflow-hidden shadow-md">
-                  <Image
-                    src={member.photo}
-                    alt={member.name}
-                    width={80}
-                    height={80}
-                    loading="lazy"
-                    className="w-full h-full object-cover"
-                  />
+                <div className="absolute -bottom-10 flex h-20 w-20 items-center justify-center rounded-full border-4 border-paw-panel bg-paw-panel text-2xl font-black text-paw-primary shadow-md">
+                  {member.name.slice(0, 1)}
                 </div>
               </div>
               <div className="px-6 pt-12 pb-6 text-center">
                 <h3 className="text-lg font-bold text-paw-ink">{member.name}</h3>
-                <p className="text-xs text-paw-muted mb-1">{member.nameCn}</p>
                 <p className="text-xs font-semibold text-paw-primary uppercase tracking-wider mb-3">{member.role}</p>
                 <p className="text-sm text-paw-muted leading-relaxed">{member.desc}</p>
               </div>
@@ -321,7 +305,7 @@ export default function About() {
             <div className="flex flex-wrap justify-center gap-4">
               <a
                 href="mailto:hello@pawpal.be"
-                className="flex items-center gap-2 bg-paw-primary hover:bg-paw-primary-hover text-white px-8 py-4 rounded-paw-md font-bold text-lg transition-all shadow-paw-action hover:-translate-y-0.5"
+                className="flex items-center gap-2 bg-paw-primary hover:bg-paw-primary-hover text-paw-accent-ink px-8 py-4 rounded-paw-md font-bold text-lg transition-all shadow-paw-action hover:-translate-y-0.5"
               >
                 Contact the team <Mail className="w-5 h-5" />
               </a>

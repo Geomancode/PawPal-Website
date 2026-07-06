@@ -702,15 +702,15 @@ export default function MapGlobeComponent() {
 
           {/* Layer Toggle */}
           <div id="globe-layers" className="globe-layer-stack absolute z-40 flex gap-1.5">
-            <button onClick={() => setShowQuests(!showQuests)} className={`globe-layer-button flex items-center gap-2 rounded-paw-sm border px-3 py-2 text-xs font-bold transition-all ${showQuests ? "is-active-mission bg-paw-accent/90 text-white border-paw-accent" : "bg-paw-panel/80 text-paw-muted border-paw-border"}`}>
+            <button onClick={() => setShowQuests(!showQuests)} className={`globe-layer-button flex items-center gap-2 rounded-paw-sm border px-3 py-2 text-xs font-bold transition-all ${showQuests ? "is-active-mission bg-paw-accent/90 text-paw-accent-ink border-paw-accent" : "bg-paw-panel/80 text-paw-muted border-paw-border"}`}>
               <PawPrint className="h-3.5 w-3.5" aria-hidden="true" />
               Missions {quests.length > 0 && <span className="bg-white/30 px-1.5 py-0.5 rounded-full text-[10px]">{quests.length}</span>}
             </button>
-            <button onClick={() => setShowPlaces(!showPlaces)} className={`globe-layer-button flex items-center gap-2 rounded-paw-sm border px-3 py-2 text-xs font-bold transition-all ${showPlaces ? "is-active-place bg-paw-trust/90 text-white border-paw-trust" : "bg-paw-panel/80 text-paw-muted border-paw-border"}`}>
+            <button onClick={() => setShowPlaces(!showPlaces)} className={`globe-layer-button flex items-center gap-2 rounded-paw-sm border px-3 py-2 text-xs font-bold transition-all ${showPlaces ? "is-active-place bg-paw-trust/90 text-paw-accent-ink border-paw-trust" : "bg-paw-panel/80 text-paw-muted border-paw-border"}`}>
               <MapPin className="h-3.5 w-3.5" aria-hidden="true" />
               Places {places.length > 0 && <span className="bg-white/30 px-1.5 py-0.5 rounded-full text-[10px]">{places.length}</span>}
             </button>
-            <button onClick={() => setShowPosts(!showPosts)} className={`globe-layer-button flex items-center gap-2 rounded-paw-sm border px-3 py-2 text-xs font-bold transition-all ${showPosts ? "is-active-post bg-paw-primary/90 text-white border-paw-primary" : "bg-paw-panel/80 text-paw-muted border-paw-border"}`}>
+            <button onClick={() => setShowPosts(!showPosts)} className={`globe-layer-button flex items-center gap-2 rounded-paw-sm border px-3 py-2 text-xs font-bold transition-all ${showPosts ? "is-active-post bg-paw-primary/90 text-paw-accent-ink border-paw-primary" : "bg-paw-panel/80 text-paw-muted border-paw-border"}`}>
               <MessageCircle className="h-3.5 w-3.5" aria-hidden="true" />
               Posts {posts.length > 0 && <span className="bg-white/30 px-1.5 py-0.5 rounded-full text-[10px]">{posts.length}</span>}
             </button>

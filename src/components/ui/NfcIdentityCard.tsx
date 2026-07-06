@@ -48,20 +48,20 @@ export default function NfcIdentityCard({
 
   return (
     <Card className={cn("overflow-hidden", className)}>
-      <div className="bg-paw-primary px-5 py-6 text-white">
+      <div className="bg-paw-primary px-5 py-6 text-paw-accent-ink">
         <div className="flex items-start justify-between gap-4">
           <div className="flex min-w-0 items-center gap-4">
-            <div className="flex h-16 w-16 shrink-0 items-center justify-center overflow-hidden rounded-paw-lg border border-white/30 bg-white/20 text-2xl font-extrabold">
+            <div className="flex h-16 w-16 shrink-0 items-center justify-center overflow-hidden rounded-paw-lg border border-paw-accent-ink/20 bg-white/20 text-2xl font-extrabold">
               {avatar ?? name.slice(0, 1).toUpperCase()}
             </div>
             <div className="min-w-0">
               <h2 className="truncate text-2xl font-extrabold leading-8">
                 {name}
               </h2>
-              {subtitle && <p className="mt-1 text-sm text-white/80">{subtitle}</p>}
+              {subtitle && <p className="mt-1 text-sm text-paw-accent-ink/75">{subtitle}</p>}
             </div>
           </div>
-          <Badge tone={current.tone} className="shrink-0 border-white/20 bg-white/15 text-white">
+          <Badge tone={current.tone} className="shrink-0 border-paw-accent-ink/20 bg-white/20 text-paw-accent-ink">
             <StatusIcon className="h-3.5 w-3.5" aria-hidden="true" />
             {current.label}
           </Badge>

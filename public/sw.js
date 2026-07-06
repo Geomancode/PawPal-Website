@@ -1,14 +1,12 @@
-const CACHE_NAME = "pawpal-shell-v5-no-global-install-banner";
+const CACHE_NAME = "pawpal-shell-v6-transparent-logo-mark";
 const SHELL_ASSETS = [
   "/",
   "/globe",
   "/profile",
   "/store",
   "/offline.html",
-  "/pawpal_favicon.svg",
-  "/pawpal_icon.svg",
-  "/pawpal_icon_white.svg",
-  "/pawpal_logo_horizontal.svg",
+  "/assets/logos/pawpal-logo-light.svg",
+  "/assets/logos/pawpal-logo-dark.svg",
   "/manifest.webmanifest",
   "/images/app-mockup.png"
 ];

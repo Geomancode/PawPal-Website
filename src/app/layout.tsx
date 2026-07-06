@@ -61,8 +61,19 @@ export const metadata: Metadata = {
     statusBarStyle: "default",
   },
   icons: {
-    icon: "/pawpal_favicon.svg",
-    apple: "/pawpal_icon.svg",
+    icon: [
+      {
+        url: "/assets/logos/pawpal-logo-light.svg",
+        type: "image/svg+xml",
+        media: "(prefers-color-scheme: light)",
+      },
+      {
+        url: "/assets/logos/pawpal-logo-dark.svg",
+        type: "image/svg+xml",
+        media: "(prefers-color-scheme: dark)",
+      },
+    ],
+    apple: "/assets/logos/pawpal-logo-light.svg",
   },
 };
 
@@ -79,7 +90,7 @@ const jsonLd = {
       name: siteConfig.name,
       url: siteConfig.url,
       email: siteConfig.email,
-      logo: `${siteConfig.url}/pawpal_icon.svg`,
+      logo: `${siteConfig.url}/assets/logos/pawpal-logo-light.svg`,
       foundingLocation: {
         "@type": "Place",
         name: "Ghent, Belgium",

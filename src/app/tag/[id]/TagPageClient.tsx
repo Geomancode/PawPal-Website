@@ -108,7 +108,7 @@ export default function TagPageClient({ pet, owner }: TagPageClientProps) {
               <div className="mt-5">
                 <a
                   href={contactHref}
-                  className="inline-flex h-14 w-full items-center justify-center gap-2 rounded-paw-md bg-paw-primary px-5 text-base font-extrabold text-white shadow-paw-action transition hover:bg-paw-primary-hover"
+                  className="inline-flex h-14 w-full items-center justify-center gap-2 rounded-paw-md bg-paw-primary px-5 text-base font-extrabold text-paw-accent-ink shadow-paw-action transition hover:bg-paw-primary-hover"
                 >
                   <ContactIcon className="h-5 w-5" aria-hidden="true" />
                   Contact owner now

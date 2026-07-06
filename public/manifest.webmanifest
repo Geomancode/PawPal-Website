@@ -5,13 +5,13 @@
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
-  "background_color": "#FFFFFF",
+  "background_color": "#FFF8EA",
   "theme_color": "#4A90D9",
   "orientation": "portrait-primary",
   "categories": ["lifestyle", "navigation", "shopping"],
   "icons": [
     {
-      "src": "/pawpal_icon.svg",
+      "src": "/assets/logos/pawpal-logo-light.svg",
       "sizes": "any",
       "type": "image/svg+xml",
       "purpose": "any maskable"
@@ -23,21 +23,21 @@
       "short_name": "Globe",
       "description": "Explore nearby pet places and community needs.",
       "url": "/globe",
-      "icons": [{ "src": "/pawpal_icon.svg", "sizes": "any" }]
+      "icons": [{ "src": "/assets/logos/pawpal-logo-light.svg", "sizes": "any" }]
     },
     {
       "name": "Shop Smart Tags",
       "short_name": "Store",
       "description": "Browse PawPal NFC safety tags and pet gear.",
       "url": "/store",
-      "icons": [{ "src": "/pawpal_icon.svg", "sizes": "any" }]
+      "icons": [{ "src": "/assets/logos/pawpal-logo-light.svg", "sizes": "any" }]
     },
     {
       "name": "My Profile",
       "short_name": "Profile",
       "description": "Open your PawPal profile.",
       "url": "/profile",
-      "icons": [{ "src": "/pawpal_icon.svg", "sizes": "any" }]
+      "icons": [{ "src": "/assets/logos/pawpal-logo-light.svg", "sizes": "any" }]
     }
   ]
 }

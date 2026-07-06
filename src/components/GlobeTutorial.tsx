@@ -215,7 +215,7 @@ export default function GlobeTutorial() {
                       <ChevronLeft className="w-3 h-3" /> Back
                     </button>
                   )}
-                  <button onClick={next} className="flex items-center gap-1 px-4 py-1.5 text-xs font-bold text-white bg-paw-primary hover:bg-paw-primary-hover rounded-paw-sm transition-all shadow-paw-action">
+                  <button onClick={next} className="flex items-center gap-1 px-4 py-1.5 text-xs font-bold text-paw-accent-ink bg-paw-primary hover:bg-paw-primary-hover rounded-paw-sm transition-all shadow-paw-action">
                     {isLast ? (
                       <><Sparkles className="w-3 h-3" /> Got it!</>
                     ) : (

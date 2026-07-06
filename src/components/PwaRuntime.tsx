@@ -140,7 +140,7 @@ export default function PwaRuntime() {
           <button
             type="button"
             onClick={applyUpdate}
-            className="inline-flex h-11 items-center justify-center rounded-paw-md bg-paw-primary-contrast px-4 text-sm font-extrabold text-white shadow-paw-action transition hover:bg-paw-primary-hover"
+            className="inline-flex h-11 items-center justify-center rounded-paw-md bg-paw-primary px-4 text-sm font-extrabold text-paw-accent-ink shadow-paw-action transition hover:bg-paw-primary-hover"
           >
             Update now
           </button>

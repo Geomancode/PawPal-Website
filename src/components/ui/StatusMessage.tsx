@@ -16,22 +16,22 @@ const toneStyles: Record<
 > = {
   info: {
     container: "border-paw-primary/20 bg-paw-primary-soft text-paw-body",
-    icon: "bg-paw-primary text-white",
+    icon: "bg-paw-primary text-paw-accent-ink",
     Icon: Info,
   },
   success: {
     container: "border-paw-success/20 bg-paw-success-soft text-paw-body",
-    icon: "bg-paw-success text-white",
+    icon: "bg-paw-success text-paw-accent-ink",
     Icon: CheckCircle2,
   },
   warning: {
     container: "border-paw-warning/20 bg-paw-warning-soft text-paw-body",
-    icon: "bg-paw-warning text-white",
+    icon: "bg-paw-warning text-paw-accent-ink",
     Icon: TriangleAlert,
   },
   danger: {
-    container: "border-paw-danger/20 bg-paw-danger-soft text-paw-body",
-    icon: "bg-paw-danger text-white",
+    container: "border-paw-critical/20 bg-paw-critical-soft text-paw-body",
+    icon: "bg-paw-critical text-white",
     Icon: AlertCircle,
   },
 };

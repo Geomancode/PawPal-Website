@@ -158,7 +158,7 @@ export function HeroCTA() {
     >
       <Link
         href="/globe"
-        className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-paw-sm bg-paw-primary-contrast px-6 text-sm font-bold text-white shadow-paw-action transition hover:bg-paw-primary-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-paw-primary sm:w-auto"
+        className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-paw-sm bg-paw-primary px-6 text-sm font-bold text-paw-accent-ink shadow-paw-action transition hover:bg-paw-primary-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-paw-primary sm:w-auto"
       >
         Open Live Map
         <ArrowRight className="h-4 w-4" />
@@ -236,7 +236,7 @@ export function HeroBadges() {
       {badges.map((badge) => (
         <div
           key={badge.label}
-          className="flex min-w-0 items-center gap-3 rounded-paw-md border border-paw-border bg-paw-panel/82 p-3 shadow-[0_10px_24px_rgba(33,55,78,0.08)] backdrop-blur"
+          className="flex min-w-0 items-center gap-3 rounded-paw-md border border-paw-border bg-paw-panel/82 p-3 shadow-[0_10px_24px_rgba(58,47,42,0.08)] backdrop-blur"
         >
           <span className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-paw-sm ${badge.tone}`}>
             <badge.icon className="h-5 w-5" aria-hidden="true" />
@@ -553,7 +553,7 @@ export function BentoFeatureGrid() {
             {showcaseImages.map((image, index) => (
               <motion.div
                 key={image.src}
-                className="phone-screen-card relative aspect-[9/16] overflow-hidden rounded-[1.25rem] border border-paw-border bg-paw-panel shadow-[0_20px_45px_rgba(36,60,84,0.18)] sm:w-[135px] lg:w-[158px]"
+                className="phone-screen-card relative aspect-[9/16] overflow-hidden rounded-[1.25rem] border border-paw-border bg-paw-panel shadow-[0_20px_45px_rgba(58,47,42,0.18)] sm:w-[135px] lg:w-[158px]"
                 style={{ marginTop: index % 2 === 0 ? 0 : 36 }}
                 whileHover={shouldReduceMotion ? undefined : { y: -8 }}
                 transition={shouldReduceMotion ? { duration: 0 } : { type: "spring", stiffness: 180, damping: 18 }}
@@ -636,7 +636,7 @@ export function BottomCTA() {
     <div className="flex flex-col gap-3 sm:flex-row">
       <Link
         href="/globe"
-        className="inline-flex h-12 items-center justify-center gap-2 rounded-paw-sm bg-paw-primary-contrast px-6 text-sm font-bold text-white shadow-paw-action transition hover:bg-paw-primary-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-paw-primary"
+        className="inline-flex h-12 items-center justify-center gap-2 rounded-paw-sm bg-paw-primary px-6 text-sm font-bold text-paw-accent-ink shadow-paw-action transition hover:bg-paw-primary-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-paw-primary"
       >
         Open Live Map
         <ArrowRight className="h-4 w-4" />
