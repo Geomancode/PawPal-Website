@@ -1,15 +1,19 @@
 import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
 import { reportError } from "@/lib/errorReporting";
+import {
+  assertStripeTestMode,
+  createStripeIdempotencyKey,
+  getStripeSecretKey,
+} from "@/lib/stripeGuard";
 
 function getStripe() {
-  const key = process.env.STRIPE_SECRET_KEY;
-  if (!key) throw new Error("STRIPE_SECRET_KEY is not configured");
-  return new Stripe(key);
+  return new Stripe(getStripeSecretKey());
 }
 
 export async function POST(req: NextRequest) {
   try {
+    assertStripeTestMode();
     const { items, shipping } = await req.json();
     if (!Array.isArray(items) || items.length === 0) {
       return NextResponse.json({ error: "Cart is empty" }, { status: 400 });
@@ -50,41 +54,59 @@ export async function POST(req: NextRequest) {
       req.headers.get("origin") ||
       "http://localhost:3000";
 
-    const session = await stripe.checkout.sessions.create({
-      // Card (Visa/MC/Amex + Apple Pay + Google Pay), Bancontact (Belgium),
-      // iDEAL (Netherlands), Link (one-click), Klarna (BNPL), PayPal
-      payment_method_types: ["card", "bancontact", "ideal", "link", "klarna", "paypal"],
-      line_items: lineItems,
+    const metadata = {
+      intent: "store-order",
+      shipping_name: shipping?.fullName || "",
+      shipping_address: shipping?.address || "",
+      shipping_city: shipping?.city || "",
+      shipping_zip: shipping?.zipCode || "",
+      shipping_country: shipping?.country || "",
+      shipping_phone: shipping?.phone || "",
+    };
+    const idempotencyKey = createStripeIdempotencyKey("store-checkout", {
+      lineItems,
+      customerEmail: shipping?.email || null,
+      metadata,
       mode: "payment",
-      success_url: `${baseUrl}/store/success?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${baseUrl}/store/checkout`,
-      customer_email: shipping?.email || undefined,
-      metadata: {
-        intent: "store-order",
-        shipping_name: shipping?.fullName || "",
-        shipping_address: shipping?.address || "",
-        shipping_city: shipping?.city || "",
-        shipping_zip: shipping?.zipCode || "",
-        shipping_country: shipping?.country || "",
-        shipping_phone: shipping?.phone || "",
-      },
-      shipping_options: [
-        {
-          shipping_rate_data: {
-            type: "fixed_amount",
-            fixed_amount: {
-              amount: 0,
-              currency: "eur",
-            },
-            display_name: "Standard Shipping (3-5 days)",
-            delivery_estimate: {
-              minimum: { unit: "business_day", value: 3 },
-              maximum: { unit: "business_day", value: 5 },
+    });
+
+    const session = await stripe.checkout.sessions.create(
+      {
+        // Card (Visa/MC/Amex + Apple Pay + Google Pay), Bancontact (Belgium),
+        // iDEAL (Netherlands), Link (one-click), Klarna (BNPL), PayPal
+        payment_method_types: [
+          "card",
+          "bancontact",
+          "ideal",
+          "link",
+          "klarna",
+          "paypal",
+        ],
+        line_items: lineItems,
+        mode: "payment",
+        success_url: `${baseUrl}/store/success?session_id={CHECKOUT_SESSION_ID}`,
+        cancel_url: `${baseUrl}/store/checkout`,
+        customer_email: shipping?.email || undefined,
+        metadata,
+        shipping_options: [
+          {
+            shipping_rate_data: {
+              type: "fixed_amount",
+              fixed_amount: {
+                amount: 0,
+                currency: "eur",
+              },
+              display_name: "Standard Shipping (3-5 days)",
+              delivery_estimate: {
+                minimum: { unit: "business_day", value: 3 },
+                maximum: { unit: "business_day", value: 5 },
+              },
             },
           },
-        },
-      ],
-    });
+        ],
+      },
+      { idempotencyKey },
+    );
 
     return NextResponse.json({ url: session.url, sessionId: session.id });
   } catch (err) {

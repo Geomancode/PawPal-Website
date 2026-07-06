@@ -1,13 +1,16 @@
 import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
 import { reportError } from "@/lib/errorReporting";
+import {
+  assertStripeTestMode,
+  createStripeIdempotencyKey,
+  getStripeSecretKey,
+} from "@/lib/stripeGuard";
 import { supabaseServer } from "@/lib/supabaseServer";
 import { paidTierFromValue, SUBSCRIPTION_PLANS } from "@/lib/subscriptions";
 
 function getStripe() {
-  const key = process.env.STRIPE_SECRET_KEY;
-  if (!key) throw new Error("STRIPE_SECRET_KEY is not configured");
-  return new Stripe(key);
+  return new Stripe(getStripeSecretKey());
 }
 
 function getBearerToken(req: NextRequest): string | null {
@@ -27,6 +30,7 @@ async function resolveAuthenticatedUserId(req: NextRequest) {
 
 export async function POST(req: NextRequest) {
   try {
+    assertStripeTestMode();
     const body = await req.json();
     const tier = paidTierFromValue(body.tier);
     if (!tier) {
@@ -83,19 +87,31 @@ export async function POST(req: NextRequest) {
       source: typeof body.source === "string" ? body.source : "web-store",
     };
 
-    const session = await stripe.checkout.sessions.create({
-      mode: "subscription",
-      line_items: [lineItem],
-      client_reference_id: userId,
-      customer_email: email,
-      success_url: `${baseUrl}/store/success?intent=subscription&tier=${tier}&session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${baseUrl}/store?intent=ai-upgrade&tier=${tier}`,
+    const idempotencyKey = createStripeIdempotencyKey("subscription-checkout", {
+      userId,
+      tier,
+      email: email ?? null,
+      lineItem,
       metadata,
-      subscription_data: {
-        metadata,
-      },
-      allow_promotion_codes: true,
+      mode: "subscription",
     });
+
+    const session = await stripe.checkout.sessions.create(
+      {
+        mode: "subscription",
+        line_items: [lineItem],
+        client_reference_id: userId,
+        customer_email: email,
+        success_url: `${baseUrl}/store/success?intent=subscription&tier=${tier}&session_id={CHECKOUT_SESSION_ID}`,
+        cancel_url: `${baseUrl}/store?intent=ai-upgrade&tier=${tier}`,
+        metadata,
+        subscription_data: {
+          metadata,
+        },
+        allow_promotion_codes: true,
+      },
+      { idempotencyKey },
+    );
 
     return NextResponse.json({ url: session.url, sessionId: session.id });
   } catch (err) {
