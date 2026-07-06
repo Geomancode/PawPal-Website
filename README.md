@@ -60,6 +60,8 @@ Copy `.env.example` to `.env.local` for local development and fill in local sand
 
 Keep production secrets out of the repository. `NEXT_PUBLIC_` values are exposed to browser code; server-only values such as `SUPABASE_SERVICE_ROLE_KEY`, `STRIPE_SECRET_KEY`, and `STRIPE_WEBHOOK_SECRET` must not use that prefix. Stripe remains test-mode only in the current deployment policy.
 
+Sentry error reporting is optional. Set `SENTRY_DSN` from the Sentry project Client Keys in Vercel or `.env.local`; leave it empty to keep the structured console fallback.
+
 For Vercel Preview/Production setup, health checks, and rollback steps, see [docs/DEPLOY.md](docs/DEPLOY.md).
 
 ## Design System
