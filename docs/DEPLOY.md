@@ -33,7 +33,7 @@ Use `.env.example` as the complete local template. Configure the same keys in Ve
 | `STRIPE_PRO_PRICE_ID` | Server-only config | Yes | Stripe test mode Pro monthly price ID. |
 | `NEXT_PUBLIC_BASIC_MONTHLY_EUR` | Public display config | Yes | Product pricing value matching the Basic Stripe test price. |
 | `NEXT_PUBLIC_PRO_MONTHLY_EUR` | Public display config | Yes | Product pricing value matching the Pro Stripe test price. |
-| `SENTRY_DSN` | Server-side observability config | No | Sentry project DSN. Leave unset until Sentry is enabled. |
+| `SENTRY_DSN` | Observability config | No | Sentry project Client Keys DSN. Leave unset to keep the structured logging fallback. |
 | `NODE_ENV` | Runtime | Yes | Set automatically by Next.js/Vercel. Do not override in Vercel unless debugging a platform issue. |
 
 Stripe is sandbox-only in this project state. Do not add production-mode Stripe keys or production-mode price values to Vercel, `.env.local`, or documentation until launch requirements explicitly change.

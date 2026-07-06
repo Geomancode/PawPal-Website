@@ -1,3 +1,5 @@
+import * as Sentry from "@sentry/nextjs";
+
 export type ErrorReportContext = Record<
   string,
   string | number | boolean | null | undefined
@@ -49,8 +51,7 @@ export function reportError(error: unknown, context: ErrorReportContext = {}) {
 
   try {
     if (sentryDsn()) {
-      // TODO: initialize Sentry and call Sentry.captureException(error, { extra: context }).
-      console.error("[error-report] remote reporter pending SDK setup", payload);
+      Sentry.captureException(error, { extra: context });
       return;
     }
 
