@@ -1,16 +1,17 @@
 import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
+import { reportError } from "@/lib/errorReporting";
+import { assertStripeTestMode, getStripeSecretKey } from "@/lib/stripeGuard";
 
 function getStripe() {
-  const key = process.env.STRIPE_SECRET_KEY;
-  if (!key) throw new Error("STRIPE_SECRET_KEY is not configured");
-  return new Stripe(key);
+  return new Stripe(getStripeSecretKey());
 }
 
 export async function GET(req: NextRequest) {
   try {
+    assertStripeTestMode();
     const sessionId = req.nextUrl.searchParams.get("session_id");
-    
+
     if (!sessionId) {
       return NextResponse.json({ error: "Missing session_id" }, { status: 400 });
     }
@@ -35,7 +36,7 @@ export async function GET(req: NextRequest) {
       })) ?? [],
     });
   } catch (err) {
-    console.error("Session retrieve error:", err);
+    reportError(err, { route: "/api/checkout/session", method: "GET" });
     const message = err instanceof Error ? err.message : "Unknown error";
     return NextResponse.json({ error: message }, { status: 500 });
   }
