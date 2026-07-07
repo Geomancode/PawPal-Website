@@ -1,6 +1,11 @@
 "use client";
 
-import { useState, useEffect, useSyncExternalStore } from "react";
+import {
+  useState,
+  useEffect,
+  useSyncExternalStore,
+  type HTMLInputTypeAttribute,
+} from "react";
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
 import {
@@ -12,7 +17,14 @@ import {
   loadCart,
 } from "../storeData";
 import ProductVisual from "../ProductVisual";
-import { StatusMessage } from "@/components/ui";
+import {
+  Button,
+  Card,
+  CardContent,
+  Input,
+  StatusMessage,
+  buttonClassName,
+} from "@/components/ui";
 
 const STEPS = [
   { id: 1, label: "Shipping", icon: MapPin },
@@ -63,8 +75,8 @@ function StepIndicator({ current }: { current: number }) {
         const active = current === step.id;
         return (
           <div key={step.id} className="flex items-center gap-2">
-            <div className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all ${
-              active ? "bg-paw-primary text-paw-accent-ink shadow-paw-action" : done ? "bg-paw-success-soft text-paw-success" : "bg-paw-panel-subtle text-paw-muted"
+            <div className={`flex min-h-paw-min-tap items-center gap-2 rounded-paw-pill px-paw-md py-paw-xs text-sm font-extrabold transition-all ${
+              active ? "bg-paw-primary text-paw-on-primary shadow-paw-action" : done ? "bg-paw-success-soft text-paw-on-success-soft" : "bg-paw-panel-subtle text-paw-muted"
             }`}>
               <step.icon className="w-4 h-4" />
               <span className="hidden sm:inline">{step.label}</span>
@@ -82,20 +94,17 @@ function StepIndicator({ current }: { current: number }) {
 // ─── Input Field ───────────────────────────────────────
 function Field({ label, value, onChange, placeholder, type = "text", required = true }: {
   label: string; value: string; onChange: (v: string) => void;
-  placeholder: string; type?: string; required?: boolean;
+  placeholder: string; type?: HTMLInputTypeAttribute; required?: boolean;
 }) {
   return (
-    <div>
-      <label className="mb-1.5 block text-sm font-bold text-paw-ink">{label}{required && <span className="text-paw-danger">*</span>}</label>
-      <input
-        type={type}
-        value={value}
-        onChange={(e) => onChange(e.target.value)}
-        placeholder={placeholder}
-        required={required}
-        className="w-full rounded-paw-md border border-paw-border bg-paw-panel px-4 py-3 text-paw-ink transition-all focus:border-paw-trust focus:outline-none focus:ring-4 focus:ring-paw-trust/20"
-      />
-    </div>
+    <Input
+      label={required ? `${label} *` : label}
+      type={type}
+      value={value}
+      onChange={(e) => onChange(e.target.value)}
+      placeholder={placeholder}
+      required={required}
+    />
   );
 }
 
@@ -104,7 +113,8 @@ function OrderSummary({ items }: { items: CartItem[] }) {
   const subtotal = items.reduce((s, i) => s + i.product.price * i.quantity, 0);
 
   return (
-    <div className="checkout-summary-card rounded-paw-lg border border-paw-border bg-paw-panel/80 p-6 shadow-paw-panel backdrop-blur-sm">
+    <Card className="checkout-summary-card">
+      <CardContent>
       <h3 className="mb-4 flex items-center gap-2 font-extrabold text-paw-ink">
         <Package className="h-4 w-4 text-paw-primary" /> Order Summary
       </h3>
@@ -124,15 +134,16 @@ function OrderSummary({ items }: { items: CartItem[] }) {
         <div className="flex justify-between text-sm text-paw-body"><span>Subtotal</span><span>€{subtotal.toFixed(2)}</span></div>
         <div className="flex justify-between text-sm text-paw-body">
           <span>Shipping</span>
-          <span className="font-bold text-paw-success">Free</span>
+          <span className="font-bold text-paw-on-success-soft">Free</span>
         </div>
         <div className="flex justify-between border-t border-paw-border pt-2 text-lg font-extrabold text-paw-ink"><span>Total</span><span>€{subtotal.toFixed(2)}</span></div>
       </div>
       <div className="mt-4 flex items-center gap-2 rounded-paw-sm border border-paw-trust/20 bg-paw-trust-soft p-3">
-        <ShieldCheck className="h-4 w-4 shrink-0 text-paw-trust" />
-        <p className="text-xs text-paw-trust">Secured by <strong>Stripe</strong></p>
+        <ShieldCheck className="h-4 w-4 shrink-0 text-paw-on-trust-soft" />
+        <p className="text-xs text-paw-on-trust-soft">Secured by <strong>Stripe</strong></p>
       </div>
-    </div>
+      </CardContent>
+    </Card>
   );
 }
 
@@ -211,12 +222,15 @@ export default function CheckoutPage() {
     <div className="commerce-page-shell min-h-screen bg-paw-page pt-28 pb-20 text-paw-ink">
       <div className="max-w-5xl mx-auto px-4">
         {/* Back button */}
-        <button
+        <Button
+          type="button"
+          variant="ghost"
+          size="sm"
           onClick={() => step === 1 ? router.push("/store") : setStep(step - 1)}
-          className="mb-6 flex cursor-pointer items-center gap-1 text-paw-muted transition-colors hover:text-paw-primary"
+          className="mb-6 -ml-2 text-paw-muted hover:text-paw-primary"
         >
           <ArrowLeft className="w-4 h-4" /> {step === 1 ? "Back to Store" : "Back"}
-        </button>
+        </Button>
 
         <div className="checkout-hero-panel mb-8">
           <div>
@@ -251,8 +265,9 @@ export default function CheckoutPage() {
                 <motion.div
                   key="shipping"
                   {...checkoutStepMotion(shouldReduceMotion)}
-                  className="checkout-main-card rounded-paw-lg border border-paw-border bg-paw-panel/80 p-8 shadow-paw-panel backdrop-blur-sm"
                 >
+                  <Card className="checkout-main-card">
+                    <CardContent className="p-8">
                   <h2 className="mb-6 flex items-center gap-2 text-2xl font-extrabold text-paw-ink">
                     <MapPin className="h-5 w-5 text-paw-primary" /> Shipping Information
                   </h2>
@@ -279,20 +294,20 @@ export default function CheckoutPage() {
                   )}
 
                   <div className="mt-6 flex items-center gap-3 rounded-paw-md border border-paw-success/20 bg-paw-success-soft p-4">
-                    <Truck className="h-5 w-5 shrink-0 text-paw-success" />
-                    <p className="text-sm text-paw-body">Free shipping on all orders. Estimated delivery: 3-5 business days.</p>
+                    <Truck className="h-5 w-5 shrink-0 text-paw-on-success-soft" />
+                    <p className="text-sm text-paw-on-success-soft">Free shipping on all orders. Estimated delivery: 3-5 business days.</p>
                   </div>
 
                   <motion.button
                     whileTap={shouldReduceMotion ? undefined : { scale: 0.97 }}
                     disabled={!canProceedShipping}
                     onClick={() => setStep(2)}
-                    className={`mt-6 flex w-full cursor-pointer items-center justify-center gap-2 rounded-paw-lg py-3.5 text-lg font-bold transition-all ${
-                      canProceedShipping ? "bg-paw-primary text-paw-accent-ink shadow-paw-action hover:bg-paw-primary-hover" : "cursor-not-allowed bg-paw-panel-subtle text-paw-muted"
-                    }`}
+                    className={buttonClassName({ size: "lg", className: "mt-6 w-full text-lg" })}
                   >
                     Review Order <ArrowRight className="w-5 h-5" />
                   </motion.button>
+                    </CardContent>
+                  </Card>
                 </motion.div>
               )}
 
@@ -301,8 +316,9 @@ export default function CheckoutPage() {
                 <motion.div
                   key="review"
                   {...checkoutStepMotion(shouldReduceMotion)}
-                  className="checkout-main-card rounded-paw-lg border border-paw-border bg-paw-panel/80 p-8 shadow-paw-panel backdrop-blur-sm"
                 >
+                  <Card className="checkout-main-card">
+                    <CardContent className="p-8">
                   <h2 className="mb-6 flex items-center gap-2 text-2xl font-extrabold text-paw-ink">
                     <Package className="h-5 w-5 text-paw-primary" /> Review Your Order
                   </h2>
@@ -336,7 +352,7 @@ export default function CheckoutPage() {
                   {/* Total */}
                   <div className="mb-6 space-y-2 border-t border-paw-border pt-4">
                     <div className="flex justify-between text-sm text-paw-body"><span>Subtotal</span><span>€{subtotal.toFixed(2)}</span></div>
-                    <div className="flex justify-between text-sm text-paw-body"><span>Shipping</span><span className="font-bold text-paw-success">Free</span></div>
+                    <div className="flex justify-between text-sm text-paw-body"><span>Shipping</span><span className="font-bold text-paw-on-success-soft">Free</span></div>
                     <div className="flex justify-between border-t border-paw-border pt-2 text-xl font-extrabold text-paw-ink"><span>Total</span><span>€{subtotal.toFixed(2)}</span></div>
                   </div>
 
@@ -352,7 +368,7 @@ export default function CheckoutPage() {
                       whileTap={shouldReduceMotion ? undefined : { scale: 0.97 }}
                       onClick={handleStripeCheckout}
                       disabled={redirecting}
-                      className="w-full bg-paw-primary hover:bg-paw-primary-hover text-paw-accent-ink py-4 rounded-paw-md font-bold text-lg flex items-center justify-center gap-3 transition-all shadow-paw-action cursor-pointer disabled:opacity-60"
+                      className={buttonClassName({ size: "lg", className: "w-full text-lg" })}
                     >
                       {redirecting ? (
                         <>
@@ -381,10 +397,12 @@ export default function CheckoutPage() {
                     {/* Stripe badge */}
                     <div className="flex items-center justify-center gap-4 pt-2">
                       {["Visa", "Mastercard", "Amex", "Apple Pay"].map((brand) => (
-                        <span key={brand} className="rounded border border-paw-border px-2 py-1 text-xs font-medium text-paw-muted">{brand}</span>
+                        <span key={brand} className="rounded-paw-sm border border-paw-outline-variant bg-paw-panel-subtle px-2 py-1 text-xs font-bold text-paw-muted">{brand}</span>
                       ))}
                     </div>
                   </div>
+                    </CardContent>
+                  </Card>
                 </motion.div>
               )}
             </>

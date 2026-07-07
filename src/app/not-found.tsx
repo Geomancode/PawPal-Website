@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ArrowRight, Home, Map, ScanLine } from "lucide-react";
 import PawPalLogo from "@/components/PawPalLogo";
+import { buttonClassName } from "@/components/ui";
 
 export default function NotFound() {
   return (
@@ -8,7 +9,7 @@ export default function NotFound() {
       <div className="mx-auto grid max-w-5xl gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
         <div>
           <PawPalLogo iconSize={44} fontSize={28} variant="light" />
-          <p className="mt-8 text-sm font-black uppercase tracking-[0.18em] text-paw-primary">
+          <p className="mt-8 text-sm font-black uppercase tracking-[0.18em] text-paw-on-primary-soft">
             Page not found
           </p>
           <h1 className="mt-3 max-w-xl font-brand text-4xl font-extrabold leading-tight text-paw-ink sm:text-6xl">
@@ -21,14 +22,14 @@ export default function NotFound() {
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <Link
               href="/"
-              className="inline-flex h-12 items-center justify-center gap-2 rounded-paw-sm bg-paw-primary px-5 text-sm font-extrabold text-paw-accent-ink shadow-paw-action transition hover:bg-paw-primary-hover"
+              className={buttonClassName({ variant: "primary", size: "lg" })}
             >
               <Home className="h-4 w-4" aria-hidden="true" />
               Back home
             </Link>
             <Link
               href="/store"
-              className="inline-flex h-12 items-center justify-center gap-2 rounded-paw-sm border border-paw-border-strong bg-paw-panel px-5 text-sm font-extrabold text-paw-ink transition hover:border-paw-primary hover:text-paw-primary"
+              className={buttonClassName({ variant: "secondary", size: "lg" })}
             >
               Shop smart tags
               <ArrowRight className="h-4 w-4" aria-hidden="true" />

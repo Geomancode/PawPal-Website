@@ -111,7 +111,7 @@ function SuccessContent() {
     return (
       <div className="commerce-page-shell success-status-shell flex min-h-[100dvh] items-start justify-center bg-paw-page px-4 pb-16 pt-28 text-paw-ink">
         <Card className="success-card-upgraded w-full max-w-lg p-7 text-center sm:p-8">
-          <div className="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-paw-md bg-paw-danger-soft text-paw-danger">
+          <div className="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-paw-xl bg-paw-critical-soft text-paw-on-critical-soft">
             <AlertTriangle className="h-7 w-7" aria-hidden="true" />
           </div>
           <Badge tone="danger" className="mb-3">Checkout status</Badge>
@@ -140,7 +140,7 @@ function SuccessContent() {
     <div className="commerce-page-shell min-h-screen bg-paw-page pt-28 pb-20 text-paw-ink">
       <div className="mx-auto max-w-2xl px-4">
         <Card className="success-card-upgraded p-8 text-center sm:p-10">
-          <div className="mx-auto mb-6 flex h-24 w-24 items-center justify-center rounded-full bg-paw-success-soft text-paw-success">
+          <div className="mx-auto mb-6 flex h-24 w-24 items-center justify-center rounded-paw-pill bg-paw-success-soft text-paw-on-success-soft">
             <CheckCircle2 className="h-12 w-12" aria-hidden="true" />
           </div>
 
@@ -155,12 +155,12 @@ function SuccessContent() {
           </p>
 
           {isSubscription ? (
-            <div className="mt-5 inline-flex items-center gap-2 rounded-paw-md border border-paw-primary/20 bg-paw-primary-soft px-4 py-2 text-sm font-extrabold text-paw-primary">
+            <div className="mt-5 inline-flex items-center gap-2 rounded-paw-pill border border-paw-primary/20 bg-paw-primary-soft px-4 py-2 text-sm font-extrabold text-paw-on-primary-soft">
               <Sparkles className="h-4 w-4" aria-hidden="true" />
               PawPal {session?.metadata?.tier === "pro" ? "Pro" : "Basic"}
             </div>
           ) : (
-            <div className="mt-5 inline-flex items-center gap-2 rounded-paw-md border border-paw-primary/20 bg-paw-primary-soft px-4 py-2 font-mono text-sm font-extrabold text-paw-primary">
+            <div className="mt-5 inline-flex items-center gap-2 rounded-paw-pill border border-paw-primary/20 bg-paw-primary-soft px-4 py-2 font-mono text-sm font-extrabold text-paw-on-primary-soft">
               <Receipt className="h-4 w-4" aria-hidden="true" />
               Order #{orderId}
             </div>
@@ -169,7 +169,7 @@ function SuccessContent() {
           {session && (
             <div className="mt-7 space-y-4 text-left">
               <div className="rounded-paw-md border border-paw-success/20 bg-paw-success-soft p-4 text-center">
-                <p className="text-sm text-paw-success">
+                <p className="text-sm text-paw-on-success-soft">
                   Paid <strong>€{((session.amount_total || 0) / 100).toFixed(2)}</strong> via Stripe
                 </p>
               </div>
@@ -193,13 +193,13 @@ function SuccessContent() {
 
               {isSubscription ? (
                 <div className="rounded-paw-md border border-paw-trust/20 bg-paw-trust-soft p-4">
-                  <p className="text-sm leading-6 text-paw-trust">
+                  <p className="text-sm leading-6 text-paw-on-trust-soft">
                     Return to the PawPal app and tap <strong>Refresh plan</strong> in Profile if AI does not unlock immediately.
                   </p>
                 </div>
               ) : (
                 <div className="rounded-paw-md border border-paw-warning/20 bg-paw-warning-soft p-4">
-                  <p className="text-sm leading-6 text-paw-warning">
+                  <p className="text-sm leading-6 text-paw-on-warning-soft">
                     Receipt sent to <strong>{session.customer_email}</strong>. Your order will ship within 1-2 business days.
                   </p>
                 </div>

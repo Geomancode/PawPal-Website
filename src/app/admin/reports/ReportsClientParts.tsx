@@ -647,7 +647,7 @@ function ConfirmationDialog({
       >
         <div className="flex items-start justify-between gap-4">
           <div className="flex items-start gap-3">
-            <span className="flex h-10 w-10 flex-none items-center justify-center rounded-paw-md bg-paw-danger-soft text-paw-danger">
+            <span className="flex h-10 w-10 flex-none items-center justify-center rounded-paw-md bg-paw-critical-soft text-paw-on-critical-soft">
               <Icon className="h-5 w-5" aria-hidden="true" />
             </span>
             <div>
@@ -850,7 +850,7 @@ function Avatar({
 }) {
   return (
     <div
-      className="relative flex-none overflow-hidden rounded-full bg-paw-primary-soft text-paw-primary"
+      className="relative flex-none overflow-hidden rounded-full bg-paw-primary-soft text-paw-on-primary-soft"
       style={{ height: size, width: size }}
     >
       {profile?.avatarUrl ? (

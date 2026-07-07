@@ -22,6 +22,7 @@ import {
   EmptyState,
   Input,
   PageShell,
+  StatusMessage,
 } from "@/components/ui";
 import ProductVisual from "../ProductVisual";
 import {
@@ -402,15 +403,9 @@ export default function StoreAdminPage() {
               </div>
 
               {message && (
-                <div className={`rounded-paw-md border px-4 py-3 text-sm font-bold ${
-                  message.tone === "success"
-                    ? "border-paw-success/20 bg-paw-success-soft text-paw-success"
-                    : message.tone === "warning"
-                      ? "border-paw-warning/20 bg-paw-warning-soft text-paw-warning"
-                      : "border-paw-danger/20 bg-paw-danger-soft text-paw-danger"
-                }`}>
+                <StatusMessage tone={message.tone}>
                   {message.text}
-                </div>
+                </StatusMessage>
               )}
 
               <div className="grid grid-cols-1 gap-4 md:grid-cols-2">

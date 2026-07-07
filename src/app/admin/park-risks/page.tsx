@@ -32,6 +32,7 @@ import {
   EmptyState,
   Input,
   PageShell,
+  StatusMessage,
 } from "@/components/ui";
 
 type RiskStatus =
@@ -621,19 +622,13 @@ export default function ParkRiskAdminPage() {
           </div>
 
           {message && (
-            <div className={`rounded-paw-md border px-4 py-3 text-sm font-bold ${
-              message.tone === "success"
-                ? "border-paw-success/20 bg-paw-success-soft text-paw-success"
-                : message.tone === "warning"
-                  ? "border-paw-warning/20 bg-paw-warning-soft text-paw-warning"
-                  : "border-paw-danger/20 bg-paw-danger-soft text-paw-danger"
-            }`}>
+            <StatusMessage tone={message.tone}>
               {message.text}
-            </div>
+            </StatusMessage>
           )}
 
           {queueFallbackReason && (
-            <div className="rounded-paw-md border border-paw-warning/20 bg-paw-warning-soft px-4 py-3 text-sm font-bold leading-6 text-paw-warning">
+            <div className="rounded-paw-md border border-paw-warning/20 bg-paw-warning-soft px-4 py-3 text-sm font-bold leading-6 text-paw-on-warning-soft">
               Preview mode active. The live park risk queue is unavailable, so
               this page is showing local sample reports and all write actions
               are disabled. Reason: {queueFallbackReason}
@@ -858,7 +853,7 @@ function FilterButton({
       onClick={onClick}
       className={`rounded-paw-sm border px-3 py-1.5 text-xs font-extrabold transition ${
         active
-          ? "border-paw-primary/30 bg-paw-primary-soft text-paw-primary"
+          ? "border-paw-primary/30 bg-paw-primary-soft text-paw-on-primary-soft"
           : "border-paw-border bg-paw-panel-subtle text-paw-body hover:border-paw-primary/30"
       }`}
     >
@@ -1003,7 +998,7 @@ function RiskReportCard({
       {readOnly &&
         (report.status === "ready_for_review" ||
           report.status === "pending_confirmation") && (
-          <div className="mt-4 rounded-paw-sm border border-paw-warning/20 bg-paw-warning-soft px-3 py-2 text-sm font-bold text-paw-warning">
+          <div className="mt-4 rounded-paw-sm border border-paw-warning/20 bg-paw-warning-soft px-3 py-2 text-sm font-bold text-paw-on-warning-soft">
             Preview mode is read-only. Review actions will unlock when the live queue is available.
           </div>
         )}
