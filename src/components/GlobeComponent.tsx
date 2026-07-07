@@ -82,6 +82,12 @@ const GLOBE_RENDERER_CONFIG = {
   powerPreference: "high-performance",
 } as const;
 
+function readCssToken(name: string, fallback: string) {
+  if (typeof window === "undefined") return fallback;
+  const value = window.getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+  return value || fallback;
+}
+
 function subscribeToReducedMotion(onStoreChange: () => void) {
   if (typeof window === "undefined") return () => {};
   const mediaQuery = window.matchMedia(REDUCED_MOTION_QUERY);
@@ -122,6 +128,8 @@ function createCloudTexture() {
   if (!ctx) return null;
 
   const random = seededRandom(20260526);
+  const cloudColor = readCssToken("--color-paw-panel-low", "white");
+  const cloudStop = (alpha: number) => `color-mix(in srgb, ${cloudColor} ${Math.round(alpha * 100)}%, transparent)`;
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   ctx.filter = "blur(5px)";
 
@@ -132,9 +140,9 @@ function createCloudTexture() {
     const height = 8 + random() * 34;
     const opacity = 0.08 + random() * 0.2;
     const gradient = ctx.createRadialGradient(x, y, 0, x, y, width);
-    gradient.addColorStop(0, `rgba(255, 255, 255, ${opacity})`);
-    gradient.addColorStop(0.55, `rgba(255, 255, 255, ${opacity * 0.45})`);
-    gradient.addColorStop(1, "rgba(255, 255, 255, 0)");
+    gradient.addColorStop(0, cloudStop(opacity));
+    gradient.addColorStop(0.55, cloudStop(opacity * 0.45));
+    gradient.addColorStop(1, "transparent");
 
     ctx.save();
     ctx.translate(x, y);
@@ -168,6 +176,7 @@ export default function GlobeComponent() {
   const [canUseWebGL, setCanUseWebGL] = useState<boolean | null>(null);
   const [isInView, setIsInView] = useState(true);
   const [isDocumentVisible, setIsDocumentVisible] = useState(true);
+  const [atmosphereColor, setAtmosphereColor] = useState("cornflowerblue");
   const shouldReduceMotion = useReducedMotionPreference();
   const shouldAnimateGlobe = canUseWebGL === true && !shouldReduceMotion && isInView && isDocumentVisible;
   const globeState = canUseWebGL === null ? "checking" : canUseWebGL ? (shouldAnimateGlobe ? "animated" : "paused") : "fallback";
@@ -183,6 +192,17 @@ export default function GlobeComponent() {
     });
 
     return () => window.cancelAnimationFrame(frame);
+  }, []);
+
+  useEffect(() => {
+    const syncAtmosphereColor = () => {
+      setAtmosphereColor(readCssToken("--color-paw-primary", "cornflowerblue"));
+    };
+    syncAtmosphereColor();
+
+    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+    mediaQuery.addEventListener("change", syncAtmosphereColor);
+    return () => mediaQuery.removeEventListener("change", syncAtmosphereColor);
   }, []);
 
   // Size the WebGL canvas from its CSS slot so the atmosphere can breathe without a clipping mask.
@@ -449,8 +469,8 @@ export default function GlobeComponent() {
           bumpImageUrl={EARTH_RELIEF_TEXTURE_URL}
           bumpScale={0.028}
           showGlobe={true}
-          backgroundColor="rgba(0,0,0,0)"
-          atmosphereColor="#4A90D9"
+          backgroundColor="transparent"
+          atmosphereColor={atmosphereColor}
           atmosphereAltitude={0.2}
           showGraticules={false}
           animateIn={false}

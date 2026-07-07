@@ -79,7 +79,7 @@ export default function TagPageClient({ pet, owner }: TagPageClientProps) {
             </p>
 
             <div className="mt-4 flex items-start gap-4">
-              <div className="relative flex h-20 w-20 shrink-0 items-center justify-center overflow-hidden rounded-paw-lg border-4 border-white bg-paw-primary-soft text-paw-primary shadow-paw-panel sm:h-24 sm:w-24">
+              <div className="relative flex h-20 w-20 shrink-0 items-center justify-center overflow-hidden rounded-paw-lg border-4 border-paw-panel bg-paw-primary-soft text-paw-on-primary-soft shadow-paw-panel sm:h-24 sm:w-24">
                 {pet.avatar_url ? (
                   <Image
                     src={pet.avatar_url}
@@ -153,7 +153,7 @@ export default function TagPageClient({ pet, owner }: TagPageClientProps) {
                   What to know before moving {pet.name}
                 </h2>
               </div>
-              <span className="inline-flex h-11 w-11 items-center justify-center rounded-paw-sm bg-paw-primary-soft text-paw-primary">
+              <span className="inline-flex h-11 w-11 items-center justify-center rounded-paw-sm bg-paw-primary-soft text-paw-on-primary-soft">
                 <ShieldCheck className="h-5 w-5" aria-hidden="true" />
               </span>
             </div>
@@ -196,7 +196,7 @@ export default function TagPageClient({ pet, owner }: TagPageClientProps) {
 
           <div className="tag-detail-card">
             <div className="flex items-start gap-3">
-              <span className="inline-flex h-10 w-10 items-center justify-center rounded-paw-sm bg-paw-primary-soft text-paw-primary">
+              <span className="inline-flex h-10 w-10 items-center justify-center rounded-paw-sm bg-paw-primary-soft text-paw-on-primary-soft">
                 <UserRound className="h-5 w-5" aria-hidden="true" />
               </span>
               <div className="min-w-0">

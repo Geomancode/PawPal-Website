@@ -83,10 +83,10 @@ type ProfileWorkspaceViewProps = {
 
 const TRUST_LABELS: Record<number, { label: string; color: string }> = {
   1: { label: "Newcomer", color: "bg-paw-panel-subtle text-paw-muted" },
-  2: { label: "Friendly", color: "bg-paw-trust-soft text-paw-trust" },
-  3: { label: "Trusted", color: "bg-paw-success-soft text-paw-success" },
-  4: { label: "Veteran", color: "bg-paw-primary-soft text-paw-primary" },
-  5: { label: "Legend", color: "bg-paw-warning-soft text-paw-warning" },
+  2: { label: "Friendly", color: "bg-paw-trust-soft text-paw-on-trust-soft" },
+  3: { label: "Trusted", color: "bg-paw-success-soft text-paw-on-success-soft" },
+  4: { label: "Veteran", color: "bg-paw-primary-soft text-paw-on-primary-soft" },
+  5: { label: "Legend", color: "bg-paw-warning-soft text-paw-on-warning-soft" },
 };
 
 const SPECIES_OPTIONS = [
@@ -213,7 +213,7 @@ export default function ProfileWorkspaceView({
                   // eslint-disable-next-line @next/next/no-img-element
                   <img src={profile.avatar_url} alt="" className="h-full w-full object-cover" />
                 ) : (
-                  <div className="flex h-full w-full items-center justify-center bg-paw-primary text-2xl font-extrabold text-white">
+                  <div className="flex h-full w-full items-center justify-center bg-paw-primary text-2xl font-extrabold text-paw-on-primary">
                     {displayName.charAt(0).toUpperCase()}
                   </div>
                 )}
@@ -305,7 +305,7 @@ export default function ProfileWorkspaceView({
                 <p className="text-xs font-black uppercase tracking-[0.12em] text-paw-primary">Readiness</p>
                 <h2 id="profile-readiness-heading" className="mt-1 text-xl font-extrabold text-paw-ink">Pet safety status</h2>
               </div>
-              <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-paw-md bg-paw-trust-soft text-paw-trust">
+              <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-paw-md bg-paw-trust-soft text-paw-on-trust-soft">
                 <HeartPulse className="h-5 w-5" aria-hidden="true" />
               </div>
             </div>
@@ -324,7 +324,7 @@ export default function ProfileWorkspaceView({
 
             <div className="profile-install-compact mt-4">
               <div className="flex items-start gap-3">
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-paw-md bg-paw-primary-soft text-paw-primary">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-paw-md bg-paw-primary-soft text-paw-on-primary-soft">
                   {isInstalled ? <CheckCircle className="h-5 w-5" aria-hidden="true" /> : <Smartphone className="h-5 w-5" aria-hidden="true" />}
                 </div>
                 <div className="min-w-0 flex-1">
@@ -445,7 +445,7 @@ export default function ProfileWorkspaceView({
                           className={`px-3 py-1 rounded-paw-sm text-xs font-medium transition-all border ${
                             petSocialTags.includes(tag)
                               ? "bg-paw-trust text-paw-accent-ink border-paw-trust"
-                              : "bg-paw-trust-soft text-paw-trust border-paw-trust/15 hover:border-paw-trust/40"
+                              : "bg-paw-trust-soft text-paw-on-trust-soft border-paw-trust/15 hover:border-paw-trust/40"
                           }`}>
                           {tag}
                         </button>
@@ -462,7 +462,7 @@ export default function ProfileWorkspaceView({
                           className={`px-3 py-1 rounded-paw-sm text-xs font-medium transition-all border ${
                             petHealthBadges.includes(tag)
                               ? "bg-paw-success text-paw-accent-ink border-paw-success"
-                              : "bg-paw-success-soft text-paw-success border-paw-success/15 hover:border-paw-success/40"
+                              : "bg-paw-success-soft text-paw-on-success-soft border-paw-success/15 hover:border-paw-success/40"
                           }`}>
                           {tag}
                         </button>

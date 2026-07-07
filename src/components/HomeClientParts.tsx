@@ -367,7 +367,7 @@ export function LaunchReadinessPanel() {
                   <span />
                 </div>
                 <div className="mb-5 flex items-center justify-between gap-4">
-                  <span className="flex h-11 w-11 items-center justify-center rounded-paw-sm bg-paw-primary-soft text-paw-primary">
+                  <span className="flex h-11 w-11 items-center justify-center rounded-paw-sm bg-paw-primary-soft text-paw-on-primary-soft">
                     <item.icon className="h-5 w-5" aria-hidden="true" />
                   </span>
                   <span className="font-brand text-2xl font-black text-paw-primary">{item.value}</span>

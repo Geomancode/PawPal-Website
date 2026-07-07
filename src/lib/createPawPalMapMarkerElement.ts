@@ -82,10 +82,10 @@ function createCore(icon: string, color: string): HTMLElement {
     padding: 4px;
     border-radius: 999px;
     background: var(--color-paw-panel);
-    border: 2px solid #ffffff;
+    border: 2px solid var(--color-paw-panel-low);
     box-shadow:
-      0 8px 18px rgba(0, 0, 0, 0.18),
-      0 3px 10px rgba(0, 0, 0, 0.14);
+      var(--shadow-paw-floating),
+      var(--shadow-paw-control);
   `;
 
   const ring = document.createElement("div");
@@ -134,7 +134,7 @@ function createTail(color: string): HTMLElement {
     transform: translateX(-50%);
     background: ${color};
     clip-path: polygon(50% 100%, 0 0, 100% 0);
-    filter: drop-shadow(0 4px 5px rgba(0, 0, 0, 0.16));
+    filter: drop-shadow(0 4px 5px color-mix(in srgb, var(--color-paw-ink) 16%, transparent));
   `;
   return tail;
 }
@@ -155,9 +155,9 @@ function createLabel(label: string, color: string): HTMLElement {
     border-radius: 999px;
     background: color-mix(in srgb, var(--color-paw-panel) 96%, transparent);
     border: 1px solid color-mix(in srgb, ${color} 30%, transparent);
-    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.14);
+    box-shadow: var(--shadow-paw-control);
     color: var(--color-paw-ink);
-    font-family: var(--font-app-logo), var(--font-sans), system-ui, sans-serif;
+    font-family: var(--font-app-logo), var(--font-sans), sans-serif;
   `;
 
   const dot = document.createElement("span");

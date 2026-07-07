@@ -10,15 +10,15 @@ import {
 /* ── WMO Weather Code → Icon + Label ── */
 function getWeatherInfo(code: number): { icon: React.ReactNode; label: string } {
   if (code === 0) return { icon: <Sun className="w-4 h-4 text-paw-warning" />, label: "Clear Sky" };
-  if (code <= 3) return { icon: <Cloud className="w-4 h-4 text-white/70" />, label: code === 1 ? "Mainly Clear" : code === 2 ? "Partly Cloudy" : "Overcast" };
-  if (code <= 48) return { icon: <CloudFog className="w-4 h-4 text-white/60" />, label: "Foggy" };
+  if (code <= 3) return { icon: <Cloud className="w-4 h-4 text-paw-page/70" />, label: code === 1 ? "Mainly Clear" : code === 2 ? "Partly Cloudy" : "Overcast" };
+  if (code <= 48) return { icon: <CloudFog className="w-4 h-4 text-paw-page/60" />, label: "Foggy" };
   if (code <= 57) return { icon: <CloudRain className="w-4 h-4 text-paw-trust" />, label: "Drizzle" };
   if (code <= 67) return { icon: <CloudRain className="w-4 h-4 text-paw-trust" />, label: "Rain" };
   if (code <= 77) return { icon: <CloudSnow className="w-4 h-4 text-paw-trust" />, label: "Snow" };
   if (code <= 82) return { icon: <CloudRain className="w-4 h-4 text-paw-trust" />, label: "Rain Showers" };
   if (code <= 86) return { icon: <CloudSnow className="w-4 h-4 text-paw-trust" />, label: "Snow Showers" };
   if (code <= 99) return { icon: <CloudLightning className="w-4 h-4 text-paw-warning" />, label: "Thunderstorm" };
-  return { icon: <Cloud className="w-4 h-4 text-white/70" />, label: "Unknown" };
+  return { icon: <Cloud className="w-4 h-4 text-paw-page/70" />, label: "Unknown" };
 }
 
 /* ── Dog Walk Advice ── */
@@ -184,7 +184,7 @@ export default function WeatherTicker({ mapCenter, onRecenterRequest }: WeatherT
 
   if (!weather) {
     return (
-      <div className="globe-weather-bar absolute z-40 text-white/80">
+      <div className="globe-weather-bar absolute z-40 text-paw-page/80">
         <div className="flex items-center justify-center gap-2 text-sm">
           {loading && !weatherIssue ? (
             <>
@@ -192,7 +192,7 @@ export default function WeatherTicker({ mapCenter, onRecenterRequest }: WeatherT
             </>
           ) : (
             <>
-              <Cloud className="w-4 h-4 text-white/70" /> Weather temporarily unavailable
+              <Cloud className="w-4 h-4 text-paw-page/70" /> Weather temporarily unavailable
             </>
           )}
         </div>
@@ -250,7 +250,7 @@ export default function WeatherTicker({ mapCenter, onRecenterRequest }: WeatherT
   ];
 
   return (
-    <div className="globe-weather-bar absolute z-40 text-white/90">
+    <div className="globe-weather-bar absolute z-40 text-paw-page/90">
       <div className="globe-weather-content flex items-center">
         {/* Recenter button (shows when viewing map-center weather) */}
         {!weather.isUserLocation && (
@@ -279,7 +279,7 @@ export default function WeatherTicker({ mapCenter, onRecenterRequest }: WeatherT
         {/* Loading indicator */}
         {loading && (
           <div className="shrink-0 mr-3">
-            <RefreshCw className="w-4 h-4 text-white/40 animate-spin" />
+            <RefreshCw className="w-4 h-4 text-paw-page/40 animate-spin" />
           </div>
         )}
       </div>
