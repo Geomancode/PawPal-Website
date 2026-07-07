@@ -1,5 +1,6 @@
 "use client";
 
+import type { ReactNode } from "react";
 import {
   MapPin, Shield, PawPrint, Edit3, Save,
   X, Plus, Calendar, Droplets, Nfc, Loader2, Smartphone,
@@ -53,6 +54,7 @@ type ProfileWorkspaceViewProps = {
   petError: string | null;
   installStatus: string | null;
   isInstalled: boolean;
+  notificationSettings?: ReactNode;
   editName: string;
   editBio: string;
   editCity: string;
@@ -126,6 +128,7 @@ export default function ProfileWorkspaceView({
   petError,
   installStatus,
   isInstalled,
+  notificationSettings,
   editName,
   editBio,
   editCity,
@@ -356,6 +359,8 @@ export default function ProfileWorkspaceView({
             </button>
           </aside>
         </div>
+
+        {notificationSettings}
 
         <section
           aria-labelledby="profile-pets-heading"

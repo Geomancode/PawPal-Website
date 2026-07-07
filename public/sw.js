@@ -38,6 +38,77 @@ self.addEventListener("message", (event) => {
   }
 });
 
+function normalizeNotificationUrl(value) {
+  try {
+    const url = new URL(typeof value === "string" && value ? value : "/", self.location.origin);
+    if (url.origin !== self.location.origin) return "/";
+    return `${url.pathname}${url.search}${url.hash}`;
+  } catch {
+    return "/";
+  }
+}
+
+self.addEventListener("push", (event) => {
+  let payload = {};
+  if (event.data) {
+    try {
+      payload = event.data.json();
+    } catch {
+      payload = { body: event.data.text() };
+    }
+  }
+
+  const title = typeof payload.title === "string" && payload.title.trim() ? payload.title.trim() : "PawPal";
+  const body = typeof payload.body === "string" ? payload.body : "";
+  const url = normalizeNotificationUrl(payload.url);
+
+  event.waitUntil(
+    self.registration.showNotification(title, {
+      body,
+      icon: "/assets/logos/pawpal-logo-light.svg",
+      badge: "/assets/logos/pawpal-logo-light.svg",
+      data: { url },
+      tag: "pawpal-notification",
+    })
+  );
+});
+
+self.addEventListener("notificationclick", (event) => {
+  event.notification.close();
+  const url = normalizeNotificationUrl(event.notification.data?.url);
+
+  event.waitUntil(
+    (async () => {
+      const windows = await self.clients.matchAll({ type: "window", includeUncontrolled: true });
+      const sameOriginWindows = windows.filter((client) => {
+        try {
+          return new URL(client.url).origin === self.location.origin;
+        } catch {
+          return false;
+        }
+      });
+
+      const matchingWindow = sameOriginWindows.find((client) => {
+        const clientUrl = new URL(client.url);
+        return `${clientUrl.pathname}${clientUrl.search}${clientUrl.hash}` === url;
+      });
+      if (matchingWindow?.focus) {
+        await matchingWindow.focus();
+        return;
+      }
+
+      const reusableWindow = sameOriginWindows.find((client) => "navigate" in client);
+      if (reusableWindow) {
+        await reusableWindow.navigate(url);
+        await reusableWindow.focus();
+        return;
+      }
+
+      await self.clients.openWindow(url);
+    })()
+  );
+});
+
 self.addEventListener("fetch", (event) => {
   const request = event.request;
   if (request.method !== "GET") return;
