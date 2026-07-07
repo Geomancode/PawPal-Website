@@ -59,7 +59,7 @@ expect(manifest.start_url === "/", "PWA manifest keeps homepage start_url.");
 expect(shortcutUrls.has("/globe"), "PWA manifest keeps globe shortcut.");
 expect(shortcutUrls.has("/store"), "PWA manifest keeps store shortcut.");
 expect(shortcutUrls.has("/profile"), "PWA manifest keeps profile shortcut.");
-expect(serviceWorker.includes("pawpal-shell-v5-no-global-install-banner"), "Service worker cache name was bumped for the homepage upgrade.");
+expect(serviceWorker.includes("pawpal-shell-v7-next-primitives"), "Service worker cache name was bumped for the homepage upgrade.");
 expect(
   serviceWorker.includes("navigationPreload") && serviceWorker.includes("preloadResponse"),
   "Service worker uses navigation preload for fresher document responses.",

@@ -22,19 +22,19 @@ export default function CheckoutStep({
   return (
     <section
       className={cn(
-        "rounded-paw-lg border bg-paw-panel p-5 shadow-paw-panel",
-        active || complete ? "border-paw-primary/30" : "border-paw-border",
+        "rounded-paw-next-card border bg-paw-panel-low p-paw-lg shadow-paw-strong",
+        active || complete ? "border-paw-primary/30" : "border-paw-outline-variant",
         className,
       )}
     >
-      <div className="flex items-center gap-3">
+      <div className="flex items-center gap-paw-sm">
         <span
           className={cn(
-            "flex h-8 w-8 shrink-0 items-center justify-center rounded-paw-sm text-sm font-extrabold",
+            "flex h-paw-min-tap w-paw-min-tap shrink-0 items-center justify-center rounded-paw-pill text-sm font-black",
             complete
-              ? "bg-paw-success text-paw-accent-ink"
+              ? "bg-paw-success text-paw-on-success"
               : active
-                ? "bg-paw-primary text-paw-accent-ink"
+                ? "bg-paw-primary text-paw-on-primary"
                 : "bg-paw-panel-subtle text-paw-muted",
           )}
         >

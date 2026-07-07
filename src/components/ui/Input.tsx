@@ -49,12 +49,14 @@ const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
           aria-invalid={error ? true : undefined}
           aria-describedby={helperId}
           className={cn(
-            "h-11 w-full rounded-paw-md border border-paw-border bg-paw-panel px-3 text-sm text-paw-ink shadow-sm transition",
+            "min-h-paw-min-tap w-full rounded-paw-control border border-paw-outline-variant bg-paw-panel-low px-paw-sm text-sm text-paw-ink shadow-paw-control transition duration-paw-fast",
             "placeholder:text-paw-muted focus-visible:border-paw-trust focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-paw-trust/20",
             "disabled:cursor-not-allowed disabled:opacity-60",
             leftSlot ? "pl-10" : undefined,
             rightSlot ? "pr-10" : undefined,
-            error ? "border-paw-danger focus-visible:border-paw-danger focus-visible:ring-paw-danger/20" : undefined,
+            error
+              ? "border-paw-critical focus-visible:border-paw-critical focus-visible:ring-paw-critical/20"
+              : undefined,
             className,
           )}
           {...props}
@@ -70,7 +72,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
           id={helperId}
           className={cn(
             "block text-xs leading-5",
-            error ? "text-paw-danger" : "text-paw-muted",
+            error ? "text-paw-on-critical-soft" : "text-paw-muted",
           )}
         >
           {error || helperText}

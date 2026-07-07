@@ -285,8 +285,8 @@
   --motion-paw-fast: 120ms;
   --motion-paw-normal: 180ms;
   --motion-paw-slow: 280ms;
-  --depth-paw-raised: 5;
-  --depth-paw-pressed: 1;
+  --depth-paw-raised: 5px;
+  --depth-paw-pressed: 1px;
   --shadow-paw-strong: 0 14px 30px rgba(0, 0, 0, 0.12);
   --shadow-paw-control: 0 4px 12px rgba(0, 0, 0, 0.14);
   --shadow-paw-panel: 0 10px 24px rgba(0, 0, 0, 0.08);
@@ -567,8 +567,8 @@ li {
     --motion-paw-fast: 120ms;
     --motion-paw-normal: 180ms;
     --motion-paw-slow: 280ms;
-    --depth-paw-raised: 5;
-    --depth-paw-pressed: 1;
+    --depth-paw-raised: 5px;
+    --depth-paw-pressed: 1px;
     --shadow-paw-strong: 0 14px 30px rgba(0, 0, 0, 0.34);
     --shadow-paw-control: 0 4px 12px rgba(0, 0, 0, 0.34);
     --shadow-paw-panel: 0 10px 24px rgba(0, 0, 0, 0.30);

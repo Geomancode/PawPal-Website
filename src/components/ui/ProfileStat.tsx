@@ -19,13 +19,13 @@ export default function ProfileStat({
   return (
     <div
       className={cn(
-        "rounded-paw-md border border-paw-border bg-paw-panel-subtle p-4",
+        "rounded-paw-xl border border-paw-outline-variant bg-paw-panel-subtle p-paw-md shadow-paw-panel",
         className,
       )}
     >
-      <div className="flex items-start justify-between gap-3">
+      <div className="flex items-start justify-between gap-paw-sm">
         <div className="min-w-0">
-          <p className="text-xs font-extrabold uppercase tracking-wide text-paw-muted">
+          <p className="text-xs font-extrabold uppercase text-paw-muted">
             {label}
           </p>
           <div className="mt-1 text-xl font-extrabold leading-7 text-paw-ink">
@@ -33,7 +33,7 @@ export default function ProfileStat({
           </div>
         </div>
         {icon && (
-          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-paw-sm bg-paw-primary-soft text-paw-primary">
+          <div className="flex h-paw-min-tap w-paw-min-tap shrink-0 items-center justify-center rounded-paw-lg bg-paw-primary-soft text-paw-on-primary-soft">
             {icon}
           </div>
         )}

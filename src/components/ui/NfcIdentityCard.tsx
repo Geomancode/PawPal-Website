@@ -48,42 +48,59 @@ export default function NfcIdentityCard({
 
   return (
     <Card className={cn("overflow-hidden", className)}>
-      <div className="bg-paw-primary px-5 py-6 text-paw-accent-ink">
-        <div className="flex items-start justify-between gap-4">
-          <div className="flex min-w-0 items-center gap-4">
-            <div className="flex h-16 w-16 shrink-0 items-center justify-center overflow-hidden rounded-paw-lg border border-paw-accent-ink/20 bg-white/20 text-2xl font-extrabold">
+      <div className="bg-paw-primary px-paw-lg py-paw-xl text-paw-on-primary">
+        <div className="flex items-start justify-between gap-paw-md">
+          <div className="flex min-w-0 items-center gap-paw-md">
+            <div className="flex h-16 w-16 shrink-0 items-center justify-center overflow-hidden rounded-paw-xl border border-paw-on-primary/20 bg-paw-panel/20 text-2xl font-extrabold">
               {avatar ?? name.slice(0, 1).toUpperCase()}
             </div>
             <div className="min-w-0">
               <h2 className="truncate text-2xl font-extrabold leading-8">
                 {name}
               </h2>
-              {subtitle && <p className="mt-1 text-sm text-paw-accent-ink/75">{subtitle}</p>}
+              {subtitle && <p className="mt-1 text-sm text-paw-on-primary/75">{subtitle}</p>}
             </div>
           </div>
-          <Badge tone={current.tone} className="shrink-0 border-paw-accent-ink/20 bg-white/20 text-paw-accent-ink">
+          <Badge
+            tone={current.tone}
+            className="shrink-0 border-paw-on-primary/20 bg-paw-panel/20 text-paw-on-primary"
+          >
             <StatusIcon className="h-3.5 w-3.5" aria-hidden="true" />
             {current.label}
           </Badge>
         </div>
       </div>
-      <CardContent className="space-y-5">
+      <CardContent className="space-y-paw-lg">
         {facts.length > 0 && (
-          <dl className="grid grid-cols-2 gap-3">
+          <dl className="grid grid-cols-2 gap-paw-sm">
             {facts.map((fact) => (
               <div
                 key={fact.label}
                 className={cn(
-                  "rounded-paw-md border p-3",
+                  "rounded-paw-xl border p-paw-sm",
                   fact.tone === "urgent"
-                    ? "border-paw-danger/20 bg-paw-danger-soft"
-                    : "border-paw-border bg-paw-panel-subtle",
+                    ? "border-paw-critical/20 bg-paw-critical-soft text-paw-on-critical-soft"
+                    : "border-paw-outline-variant bg-paw-panel-subtle text-paw-body",
                 )}
               >
-                <dt className="text-xs font-extrabold uppercase tracking-wide text-paw-muted">
+                <dt
+                  className={cn(
+                    "text-xs font-extrabold uppercase",
+                    fact.tone === "urgent"
+                      ? "text-paw-on-critical-soft"
+                      : "text-paw-muted",
+                  )}
+                >
                   {fact.label}
                 </dt>
-                <dd className="mt-1 text-sm font-extrabold text-paw-ink">
+                <dd
+                  className={cn(
+                    "mt-1 text-sm font-extrabold",
+                    fact.tone === "urgent"
+                      ? "text-paw-on-critical-soft"
+                      : "text-paw-ink",
+                  )}
+                >
                   {fact.value}
                 </dd>
               </div>
@@ -91,11 +108,11 @@ export default function NfcIdentityCard({
           </dl>
         )}
         {notes && (
-          <div className="rounded-paw-md border border-paw-warning/25 bg-paw-warning-soft p-4 text-sm leading-6 text-paw-body">
+          <div className="rounded-paw-xl border border-paw-warning/25 bg-paw-warning-soft p-paw-md text-sm leading-6 text-paw-on-warning-soft">
             {notes}
           </div>
         )}
-        {actions && <div className="flex flex-wrap gap-3">{actions}</div>}
+        {actions && <div className="flex flex-wrap gap-paw-sm">{actions}</div>}
       </CardContent>
     </Card>
   );
