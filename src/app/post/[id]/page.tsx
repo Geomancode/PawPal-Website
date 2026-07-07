@@ -6,6 +6,7 @@ import { MessageCircle, PawPrint, Share2, ThumbsUp } from "lucide-react";
 
 import { supabaseServer as supabase } from "@/lib/supabaseServer";
 import { AppDeepLinkButton } from "@/components/ui";
+import { publicPageMetadata } from "@/app/metadata";
 
 interface PageProps {
   params: Promise<{ id: string }>;
@@ -53,20 +54,17 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   if (!data) return { title: "PawPal Post" };
 
   const title = "PawPal Post";
-  const description = String(data.post.content ?? "").slice(0, 150);
-  const image =
-    data.images[0]?.url ?? data.post.image_url ?? data.post.walk_map_image_url ?? undefined;
+  const content = String(data.post.content ?? "").trim();
+  const description = content
+    ? content.slice(0, 150)
+    : "Preview a public PawPal community post and continue the conversation in the app.";
 
-  return {
+  return publicPageMetadata({
     title,
     description,
-    openGraph: {
-      title,
-      description,
-      images: image ? [{ url: image }] : undefined,
-      url: `https://pawpal.be/post/${id}`,
-    },
-  };
+    path: `/post/${id}`,
+    type: "article",
+  });
 }
 
 export default async function SharedPostPage({ params }: PageProps) {

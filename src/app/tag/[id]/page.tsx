@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { supabaseServer as supabase } from "@/lib/supabaseServer";
 import { notFound } from "next/navigation";
 import TagPageClient from "./TagPageClient";
-import { siteConfig } from "@/lib/site";
+import { publicPageMetadata } from "@/app/metadata";
 
 interface PageProps {
   params: Promise<{ id: string }>;
@@ -49,21 +49,11 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const ownerName = data.owner?.display_name ?? data.owner?.username ?? "their owner";
   const description = `${data.pet.name} has a PawPal safety profile. Help ${data.pet.name} get back to ${ownerName} safely.`;
 
-  return {
+  return publicPageMetadata({
     title: `${data.pet.name} PawPal safety profile`,
     description,
-    alternates: {
-      canonical: `/tag/${id}`,
-    },
-    openGraph: {
-      title: `${data.pet.name} on PawPal`,
-      description,
-      url: `${siteConfig.url}/tag/${id}`,
-      images: data.pet.avatar_url
-        ? [{ url: data.pet.avatar_url, alt: `${data.pet.name} pet profile photo` }]
-        : undefined,
-    },
-  };
+    path: `/tag/${id}`,
+  });
 }
 
 export default async function TagPage({ params }: PageProps) {
