@@ -21,6 +21,7 @@ import {
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { ReactNode, useEffect, useRef, useState, useSyncExternalStore } from "react";
+import { Card, CardContent, buttonClassName } from "@/components/ui";
 
 const ease = [0.25, 0.46, 0.45, 0.94] as const;
 const REDUCED_MOTION_QUERY = "(prefers-reduced-motion: reduce)";
@@ -158,14 +159,18 @@ export function HeroCTA() {
     >
       <Link
         href="/globe"
-        className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-paw-sm bg-paw-primary px-6 text-sm font-bold text-paw-accent-ink shadow-paw-action transition hover:bg-paw-primary-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-paw-primary sm:w-auto"
+        className={buttonClassName({ size: "lg", className: "w-full sm:w-auto" })}
       >
         Open Live Map
         <ArrowRight className="h-4 w-4" />
       </Link>
       <Link
         href="/store"
-        className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-paw-sm border border-paw-border-strong bg-paw-panel px-6 text-sm font-bold text-paw-ink transition hover:border-paw-primary hover:text-paw-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-paw-primary sm:w-auto"
+        className={buttonClassName({
+          variant: "secondary",
+          size: "lg",
+          className: "w-full sm:w-auto",
+        })}
       >
         Shop Smart Tags
         <Store className="h-4 w-4" />
@@ -210,19 +215,19 @@ export function HeroBadges() {
       icon: ShieldCheck,
       label: "Finder-ready",
       copy: "NFC safety profiles",
-      tone: "bg-paw-primary-soft text-paw-primary",
+      tone: "bg-paw-primary-soft text-paw-on-primary-soft",
     },
     {
       icon: LockKeyhole,
       label: "Privacy-first",
       copy: "Owner-controlled details",
-      tone: "bg-paw-trust-soft text-paw-trust",
+      tone: "bg-paw-trust-soft text-paw-on-trust-soft",
     },
     {
       icon: Languages,
       label: "EU-ready",
       copy: "5-language product base",
-      tone: "bg-paw-accent-soft text-paw-accent",
+      tone: "bg-paw-accent-soft text-paw-on-accent-soft",
     },
   ];
 
@@ -236,9 +241,9 @@ export function HeroBadges() {
       {badges.map((badge) => (
         <div
           key={badge.label}
-          className="flex min-w-0 items-center gap-3 rounded-paw-md border border-paw-border bg-paw-panel/82 p-3 shadow-[0_10px_24px_rgba(58,47,42,0.08)] backdrop-blur"
+          className="flex min-w-0 items-center gap-3 rounded-paw-card border border-paw-outline-variant bg-paw-panel-low p-paw-sm shadow-paw-panel"
         >
-          <span className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-paw-sm ${badge.tone}`}>
+          <span className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-paw-control ${badge.tone}`}>
             <badge.icon className="h-5 w-5" aria-hidden="true" />
           </span>
           <div className="min-w-0">
@@ -278,25 +283,43 @@ export function GlobeSection() {
   );
 }
 
-const proofItems: Array<{ icon: LucideIcon; title: string; copy: string; color: string }> = [
-  { icon: Map, title: "Walk map", copy: "See live walks and safe routes around you.", color: "text-paw-primary" },
-  { icon: ScanLine, title: "Smart tag", copy: "NFC finder profiles help get your pet home safely.", color: "text-paw-trust" },
-  { icon: HeartHandshake, title: "Local help", copy: "Connect with nearby helpers and trusted pet services.", color: "text-paw-accent" },
+const proofItems: Array<{ icon: LucideIcon; title: string; copy: string; tone: string }> = [
+  {
+    icon: Map,
+    title: "Walk map",
+    copy: "See live walks and safe routes around you.",
+    tone: "bg-paw-primary-soft text-paw-on-primary-soft",
+  },
+  {
+    icon: ScanLine,
+    title: "Smart tag",
+    copy: "NFC finder profiles help get your pet home safely.",
+    tone: "bg-paw-trust-soft text-paw-on-trust-soft",
+  },
+  {
+    icon: HeartHandshake,
+    title: "Local help",
+    copy: "Connect with nearby helpers and trusted pet services.",
+    tone: "bg-paw-accent-soft text-paw-on-accent-soft",
+  },
 ];
 
 export function TrustMarquee() {
   return (
-    <div className="homepage-proof-grid">
+    <div className="grid gap-paw-sm px-paw-md py-paw-lg sm:grid-cols-3 sm:px-paw-lg">
       {proofItems.map((item) => (
-        <div key={item.title} className="homepage-proof-item">
-          <span className={`homepage-proof-icon ${item.color}`}>
+        <Card
+          key={item.title}
+          className="flex min-h-full items-center gap-paw-md p-paw-lg shadow-paw-panel"
+        >
+          <span className={`flex h-14 w-14 shrink-0 items-center justify-center rounded-paw-pill ${item.tone}`}>
             <item.icon className="h-6 w-6" />
           </span>
           <div>
             <h3 className="text-sm font-extrabold text-paw-ink">{item.title}</h3>
             <p className="mt-1 text-xs leading-5 text-paw-muted">{item.copy}</p>
           </div>
-        </div>
+        </Card>
       ))}
     </div>
   );
@@ -455,13 +478,16 @@ const flowSteps: Array<{
 
 export function ProductFlow() {
   return (
-    <div className="homepage-flow">
+    <div className="grid gap-paw-md md:grid-cols-3">
       {flowSteps.map((step, index) => (
         <FadeInView key={step.title} delay={index * 0.08}>
-          <article className="homepage-flow-step">
-            <div className="homepage-flow-marker">
-              <span className="homepage-flow-number">{index + 1}</span>
-              <span className={`homepage-flow-icon ${step.surface} ${step.color}`}>
+          <Card className="h-full shadow-paw-panel">
+            <CardContent className="grid h-full grid-cols-[auto_minmax(0,1fr)] items-start gap-paw-md">
+              <div className="grid justify-items-center gap-paw-sm">
+              <span className="flex h-9 w-9 items-center justify-center rounded-paw-pill bg-paw-primary-soft text-sm font-black text-paw-on-primary-soft">
+                {index + 1}
+              </span>
+              <span className={`flex h-14 w-14 items-center justify-center rounded-paw-pill ${step.surface} ${step.color}`}>
                 <step.icon className="h-5 w-5" />
               </span>
             </div>
@@ -469,7 +495,8 @@ export function ProductFlow() {
               <h3 className="text-base font-extrabold text-paw-ink">{step.title}</h3>
               <p className="mt-2 max-w-sm text-sm leading-6 text-paw-body">{step.copy}</p>
             </div>
-          </article>
+            </CardContent>
+          </Card>
         </FadeInView>
       ))}
     </div>
@@ -527,7 +554,7 @@ export function BentoFeatureGrid() {
           <div className="mt-8 space-y-6">
             {featureRows.map((feature) => (
               <div key={feature.title} className="grid grid-cols-[48px_1fr] gap-4">
-                <div className={`flex h-12 w-12 items-center justify-center rounded-paw-sm ${feature.surface} text-white shadow-sm`}>
+                <div className={`flex h-12 w-12 items-center justify-center rounded-paw-control ${feature.surface} text-paw-on-primary shadow-paw-control`}>
                   <feature.icon className="h-5 w-5" />
                 </div>
                 <div>
@@ -553,7 +580,7 @@ export function BentoFeatureGrid() {
             {showcaseImages.map((image, index) => (
               <motion.div
                 key={image.src}
-                className="phone-screen-card relative aspect-[9/16] overflow-hidden rounded-[1.25rem] border border-paw-border bg-paw-panel shadow-[0_20px_45px_rgba(58,47,42,0.18)] sm:w-[135px] lg:w-[158px]"
+                className="phone-screen-card relative aspect-[9/16] overflow-hidden rounded-paw-sheet border border-paw-outline-variant bg-paw-panel-low shadow-paw-strong sm:w-[135px] lg:w-[158px]"
                 style={{ marginTop: index % 2 === 0 ? 0 : 36 }}
                 whileHover={shouldReduceMotion ? undefined : { y: -8 }}
                 transition={shouldReduceMotion ? { duration: 0 } : { type: "spring", stiffness: 180, damping: 18 }}
@@ -566,7 +593,7 @@ export function BentoFeatureGrid() {
                   loading="lazy"
                   className="object-cover"
                 />
-                <span className="absolute left-3 top-3 rounded-paw-sm bg-white/86 px-2 py-1 text-[10px] font-black text-paw-ink shadow-sm backdrop-blur">
+                <span className="absolute left-3 top-3 rounded-paw-control bg-paw-panel-low px-2 py-1 text-[10px] font-black text-paw-ink shadow-paw-control">
                   {image.title}
                 </span>
               </motion.div>
@@ -636,14 +663,14 @@ export function BottomCTA() {
     <div className="flex flex-col gap-3 sm:flex-row">
       <Link
         href="/globe"
-        className="inline-flex h-12 items-center justify-center gap-2 rounded-paw-sm bg-paw-primary px-6 text-sm font-bold text-paw-accent-ink shadow-paw-action transition hover:bg-paw-primary-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-paw-primary"
+        className={buttonClassName({ size: "lg" })}
       >
         Open Live Map
         <ArrowRight className="h-4 w-4" />
       </Link>
       <Link
         href="/store"
-        className="inline-flex h-12 items-center justify-center gap-2 rounded-paw-sm border border-paw-border-strong bg-paw-panel px-6 text-sm font-bold text-paw-ink transition hover:border-paw-primary hover:text-paw-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-paw-primary"
+        className={buttonClassName({ variant: "secondary", size: "lg" })}
       >
         Shop Smart Tags
         <Store className="h-4 w-4" />
