@@ -7,6 +7,7 @@ import type { User } from "@supabase/supabase-js";
 import { useAuth } from "@/components/AuthProvider";
 import { supabase } from "@/lib/supabase";
 import ProfileWorkspaceView, { type Pet, type PetSocialTraits, type Profile } from "./ProfileWorkspaceView";
+import PushSubscriptionSettings from "./PushSubscriptionSettings";
 
 type BeforeInstallPromptEvent = Event & {
   prompt: () => Promise<void>;
@@ -66,7 +67,7 @@ async function loadOrCreateProfile(user: User): Promise<Profile> {
 }
 
 export default function ProfilePage() {
-  const { user, loading: authLoading } = useAuth();
+  const { user, session, loading: authLoading } = useAuth();
   const router = useRouter();
   const [profile, setProfile] = useState<Profile | null>(null);
   const [pets, setPets] = useState<Pet[]>([]);
@@ -260,6 +261,7 @@ export default function ProfilePage() {
       petError={petError}
       installStatus={installStatus}
       isInstalled={isInstalled}
+      notificationSettings={<PushSubscriptionSettings accessToken={session?.access_token ?? null} />}
       editName={editName}
       editBio={editBio}
       editCity={editCity}
