@@ -55,7 +55,7 @@ function OrderCard({ order }: { order: Order }) {
           className="flex w-full cursor-pointer items-center gap-4 px-5 py-5 text-left transition-colors hover:bg-paw-panel-subtle sm:px-6"
           aria-expanded={expanded}
         >
-          <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-paw-md bg-paw-primary-soft text-paw-primary">
+          <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-paw-xl bg-paw-primary-soft text-paw-on-primary-soft">
             <Package className="h-6 w-6" aria-hidden="true" />
           </div>
 

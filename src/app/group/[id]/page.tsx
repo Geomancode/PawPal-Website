@@ -5,7 +5,7 @@ import { notFound } from "next/navigation";
 import { UsersRound, PawPrint } from "lucide-react";
 
 import { supabaseServer as supabase } from "@/lib/supabaseServer";
-import { AppDeepLinkButton } from "@/components/ui";
+import { AppDeepLinkButton, Badge, Card, CardContent, buttonClassName } from "@/components/ui";
 
 interface PageProps {
   params: Promise<{ id: string }>;
@@ -57,9 +57,10 @@ export default async function SharedGroupPage({ params }: PageProps) {
   const { group, memberCount } = data;
 
   return (
-    <section className="bg-paw-page px-4 py-10 text-paw-ink sm:px-6 sm:py-14">
-      <div className="mx-auto max-w-3xl rounded-paw-lg border border-paw-border bg-paw-panel p-6 text-center shadow-paw-panel sm:p-8">
-        <div className="relative mx-auto h-24 w-24 overflow-hidden rounded-paw-lg bg-paw-primary-soft">
+    <section className="deep-page-shell bg-paw-page px-4 py-16 text-paw-ink sm:px-6 sm:py-24">
+      <Card className="mx-auto max-w-3xl text-center">
+        <CardContent className="p-paw-xl sm:p-paw-xxl">
+        <div className="relative mx-auto h-24 w-24 overflow-hidden rounded-paw-xl bg-paw-primary-soft text-paw-on-primary-soft shadow-paw-panel">
           {group.avatar_url ? (
             <Image
               src={group.avatar_url}
@@ -71,12 +72,10 @@ export default async function SharedGroupPage({ params }: PageProps) {
               className="object-cover"
             />
           ) : (
-            <UsersRound className="m-7 h-10 w-10 text-paw-primary" />
+            <UsersRound className="m-7 h-10 w-10" />
           )}
         </div>
-        <p className="mt-6 text-xs font-extrabold uppercase tracking-wide text-paw-primary">
-          PawPal Group Invite
-        </p>
+        <Badge tone="primary" className="mt-6">PawPal group invite</Badge>
         <h1 className="mt-2 font-brand text-3xl font-extrabold sm:text-4xl">
           {group.name}
         </h1>
@@ -85,8 +84,8 @@ export default async function SharedGroupPage({ params }: PageProps) {
           walks with the community.
         </p>
 
-        <div className="mx-auto mt-6 flex max-w-sm items-center justify-center gap-3 rounded-paw-md bg-paw-panel-subtle px-4 py-3 text-sm font-bold text-paw-muted">
-          <PawPrint className="h-4 w-4 text-paw-primary" />
+        <div className="mx-auto mt-6 flex max-w-sm items-center justify-center gap-3 rounded-paw-xl border border-paw-outline-variant bg-paw-panel-subtle px-paw-md py-paw-sm text-sm font-bold text-paw-body shadow-paw-panel">
+          <PawPrint className="h-4 w-4 text-paw-on-primary-soft" />
           {memberCount} member{memberCount === 1 ? "" : "s"}
         </div>
 
@@ -94,12 +93,13 @@ export default async function SharedGroupPage({ params }: PageProps) {
           <AppDeepLinkButton href={`pawpal://group/${id}`} fallbackHref={`/group/${id}`} />
           <Link
             href="/"
-            className="inline-flex h-12 items-center justify-center rounded-paw-md border border-paw-border bg-paw-panel-subtle px-5 text-sm font-extrabold text-paw-ink transition hover:border-paw-primary"
+            className={buttonClassName({ variant: "secondary", size: "lg" })}
           >
             Install PawPal
           </Link>
         </div>
-      </div>
+        </CardContent>
+      </Card>
     </section>
   );
 }

@@ -8,8 +8,7 @@ import {
   User,
   Eye,
   EyeOff,
-  AlertCircle,
-  CheckCircle,
+  Loader2,
   Map,
   Nfc,
   ShieldCheck,
@@ -18,7 +17,14 @@ import {
 import { useAuth } from "@/components/AuthProvider";
 import PawPalLogo from "@/components/PawPalLogo";
 import { useRouter } from "next/navigation";
-import { DoodleDog, DoodlePaw, DoodleHeart } from "@/components/PetDoodles";
+import {
+  Badge,
+  Button,
+  Card,
+  CardContent,
+  Input,
+  StatusMessage,
+} from "@/components/ui";
 
 export default function AuthPage() {
   const { signIn, signUp, user } = useAuth();
@@ -77,18 +83,13 @@ export default function AuthPage() {
 
   return (
     <div className="auth-page-shell min-h-screen px-4 pt-24 pb-12 bg-paw-page">
-      {/* Pet doodles */}
-      <div className="absolute top-[15%] left-[8%] w-24 h-24 text-paw-primary/10 doodle-float hidden lg:block"><DoodleDog className="w-full h-full" /></div>
-      <div className="absolute bottom-[20%] right-[10%] w-16 h-16 text-paw-primary/10 doodle-float-alt hidden lg:block" style={{ animationDelay: '2s' }}><DoodlePaw className="w-full h-full" /></div>
-      <div className="absolute top-[60%] left-[5%] w-12 h-12 text-paw-trust/10 doodle-float hidden lg:block" style={{ animationDelay: '4s' }}><DoodleHeart className="w-full h-full" /></div>
-
       <div className="auth-layout mx-auto grid w-full max-w-6xl gap-6 lg:grid-cols-[minmax(0,1fr)_440px] lg:items-center">
         <aside className="auth-visual-panel hidden lg:block">
           <div className="relative z-10">
-            <div className="inline-flex items-center gap-2 rounded-paw-md border border-white/45 bg-white/72 px-3 py-1.5 text-sm font-extrabold text-paw-primary shadow-sm">
+            <Badge tone="primary">
               <Sparkles className="h-4 w-4" aria-hidden="true" />
               PawPal account
-            </div>
+            </Badge>
             <h1 className="mt-5 max-w-xl text-5xl font-extrabold leading-tight text-paw-ink">
               One login for walks, tags, rescue pages, and store orders.
             </h1>
@@ -104,7 +105,7 @@ export default function AuthPage() {
               { icon: ShieldCheck, title: "Privacy first", copy: "Owner details stay hidden until you choose to share." },
             ].map((item) => (
               <div key={item.title} className="auth-signal-card">
-                <item.icon className="h-5 w-5 text-paw-primary" aria-hidden="true" />
+                <item.icon className="h-5 w-5 text-paw-on-primary-soft" aria-hidden="true" />
                 <div>
                   <p className="text-sm font-extrabold text-paw-ink">{item.title}</p>
                   <p className="mt-1 text-xs leading-5 text-paw-body">{item.copy}</p>
@@ -115,8 +116,8 @@ export default function AuthPage() {
         </aside>
 
       <div className="w-full max-w-md justify-self-center lg:justify-self-end">
-        {/* Card */}
-        <div className="auth-card bg-paw-panel/90 backdrop-blur-xl rounded-paw-lg p-8 border border-paw-border shadow-paw-panel">
+        <Card className="auth-card bg-paw-panel-low/95 p-0 backdrop-blur-xl">
+          <CardContent className="p-8">
           {/* Logo */}
           <div className="text-center mb-8">
             <div className="mb-3 flex justify-center">
@@ -154,24 +155,22 @@ export default function AuthPage() {
 
           {/* Error/Success banners */}
           {error && (
-            <div
+            <StatusMessage
               id="auth-error"
-              className="flex items-center gap-2 bg-paw-danger-soft border border-paw-danger/20 text-paw-danger text-sm px-4 py-3 rounded-paw-md mb-4"
-              role="alert"
+              tone="danger"
+              className="mb-4"
             >
-              <AlertCircle className="w-4 h-4 shrink-0" />
               {error}
-            </div>
+            </StatusMessage>
           )}
           {success && (
-            <div
+            <StatusMessage
               id="auth-success"
-              className="flex items-center gap-2 bg-paw-success-soft border border-paw-success/20 text-paw-success text-sm px-4 py-3 rounded-paw-md mb-4"
-              role="status"
+              tone="success"
+              className="mb-4"
             >
-              <CheckCircle className="w-4 h-4 shrink-0" />
               {success}
-            </div>
+            </StatusMessage>
           )}
 
           {/* Form */}
@@ -181,97 +180,80 @@ export default function AuthPage() {
             aria-describedby={error ? "auth-error" : success ? "auth-success" : undefined}
           >
             {!isLogin && (
-              <div>
-                <label htmlFor="auth-display-name" className="block text-sm font-medium text-paw-body mb-1">Display Name</label>
-                <div className="relative">
-                  <User className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-paw-muted" />
-                  <input
-                    id="auth-display-name"
-                    type="text"
-                    value={fullName}
-                    onChange={(e) => setFullName(e.target.value)}
-                    placeholder="Your name (optional)"
-                    className="w-full pl-10 pr-4 py-3 rounded-paw-md bg-paw-panel-subtle border border-paw-border text-paw-ink placeholder-paw-muted focus:outline-none focus:ring-4 focus:ring-paw-trust/15 focus:border-paw-trust transition-all text-sm"
-                  />
-                </div>
-              </div>
+              <Input
+                id="auth-display-name"
+                label="Display name"
+                type="text"
+                value={fullName}
+                onChange={(e) => setFullName(e.target.value)}
+                placeholder="Your name (optional)"
+                leftSlot={<User className="h-4 w-4" aria-hidden="true" />}
+              />
             )}
 
-            <div>
-              <label htmlFor="auth-email" className="block text-sm font-medium text-paw-body mb-1">Email</label>
-              <div className="relative">
-                <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-paw-muted" />
-                <input
-                  id="auth-email"
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="you@example.com"
-                  required
-                  aria-invalid={Boolean(error && !email.includes("@"))}
-                  className="w-full pl-10 pr-4 py-3 rounded-paw-md bg-paw-panel-subtle border border-paw-border text-paw-ink placeholder-paw-muted focus:outline-none focus:ring-4 focus:ring-paw-trust/15 focus:border-paw-trust transition-all text-sm"
-                />
-              </div>
-            </div>
+            <Input
+              id="auth-email"
+              label="Email"
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="you@example.com"
+              required
+              aria-invalid={Boolean(error && !email.includes("@"))}
+              leftSlot={<Mail className="h-4 w-4" aria-hidden="true" />}
+            />
 
-            <div>
-              <label htmlFor="auth-password" className="block text-sm font-medium text-paw-body mb-1">Password</label>
-              <div className="relative">
-                <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-paw-muted" />
-                <input
-                  id="auth-password"
-                  type={showPassword ? "text" : "password"}
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  placeholder="••••••••"
-                  required
-                  aria-invalid={Boolean(error && password.length > 0 && password.length < 6)}
-                  className="w-full pl-10 pr-12 py-3 rounded-paw-md bg-paw-panel-subtle border border-paw-border text-paw-ink placeholder-paw-muted focus:outline-none focus:ring-4 focus:ring-paw-trust/15 focus:border-paw-trust transition-all text-sm"
-                />
+            <Input
+              id="auth-password"
+              label="Password"
+              type={showPassword ? "text" : "password"}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Password"
+              required
+              aria-invalid={Boolean(error && password.length > 0 && password.length < 6)}
+              leftSlot={<Lock className="h-4 w-4" aria-hidden="true" />}
+              rightSlot={
                 <button
                   type="button"
                   aria-label={showPassword ? "Hide password" : "Show password"}
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-paw-muted hover:text-paw-body"
+                  className="rounded-paw-pill p-1 text-paw-muted transition hover:bg-paw-panel-subtle hover:text-paw-ink"
                 >
-                  {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                  {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
                 </button>
-              </div>
-            </div>
+              }
+            />
 
             {!isLogin && (
-              <div>
-                <label htmlFor="auth-confirm-password" className="block text-sm font-medium text-paw-body mb-1">Confirm Password</label>
-                <div className="relative">
-                  <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-paw-muted" />
-                  <input
-                    id="auth-confirm-password"
-                    type="password"
-                    value={confirmPassword}
-                    onChange={(e) => setConfirmPassword(e.target.value)}
-                    placeholder="••••••••"
-                    required
-                    aria-invalid={Boolean(error && !isLogin && confirmPassword.length > 0 && password !== confirmPassword)}
-                    className="w-full pl-10 pr-4 py-3 rounded-paw-md bg-paw-panel-subtle border border-paw-border text-paw-ink placeholder-paw-muted focus:outline-none focus:ring-4 focus:ring-paw-trust/15 focus:border-paw-trust transition-all text-sm"
-                  />
-                </div>
-              </div>
+              <Input
+                id="auth-confirm-password"
+                label="Confirm password"
+                type="password"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                placeholder="Password again"
+                required
+                aria-invalid={Boolean(error && !isLogin && confirmPassword.length > 0 && password !== confirmPassword)}
+                leftSlot={<Lock className="h-4 w-4" aria-hidden="true" />}
+              />
             )}
 
-            <button
+            <Button
               type="submit"
               disabled={loading}
-              className="w-full flex items-center justify-center gap-2 bg-paw-primary hover:bg-paw-primary-hover disabled:bg-paw-primary/45 text-paw-accent-ink py-3.5 rounded-paw-md font-bold text-sm transition-all shadow-paw-action hover:-translate-y-0.5 disabled:hover:translate-y-0"
+              size="lg"
+              className="w-full"
             >
               {loading ? (
-                <div className="w-5 h-5 border-2 border-paw-accent-ink/30 border-t-paw-accent-ink rounded-full animate-spin" />
+                <Loader2 className="h-5 w-5 animate-spin" aria-hidden="true" />
               ) : (
                 <>
                   {isLogin ? "Sign In" : "Create Account"}
                   <ArrowRight className="w-4 h-4" />
                 </>
               )}
-            </button>
+            </Button>
           </form>
 
           <div className="auth-trust-panel mt-6">
@@ -291,7 +273,8 @@ export default function AuthPage() {
               <span><Lock className="h-3.5 w-3.5" aria-hidden="true" /> Private owner details</span>
             </div>
           </div>
-        </div>
+          </CardContent>
+        </Card>
 
         {/* Footer text */}
         <p className="text-center text-xs text-paw-muted mt-6">

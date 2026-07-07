@@ -173,23 +173,27 @@ function createPopupContent(
   rows: Array<{ label?: string; value: string }>
 ): HTMLElement {
   const wrapper = document.createElement("div");
-  wrapper.style.fontFamily = "system-ui";
-  wrapper.style.minWidth = "160px";
+  wrapper.className = "globe-popup-card";
 
   const heading = document.createElement("div");
-  heading.style.fontWeight = "700";
-  heading.style.fontSize = "14px";
-  heading.style.marginBottom = "4px";
+  heading.className = "globe-popup-title";
   heading.textContent = title;
   wrapper.appendChild(heading);
 
   rows.forEach((row) => {
     if (!row.value) return;
     const item = document.createElement("div");
-    item.style.fontSize = "12px";
-    item.style.color = "var(--color-paw-muted)";
-    item.style.marginBottom = "2px";
-    item.textContent = row.label ? `${row.label}: ${row.value}` : row.value;
+    item.className = "globe-popup-row";
+    if (row.label) {
+      const label = document.createElement("span");
+      label.className = "globe-popup-label";
+      label.textContent = `${row.label}: `;
+      item.appendChild(label);
+    }
+    const value = document.createElement("span");
+    value.className = "globe-popup-value";
+    value.textContent = row.value;
+    item.appendChild(value);
     wrapper.appendChild(item);
   });
 
@@ -657,7 +661,7 @@ export default function MapGlobeComponent() {
                   {nearbyCenter.lat.toFixed(3)}, {nearbyCenter.lng.toFixed(3)} · {NEARBY_RADIUS_KM} km
                 </p>
               </div>
-              <span className="rounded-full bg-paw-accent-soft px-2 py-1 text-[11px] font-black text-paw-accent">
+              <span className="rounded-paw-pill bg-paw-accent-soft px-2 py-1 text-[11px] font-black text-paw-on-accent-soft">
                 {nearbyLoading ? "..." : quests.length}
               </span>
             </div>
@@ -686,10 +690,10 @@ export default function MapGlobeComponent() {
             {nearbyQuestTags.length > 0 ? (
               <div className="flex flex-wrap gap-1.5">
                 {nearbyQuestTags.slice(0, 6).map((tag) => (
-                  <span key={tag.type} className="inline-flex items-center gap-1 rounded-full border border-paw-accent/20 bg-paw-accent-soft px-2.5 py-1 text-[11px] font-bold text-paw-body">
+                  <span key={tag.type} className="inline-flex items-center gap-1 rounded-paw-pill border border-paw-accent/20 bg-paw-accent-soft px-2.5 py-1 text-[11px] font-bold text-paw-on-accent-soft">
                     <span>{tag.emoji}</span>
                     <span>{tag.label}</span>
-                    <span className="text-paw-accent">{tag.count}</span>
+                    <span className="font-black">{tag.count}</span>
                   </span>
                 ))}
               </div>
@@ -702,17 +706,17 @@ export default function MapGlobeComponent() {
 
           {/* Layer Toggle */}
           <div id="globe-layers" className="globe-layer-stack absolute z-40 flex gap-1.5">
-            <button onClick={() => setShowQuests(!showQuests)} className={`globe-layer-button flex items-center gap-2 rounded-paw-sm border px-3 py-2 text-xs font-bold transition-all ${showQuests ? "is-active-mission bg-paw-accent/90 text-paw-accent-ink border-paw-accent" : "bg-paw-panel/80 text-paw-muted border-paw-border"}`}>
+            <button onClick={() => setShowQuests(!showQuests)} className={`globe-layer-button flex items-center gap-2 rounded-paw-pill border px-3 py-2 text-xs font-bold transition-all ${showQuests ? "is-active-mission bg-paw-accent text-paw-on-accent border-paw-accent" : "bg-paw-panel/80 text-paw-muted border-paw-border"}`}>
               <PawPrint className="h-3.5 w-3.5" aria-hidden="true" />
-              Missions {quests.length > 0 && <span className="bg-white/30 px-1.5 py-0.5 rounded-full text-[10px]">{quests.length}</span>}
+              Missions {quests.length > 0 && <span className="rounded-paw-pill bg-paw-panel/30 px-1.5 py-0.5 text-[10px]">{quests.length}</span>}
             </button>
-            <button onClick={() => setShowPlaces(!showPlaces)} className={`globe-layer-button flex items-center gap-2 rounded-paw-sm border px-3 py-2 text-xs font-bold transition-all ${showPlaces ? "is-active-place bg-paw-trust/90 text-paw-accent-ink border-paw-trust" : "bg-paw-panel/80 text-paw-muted border-paw-border"}`}>
+            <button onClick={() => setShowPlaces(!showPlaces)} className={`globe-layer-button flex items-center gap-2 rounded-paw-pill border px-3 py-2 text-xs font-bold transition-all ${showPlaces ? "is-active-place bg-paw-trust text-paw-on-trust border-paw-trust" : "bg-paw-panel/80 text-paw-muted border-paw-border"}`}>
               <MapPin className="h-3.5 w-3.5" aria-hidden="true" />
-              Places {places.length > 0 && <span className="bg-white/30 px-1.5 py-0.5 rounded-full text-[10px]">{places.length}</span>}
+              Places {places.length > 0 && <span className="rounded-paw-pill bg-paw-panel/30 px-1.5 py-0.5 text-[10px]">{places.length}</span>}
             </button>
-            <button onClick={() => setShowPosts(!showPosts)} className={`globe-layer-button flex items-center gap-2 rounded-paw-sm border px-3 py-2 text-xs font-bold transition-all ${showPosts ? "is-active-post bg-paw-primary/90 text-paw-accent-ink border-paw-primary" : "bg-paw-panel/80 text-paw-muted border-paw-border"}`}>
+            <button onClick={() => setShowPosts(!showPosts)} className={`globe-layer-button flex items-center gap-2 rounded-paw-pill border px-3 py-2 text-xs font-bold transition-all ${showPosts ? "is-active-post bg-paw-primary text-paw-on-primary border-paw-primary" : "bg-paw-panel/80 text-paw-muted border-paw-border"}`}>
               <MessageCircle className="h-3.5 w-3.5" aria-hidden="true" />
-              Posts {posts.length > 0 && <span className="bg-white/30 px-1.5 py-0.5 rounded-full text-[10px]">{posts.length}</span>}
+              Posts {posts.length > 0 && <span className="rounded-paw-pill bg-paw-panel/30 px-1.5 py-0.5 text-[10px]">{posts.length}</span>}
             </button>
           </div>
 
