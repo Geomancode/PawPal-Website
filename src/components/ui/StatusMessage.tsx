@@ -15,23 +15,23 @@ const toneStyles: Record<
   { container: string; icon: string; Icon: LucideIcon }
 > = {
   info: {
-    container: "border-paw-primary/20 bg-paw-primary-soft text-paw-body",
-    icon: "bg-paw-primary text-paw-accent-ink",
+    container: "border-paw-primary/20 bg-paw-primary-soft text-paw-on-primary-soft",
+    icon: "bg-paw-primary text-paw-on-primary",
     Icon: Info,
   },
   success: {
-    container: "border-paw-success/20 bg-paw-success-soft text-paw-body",
-    icon: "bg-paw-success text-paw-accent-ink",
+    container: "border-paw-success/20 bg-paw-success-soft text-paw-on-success-soft",
+    icon: "bg-paw-success text-paw-on-success",
     Icon: CheckCircle2,
   },
   warning: {
-    container: "border-paw-warning/20 bg-paw-warning-soft text-paw-body",
-    icon: "bg-paw-warning text-paw-accent-ink",
+    container: "border-paw-warning/20 bg-paw-warning-soft text-paw-on-warning-soft",
+    icon: "bg-paw-warning text-paw-on-warning",
     Icon: TriangleAlert,
   },
   danger: {
-    container: "border-paw-critical/20 bg-paw-critical-soft text-paw-body",
-    icon: "bg-paw-critical text-white",
+    container: "border-paw-critical/20 bg-paw-critical-soft text-paw-on-critical-soft",
+    icon: "bg-paw-critical text-paw-on-critical",
     Icon: AlertCircle,
   },
 };
@@ -72,7 +72,7 @@ export default function StatusMessage({
       </span>
       <span className="min-w-0">
         {title && (
-          <span className="block font-extrabold text-paw-ink">{title}</span>
+          <span className="block font-extrabold text-inherit">{title}</span>
         )}
         <span className={cn("block", title ? "mt-0.5" : undefined)}>
           {children}
