@@ -29,10 +29,13 @@ import {
   type SubscriptionTier,
 } from "@/lib/subscriptions";
 import {
+  Badge,
   Button,
+  Card,
   buttonClassName,
   EmptyState,
   Input,
+  PageShell,
   ProductCard as StoreProductCard,
   Sheet,
 } from "@/components/ui";
@@ -151,66 +154,63 @@ function SubscriptionUpgradePanel({
   };
 
   return (
-    <div className="min-h-screen bg-paw-page pt-28 pb-16 text-paw-ink">
-      <section className="mx-auto max-w-6xl px-4">
-        <div className="mb-8 max-w-2xl">
-          <div className="mb-4 inline-flex items-center gap-2 rounded-paw-md border border-paw-primary/20 bg-paw-primary-soft px-3 py-1.5 text-sm font-bold text-paw-primary">
-            <Sparkles className="h-4 w-4" aria-hidden="true" />
-            PawPal AI upgrade
-          </div>
-          <h1 className="text-4xl font-extrabold tracking-tight text-paw-ink sm:text-5xl">
-            Choose your PawPal plan
-          </h1>
-          <p className="mt-4 text-base leading-7 text-paw-body">
-            Basic unlocks your pet companion AI. Pro adds priority access for the
-            next wave of advanced walk, safety, and multi-pet tools.
-          </p>
+    <PageShell className="pt-28 sm:pt-32" contentClassName="space-y-paw-xl">
+      <div className="max-w-2xl">
+        <Badge tone="primary" className="mb-paw-lg">
+          <Sparkles className="h-4 w-4" aria-hidden="true" />
+          PawPal AI upgrade
+        </Badge>
+        <h1 className="font-brand text-paw-type-h1 font-black text-paw-ink sm:text-paw-type-display">
+          Choose your PawPal plan
+        </h1>
+        <p className="mt-paw-md text-paw-type-body text-paw-body">
+          Basic unlocks your pet companion AI. Pro adds priority access for the
+          next wave of advanced walk, safety, and multi-pet tools.
+        </p>
+      </div>
+
+      {error && (
+        <div className="rounded-paw-card border border-paw-critical/20 bg-paw-critical-soft px-paw-md py-paw-sm text-sm font-bold text-paw-on-critical-soft">
+          {error}
         </div>
+      )}
 
-        {error && (
-          <div className="mb-5 rounded-paw-md border border-paw-danger/20 bg-paw-danger-soft px-4 py-3 text-sm font-bold text-paw-danger">
-            {error}
-          </div>
-        )}
-
-        <div className="grid gap-5 md:grid-cols-2">
-          {(["basic", "pro"] as const).map((tier) => {
-            const plan = SUBSCRIPTION_PLANS[tier];
-            const active = selectedTier === tier;
-            const busy = loadingTier === tier;
-            return (
-              <motion.div
-                key={tier}
-                {...fadeUpMotion(shouldReduceMotion, 18)}
-                className={`rounded-paw-lg border bg-paw-panel p-6 shadow-paw-panel ${
-                  active ? "border-paw-primary" : "border-paw-border"
-                }`}
-              >
-                <div className="mb-5 flex items-start justify-between gap-4">
+      <div className="grid gap-paw-lg md:grid-cols-2">
+        {(["basic", "pro"] as const).map((tier) => {
+          const plan = SUBSCRIPTION_PLANS[tier];
+          const active = selectedTier === tier;
+          const busy = loadingTier === tier;
+          return (
+            <motion.div
+              key={tier}
+              {...fadeUpMotion(shouldReduceMotion, 18)}
+            >
+              <Card className={`h-full p-paw-xl ${active ? "border-paw-primary" : ""}`}>
+                <div className="mb-paw-lg flex items-start justify-between gap-paw-md">
                   <div>
-                    <div className="mb-3 flex h-11 w-11 items-center justify-center rounded-paw-md bg-paw-primary-soft text-paw-primary">
+                    <div className="mb-paw-sm flex h-11 w-11 items-center justify-center rounded-paw-control bg-paw-primary-soft text-paw-on-primary-soft">
                       {tier === "pro" ? (
                         <Crown className="h-5 w-5" aria-hidden="true" />
                       ) : (
                         <Sparkles className="h-5 w-5" aria-hidden="true" />
                       )}
                     </div>
-                    <h2 className="text-2xl font-extrabold text-paw-ink">
+                    <h2 className="text-paw-type-h2 font-black text-paw-ink">
                       {plan.name}
                     </h2>
-                    <p className="mt-2 text-sm leading-6 text-paw-body">
+                    <p className="mt-paw-sm text-sm leading-6 text-paw-body">
                       {plan.summary}
                     </p>
                   </div>
                   {plan.highlight && (
-                    <span className="rounded-paw-sm border border-paw-success/20 bg-paw-success-soft px-2.5 py-1 text-xs font-bold text-paw-success">
+                    <Badge tone="success" className="min-h-0 px-paw-sm py-paw-xs">
                       Recommended
-                    </span>
+                    </Badge>
                   )}
                 </div>
 
-                <div className="mb-5 flex items-end gap-1">
-                  <span className="text-4xl font-extrabold text-paw-ink">
+                <div className="mb-paw-lg flex items-end gap-paw-xs">
+                  <span className="text-paw-type-metric font-black text-paw-ink">
                     €{plan.monthlyPrice.toFixed(2)}
                   </span>
                   <span className="pb-1 text-sm font-bold text-paw-muted">
@@ -218,10 +218,10 @@ function SubscriptionUpgradePanel({
                   </span>
                 </div>
 
-                <div className="mb-6 space-y-3">
+                <div className="mb-paw-xl space-y-paw-sm">
                   {plan.features.map((feature) => (
                     <div key={feature} className="flex items-start gap-2 text-sm text-paw-body">
-                      <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-paw-success" aria-hidden="true" />
+                      <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-paw-on-success-soft" aria-hidden="true" />
                       <span>{feature}</span>
                     </div>
                   ))}
@@ -238,18 +238,18 @@ function SubscriptionUpgradePanel({
                   {busy && <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />}
                   Upgrade to {plan.name}
                 </Button>
-              </motion.div>
-            );
-          })}
-        </div>
+              </Card>
+            </motion.div>
+          );
+        })}
+      </div>
 
-        <div className="mt-6 rounded-paw-md border border-paw-border bg-paw-panel-subtle p-4 text-sm leading-6 text-paw-body">
-          Existing Free features stay available after cancellation. Paid AI access is
-          restored automatically after Stripe confirms your subscription; if the app
-          is already open, use Refresh plan in Profile.
-        </div>
-      </section>
-    </div>
+      <Card className="p-paw-md text-sm leading-6 text-paw-body shadow-paw-panel">
+        Existing Free features stay available after cancellation. Paid AI access is
+        restored automatically after Stripe confirms your subscription; if the app
+        is already open, use Refresh plan in Profile.
+      </Card>
+    </PageShell>
   );
 }
 
@@ -279,10 +279,10 @@ function ProductCard({
       className="relative"
     >
       {recommended && (
-        <span className="absolute right-3 top-3 z-10 inline-flex items-center gap-1 rounded-paw-sm bg-paw-primary px-2.5 py-1 text-xs font-extrabold text-paw-accent-ink shadow-paw-panel">
+        <Badge tone="primary" className="absolute right-paw-sm top-paw-sm z-10 min-h-0 px-paw-sm py-paw-xs">
           <Sparkles className="h-3 w-3" aria-hidden="true" />
           AI pick
-        </span>
+        </Badge>
       )}
       <StoreProductCard
         name={product.name}
@@ -300,7 +300,7 @@ function ProductCard({
         onAction={() => onAdd(product)}
         className={
           recommended
-            ? "border-paw-primary shadow-[0_14px_34px_rgba(74,144,217,0.22)] ring-2 ring-paw-primary/25"
+            ? "border-paw-primary shadow-paw-floating ring-2 ring-paw-primary/25"
             : undefined
         }
       />
@@ -336,9 +336,9 @@ function ProductDetailsDrawer({
               </p>
             </div>
             {product.badge && (
-              <span className="rounded-paw-sm bg-paw-primary-soft px-3 py-1 text-xs font-bold text-paw-primary">
+              <Badge tone="primary" className="min-h-0 px-paw-sm py-paw-xs">
                 {product.badge}
-              </span>
+              </Badge>
             )}
           </div>
 
@@ -647,23 +647,22 @@ function StorePageContent() {
   return (
     <div className="relative min-h-screen w-full bg-paw-page text-paw-ink">
       {/* ===== COMMERCE HEADER ===== */}
-      <section className="relative overflow-hidden border-b border-paw-border bg-paw-page pt-20 pb-4 md:pt-24 md:pb-5">
-        <div className="absolute inset-0 -z-10">
-          <div className="hero-map-grid absolute inset-0 opacity-15" />
-          <div className="absolute inset-0 bg-gradient-to-b from-paw-page via-paw-page/95 to-paw-accent-soft/20" />
-        </div>
-        <div className="mx-auto grid max-w-7xl gap-4 px-4 lg:grid-cols-[minmax(0,1fr)_minmax(360px,0.72fr)] lg:items-end">
+      <PageShell
+        className="border-b border-paw-outline-variant pt-28 sm:pt-32"
+        contentClassName="space-y-paw-lg"
+      >
+        <div className="grid gap-paw-lg lg:grid-cols-[minmax(0,1fr)_minmax(360px,0.72fr)] lg:items-end">
           <div>
             <motion.h1
               {...fadeUpMotion(shouldReduceMotion, 18)}
-              className="max-w-3xl text-3xl font-extrabold leading-tight tracking-tight text-paw-ink sm:text-4xl lg:text-5xl"
+              className="max-w-3xl font-brand text-paw-type-h1 font-black text-paw-ink sm:text-paw-type-display"
             >
               Smart tags and walk gear for{" "}
-              <span className="text-gradient">safer pet days</span>
+              <span className="text-paw-on-primary-soft">safer pet days</span>
             </motion.h1>
             <motion.p
               {...fadeUpMotion(shouldReduceMotion, 16, 0.08)}
-              className="mt-2 max-w-2xl text-base leading-7 text-paw-body md:text-lg"
+              className="mt-paw-sm max-w-2xl text-paw-type-body text-paw-body sm:text-base"
             >
               Start with PawPal NFC safety tags, then find practical gear for daily
               walks, travel, cleanup, and care.
@@ -674,9 +673,9 @@ function StorePageContent() {
             {recommendedProductIds.length > 0 && (
               <motion.div
                 {...fadeUpMotion(shouldReduceMotion, 10, 0.12)}
-                className="flex flex-wrap items-center gap-2 rounded-paw-md border border-paw-primary/20 bg-paw-panel/90 px-3 py-2 text-sm font-bold text-paw-ink shadow-paw-panel backdrop-blur-sm"
+                className="flex flex-wrap items-center gap-paw-xs rounded-paw-card border border-paw-outline-variant bg-paw-panel-low px-paw-sm py-paw-xs text-sm font-bold text-paw-ink shadow-paw-panel"
               >
-                <Sparkles className="h-4 w-4 text-paw-primary" aria-hidden="true" />
+                <Sparkles className="h-4 w-4 text-paw-on-primary-soft" aria-hidden="true" />
                 <span>
                   {recommendedMatchCount > 0
                     ? `${recommendedMatchCount} AI recommended product${recommendedMatchCount !== 1 ? "s" : ""} highlighted`
@@ -694,7 +693,7 @@ function StorePageContent() {
                 onChange={(e) => setSearch(e.target.value)}
                 placeholder="Search products..."
                 leftSlot={<Search className="h-5 w-5" aria-hidden="true" />}
-                className="h-12 rounded-paw-md bg-paw-panel/92 shadow-paw-panel"
+                className="h-12 rounded-paw-control bg-paw-panel-low shadow-paw-control"
               />
             </motion.div>
           </div>
@@ -702,14 +701,14 @@ function StorePageContent() {
 
         <motion.div
           {...fadeUpMotion(shouldReduceMotion, 14, 0.22)}
-          className="mx-auto mt-3 grid max-w-7xl grid-cols-3 gap-2 px-4"
+          className="grid grid-cols-3 gap-paw-sm"
         >
           {STORE_PROMISES.map((promise) => (
-            <div
+            <Card
               key={promise.label}
-              className="flex flex-col items-center gap-1.5 rounded-paw-md border border-paw-border bg-paw-panel/82 px-2 py-2 text-center shadow-[0_8px_22px_rgba(58,47,42,0.06)] backdrop-blur sm:flex-row sm:items-start sm:gap-3 sm:px-3 sm:text-left"
+              className="flex flex-col items-center gap-paw-xs p-paw-sm text-center shadow-paw-panel sm:flex-row sm:items-start sm:gap-paw-sm sm:text-left"
             >
-              <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-paw-sm bg-paw-primary-soft text-paw-primary sm:h-8 sm:w-8">
+              <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-paw-control bg-paw-primary-soft text-paw-on-primary-soft">
                 <promise.icon className="h-3.5 w-3.5 sm:h-4 sm:w-4" aria-hidden="true" />
               </span>
               <div>
@@ -720,32 +719,33 @@ function StorePageContent() {
                   {promise.copy}
                 </p>
               </div>
-            </div>
+            </Card>
           ))}
         </motion.div>
-      </section>
+      </PageShell>
 
       {/* ===== CATEGORY TABS + PRODUCT GRID ===== */}
-      <section className="bg-paw-accent-soft/35 py-3 md:py-4">
-        <div className="mx-auto max-w-7xl px-4">
-        <div className="mb-2 flex items-center gap-2">
+      <section className="bg-paw-panel-subtle py-paw-lg">
+        <div className="mx-auto max-w-7xl px-paw-md sm:px-paw-xl lg:px-paw-xxl">
+        <div className="mb-paw-sm flex items-center gap-paw-xs">
           <SlidersHorizontal className="h-4 w-4 text-paw-muted" />
           <span className="text-sm font-bold text-paw-muted">Filter by category</span>
         </div>
-        <div className="-mx-4 mb-2 flex gap-2 overflow-x-auto px-4 pb-1 sm:mx-0 sm:mb-3 sm:flex-wrap sm:overflow-visible sm:px-0 sm:pb-0">
+        <div className="-mx-paw-md mb-paw-sm flex gap-paw-sm overflow-x-auto px-paw-md pb-paw-xs sm:mx-0 sm:flex-wrap sm:overflow-visible sm:px-0 sm:pb-0">
           {CATEGORIES.map((cat) => (
             (() => {
               const CategoryIcon = CATEGORY_ICONS[cat.key];
+              const active = category === cat.key;
               return (
                 <motion.button
                   key={cat.key}
                   whileTap={shouldReduceMotion ? undefined : { scale: 0.95 }}
                   onClick={() => setCategory(cat.key)}
-                  className={`inline-flex shrink-0 items-center gap-1.5 rounded-paw-md border px-3 py-2 text-xs font-bold transition cursor-pointer sm:gap-2 sm:px-4 sm:py-2.5 sm:text-sm ${
-                    category === cat.key
-                      ? "border-paw-primary bg-paw-primary text-paw-accent-ink shadow-paw-action"
-                      : "border-paw-border bg-paw-panel/85 text-paw-ink hover:border-paw-primary/40 hover:bg-paw-primary-soft"
-                  }`}
+                  className={buttonClassName({
+                    variant: active ? "primary" : "secondary",
+                    size: "sm",
+                    className: "shrink-0 cursor-pointer",
+                  })}
                 >
                   <CategoryIcon className="h-3.5 w-3.5 sm:h-4 sm:w-4" aria-hidden="true" />
                   {cat.label}
@@ -754,19 +754,19 @@ function StorePageContent() {
             })()
           ))}
         </div>
-        <div className="mb-3 flex flex-wrap items-center justify-between gap-3">
+        <div className="mb-paw-md flex flex-wrap items-center justify-between gap-paw-sm">
           <div className="flex flex-wrap items-center gap-3">
             <p className="text-sm font-semibold text-paw-muted">{filtered.length} product{filtered.length !== 1 ? "s" : ""}</p>
             {catalogLoading && (
-              <span className="inline-flex items-center gap-1 rounded-paw-sm bg-paw-panel px-2 py-1 text-xs font-bold text-paw-muted">
+              <Badge tone="neutral" className="min-h-0 px-paw-sm py-paw-xs">
                 <RefreshCw className="h-3 w-3 animate-spin" aria-hidden="true" />
                 Syncing
-              </span>
+              </Badge>
             )}
             {catalogIssue && (
-              <span className="rounded-paw-sm bg-paw-warning-soft px-2 py-1 text-xs font-bold text-paw-warning">
+              <Badge tone="warning" className="min-h-0 px-paw-sm py-paw-xs">
                 Demo fallback
-              </span>
+              </Badge>
             )}
           </div>
           <div className="flex items-center gap-4">
@@ -842,7 +842,7 @@ function StorePageContent() {
               <motion.span
                 initial={false}
                 animate={{ scale: 1 }}
-                className="absolute -right-1 -top-1 flex h-6 w-6 items-center justify-center rounded-paw-sm bg-paw-danger text-xs font-extrabold text-white"
+                className="absolute -right-1 -top-1 flex h-6 w-6 items-center justify-center rounded-paw-pill bg-paw-critical text-xs font-extrabold text-paw-on-critical"
               >
                 {totalItems}
               </motion.span>
@@ -872,9 +872,9 @@ function StorePageContent() {
             initial={false}
             animate={{ opacity: 1, y: 0 }}
             exit={shouldReduceMotion ? undefined : { opacity: 0, y: 40 }}
-            className="fixed bottom-28 left-1/2 z-50 flex -translate-x-1/2 items-center gap-2 rounded-paw-lg bg-paw-ink px-6 py-3 text-sm font-bold text-white shadow-paw-panel"
+            className="fixed bottom-28 left-1/2 z-50 flex -translate-x-1/2 items-center gap-paw-xs rounded-paw-next-card border border-paw-outline-variant bg-paw-panel-low px-paw-lg py-paw-sm text-sm font-bold text-paw-ink shadow-paw-strong"
           >
-            <CheckCircle2 className="h-4 w-4 text-paw-success" aria-hidden="true" />
+            <CheckCircle2 className="h-4 w-4 text-paw-on-success-soft" aria-hidden="true" />
             {toast}
           </motion.div>
         )}

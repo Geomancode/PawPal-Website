@@ -13,6 +13,7 @@ import {
   AppShowcase,
   ProductFlow,
 } from "@/components/HomeClientParts";
+import { Card } from "@/components/ui";
 
 export const metadata: Metadata = {
   title: "Pet Safety Map, Smart Tags, and Local Pet Community",
@@ -47,40 +48,40 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="workflow" className="bg-paw-page py-16 md:py-20">
-        <div className="mx-auto max-w-6xl px-5 sm:px-6 lg:px-8">
+      <section id="workflow" className="bg-paw-page py-paw-xxxl">
+        <div className="mx-auto max-w-6xl px-paw-md sm:px-paw-xl lg:px-paw-xxl">
           <FadeInView>
-            <h2 className="text-center font-brand text-3xl font-extrabold text-paw-ink md:text-4xl">
+            <h2 className="text-center font-brand text-paw-type-h1 font-black text-paw-ink sm:text-paw-type-display">
               From walk to rescue, one connected flow.
             </h2>
           </FadeInView>
-          <div className="mt-14">
+          <div className="mt-paw-xxl">
             <ProductFlow />
           </div>
         </div>
       </section>
 
-      <section id="features" className="border-y border-paw-border bg-paw-panel-subtle py-16 md:py-20">
-        <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
+      <section id="features" className="border-y border-paw-outline-variant bg-paw-panel-subtle py-paw-xxxl">
+        <div className="mx-auto max-w-7xl px-paw-md sm:px-paw-xl lg:px-paw-xxl">
           <AppShowcase />
         </div>
       </section>
 
-      <section className="bg-paw-page py-12 md:py-16">
-        <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
-          <div className="home-final-cta grid items-center gap-6 px-6 py-9 text-center sm:px-10 lg:grid-cols-[1fr_auto] lg:text-left">
+      <section className="bg-paw-page py-paw-xxl sm:py-paw-xxxl">
+        <div className="mx-auto max-w-7xl px-paw-md sm:px-paw-xl lg:px-paw-xxl">
+          <Card className="grid items-center gap-paw-xl bg-paw-primary-soft p-paw-xl text-center shadow-paw-strong sm:p-paw-xxl lg:grid-cols-[1fr_auto] lg:text-left">
             <FadeInView>
-              <h2 className="font-brand text-3xl font-extrabold leading-tight text-white md:text-4xl">
+              <h2 className="font-brand text-paw-type-h1 font-black text-paw-ink sm:text-paw-type-display">
                 Ready to make every walk safer?
               </h2>
-              <p className="mx-auto mt-3 max-w-2xl text-sm leading-7 text-white/78 md:text-base lg:mx-0">
+              <p className="mx-auto mt-paw-sm max-w-2xl text-paw-type-body text-paw-body lg:mx-0">
                 Open the live map, prepare a smart tag, and connect your pet profile to real-world help.
               </p>
             </FadeInView>
             <FadeInView delay={0.08}>
               <BottomCTA />
             </FadeInView>
-          </div>
+          </Card>
         </div>
       </section>
     </div>

@@ -2,10 +2,31 @@
 
 import { motion } from "framer-motion";
 import {
-  Globe, Heart, Shield, Users, MapPin, Sparkles, Nfc, PawPrint,
-  Smartphone, Map, ArrowRight, Mail,
+  ArrowRight,
+  Globe,
+  GraduationCap,
+  Heart,
+  Languages,
+  Mail,
+  Map,
+  MapPin,
+  Nfc,
+  PawPrint,
+  Shield,
+  Smartphone,
+  Sparkles,
+  Users,
+  Zap,
 } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 import Link from "next/link";
+import {
+  Badge,
+  Card,
+  CardContent,
+  PageShell,
+  buttonClassName,
+} from "@/components/ui";
 
 /* ── Animation helpers ── */
 const fadeUp = (delay = 0) => ({
@@ -20,19 +41,16 @@ const TEAM = [
   {
     name: "Alexie",
     role: "Co-founder & CEO",
-    color: "from-paw-primary to-paw-primary-hover",
     desc: "PhD candidate in GIS & Remote Sensing at Ghent University. Leads product strategy, technical architecture, and fundraising.",
   },
   {
     name: "Neumann",
     role: "Co-founder & CPO",
-    color: "from-paw-trust to-paw-trust-hover",
     desc: "Business & Marketing background. Drives business model, go-to-market strategy, operations, and supply chain.",
   },
   {
     name: "Carlo",
     role: "Co-founder & CDO",
-    color: "from-paw-success to-paw-trust",
     desc: "Design background. Leads UI/UX design, brand visual identity, and user research across all PawPal platforms.",
   },
 ];
@@ -43,22 +61,19 @@ const ECOSYSTEM = [
     icon: Smartphone,
     title: "PawPal App",
     desc: "Walk recording with fog-of-war map, PawPoints rewards, pet profiles, daily reminders, AI assistant, NFC tag enrollment, and real-time community — all in one app.",
-    color: "bg-paw-primary-soft text-paw-primary",
-    border: "border-paw-primary/20",
+    tone: "bg-paw-primary-soft text-paw-on-primary-soft",
   },
   {
     icon: Globe,
     title: "PawPal Web",
     desc: "NFC tag scan landing pages at pawpal.be/tag/{id} — zero-download pet rescue. Plus the online store, AI-powered search, and the interactive Globe map.",
-    color: "bg-paw-trust-soft text-paw-trust",
-    border: "border-paw-trust/20",
+    tone: "bg-paw-trust-soft text-paw-on-trust-soft",
   },
   {
     icon: Nfc,
     title: "NFC Smart Tags",
     desc: "Starting at €19. Dynamic profile pages replace static dog tags. Privacy-first: owner contact info stays hidden until lost mode is activated.",
-    color: "bg-paw-success-soft text-paw-success",
-    border: "border-paw-success/20",
+    tone: "bg-paw-green-soft text-paw-on-green-soft",
   },
 ];
 
@@ -81,248 +96,273 @@ const TIMELINE = [
   { year: "2026", event: "Ghent cold start: '500 NFC collars' campaign, local partnerships with pet shops and vet clinics, angel round fundraising." },
 ];
 
+const TEAM_STRENGTHS: Array<{ icon: LucideIcon; text: string }> = [
+  { icon: GraduationCap, text: "GIS PhD × LBS Product" },
+  { icon: Zap, text: "52 DB Migrations Shipped" },
+  { icon: Languages, text: "5 Languages Ready" },
+  { icon: MapPin, text: "Rooted in Ghent" },
+];
+
 export default function About() {
   return (
-    <div className="relative w-full overflow-hidden bg-paw-page">
+    <PageShell className="pt-28 sm:pt-32" contentClassName="space-y-paw-xxxl">
       {/* ===== HERO ===== */}
-      <section className="about-hero relative overflow-hidden pt-24 pb-14">
-        <div className="mx-auto grid max-w-6xl gap-6 px-4 lg:grid-cols-[minmax(0,1.05fr)_minmax(20rem,0.95fr)] lg:items-stretch">
-          <div className="about-context-panel">
-            <motion.div {...fadeUp()}>
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-paw-md bg-paw-panel/80 backdrop-blur-sm border border-paw-primary/20 mb-6 shadow-sm">
-                <PawPrint className="w-4 h-4 text-paw-primary" />
-                <span className="text-sm font-semibold text-paw-primary">Product proof from Ghent</span>
-              </div>
-            </motion.div>
+      <section className="grid gap-paw-xl lg:grid-cols-[minmax(0,1.05fr)_minmax(20rem,0.95fr)] lg:items-stretch">
+        <Card className="flex min-h-full flex-col justify-center p-paw-xl sm:p-paw-xxl">
+          <motion.div {...fadeUp()}>
+            <Badge tone="primary" className="mb-paw-lg">
+              <PawPrint className="h-4 w-4" aria-hidden="true" />
+              Product proof from Ghent
+            </Badge>
+          </motion.div>
 
-            <motion.h1 {...fadeUp(0.1)} className="max-w-3xl text-4xl font-extrabold leading-tight text-paw-ink md:text-5xl">
-              A connected safety layer for everyday pet care.
-            </motion.h1>
+          <motion.h1
+            {...fadeUp(0.1)}
+            className="max-w-3xl font-brand text-paw-type-h1 font-black text-paw-ink sm:text-paw-type-display"
+          >
+            A connected safety layer for everyday pet care.
+          </motion.h1>
 
-            <motion.p {...fadeUp(0.2)} className="mt-5 max-w-2xl text-base leading-7 text-paw-body md:text-lg">
-              PawPal connects the moments around a pet: walks, finder pages,
-              smart tags, store orders, and local support. The web layer gives
-              owners and finders a clear path without requiring the app first.
-            </motion.p>
+          <motion.p
+            {...fadeUp(0.2)}
+            className="mt-paw-md max-w-2xl text-paw-type-body text-paw-body sm:text-base"
+          >
+            PawPal connects the moments around a pet: walks, finder pages,
+            smart tags, store orders, and local support. The web layer gives
+            owners and finders a clear path without requiring the app first.
+          </motion.p>
 
-            <motion.div {...fadeUp(0.3)} className="mt-7 flex flex-wrap gap-3">
-              <Link
-                href="/globe"
-                className="inline-flex items-center gap-2 rounded-paw-md bg-paw-primary px-5 py-3 text-sm font-bold text-paw-accent-ink shadow-paw-action transition hover:bg-paw-primary-hover"
-              >
-                Explore Globe
-                <ArrowRight className="h-4 w-4" aria-hidden="true" />
-              </Link>
-              <Link
-                href="/store"
-                className="inline-flex items-center gap-2 rounded-paw-md border border-paw-border bg-paw-panel px-5 py-3 text-sm font-bold text-paw-ink transition hover:border-paw-primary/40 hover:bg-paw-primary-soft"
-              >
-                Shop smart tags
-              </Link>
-            </motion.div>
-          </div>
+          <motion.div {...fadeUp(0.3)} className="mt-paw-xl flex flex-wrap gap-paw-sm">
+            <Link href="/globe" className={buttonClassName({ size: "lg" })}>
+              Explore Globe
+              <ArrowRight className="h-4 w-4" aria-hidden="true" />
+            </Link>
+            <Link
+              href="/store"
+              className={buttonClassName({ variant: "secondary", size: "lg" })}
+            >
+              Shop smart tags
+            </Link>
+          </motion.div>
+        </Card>
 
-          <motion.aside {...fadeUp(0.18)} className="about-system-panel">
-            <div className="hero-map-grid absolute inset-0 opacity-65" />
+        <motion.aside {...fadeUp(0.18)}>
+          <Card className="relative min-h-[31rem] overflow-hidden p-paw-xl sm:p-paw-xxl">
+            <div className="hero-map-grid pointer-events-none absolute inset-0 opacity-35" />
             <div className="relative z-10">
-              <p className="text-xs font-black uppercase tracking-[0.16em] text-paw-muted">
+              <p className="text-paw-type-caption font-black uppercase text-paw-muted">
                 Product system
               </p>
-              <h2 className="mt-2 text-2xl font-extrabold text-paw-ink">
+              <h2 className="mt-paw-xs text-paw-type-h2 font-black text-paw-ink">
                 App, Web, and NFC tags work as one loop.
               </h2>
-              <div className="mt-5 space-y-3">
+              <div className="mt-paw-lg space-y-paw-sm">
                 {[
                   { icon: Smartphone, label: "Daily care", copy: "Walks, pets, reminders, and AI guidance." },
                   { icon: Nfc, label: "Physical safety", copy: "Smart tags open controlled finder pages." },
                   { icon: Globe, label: "Local network", copy: "Map places, community help, and support routes." },
                 ].map((item) => (
-                  <div key={item.label} className="about-system-row">
-                    <span className="about-system-icon">
+                  <div
+                    key={item.label}
+                    className="grid grid-cols-[auto_minmax(0,1fr)] gap-paw-sm rounded-paw-card border border-paw-outline-variant bg-paw-panel-subtle p-paw-sm"
+                  >
+                    <span className="flex h-11 w-11 items-center justify-center rounded-paw-control bg-paw-primary-soft text-paw-on-primary-soft">
                       <item.icon className="h-5 w-5" aria-hidden="true" />
                     </span>
                     <div>
                       <p className="text-sm font-extrabold text-paw-ink">{item.label}</p>
-                      <p className="mt-1 text-xs leading-5 text-paw-body">{item.copy}</p>
+                      <p className="mt-paw-xxs text-xs leading-5 text-paw-body">{item.copy}</p>
                     </div>
                   </div>
                 ))}
               </div>
-              <div className="about-market-grid mt-5">
+              <div className="mt-paw-lg grid grid-cols-2 gap-paw-sm">
                 {[
                   { value: "Finder pages", label: "Controlled public safety flow" },
                   { value: "Smart tags", label: "Physical scan entry" },
                   { value: "Store orders", label: "Stripe-backed purchase path" },
                   { value: "Globe map", label: "Local pet-care context" },
-                ].map((s, i) => (
-                  <div key={i} className="about-metric-tile text-center">
-                    <div className="text-lg font-extrabold leading-tight text-paw-primary md:text-xl">{s.value}</div>
-                    <div className="text-xs text-paw-muted font-medium mt-0.5">{s.label}</div>
-                  </div>
+                ].map((s) => (
+                  <Card key={s.value} className="p-paw-sm text-center shadow-paw-panel">
+                    <div className="text-base font-black leading-tight text-paw-on-primary-soft">
+                      {s.value}
+                    </div>
+                    <div className="mt-paw-xxs text-xs font-semibold text-paw-muted">
+                      {s.label}
+                    </div>
+                  </Card>
                 ))}
               </div>
             </div>
-          </motion.aside>
-        </div>
+          </Card>
+        </motion.aside>
       </section>
 
       {/* ===== MISSION STATEMENT ===== */}
-      <section className="py-16 bg-paw-panel/70 border-y border-paw-border">
-        <div className="max-w-3xl mx-auto px-4 text-center">
+      <section>
+        <Card className="mx-auto max-w-3xl p-paw-xl text-center sm:p-paw-xxl">
           <motion.div {...fadeUp()}>
-            <p className="text-2xl md:text-3xl font-bold text-paw-ink leading-snug">
+            <p className="text-paw-type-h2 font-black leading-snug text-paw-ink sm:text-3xl">
               &ldquo;PawPal&apos;s mission is not to replace companionship with technology, but to{" "}
-              <span className="text-paw-primary">enhance</span> the bond between humans and their pets
+              <span className="text-paw-on-primary-soft">enhance</span> the bond between humans and their pets
               through smart tools.&rdquo;
             </p>
-            <p className="text-sm text-paw-muted mt-4 font-medium">— PawPal Founding Team · Ghent, Belgium</p>
+            <p className="mt-paw-md text-sm font-semibold text-paw-muted">— PawPal Founding Team · Ghent, Belgium</p>
           </motion.div>
-        </div>
+        </Card>
       </section>
 
       {/* ===== PRODUCT ECOSYSTEM ===== */}
-      <section className="relative py-20 max-w-6xl mx-auto px-4">
-        <motion.div {...fadeUp()} className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-paw-ink mb-3">The PawPal Ecosystem</h2>
-          <p className="text-paw-muted max-w-xl mx-auto">App + Web + Hardware — three products, one mission: enhance every moment with your pet.</p>
+      <section>
+        <motion.div {...fadeUp()} className="mx-auto mb-paw-xxl max-w-2xl text-center">
+          <h2 className="font-brand text-paw-type-h1 font-black text-paw-ink sm:text-paw-type-display">The PawPal Ecosystem</h2>
+          <p className="mx-auto mt-paw-sm text-paw-body">App + Web + Hardware — three products, one mission: enhance every moment with your pet.</p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid gap-paw-lg md:grid-cols-3">
           {ECOSYSTEM.map((item, i) => (
-            <motion.div key={i} {...fadeUp(i * 0.08)}
-              className={`bg-paw-panel rounded-paw-lg border ${item.border} p-7 hover:shadow-paw-panel transition-all group`}>
-              <div className={`w-14 h-14 rounded-paw-md flex items-center justify-center ${item.color} mb-5 group-hover:scale-105 transition-transform`}>
-                <item.icon className="w-7 h-7" />
-              </div>
-              <h3 className="text-xl font-bold text-paw-ink mb-2">{item.title}</h3>
-              <p className="text-sm text-paw-muted leading-relaxed">{item.desc}</p>
+            <motion.div key={item.title} {...fadeUp(i * 0.08)}>
+              <Card className="h-full transition hover:-translate-y-1 hover:border-paw-primary/30 hover:shadow-paw-floating">
+                <CardContent>
+                  <div className={`mb-paw-lg flex h-14 w-14 items-center justify-center rounded-paw-panel ${item.tone}`}>
+                    <item.icon className="h-7 w-7" />
+                  </div>
+                  <h3 className="text-paw-type-h3 font-black text-paw-ink">{item.title}</h3>
+                  <p className="mt-paw-sm text-sm leading-6 text-paw-body">{item.desc}</p>
+                </CardContent>
+              </Card>
             </motion.div>
           ))}
         </div>
       </section>
 
       {/* ===== VALUES ===== */}
-      <section className="relative py-20 bg-paw-primary-soft/35">
-        <div className="max-w-6xl mx-auto px-4">
-          <motion.div {...fadeUp()} className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-paw-ink mb-3">What We Stand For</h2>
-            <p className="text-paw-muted max-w-xl mx-auto">Our values guide every decision — from the features we build to the community we grow.</p>
-          </motion.div>
+      <section>
+        <motion.div {...fadeUp()} className="mx-auto mb-paw-xxl max-w-2xl text-center">
+          <h2 className="font-brand text-paw-type-h1 font-black text-paw-ink sm:text-paw-type-display">What We Stand For</h2>
+          <p className="mx-auto mt-paw-sm text-paw-body">Our values guide every decision — from the features we build to the community we grow.</p>
+        </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-            {VALUES.map((v, i) => (
-              <motion.div key={i} {...fadeUp(i * 0.06)}
-                className="bg-paw-panel/85 backdrop-blur-sm rounded-paw-lg border border-paw-border p-6 hover:border-paw-primary/30 transition-all">
-                <v.icon className="w-8 h-8 text-paw-primary mb-3" />
-                <h3 className="text-base font-bold text-paw-ink mb-1">{v.title}</h3>
-                <p className="text-sm text-paw-muted leading-relaxed">{v.desc}</p>
-              </motion.div>
-            ))}
-          </div>
+        <div className="grid gap-paw-md md:grid-cols-2 lg:grid-cols-3">
+          {VALUES.map((v, i) => (
+            <motion.div key={v.title} {...fadeUp(i * 0.06)}>
+              <Card className="h-full transition hover:border-paw-primary/30 hover:shadow-paw-floating">
+                <CardContent>
+                  <span className="mb-paw-md flex h-11 w-11 items-center justify-center rounded-paw-control bg-paw-primary-soft text-paw-on-primary-soft">
+                    <v.icon className="h-5 w-5" />
+                  </span>
+                  <h3 className="text-base font-black text-paw-ink">{v.title}</h3>
+                  <p className="mt-paw-xs text-sm leading-6 text-paw-body">{v.desc}</p>
+                </CardContent>
+              </Card>
+            </motion.div>
+          ))}
         </div>
       </section>
 
       {/* ===== TEAM ===== */}
-      <section className="relative py-20 max-w-5xl mx-auto px-4">
-        <motion.div {...fadeUp()} className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-paw-ink mb-3">Meet the Founding Team</h2>
-          <p className="text-paw-muted max-w-lg mx-auto">A cross-disciplinary trio from Ghent — engineering, business, and design — united by a shared love for pets.</p>
+      <section className="mx-auto max-w-5xl">
+        <motion.div {...fadeUp()} className="mx-auto mb-paw-xxl max-w-2xl text-center">
+          <h2 className="font-brand text-paw-type-h1 font-black text-paw-ink sm:text-paw-type-display">Meet the Founding Team</h2>
+          <p className="mx-auto mt-paw-sm text-paw-body">A cross-disciplinary trio from Ghent — engineering, business, and design — united by a shared love for pets.</p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid gap-paw-lg md:grid-cols-3">
           {TEAM.map((member, i) => (
-            <motion.div key={i} {...fadeUp(i * 0.1)}
-              className="bg-paw-panel rounded-paw-lg border border-paw-border overflow-hidden hover:shadow-paw-panel transition-all group">
-              <div className={`h-28 bg-gradient-to-r ${member.color} relative flex items-end justify-center`}>
-                <div className="absolute -bottom-10 flex h-20 w-20 items-center justify-center rounded-full border-4 border-paw-panel bg-paw-panel text-2xl font-black text-paw-primary shadow-md">
-                  {member.name.slice(0, 1)}
-                </div>
-              </div>
-              <div className="px-6 pt-12 pb-6 text-center">
-                <h3 className="text-lg font-bold text-paw-ink">{member.name}</h3>
-                <p className="text-xs font-semibold text-paw-primary uppercase tracking-wider mb-3">{member.role}</p>
-                <p className="text-sm text-paw-muted leading-relaxed">{member.desc}</p>
-              </div>
+            <motion.div key={member.name} {...fadeUp(i * 0.1)}>
+              <Card className="h-full text-center transition hover:-translate-y-1 hover:border-paw-primary/30 hover:shadow-paw-floating">
+                <CardContent>
+                  <div className="mx-auto mb-paw-md flex h-20 w-20 items-center justify-center rounded-paw-pill border border-paw-outline-variant bg-paw-primary-soft text-2xl font-black text-paw-on-primary-soft shadow-paw-panel">
+                    {member.name.slice(0, 1)}
+                  </div>
+                  <h3 className="text-lg font-black text-paw-ink">{member.name}</h3>
+                  <p className="mb-paw-sm text-xs font-black uppercase text-paw-on-primary-soft">{member.role}</p>
+                  <p className="text-sm leading-6 text-paw-body">{member.desc}</p>
+                </CardContent>
+              </Card>
             </motion.div>
           ))}
         </div>
 
         {/* Team strengths */}
-        <motion.div {...fadeUp(0.3)} className="mt-10 grid grid-cols-2 md:grid-cols-4 gap-4">
-          {[
-            { icon: "🎓", text: "GIS PhD × LBS Product" },
-            { icon: "⚡", text: "52 DB Migrations Shipped" },
-            { icon: "🌍", text: "5 Languages Ready" },
-            { icon: "🇧🇪", text: "Rooted in Ghent" },
-          ].map((s, i) => (
-            <div key={i} className="flex items-center gap-2 px-4 py-3 rounded-paw-md bg-paw-primary-soft border border-paw-primary/15">
-              <span className="text-lg">{s.icon}</span>
-              <span className="text-xs font-semibold text-paw-body">{s.text}</span>
-            </div>
+        <motion.div {...fadeUp(0.3)} className="mt-paw-xl grid gap-paw-sm sm:grid-cols-2 md:grid-cols-4">
+          {TEAM_STRENGTHS.map((s) => (
+            <Card key={s.text} className="shadow-paw-panel">
+              <CardContent className="flex items-center gap-paw-sm p-paw-md">
+                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-paw-control bg-paw-primary-soft text-paw-on-primary-soft">
+                  <s.icon className="h-4 w-4" aria-hidden="true" />
+                </span>
+                <span className="text-xs font-bold text-paw-body">{s.text}</span>
+              </CardContent>
+            </Card>
           ))}
         </motion.div>
       </section>
 
       {/* ===== TIMELINE ===== */}
-      <section className="py-20 bg-paw-panel/70 border-y border-paw-border">
-        <div className="max-w-3xl mx-auto px-4">
-          <motion.div {...fadeUp()} className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-paw-ink mb-3">Our Journey</h2>
-            <p className="text-paw-muted">From a spark of an idea to a production-ready platform.</p>
-          </motion.div>
+      <section className="mx-auto max-w-3xl">
+        <motion.div {...fadeUp()} className="mb-paw-xxl text-center">
+          <h2 className="font-brand text-paw-type-h1 font-black text-paw-ink sm:text-paw-type-display">Our Journey</h2>
+          <p className="mt-paw-sm text-paw-body">From a spark of an idea to a production-ready platform.</p>
+        </motion.div>
 
-          <div className="relative">
-            {/* Vertical line */}
-            <div className="absolute left-[18px] top-0 bottom-0 w-0.5 bg-paw-primary/25 md:left-1/2 md:-translate-x-0.5" />
+        <div className="relative">
+          {/* Vertical line */}
+          <div className="absolute bottom-0 left-[18px] top-0 w-0.5 bg-paw-outline-variant md:left-1/2 md:-translate-x-0.5" />
 
-            {TIMELINE.map((item, i) => (
-              <motion.div key={i} {...fadeUp(i * 0.08)} className={`relative flex items-start gap-4 mb-8 md:mb-10 ${i % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"}`}>
-                {/* Dot */}
-                <div className="w-9 h-9 rounded-full bg-paw-primary border-4 border-paw-primary-soft flex items-center justify-center shrink-0 z-10 md:absolute md:left-1/2 md:-translate-x-1/2">
-                  <PawPrint className="w-3.5 h-3.5 text-white" />
-                </div>
-                {/* Card */}
-                <div className={`flex-1 bg-paw-panel rounded-paw-md border border-paw-border p-4 shadow-sm md:max-w-[45%] ${i % 2 === 0 ? "md:mr-auto md:pr-8" : "md:ml-auto md:pl-8"}`}>
-                  <span className="text-xs font-extrabold text-paw-primary uppercase tracking-wider">{item.year}</span>
-                  <p className="text-sm text-paw-body mt-1 leading-relaxed">{item.event}</p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
+          {TIMELINE.map((item, i) => (
+            <motion.div
+              key={item.year}
+              {...fadeUp(i * 0.08)}
+              className={`relative mb-paw-xl flex items-start gap-paw-md md:mb-paw-xxl ${i % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"}`}
+            >
+              {/* Dot */}
+              <div className="z-10 flex h-9 w-9 shrink-0 items-center justify-center rounded-paw-pill border-4 border-paw-primary-soft bg-paw-primary md:absolute md:left-1/2 md:-translate-x-1/2">
+                <PawPrint className="h-3.5 w-3.5 text-paw-on-primary" />
+              </div>
+              {/* Card */}
+              <Card className={`flex-1 p-paw-md shadow-paw-panel md:max-w-[45%] ${i % 2 === 0 ? "md:mr-auto" : "md:ml-auto"}`}>
+                <span className="text-xs font-black uppercase text-paw-on-primary-soft">{item.year}</span>
+                <p className="mt-paw-xxs text-sm leading-6 text-paw-body">{item.event}</p>
+              </Card>
+            </motion.div>
+          ))}
         </div>
       </section>
 
       {/* ===== CTA ===== */}
-      <section className="relative py-20">
-        <div className="max-w-3xl mx-auto px-4 text-center">
+      <section>
+        <Card className="mx-auto max-w-3xl p-paw-xl text-center sm:p-paw-xxl">
           <motion.div {...fadeUp()}>
-            <h2 className="text-3xl md:text-4xl font-bold text-paw-ink mb-4">
+            <h2 className="font-brand text-paw-type-h1 font-black text-paw-ink sm:text-paw-type-display">
               Join the PawPal Journey
             </h2>
-            <p className="text-paw-muted mb-8 text-lg max-w-lg mx-auto">
+            <p className="mx-auto mb-paw-xl mt-paw-md max-w-lg text-base leading-7 text-paw-body">
               We&apos;re building the platform we wished existed — for every dog owner, cat lover, and pet parent who believes technology should strengthen, not replace, the bond with their best friend.
             </p>
-            <div className="flex flex-wrap justify-center gap-4">
+            <div className="flex flex-wrap justify-center gap-paw-sm">
               <a
                 href="mailto:hello@pawpal.be"
-                className="flex items-center gap-2 bg-paw-primary hover:bg-paw-primary-hover text-paw-accent-ink px-8 py-4 rounded-paw-md font-bold text-lg transition-all shadow-paw-action hover:-translate-y-0.5"
+                className={buttonClassName({ variant: "primary", size: "lg" })}
               >
-                Contact the team <Mail className="w-5 h-5" />
+                Contact the team <Mail className="h-5 w-5" />
               </a>
-              <Link href="/globe"
-                className="flex items-center gap-2 bg-paw-panel hover:bg-paw-panel-subtle text-paw-primary px-8 py-4 rounded-paw-md font-bold text-lg transition-all border border-paw-primary/30">
+              <Link
+                href="/globe"
+                className={buttonClassName({ variant: "secondary", size: "lg" })}
+              >
                 Explore Globe
               </Link>
             </div>
           </motion.div>
 
           {/* Contact line */}
-          <motion.div {...fadeUp(0.2)} className="mt-12 flex items-center justify-center gap-2 text-paw-muted">
-            <Mail className="w-4 h-4" />
-            <span className="text-sm">Questions? Reach us at <a href="mailto:hello@pawpal.be" className="text-paw-primary font-semibold hover:underline">hello@pawpal.be</a></span>
+          <motion.div {...fadeUp(0.2)} className="mt-paw-xl flex items-center justify-center gap-paw-xs text-paw-muted">
+            <Mail className="h-4 w-4" />
+            <span className="text-sm">Questions? Reach us at <a href="mailto:hello@pawpal.be" className="font-semibold text-paw-on-primary-soft hover:underline">hello@pawpal.be</a></span>
           </motion.div>
-        </div>
+        </Card>
       </section>
-    </div>
+    </PageShell>
   );
 }

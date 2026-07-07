@@ -9,6 +9,13 @@ import {
   ShieldCheck,
 } from "lucide-react";
 import { siteConfig } from "@/lib/site";
+import {
+  Badge,
+  Card,
+  CardContent,
+  PageShell,
+  buttonClassName,
+} from "@/components/ui";
 
 const GUIDELINES_SECTIONS = [
   {
@@ -50,69 +57,74 @@ const GUIDELINES_SECTIONS = [
 
 export default function GuidelinesPage() {
   return (
-    <div className="legal-page-shell min-h-screen bg-paw-page pt-28 pb-16 text-paw-ink">
-      <section className="mx-auto max-w-6xl px-4">
-        <div className="legal-hero-panel">
+    <PageShell className="pt-28 sm:pt-32" contentClassName="space-y-paw-xl">
+      <Card className="overflow-hidden p-paw-xl sm:p-paw-xxl">
+        <div className="grid gap-paw-xl lg:grid-cols-[minmax(0,1fr)_minmax(18rem,24rem)] lg:items-center">
           <div>
-            <div className="inline-flex items-center gap-2 rounded-paw-md border border-paw-primary/20 bg-white/80 px-3 py-1.5 text-sm font-extrabold text-paw-primary shadow-sm">
+            <Badge tone="primary" className="mb-paw-lg">
               <MessageSquareWarning className="h-4 w-4" aria-hidden="true" />
               Community Guidelines
-            </div>
-            <h1 className="mt-5 max-w-3xl text-4xl font-extrabold tracking-tight sm:text-6xl">
+            </Badge>
+            <h1 className="max-w-3xl font-brand text-paw-type-h1 font-black text-paw-ink sm:text-paw-type-display">
               Safer community spaces for pets and people.
             </h1>
-            <p className="mt-5 max-w-2xl text-base leading-7 text-paw-body sm:text-lg">
+            <p className="mt-paw-md max-w-2xl text-paw-type-body text-paw-body sm:text-base">
               These guidelines explain what is expected when using PawPal
               community features, public pet safety flows, and in-app content.
             </p>
           </div>
 
-          <aside className="legal-trust-panel">
+          <aside className="grid gap-paw-sm">
             {[
               { icon: ShieldCheck, label: "Respect first", value: "Harassment, threats, and hate speech are not allowed." },
               { icon: Flag, label: "Report controls", value: "Every in-app content item includes a way to report concerns." },
               { icon: Scale, label: "Moderation actions", value: "Violations can lead to removal, suspension, or account bans." },
             ].map((item) => (
-              <div key={item.label} className="legal-trust-row">
-                <item.icon className="h-4 w-4 text-paw-primary" aria-hidden="true" />
+              <div
+                key={item.label}
+                className="grid grid-cols-[auto_minmax(0,1fr)] gap-paw-sm rounded-paw-card border border-paw-outline-variant bg-paw-panel-subtle p-paw-sm"
+              >
+                <item.icon className="h-4 w-4 text-paw-on-primary-soft" aria-hidden="true" />
                 <div>
                   <p className="text-sm font-extrabold text-paw-ink">{item.label}</p>
-                  <p className="mt-1 text-xs leading-5 text-paw-body">{item.value}</p>
+                  <p className="mt-paw-xxs text-xs leading-5 text-paw-body">{item.value}</p>
                 </div>
               </div>
             ))}
           </aside>
         </div>
+      </Card>
 
-        <nav className="legal-section-nav mt-6" aria-label="Community guideline sections">
-          {GUIDELINES_SECTIONS.map((section) => (
-            <a key={section.id} href={`#${section.id}`}>
-              {section.title}
-            </a>
-          ))}
-        </nav>
+      <nav className="flex flex-wrap gap-paw-sm" aria-label="Community guideline sections">
+        {GUIDELINES_SECTIONS.map((section) => (
+          <a
+            key={section.id}
+            href={`#${section.id}`}
+            className={buttonClassName({ variant: "secondary", size: "sm" })}
+          >
+            {section.title}
+          </a>
+        ))}
+      </nav>
 
-        <div className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-          {GUIDELINES_SECTIONS.map((section) => (
-            <article
-              key={section.title}
-              id={section.id}
-              className="legal-info-card rounded-paw-lg border border-paw-border bg-paw-panel p-5 shadow-paw-panel"
-            >
-              <div className="legal-info-icon">
+      <div className="grid gap-paw-md md:grid-cols-2 lg:grid-cols-3">
+        {GUIDELINES_SECTIONS.map((section) => (
+          <Card key={section.title} id={section.id} className="scroll-mt-28 transition hover:-translate-y-1 hover:border-paw-primary/30 hover:shadow-paw-floating">
+            <CardContent>
+              <div className="mb-paw-md flex h-11 w-11 items-center justify-center rounded-paw-control bg-paw-primary-soft text-paw-on-primary-soft">
                 <section.icon className="h-5 w-5" aria-hidden="true" />
               </div>
-              <h2 className="text-xl font-extrabold text-paw-ink">
+              <h2 className="text-paw-type-h2 font-black text-paw-ink">
                 {section.title}
               </h2>
-              <p className="mt-2 text-sm leading-6 text-paw-body">{section.text}</p>
-              <p className="mt-4 text-xs font-black uppercase tracking-[0.14em] text-paw-primary">
+              <p className="mt-paw-sm text-sm leading-6 text-paw-body">{section.text}</p>
+              <p className="mt-paw-md text-xs font-black uppercase text-paw-on-primary-soft">
                 {section.signal}
               </p>
-            </article>
-          ))}
-        </div>
-      </section>
-    </div>
+            </CardContent>
+          </Card>
+        ))}
+      </div>
+    </PageShell>
   );
 }
