@@ -1,73 +1,304 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  --font-sans: "Nunito", "Nunito Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
   --font-mono: ui-monospace, "Cascadia Code", "Fira Code", monospace;
-  --font-brand: "Avenir Next", "Nunito Sans", "Segoe UI", system-ui, sans-serif;
+  --font-brand: "Nunito", "Avenir Next", "Nunito Sans", "Segoe UI", system-ui, sans-serif;
   --font-app-logo: "Nunito", "Avenir Next", "Segoe UI", system-ui, sans-serif;
 
-  /* ── PawPal canonical designer palette ── */
-  --color-brand-blue: #4A90D9;       /* Paw Blue — Primary brand · Map · AI · Links */
-  --color-brand-blue-dark: #367DC8;  /* Paw Blue Hover — Pressed/hover state */
-  --color-brand-teal: #76C7B8;       /* Mint Teal — Trust · Safe · Verified */
-  --color-brand-yellow: #FFCD38;     /* Sunny Yellow — Highlights · Rewards */
-  --color-brand-orange: #F28C44;     /* Warm Orange — Accent · Posting · Social moments */
-  --color-brand-brown: #8F6A56;      /* Soft Brown — Neutral brand anchor */
-  --color-brand-cream: #FFF8EA;      /* Next canvas — App scaffold background */
-  --color-brand-surface: #FFFFFF;    /* White — Card Surface · Inputs */
-  --color-brand-surface-warm: #FFFDF4; /* Warm surface container */
-  --color-brand-ink: #3A2F2A;        /* Strong text — derived from brown */
-  --color-brand-body: #5F514A;       /* Body text — derived from brown */
-  --color-brand-sky: #EAF4FC;        /* Primary soft background */
-  --color-brand-mint: #E9F8F5;       /* Trust/success soft background */
-  --color-brand-sun: #FFF8DC;        /* Yellow soft background */
-  --color-brand-peach: #FFF0E7;      /* Orange soft background */
-  --color-brand-cocoa: #F6EEE9;      /* Brown soft background */
+  /* PawPalNextTokens / PawPalColors, exposed to Tailwind v4 utilities. */
+  --color-brand-blue: var(--color-paw-blue);
+  --color-brand-blue-dark: var(--color-paw-primary-hover);
+  --color-brand-green: var(--color-paw-green);
+  --color-brand-teal: var(--color-paw-mint);
+  --color-brand-yellow: var(--color-paw-yellow);
+  --color-brand-orange: var(--color-paw-coral);
+  --color-brand-brown: var(--color-paw-brown);
+  --color-brand-cream: var(--color-paw-cream);
+  --color-brand-surface: var(--color-paw-panel);
+  --color-brand-surface-warm: var(--color-paw-panel-subtle);
+  --color-brand-ink: var(--color-paw-ink);
+  --color-brand-body: var(--color-paw-body);
+  --color-brand-sky: var(--color-paw-blue-soft);
+  --color-brand-green-soft: var(--color-paw-green-soft);
+  --color-brand-mint: var(--color-paw-mint-soft);
+  --color-brand-sun: var(--color-paw-yellow-soft);
+  --color-brand-peach: var(--color-paw-coral-soft);
+  --color-brand-cocoa: var(--color-paw-danger-soft);
 
-  /* ── PawPal semantic tokens used by shared UI primitives ── */
+  --color-paw-cream: #FFF8EA;
+  --color-paw-blue: #4A90D9;
+  --color-paw-green: #58CC02;
+  --color-paw-coral: #F28C44;
+  --color-paw-yellow: #FFCD38;
+  --color-paw-mint: #76C7B8;
+  --color-paw-critical: #C83A3A;
+  --color-paw-brown: #8F6A56;
+
+  --color-paw-on-blue: #0F172A;
+  --color-paw-on-green: #0F172A;
+  --color-paw-on-coral: #0F172A;
+  --color-paw-on-yellow: #0F172A;
+  --color-paw-on-mint: #0F172A;
+  --color-paw-on-critical: #FFFFFF;
+  --color-paw-on-danger: #FFFFFF;
+  --color-paw-on-action: #0F172A;
+
+  --color-paw-blue-soft: #EAF4FC;
+  --color-paw-green-soft: #D7FFB8;
+  --color-paw-coral-soft: #FFF0E7;
+  --color-paw-yellow-soft: #FFF8DC;
+  --color-paw-mint-soft: #E9F8F5;
+  --color-paw-critical-soft: #FFECEC;
+  --color-paw-on-blue-soft: #0B4A7D;
+  --color-paw-on-green-soft: #2F5C00;
+  --color-paw-on-coral-soft: #7A3E0E;
+  --color-paw-on-yellow-soft: #654D00;
+  --color-paw-on-mint-soft: #155E54;
+  --color-paw-on-critical-soft: #7A1E1E;
+
+  --color-paw-surface: #FFF8EA;
+  --color-paw-surface-container-lowest: #FFFFFF;
+  --color-paw-surface-container-low: #FFFFFF;
+  --color-paw-surface-container: #FFFDF4;
+  --color-paw-outline-variant: #EADFD1;
   --color-paw-page: #FFF8EA;
   --color-paw-panel: #FFFFFF;
+  --color-paw-panel-low: #FFFFFF;
   --color-paw-panel-subtle: #FFFDF4;
+  --color-paw-surface-warm: #FFFDF4;
   --color-paw-ink: #3A2F2A;
   --color-paw-body: #5F514A;
   --color-paw-muted: #8F6A56;
   --color-paw-border: #EADFD1;
+  --color-paw-border-subtle: #D7E7E4;
   --color-paw-border-strong: #D7E7E4;
-  --color-paw-primary: #4A90D9;
-  --color-paw-primary-contrast: #4A90D9;
+
+  --color-paw-primary: var(--color-paw-blue);
+  --color-paw-primary-contrast: var(--color-paw-on-blue);
   --color-paw-primary-hover: #367DC8;
-  --color-paw-primary-soft: #EAF4FC;
-  --color-paw-trust: #76C7B8;
+  --color-paw-primary-soft: var(--color-paw-blue-soft);
+  --color-paw-on-primary: var(--color-paw-on-blue);
+  --color-paw-on-primary-soft: var(--color-paw-on-blue-soft);
+  --color-paw-trust: var(--color-paw-mint);
   --color-paw-trust-hover: #5BB3A3;
-  --color-paw-trust-soft: #E9F8F5;
-  --color-paw-accent: #F28C44;
+  --color-paw-trust-soft: var(--color-paw-mint-soft);
+  --color-paw-on-trust: var(--color-paw-on-mint);
+  --color-paw-on-trust-soft: var(--color-paw-on-mint-soft);
+  --color-paw-accent: var(--color-paw-coral);
   --color-paw-accent-hover: #D87633;
-  --color-paw-accent-soft: #FFF0E7;
-  --color-paw-success: #76C7B8;
-  --color-paw-success-soft: #E9F8F5;
-  --color-paw-warning: #F28C44;
-  --color-paw-warning-soft: #FFF8DC;
-  --color-paw-critical: #C83A3A;
-  --color-paw-critical-soft: #FFECEC;
+  --color-paw-accent-soft: var(--color-paw-coral-soft);
+  --color-paw-accent-ink: #0F172A;
+  --color-paw-on-accent: var(--color-paw-on-coral);
+  --color-paw-on-accent-soft: var(--color-paw-on-coral-soft);
+  --color-paw-success: var(--color-paw-mint);
+  --color-paw-success-soft: var(--color-paw-mint-soft);
+  --color-paw-on-success: var(--color-paw-on-mint);
+  --color-paw-on-success-soft: var(--color-paw-on-mint-soft);
+  --color-paw-warning: var(--color-paw-coral);
+  --color-paw-warning-soft: var(--color-paw-yellow-soft);
+  --color-paw-on-warning: var(--color-paw-on-coral);
+  --color-paw-on-warning-soft: var(--color-paw-on-yellow-soft);
   --color-paw-danger: #8F6A56;
   --color-paw-danger-hover: #76513F;
   --color-paw-danger-soft: #F6EEE9;
-  --color-paw-yellow: #FFCD38;
-  --color-paw-brown: #8F6A56;
-  --color-paw-accent-ink: #0F172A;
-  --radius-paw-sm: 0.5rem;
-  --radius-paw-md: 0.5rem;
-  --radius-paw-lg: 0.75rem;
-  --shadow-paw-panel: 0 18px 48px rgba(58, 47, 42, 0.08);
+  --color-paw-on-danger-soft: #5E3826;
+
+  --spacing-paw-xxs: 4px;
+  --spacing-paw-xs: 8px;
+  --spacing-paw-sm: 12px;
+  --spacing-paw-md: 16px;
+  --spacing-paw-lg: 20px;
+  --spacing-paw-xl: 24px;
+  --spacing-paw-xxl: 32px;
+  --spacing-paw-xxxl: 40px;
+  --spacing-paw-min-tap: 44px;
+
+  --radius-paw-xs: 6px;
+  --radius-paw-sm: 8px;
+  --radius-paw-md: 12px;
+  --radius-paw-lg: 16px;
+  --radius-paw-xl: 20px;
+  --radius-paw-full: 999px;
+  --radius-paw-control: 8px;
+  --radius-paw-card: 12px;
+  --radius-paw-panel: 16px;
+  --radius-paw-sheet: 20px;
+  --radius-paw-next-card: 24px;
+  --radius-paw-pill: 999px;
+
+  --text-paw-type-display: 34px;
+  --text-paw-type-display--line-height: 1.05;
+  --text-paw-type-h1: 28px;
+  --text-paw-type-h1--line-height: 1.12;
+  --text-paw-type-h2: 22px;
+  --text-paw-type-h2--line-height: 1.18;
+  --text-paw-type-h3: 18px;
+  --text-paw-type-h3--line-height: 1.25;
+  --text-paw-type-body: 15px;
+  --text-paw-type-body--line-height: 1.55;
+  --text-paw-type-caption: 12px;
+  --text-paw-type-caption--line-height: 1.4;
+  --text-paw-type-metric: 32px;
+  --text-paw-type-metric--line-height: 1;
+
+  --duration-paw-fast: 120ms;
+  --duration-paw-normal: 180ms;
+  --duration-paw-slow: 280ms;
+  --shadow-paw-strong: 0 14px 30px rgba(0, 0, 0, 0.12);
+  --shadow-paw-control: 0 4px 12px rgba(0, 0, 0, 0.14);
+  --shadow-paw-panel: 0 10px 24px rgba(0, 0, 0, 0.08);
+  --shadow-paw-floating: 0 8px 18px rgba(74, 144, 217, 0.24);
   --shadow-paw-action: 0 14px 28px rgba(74, 144, 217, 0.22);
   --shadow-paw-trust-action: 0 12px 28px rgba(118, 199, 184, 0.26);
 }
 
 :root {
-  --background: var(--color-brand-cream);
-  --foreground: var(--color-brand-ink);
-  --primary: var(--color-brand-blue);
+  --color-brand-blue: var(--color-paw-blue);
+  --color-brand-blue-dark: var(--color-paw-primary-hover);
+  --color-brand-green: var(--color-paw-green);
+  --color-brand-teal: var(--color-paw-mint);
+  --color-brand-yellow: var(--color-paw-yellow);
+  --color-brand-orange: var(--color-paw-coral);
+  --color-brand-brown: var(--color-paw-brown);
+  --color-brand-cream: var(--color-paw-cream);
+  --color-brand-surface: var(--color-paw-panel);
+  --color-brand-surface-warm: var(--color-paw-panel-subtle);
+  --color-brand-ink: var(--color-paw-ink);
+  --color-brand-body: var(--color-paw-body);
+  --color-brand-sky: var(--color-paw-blue-soft);
+  --color-brand-green-soft: var(--color-paw-green-soft);
+  --color-brand-mint: var(--color-paw-mint-soft);
+  --color-brand-sun: var(--color-paw-yellow-soft);
+  --color-brand-peach: var(--color-paw-coral-soft);
+  --color-brand-cocoa: var(--color-paw-danger-soft);
+
+  --color-paw-cream: #FFF8EA;
+  --color-paw-blue: #4A90D9;
+  --color-paw-green: #58CC02;
+  --color-paw-coral: #F28C44;
+  --color-paw-yellow: #FFCD38;
+  --color-paw-mint: #76C7B8;
+  --color-paw-critical: #C83A3A;
+  --color-paw-brown: #8F6A56;
+
+  --color-paw-on-blue: #0F172A;
+  --color-paw-on-green: #0F172A;
+  --color-paw-on-coral: #0F172A;
+  --color-paw-on-yellow: #0F172A;
+  --color-paw-on-mint: #0F172A;
+  --color-paw-on-critical: #FFFFFF;
+  --color-paw-on-danger: #FFFFFF;
+  --color-paw-on-action: #0F172A;
+
+  --color-paw-blue-soft: #EAF4FC;
+  --color-paw-green-soft: #D7FFB8;
+  --color-paw-coral-soft: #FFF0E7;
+  --color-paw-yellow-soft: #FFF8DC;
+  --color-paw-mint-soft: #E9F8F5;
+  --color-paw-critical-soft: #FFECEC;
+  --color-paw-on-blue-soft: #0B4A7D;
+  --color-paw-on-green-soft: #2F5C00;
+  --color-paw-on-coral-soft: #7A3E0E;
+  --color-paw-on-yellow-soft: #654D00;
+  --color-paw-on-mint-soft: #155E54;
+  --color-paw-on-critical-soft: #7A1E1E;
+
+  --color-paw-surface: #FFF8EA;
+  --color-paw-surface-container-lowest: #FFFFFF;
+  --color-paw-surface-container-low: #FFFFFF;
+  --color-paw-surface-container: #FFFDF4;
+  --color-paw-outline-variant: #EADFD1;
+  --color-paw-page: #FFF8EA;
+  --color-paw-panel: #FFFFFF;
+  --color-paw-panel-low: #FFFFFF;
+  --color-paw-panel-subtle: #FFFDF4;
+  --color-paw-surface-warm: #FFFDF4;
+  --color-paw-ink: #3A2F2A;
+  --color-paw-body: #5F514A;
+  --color-paw-muted: #8F6A56;
+  --color-paw-border: #EADFD1;
+  --color-paw-border-subtle: #D7E7E4;
+  --color-paw-border-strong: #D7E7E4;
+
+  --color-paw-primary: var(--color-paw-blue);
+  --color-paw-primary-contrast: var(--color-paw-on-blue);
+  --color-paw-primary-hover: #367DC8;
+  --color-paw-primary-soft: var(--color-paw-blue-soft);
+  --color-paw-on-primary: var(--color-paw-on-blue);
+  --color-paw-on-primary-soft: var(--color-paw-on-blue-soft);
+  --color-paw-trust: var(--color-paw-mint);
+  --color-paw-trust-hover: #5BB3A3;
+  --color-paw-trust-soft: var(--color-paw-mint-soft);
+  --color-paw-on-trust: var(--color-paw-on-mint);
+  --color-paw-on-trust-soft: var(--color-paw-on-mint-soft);
+  --color-paw-accent: var(--color-paw-coral);
+  --color-paw-accent-hover: #D87633;
+  --color-paw-accent-soft: var(--color-paw-coral-soft);
+  --color-paw-accent-ink: #0F172A;
+  --color-paw-on-accent: var(--color-paw-on-coral);
+  --color-paw-on-accent-soft: var(--color-paw-on-coral-soft);
+  --color-paw-success: var(--color-paw-mint);
+  --color-paw-success-soft: var(--color-paw-mint-soft);
+  --color-paw-on-success: var(--color-paw-on-mint);
+  --color-paw-on-success-soft: var(--color-paw-on-mint-soft);
+  --color-paw-warning: var(--color-paw-coral);
+  --color-paw-warning-soft: var(--color-paw-yellow-soft);
+  --color-paw-on-warning: var(--color-paw-on-coral);
+  --color-paw-on-warning-soft: var(--color-paw-on-yellow-soft);
+  --color-paw-danger: #8F6A56;
+  --color-paw-danger-hover: #76513F;
+  --color-paw-danger-soft: #F6EEE9;
+  --color-paw-on-danger-soft: #5E3826;
+
+  --spacing-paw-xxs: 4px;
+  --spacing-paw-xs: 8px;
+  --spacing-paw-sm: 12px;
+  --spacing-paw-md: 16px;
+  --spacing-paw-lg: 20px;
+  --spacing-paw-xl: 24px;
+  --spacing-paw-xxl: 32px;
+  --spacing-paw-xxxl: 40px;
+  --spacing-paw-min-tap: 44px;
+
+  --radius-paw-xs: 6px;
+  --radius-paw-sm: 8px;
+  --radius-paw-md: 12px;
+  --radius-paw-lg: 16px;
+  --radius-paw-xl: 20px;
+  --radius-paw-full: 999px;
+  --radius-paw-control: 8px;
+  --radius-paw-card: 12px;
+  --radius-paw-panel: 16px;
+  --radius-paw-sheet: 20px;
+  --radius-paw-next-card: 24px;
+  --radius-paw-pill: 999px;
+
+  --type-paw-display: 34px;
+  --type-paw-h1: 28px;
+  --type-paw-h2: 22px;
+  --type-paw-h3: 18px;
+  --type-paw-body: 15px;
+  --type-paw-caption: 12px;
+  --type-paw-metric: 32px;
+
+  --motion-paw-fast: 120ms;
+  --motion-paw-normal: 180ms;
+  --motion-paw-slow: 280ms;
+  --depth-paw-raised: 5;
+  --depth-paw-pressed: 1;
+  --shadow-paw-strong: 0 14px 30px rgba(0, 0, 0, 0.12);
+  --shadow-paw-control: 0 4px 12px rgba(0, 0, 0, 0.14);
+  --shadow-paw-panel: 0 10px 24px rgba(0, 0, 0, 0.08);
+  --shadow-paw-floating: 0 8px 18px rgba(74, 144, 217, 0.24);
+  --shadow-paw-action: 0 14px 28px rgba(74, 144, 217, 0.22);
+  --shadow-paw-trust-action: 0 12px 28px rgba(118, 199, 184, 0.26);
+
+  --background: var(--color-paw-page);
+  --foreground: var(--color-paw-ink);
+  --primary: var(--color-paw-primary);
   --primary-glow: rgba(74, 144, 217, 0.35);
+  --focus-ring: rgba(74, 144, 217, 0.34);
   --paw-logo-wordmark: #171413;
   color-scheme: light;
 }
@@ -127,13 +358,50 @@ main:focus {
 
 .skip-to-content:focus-visible {
   transform: translateY(0);
-  outline: 3px solid rgba(74, 144, 217, 0.38);
+  outline: 3px solid var(--focus-ring);
   outline-offset: 3px;
 }
 
 :where(a, button, input, select, textarea):focus-visible {
-  outline: 3px solid rgba(74, 144, 217, 0.34);
+  outline: 3px solid var(--focus-ring);
   outline-offset: 3px;
+}
+
+.bg-paw-primary-soft.text-paw-primary,
+.bg-paw-primary-soft .text-paw-primary {
+  color: var(--color-paw-on-primary-soft);
+}
+
+.bg-paw-green-soft.text-paw-green,
+.bg-paw-green-soft .text-paw-green {
+  color: var(--color-paw-on-green-soft);
+}
+
+.bg-paw-trust-soft.text-paw-trust,
+.bg-paw-trust-soft .text-paw-trust,
+.bg-paw-success-soft.text-paw-success,
+.bg-paw-success-soft .text-paw-success {
+  color: var(--color-paw-on-trust-soft);
+}
+
+.bg-paw-accent-soft.text-paw-accent,
+.bg-paw-accent-soft .text-paw-accent {
+  color: var(--color-paw-on-accent-soft);
+}
+
+.bg-paw-warning-soft.text-paw-warning,
+.bg-paw-warning-soft .text-paw-warning {
+  color: var(--color-paw-on-warning-soft);
+}
+
+.bg-paw-critical-soft.text-paw-critical,
+.bg-paw-critical-soft .text-paw-critical {
+  color: var(--color-paw-on-critical-soft);
+}
+
+.bg-paw-danger-soft.text-paw-danger,
+.bg-paw-danger-soft .text-paw-danger {
+  color: var(--color-paw-on-danger-soft);
 }
 
 .pawpal-logo-light,
@@ -169,39 +437,149 @@ li {
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #141A20;
-    --foreground: #FFFFFF;
+    --color-brand-blue: var(--color-paw-blue);
+    --color-brand-blue-dark: var(--color-paw-primary-hover);
+    --color-brand-green: var(--color-paw-green);
+    --color-brand-teal: var(--color-paw-mint);
+    --color-brand-yellow: var(--color-paw-yellow);
+    --color-brand-orange: var(--color-paw-coral);
+    --color-brand-brown: var(--color-paw-brown);
+    --color-brand-cream: var(--color-paw-cream);
+    --color-brand-surface: var(--color-paw-panel);
+    --color-brand-surface-warm: var(--color-paw-panel-subtle);
+    --color-brand-ink: var(--color-paw-ink);
+    --color-brand-body: var(--color-paw-body);
+    --color-brand-sky: var(--color-paw-blue-soft);
+    --color-brand-green-soft: var(--color-paw-green-soft);
+    --color-brand-mint: var(--color-paw-mint-soft);
+    --color-brand-sun: var(--color-paw-yellow-soft);
+    --color-brand-peach: var(--color-paw-coral-soft);
+    --color-brand-cocoa: var(--color-paw-danger-soft);
+
+    --color-paw-cream: #141A20;
+    --color-paw-blue: #74B8EA;
+    --color-paw-green: #7BE833;
+    --color-paw-coral: #F7A160;
+    --color-paw-yellow: #FFCD38;
+    --color-paw-mint: #8DD8CC;
+    --color-paw-critical: #FF8A8A;
+    --color-paw-brown: #B9917D;
+
+    --color-paw-on-blue: #0F172A;
+    --color-paw-on-green: #0F172A;
+    --color-paw-on-coral: #0F172A;
+    --color-paw-on-yellow: #0F172A;
+    --color-paw-on-mint: #0F172A;
+    --color-paw-on-critical: #0F172A;
+    --color-paw-on-danger: #0F172A;
+    --color-paw-on-action: #0F172A;
+
+    --color-paw-blue-soft: #17324A;
+    --color-paw-green-soft: #1E3F0D;
+    --color-paw-coral-soft: #4A2D1F;
+    --color-paw-yellow-soft: #4B3B16;
+    --color-paw-mint-soft: #183D38;
+    --color-paw-critical-soft: #4D1E1E;
+    --color-paw-on-blue-soft: #FFFFFF;
+    --color-paw-on-green-soft: #FFFFFF;
+    --color-paw-on-coral-soft: #FFFFFF;
+    --color-paw-on-yellow-soft: #FFFFFF;
+    --color-paw-on-mint-soft: #FFFFFF;
+    --color-paw-on-critical-soft: #FFFFFF;
+
+    --color-paw-surface: #1B232A;
+    --color-paw-surface-container-lowest: #141A20;
+    --color-paw-surface-container-low: #1D272D;
+    --color-paw-surface-container: #243139;
+    --color-paw-outline-variant: #42635D;
     --color-paw-page: #141A20;
-    --color-paw-panel: #1B232A;
+    --color-paw-panel: #1D272D;
+    --color-paw-panel-low: #1D272D;
     --color-paw-panel-subtle: #243139;
+    --color-paw-surface-warm: #243139;
     --color-paw-ink: #FFFFFF;
     --color-paw-body: #E4D7CF;
     --color-paw-muted: #B9917D;
     --color-paw-border: #42635D;
+    --color-paw-border-subtle: rgba(141, 216, 204, 0.38);
     --color-paw-border-strong: rgba(141, 216, 204, 0.38);
-    --color-paw-primary: #74B8EA;
-    --color-paw-primary-contrast: #2F6FAE;
+    --color-paw-primary: var(--color-paw-blue);
+    --color-paw-primary-contrast: var(--color-paw-on-blue);
     --color-paw-primary-hover: #9BCDF1;
-    --color-paw-primary-soft: #17324A;
-    --color-paw-trust: #8DD8CC;
+    --color-paw-primary-soft: var(--color-paw-blue-soft);
+    --color-paw-on-primary: var(--color-paw-on-blue);
+    --color-paw-on-primary-soft: var(--color-paw-on-blue-soft);
+    --color-paw-trust: var(--color-paw-mint);
     --color-paw-trust-hover: #A9E4DA;
-    --color-paw-trust-soft: #183D38;
-    --color-paw-accent: #F7A160;
+    --color-paw-trust-soft: var(--color-paw-mint-soft);
+    --color-paw-on-trust: var(--color-paw-on-mint);
+    --color-paw-on-trust-soft: var(--color-paw-on-mint-soft);
+    --color-paw-accent: var(--color-paw-coral);
     --color-paw-accent-hover: #FFBD86;
-    --color-paw-accent-soft: #4A2D1F;
-    --color-paw-success: #8DD8CC;
-    --color-paw-success-soft: #183D38;
-    --color-paw-warning: #FFD95C;
-    --color-paw-warning-soft: #4B3B16;
-    --color-paw-critical: #FF8A8A;
-    --color-paw-critical-soft: #4D1E1E;
-    --color-paw-danger: #B9917D;
+    --color-paw-accent-soft: var(--color-paw-coral-soft);
+    --color-paw-accent-ink: #0F172A;
+    --color-paw-on-accent: var(--color-paw-on-coral);
+    --color-paw-on-accent-soft: var(--color-paw-on-coral-soft);
+    --color-paw-success: var(--color-paw-mint);
+    --color-paw-success-soft: var(--color-paw-mint-soft);
+    --color-paw-on-success: var(--color-paw-on-mint);
+    --color-paw-on-success-soft: var(--color-paw-on-mint-soft);
+    --color-paw-warning: var(--color-paw-coral);
+    --color-paw-warning-soft: var(--color-paw-yellow-soft);
+    --color-paw-on-warning: var(--color-paw-on-coral);
+    --color-paw-on-warning-soft: var(--color-paw-on-yellow-soft);
+    --color-paw-danger: var(--color-paw-brown);
     --color-paw-danger-hover: #D3A893;
     --color-paw-danger-soft: #3F2B24;
-    --color-paw-accent-ink: #0F172A;
-    --shadow-paw-panel: 0 14px 36px rgba(0, 0, 0, 0.32);
+    --color-paw-on-danger-soft: #FFFFFF;
+
+    --spacing-paw-xxs: 4px;
+    --spacing-paw-xs: 8px;
+    --spacing-paw-sm: 12px;
+    --spacing-paw-md: 16px;
+    --spacing-paw-lg: 20px;
+    --spacing-paw-xl: 24px;
+    --spacing-paw-xxl: 32px;
+    --spacing-paw-xxxl: 40px;
+    --spacing-paw-min-tap: 44px;
+
+    --radius-paw-xs: 6px;
+    --radius-paw-sm: 8px;
+    --radius-paw-md: 12px;
+    --radius-paw-lg: 16px;
+    --radius-paw-xl: 20px;
+    --radius-paw-full: 999px;
+    --radius-paw-control: 8px;
+    --radius-paw-card: 12px;
+    --radius-paw-panel: 16px;
+    --radius-paw-sheet: 20px;
+    --radius-paw-next-card: 24px;
+    --radius-paw-pill: 999px;
+
+    --type-paw-display: 34px;
+    --type-paw-h1: 28px;
+    --type-paw-h2: 22px;
+    --type-paw-h3: 18px;
+    --type-paw-body: 15px;
+    --type-paw-caption: 12px;
+    --type-paw-metric: 32px;
+
+    --motion-paw-fast: 120ms;
+    --motion-paw-normal: 180ms;
+    --motion-paw-slow: 280ms;
+    --depth-paw-raised: 5;
+    --depth-paw-pressed: 1;
+    --shadow-paw-strong: 0 14px 30px rgba(0, 0, 0, 0.34);
+    --shadow-paw-control: 0 4px 12px rgba(0, 0, 0, 0.34);
+    --shadow-paw-panel: 0 10px 24px rgba(0, 0, 0, 0.30);
+    --shadow-paw-floating: 0 8px 18px rgba(116, 184, 234, 0.24);
     --shadow-paw-action: 0 16px 34px rgba(74, 144, 217, 0.30);
     --shadow-paw-trust-action: 0 16px 34px rgba(118, 199, 184, 0.30);
+    --background: var(--color-paw-page);
+    --foreground: var(--color-paw-ink);
+    --primary: var(--color-paw-primary);
+    --primary-glow: rgba(116, 184, 234, 0.35);
+    --focus-ring: rgba(116, 184, 234, 0.38);
     --paw-logo-wordmark: #FFFFFF;
     color-scheme: dark;
   }
@@ -1151,7 +1529,7 @@ li {
 
 .home-final-cta a:first-child {
   background: #ffffff;
-  color: var(--color-paw-primary-contrast);
+  color: var(--color-paw-primary);
   box-shadow: none;
 }
 
