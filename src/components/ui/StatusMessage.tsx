@@ -15,12 +15,14 @@ const toneStyles: Record<
   { container: string; icon: string; Icon: LucideIcon }
 > = {
   info: {
-    container: "border-paw-primary/20 bg-paw-primary-soft text-paw-on-primary-soft",
+    container:
+      "border-paw-primary/20 bg-paw-primary-soft text-paw-on-primary-soft",
     icon: "bg-paw-primary text-paw-on-primary",
     Icon: Info,
   },
   success: {
-    container: "border-paw-success/20 bg-paw-success-soft text-paw-on-success-soft",
+    container:
+      "border-paw-success/20 bg-paw-success-soft text-paw-on-success-soft",
     icon: "bg-paw-success text-paw-on-success",
     Icon: CheckCircle2,
   },
@@ -55,7 +57,7 @@ export default function StatusMessage({
   return (
     <div
       className={cn(
-        "flex gap-3 rounded-paw-md border p-4 text-sm leading-6",
+        "flex gap-paw-sm rounded-paw-xl border p-paw-md text-paw-type-body shadow-paw-panel",
         styles.container,
         className,
       )}
@@ -64,7 +66,7 @@ export default function StatusMessage({
     >
       <span
         className={cn(
-          "mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-paw-sm",
+          "mt-0.5 flex h-paw-min-tap w-paw-min-tap shrink-0 items-center justify-center rounded-paw-lg",
           styles.icon,
         )}
       >

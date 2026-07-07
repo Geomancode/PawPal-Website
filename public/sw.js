@@ -1,4 +1,4 @@
-const CACHE_NAME = "pawpal-shell-v6-transparent-logo-mark";
+const CACHE_NAME = "pawpal-shell-v7-next-primitives";
 const SHELL_ASSETS = [
   "/",
   "/globe",

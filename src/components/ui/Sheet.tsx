@@ -19,8 +19,8 @@ type SheetProps = {
 };
 
 const panelBySide: Record<SheetSide, string> = {
-  right: "right-0 top-0 h-full w-full max-w-md border-l",
-  bottom: "bottom-0 left-0 max-h-[86vh] w-full rounded-t-paw-lg border-t",
+  right: "right-0 top-0 h-full w-full max-w-md rounded-l-paw-sheet border-l",
+  bottom: "bottom-0 left-0 max-h-[86vh] w-full rounded-t-paw-sheet border-t",
 };
 
 export default function Sheet({
@@ -52,13 +52,13 @@ export default function Sheet({
       />
       <section
         className={cn(
-          "fixed flex flex-col border-paw-border bg-paw-panel text-paw-ink shadow-paw-panel",
+          "fixed flex flex-col border-paw-outline-variant bg-paw-panel-low text-paw-ink shadow-paw-strong",
           panelBySide[side],
           panelClassName,
         )}
       >
         {(title || description) && (
-          <header className="flex items-start justify-between gap-4 border-b border-paw-border px-5 py-4">
+          <header className="flex items-start justify-between gap-paw-md border-b border-paw-outline-variant px-paw-lg py-paw-md">
             <div className="min-w-0">
               {title && (
                 <h2 className="text-base font-extrabold leading-6 text-paw-ink">
@@ -83,9 +83,9 @@ export default function Sheet({
             </Button>
           </header>
         )}
-        <div className="min-h-0 flex-1 overflow-y-auto px-5 py-5">{children}</div>
+        <div className="min-h-0 flex-1 overflow-y-auto px-paw-lg py-paw-lg">{children}</div>
         {footer && (
-          <footer className="border-t border-paw-border bg-paw-panel px-5 py-4">
+          <footer className="border-t border-paw-outline-variant bg-paw-panel-low px-paw-lg py-paw-md">
             {footer}
           </footer>
         )}

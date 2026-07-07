@@ -25,33 +25,35 @@ export default function PageShell({
   const hasHeader = eyebrow || title || description || actions;
 
   return (
-    <section className={cn("bg-paw-page py-10 text-paw-ink sm:py-14", className)}>
-      <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+    <section
+      className={cn("bg-paw-page py-paw-xxl text-paw-ink sm:py-paw-xxxl", className)}
+    >
+      <div className="mx-auto w-full max-w-7xl px-paw-md sm:px-paw-xl lg:px-paw-xxl">
         {hasHeader && (
           <div
             className={cn(
-              "mb-8 flex flex-col gap-4 sm:mb-10 lg:flex-row lg:items-end lg:justify-between",
+              "mb-paw-xxl flex flex-col gap-paw-md sm:mb-paw-xxxl lg:flex-row lg:items-end lg:justify-between",
               headerClassName,
             )}
           >
             <div className="max-w-2xl">
               {eyebrow && (
-                <div className="mb-2 text-xs font-extrabold uppercase tracking-wide text-paw-primary">
+                <div className="mb-paw-xs text-xs font-black uppercase text-paw-on-primary-soft">
                   {eyebrow}
                 </div>
               )}
               {title && (
-                <h1 className="font-brand text-3xl font-extrabold leading-tight text-paw-ink sm:text-4xl">
+                <h1 className="font-brand text-paw-type-h1 font-black text-paw-ink sm:text-paw-type-display">
                   {title}
                 </h1>
               )}
               {description && (
-                <p className="mt-3 text-base leading-7 text-paw-body">
+                <p className="mt-paw-sm text-paw-type-body text-paw-body">
                   {description}
                 </p>
               )}
             </div>
-            {actions && <div className="flex flex-wrap gap-3">{actions}</div>}
+            {actions && <div className="flex flex-wrap gap-paw-sm">{actions}</div>}
           </div>
         )}
         <div className={contentClassName}>{children}</div>

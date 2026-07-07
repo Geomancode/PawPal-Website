@@ -36,11 +36,11 @@ export default function AppDeepLinkButton({
         {children}
       </a>
       {showFallback && (
-        <div className="rounded-paw-sm border border-paw-border bg-paw-panel-subtle px-3 py-2 text-xs leading-5 text-paw-body">
+        <div className="rounded-paw-xl border border-paw-outline-variant bg-paw-panel-subtle px-paw-sm py-paw-xs text-xs leading-5 text-paw-body shadow-paw-panel">
           If the app did not open, keep browsing here or install PawPal first.
           <Link
             href={fallbackHref}
-            className="mt-2 inline-flex items-center gap-1 font-extrabold text-paw-primary hover:text-paw-primary-hover"
+            className="mt-2 inline-flex items-center gap-1 font-extrabold text-paw-on-primary-soft hover:underline"
           >
             {fallbackLabel}
             <ArrowRight className="h-3 w-3" aria-hidden="true" />

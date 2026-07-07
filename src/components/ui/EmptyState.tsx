@@ -20,12 +20,12 @@ export default function EmptyState({
   return (
     <div
       className={cn(
-        "flex min-h-56 flex-col items-center justify-center rounded-paw-lg border border-dashed border-paw-border bg-paw-panel-subtle px-6 py-10 text-center",
+        "flex min-h-56 flex-col items-center justify-center rounded-paw-next-card border border-dashed border-paw-outline-variant bg-paw-panel-subtle px-paw-xl py-paw-xxxl text-center shadow-paw-panel",
         className,
       )}
     >
       {Icon && (
-        <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-paw-md bg-paw-primary-soft text-paw-primary">
+        <div className="mb-paw-md flex h-12 w-12 items-center justify-center rounded-paw-pill bg-paw-primary-soft text-paw-on-primary-soft">
           <Icon className="h-6 w-6" aria-hidden="true" />
         </div>
       )}
