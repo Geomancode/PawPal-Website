@@ -79,8 +79,8 @@ export default async function SharedUserPage({ params }: PageProps) {
   return (
     <section className="bg-paw-page px-4 py-10 text-paw-ink sm:px-6 sm:py-14">
       <div className="mx-auto max-w-4xl overflow-hidden rounded-paw-lg border border-paw-border bg-paw-panel shadow-paw-panel">
-        <div className="bg-gradient-to-r from-paw-primary to-paw-accent px-6 py-10 text-center text-white">
-          <div className="relative mx-auto h-24 w-24 overflow-hidden rounded-full border-4 border-white/70 bg-white/20">
+        <div className="bg-gradient-to-r from-paw-primary to-paw-accent px-6 py-10 text-center text-paw-on-primary">
+          <div className="relative mx-auto h-24 w-24 overflow-hidden rounded-full border-4 border-paw-panel/70 bg-paw-panel/20">
             {profile.avatar_url ? (
               <Image
                 src={profile.avatar_url}
@@ -96,8 +96,8 @@ export default async function SharedUserPage({ params }: PageProps) {
             )}
           </div>
           <h1 className="mt-4 font-brand text-3xl font-extrabold">{name}</h1>
-          <p className="mt-1 text-sm font-semibold text-white/80">{username}</p>
-          {profile.bio && <p className="mx-auto mt-4 max-w-xl text-sm leading-6 text-white/85">{profile.bio}</p>}
+          <p className="mt-1 text-sm font-semibold text-paw-page/80">{username}</p>
+          {profile.bio && <p className="mx-auto mt-4 max-w-xl text-sm leading-6 text-paw-on-primary/85">{profile.bio}</p>}
         </div>
 
         <div className="grid gap-6 p-6 lg:grid-cols-[1fr_280px]">

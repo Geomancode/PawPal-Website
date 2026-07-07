@@ -1,4 +1,4 @@
-import type { Metadata, Viewport } from "next";
+import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Providers from "@/components/Providers";
@@ -75,10 +75,6 @@ export const metadata: Metadata = {
     ],
     apple: "/assets/logos/pawpal-logo-light.svg",
   },
-};
-
-export const viewport: Viewport = {
-  themeColor: "#4A90D9",
 };
 
 const jsonLd = {

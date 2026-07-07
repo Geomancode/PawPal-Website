@@ -46,7 +46,7 @@ export default function Sheet({
     >
       <button
         type="button"
-        className="absolute inset-0 bg-black/35 backdrop-blur-sm"
+        className="absolute inset-0 bg-paw-ink/35 backdrop-blur-sm"
         aria-label="Close"
         onClick={onClose}
       />

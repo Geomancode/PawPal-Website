@@ -4,11 +4,11 @@
   right: 0;
   left: 0;
   z-index: 10000;
-  border-bottom: 1px solid rgba(234, 223, 209, 0.74);
+  border-bottom: 1px solid color-mix(in srgb, var(--color-paw-border) 74%, transparent);
   background:
-    linear-gradient(90deg, rgba(255, 255, 255, 0.94), rgba(255, 253, 244, 0.90)),
-    linear-gradient(90deg, rgba(74, 144, 217, 0.05), transparent 42%, rgba(118, 199, 184, 0.05));
-  box-shadow: 0 8px 30px rgba(58, 47, 42, 0.05);
+    linear-gradient(90deg, color-mix(in srgb, var(--color-paw-panel) 94%, transparent), color-mix(in srgb, var(--color-paw-panel-subtle) 90%, transparent)),
+    linear-gradient(90deg, color-mix(in srgb, var(--color-paw-primary) 5%, transparent), transparent 42%, color-mix(in srgb, var(--color-paw-trust) 5%, transparent));
+  box-shadow: var(--shadow-paw-panel);
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
 }
@@ -19,12 +19,12 @@
   left: 0.75rem;
   z-index: 9900;
   width: auto;
-  border: 1px solid rgba(234, 223, 209, 0.72);
+  border: 1px solid color-mix(in srgb, var(--color-paw-border) 72%, transparent);
   border-radius: var(--radius-paw-md);
   background:
-    linear-gradient(90deg, rgba(255, 255, 255, 0.88), rgba(255, 253, 244, 0.80)),
-    linear-gradient(90deg, rgba(74, 144, 217, 0.08), transparent 48%, rgba(118, 199, 184, 0.08));
-  box-shadow: 0 16px 42px rgba(58, 47, 42, 0.10);
+    linear-gradient(90deg, color-mix(in srgb, var(--color-paw-panel) 88%, transparent), color-mix(in srgb, var(--color-paw-panel-subtle) 80%, transparent)),
+    linear-gradient(90deg, color-mix(in srgb, var(--color-paw-primary) 8%, transparent), transparent 48%, color-mix(in srgb, var(--color-paw-trust) 8%, transparent));
+  box-shadow: var(--shadow-paw-strong);
 }
 
 .siteNavMap .navLinkPill {
@@ -34,12 +34,12 @@
 }
 
 .siteNavMap .navLinkPill.isActive {
-  background: rgba(234, 244, 252, 0.88);
+  background: color-mix(in srgb, var(--color-paw-primary-soft) 88%, transparent);
 }
 
 .siteNavMap .navMobilePanel {
   border-radius: 0 0 var(--radius-paw-md) var(--radius-paw-md);
-  background: rgba(255, 255, 255, 0.94);
+  background: color-mix(in srgb, var(--color-paw-panel) 94%, transparent);
 }
 
 @media (min-width: 640px) {
@@ -61,40 +61,40 @@
 }
 
 .navLinkPill.isActive {
-  border-color: rgba(74, 144, 217, 0.18);
-  background: rgba(234, 244, 252, 0.74);
+  border-color: color-mix(in srgb, var(--color-paw-primary) 18%, transparent);
+  background: color-mix(in srgb, var(--color-paw-primary-soft) 74%, transparent);
 }
 
 .navMobilePanel {
-  box-shadow: 0 18px 40px rgba(58, 47, 42, 0.08);
+  box-shadow: var(--shadow-paw-panel);
 }
 
 @media (prefers-color-scheme: dark) {
   .siteNav {
-    border-bottom-color: rgba(66, 99, 93, 0.72);
+    border-bottom-color: color-mix(in srgb, var(--color-paw-border) 72%, transparent);
     background:
-      linear-gradient(90deg, rgba(20, 26, 32, 0.94), rgba(27, 35, 42, 0.9)),
-      linear-gradient(90deg, rgba(116, 184, 234, 0.08), transparent 42%, rgba(141, 216, 204, 0.08));
-    box-shadow: 0 12px 34px rgba(0, 0, 0, 0.26);
+      linear-gradient(90deg, color-mix(in srgb, var(--color-paw-page) 94%, transparent), color-mix(in srgb, var(--color-paw-panel) 90%, transparent)),
+      linear-gradient(90deg, color-mix(in srgb, var(--color-paw-primary) 8%, transparent), transparent 42%, color-mix(in srgb, var(--color-paw-trust) 8%, transparent));
+    box-shadow: var(--shadow-paw-panel);
   }
 
   .siteNavMap {
-    border-color: rgba(66, 99, 93, 0.82);
+    border-color: color-mix(in srgb, var(--color-paw-border) 82%, transparent);
     background:
-      linear-gradient(90deg, rgba(20, 26, 32, 0.9), rgba(27, 35, 42, 0.84)),
-      linear-gradient(90deg, rgba(116, 184, 234, 0.10), transparent 48%, rgba(141, 216, 204, 0.10));
-    box-shadow: 0 18px 46px rgba(0, 0, 0, 0.32);
+      linear-gradient(90deg, color-mix(in srgb, var(--color-paw-page) 90%, transparent), color-mix(in srgb, var(--color-paw-panel) 84%, transparent)),
+      linear-gradient(90deg, color-mix(in srgb, var(--color-paw-primary) 10%, transparent), transparent 48%, color-mix(in srgb, var(--color-paw-trust) 10%, transparent));
+    box-shadow: var(--shadow-paw-strong);
   }
 
   .navMobilePanel,
   .siteNavMap .navMobilePanel {
-    background: rgba(27, 35, 42, 0.96);
-    box-shadow: 0 18px 42px rgba(0, 0, 0, 0.34);
+    background: color-mix(in srgb, var(--color-paw-panel) 96%, transparent);
+    box-shadow: var(--shadow-paw-strong);
   }
 
   .navLinkPill.isActive,
   .siteNavMap .navLinkPill.isActive {
-    border-color: rgba(116, 184, 234, 0.30);
-    background: rgba(74, 144, 217, 0.20);
+    border-color: color-mix(in srgb, var(--color-paw-primary) 30%, transparent);
+    background: color-mix(in srgb, var(--color-paw-primary) 20%, transparent);
   }
 }

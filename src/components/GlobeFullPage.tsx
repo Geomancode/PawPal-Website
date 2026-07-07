@@ -137,10 +137,10 @@ function GlobeFallbackView({
     <div className="globe-fallback-stage">
       <section className="globe-fallback-copy" aria-labelledby="globe-fallback-title">
         <p className="text-xs font-black uppercase tracking-[0.18em] text-paw-trust">PawPal Globe</p>
-        <h2 id="globe-fallback-title" className="mt-3 text-4xl font-black leading-tight text-white sm:text-5xl">
+        <h2 id="globe-fallback-title" className="mt-3 text-4xl font-black leading-tight text-paw-on-primary sm:text-5xl">
           Map preview is still ready
         </h2>
-        <p className="mt-4 max-w-xl text-sm font-medium leading-6 text-white/72 sm:text-base">
+        <p className="mt-4 max-w-xl text-sm font-medium leading-6 text-paw-page/72 sm:text-base">
           {reason} You can still review the PawPal pet-safety flow, smart tags, and local help paths while the live map is unavailable.
         </p>
         <div className="globe-fallback-actions mt-6 flex flex-wrap gap-3">

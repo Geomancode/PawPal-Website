@@ -1,7 +1,7 @@
 .visual {
   position: relative;
   overflow: hidden;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.99) 0%, rgba(255, 253, 244, 0.96) 100%);
+  background: linear-gradient(180deg, color-mix(in srgb, var(--color-paw-panel) 99%, transparent) 0%, color-mix(in srgb, var(--color-paw-panel-subtle) 96%, transparent) 100%);
 }
 
 .visual::before {
@@ -38,7 +38,7 @@
 }
 
 .link:hover {
-  background: rgba(74, 144, 217, 0.08);
+  background: color-mix(in srgb, var(--color-paw-primary) 8%, transparent);
   color: var(--color-paw-primary);
 }
 
@@ -54,13 +54,13 @@
 }
 
 .bottom {
-  background: rgba(255, 253, 244, 0.78);
+  background: color-mix(in srgb, var(--color-paw-panel-subtle) 78%, transparent);
 }
 
 .link:focus-visible,
 .emailLink:focus-visible,
 .actionLink:focus-visible {
-  outline: 3px solid rgba(74, 144, 217, 0.34);
+  outline: 3px solid var(--focus-ring);
   outline-offset: 3px;
 }
 
@@ -83,28 +83,28 @@
 
 @media (prefers-color-scheme: dark) {
   .visual {
-    border-color: rgba(66, 99, 93, 0.42);
-    background: linear-gradient(180deg, #141A20 0%, rgba(27, 35, 42, 0.96) 100%);
+    border-color: color-mix(in srgb, var(--color-paw-border) 42%, transparent);
+    background: linear-gradient(180deg, var(--color-paw-page) 0%, color-mix(in srgb, var(--color-paw-panel) 96%, transparent) 100%);
   }
 
   .link:hover {
-    background: rgba(116, 184, 234, 0.12);
-    color: #74B8EA;
+    background: color-mix(in srgb, var(--color-paw-primary) 12%, transparent);
+    color: var(--color-paw-primary);
   }
 
   .emailLink {
-    border-color: rgba(66, 99, 93, 0.48);
-    background: rgba(36, 49, 57, 0.72);
-    color: #FFFFFF;
+    border-color: color-mix(in srgb, var(--color-paw-border) 48%, transparent);
+    background: color-mix(in srgb, var(--color-paw-panel-subtle) 72%, transparent);
+    color: var(--color-paw-ink);
     box-shadow: none;
   }
 
   .contactBlock {
-    border-color: rgba(66, 99, 93, 0.42);
+    border-color: color-mix(in srgb, var(--color-paw-border) 42%, transparent);
   }
 
   .bottom {
-    border-color: rgba(66, 99, 93, 0.42);
-    background: rgba(20, 26, 32, 0.72);
+    border-color: color-mix(in srgb, var(--color-paw-border) 42%, transparent);
+    background: color-mix(in srgb, var(--color-paw-page) 72%, transparent);
   }
 }

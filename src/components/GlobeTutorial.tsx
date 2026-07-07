@@ -136,7 +136,7 @@ export default function GlobeTutorial() {
         className="fixed inset-0 z-[9998]"
         onClick={dismiss}
         style={{
-          background: "rgba(0,0,0,0.38)",
+          background: "color-mix(in srgb, var(--color-paw-ink) 38%, transparent)",
           clipPath: getSpotlightClip(targetRect),
           transition: "clip-path 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
         }}
@@ -155,7 +155,7 @@ export default function GlobeTutorial() {
           width: targetRect.width + 28,
           height: targetRect.height + 28,
           border: "2px solid color-mix(in srgb, var(--color-paw-primary) 70%, transparent)",
-          boxShadow: "0 0 0 4000px rgba(0,0,0,0), 0 0 20px color-mix(in srgb, var(--color-paw-primary) 35%, transparent)",
+          boxShadow: "0 0 0 4000px transparent, 0 0 20px color-mix(in srgb, var(--color-paw-primary) 35%, transparent)",
           transition: "top 0.4s, left 0.4s, width 0.4s, height 0.4s",
         }}
       >

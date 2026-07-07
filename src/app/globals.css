@@ -34,6 +34,9 @@
   --color-paw-mint: #76C7B8;
   --color-paw-critical: #C83A3A;
   --color-paw-brown: #8F6A56;
+  --color-paw-inverse-ink: #FFFFFF;
+  --color-paw-shadow-ink: #000000;
+  --color-paw-globe-canvas: #141A20;
 
   --color-paw-on-blue: #0F172A;
   --color-paw-on-green: #0F172A;
@@ -181,6 +184,9 @@
   --color-paw-mint: #76C7B8;
   --color-paw-critical: #C83A3A;
   --color-paw-brown: #8F6A56;
+  --color-paw-inverse-ink: #FFFFFF;
+  --color-paw-shadow-ink: #000000;
+  --color-paw-globe-canvas: #141A20;
 
   --color-paw-on-blue: #0F172A;
   --color-paw-on-green: #0F172A;
@@ -317,20 +323,6 @@ html {
   scroll-behavior: smooth;
 }
 
-/* ── Dense pet doodle tiling wallpaper ── */
-body::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  display: none;
-  opacity: 0;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='300' viewBox='0 0 220 300' fill='none' stroke='%238F6A56' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cg transform='translate(24 22)'%3E%3Cellipse cx='18' cy='24' rx='9' ry='7'/%3E%3Cellipse cx='8' cy='14' rx='4' ry='5.5' transform='rotate(-10 8 14)'/%3E%3Cellipse cx='28' cy='14' rx='4' ry='5.5' transform='rotate(10 28 14)'/%3E%3Cellipse cx='14' cy='9' rx='3.5' ry='5'/%3E%3Cellipse cx='22' cy='9' rx='3.5' ry='5'/%3E%3C/g%3E%3Cg transform='translate(92 28)'%3E%3Cpath d='M3 12c-2.5-4-2.5-8 2-8 3.5 0 3.5 3 1.5 6'/%3E%3Crect x='6' y='10' width='24' height='6' rx='3'/%3E%3Cpath d='M29 12c2.5-4 2.5-8-2-8-3.5 0-3.5 3-1.5 6'/%3E%3Cpath d='M3 18c-2.5 4-2.5 8 2 8 3.5 0 3.5-3 1.5-6'/%3E%3Cpath d='M29 18c2.5 4 2.5 8-2 8-3.5 0-3.5-3-1.5-6'/%3E%3C/g%3E%3Cg transform='translate(162 34)'%3E%3Cellipse cx='16' cy='13' rx='13' ry='8'/%3E%3Ccircle cx='21' cy='10' r='1.6'/%3E%3Cpath d='M5 13c-6-4-8-2-8 0s2 4 8 0'/%3E%3C/g%3E%3Cg transform='translate(42 112)'%3E%3Cellipse cx='18' cy='20' rx='14' ry='12'/%3E%3Ccircle cx='12' cy='17' r='1.8'/%3E%3Ccircle cx='24' cy='17' r='1.8'/%3E%3Cpath d='M15 22c2 2 5 2 7 0'/%3E%3Cpath d='M6 10c-5-8-2-14 2-13'/%3E%3Cpath d='M30 10c5-8 2-14-2-13'/%3E%3C/g%3E%3Cg transform='translate(120 116)'%3E%3Cpath d='M18 32C18 32 4 20 4 12c0-5 4-8 8-5l6 5 6-5c4-3 8 0 8 5 0 8-14 20-14 20z'/%3E%3C/g%3E%3Cg transform='translate(28 220)'%3E%3Cpath d='M16 2l4 11h12l-9 7 4 11-11-7-11 7 4-11-9-7h12z'/%3E%3C/g%3E%3Cg transform='translate(108 220)'%3E%3Cellipse cx='18' cy='16' rx='16' ry='8'/%3E%3Ccircle cx='18' cy='24' r='3'/%3E%3Crect x='14' y='12' width='8' height='4' rx='1.5'/%3E%3C/g%3E%3C/svg%3E");
-  background-repeat: repeat;
-  background-size: 220px 300px;
-}
-
 body > * {
   position: relative;
   z-index: 1;
@@ -348,11 +340,11 @@ main:focus {
   transform: translateY(-160%);
   border-radius: var(--radius-paw-sm);
   background: var(--color-paw-ink);
-  color: #ffffff;
+  color: var(--color-paw-inverse-ink);
   padding: 0.7rem 0.9rem;
   font-size: 0.88rem;
   font-weight: 900;
-  box-shadow: 0 12px 30px rgba(58, 47, 42, 0.22);
+  box-shadow: var(--shadow-paw-control);
   transition: transform 180ms ease;
 }
 
@@ -365,43 +357,6 @@ main:focus {
 :where(a, button, input, select, textarea):focus-visible {
   outline: 3px solid var(--focus-ring);
   outline-offset: 3px;
-}
-
-.bg-paw-primary-soft.text-paw-primary,
-.bg-paw-primary-soft .text-paw-primary {
-  color: var(--color-paw-on-primary-soft);
-}
-
-.bg-paw-green-soft.text-paw-green,
-.bg-paw-green-soft .text-paw-green {
-  color: var(--color-paw-on-green-soft);
-}
-
-.bg-paw-trust-soft.text-paw-trust,
-.bg-paw-trust-soft .text-paw-trust,
-.bg-paw-success-soft.text-paw-success,
-.bg-paw-success-soft .text-paw-success {
-  color: var(--color-paw-on-trust-soft);
-}
-
-.bg-paw-accent-soft.text-paw-accent,
-.bg-paw-accent-soft .text-paw-accent {
-  color: var(--color-paw-on-accent-soft);
-}
-
-.bg-paw-warning-soft.text-paw-warning,
-.bg-paw-warning-soft .text-paw-warning {
-  color: var(--color-paw-on-warning-soft);
-}
-
-.bg-paw-critical-soft.text-paw-critical,
-.bg-paw-critical-soft .text-paw-critical {
-  color: var(--color-paw-on-critical-soft);
-}
-
-.bg-paw-danger-soft.text-paw-danger,
-.bg-paw-danger-soft .text-paw-danger {
-  color: var(--color-paw-on-danger-soft);
 }
 
 .pawpal-logo-light,
@@ -428,11 +383,11 @@ li {
 
 /* ── Refined Glassmorphism — neutral tint ── */
 .glass {
-  background: rgba(255, 255, 255, 0.78);
+  background: color-mix(in srgb, var(--color-paw-panel) 78%, transparent);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(234, 223, 209, 0.72);
-  box-shadow: 0 10px 26px rgba(58, 47, 42, 0.06);
+  border: 1px solid color-mix(in srgb, var(--color-paw-border) 72%, transparent);
+  box-shadow: var(--shadow-paw-panel);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -464,6 +419,9 @@ li {
     --color-paw-mint: #8DD8CC;
     --color-paw-critical: #FF8A8A;
     --color-paw-brown: #B9917D;
+    --color-paw-inverse-ink: #FFFFFF;
+    --color-paw-shadow-ink: #000000;
+    --color-paw-globe-canvas: #141A20;
 
     --color-paw-on-blue: #0F172A;
     --color-paw-on-green: #0F172A;
@@ -589,15 +547,10 @@ li {
     color: var(--foreground);
   }
 
-  body::after {
-    opacity: 0.035;
-    filter: invert(1);
-  }
-
   .glass {
-    background: rgba(20, 26, 32, 0.72);
-    border-color: rgba(255, 255, 255, 0.08);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.28);
+    background: color-mix(in srgb, var(--color-paw-page) 72%, transparent);
+    border-color: color-mix(in srgb, var(--color-paw-inverse-ink) 8%, transparent);
+    box-shadow: var(--shadow-paw-panel);
   }
 
   .pawpal-logo-light,
@@ -612,47 +565,9 @@ li {
 
   .home-hero-field {
     background:
-      radial-gradient(circle at 72% 42%, rgba(116, 184, 234, 0.14), transparent 34%),
-      radial-gradient(circle at 16% 28%, rgba(141, 216, 204, 0.10), transparent 30%),
-      linear-gradient(180deg, var(--color-paw-page), rgba(20, 26, 32, 0.86));
-  }
-
-  .bg-white,
-  .bg-gray-50,
-  .bg-gray-100 {
-    background-color: #141A20 !important;
-  }
-
-  .text-gray-900,
-  .text-gray-800,
-  .text-slate-800 {
-    color: #FFFFFF !important;
-  }
-
-  .text-gray-700,
-  .text-gray-600,
-  .text-gray-500,
-  .text-slate-700 {
-    color: #E4D7CF !important;
-  }
-
-  .text-gray-400,
-  .text-slate-400 {
-    color: #B9917D !important;
-  }
-
-  .border-gray-50,
-  .border-gray-100,
-  .border-gray-200 {
-    border-color: rgba(66, 99, 93, 0.72) !important;
-  }
-
-  .shadow-sm,
-  .shadow-md,
-  .shadow-lg,
-  .shadow-xl,
-  .shadow-2xl {
-    box-shadow: 0 14px 36px rgba(0, 0, 0, 0.32) !important;
+      radial-gradient(circle at 72% 42%, color-mix(in srgb, var(--color-paw-primary) 14%, transparent), transparent 34%),
+      radial-gradient(circle at 16% 28%, color-mix(in srgb, var(--color-paw-trust) 10%, transparent), transparent 30%),
+      linear-gradient(180deg, var(--color-paw-page), color-mix(in srgb, var(--color-paw-page) 86%, transparent));
   }
 }
 
@@ -752,9 +667,9 @@ li {
 /* ── Homepage spatial fields ── */
 .home-hero-field {
   background:
-    radial-gradient(circle at 72% 42%, rgba(74, 144, 217, 0.16), transparent 34%),
-    radial-gradient(circle at 16% 28%, rgba(118, 199, 184, 0.12), transparent 30%),
-    linear-gradient(180deg, var(--color-paw-page), rgba(255, 248, 234, 0.82));
+    radial-gradient(circle at 72% 42%, color-mix(in srgb, var(--color-paw-primary) 16%, transparent), transparent 34%),
+    radial-gradient(circle at 16% 28%, color-mix(in srgb, var(--color-paw-trust) 12%, transparent), transparent 30%),
+    linear-gradient(180deg, var(--color-paw-page), color-mix(in srgb, var(--color-paw-page) 82%, transparent));
 }
 
 /* ── Shape-outside float: hidden on mobile, active on desktop ── */
@@ -1006,8 +921,8 @@ li {
   inset: -1px;
   border-radius: 1.25rem;
   padding: 1px;
-  background: linear-gradient(135deg, transparent, rgba(74, 144, 217, 0.15), transparent);
-  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  background: linear-gradient(135deg, transparent, color-mix(in srgb, var(--color-paw-primary) 15%, transparent), transparent);
+  mask: linear-gradient(var(--color-paw-inverse-ink) 0 0) content-box, linear-gradient(var(--color-paw-inverse-ink) 0 0);
   mask-composite: exclude;
   -webkit-mask-composite: xor;
   opacity: 0;
@@ -1024,11 +939,11 @@ li {
   width: 260px;
   height: 520px;
   border-radius: 40px;
-  border: 6px solid #3A2F2A;
-  background: #141A20;
+  border: 6px solid var(--color-paw-ink);
+  background: var(--color-paw-globe-canvas);
   box-shadow:
-    0 20px 60px rgba(0,0,0,0.15),
-    inset 0 0 0 2px rgba(255,255,255,0.05);
+    0 20px 60px color-mix(in srgb, var(--color-paw-shadow-ink) 15%, transparent),
+    inset 0 0 0 2px color-mix(in srgb, var(--color-paw-inverse-ink) 5%, transparent);
   overflow: hidden;
 }
 
@@ -1040,7 +955,7 @@ li {
   transform: translateX(-50%);
   width: 100px;
   height: 24px;
-  background: #3A2F2A;
+  background: var(--color-paw-ink);
   border-radius: 0 0 16px 16px;
   z-index: 10;
 }
@@ -1102,8 +1017,8 @@ li {
 /* ── 2026 homepage UI upgrade: light product system ── */
 .home-hero-field {
   background:
-    linear-gradient(90deg, rgba(255, 255, 255, 0) 64%, rgba(74, 144, 217, 0.04) 100%),
-    linear-gradient(180deg, #ffffff 0%, #ffffff 70%, #FFFDF4 100%);
+    linear-gradient(90deg, color-mix(in srgb, var(--color-paw-inverse-ink) 0%, transparent) 64%, color-mix(in srgb, var(--color-paw-primary) 4%, transparent) 100%),
+    linear-gradient(180deg, var(--color-paw-inverse-ink) 0%, var(--color-paw-inverse-ink) 70%, var(--color-paw-panel-subtle) 100%);
 }
 
 .scroll-progress {
@@ -1125,10 +1040,10 @@ li {
 
 .hero-map-grid {
   background-image:
-    linear-gradient(35deg, rgba(74, 144, 217, 0.10) 1px, transparent 1px),
-    linear-gradient(115deg, rgba(118, 199, 184, 0.10) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(27, 45, 64, 0.035) 1px, transparent 1px),
-    linear-gradient(0deg, rgba(27, 45, 64, 0.035) 1px, transparent 1px);
+    linear-gradient(35deg, color-mix(in srgb, var(--color-paw-primary) 10%, transparent) 1px, transparent 1px),
+    linear-gradient(115deg, color-mix(in srgb, var(--color-paw-trust) 10%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in srgb, var(--color-paw-primary) 3.5%, transparent) 1px, transparent 1px),
+    linear-gradient(0deg, color-mix(in srgb, var(--color-paw-primary) 3.5%, transparent) 1px, transparent 1px);
   background-position:
     0 0,
     0 0,
@@ -1150,11 +1065,11 @@ li {
   width: min(100%, 38rem);
   gap: 0.5rem;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  border: 1px solid rgba(234, 223, 209, 0.76);
+  border: 1px solid color-mix(in srgb, var(--color-paw-border) 76%, transparent);
   border-radius: var(--radius-paw-md);
   background:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.92), rgba(255, 253, 244, 0.82));
-  box-shadow: 0 14px 34px rgba(58, 47, 42, 0.09);
+    linear-gradient(135deg, color-mix(in srgb, var(--color-paw-inverse-ink) 92%, transparent), color-mix(in srgb, var(--color-paw-panel-subtle) 82%, transparent));
+  box-shadow: 0 14px 34px color-mix(in srgb, var(--color-paw-ink) 9%, transparent);
   padding: 0.55rem;
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
@@ -1170,7 +1085,7 @@ li {
 }
 
 .hero-signal-item:nth-child(2) {
-  background: rgba(255, 255, 255, 0.72);
+  background: color-mix(in srgb, var(--color-paw-inverse-ink) 72%, transparent);
 }
 
 .hero-signal-icon {
@@ -1191,9 +1106,9 @@ li {
   inset: 0;
   pointer-events: none;
   background:
-    radial-gradient(circle at 22% 24%, rgba(118, 199, 184, 0.18), transparent 18%),
-    radial-gradient(circle at 78% 18%, rgba(242, 140, 68, 0.16), transparent 16%),
-    linear-gradient(180deg, rgba(255, 255, 255, 0.36), rgba(255, 255, 255, 0));
+    radial-gradient(circle at 22% 24%, color-mix(in srgb, var(--color-paw-trust) 18%, transparent), transparent 18%),
+    radial-gradient(circle at 78% 18%, color-mix(in srgb, var(--color-paw-accent) 16%, transparent), transparent 16%),
+    linear-gradient(180deg, color-mix(in srgb, var(--color-paw-inverse-ink) 36%, transparent), color-mix(in srgb, var(--color-paw-inverse-ink) 0%, transparent));
 }
 
 .hero-nfc-tag::before {
@@ -1201,7 +1116,7 @@ li {
   position: absolute;
   inset: 15%;
   border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  border: 1px solid color-mix(in srgb, var(--color-paw-inverse-ink) 12%, transparent);
 }
 
 .hero-globe-upgrade {
@@ -1216,8 +1131,8 @@ li {
   z-index: -2;
   border-radius: 999px;
   background:
-    radial-gradient(circle at 50% 48%, rgba(74, 144, 217, 0.12), transparent 56%),
-    radial-gradient(circle at 36% 62%, rgba(118, 199, 184, 0.10), transparent 42%);
+    radial-gradient(circle at 50% 48%, color-mix(in srgb, var(--color-paw-primary) 12%, transparent), transparent 56%),
+    radial-gradient(circle at 36% 62%, color-mix(in srgb, var(--color-paw-trust) 10%, transparent), transparent 42%);
   filter: blur(2px);
 }
 
@@ -1227,10 +1142,10 @@ li {
   width: calc(var(--hero-upgrade-globe-size) * 0.92);
   height: calc(var(--hero-upgrade-globe-size) * 0.92);
   border-radius: 999px;
-  border: 1px solid rgba(74, 144, 217, 0.16);
+  border: 1px solid color-mix(in srgb, var(--color-paw-primary) 16%, transparent);
   background:
-    linear-gradient(90deg, transparent 47%, rgba(74, 144, 217, 0.18) 48%, rgba(118, 199, 184, 0.18) 52%, transparent 53%),
-    radial-gradient(circle, rgba(255, 255, 255, 0.66), transparent 62%);
+    linear-gradient(90deg, transparent 47%, color-mix(in srgb, var(--color-paw-primary) 18%, transparent) 48%, color-mix(in srgb, var(--color-paw-trust) 18%, transparent) 52%, transparent 53%),
+    radial-gradient(circle, color-mix(in srgb, var(--color-paw-inverse-ink) 66%, transparent), transparent 62%);
   transform: rotate(-18deg) scaleX(1.08);
 }
 
@@ -1239,7 +1154,7 @@ li {
   height: var(--hero-upgrade-globe-size);
   border-radius: 999px;
   overflow: visible;
-  filter: drop-shadow(0 24px 48px rgba(36, 87, 128, 0.16));
+  filter: drop-shadow(0 24px 48px color-mix(in srgb, var(--color-paw-primary) 16%, transparent));
 }
 
 .hero-globe-shell-upgraded::after {
@@ -1249,8 +1164,8 @@ li {
   z-index: -1;
   border-radius: 999px;
   box-shadow:
-    0 0 0 1px rgba(74, 144, 217, 0.08),
-    0 34px 74px rgba(58, 47, 42, 0.14);
+    0 0 0 1px color-mix(in srgb, var(--color-paw-primary) 8%, transparent),
+    0 34px 74px color-mix(in srgb, var(--color-paw-ink) 14%, transparent);
 }
 
 .hero-globe-card {
@@ -1260,10 +1175,10 @@ li {
   align-items: center;
   gap: 0.75rem;
   max-width: min(18rem, calc(100vw - 2.5rem));
-  border: 1px solid rgba(234, 223, 209, 0.86);
+  border: 1px solid color-mix(in srgb, var(--color-paw-border) 86%, transparent);
   border-radius: var(--radius-paw-sm);
-  background: rgba(255, 255, 255, 0.82);
-  box-shadow: 0 18px 42px rgba(58, 47, 42, 0.12);
+  background: color-mix(in srgb, var(--color-paw-inverse-ink) 82%, transparent);
+  box-shadow: 0 18px 42px color-mix(in srgb, var(--color-paw-ink) 12%, transparent);
   padding: 0.75rem;
   pointer-events: none;
   backdrop-filter: blur(18px);
@@ -1301,10 +1216,10 @@ li {
   bottom: 2rem;
   z-index: 21;
   transform: translateX(-50%);
-  border: 1px solid rgba(234, 223, 209, 0.82);
+  border: 1px solid color-mix(in srgb, var(--color-paw-border) 82%, transparent);
   border-radius: var(--radius-paw-sm);
-  background: rgba(255, 255, 255, 0.78);
-  box-shadow: 0 14px 34px rgba(58, 47, 42, 0.10);
+  background: color-mix(in srgb, var(--color-paw-inverse-ink) 78%, transparent);
+  box-shadow: 0 14px 34px color-mix(in srgb, var(--color-paw-ink) 10%, transparent);
   padding: 0.48rem 0.8rem;
   color: var(--color-paw-muted);
   font-size: 0.72rem;
@@ -1327,14 +1242,14 @@ li {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  border: 1px solid rgba(234, 223, 209, 0.82);
+  border: 1px solid color-mix(in srgb, var(--color-paw-border) 82%, transparent);
   border-radius: 999px;
   background:
-    radial-gradient(circle at 32% 24%, rgba(255, 255, 255, 0.96), transparent 24%),
-    linear-gradient(145deg, #ffffff, #eef5fb);
+    radial-gradient(circle at 32% 24%, color-mix(in srgb, var(--color-paw-inverse-ink) 96%, transparent), transparent 24%),
+    linear-gradient(145deg, var(--color-paw-inverse-ink), var(--color-paw-primary-soft));
   box-shadow:
-    0 20px 42px rgba(58, 47, 42, 0.16),
-    inset 0 0 0 0.5rem rgba(255, 255, 255, 0.46);
+    0 20px 42px color-mix(in srgb, var(--color-paw-ink) 16%, transparent),
+    inset 0 0 0 0.5rem color-mix(in srgb, var(--color-paw-inverse-ink) 46%, transparent);
   color: var(--color-paw-primary);
   pointer-events: none;
 }
@@ -1345,7 +1260,7 @@ li {
   right: -1.55rem;
   width: 1.15rem;
   height: 2.9rem;
-  border-right: 2px solid rgba(74, 144, 217, 0.22);
+  border-right: 2px solid color-mix(in srgb, var(--color-paw-primary) 22%, transparent);
   border-radius: 999px;
 }
 
@@ -1357,7 +1272,7 @@ li {
   justify-content: center;
   border-radius: 999px;
   background: var(--color-paw-primary);
-  color: #ffffff;
+  color: var(--color-paw-inverse-ink);
 }
 
 .homepage-proof-grid {
@@ -1387,8 +1302,8 @@ li {
   align-items: center;
   justify-content: center;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.86);
-  box-shadow: inset 0 0 0 1px rgba(234, 223, 209, 0.72);
+  background: color-mix(in srgb, var(--color-paw-inverse-ink) 86%, transparent);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--color-paw-border) 72%, transparent);
 }
 
 .homepage-flow {
@@ -1456,22 +1371,22 @@ li {
   position: relative;
   min-height: clamp(22rem, 38vw, 30rem);
   overflow: hidden;
-  border: 1px solid rgba(234, 223, 209, 0.82);
+  border: 1px solid color-mix(in srgb, var(--color-paw-border) 82%, transparent);
   border-radius: var(--radius-paw-md);
   background:
-    linear-gradient(145deg, rgba(255, 255, 255, 0.94), rgba(234, 244, 252, 0.72)),
-    linear-gradient(90deg, rgba(74, 144, 217, 0.08), rgba(118, 199, 184, 0.06));
-  box-shadow: 0 18px 42px rgba(58, 47, 42, 0.08);
+    linear-gradient(145deg, color-mix(in srgb, var(--color-paw-inverse-ink) 94%, transparent), color-mix(in srgb, var(--color-paw-primary-soft) 72%, transparent)),
+    linear-gradient(90deg, color-mix(in srgb, var(--color-paw-primary) 8%, transparent), color-mix(in srgb, var(--color-paw-trust) 6%, transparent));
+  box-shadow: 0 18px 42px color-mix(in srgb, var(--color-paw-ink) 8%, transparent);
 }
 
 .homepage-showcase-grid {
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(90deg, rgba(74, 144, 217, 0.08) 1px, transparent 1px),
-    linear-gradient(0deg, rgba(118, 199, 184, 0.08) 1px, transparent 1px);
+    linear-gradient(90deg, color-mix(in srgb, var(--color-paw-primary) 8%, transparent) 1px, transparent 1px),
+    linear-gradient(0deg, color-mix(in srgb, var(--color-paw-trust) 8%, transparent) 1px, transparent 1px);
   background-size: 3.5rem 3.5rem;
-  mask-image: linear-gradient(180deg, #000, transparent 78%);
+  mask-image: linear-gradient(180deg, var(--color-paw-shadow-ink), transparent 78%);
 }
 
 .homepage-phone-frame {
@@ -1479,7 +1394,7 @@ li {
   left: clamp(1.5rem, 7vw, 5.2rem);
   bottom: -1.5rem;
   width: clamp(13rem, 24vw, 18rem);
-  filter: drop-shadow(0 24px 40px rgba(31, 52, 74, 0.18));
+  filter: drop-shadow(0 24px 40px color-mix(in srgb, var(--color-paw-primary) 18%, transparent));
 }
 
 .homepage-tag-disc {
@@ -1493,13 +1408,13 @@ li {
   align-items: center;
   justify-content: center;
   gap: 0.35rem;
-  border: 1px solid rgba(234, 223, 209, 0.82);
+  border: 1px solid color-mix(in srgb, var(--color-paw-border) 82%, transparent);
   border-radius: 999px;
-  background: linear-gradient(145deg, #ffffff, #edf5fb);
+  background: linear-gradient(145deg, var(--color-paw-inverse-ink), var(--color-paw-primary-soft));
   color: var(--color-paw-primary);
   font-size: 0.8rem;
   font-weight: 900;
-  box-shadow: 0 20px 36px rgba(58, 47, 42, 0.14);
+  box-shadow: 0 20px 36px color-mix(in srgb, var(--color-paw-ink) 14%, transparent);
 }
 
 .homepage-showcase-copy {
@@ -1524,30 +1439,30 @@ li {
   border-radius: var(--radius-paw-md);
   background:
     linear-gradient(135deg, var(--color-paw-primary), var(--color-paw-primary-hover));
-  box-shadow: 0 18px 44px rgba(74, 144, 217, 0.22);
+  box-shadow: 0 18px 44px color-mix(in srgb, var(--color-paw-primary) 22%, transparent);
 }
 
 .home-final-cta a:first-child {
-  background: #ffffff;
+  background: var(--color-paw-inverse-ink);
   color: var(--color-paw-primary);
   box-shadow: none;
 }
 
 .home-final-cta a:first-child:hover {
-  background: rgba(255, 255, 255, 0.92);
+  background: color-mix(in srgb, var(--color-paw-inverse-ink) 92%, transparent);
   color: var(--color-paw-primary-hover);
 }
 
 .home-final-cta a:nth-child(2) {
-  border-color: rgba(255, 255, 255, 0.62);
+  border-color: color-mix(in srgb, var(--color-paw-inverse-ink) 62%, transparent);
   background: transparent;
-  color: #ffffff;
+  color: var(--color-paw-inverse-ink);
 }
 
 .home-final-cta a:nth-child(2):hover {
-  border-color: #ffffff;
-  background: rgba(255, 255, 255, 0.10);
-  color: #ffffff;
+  border-color: var(--color-paw-inverse-ink);
+  background: color-mix(in srgb, var(--color-paw-inverse-ink) 10%, transparent);
+  color: var(--color-paw-inverse-ink);
 }
 
 .globe-static-fallback {
@@ -1559,14 +1474,14 @@ li {
   max-height: 100%;
   border-radius: 999px;
   background:
-    radial-gradient(circle at 34% 30%, rgba(255, 255, 255, 0.5), transparent 20%),
-    radial-gradient(circle at 72% 74%, rgba(21, 42, 64, 0.28), transparent 24%),
+    radial-gradient(circle at 34% 30%, color-mix(in srgb, var(--color-paw-inverse-ink) 50%, transparent), transparent 20%),
+    radial-gradient(circle at 72% 74%, color-mix(in srgb, var(--color-paw-primary) 28%, transparent), transparent 24%),
     url("/earth-natural-relief.jpg") center / cover;
   box-shadow:
-    inset -34px -28px 58px rgba(21, 42, 64, 0.28),
-    inset 20px 16px 40px rgba(255, 255, 255, 0.20),
-    0 0 0 1px rgba(74, 144, 217, 0.16),
-    0 22px 60px rgba(36, 87, 128, 0.20);
+    inset -34px -28px 58px color-mix(in srgb, var(--color-paw-primary) 28%, transparent),
+    inset 20px 16px 40px color-mix(in srgb, var(--color-paw-inverse-ink) 20%, transparent),
+    0 0 0 1px color-mix(in srgb, var(--color-paw-primary) 16%, transparent),
+    0 22px 60px color-mix(in srgb, var(--color-paw-primary) 20%, transparent);
 }
 
 .globe-static-preview {
@@ -1585,9 +1500,9 @@ li {
   z-index: -2;
   border-radius: 999px;
   background:
-    radial-gradient(circle at 50% 48%, rgba(74, 144, 217, 0.14), transparent 58%),
-    radial-gradient(circle at 38% 62%, rgba(118, 199, 184, 0.15), transparent 38%),
-    linear-gradient(35deg, rgba(74, 144, 217, 0.12) 1px, transparent 1px);
+    radial-gradient(circle at 50% 48%, color-mix(in srgb, var(--color-paw-primary) 14%, transparent), transparent 58%),
+    radial-gradient(circle at 38% 62%, color-mix(in srgb, var(--color-paw-trust) 15%, transparent), transparent 38%),
+    linear-gradient(35deg, color-mix(in srgb, var(--color-paw-primary) 12%, transparent) 1px, transparent 1px);
   background-size: auto, auto, 4rem 4rem;
 }
 
@@ -1596,25 +1511,25 @@ li {
   width: min(calc(100vw - 3rem), 29rem);
   aspect-ratio: 1;
   overflow: hidden;
-  border: 1px solid rgba(74, 144, 217, 0.16);
+  border: 1px solid color-mix(in srgb, var(--color-paw-primary) 16%, transparent);
   border-radius: 999px;
   background:
-    radial-gradient(circle at 36% 28%, rgba(255, 255, 255, 0.76), transparent 9%),
-    radial-gradient(circle at 58% 38%, rgba(118, 199, 184, 0.48), transparent 20%),
-    radial-gradient(circle at 36% 62%, rgba(74, 144, 217, 0.46), transparent 23%),
-    radial-gradient(circle at 72% 70%, rgba(242, 140, 68, 0.22), transparent 16%),
-    linear-gradient(145deg, #eef8ff 0%, #ffffff 48%, #e9f8f5 100%);
+    radial-gradient(circle at 36% 28%, color-mix(in srgb, var(--color-paw-inverse-ink) 76%, transparent), transparent 9%),
+    radial-gradient(circle at 58% 38%, color-mix(in srgb, var(--color-paw-trust) 48%, transparent), transparent 20%),
+    radial-gradient(circle at 36% 62%, color-mix(in srgb, var(--color-paw-primary) 46%, transparent), transparent 23%),
+    radial-gradient(circle at 72% 70%, color-mix(in srgb, var(--color-paw-accent) 22%, transparent), transparent 16%),
+    linear-gradient(145deg, var(--color-paw-primary-soft) 0%, var(--color-paw-inverse-ink) 48%, var(--color-paw-trust-soft) 100%);
   box-shadow:
-    inset -32px -26px 58px rgba(74, 144, 217, 0.15),
-    inset 24px 26px 50px rgba(255, 255, 255, 0.7),
-    0 28px 70px rgba(58, 47, 42, 0.13);
+    inset -32px -26px 58px color-mix(in srgb, var(--color-paw-primary) 15%, transparent),
+    inset 24px 26px 50px color-mix(in srgb, var(--color-paw-inverse-ink) 70%, transparent),
+    0 28px 70px color-mix(in srgb, var(--color-paw-ink) 13%, transparent);
 }
 
 .globe-static-preview-earth::after {
   content: "";
   position: absolute;
   inset: 12%;
-  border: 1px solid rgba(74, 144, 217, 0.12);
+  border: 1px solid color-mix(in srgb, var(--color-paw-primary) 12%, transparent);
   border-radius: 999px;
   transform: rotate(-18deg) scaleX(1.14);
 }
@@ -1623,7 +1538,7 @@ li {
 .globe-static-preview-route {
   position: absolute;
   inset: 20%;
-  border: 2px solid rgba(74, 144, 217, 0.16);
+  border: 2px solid color-mix(in srgb, var(--color-paw-primary) 16%, transparent);
   border-left-color: transparent;
   border-radius: 999px;
   transform: rotate(-22deg) scaleX(1.22);
@@ -1631,7 +1546,7 @@ li {
 
 .globe-static-preview-route {
   inset: 32%;
-  border-color: rgba(242, 140, 68, 0.35);
+  border-color: color-mix(in srgb, var(--color-paw-accent) 35%, transparent);
   border-right-color: transparent;
   transform: rotate(25deg) scaleX(1.16);
 }
@@ -1640,10 +1555,10 @@ li {
   position: absolute;
   width: 0.68rem;
   height: 0.68rem;
-  border: 2px solid #ffffff;
+  border: 2px solid var(--color-paw-inverse-ink);
   border-radius: 999px;
   background: var(--color-paw-primary);
-  box-shadow: 0 8px 18px rgba(58, 47, 42, 0.22);
+  box-shadow: 0 8px 18px color-mix(in srgb, var(--color-paw-ink) 22%, transparent);
 }
 
 .globe-static-preview-pin-a {
@@ -1669,14 +1584,14 @@ li {
   display: inline-flex;
   align-items: center;
   gap: 0.45rem;
-  border: 1px solid rgba(234, 223, 209, 0.82);
+  border: 1px solid color-mix(in srgb, var(--color-paw-border) 82%, transparent);
   border-radius: var(--radius-paw-md);
-  background: rgba(255, 255, 255, 0.88);
+  background: color-mix(in srgb, var(--color-paw-inverse-ink) 88%, transparent);
   padding: 0.72rem 0.84rem;
   color: var(--color-paw-ink);
   font-size: 0.75rem;
   font-weight: 900;
-  box-shadow: 0 14px 32px rgba(58, 47, 42, 0.12);
+  box-shadow: 0 14px 32px color-mix(in srgb, var(--color-paw-ink) 12%, transparent);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
 }
@@ -1697,12 +1612,12 @@ li {
 .readiness-card {
   position: relative;
   overflow: hidden;
-  border: 1px solid rgba(234, 223, 209, 0.84);
+  border: 1px solid color-mix(in srgb, var(--color-paw-border) 84%, transparent);
   border-radius: var(--radius-paw-md);
   background:
-    linear-gradient(145deg, rgba(255, 255, 255, 0.94), rgba(255, 253, 244, 0.92)),
-    linear-gradient(90deg, rgba(74, 144, 217, 0.10), transparent);
-  box-shadow: 0 16px 40px rgba(58, 47, 42, 0.08);
+    linear-gradient(145deg, color-mix(in srgb, var(--color-paw-inverse-ink) 94%, transparent), color-mix(in srgb, var(--color-paw-panel-subtle) 92%, transparent)),
+    linear-gradient(90deg, color-mix(in srgb, var(--color-paw-primary) 10%, transparent), transparent);
+  box-shadow: 0 16px 40px color-mix(in srgb, var(--color-paw-ink) 8%, transparent);
   padding: 1.25rem;
 }
 
@@ -1713,9 +1628,9 @@ li {
   top: -2rem;
   width: 8rem;
   height: 8rem;
-  border: 1px solid rgba(74, 144, 217, 0.12);
+  border: 1px solid color-mix(in srgb, var(--color-paw-primary) 12%, transparent);
   border-radius: 999px;
-  background: radial-gradient(circle, rgba(74, 144, 217, 0.08), transparent 62%);
+  background: radial-gradient(circle, color-mix(in srgb, var(--color-paw-primary) 8%, transparent), transparent 62%);
 }
 
 .readiness-card-track {
@@ -1745,10 +1660,10 @@ li {
 
 .workflow-card {
   overflow: hidden;
-  border: 1px solid rgba(234, 223, 209, 0.84);
+  border: 1px solid color-mix(in srgb, var(--color-paw-border) 84%, transparent);
   border-radius: var(--radius-paw-md);
-  background: #ffffff;
-  box-shadow: 0 16px 42px rgba(58, 47, 42, 0.08);
+  background: var(--color-paw-inverse-ink);
+  box-shadow: 0 16px 42px color-mix(in srgb, var(--color-paw-ink) 8%, transparent);
   padding: 1.25rem;
 }
 
@@ -1758,9 +1673,9 @@ li {
   overflow: hidden;
   border-radius: var(--radius-paw-sm);
   background:
-    linear-gradient(120deg, rgba(74, 144, 217, 0.08), rgba(118, 199, 184, 0.08)),
-    linear-gradient(90deg, rgba(27, 45, 64, 0.04) 1px, transparent 1px),
-    linear-gradient(0deg, rgba(27, 45, 64, 0.04) 1px, transparent 1px);
+    linear-gradient(120deg, color-mix(in srgb, var(--color-paw-primary) 8%, transparent), color-mix(in srgb, var(--color-paw-trust) 8%, transparent)),
+    linear-gradient(90deg, color-mix(in srgb, var(--color-paw-primary) 4%, transparent) 1px, transparent 1px),
+    linear-gradient(0deg, color-mix(in srgb, var(--color-paw-primary) 4%, transparent) 1px, transparent 1px);
   background-size: auto, 2rem 2rem, 2rem 2rem;
   margin-bottom: 1.25rem;
 }
@@ -1775,7 +1690,7 @@ li {
   align-items: center;
   justify-content: center;
   border-radius: var(--radius-paw-sm);
-  box-shadow: 0 12px 26px rgba(58, 47, 42, 0.12);
+  box-shadow: 0 12px 26px color-mix(in srgb, var(--color-paw-ink) 12%, transparent);
 }
 
 .workflow-visual-route {
@@ -1784,7 +1699,7 @@ li {
   right: 1.2rem;
   top: 4.2rem;
   height: 1px;
-  border-top: 1px dashed rgba(74, 144, 217, 0.42);
+  border-top: 1px dashed color-mix(in srgb, var(--color-paw-primary) 42%, transparent);
 }
 
 .workflow-visual-route span {
@@ -1792,10 +1707,10 @@ li {
   top: -0.32rem;
   width: 0.62rem;
   height: 0.62rem;
-  border: 2px solid #ffffff;
+  border: 2px solid var(--color-paw-inverse-ink);
   border-radius: 999px;
   background: var(--color-paw-primary);
-  box-shadow: 0 4px 10px rgba(58, 47, 42, 0.16);
+  box-shadow: 0 4px 10px color-mix(in srgb, var(--color-paw-ink) 16%, transparent);
 }
 
 .workflow-visual-route span:nth-child(1) {
@@ -1821,9 +1736,9 @@ li {
   height: 3rem;
   align-items: center;
   justify-content: center;
-  border: 1px solid rgba(234, 223, 209, 0.8);
+  border: 1px solid color-mix(in srgb, var(--color-paw-border) 8%, transparent);
   border-radius: var(--radius-paw-sm);
-  background: rgba(255, 255, 255, 0.76);
+  background: color-mix(in srgb, var(--color-paw-inverse-ink) 76%, transparent);
   color: var(--color-paw-muted);
 }
 
@@ -1832,10 +1747,10 @@ li {
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(90deg, rgba(74, 144, 217, 0.10) 1px, transparent 1px),
-    linear-gradient(0deg, rgba(118, 199, 184, 0.10) 1px, transparent 1px);
+    linear-gradient(90deg, color-mix(in srgb, var(--color-paw-primary) 10%, transparent) 1px, transparent 1px),
+    linear-gradient(0deg, color-mix(in srgb, var(--color-paw-trust) 10%, transparent) 1px, transparent 1px);
   background-size: 3.75rem 3.75rem;
-  mask-image: linear-gradient(180deg, #000 0%, transparent 82%);
+  mask-image: linear-gradient(180deg, var(--color-paw-shadow-ink) 0%, transparent 82%);
 }
 
 .feature-showcase-header {
@@ -1865,27 +1780,27 @@ li {
   pointer-events: none;
   border-radius: inherit;
   box-shadow:
-    inset 0 0 0 1px rgba(255, 255, 255, 0.9),
-    inset 0 -24px 38px rgba(58, 47, 42, 0.08);
+    inset 0 0 0 1px color-mix(in srgb, var(--color-paw-inverse-ink) 90%, transparent),
+    inset 0 -24px 38px color-mix(in srgb, var(--color-paw-ink) 8%, transparent);
 }
 
 .store-product-media {
   background:
-    radial-gradient(circle at 50% 46%, rgba(255, 255, 255, 0.74), transparent 34%),
-    linear-gradient(120deg, rgba(74, 144, 217, 0.14), rgba(118, 199, 184, 0.10)),
-    linear-gradient(90deg, rgba(74, 144, 217, 0.10) 1px, transparent 1px),
-    linear-gradient(0deg, rgba(118, 199, 184, 0.10) 1px, transparent 1px);
+    radial-gradient(circle at 50% 46%, color-mix(in srgb, var(--color-paw-inverse-ink) 74%, transparent), transparent 34%),
+    linear-gradient(120deg, color-mix(in srgb, var(--color-paw-primary) 14%, transparent), color-mix(in srgb, var(--color-paw-trust) 10%, transparent)),
+    linear-gradient(90deg, color-mix(in srgb, var(--color-paw-primary) 10%, transparent) 1px, transparent 1px),
+    linear-gradient(0deg, color-mix(in srgb, var(--color-paw-trust) 10%, transparent) 1px, transparent 1px);
   background-size: auto, auto, 2.8rem 2.8rem, 2.8rem 2.8rem;
 }
 
 .store-product-preview {
   width: min(11.5rem, 62vw);
   height: min(11.5rem, 62vw);
-  border: 1px solid rgba(58, 47, 42, 0.10);
-  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid color-mix(in srgb, var(--color-paw-ink) 10%, transparent);
+  background: color-mix(in srgb, var(--color-paw-inverse-ink) 92%, transparent);
   box-shadow:
-    0 14px 32px rgba(58, 47, 42, 0.12),
-    inset 0 0 0 1px rgba(255, 255, 255, 0.92);
+    0 14px 32px color-mix(in srgb, var(--color-paw-ink) 12%, transparent),
+    inset 0 0 0 1px color-mix(in srgb, var(--color-paw-inverse-ink) 92%, transparent);
 }
 
 .store-product-preview > span {
@@ -1898,7 +1813,7 @@ li {
   inset: auto 1rem 1rem 1rem;
   height: 1.25rem;
   border-radius: 999px;
-  background: rgba(58, 47, 42, 0.10);
+  background: color-mix(in srgb, var(--color-paw-ink) 10%, transparent);
   filter: blur(10px);
   opacity: 0.55;
 }
@@ -1933,9 +1848,9 @@ li {
   inset: 0;
   z-index: -1;
   background:
-    radial-gradient(circle at 16% 18%, rgba(74, 144, 217, 0.10), transparent 24rem),
-    radial-gradient(circle at 86% 20%, rgba(118, 199, 184, 0.10), transparent 22rem),
-    linear-gradient(180deg, #ffffff 0%, #ffffff 58%, #FFFDF4 100%);
+    radial-gradient(circle at 16% 18%, color-mix(in srgb, var(--color-paw-primary) 10%, transparent), transparent 24rem),
+    radial-gradient(circle at 86% 20%, color-mix(in srgb, var(--color-paw-trust) 10%, transparent), transparent 22rem),
+    linear-gradient(180deg, var(--color-paw-inverse-ink) 0%, var(--color-paw-inverse-ink) 58%, var(--color-paw-panel-subtle) 100%);
 }
 
 .legal-hero-panel,
@@ -1943,12 +1858,12 @@ li {
 .orders-hero-panel {
   position: relative;
   overflow: hidden;
-  border: 1px solid rgba(234, 223, 209, 0.86);
+  border: 1px solid color-mix(in srgb, var(--color-paw-border) 86%, transparent);
   border-radius: var(--radius-paw-lg);
   background:
-    linear-gradient(145deg, rgba(255, 255, 255, 0.94), rgba(255, 253, 244, 0.90)),
-    linear-gradient(90deg, rgba(74, 144, 217, 0.08), rgba(118, 199, 184, 0.06));
-  box-shadow: 0 20px 52px rgba(58, 47, 42, 0.10);
+    linear-gradient(145deg, color-mix(in srgb, var(--color-paw-inverse-ink) 94%, transparent), color-mix(in srgb, var(--color-paw-panel-subtle) 90%, transparent)),
+    linear-gradient(90deg, color-mix(in srgb, var(--color-paw-primary) 8%, transparent), color-mix(in srgb, var(--color-paw-trust) 6%, transparent));
+  box-shadow: 0 20px 52px color-mix(in srgb, var(--color-paw-ink) 10%, transparent);
 }
 
 .legal-hero-panel {
@@ -1966,10 +1881,10 @@ li {
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(90deg, rgba(74, 144, 217, 0.08) 1px, transparent 1px),
-    linear-gradient(0deg, rgba(118, 199, 184, 0.08) 1px, transparent 1px);
+    linear-gradient(90deg, color-mix(in srgb, var(--color-paw-primary) 8%, transparent) 1px, transparent 1px),
+    linear-gradient(0deg, color-mix(in srgb, var(--color-paw-trust) 8%, transparent) 1px, transparent 1px);
   background-size: 3.5rem 3.5rem;
-  mask-image: linear-gradient(180deg, #000 0%, transparent 88%);
+  mask-image: linear-gradient(180deg, var(--color-paw-shadow-ink) 0%, transparent 88%);
   pointer-events: none;
 }
 
@@ -1989,9 +1904,9 @@ li {
   display: grid;
   grid-template-columns: auto minmax(0, 1fr);
   gap: 0.8rem;
-  border: 1px solid rgba(234, 223, 209, 0.76);
+  border: 1px solid color-mix(in srgb, var(--color-paw-border) 76%, transparent);
   border-radius: var(--radius-paw-md);
-  background: rgba(255, 255, 255, 0.78);
+  background: color-mix(in srgb, var(--color-paw-inverse-ink) 78%, transparent);
   padding: 0.9rem;
 }
 
@@ -2009,13 +1924,13 @@ li {
   width: 8rem;
   height: 8rem;
   border-radius: 999px;
-  background: radial-gradient(circle, rgba(74, 144, 217, 0.10), transparent 64%);
+  background: radial-gradient(circle, color-mix(in srgb, var(--color-paw-primary) 10%, transparent), transparent 64%);
 }
 
 .legal-info-card:hover {
   transform: translateY(-3px);
-  border-color: rgba(74, 144, 217, 0.34);
-  box-shadow: 0 22px 54px rgba(58, 47, 42, 0.12);
+  border-color: color-mix(in srgb, var(--color-paw-primary) 34%, transparent);
+  box-shadow: 0 22px 54px color-mix(in srgb, var(--color-paw-ink) 12%, transparent);
 }
 
 .legal-info-icon {
@@ -2048,9 +1963,9 @@ li {
   display: flex;
   align-items: center;
   gap: 0.55rem;
-  border: 1px solid rgba(234, 223, 209, 0.76);
+  border: 1px solid color-mix(in srgb, var(--color-paw-border) 76%, transparent);
   border-radius: var(--radius-paw-sm);
-  background: rgba(255, 255, 255, 0.76);
+  background: color-mix(in srgb, var(--color-paw-inverse-ink) 76%, transparent);
   color: var(--color-paw-body);
   padding: 0.65rem 0.75rem;
   font-size: 0.8rem;
@@ -2065,10 +1980,10 @@ li {
   position: relative;
   overflow-x: auto;
   padding: 0.6rem;
-  border: 1px solid rgba(234, 223, 209, 0.72);
+  border: 1px solid color-mix(in srgb, var(--color-paw-border) 72%, transparent);
   border-radius: var(--radius-paw-lg);
-  background: rgba(255, 255, 255, 0.70);
-  box-shadow: 0 14px 34px rgba(58, 47, 42, 0.08);
+  background: color-mix(in srgb, var(--color-paw-inverse-ink) 70%, transparent);
+  box-shadow: 0 14px 34px color-mix(in srgb, var(--color-paw-ink) 8%, transparent);
 }
 
 .checkout-main-card,
@@ -2079,10 +1994,10 @@ li {
 .admin-preview-card {
   position: relative;
   overflow: hidden;
-  border-color: rgba(234, 223, 209, 0.86);
+  border-color: color-mix(in srgb, var(--color-paw-border) 86%, transparent);
   background:
-    linear-gradient(145deg, rgba(255, 255, 255, 0.96), rgba(255, 253, 244, 0.90));
-  box-shadow: 0 18px 48px rgba(58, 47, 42, 0.10);
+    linear-gradient(145deg, color-mix(in srgb, var(--color-paw-inverse-ink) 96%, transparent), color-mix(in srgb, var(--color-paw-panel-subtle) 90%, transparent));
+  box-shadow: 0 18px 48px color-mix(in srgb, var(--color-paw-ink) 10%, transparent);
 }
 
 .checkout-main-card::after,
@@ -2096,7 +2011,7 @@ li {
   width: 11rem;
   height: 11rem;
   border-radius: 999px;
-  background: radial-gradient(circle, rgba(118, 199, 184, 0.12), transparent 64%);
+  background: radial-gradient(circle, color-mix(in srgb, var(--color-paw-trust) 12%, transparent), transparent 64%);
   pointer-events: none;
 }
 
@@ -2106,7 +2021,7 @@ li {
 
 .orders-count-pill {
   flex: 0 0 auto;
-  border: 1px solid rgba(74, 144, 217, 0.18);
+  border: 1px solid color-mix(in srgb, var(--color-paw-primary) 18%, transparent);
   border-radius: var(--radius-paw-md);
   background: var(--color-paw-primary-soft);
   color: var(--color-paw-on-primary-soft);
@@ -2137,12 +2052,12 @@ li {
 .admin-shell-header {
   position: relative;
   overflow: hidden;
-  border: 1px solid rgba(234, 223, 209, 0.86);
+  border: 1px solid color-mix(in srgb, var(--color-paw-border) 86%, transparent);
   border-radius: var(--radius-paw-lg);
   background:
-    linear-gradient(145deg, rgba(255, 255, 255, 0.94), rgba(255, 253, 244, 0.90)),
-    linear-gradient(90deg, rgba(74, 144, 217, 0.08), rgba(118, 199, 184, 0.06));
-  box-shadow: 0 20px 52px rgba(58, 47, 42, 0.10);
+    linear-gradient(145deg, color-mix(in srgb, var(--color-paw-inverse-ink) 94%, transparent), color-mix(in srgb, var(--color-paw-panel-subtle) 90%, transparent)),
+    linear-gradient(90deg, color-mix(in srgb, var(--color-paw-primary) 8%, transparent), color-mix(in srgb, var(--color-paw-trust) 6%, transparent));
+  box-shadow: 0 20px 52px color-mix(in srgb, var(--color-paw-ink) 10%, transparent);
   padding: clamp(1.25rem, 3vw, 2rem);
 }
 
@@ -2151,10 +2066,10 @@ li {
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(90deg, rgba(74, 144, 217, 0.08) 1px, transparent 1px),
-    linear-gradient(0deg, rgba(118, 199, 184, 0.08) 1px, transparent 1px);
+    linear-gradient(90deg, color-mix(in srgb, var(--color-paw-primary) 8%, transparent) 1px, transparent 1px),
+    linear-gradient(0deg, color-mix(in srgb, var(--color-paw-trust) 8%, transparent) 1px, transparent 1px);
   background-size: 3.5rem 3.5rem;
-  mask-image: linear-gradient(180deg, #000 0%, transparent 88%);
+  mask-image: linear-gradient(180deg, var(--color-paw-shadow-ink) 0%, transparent 88%);
   pointer-events: none;
 }
 
@@ -2165,22 +2080,22 @@ li {
 
 .admin-card-upgraded,
 .admin-preview-card {
-  border-color: rgba(234, 223, 209, 0.86);
+  border-color: color-mix(in srgb, var(--color-paw-border) 86%, transparent);
 }
 
 .admin-asset-panel {
   background:
-    linear-gradient(120deg, rgba(74, 144, 217, 0.08), rgba(118, 199, 184, 0.08)),
-    rgba(255, 253, 244, 0.92);
+    linear-gradient(120deg, color-mix(in srgb, var(--color-paw-primary) 8%, transparent), color-mix(in srgb, var(--color-paw-trust) 8%, transparent)),
+    color-mix(in srgb, var(--color-paw-panel-subtle) 92%, transparent);
 }
 
 .admin-preview-media {
   position: relative;
   overflow: hidden;
   background:
-    linear-gradient(120deg, rgba(74, 144, 217, 0.12), rgba(118, 199, 184, 0.10)),
-    linear-gradient(90deg, rgba(74, 144, 217, 0.10) 1px, transparent 1px),
-    linear-gradient(0deg, rgba(118, 199, 184, 0.10) 1px, transparent 1px);
+    linear-gradient(120deg, color-mix(in srgb, var(--color-paw-primary) 12%, transparent), color-mix(in srgb, var(--color-paw-trust) 10%, transparent)),
+    linear-gradient(90deg, color-mix(in srgb, var(--color-paw-primary) 10%, transparent) 1px, transparent 1px),
+    linear-gradient(0deg, color-mix(in srgb, var(--color-paw-trust) 10%, transparent) 1px, transparent 1px);
   background-size: auto, 2.4rem 2.4rem, 2.4rem 2.4rem;
 }
 
@@ -2196,7 +2111,7 @@ li {
   bottom: -1.5rem;
   z-index: -1;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(234, 223, 209, 0.92), transparent);
+  background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--color-paw-border) 92%, transparent), transparent);
 }
 
 .support-route-panel,
@@ -2207,11 +2122,11 @@ li {
 .profile-form-card {
   position: relative;
   overflow: hidden;
-  border: 1px solid rgba(234, 223, 209, 0.86);
+  border: 1px solid color-mix(in srgb, var(--color-paw-border) 86%, transparent);
   background:
-    linear-gradient(145deg, rgba(255, 255, 255, 0.94), rgba(255, 253, 244, 0.9)),
-    linear-gradient(90deg, rgba(74, 144, 217, 0.08), rgba(118, 199, 184, 0.06));
-  box-shadow: 0 20px 52px rgba(58, 47, 42, 0.10);
+    linear-gradient(145deg, color-mix(in srgb, var(--color-paw-inverse-ink) 94%, transparent), color-mix(in srgb, var(--color-paw-panel-subtle) 90%, transparent)),
+    linear-gradient(90deg, color-mix(in srgb, var(--color-paw-primary) 8%, transparent), color-mix(in srgb, var(--color-paw-trust) 6%, transparent));
+  box-shadow: 0 20px 52px color-mix(in srgb, var(--color-paw-ink) 10%, transparent);
 }
 
 .support-route-panel {
@@ -2228,8 +2143,8 @@ li {
   width: 12rem;
   height: 12rem;
   border-radius: 999px;
-  border: 1px solid rgba(74, 144, 217, 0.14);
-  background: radial-gradient(circle, rgba(74, 144, 217, 0.10), transparent 62%);
+  border: 1px solid color-mix(in srgb, var(--color-paw-primary) 14%, transparent);
+  background: radial-gradient(circle, color-mix(in srgb, var(--color-paw-primary) 10%, transparent), transparent 62%);
   pointer-events: none;
 }
 
@@ -2237,9 +2152,9 @@ li {
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  border: 1px solid rgba(234, 223, 209, 0.72);
+  border: 1px solid color-mix(in srgb, var(--color-paw-border) 72%, transparent);
   border-radius: var(--radius-paw-sm);
-  background: rgba(255, 255, 255, 0.74);
+  background: color-mix(in srgb, var(--color-paw-inverse-ink) 74%, transparent);
   padding: 0.75rem;
 }
 
@@ -2256,13 +2171,13 @@ li {
   width: 8rem;
   height: 8rem;
   border-radius: 999px;
-  background: radial-gradient(circle, rgba(118, 199, 184, 0.12), transparent 64%);
+  background: radial-gradient(circle, color-mix(in srgb, var(--color-paw-trust) 12%, transparent), transparent 64%);
 }
 
 .support-card:hover {
   transform: translateY(-3px);
-  border-color: rgba(74, 144, 217, 0.34);
-  box-shadow: 0 22px 54px rgba(58, 47, 42, 0.12);
+  border-color: color-mix(in srgb, var(--color-paw-primary) 34%, transparent);
+  box-shadow: 0 22px 54px color-mix(in srgb, var(--color-paw-ink) 12%, transparent);
 }
 
 .support-card-icon {
@@ -2281,24 +2196,24 @@ li {
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  border: 1px solid rgba(234, 223, 209, 0.82);
+  border: 1px solid color-mix(in srgb, var(--color-paw-border) 82%, transparent);
   border-radius: var(--radius-paw-md);
   background:
-    linear-gradient(90deg, rgba(255, 255, 255, 0.92), rgba(255, 253, 244, 0.88)),
-    linear-gradient(90deg, rgba(242, 140, 68, 0.08), transparent);
+    linear-gradient(90deg, color-mix(in srgb, var(--color-paw-inverse-ink) 92%, transparent), color-mix(in srgb, var(--color-paw-panel-subtle) 88%, transparent)),
+    linear-gradient(90deg, color-mix(in srgb, var(--color-paw-accent) 8%, transparent), transparent);
   padding: 1.1rem;
-  box-shadow: 0 14px 34px rgba(58, 47, 42, 0.08);
+  box-shadow: 0 14px 34px color-mix(in srgb, var(--color-paw-ink) 8%, transparent);
 }
 
 .tag-rescue-panel,
 .tag-detail-card {
   position: relative;
   overflow: hidden;
-  border: 1px solid rgba(234, 223, 209, 0.82);
+  border: 1px solid color-mix(in srgb, var(--color-paw-border) 82%, transparent);
   border-radius: var(--radius-paw-lg);
   background:
-    linear-gradient(145deg, rgba(255, 255, 255, 0.94), rgba(255, 253, 244, 0.9)),
-    linear-gradient(90deg, rgba(74, 144, 217, 0.08), transparent);
+    linear-gradient(145deg, color-mix(in srgb, var(--color-paw-inverse-ink) 94%, transparent), color-mix(in srgb, var(--color-paw-panel-subtle) 90%, transparent)),
+    linear-gradient(90deg, color-mix(in srgb, var(--color-paw-primary) 8%, transparent), transparent);
   box-shadow: var(--shadow-paw-panel);
 }
 
@@ -2317,16 +2232,16 @@ li {
   min-height: 4.2rem;
   align-items: center;
   gap: 0.65rem;
-  border: 1px solid rgba(74, 144, 217, 0.16);
+  border: 1px solid color-mix(in srgb, var(--color-paw-primary) 16%, transparent);
   border-radius: var(--radius-paw-md);
-  background: rgba(234, 244, 252, 0.76);
+  background: color-mix(in srgb, var(--color-paw-primary-soft) 76%, transparent);
   padding: 0.75rem;
   color: var(--color-paw-primary);
 }
 
 .tag-info-tile-danger {
-  border-color: rgba(143, 106, 86, 0.16);
-  background: rgba(246, 238, 233, 0.78);
+  border-color: color-mix(in srgb, var(--color-paw-danger) 16%, transparent);
+  background: color-mix(in srgb, var(--color-paw-danger-soft) 78%, transparent);
   color: var(--color-paw-danger);
 }
 
@@ -2351,14 +2266,14 @@ li {
 }
 
 .tag-chip-primary {
-  border-color: rgba(74, 144, 217, 0.18);
+  border-color: color-mix(in srgb, var(--color-paw-primary) 18%, transparent);
   background: var(--color-paw-primary-soft);
   color: var(--color-paw-primary);
 }
 
 .tag-chip-success,
 .tag-chip-trust {
-  border-color: rgba(118, 199, 184, 0.20);
+  border-color: color-mix(in srgb, var(--color-paw-trust) 20%, transparent);
   background: var(--color-paw-trust-soft);
   color: var(--color-paw-trust);
 }
@@ -2384,10 +2299,10 @@ li {
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(90deg, rgba(74, 144, 217, 0.10) 1px, transparent 1px),
-    linear-gradient(0deg, rgba(118, 199, 184, 0.10) 1px, transparent 1px);
+    linear-gradient(90deg, color-mix(in srgb, var(--color-paw-primary) 10%, transparent) 1px, transparent 1px),
+    linear-gradient(0deg, color-mix(in srgb, var(--color-paw-trust) 10%, transparent) 1px, transparent 1px);
   background-size: 3.5rem 3.5rem;
-  mask-image: linear-gradient(180deg, #000 0%, transparent 88%);
+  mask-image: linear-gradient(180deg, var(--color-paw-shadow-ink) 0%, transparent 88%);
 }
 
 .auth-signal-grid {
@@ -2399,11 +2314,11 @@ li {
   display: grid;
   grid-template-columns: auto minmax(0, 1fr);
   gap: 0.8rem;
-  border: 1px solid rgba(234, 223, 209, 0.82);
+  border: 1px solid color-mix(in srgb, var(--color-paw-border) 82%, transparent);
   border-radius: var(--radius-paw-md);
-  background: rgba(255, 255, 255, 0.76);
+  background: color-mix(in srgb, var(--color-paw-inverse-ink) 76%, transparent);
   padding: 1rem;
-  box-shadow: 0 14px 32px rgba(58, 47, 42, 0.08);
+  box-shadow: 0 14px 32px color-mix(in srgb, var(--color-paw-ink) 8%, transparent);
 }
 
 .auth-card {
@@ -2420,10 +2335,10 @@ li {
 }
 
 .auth-trust-panel {
-  border: 1px solid rgba(234, 223, 209, 0.82);
+  border: 1px solid color-mix(in srgb, var(--color-paw-border) 82%, transparent);
   border-radius: var(--radius-paw-md);
   background:
-    linear-gradient(145deg, rgba(255, 255, 255, 0.86), rgba(255, 253, 244, 0.82));
+    linear-gradient(145deg, color-mix(in srgb, var(--color-paw-inverse-ink) 86%, transparent), color-mix(in srgb, var(--color-paw-panel-subtle) 82%, transparent));
   padding: 1rem;
 }
 
@@ -2450,7 +2365,7 @@ li {
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
-  border: 1px solid rgba(74, 144, 217, 0.16);
+  border: 1px solid color-mix(in srgb, var(--color-paw-primary) 16%, transparent);
   border-radius: var(--radius-paw-sm);
   background: var(--color-paw-primary-soft);
   color: var(--color-paw-on-primary-soft);
@@ -2463,7 +2378,7 @@ li {
   min-height: min(22rem, calc(100dvh - 20rem));
   border-style: solid;
   background:
-    linear-gradient(145deg, rgba(255, 255, 255, 0.92), rgba(255, 253, 244, 0.88));
+    linear-gradient(145deg, color-mix(in srgb, var(--color-paw-inverse-ink) 92%, transparent), color-mix(in srgb, var(--color-paw-panel-subtle) 88%, transparent));
 }
 
 .success-status-shell {
@@ -2485,14 +2400,14 @@ li {
 
 .about-hero {
   background:
-    linear-gradient(180deg, #ffffff 0%, rgba(255, 253, 244, 0.92) 100%);
+    linear-gradient(180deg, var(--color-paw-inverse-ink) 0%, color-mix(in srgb, var(--color-paw-panel-subtle) 92%, transparent) 100%);
 }
 
 .about-metric-tile {
-  border: 1px solid rgba(234, 223, 209, 0.82);
+  border: 1px solid color-mix(in srgb, var(--color-paw-border) 82%, transparent);
   border-radius: var(--radius-paw-md);
-  background: rgba(255, 255, 255, 0.82);
-  box-shadow: 0 12px 28px rgba(58, 47, 42, 0.07);
+  background: color-mix(in srgb, var(--color-paw-inverse-ink) 82%, transparent);
+  box-shadow: 0 12px 28px color-mix(in srgb, var(--color-paw-ink) 7%, transparent);
   padding: 0.9rem 0.75rem;
 }
 
@@ -2501,11 +2416,11 @@ li {
   min-height: 100%;
   flex-direction: column;
   justify-content: center;
-  border: 1px solid rgba(234, 223, 209, 0.86);
+  border: 1px solid color-mix(in srgb, var(--color-paw-border) 86%, transparent);
   border-radius: var(--radius-paw-lg);
   background:
-    linear-gradient(145deg, rgba(255, 255, 255, 0.94), rgba(255, 253, 244, 0.9));
-  box-shadow: 0 20px 52px rgba(58, 47, 42, 0.10);
+    linear-gradient(145deg, color-mix(in srgb, var(--color-paw-inverse-ink) 94%, transparent), color-mix(in srgb, var(--color-paw-panel-subtle) 90%, transparent));
+  box-shadow: 0 20px 52px color-mix(in srgb, var(--color-paw-ink) 10%, transparent);
   padding: clamp(1.4rem, 4vw, 2.5rem);
 }
 
@@ -2526,9 +2441,9 @@ li {
   display: inline-flex;
   align-items: center;
   min-height: 2.5rem;
-  border: 1px solid rgba(234, 223, 209, 0.86);
+  border: 1px solid color-mix(in srgb, var(--color-paw-border) 86%, transparent);
   border-radius: var(--radius-paw-sm);
-  background: rgba(255, 255, 255, 0.82);
+  background: color-mix(in srgb, var(--color-paw-inverse-ink) 82%, transparent);
   color: var(--color-paw-body);
   padding: 0.55rem 0.8rem;
   font-size: 0.82rem;
@@ -2537,7 +2452,7 @@ li {
 }
 
 .legal-section-nav a:hover {
-  border-color: rgba(74, 144, 217, 0.36);
+  border-color: color-mix(in srgb, var(--color-paw-primary) 36%, transparent);
   background: var(--color-paw-primary-soft);
   color: var(--color-paw-primary);
 }
@@ -2556,9 +2471,9 @@ li {
   display: grid;
   grid-template-columns: auto minmax(0, 1fr);
   gap: 0.85rem;
-  border: 1px solid rgba(234, 223, 209, 0.76);
+  border: 1px solid color-mix(in srgb, var(--color-paw-border) 76%, transparent);
   border-radius: var(--radius-paw-md);
-  background: rgba(255, 255, 255, 0.76);
+  background: color-mix(in srgb, var(--color-paw-inverse-ink) 76%, transparent);
   padding: 0.9rem;
 }
 
@@ -2575,17 +2490,17 @@ li {
 
 .globe-loading-shell {
   background:
-    radial-gradient(circle at 50% 46%, rgba(74, 144, 217, 0.30), transparent 18rem),
-    radial-gradient(circle at 62% 54%, rgba(118, 199, 184, 0.20), transparent 16rem),
-    #141A20;
+    radial-gradient(circle at 50% 46%, color-mix(in srgb, var(--color-paw-primary) 30%, transparent), transparent 18rem),
+    radial-gradient(circle at 62% 54%, color-mix(in srgb, var(--color-paw-trust) 20%, transparent), transparent 16rem),
+    var(--color-paw-globe-canvas);
 }
 
 .globe-loading-card {
   width: min(100%, 24rem);
-  border: 1px solid rgba(255, 255, 255, 0.10);
+  border: 1px solid color-mix(in srgb, var(--color-paw-inverse-ink) 10%, transparent);
   border-radius: var(--radius-paw-lg);
-  background: rgba(255, 255, 255, 0.06);
-  box-shadow: 0 24px 72px rgba(0, 0, 0, 0.28);
+  background: color-mix(in srgb, var(--color-paw-inverse-ink) 6%, transparent);
+  box-shadow: 0 24px 72px color-mix(in srgb, var(--color-paw-shadow-ink) 28%, transparent);
   padding: 1.5rem;
   text-align: center;
   backdrop-filter: blur(18px);
@@ -2598,7 +2513,7 @@ li {
   overflow: hidden;
   border: 1px solid var(--color-paw-border);
   border-radius: var(--radius-paw-lg);
-  background: rgba(255, 255, 255, 0.9);
+  background: color-mix(in srgb, var(--color-paw-inverse-ink) 90%, transparent);
   box-shadow: var(--shadow-paw-panel);
 }
 
@@ -2610,9 +2525,9 @@ li {
 .not-found-row {
   display: flex;
   gap: 0.9rem;
-  border: 1px solid rgba(234, 223, 209, 0.74);
+  border: 1px solid color-mix(in srgb, var(--color-paw-border) 74%, transparent);
   border-radius: var(--radius-paw-md);
-  background: rgba(255, 255, 255, 0.86);
+  background: color-mix(in srgb, var(--color-paw-inverse-ink) 86%, transparent);
   padding: 1rem;
 }
 
@@ -2661,8 +2576,8 @@ li {
   z-index: 1;
   pointer-events: none;
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.12), transparent 18%),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.10), transparent 18%, transparent 82%, rgba(255, 255, 255, 0.10));
+    linear-gradient(180deg, color-mix(in srgb, var(--color-paw-inverse-ink) 12%, transparent), transparent 18%),
+    linear-gradient(90deg, color-mix(in srgb, var(--color-paw-inverse-ink) 10%, transparent), transparent 18%, transparent 82%, color-mix(in srgb, var(--color-paw-inverse-ink) 10%, transparent));
 }
 
 .globe-fallback-stage {
@@ -2679,9 +2594,9 @@ li {
     clamp(1rem, 5vw, 5rem)
     calc(env(safe-area-inset-bottom, 0px) + 3rem);
   background:
-    radial-gradient(circle at 74% 42%, rgba(74, 144, 217, 0.28), transparent 26rem),
-    radial-gradient(circle at 24% 62%, rgba(118, 199, 184, 0.18), transparent 22rem),
-    linear-gradient(135deg, rgba(18, 24, 30, 0.96), rgba(23, 35, 43, 0.94));
+    radial-gradient(circle at 74% 42%, color-mix(in srgb, var(--color-paw-primary) 28%, transparent), transparent 26rem),
+    radial-gradient(circle at 24% 62%, color-mix(in srgb, var(--color-paw-trust) 18%, transparent), transparent 22rem),
+    linear-gradient(135deg, color-mix(in srgb, var(--color-paw-globe-canvas) 96%, transparent), color-mix(in srgb, var(--color-paw-panel) 94%, transparent));
 }
 
 .globe-fallback-copy {
@@ -2698,15 +2613,15 @@ li {
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  border: 1px solid rgba(255, 255, 255, 0.22);
+  border: 1px solid color-mix(in srgb, var(--color-paw-inverse-ink) 22%, transparent);
   border-radius: var(--radius-paw-sm);
-  background: rgba(255, 255, 255, 0.08);
+  background: color-mix(in srgb, var(--color-paw-inverse-ink) 8%, transparent);
   padding: 0.75rem 1rem;
-  color: rgba(255, 255, 255, 0.9);
+  color: color-mix(in srgb, var(--color-paw-inverse-ink) 90%, transparent);
   font-size: 0.875rem;
   font-weight: 900;
   line-height: 1;
-  box-shadow: 0 18px 38px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 18px 38px color-mix(in srgb, var(--color-paw-shadow-ink) 12%, transparent);
   transition:
     transform 180ms ease,
     border-color 180ms ease,
@@ -2716,21 +2631,21 @@ li {
 
 .globe-fallback-action:hover,
 .globe-fallback-action:focus-visible {
-  border-color: rgba(255, 255, 255, 0.44);
-  background: rgba(255, 255, 255, 0.14);
-  color: #ffffff;
+  border-color: color-mix(in srgb, var(--color-paw-inverse-ink) 44%, transparent);
+  background: color-mix(in srgb, var(--color-paw-inverse-ink) 14%, transparent);
+  color: var(--color-paw-inverse-ink);
   transform: translateY(-1px);
 }
 
 .globe-fallback-action-primary {
-  border-color: rgba(118, 199, 184, 0.62);
+  border-color: color-mix(in srgb, var(--color-paw-trust) 62%, transparent);
   background: var(--color-paw-trust);
   color: var(--color-paw-on-trust);
 }
 
 .globe-fallback-action-primary:hover,
 .globe-fallback-action-primary:focus-visible {
-  border-color: rgba(255, 255, 255, 0.72);
+  border-color: color-mix(in srgb, var(--color-paw-inverse-ink) 72%, transparent);
   background: var(--color-paw-trust-hover);
   color: var(--color-paw-on-trust);
 }
@@ -2742,11 +2657,11 @@ li {
 }
 
 .globe-fallback-preview .globe-static-preview-card {
-  background: rgba(255, 255, 255, 0.92);
+  background: color-mix(in srgb, var(--color-paw-inverse-ink) 92%, transparent);
 }
 
 .globe-fallback-preview .globe-static-preview-loading {
-  color: rgba(255, 255, 255, 0.72);
+  color: color-mix(in srgb, var(--color-paw-inverse-ink) 72%, transparent);
 }
 
 .globe-weather-bar {
@@ -2756,15 +2671,15 @@ li {
   min-height: 3rem;
   transform: translateX(-50%);
   overflow: visible;
-  border: 1px solid rgba(255, 255, 255, 0.34);
+  border: 1px solid color-mix(in srgb, var(--color-paw-inverse-ink) 34%, transparent);
   border-radius: var(--radius-paw-md);
   background:
-    linear-gradient(180deg, rgba(18, 28, 39, 0.95), rgba(13, 21, 31, 0.91));
+    linear-gradient(180deg, color-mix(in srgb, var(--color-paw-globe-canvas) 95%, transparent), color-mix(in srgb, var(--color-paw-shadow-ink) 91%, transparent));
   box-shadow:
-    0 22px 48px rgba(8, 15, 24, 0.24),
-    inset 0 1px 0 rgba(255, 255, 255, 0.18);
+    0 22px 48px color-mix(in srgb, var(--color-paw-shadow-ink) 24%, transparent),
+    inset 0 1px 0 color-mix(in srgb, var(--color-paw-inverse-ink) 18%, transparent);
   padding: 0.7rem 0.85rem;
-  color: #ffffff;
+  color: var(--color-paw-inverse-ink);
   backdrop-filter: blur(22px) saturate(1.08);
   -webkit-backdrop-filter: blur(22px) saturate(1.08);
 }
@@ -2784,7 +2699,7 @@ li {
   justify-content: center;
   gap: 0.45rem 0.55rem;
   overflow: visible;
-  color: rgba(255, 255, 255, 0.96);
+  color: color-mix(in srgb, var(--color-paw-inverse-ink) 96%, transparent);
   font-size: 0.78rem;
   font-weight: 820;
   line-height: 1.2;
@@ -2798,29 +2713,29 @@ li {
   align-items: center;
   gap: 0.35rem;
   min-height: 1.72rem;
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  border: 1px solid color-mix(in srgb, var(--color-paw-inverse-ink) 18%, transparent);
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.1);
+  background: color-mix(in srgb, var(--color-paw-inverse-ink) 10%, transparent);
   padding: 0.32rem 0.52rem;
-  color: rgba(255, 255, 255, 0.96);
-  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.24);
+  color: color-mix(in srgb, var(--color-paw-inverse-ink) 96%, transparent);
+  text-shadow: 0 1px 1px color-mix(in srgb, var(--color-paw-shadow-ink) 24%, transparent);
   white-space: nowrap;
 }
 
 .globe-weather-item-place {
-  border-color: rgba(74, 144, 217, 0.44);
-  background: rgba(74, 144, 217, 0.24);
-  color: #ffffff;
+  border-color: color-mix(in srgb, var(--color-paw-primary) 44%, transparent);
+  background: color-mix(in srgb, var(--color-paw-primary) 24%, transparent);
+  color: var(--color-paw-inverse-ink);
   white-space: normal;
 }
 
 .globe-weather-item-advice {
   flex: 1 1 100%;
   justify-content: center;
-  border-color: rgba(255, 205, 56, 0.38);
+  border-color: color-mix(in srgb, var(--color-paw-yellow) 38%, transparent);
   border-radius: var(--radius-paw-sm);
-  background: rgba(255, 205, 56, 0.18);
-  color: #ffffff;
+  background: color-mix(in srgb, var(--color-paw-yellow) 18%, transparent);
+  color: var(--color-paw-inverse-ink);
   text-align: center;
   white-space: normal;
 }
@@ -2838,9 +2753,9 @@ li {
 .globe-weather-suffix {
   flex: 0 0 auto;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.18);
+  background: color-mix(in srgb, var(--color-paw-inverse-ink) 18%, transparent);
   padding: 0.12rem 0.38rem;
-  color: rgba(255, 255, 255, 0.88);
+  color: color-mix(in srgb, var(--color-paw-inverse-ink) 88%, transparent);
   font-size: 0.68rem;
   font-weight: 900;
 }
@@ -2848,9 +2763,9 @@ li {
 .globe-hud-panel,
 .globe-layer-button,
 .globe-status-strip {
-  border-color: rgba(234, 223, 209, 0.86) !important;
-  background: rgba(255, 255, 255, 0.86);
-  box-shadow: 0 18px 42px rgba(58, 47, 42, 0.14);
+  border-color: color-mix(in srgb, var(--color-paw-border) 86%, transparent) !important;
+  background: color-mix(in srgb, var(--color-paw-inverse-ink) 86%, transparent);
+  box-shadow: 0 18px 42px color-mix(in srgb, var(--color-paw-ink) 14%, transparent);
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
 }
@@ -2867,10 +2782,10 @@ li {
   top: calc(env(safe-area-inset-top, 0px) + 10.8rem);
   right: 1rem;
   align-items: center;
-  border: 1px solid rgba(234, 223, 209, 0.86);
+  border: 1px solid color-mix(in srgb, var(--color-paw-border) 86%, transparent);
   border-radius: var(--radius-paw-md);
-  background: rgba(255, 255, 255, 0.86);
-  box-shadow: 0 18px 42px rgba(58, 47, 42, 0.14);
+  background: color-mix(in srgb, var(--color-paw-inverse-ink) 86%, transparent);
+  box-shadow: 0 18px 42px color-mix(in srgb, var(--color-paw-ink) 14%, transparent);
   padding: 0.35rem;
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
@@ -2884,7 +2799,7 @@ li {
 .globe-layer-button.is-active-mission,
 .globe-layer-button.is-active-place,
 .globe-layer-button.is-active-post {
-  box-shadow: 0 14px 34px rgba(58, 47, 42, 0.16);
+  box-shadow: 0 14px 34px color-mix(in srgb, var(--color-paw-ink) 16%, transparent);
   color: var(--color-paw-on-action) !important;
 }
 
@@ -2957,7 +2872,7 @@ li {
   display: flex;
   align-items: flex-start;
   gap: 0.4rem;
-  border: 1px solid rgba(242, 140, 68, 0.22);
+  border: 1px solid color-mix(in srgb, var(--color-paw-accent) 22%, transparent);
   border-radius: var(--radius-paw-sm);
   background: var(--color-paw-warning-soft);
   color: var(--color-paw-on-warning-soft);
@@ -2976,7 +2891,7 @@ li {
   max-width: calc(100vw - 2rem);
   align-items: center;
   gap: 0.55rem;
-  border: 1px solid rgba(234, 223, 209, 0.86);
+  border: 1px solid color-mix(in srgb, var(--color-paw-border) 86%, transparent);
   border-radius: var(--radius-paw-md);
   padding: 0.65rem 0.85rem;
   color: var(--color-paw-body);
@@ -2990,7 +2905,7 @@ li {
 }
 
 .globe-chat-sheet {
-  border: 1px solid rgba(234, 223, 209, 0.86);
+  border: 1px solid color-mix(in srgb, var(--color-paw-border) 86%, transparent);
 }
 
 .globe-chat-sheet-peek {
@@ -3008,7 +2923,7 @@ li {
 }
 
 .globe-tutorial-card {
-  filter: drop-shadow(0 18px 44px rgba(15, 23, 42, 0.18));
+  filter: drop-shadow(0 18px 44px color-mix(in srgb, var(--color-paw-on-action) 18%, transparent));
 }
 
 .globe-page-shell .maplibregl-ctrl-bottom-right {
@@ -3028,7 +2943,7 @@ li {
   flex: 0 0 auto;
   align-items: center;
   gap: 0.45rem;
-  border: 1px solid rgba(74, 144, 217, 0.18);
+  border: 1px solid color-mix(in srgb, var(--color-paw-primary) 18%, transparent);
   border-radius: var(--radius-paw-md);
   background: var(--color-paw-primary-soft);
   color: var(--color-paw-primary);
@@ -3075,7 +2990,7 @@ li {
 .profile-action-button-primary {
   border: 1px solid var(--color-paw-primary);
   background: var(--color-paw-primary);
-  color: #ffffff;
+  color: var(--color-paw-inverse-ink);
   box-shadow: var(--shadow-paw-action);
 }
 
@@ -3090,7 +3005,7 @@ li {
 }
 
 .profile-action-button-secondary:hover {
-  border-color: rgba(74, 144, 217, 0.30);
+  border-color: color-mix(in srgb, var(--color-paw-primary) 30%, transparent);
   background: var(--color-paw-primary-soft);
   color: var(--color-paw-primary);
 }
@@ -3137,9 +3052,9 @@ li {
   grid-template-columns: minmax(0, 1fr) auto;
   gap: 0.85rem;
   align-items: center;
-  border: 1px solid rgba(234, 223, 209, 0.72);
+  border: 1px solid color-mix(in srgb, var(--color-paw-border) 72%, transparent);
   border-radius: var(--radius-paw-md);
-  background: rgba(255, 255, 255, 0.66);
+  background: color-mix(in srgb, var(--color-paw-inverse-ink) 66%, transparent);
   padding: 0.8rem;
 }
 
@@ -3158,18 +3073,18 @@ li {
 .profile-install-compact {
   display: grid;
   gap: 0.8rem;
-  border: 1px solid rgba(74, 144, 217, 0.14);
+  border: 1px solid color-mix(in srgb, var(--color-paw-primary) 14%, transparent);
   border-radius: var(--radius-paw-md);
-  background: rgba(234, 244, 252, 0.64);
+  background: color-mix(in srgb, var(--color-paw-primary-soft) 64%, transparent);
   padding: 0.9rem;
 }
 
 .profile-empty-card,
 .profile-pet-card {
-  border: 1px solid rgba(234, 223, 209, 0.86);
+  border: 1px solid color-mix(in srgb, var(--color-paw-border) 86%, transparent);
   border-radius: var(--radius-paw-lg);
   background: var(--color-paw-panel);
-  box-shadow: 0 14px 34px rgba(58, 47, 42, 0.07);
+  box-shadow: 0 14px 34px color-mix(in srgb, var(--color-paw-ink) 7%, transparent);
 }
 
 .profile-empty-card {
@@ -3184,7 +3099,7 @@ li {
 
 .profile-pet-card:hover {
   transform: translateY(-2px);
-  border-color: rgba(74, 144, 217, 0.30);
+  border-color: color-mix(in srgb, var(--color-paw-primary) 30%, transparent);
   box-shadow: var(--shadow-paw-panel);
 }
 
@@ -3196,7 +3111,7 @@ li {
 .profile-pet-status-ready,
 .profile-pet-status-contact,
 .profile-tag-care {
-  border-color: rgba(118, 199, 184, 0.20);
+  border-color: color-mix(in srgb, var(--color-paw-trust) 20%, transparent);
   background: var(--color-paw-success-soft);
   color: var(--color-paw-success);
 }
@@ -3208,7 +3123,7 @@ li {
 
 .profile-pet-fact-care,
 .profile-tag-social {
-  border-color: rgba(74, 144, 217, 0.18);
+  border-color: color-mix(in srgb, var(--color-paw-primary) 18%, transparent);
   background: var(--color-paw-primary-soft);
   color: var(--color-paw-primary);
 }
@@ -3232,7 +3147,7 @@ li {
 }
 
 .profile-tag-link:hover {
-  border-color: rgba(74, 144, 217, 0.30);
+  border-color: color-mix(in srgb, var(--color-paw-primary) 30%, transparent);
   background: var(--color-paw-primary-soft);
   color: var(--color-paw-primary);
 }
@@ -3716,21 +3631,21 @@ li {
 
   .home-hero-field {
     background:
-      linear-gradient(180deg, #141A20 0%, #141A20 58%, #1D272D 100%);
+      linear-gradient(180deg, var(--color-paw-globe-canvas) 0%, var(--color-paw-globe-canvas) 58%, var(--color-paw-panel) 100%);
   }
 
   .hero-safety-ribbon {
     background:
-      linear-gradient(90deg, transparent 0%, rgba(116, 184, 234, 0.11) 32%, rgba(141, 216, 204, 0.10) 68%, transparent 100%),
-      linear-gradient(180deg, transparent, rgba(20, 26, 32, 0.72));
+      linear-gradient(90deg, transparent 0%, color-mix(in srgb, var(--color-paw-primary) 11%, transparent) 32%, color-mix(in srgb, var(--color-paw-trust) 10%, transparent) 68%, transparent 100%),
+      linear-gradient(180deg, transparent, color-mix(in srgb, var(--color-paw-globe-canvas) 72%, transparent));
   }
 
   .hero-map-grid {
     background-image:
-      linear-gradient(35deg, rgba(116, 184, 234, 0.14) 1px, transparent 1px),
-      linear-gradient(115deg, rgba(141, 216, 204, 0.12) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(251, 247, 242, 0.045) 1px, transparent 1px),
-      linear-gradient(0deg, rgba(251, 247, 242, 0.045) 1px, transparent 1px);
+      linear-gradient(35deg, color-mix(in srgb, var(--color-paw-primary) 14%, transparent) 1px, transparent 1px),
+      linear-gradient(115deg, color-mix(in srgb, var(--color-paw-trust) 12%, transparent) 1px, transparent 1px),
+      linear-gradient(90deg, color-mix(in srgb, var(--color-paw-panel-subtle) 4.5%, transparent) 1px, transparent 1px),
+      linear-gradient(0deg, color-mix(in srgb, var(--color-paw-panel-subtle) 4.5%, transparent) 1px, transparent 1px);
   }
 
   .hero-signal-rail,
@@ -3753,22 +3668,22 @@ li {
   .not-found-panel,
   .not-found-row,
   .loading-panel {
-    border-color: rgba(118, 199, 184, 0.24);
+    border-color: color-mix(in srgb, var(--color-paw-trust) 24%, transparent);
     background:
-      linear-gradient(145deg, rgba(29, 39, 45, 0.94), rgba(36, 49, 57, 0.88));
-    box-shadow: 0 18px 46px rgba(0, 0, 0, 0.30);
+      linear-gradient(145deg, color-mix(in srgb, var(--color-paw-panel) 94%, transparent), color-mix(in srgb, var(--color-paw-panel-subtle) 88%, transparent));
+    box-shadow: 0 18px 46px color-mix(in srgb, var(--color-paw-shadow-ink) 30%, transparent);
   }
 
   .auth-visual-panel {
-    border-color: rgba(118, 199, 184, 0.24);
+    border-color: color-mix(in srgb, var(--color-paw-trust) 24%, transparent);
     background:
-      radial-gradient(circle at 20% 10%, rgba(116, 184, 234, 0.16), transparent 18rem),
-      linear-gradient(145deg, rgba(29, 39, 45, 0.96), rgba(36, 49, 57, 0.90));
+      radial-gradient(circle at 20% 10%, color-mix(in srgb, var(--color-paw-primary) 16%, transparent), transparent 18rem),
+      linear-gradient(145deg, color-mix(in srgb, var(--color-paw-panel) 96%, transparent), color-mix(in srgb, var(--color-paw-panel-subtle) 90%, transparent));
   }
 
   .hero-signal-item:nth-child(2),
   .workflow-visual-map {
-    background: rgba(20, 26, 32, 0.66);
+    background: color-mix(in srgb, var(--color-paw-globe-canvas) 66%, transparent);
   }
 
   .auth-trust-list span,
@@ -3780,37 +3695,37 @@ li {
   .tag-info-tile,
   .not-found-icon,
   .loading-panel-mark {
-    border-color: rgba(116, 184, 234, 0.24);
-    background: rgba(74, 144, 217, 0.18);
+    border-color: color-mix(in srgb, var(--color-paw-primary) 24%, transparent);
+    background: color-mix(in srgb, var(--color-paw-primary) 18%, transparent);
     color: var(--color-paw-primary);
   }
 
   .tag-info-tile-danger {
-    border-color: rgba(179, 145, 125, 0.26);
-    background: rgba(143, 106, 86, 0.20);
+    border-color: color-mix(in srgb, var(--color-paw-muted) 26%, transparent);
+    background: color-mix(in srgb, var(--color-paw-danger) 20%, transparent);
     color: var(--color-paw-danger);
   }
 
   .profile-readiness-row,
   .profile-install-compact {
-    border-color: rgba(118, 199, 184, 0.22);
-    background: rgba(20, 26, 32, 0.48);
+    border-color: color-mix(in srgb, var(--color-paw-trust) 22%, transparent);
+    background: color-mix(in srgb, var(--color-paw-globe-canvas) 48%, transparent);
   }
 
   .profile-readiness-value {
-    background: rgba(74, 144, 217, 0.20);
+    background: color-mix(in srgb, var(--color-paw-primary) 20%, transparent);
     color: var(--color-paw-primary);
   }
 
   .text-gradient {
-    background-image: linear-gradient(135deg, #9BCDF1, #A9E4DA, #FFB57D);
+    background-image: linear-gradient(135deg, var(--color-paw-primary-hover), var(--color-paw-trust-hover), var(--color-paw-accent-hover));
   }
 
   .hero-globe-orbit-ring {
-    border-color: rgba(116, 184, 234, 0.18);
+    border-color: color-mix(in srgb, var(--color-paw-primary) 18%, transparent);
     background:
-      linear-gradient(90deg, transparent 47%, rgba(116, 184, 234, 0.16) 48%, rgba(141, 216, 204, 0.16) 52%, transparent 53%),
-      radial-gradient(circle, rgba(116, 184, 234, 0.12), transparent 62%);
+      linear-gradient(90deg, transparent 47%, color-mix(in srgb, var(--color-paw-primary) 16%, transparent) 48%, color-mix(in srgb, var(--color-paw-trust) 16%, transparent) 52%, transparent 53%),
+      radial-gradient(circle, color-mix(in srgb, var(--color-paw-primary) 12%, transparent), transparent 62%);
   }
 
   .hero-globe-card,
@@ -3822,32 +3737,32 @@ li {
   .legal-trust-row,
   .checkout-assurance-chip,
   .checkout-stepper {
-    border-color: rgba(118, 199, 184, 0.24);
-    background: rgba(29, 39, 45, 0.82);
-    box-shadow: 0 18px 42px rgba(0, 0, 0, 0.30);
+    border-color: color-mix(in srgb, var(--color-paw-trust) 24%, transparent);
+    background: color-mix(in srgb, var(--color-paw-panel) 82%, transparent);
+    box-shadow: 0 18px 42px color-mix(in srgb, var(--color-paw-shadow-ink) 30%, transparent);
   }
 
   .hero-product-tag,
   .homepage-tag-disc {
     background:
-      radial-gradient(circle at 32% 24%, rgba(255, 253, 244, 0.10), transparent 24%),
-      linear-gradient(145deg, rgba(29, 39, 45, 0.96), rgba(36, 49, 57, 0.92));
+      radial-gradient(circle at 32% 24%, color-mix(in srgb, var(--color-paw-panel-subtle) 10%, transparent), transparent 24%),
+      linear-gradient(145deg, color-mix(in srgb, var(--color-paw-panel) 96%, transparent), color-mix(in srgb, var(--color-paw-panel-subtle) 92%, transparent));
     color: var(--color-paw-primary);
   }
 
   .hero-product-tag-mark {
     background: var(--color-paw-primary);
-    color: #141A20;
+    color: var(--color-paw-globe-canvas);
   }
 
   .homepage-proof-item {
-    border-color: rgba(118, 199, 184, 0.22);
+    border-color: color-mix(in srgb, var(--color-paw-trust) 22%, transparent);
   }
 
   .homepage-showcase-grid {
     background:
-      linear-gradient(90deg, rgba(116, 184, 234, 0.08) 1px, transparent 1px),
-      linear-gradient(0deg, rgba(141, 216, 204, 0.07) 1px, transparent 1px);
+      linear-gradient(90deg, color-mix(in srgb, var(--color-paw-primary) 8%, transparent) 1px, transparent 1px),
+      linear-gradient(0deg, color-mix(in srgb, var(--color-paw-trust) 7%, transparent) 1px, transparent 1px);
   }
 
   .readiness-card,
@@ -3861,20 +3776,20 @@ li {
   .success-card-upgraded,
   .admin-card-upgraded,
   .admin-preview-card {
-    border-color: rgba(118, 199, 184, 0.24);
+    border-color: color-mix(in srgb, var(--color-paw-trust) 24%, transparent);
     background:
-      linear-gradient(145deg, rgba(29, 39, 45, 0.96), rgba(36, 49, 57, 0.90)),
-      linear-gradient(90deg, rgba(116, 184, 234, 0.08), rgba(141, 216, 204, 0.06));
-    box-shadow: 0 20px 54px rgba(0, 0, 0, 0.34);
+      linear-gradient(145deg, color-mix(in srgb, var(--color-paw-panel) 96%, transparent), color-mix(in srgb, var(--color-paw-panel-subtle) 90%, transparent)),
+      linear-gradient(90deg, color-mix(in srgb, var(--color-paw-primary) 8%, transparent), color-mix(in srgb, var(--color-paw-trust) 6%, transparent));
+    box-shadow: 0 20px 54px color-mix(in srgb, var(--color-paw-shadow-ink) 34%, transparent);
   }
 
   .homepage-flow-number {
-    background: rgba(74, 144, 217, 0.20);
+    background: color-mix(in srgb, var(--color-paw-primary) 20%, transparent);
     color: var(--color-paw-primary);
   }
 
   .homepage-flow-icon {
-    border-color: rgba(116, 184, 234, 0.30);
+    border-color: color-mix(in srgb, var(--color-paw-primary) 30%, transparent);
   }
 
   .deep-page-shell::before,
@@ -3884,14 +3799,14 @@ li {
   .commerce-page-shell::before,
   .admin-page-shell::before {
     background:
-      radial-gradient(circle at 16% 18%, rgba(116, 184, 234, 0.13), transparent 24rem),
-      radial-gradient(circle at 86% 20%, rgba(141, 216, 204, 0.12), transparent 22rem),
-      linear-gradient(180deg, #141A20 0%, #141A20 58%, #1D272D 100%);
+      radial-gradient(circle at 16% 18%, color-mix(in srgb, var(--color-paw-primary) 13%, transparent), transparent 24rem),
+      radial-gradient(circle at 86% 20%, color-mix(in srgb, var(--color-paw-trust) 12%, transparent), transparent 22rem),
+      linear-gradient(180deg, var(--color-paw-globe-canvas) 0%, var(--color-paw-globe-canvas) 58%, var(--color-paw-panel) 100%);
   }
 
   .workflow-visual-map {
-    border-color: rgba(118, 199, 184, 0.24);
-    background: rgba(29, 39, 45, 0.76);
+    border-color: color-mix(in srgb, var(--color-paw-trust) 24%, transparent);
+    background: color-mix(in srgb, var(--color-paw-panel) 76%, transparent);
   }
 
   .bg-white\/72,
@@ -3902,18 +3817,18 @@ li {
   .bg-white\/92,
   .bg-white\/94,
   .bg-white\/95 {
-    background-color: rgba(29, 39, 45, 0.82) !important;
+    background-color: color-mix(in srgb, var(--color-paw-panel) 82%, transparent) !important;
   }
 
   .from-white {
     --tw-gradient-from: var(--color-paw-page) var(--tw-gradient-from-position) !important;
-    --tw-gradient-to: rgba(20, 26, 32, 0) var(--tw-gradient-to-position) !important;
+    --tw-gradient-to: color-mix(in srgb, var(--color-paw-globe-canvas) 0%, transparent) var(--tw-gradient-to-position) !important;
     --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from), var(--tw-gradient-to)) !important;
   }
 
   .via-white,
   .via-white\/95 {
-    --tw-gradient-via: rgba(20, 26, 32, 0.95) var(--tw-gradient-via-position) !important;
+    --tw-gradient-via: color-mix(in srgb, var(--color-paw-globe-canvas) 95%, transparent) var(--tw-gradient-via-position) !important;
     --tw-gradient-via-stops: var(--tw-gradient-position), var(--tw-gradient-from), var(--tw-gradient-via), var(--tw-gradient-to) !important;
   }
 

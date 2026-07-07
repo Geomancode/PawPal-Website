@@ -142,9 +142,9 @@ export default function Navbar() {
                   aria-label="Open account menu"
                   aria-expanded={showDropdown}
                   onClick={() => setShowDropdown((value) => !value)}
-                  className="inline-flex h-11 items-center gap-2 rounded-paw-sm border border-paw-border-strong bg-white px-3 text-sm font-bold text-paw-ink transition hover:border-paw-primary hover:text-paw-primary"
+                  className="inline-flex h-11 items-center gap-2 rounded-paw-sm border border-paw-border-strong bg-paw-panel px-3 text-sm font-bold text-paw-ink transition hover:border-paw-primary hover:text-paw-primary"
                 >
-                  <span className="flex h-7 w-7 items-center justify-center rounded-full bg-paw-primary text-xs font-black text-white">
+                  <span className="flex h-7 w-7 items-center justify-center rounded-full bg-paw-primary text-xs font-black text-paw-on-primary">
                     {displayName.charAt(0).toUpperCase()}
                   </span>
                   <span className="max-w-28 truncate">{displayName}</span>
@@ -157,7 +157,7 @@ export default function Navbar() {
                       animate={{ opacity: 1, y: 0, scale: 1 }}
                       exit={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: -8, scale: 0.98 }}
                       transition={shouldReduceMotion ? { duration: 0 } : { duration: 0.18 }}
-                      className="absolute right-0 mt-3 w-56 overflow-hidden rounded-paw-md border border-paw-border bg-white py-1 shadow-paw-panel"
+                      className="absolute right-0 mt-3 w-56 overflow-hidden rounded-paw-md border border-paw-border bg-paw-panel py-1 shadow-paw-panel"
                     >
                       <div className="border-b border-paw-border px-4 py-3">
                         <p className="truncate text-sm font-extrabold text-paw-ink">{displayName}</p>
@@ -189,7 +189,7 @@ export default function Navbar() {
                 className={`inline-flex h-11 items-center justify-center rounded-paw-sm border px-5 text-sm font-bold transition ${
                   pathname === "/auth"
                     ? "border-paw-primary bg-paw-primary text-paw-accent-ink"
-                    : "border-paw-border-strong bg-white text-paw-ink hover:border-paw-primary hover:text-paw-primary"
+                    : "border-paw-border-strong bg-paw-panel text-paw-ink hover:border-paw-primary hover:text-paw-primary"
                 }`}
               >
                 Login
@@ -201,7 +201,7 @@ export default function Navbar() {
             type="button"
             aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"}
             onClick={() => setIsOpen((value) => !value)}
-            className="inline-flex h-11 w-11 items-center justify-center rounded-paw-sm border border-paw-border bg-white text-paw-ink md:hidden"
+            className="inline-flex h-11 w-11 items-center justify-center rounded-paw-sm border border-paw-border bg-paw-panel text-paw-ink md:hidden"
           >
             {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
@@ -215,7 +215,7 @@ export default function Navbar() {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={shouldReduceMotion ? { duration: 0 } : { duration: 0.2 }}
-            className={`${styles.navMobilePanel} overflow-hidden border-t border-paw-border bg-white md:hidden`}
+            className={`${styles.navMobilePanel} overflow-hidden border-t border-paw-border bg-paw-panel md:hidden`}
           >
             <div className="space-y-1 px-5 py-4">
               {navLinks.map((link) => {
@@ -225,7 +225,7 @@ export default function Navbar() {
                     key={link.href}
                     href={link.href}
                     className={`block rounded-paw-sm px-3 py-3 text-base font-bold ${
-                      isActive ? "bg-paw-primary-soft text-paw-primary" : "text-paw-ink hover:bg-paw-panel-subtle"
+                      isActive ? "bg-paw-primary-soft text-paw-on-primary-soft" : "text-paw-ink hover:bg-paw-panel-subtle"
                     }`}
                     onClick={() => setIsOpen(false)}
                   >
@@ -244,7 +244,7 @@ export default function Navbar() {
                 ) : user ? (
                   <>
                     <div className="flex items-center gap-3 px-3 py-2 text-sm text-paw-ink">
-                      <span className="flex h-9 w-9 items-center justify-center rounded-full bg-paw-primary text-xs font-black text-white">
+                      <span className="flex h-9 w-9 items-center justify-center rounded-full bg-paw-primary text-xs font-black text-paw-on-primary">
                         {displayName.charAt(0).toUpperCase()}
                       </span>
                       <span className="truncate font-extrabold">{displayName}</span>

@@ -92,7 +92,7 @@ function createSearchMarker(
   });
 
   const popupContent = document.createElement("div");
-  popupContent.style.fontFamily = "system-ui";
+  popupContent.style.fontFamily = "var(--font-sans)";
   popupContent.style.minWidth = "140px";
 
   const popupTitle = document.createElement("div");
@@ -526,7 +526,7 @@ export default function ChatBottomSheet({ mapRef }: ChatBottomSheetProps) {
           background: "color-mix(in srgb, var(--color-paw-panel) 97%, transparent)",
           backdropFilter: "blur(24px)",
           WebkitBackdropFilter: "blur(24px)",
-          boxShadow: "0 -4px 30px rgba(15, 23, 42, 0.12)",
+          boxShadow: "var(--shadow-paw-panel)",
           transition: "height 0.35s cubic-bezier(0.32, 0.72, 0, 1)",
         }}
       >
@@ -548,7 +548,7 @@ export default function ChatBottomSheet({ mapRef }: ChatBottomSheetProps) {
                 {activePetSpecies ? (
                   <span className="text-sm">{SPECIES_EMOJI[activePetSpecies] ?? "🐾"}</span>
                 ) : (
-                  <Sparkles className="w-3 h-3 text-white" />
+                  <Sparkles className="w-3 h-3 text-paw-on-primary" />
                 )}
               </div>
               <span className="text-sm font-bold text-paw-ink">
@@ -609,7 +609,7 @@ export default function ChatBottomSheet({ mapRef }: ChatBottomSheetProps) {
                     <button
                       key={chip}
                       onClick={() => { setInput(chip); sendMessage(chip); }}
-                      className="px-2.5 py-1 text-[11px] rounded-full bg-paw-trust-soft text-paw-trust hover:bg-paw-primary-soft transition-colors border border-paw-trust/15 whitespace-nowrap"
+                      className="px-2.5 py-1 text-[11px] rounded-full bg-paw-trust-soft text-paw-on-trust-soft hover:bg-paw-primary-soft transition-colors border border-paw-trust/15 whitespace-nowrap"
                     >
                       {chip}
                     </button>
@@ -631,7 +631,7 @@ export default function ChatBottomSheet({ mapRef }: ChatBottomSheetProps) {
               <div className="flex justify-start mb-3">
                 <div className="flex gap-2 items-center">
                   <div className="w-6 h-6 rounded-full bg-gradient-to-br from-paw-trust to-paw-primary flex items-center justify-center">
-                    <Sparkles className="w-3 h-3 text-white" />
+                    <Sparkles className="w-3 h-3 text-paw-on-primary" />
                   </div>
                   <div className="flex gap-1 px-3 py-2 rounded-2xl bg-paw-panel/90 border border-paw-border shadow-sm">
                     <div
@@ -682,7 +682,7 @@ export default function ChatBottomSheet({ mapRef }: ChatBottomSheetProps) {
             className="bg-paw-primary hover:bg-paw-primary-hover disabled:opacity-40 disabled:hover:bg-paw-primary text-paw-accent-ink px-4 py-2 rounded-full text-xs font-semibold transition-all shadow-paw-action flex items-center gap-1.5 shrink-0"
           >
             {isStreaming ? (
-              <div className="w-3.5 h-3.5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+              <div className="w-3.5 h-3.5 border-2 border-paw-on-primary/30 border-t-paw-on-primary rounded-full animate-spin" />
             ) : (
               <Search className="w-3.5 h-3.5" />
             )}
