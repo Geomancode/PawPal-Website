@@ -5,9 +5,14 @@ import Providers from "@/components/Providers";
 import ConditionalFooter from "@/components/ConditionalFooter";
 import CookieConsentBanner from "@/components/CookieConsentBanner";
 import { siteConfig } from "@/lib/site";
+import {
+  PAWPAL_METADATA_BASE,
+  PAWPAL_OG_IMAGE,
+  PAWPAL_OG_IMAGE_PATH,
+} from "./metadata";
 
 export const metadata: Metadata = {
-  metadataBase: new URL(siteConfig.url),
+  metadataBase: new URL(PAWPAL_METADATA_BASE),
   title: {
     default: siteConfig.title,
     template: "%s | PawPal",
@@ -35,25 +40,18 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: "website",
-    url: siteConfig.url,
+    url: PAWPAL_METADATA_BASE,
     siteName: siteConfig.name,
     title: siteConfig.title,
     description: siteConfig.description,
     locale: siteConfig.locale,
-    images: [
-      {
-        url: "/images/app-mockup.png",
-        width: 1024,
-        height: 1024,
-        alt: "PawPal app and smart pet safety experience",
-      },
-    ],
+    images: [PAWPAL_OG_IMAGE],
   },
   twitter: {
     card: "summary_large_image",
     title: siteConfig.title,
     description: siteConfig.description,
-    images: ["/images/app-mockup.png"],
+    images: [PAWPAL_OG_IMAGE_PATH],
   },
   appleWebApp: {
     capable: true,
@@ -82,11 +80,11 @@ const jsonLd = {
   "@graph": [
     {
       "@type": "Organization",
-      "@id": `${siteConfig.url}/#organization`,
+      "@id": `${PAWPAL_METADATA_BASE}/#organization`,
       name: siteConfig.name,
-      url: siteConfig.url,
+      url: PAWPAL_METADATA_BASE,
       email: siteConfig.email,
-      logo: `${siteConfig.url}/assets/logos/pawpal-logo-light.svg`,
+      logo: `${PAWPAL_METADATA_BASE}/assets/logos/pawpal-logo-light.svg`,
       foundingLocation: {
         "@type": "Place",
         name: "Ghent, Belgium",
@@ -94,16 +92,16 @@ const jsonLd = {
     },
     {
       "@type": "WebSite",
-      "@id": `${siteConfig.url}/#website`,
-      url: siteConfig.url,
+      "@id": `${PAWPAL_METADATA_BASE}/#website`,
+      url: PAWPAL_METADATA_BASE,
       name: siteConfig.name,
       description: siteConfig.description,
       publisher: {
-        "@id": `${siteConfig.url}/#organization`,
+        "@id": `${PAWPAL_METADATA_BASE}/#organization`,
       },
       potentialAction: {
         "@type": "SearchAction",
-        target: `${siteConfig.url}/store?search={search_term_string}`,
+        target: `${PAWPAL_METADATA_BASE}/store?search={search_term_string}`,
         "query-input": "required name=search_term_string",
       },
     },

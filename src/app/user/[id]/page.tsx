@@ -6,6 +6,7 @@ import { BadgeCheck, MapPin, PawPrint, Smartphone } from "lucide-react";
 
 import { supabaseServer as supabase } from "@/lib/supabaseServer";
 import { AppDeepLinkButton } from "@/components/ui";
+import { publicPageMetadata } from "@/app/metadata";
 
 interface PageProps {
   params: Promise<{ id: string }>;
@@ -55,16 +56,11 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const description =
     data.profile.bio ?? `View ${name}'s public PawPal profile, pets, and posts.`;
 
-  return {
+  return publicPageMetadata({
     title: `${name} on PawPal`,
     description,
-    openGraph: {
-      title: `${name} on PawPal`,
-      description,
-      images: data.profile.avatar_url ? [{ url: data.profile.avatar_url }] : undefined,
-      url: `https://pawpal.be/user/${id}`,
-    },
-  };
+    path: `/user/${id}`,
+  });
 }
 
 export default async function SharedUserPage({ params }: PageProps) {

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { publicPageMetadata } from "./metadata";
 import {
   FadeIn,
   FadeInView,
@@ -15,14 +16,12 @@ import {
 } from "@/components/HomeClientParts";
 import { Card } from "@/components/ui";
 
-export const metadata: Metadata = {
-  title: "Pet Safety Map, Smart Tags, and Local Pet Community",
+export const metadata: Metadata = publicPageMetadata({
+  title: "Pet Safety Map, Smart Tags, and Local Pet Community | PawPal",
   description:
     "PawPal combines fog-of-war walks, NFC pet safety profiles, AI care guidance, and trusted local pet help from Belgium outward.",
-  alternates: {
-    canonical: "/",
-  },
-};
+  path: "/",
+});
 
 export default function Home() {
   return (

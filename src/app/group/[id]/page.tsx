@@ -6,6 +6,7 @@ import { UsersRound, PawPrint } from "lucide-react";
 
 import { supabaseServer as supabase } from "@/lib/supabaseServer";
 import { AppDeepLinkButton, Badge, Card, CardContent, buttonClassName } from "@/components/ui";
+import { publicPageMetadata } from "@/app/metadata";
 
 interface PageProps {
   params: Promise<{ id: string }>;
@@ -37,16 +38,11 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const data = await loadGroup(id);
   if (!data) return { title: "PawPal Group" };
 
-  return {
+  return publicPageMetadata({
     title: `${data.group.name} on PawPal`,
     description: `Join ${data.group.name}, a PawPal group for pet people.`,
-    openGraph: {
-      title: `${data.group.name} on PawPal`,
-      description: `Join ${data.group.name}, a PawPal group for pet people.`,
-      images: data.group.avatar_url ? [{ url: data.group.avatar_url }] : undefined,
-      url: `https://pawpal.be/group/${id}`,
-    },
-  };
+    path: `/group/${id}`,
+  });
 }
 
 export default async function SharedGroupPage({ params }: PageProps) {
