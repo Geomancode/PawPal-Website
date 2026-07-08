@@ -1,0 +1,25 @@
+/* Owner: /store/orders and /store/success status styles. */
+
+.orders-empty-state {
+  min-height: min(22rem, calc(100dvh - 20rem));
+  border-style: solid;
+  background:
+    linear-gradient(145deg, color-mix(in srgb, var(--color-paw-inverse-ink) 92%, transparent), color-mix(in srgb, var(--color-paw-panel-subtle) 88%, transparent));
+}
+
+.success-status-shell {
+  align-items: flex-start;
+}
+
+.success-action-row {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+@media (min-width: 640px) {
+  .success-action-row {
+    flex-direction: row;
+  }
+}

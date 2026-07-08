@@ -1,0 +1,222 @@
+/* Owner: /profile workspace route styles. */
+
+.profile-command-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.profile-command-chip {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 0.45rem;
+  border: 1px solid color-mix(in srgb, var(--color-paw-primary) 18%, transparent);
+  border-radius: var(--radius-paw-md);
+  background: var(--color-paw-primary-soft);
+  color: var(--color-paw-primary);
+  padding: 0.65rem 0.8rem;
+  font-size: 0.8rem;
+  font-weight: 900;
+}
+
+.profile-workspace-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.profile-owner-card,
+.profile-readiness-card {
+  min-width: 0;
+  border-radius: var(--radius-paw-lg);
+  padding: clamp(1rem, 2vw, 1.35rem);
+}
+
+.profile-owner-topline,
+.profile-section-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.profile-action-button {
+  display: inline-flex;
+  min-height: 2.65rem;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  border-radius: var(--radius-paw-md);
+  padding: 0.7rem 0.95rem;
+  font-size: 0.86rem;
+  font-weight: 900;
+  line-height: 1;
+  transition: border-color 180ms ease, background 180ms ease, color 180ms ease, box-shadow 180ms ease;
+}
+
+.profile-action-button-primary {
+  border: 1px solid var(--color-paw-primary);
+  background: var(--color-paw-primary);
+  color: var(--color-paw-inverse-ink);
+  box-shadow: var(--shadow-paw-action);
+}
+
+.profile-action-button-primary:hover {
+  background: var(--color-paw-primary-hover);
+}
+
+.profile-action-button-secondary {
+  border: 1px solid var(--color-paw-border);
+  background: var(--color-paw-panel-subtle);
+  color: var(--color-paw-body);
+}
+
+.profile-action-button-secondary:hover {
+  border-color: color-mix(in srgb, var(--color-paw-primary) 30%, transparent);
+  background: var(--color-paw-primary-soft);
+  color: var(--color-paw-primary);
+}
+
+.profile-action-button:disabled {
+  cursor: default;
+  border-color: var(--color-paw-border);
+  background: var(--color-paw-panel-subtle);
+  color: var(--color-paw-muted);
+  box-shadow: none;
+}
+
+.profile-meta-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+}
+
+.profile-meta-chip,
+.profile-pet-fact,
+.profile-pet-status,
+.profile-tag {
+  display: inline-flex;
+  max-width: 100%;
+  min-width: 0;
+  align-items: center;
+  gap: 0.35rem;
+  border: 1px solid var(--color-paw-border);
+  border-radius: var(--radius-paw-sm);
+  background: var(--color-paw-panel-subtle);
+  color: var(--color-paw-body);
+  overflow-wrap: anywhere;
+  padding: 0.38rem 0.55rem;
+  text-align: left;
+}
+
+.profile-meta-chip {
+  font-size: 0.76rem;
+  font-weight: 800;
+}
+
+.profile-readiness-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 0.85rem;
+  align-items: center;
+  border: 1px solid color-mix(in srgb, var(--color-paw-border) 72%, transparent);
+  border-radius: var(--radius-paw-md);
+  background: color-mix(in srgb, var(--color-paw-inverse-ink) 66%, transparent);
+  padding: 0.8rem;
+}
+
+.profile-readiness-value {
+  display: inline-flex;
+  min-width: 3rem;
+  justify-content: center;
+  border-radius: var(--radius-paw-sm);
+  background: var(--color-paw-primary-soft);
+  color: var(--color-paw-primary);
+  padding: 0.42rem 0.55rem;
+  font-size: 0.92rem;
+  font-weight: 950;
+}
+
+.profile-install-compact {
+  display: grid;
+  gap: 0.8rem;
+  border: 1px solid color-mix(in srgb, var(--color-paw-primary) 14%, transparent);
+  border-radius: var(--radius-paw-md);
+  background: color-mix(in srgb, var(--color-paw-primary-soft) 64%, transparent);
+  padding: 0.9rem;
+}
+
+.profile-empty-card,
+.profile-pet-card {
+  border: 1px solid color-mix(in srgb, var(--color-paw-border) 86%, transparent);
+  border-radius: var(--radius-paw-lg);
+  background: var(--color-paw-panel);
+  box-shadow: 0 14px 34px color-mix(in srgb, var(--color-paw-ink) 7%, transparent);
+}
+
+.profile-empty-card {
+  padding: 2rem 1.25rem;
+  text-align: center;
+}
+
+.profile-pet-card {
+  padding: 1rem;
+  transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+}
+
+.profile-pet-card:hover {
+  transform: translateY(-2px);
+  border-color: color-mix(in srgb, var(--color-paw-primary) 30%, transparent);
+  box-shadow: var(--shadow-paw-panel);
+}
+
+.profile-pet-status {
+  font-size: 0.68rem;
+  font-weight: 900;
+}
+
+.profile-pet-status-ready,
+.profile-pet-status-contact,
+.profile-tag-care {
+  border-color: color-mix(in srgb, var(--color-paw-trust) 20%, transparent);
+  background: var(--color-paw-success-soft);
+  color: var(--color-paw-success);
+}
+
+.profile-pet-fact {
+  font-size: 0.75rem;
+  font-weight: 800;
+}
+
+.profile-pet-fact-care,
+.profile-tag-social {
+  border-color: color-mix(in srgb, var(--color-paw-primary) 18%, transparent);
+  background: var(--color-paw-primary-soft);
+  color: var(--color-paw-primary);
+}
+
+.profile-tag {
+  font-size: 0.68rem;
+  font-weight: 900;
+}
+
+.profile-tag-link {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--color-paw-border);
+  border-radius: var(--radius-paw-sm);
+  background: var(--color-paw-panel-subtle);
+  color: var(--color-paw-muted);
+  padding: 0.65rem;
+  transition: border-color 180ms ease, background 180ms ease, color 180ms ease;
+}
+
+.profile-tag-link:hover {
+  border-color: color-mix(in srgb, var(--color-paw-primary) 30%, transparent);
+  background: var(--color-paw-primary-soft);
+  color: var(--color-paw-primary);
+}

@@ -1,0 +1,212 @@
+/* Owner: dark-mode overrides for route-owned surfaces. */
+
+@media (prefers-color-scheme: dark) {
+  html,
+  body {
+    background: var(--color-paw-page);
+    color: var(--color-paw-ink);
+    color-scheme: dark;
+  }
+
+  .home-hero-field {
+    background:
+      linear-gradient(180deg, var(--color-paw-globe-canvas) 0%, var(--color-paw-globe-canvas) 58%, var(--color-paw-panel) 100%);
+  }
+
+  .hero-safety-ribbon {
+    background:
+      linear-gradient(90deg, transparent 0%, color-mix(in srgb, var(--color-paw-primary) 11%, transparent) 32%, color-mix(in srgb, var(--color-paw-trust) 10%, transparent) 68%, transparent 100%),
+      linear-gradient(180deg, transparent, color-mix(in srgb, var(--color-paw-globe-canvas) 72%, transparent));
+  }
+
+  .hero-map-grid {
+    background-image:
+      linear-gradient(35deg, color-mix(in srgb, var(--color-paw-primary) 14%, transparent) 1px, transparent 1px),
+      linear-gradient(115deg, color-mix(in srgb, var(--color-paw-trust) 12%, transparent) 1px, transparent 1px),
+      linear-gradient(90deg, color-mix(in srgb, var(--color-paw-panel-subtle) 4.5%, transparent) 1px, transparent 1px),
+      linear-gradient(0deg, color-mix(in srgb, var(--color-paw-panel-subtle) 4.5%, transparent) 1px, transparent 1px);
+  }
+
+  .hero-signal-rail,
+  .auth-card,
+  .auth-signal-card,
+  .auth-trust-panel,
+  .profile-hero-card,
+  .profile-readiness-card,
+  .profile-form-card,
+  .profile-empty-card,
+  .profile-pet-card,
+  .support-route-panel,
+  .support-route-step,
+  .about-context-panel,
+  .about-system-row,
+  .about-metric-tile,
+  .legal-section-nav a,
+  .tag-rescue-panel,
+  .tag-detail-card,
+  .not-found-panel,
+  .not-found-row,
+  .loading-panel {
+    border-color: color-mix(in srgb, var(--color-paw-trust) 24%, transparent);
+    background:
+      linear-gradient(145deg, color-mix(in srgb, var(--color-paw-panel) 94%, transparent), color-mix(in srgb, var(--color-paw-panel-subtle) 88%, transparent));
+    box-shadow: 0 18px 46px color-mix(in srgb, var(--color-paw-shadow-ink) 30%, transparent);
+  }
+
+  .auth-visual-panel {
+    border-color: color-mix(in srgb, var(--color-paw-trust) 24%, transparent);
+    background:
+      radial-gradient(circle at 20% 10%, color-mix(in srgb, var(--color-paw-primary) 16%, transparent), transparent 18rem),
+      linear-gradient(145deg, color-mix(in srgb, var(--color-paw-panel) 96%, transparent), color-mix(in srgb, var(--color-paw-panel-subtle) 90%, transparent));
+  }
+
+  .hero-signal-item:nth-child(2),
+  .workflow-visual-map {
+    background: color-mix(in srgb, var(--color-paw-globe-canvas) 66%, transparent);
+  }
+
+  .auth-trust-list span,
+  .profile-meta-chip,
+  .profile-pet-fact,
+  .profile-pet-status,
+  .profile-tag,
+  .profile-tag-link,
+  .tag-info-tile,
+  .not-found-icon,
+  .loading-panel-mark {
+    border-color: color-mix(in srgb, var(--color-paw-primary) 24%, transparent);
+    background: color-mix(in srgb, var(--color-paw-primary) 18%, transparent);
+    color: var(--color-paw-primary);
+  }
+
+  .tag-info-tile-danger {
+    border-color: color-mix(in srgb, var(--color-paw-muted) 26%, transparent);
+    background: color-mix(in srgb, var(--color-paw-danger) 20%, transparent);
+    color: var(--color-paw-danger);
+  }
+
+  .profile-readiness-row,
+  .profile-install-compact {
+    border-color: color-mix(in srgb, var(--color-paw-trust) 22%, transparent);
+    background: color-mix(in srgb, var(--color-paw-globe-canvas) 48%, transparent);
+  }
+
+  .profile-readiness-value {
+    background: color-mix(in srgb, var(--color-paw-primary) 20%, transparent);
+    color: var(--color-paw-primary);
+  }
+
+  .text-gradient {
+    background-image: linear-gradient(135deg, var(--color-paw-primary-hover), var(--color-paw-trust-hover), var(--color-paw-accent-hover));
+  }
+
+  .hero-globe-orbit-ring {
+    border-color: color-mix(in srgb, var(--color-paw-primary) 18%, transparent);
+    background:
+      linear-gradient(90deg, transparent 47%, color-mix(in srgb, var(--color-paw-primary) 16%, transparent) 48%, color-mix(in srgb, var(--color-paw-trust) 16%, transparent) 52%, transparent 53%),
+      radial-gradient(circle, color-mix(in srgb, var(--color-paw-primary) 12%, transparent), transparent 62%);
+  }
+
+  .hero-globe-card,
+  .hero-globe-hint-upgraded,
+  .hero-product-tag,
+  .homepage-proof-icon,
+  .homepage-showcase-visual,
+  .homepage-tag-disc,
+  .legal-trust-row {
+    border-color: color-mix(in srgb, var(--color-paw-trust) 24%, transparent);
+    background: color-mix(in srgb, var(--color-paw-panel) 82%, transparent);
+    box-shadow: 0 18px 42px color-mix(in srgb, var(--color-paw-shadow-ink) 30%, transparent);
+  }
+
+  .hero-product-tag,
+  .homepage-tag-disc {
+    background:
+      radial-gradient(circle at 32% 24%, color-mix(in srgb, var(--color-paw-panel-subtle) 10%, transparent), transparent 24%),
+      linear-gradient(145deg, color-mix(in srgb, var(--color-paw-panel) 96%, transparent), color-mix(in srgb, var(--color-paw-panel-subtle) 92%, transparent));
+    color: var(--color-paw-primary);
+  }
+
+  .hero-product-tag-mark {
+    background: var(--color-paw-primary);
+    color: var(--color-paw-globe-canvas);
+  }
+
+  .homepage-proof-item {
+    border-color: color-mix(in srgb, var(--color-paw-trust) 22%, transparent);
+  }
+
+  .homepage-showcase-grid {
+    background:
+      linear-gradient(90deg, color-mix(in srgb, var(--color-paw-primary) 8%, transparent) 1px, transparent 1px),
+      linear-gradient(0deg, color-mix(in srgb, var(--color-paw-trust) 7%, transparent) 1px, transparent 1px);
+  }
+
+  .readiness-card,
+  .workflow-card,
+  .legal-hero-panel,
+  .orders-hero-panel,
+  .order-card-upgraded,
+  .success-card-upgraded,
+  .admin-card-upgraded,
+  .admin-preview-card {
+    border-color: color-mix(in srgb, var(--color-paw-trust) 24%, transparent);
+    background:
+      linear-gradient(145deg, color-mix(in srgb, var(--color-paw-panel) 96%, transparent), color-mix(in srgb, var(--color-paw-panel-subtle) 90%, transparent)),
+      linear-gradient(90deg, color-mix(in srgb, var(--color-paw-primary) 8%, transparent), color-mix(in srgb, var(--color-paw-trust) 6%, transparent));
+    box-shadow: 0 20px 54px color-mix(in srgb, var(--color-paw-shadow-ink) 34%, transparent);
+  }
+
+  .homepage-flow-number {
+    background: color-mix(in srgb, var(--color-paw-primary) 20%, transparent);
+    color: var(--color-paw-primary);
+  }
+
+  .homepage-flow-icon {
+    border-color: color-mix(in srgb, var(--color-paw-primary) 30%, transparent);
+  }
+
+  .deep-page-shell::before,
+  .auth-page-shell::before,
+  .profile-page-shell::before,
+  .legal-page-shell::before,
+  .commerce-page-shell::before,
+  .admin-page-shell::before {
+    background:
+      radial-gradient(circle at 16% 18%, color-mix(in srgb, var(--color-paw-primary) 13%, transparent), transparent 24rem),
+      radial-gradient(circle at 86% 20%, color-mix(in srgb, var(--color-paw-trust) 12%, transparent), transparent 22rem),
+      linear-gradient(180deg, var(--color-paw-globe-canvas) 0%, var(--color-paw-globe-canvas) 58%, var(--color-paw-panel) 100%);
+  }
+
+  .workflow-visual-map {
+    border-color: color-mix(in srgb, var(--color-paw-trust) 24%, transparent);
+    background: color-mix(in srgb, var(--color-paw-panel) 76%, transparent);
+  }
+
+  .bg-white\/72,
+  .bg-white\/78,
+  .bg-white\/82,
+  .bg-white\/86,
+  .bg-white\/90,
+  .bg-white\/92,
+  .bg-white\/94,
+  .bg-white\/95 {
+    background-color: color-mix(in srgb, var(--color-paw-panel) 82%, transparent) !important;
+  }
+
+  .from-white {
+    --tw-gradient-from: var(--color-paw-page) var(--tw-gradient-from-position) !important;
+    --tw-gradient-to: color-mix(in srgb, var(--color-paw-globe-canvas) 0%, transparent) var(--tw-gradient-to-position) !important;
+    --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from), var(--tw-gradient-to)) !important;
+  }
+
+  .via-white,
+  .via-white\/95 {
+    --tw-gradient-via: color-mix(in srgb, var(--color-paw-globe-canvas) 95%, transparent) var(--tw-gradient-via-position) !important;
+    --tw-gradient-via-stops: var(--tw-gradient-position), var(--tw-gradient-from), var(--tw-gradient-via), var(--tw-gradient-to) !important;
+  }
+
+  .to-white {
+    --tw-gradient-to: var(--color-paw-panel) var(--tw-gradient-to-position) !important;
+  }
+}

@@ -1,0 +1,91 @@
+/* Owner: /about and legal secondary route styles. */
+
+.about-hero {
+  background:
+    linear-gradient(180deg, var(--color-paw-inverse-ink) 0%, color-mix(in srgb, var(--color-paw-panel-subtle) 92%, transparent) 100%);
+}
+
+.about-metric-tile {
+  border: 1px solid color-mix(in srgb, var(--color-paw-border) 82%, transparent);
+  border-radius: var(--radius-paw-md);
+  background: color-mix(in srgb, var(--color-paw-inverse-ink) 82%, transparent);
+  box-shadow: 0 12px 28px color-mix(in srgb, var(--color-paw-ink) 7%, transparent);
+  padding: 0.9rem 0.75rem;
+}
+
+.about-context-panel {
+  display: flex;
+  min-height: 100%;
+  flex-direction: column;
+  justify-content: center;
+  border: 1px solid color-mix(in srgb, var(--color-paw-border) 86%, transparent);
+  border-radius: var(--radius-paw-lg);
+  background:
+    linear-gradient(145deg, color-mix(in srgb, var(--color-paw-inverse-ink) 94%, transparent), color-mix(in srgb, var(--color-paw-panel-subtle) 90%, transparent));
+  box-shadow: 0 20px 52px color-mix(in srgb, var(--color-paw-ink) 10%, transparent);
+  padding: clamp(1.4rem, 4vw, 2.5rem);
+}
+
+.about-market-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.65rem;
+}
+
+.legal-section-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  max-width: 60rem;
+}
+
+.legal-section-nav a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.5rem;
+  border: 1px solid color-mix(in srgb, var(--color-paw-border) 86%, transparent);
+  border-radius: var(--radius-paw-sm);
+  background: color-mix(in srgb, var(--color-paw-inverse-ink) 82%, transparent);
+  color: var(--color-paw-body);
+  padding: 0.55rem 0.8rem;
+  font-size: 0.82rem;
+  font-weight: 900;
+  transition: border-color 180ms ease, color 180ms ease, background 180ms ease;
+}
+
+.legal-section-nav a:hover {
+  border-color: color-mix(in srgb, var(--color-paw-primary) 36%, transparent);
+  background: var(--color-paw-primary-soft);
+  color: var(--color-paw-primary);
+}
+
+.legal-info-card {
+  scroll-margin-top: 6.5rem;
+}
+
+.about-system-panel {
+  min-height: 31rem;
+  border-radius: var(--radius-paw-lg);
+  padding: 1.5rem;
+}
+
+.about-system-row {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 0.85rem;
+  border: 1px solid color-mix(in srgb, var(--color-paw-border) 76%, transparent);
+  border-radius: var(--radius-paw-md);
+  background: color-mix(in srgb, var(--color-paw-inverse-ink) 76%, transparent);
+  padding: 0.9rem;
+}
+
+.about-system-icon {
+  display: flex;
+  width: 2.75rem;
+  height: 2.75rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-paw-sm);
+  background: var(--color-paw-primary-soft);
+  color: var(--color-paw-primary);
+}

@@ -1,0 +1,82 @@
+/* Owner: /loading, /not-found, and globe loading states. */
+
+.globe-loading-shell {
+  background:
+    radial-gradient(circle at 50% 46%, color-mix(in srgb, var(--color-paw-primary) 30%, transparent), transparent 18rem),
+    radial-gradient(circle at 62% 54%, color-mix(in srgb, var(--color-paw-trust) 20%, transparent), transparent 16rem),
+    var(--color-paw-globe-canvas);
+}
+
+.globe-loading-card {
+  width: min(100%, 24rem);
+  border: 1px solid color-mix(in srgb, var(--color-paw-inverse-ink) 10%, transparent);
+  border-radius: var(--radius-paw-lg);
+  background: color-mix(in srgb, var(--color-paw-inverse-ink) 6%, transparent);
+  box-shadow: 0 24px 72px color-mix(in srgb, var(--color-paw-shadow-ink) 28%, transparent);
+  padding: 1.5rem;
+  text-align: center;
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+.not-found-panel,
+.loading-panel {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--color-paw-border);
+  border-radius: var(--radius-paw-lg);
+  background: color-mix(in srgb, var(--color-paw-inverse-ink) 90%, transparent);
+  box-shadow: var(--shadow-paw-panel);
+}
+
+.not-found-panel {
+  min-height: 26rem;
+  padding: 1.25rem;
+}
+
+.not-found-row {
+  display: flex;
+  gap: 0.9rem;
+  border: 1px solid color-mix(in srgb, var(--color-paw-border) 74%, transparent);
+  border-radius: var(--radius-paw-md);
+  background: color-mix(in srgb, var(--color-paw-inverse-ink) 86%, transparent);
+  padding: 1rem;
+}
+
+.not-found-icon,
+.loading-panel-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-paw-sm);
+  background: var(--color-paw-primary-soft);
+  color: var(--color-paw-on-primary-soft);
+}
+
+.not-found-icon {
+  width: 2.75rem;
+  height: 2.75rem;
+  flex: 0 0 auto;
+}
+
+.loading-panel {
+  width: min(100%, 25rem);
+  padding: 2rem;
+}
+
+.loading-panel-mark {
+  width: 3.25rem;
+  height: 3.25rem;
+}
+
+.globe-loading-bar {
+  width: 48%;
+  background: linear-gradient(90deg, var(--color-paw-primary), var(--color-paw-trust), var(--color-paw-accent));
+  animation: globe-loading-sweep 1.35s ease-in-out infinite;
+}
+
+@keyframes globe-loading-sweep {
+  0% { transform: translateX(-110%); }
+  50% { transform: translateX(70%); }
+  100% { transform: translateX(230%); }
+}
