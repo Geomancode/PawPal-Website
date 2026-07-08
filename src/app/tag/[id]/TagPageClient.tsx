@@ -3,7 +3,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import {
-  AlertTriangle,
   Award,
   Calendar,
   Droplets,
@@ -16,7 +15,7 @@ import {
   UserRound,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
-import { AppDeepLinkButton, StatusMessage } from "@/components/ui";
+import { AppDeepLinkButton, Badge, Card, StatusMessage } from "@/components/ui";
 
 type PetSocialTraits = {
   health_badges?: string[];
@@ -118,7 +117,7 @@ export default function TagPageClient({ pet, owner }: TagPageClientProps) {
                 </p>
               </div>
             ) : (
-              <StatusMessage tone="warning" className="mt-7" title="Owner contact is hidden">
+              <StatusMessage tone="warning" variant="compact" className="mt-7" title="Owner contact is hidden">
                 This profile is available, but direct contact details are not public right now.
               </StatusMessage>
             )}
@@ -130,20 +129,19 @@ export default function TagPageClient({ pet, owner }: TagPageClientProps) {
               <MiniFact label="Care" value={careLabel} />
             </div>
 
-            <div className="mt-4 rounded-paw-md border border-paw-warning/25 bg-paw-warning-soft p-4 text-sm leading-6 text-paw-body">
-              <p className="flex items-start gap-2 font-extrabold text-paw-ink">
-                <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0 text-paw-warning" aria-hidden="true" />
-                If this looks urgent, contact local services first.
-              </p>
-              <p className="mt-1">
+            <StatusMessage
+              tone="warning"
+              variant="compact"
+              className="mt-4"
+              title="If this looks urgent, contact local services first."
+            >
                 PawPal only shows owner-approved profile details to support a safe return.
-              </p>
-            </div>
+            </StatusMessage>
           </div>
         </section>
 
         <section className="space-y-4">
-          <div className="tag-detail-card">
+          <Card variant="panel" className="p-4">
             <div className="flex items-start justify-between gap-4">
               <div className="min-w-0">
                 <p className="text-xs font-black uppercase tracking-[0.16em] text-paw-muted">
@@ -164,7 +162,7 @@ export default function TagPageClient({ pet, owner }: TagPageClientProps) {
               <InfoTile label="Age" value={ageLabel} icon={Calendar} />
               <InfoTile label="Blood" value={pet.blood_type ?? "Not listed"} icon={Droplets} tone="danger" />
             </div>
-          </div>
+          </Card>
 
           <div className="grid gap-4 lg:grid-cols-2">
             <TagSection
@@ -184,17 +182,17 @@ export default function TagPageClient({ pet, owner }: TagPageClientProps) {
           </div>
 
           {quirk && (
-            <div className="tag-detail-card">
+            <Card variant="panel" className="p-4">
               <p className="text-xs font-black uppercase tracking-[0.14em] text-paw-muted">
                 Behavior note
               </p>
               <p className="mt-2 text-sm italic leading-6 text-paw-body">
                 &ldquo;{quirk}&rdquo;
               </p>
-            </div>
+            </Card>
           )}
 
-          <div className="tag-detail-card">
+          <Card variant="panel" className="p-4">
             <div className="flex items-start gap-3">
               <span className="inline-flex h-10 w-10 items-center justify-center rounded-paw-sm bg-paw-primary-soft text-paw-on-primary-soft">
                 <UserRound className="h-5 w-5" aria-hidden="true" />
@@ -229,7 +227,7 @@ export default function TagPageClient({ pet, owner }: TagPageClientProps) {
             <p className="mt-4 text-xs leading-5 text-paw-muted">
               Scanned a PawPal NFC tag? Download the app to create and control your own pet safety profile.
             </p>
-          </div>
+          </Card>
 
           <TagSection
             icon={Award}
@@ -297,7 +295,7 @@ function TagSection({
   emptyText: string;
 }) {
   return (
-    <div className="tag-detail-card">
+    <Card variant="panel" className="p-4">
       <p className="mb-2 flex items-center gap-1.5 text-xs font-black uppercase tracking-[0.14em] text-paw-muted">
         <Icon className="h-3.5 w-3.5" aria-hidden="true" />
         {title}
@@ -305,9 +303,15 @@ function TagSection({
       {values.length > 0 ? (
         <div className="flex flex-wrap gap-1.5">
           {values.map((value, index) => (
-            <span key={`${value}-${index}`} className={`tag-chip tag-chip-${tone}`}>
+            <Badge
+              key={`${value}-${index}`}
+              tone={tone}
+              variant="semantic"
+              size="sm"
+              className="max-w-full whitespace-normal text-left leading-5"
+            >
               {value}
-            </span>
+            </Badge>
           ))}
         </div>
       ) : (
@@ -315,6 +319,6 @@ function TagSection({
           {emptyText}
         </p>
       )}
-    </div>
+    </Card>
   );
 }

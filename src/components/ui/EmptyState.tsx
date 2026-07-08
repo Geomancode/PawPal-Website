@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import type { LucideIcon } from "lucide-react";
 import { cn } from "@/lib/ui";
+import { Card } from "./Card";
 
 type EmptyStateProps = {
   icon?: LucideIcon;
@@ -18,9 +19,11 @@ export default function EmptyState({
   className,
 }: EmptyStateProps) {
   return (
-    <div
+    <Card
+      variant="hero"
+      tone="subtle"
       className={cn(
-        "flex min-h-56 flex-col items-center justify-center rounded-paw-next-card border border-dashed border-paw-outline-variant bg-paw-panel-subtle px-paw-xl py-paw-xxxl text-center shadow-paw-panel",
+        "flex min-h-56 flex-col items-center justify-center border-dashed px-paw-xl py-paw-xxxl text-center",
         className,
       )}
     >
@@ -36,6 +39,6 @@ export default function EmptyState({
         </p>
       )}
       {action && <div className="mt-5">{action}</div>}
-    </div>
+    </Card>
   );
 }

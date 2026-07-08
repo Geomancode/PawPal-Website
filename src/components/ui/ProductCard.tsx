@@ -40,6 +40,7 @@ export default function ProductCard({
 }: ProductCardProps) {
   return (
     <Card
+      variant="hero"
       className={cn(
         "group overflow-hidden transition-[border-color,box-shadow,transform] duration-paw-fast hover:-translate-y-1 hover:border-paw-primary/30 hover:shadow-paw-floating",
         className,
@@ -47,7 +48,12 @@ export default function ProductCard({
     >
       <div className="store-product-media relative flex aspect-[4/3] items-center justify-center p-paw-xl">
         {badge && (
-          <Badge tone={badgeTone} className="absolute left-paw-md top-paw-md z-20">
+          <Badge
+            tone={badgeTone}
+            variant="semantic"
+            size="sm"
+            className="absolute left-paw-md top-paw-md z-20"
+          >
             {badge}
           </Badge>
         )}
@@ -62,7 +68,7 @@ export default function ProductCard({
               {name}
             </h3>
             <div className="shrink-0 text-right">
-              <span className="inline-flex rounded-paw-pill bg-paw-primary-soft px-paw-sm py-paw-xs text-sm font-black leading-none text-paw-on-primary-soft">
+              <span className="inline-flex rounded-paw-card bg-paw-primary-soft px-paw-sm py-paw-xs text-sm font-black leading-none text-paw-on-primary-soft">
                 {price}
               </span>
               {originalPrice && (

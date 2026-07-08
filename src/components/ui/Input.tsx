@@ -5,13 +5,23 @@ import {
 } from "react";
 import { cn } from "@/lib/ui";
 
+export type InputVariant = "field" | "search" | "command" | "compact";
+
 type InputProps = Omit<InputHTMLAttributes<HTMLInputElement>, "size"> & {
   label?: string;
   helperText?: string;
   error?: string;
+  variant?: InputVariant;
   leftSlot?: ReactNode;
   rightSlot?: ReactNode;
   containerClassName?: string;
+};
+
+const variants: Record<InputVariant, string> = {
+  field: "min-h-paw-min-tap rounded-paw-card px-paw-sm text-sm shadow-paw-control",
+  search: "h-12 rounded-paw-card px-paw-md text-sm shadow-paw-control",
+  command: "h-12 rounded-paw-panel px-paw-md text-sm shadow-paw-panel",
+  compact: "min-h-10 rounded-paw-sm px-paw-sm text-sm shadow-none",
 };
 
 const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
@@ -20,6 +30,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
     label,
     helperText,
     error,
+    variant = "field",
     leftSlot,
     rightSlot,
     className,
@@ -49,7 +60,8 @@ const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
           aria-invalid={error ? true : undefined}
           aria-describedby={helperId}
           className={cn(
-            "min-h-paw-min-tap w-full rounded-paw-control border border-paw-outline-variant bg-paw-panel-low px-paw-sm text-sm text-paw-ink shadow-paw-control transition duration-paw-fast",
+            "w-full border border-paw-outline-variant bg-paw-panel-low text-paw-ink transition duration-paw-fast",
+            variants[variant],
             "placeholder:text-paw-muted focus-visible:border-paw-trust focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-paw-trust/20",
             "disabled:cursor-not-allowed disabled:opacity-60",
             leftSlot ? "pl-10" : undefined,

@@ -1,7 +1,7 @@
 import type { HTMLAttributes } from "react";
 import { cn } from "@/lib/ui";
 
-type BadgeTone =
+export type BadgeTone =
   | "primary"
   | "blue"
   | "green"
@@ -15,6 +15,8 @@ type BadgeTone =
   | "danger"
   | "critical"
   | "neutral";
+export type BadgeVariant = "status" | "filter" | "semantic" | "count";
+export type BadgeSize = "sm" | "md";
 
 const tones: Record<BadgeTone, string> = {
   primary: "bg-paw-primary-soft text-paw-on-primary-soft border-paw-primary/20",
@@ -32,15 +34,35 @@ const tones: Record<BadgeTone, string> = {
   neutral: "bg-paw-panel-low text-paw-body border-paw-outline-variant",
 };
 
+const variants: Record<BadgeVariant, string> = {
+  status: "rounded-paw-pill",
+  filter: "rounded-paw-card",
+  semantic: "rounded-paw-sm",
+  count: "rounded-paw-sm",
+};
+
+const sizes: Record<BadgeSize, string> = {
+  sm: "min-h-0 px-paw-sm py-paw-xs text-xs",
+  md: "min-h-[38px] px-paw-sm py-paw-xs text-xs",
+};
+
 export default function Badge({
   tone = "primary",
+  variant = "status",
+  size = "md",
   className,
   ...props
-}: HTMLAttributes<HTMLSpanElement> & { tone?: BadgeTone }) {
+}: HTMLAttributes<HTMLSpanElement> & {
+  tone?: BadgeTone;
+  variant?: BadgeVariant;
+  size?: BadgeSize;
+}) {
   return (
     <span
       className={cn(
-        "inline-flex min-h-[38px] items-center gap-paw-xs rounded-paw-pill border px-paw-sm py-paw-xs text-xs font-black leading-none",
+        "inline-flex items-center gap-paw-xs border font-black leading-none",
+        variants[variant],
+        sizes[size],
         tones[tone],
         className,
       )}
