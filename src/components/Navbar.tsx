@@ -8,6 +8,8 @@ import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import { useAuth } from "./AuthProvider";
 import PawPalLogo from "./PawPalLogo";
 import styles from "./Navbar.module.css";
+import { useI18n } from "@/i18n/I18nProvider";
+import { stripLocalePrefix } from "@/i18n/routing";
 
 const REDUCED_MOTION_QUERY = "(prefers-reduced-motion: reduce)";
 
@@ -34,16 +36,8 @@ function useReducedMotionPreference() {
   );
 }
 
-const NAV_LINKS = [
-  { href: "/", label: "Home" },
-  { href: "/globe", label: "Globe" },
-  { href: "/about", label: "About Us" },
-  { href: "/store", label: "Store" },
-];
-
-const PROFILE_LINK = { href: "/profile", label: "Profile" };
-
 export default function Navbar() {
+  const { path, t } = useI18n();
   const [isOpen, setIsOpen] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -52,9 +46,16 @@ export default function Navbar() {
   const router = useRouter();
   const { user, loading, signOut } = useAuth();
   const shouldReduceMotion = useReducedMotionPreference();
-  const displayName = user?.user_metadata?.display_name || user?.email?.split("@")[0] || "User";
-  const isGlobeRoute = pathname === "/globe";
-  const navLinks = user ? [...NAV_LINKS, PROFILE_LINK] : NAV_LINKS;
+  const normalizedPathname = stripLocalePrefix(pathname || "/");
+  const displayName = user?.user_metadata?.display_name || user?.email?.split("@")[0] || t("navUserFallback");
+  const isGlobeRoute = normalizedPathname === "/globe";
+  const navLinks = [
+    { href: "/", label: t("navHome") },
+    { href: "/globe", label: t("navGlobe") },
+    { href: "/about", label: t("navAboutUs") },
+    { href: "/store", label: t("navStore") },
+    ...(user ? [{ href: "/profile", label: t("navProfile") }] : []),
+  ];
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 16);
@@ -77,7 +78,7 @@ export default function Navbar() {
   const handleSignOut = async () => {
     setShowDropdown(false);
     await signOut();
-    router.push("/");
+    router.push(path("/"));
   };
 
   return (
@@ -95,7 +96,7 @@ export default function Navbar() {
         <div className={`flex items-center justify-between transition-all duration-300 ${
           isGlobeRoute ? "h-12 sm:h-14" : scrolled ? "h-16" : "h-20"
         }`}>
-          <Link href="/" className="flex items-center transition-opacity hover:opacity-80" aria-label="PawPal home">
+          <Link href={path("/")} className="flex items-center transition-opacity hover:opacity-80" aria-label="PawPal home">
             <PawPalLogo
               iconSize={isGlobeRoute ? 26 : scrolled ? 28 : 32}
               fontSize={isGlobeRoute ? 18 : scrolled ? 20 : 22}
@@ -106,11 +107,11 @@ export default function Navbar() {
 
           <div className={`hidden md:flex md:items-center ${isGlobeRoute ? "md:gap-3" : "md:gap-8"}`}>
             {navLinks.map((link) => {
-              const isActive = pathname === link.href;
+              const isActive = normalizedPathname === link.href;
               return (
                 <Link
                   key={link.href}
-                  href={link.href}
+                  href={path(link.href)}
                   className={`${styles.navLinkPill} relative text-sm font-bold transition-colors ${
                     isActive ? `${styles.isActive} text-paw-primary` : "text-paw-body hover:text-paw-primary"
                   }`}
@@ -132,14 +133,14 @@ export default function Navbar() {
             {loading ? (
               <div
                 className="h-11 w-24 animate-pulse rounded-paw-sm border border-paw-border bg-paw-panel-subtle"
-                aria-label="Loading account status"
+                aria-label={t("navLoadingAccountStatus")}
                 role="status"
               />
             ) : user ? (
               <div className="relative" ref={dropdownRef}>
                 <button
                   type="button"
-                  aria-label="Open account menu"
+                  aria-label={t("navOpenAccountMenu")}
                   aria-expanded={showDropdown}
                   onClick={() => setShowDropdown((value) => !value)}
                   className="inline-flex h-11 items-center gap-2 rounded-paw-sm border border-paw-border-strong bg-paw-panel px-3 text-sm font-bold text-paw-ink transition hover:border-paw-primary hover:text-paw-primary"
@@ -164,12 +165,12 @@ export default function Navbar() {
                         <p className="truncate text-xs text-paw-muted">{user.email}</p>
                       </div>
                       <Link
-                        href="/profile"
+                        href={path("/profile")}
                         onClick={() => setShowDropdown(false)}
                         className="flex w-full items-center gap-2 px-4 py-3 text-sm font-semibold text-paw-ink transition-colors hover:bg-paw-primary-soft"
                       >
                         <UserCircle className="h-4 w-4" />
-                        My Profile
+                        {t("navMyProfile")}
                       </Link>
                       <button
                         type="button"
@@ -177,7 +178,7 @@ export default function Navbar() {
                         className="flex w-full items-center gap-2 px-4 py-3 text-sm font-semibold text-paw-danger transition-colors hover:bg-paw-danger-soft"
                       >
                         <LogOut className="h-4 w-4" />
-                        Sign Out
+                        {t("navSignOut")}
                       </button>
                     </motion.div>
                   )}
@@ -185,21 +186,21 @@ export default function Navbar() {
               </div>
             ) : (
               <Link
-                href="/auth"
+                href={path("/auth")}
                 className={`inline-flex h-11 items-center justify-center rounded-paw-sm border px-5 text-sm font-bold transition ${
-                  pathname === "/auth"
+                  normalizedPathname === "/auth"
                     ? "border-paw-primary bg-paw-primary text-paw-accent-ink"
                     : "border-paw-border-strong bg-paw-panel text-paw-ink hover:border-paw-primary hover:text-paw-primary"
                 }`}
               >
-                Login
+                {t("navLogin")}
               </Link>
             )}
           </div>
 
           <button
             type="button"
-            aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"}
+            aria-label={isOpen ? t("navCloseNavigationMenu") : t("navOpenNavigationMenu")}
             onClick={() => setIsOpen((value) => !value)}
             className="inline-flex h-11 w-11 items-center justify-center rounded-paw-sm border border-paw-border bg-paw-panel text-paw-ink md:hidden"
           >
@@ -219,11 +220,11 @@ export default function Navbar() {
           >
             <div className="space-y-1 px-5 py-4">
               {navLinks.map((link) => {
-                const isActive = pathname === link.href;
+                const isActive = normalizedPathname === link.href;
                 return (
                   <Link
                     key={link.href}
-                    href={link.href}
+                    href={path(link.href)}
                     className={`block rounded-paw-sm px-3 py-3 text-base font-bold ${
                       isActive ? "bg-paw-primary-soft text-paw-on-primary-soft" : "text-paw-ink hover:bg-paw-panel-subtle"
                     }`}
@@ -238,7 +239,7 @@ export default function Navbar() {
                 {loading ? (
                   <div
                     className="mx-3 h-10 animate-pulse rounded-paw-sm bg-paw-panel-subtle"
-                    aria-label="Loading account status"
+                    aria-label={t("navLoadingAccountStatus")}
                     role="status"
                   />
                 ) : user ? (
@@ -258,16 +259,16 @@ export default function Navbar() {
                       className="flex w-full items-center gap-2 rounded-paw-sm px-3 py-3 text-sm font-bold text-paw-danger hover:bg-paw-danger-soft"
                     >
                       <LogOut className="h-4 w-4" />
-                      Sign Out
+                      {t("navSignOut")}
                     </button>
                   </>
                 ) : (
                   <Link
-                    href="/auth"
+                    href={path("/auth")}
                     className="mt-2 inline-flex h-11 w-full items-center justify-center rounded-paw-sm bg-paw-primary px-5 text-sm font-bold text-paw-accent-ink"
                     onClick={() => setIsOpen(false)}
                   >
-                    Login
+                    {t("navLogin")}
                   </Link>
                 )}
               </div>

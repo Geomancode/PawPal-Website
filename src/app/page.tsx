@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { publicPageMetadata } from "./metadata";
+import { enMessages } from "@/i18n/messages";
 import {
   FadeIn,
   FadeInView,
@@ -17,9 +18,8 @@ import {
 import { Card } from "@/components/ui";
 
 export const metadata: Metadata = publicPageMetadata({
-  title: "Pet Safety Map, Smart Tags, and Local Pet Community | PawPal",
-  description:
-    "PawPal combines fog-of-war walks, NFC pet safety profiles, AI care guidance, and trusted local pet help from Belgium outward.",
+  title: enMessages.homeMetadataTitle,
+  description: enMessages.homeMetadataDescription,
   path: "/",
 });
 
@@ -51,7 +51,7 @@ export default function Home() {
         <div className="mx-auto max-w-6xl px-paw-md sm:px-paw-xl lg:px-paw-xxl">
           <FadeInView>
             <h2 className="text-center font-brand text-paw-type-h1 font-black text-paw-ink sm:text-paw-type-display">
-              From walk to rescue, one connected flow.
+              {enMessages.homeWorkflowTitle}
             </h2>
           </FadeInView>
           <div className="mt-paw-xxl">
@@ -76,10 +76,10 @@ export default function Home() {
           >
             <FadeInView>
               <h2 className="font-brand text-paw-type-h1 font-black text-paw-ink sm:text-paw-type-display">
-                Ready to make every walk safer?
+                {enMessages.homeFinalCtaTitle}
               </h2>
               <p className="mx-auto mt-paw-sm max-w-2xl text-paw-type-body text-paw-body lg:mx-0">
-                Open the live map, prepare a smart tag, and connect your pet profile to real-world help.
+                {enMessages.homeFinalCtaCopy}
               </p>
             </FadeInView>
             <FadeInView delay={0.08}>

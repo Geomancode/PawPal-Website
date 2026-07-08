@@ -1,8 +1,21 @@
 import type { NextConfig } from "next";
 import { withSentryConfig } from "@sentry/nextjs";
+import { nonDefaultLocales } from "./src/i18n/locales";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  async rewrites() {
+    const localePattern = nonDefaultLocales.join("|");
+    return [
+      {
+        source: `/:locale(${localePattern})`,
+        destination: "/",
+      },
+      {
+        source: `/:locale(${localePattern})/:path*`,
+        destination: "/:path*",
+      },
+    ];
+  },
 };
 
 export default withSentryConfig(nextConfig, {

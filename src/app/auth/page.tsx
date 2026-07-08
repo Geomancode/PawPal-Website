@@ -25,8 +25,10 @@ import {
   Input,
   StatusMessage,
 } from "@/components/ui";
+import { useI18n } from "@/i18n/I18nProvider";
 
 export default function AuthPage() {
+  const { path, t } = useI18n();
   const { signIn, signUp, user } = useAuth();
   const router = useRouter();
   const [isLogin, setIsLogin] = useState(true);
@@ -43,8 +45,8 @@ export default function AuthPage() {
 
   // If already logged in, go straight to the usable account surface.
   useEffect(() => {
-    if (user) router.replace("/profile");
-  }, [user, router]);
+    if (user) router.replace(path("/profile"));
+  }, [path, user, router]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -52,9 +54,9 @@ export default function AuthPage() {
     setSuccess(null);
 
     // Client-side validation
-    if (!email.includes("@")) { setError("Please enter a valid email."); return; }
-    if (password.length < 6) { setError("Password must be at least 6 characters."); return; }
-    if (!isLogin && password !== confirmPassword) { setError("Passwords do not match."); return; }
+    if (!email.includes("@")) { setError(t("authInvalidEmail")); return; }
+    if (password.length < 6) { setError(t("authPasswordTooShort")); return; }
+    if (!isLogin && password !== confirmPassword) { setError(t("authPasswordsDoNotMatch")); return; }
 
     setLoading(true);
 
@@ -63,18 +65,18 @@ export default function AuthPage() {
       if (error) {
         setError(error);
       } else {
-        router.push("/profile");
+        router.push(path("/profile"));
       }
     } else {
       const { error, needsConfirm } = await signUp(email, password, fullName || undefined);
       if (error) {
         setError(error);
       } else if (needsConfirm) {
-        setSuccess("Account created! Please check your email to confirm, then sign in.");
+        setSuccess(t("authAccountCreated"));
         setIsLogin(true);
         setPassword("");
       } else {
-        router.push("/profile");
+        router.push(path("/profile"));
       }
     }
 
@@ -88,21 +90,20 @@ export default function AuthPage() {
           <div className="relative z-10">
             <Badge tone="primary" variant="semantic">
               <Sparkles className="h-4 w-4" aria-hidden="true" />
-              PawPal account
+              {t("authBadge")}
             </Badge>
             <h1 className="mt-5 max-w-xl text-5xl font-extrabold leading-tight text-paw-ink">
-              One login for walks, tags, rescue pages, and store orders.
+              {t("authHeroTitle")}
             </h1>
             <p className="mt-5 max-w-lg text-base leading-7 text-paw-body">
-              Keep pet profiles, finder visibility, map activity, and community
-              support tied to a single secure account.
+              {t("authHeroCopy")}
             </p>
           </div>
           <div className="auth-signal-grid relative z-10 mt-8">
             {[
-              { icon: Nfc, title: "NFC ready", copy: "Connect smart tags to controlled finder pages." },
-              { icon: Map, title: "Walk context", copy: "Map features and nearby help stay attached to your profile." },
-              { icon: ShieldCheck, title: "Privacy first", copy: "Owner details stay hidden until you choose to share." },
+              { icon: Nfc, title: t("authSignalNfcTitle"), copy: t("authSignalNfcCopy") },
+              { icon: Map, title: t("authSignalMapTitle"), copy: t("authSignalMapCopy") },
+              { icon: ShieldCheck, title: t("authSignalPrivacyTitle"), copy: t("authSignalPrivacyCopy") },
             ].map((item) => (
               <div key={item.title} className="auth-signal-card">
                 <item.icon className="h-5 w-5 text-paw-on-primary-soft" aria-hidden="true" />
@@ -127,10 +128,10 @@ export default function AuthPage() {
               <PawPalLogo iconOnly iconSize={56} variant="light" priority />
             </div>
             <h2 className="text-2xl font-bold text-paw-ink">
-              {isLogin ? "Welcome Back" : "Join PawPal"}
+              {isLogin ? t("authWelcomeBackTitle") : t("authJoinTitle")}
             </h2>
             <p className="text-paw-muted text-sm mt-1">
-              {isLogin ? "Access profiles, tags, and orders securely" : "Create one account for pet safety and orders"}
+              {isLogin ? t("authWelcomeBackCopy") : t("authJoinCopy")}
             </p>
           </div>
 
@@ -143,7 +144,7 @@ export default function AuthPage() {
                 isLogin ? "bg-paw-panel text-paw-ink shadow-sm" : "text-paw-muted hover:text-paw-body"
               }`}
             >
-              Sign In
+              {t("authSignInTab")}
             </button>
             <button
               onClick={() => { setIsLogin(false); setError(null); }}
@@ -152,7 +153,7 @@ export default function AuthPage() {
                 !isLogin ? "bg-paw-panel text-paw-ink shadow-sm" : "text-paw-muted hover:text-paw-body"
               }`}
             >
-              Sign Up
+              {t("authSignUpTab")}
             </button>
           </div>
 
@@ -187,22 +188,22 @@ export default function AuthPage() {
             {!isLogin && (
               <Input
                 id="auth-display-name"
-                label="Display name"
+                label={t("authDisplayNameLabel")}
                 type="text"
                 value={fullName}
                 onChange={(e) => setFullName(e.target.value)}
-                placeholder="Your name (optional)"
+                placeholder={t("authDisplayNamePlaceholder")}
                 leftSlot={<User className="h-4 w-4" aria-hidden="true" />}
               />
             )}
 
             <Input
               id="auth-email"
-              label="Email"
+              label={t("authEmailLabel")}
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="you@example.com"
+              placeholder={t("authEmailPlaceholder")}
               required
               aria-invalid={Boolean(error && !email.includes("@"))}
               leftSlot={<Mail className="h-4 w-4" aria-hidden="true" />}
@@ -210,18 +211,18 @@ export default function AuthPage() {
 
             <Input
               id="auth-password"
-              label="Password"
+              label={t("authPasswordLabel")}
               type={showPassword ? "text" : "password"}
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              placeholder="Password"
+              placeholder={t("authPasswordPlaceholder")}
               required
               aria-invalid={Boolean(error && password.length > 0 && password.length < 6)}
               leftSlot={<Lock className="h-4 w-4" aria-hidden="true" />}
               rightSlot={
                 <button
                   type="button"
-                  aria-label={showPassword ? "Hide password" : "Show password"}
+                  aria-label={showPassword ? t("authHidePassword") : t("authShowPassword")}
                   onClick={() => setShowPassword(!showPassword)}
                   className="rounded-paw-sm p-1 text-paw-muted transition hover:bg-paw-panel-subtle hover:text-paw-ink"
                 >
@@ -233,11 +234,11 @@ export default function AuthPage() {
             {!isLogin && (
               <Input
                 id="auth-confirm-password"
-                label="Confirm password"
+                label={t("authConfirmPasswordLabel")}
                 type="password"
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
-                placeholder="Password again"
+                placeholder={t("authConfirmPasswordPlaceholder")}
                 required
                 aria-invalid={Boolean(error && !isLogin && confirmPassword.length > 0 && password !== confirmPassword)}
                 leftSlot={<Lock className="h-4 w-4" aria-hidden="true" />}
@@ -254,7 +255,7 @@ export default function AuthPage() {
                 <Loader2 className="h-5 w-5 animate-spin" aria-hidden="true" />
               ) : (
                 <>
-                  {isLogin ? "Sign In" : "Create Account"}
+                  {isLogin ? t("authSignInTab") : t("authCreateAccountButton")}
                   <ArrowRight className="w-4 h-4" />
                 </>
               )}
@@ -267,15 +268,15 @@ export default function AuthPage() {
                 <ShieldCheck className="h-4 w-4" aria-hidden="true" />
               </span>
               <div>
-                <p className="text-sm font-extrabold text-paw-ink">Email account access only</p>
+                <p className="text-sm font-extrabold text-paw-ink">{t("authTrustTitle")}</p>
                 <p className="mt-1 text-xs leading-5 text-paw-body">
-                  PawPal keeps profile, rescue tag, and order access tied to the email credentials submitted above.
+                  {t("authTrustCopy")}
                 </p>
               </div>
             </div>
-            <div className="auth-trust-list" aria-label="Account trust checks">
-              <span><Nfc className="h-3.5 w-3.5" aria-hidden="true" /> Tag controls</span>
-              <span><Lock className="h-3.5 w-3.5" aria-hidden="true" /> Private owner details</span>
+            <div className="auth-trust-list" aria-label={t("authTrustChecksLabel")}>
+              <span><Nfc className="h-3.5 w-3.5" aria-hidden="true" /> {t("authTagControls")}</span>
+              <span><Lock className="h-3.5 w-3.5" aria-hidden="true" /> {t("authPrivateOwnerDetails")}</span>
             </div>
           </div>
           </CardContent>
@@ -283,9 +284,10 @@ export default function AuthPage() {
 
         {/* Footer text */}
         <p className="text-center text-xs text-paw-muted mt-6">
-          By continuing, you agree to PawPal&apos;s{" "}
-          <a href="/terms" className="text-paw-primary hover:underline">Terms</a> and{" "}
-          <a href="/privacy" className="text-paw-primary hover:underline">Privacy Policy</a>
+          {t("authContinuePrefix")}{" "}
+          <a href={path("/terms")} className="text-paw-primary hover:underline">{t("authTerms")}</a>{" "}
+          {t("authAnd")}{" "}
+          <a href={path("/privacy")} className="text-paw-primary hover:underline">{t("authPrivacyPolicy")}</a>
         </p>
       </div>
       </div>

@@ -39,6 +39,7 @@ import {
   ProductCard as StoreProductCard,
   Sheet,
 } from "@/components/ui";
+import { useI18n } from "@/i18n/I18nProvider";
 
 const CATEGORY_ICONS: Record<Category, LucideIcon> = {
   all: ShoppingBag,
@@ -47,24 +48,6 @@ const CATEGORY_ICONS: Record<Category, LucideIcon> = {
   accessories: Tags,
   health: HeartPulse,
 };
-
-const STORE_PROMISES = [
-  {
-    icon: ShieldCheck,
-    label: "NFC safety ready",
-    copy: "Built for public finder pages and controlled owner details.",
-  },
-  {
-    icon: Truck,
-    label: "EU-first fulfillment",
-    copy: "Catalog and checkout flows are prepared for Belgium-led rollout.",
-  },
-  {
-    icon: CheckCircle2,
-    label: "Secure checkout",
-    copy: "Stripe-backed payment flow with cart persistence across visits.",
-  },
-];
 
 const REDUCED_MOTION_QUERY = "(prefers-reduced-motion: reduce)";
 
@@ -117,6 +100,7 @@ function SubscriptionUpgradePanel({
   appEmail: string | null;
   accessToken?: string;
 }) {
+  const { t } = useI18n();
   const shouldReduceMotion = useHydratedReducedMotion();
   const [selectedTier, setSelectedTier] =
     useState<Exclude<SubscriptionTier, "free">>(initialTier);
@@ -144,11 +128,11 @@ function SubscriptionUpgradePanel({
       });
       const data = await res.json();
       if (!res.ok || !data.url) {
-        throw new Error(data.error || "Could not start subscription checkout");
+        throw new Error(data.error || t("storeCheckoutStartError"));
       }
       window.location.href = data.url;
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Subscription checkout failed");
+      setError(err instanceof Error ? err.message : t("storeSubscriptionCheckoutFailed"));
       setLoadingTier(null);
     }
   };
@@ -158,14 +142,13 @@ function SubscriptionUpgradePanel({
       <div className="max-w-2xl">
         <Badge tone="primary" variant="semantic" className="mb-paw-lg">
           <Sparkles className="h-4 w-4" aria-hidden="true" />
-          PawPal AI upgrade
+          {t("storeUpgradeBadge")}
         </Badge>
         <h1 className="font-brand text-paw-type-h1 font-black text-paw-ink sm:text-paw-type-display">
-          Choose your PawPal plan
+          {t("storeUpgradeTitle")}
         </h1>
         <p className="mt-paw-md text-paw-type-body text-paw-body">
-          Basic unlocks your pet companion AI. Pro adds priority access for the
-          next wave of advanced walk, safety, and multi-pet tools.
+          {t("storeUpgradeCopy")}
         </p>
       </div>
 
@@ -208,7 +191,7 @@ function SubscriptionUpgradePanel({
                   </div>
                   {plan.highlight && (
                     <Badge tone="success" variant="semantic" size="sm">
-                      Recommended
+                      {t("storeRecommended")}
                     </Badge>
                   )}
                 </div>
@@ -218,7 +201,7 @@ function SubscriptionUpgradePanel({
                     €{plan.monthlyPrice.toFixed(2)}
                   </span>
                   <span className="pb-1 text-sm font-bold text-paw-muted">
-                    / month
+                    {t("storePricePerMonth")}
                   </span>
                 </div>
 
@@ -240,7 +223,7 @@ function SubscriptionUpgradePanel({
                   className="w-full"
                 >
                   {busy && <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />}
-                  Upgrade to {plan.name}
+                  {t("storeUpgradeButtonPrefix")} {plan.name}
                 </Button>
               </Card>
             </motion.div>
@@ -249,9 +232,7 @@ function SubscriptionUpgradePanel({
       </div>
 
       <Card variant="compact" className="p-paw-md text-sm leading-6 text-paw-body">
-        Existing Free features stay available after cancellation. Paid AI access is
-        restored automatically after Stripe confirms your subscription; if the app
-        is already open, use Refresh plan in Profile.
+        {t("storeFreeFeaturesNote")}
       </Card>
     </PageShell>
   );
@@ -266,6 +247,7 @@ function ProductCard({
   onDetails: (p: Product) => void;
   recommended?: boolean;
 }) {
+  const { t } = useI18n();
   const shouldReduceMotion = useHydratedReducedMotion();
   const badgeTone: Record<NonNullable<Product["badge"]>, "success" | "warning" | "accent"> = {
     New: "success",
@@ -290,7 +272,7 @@ function ProductCard({
           className="absolute right-paw-sm top-paw-sm z-10"
         >
           <Sparkles className="h-3 w-3" aria-hidden="true" />
-          AI pick
+          {t("storeAiPick")}
         </Badge>
       )}
       <StoreProductCard
@@ -303,9 +285,9 @@ function ProductCard({
         badgeTone={product.badge ? badgeTone[product.badge] : undefined}
         rating={product.rating}
         ratingDetail={`(${product.reviewCount})`}
-        detailsLabel="Details"
+        detailsLabel={t("storeProductDetailsButton")}
         onDetails={() => onDetails(product)}
-        actionLabel="Add"
+        actionLabel={t("storeAddButton")}
         onAction={() => onAdd(product)}
         className={
           recommended
@@ -324,11 +306,13 @@ function ProductDetailsDrawer({
   product: Product | null;
   onClose: () => void;
 }) {
+  const { t } = useI18n();
+
   return (
     <Sheet
       open={Boolean(product)}
       onClose={onClose}
-      ariaLabel={product ? `${product.name} product details` : "Product details"}
+      ariaLabel={product ? `${product.name} ${t("storeProductDetailsAriaSuffix")}` : t("storeProductDetailsTitle")}
       title={product?.name}
       description={product?.description}
       panelClassName="max-w-2xl"
@@ -338,7 +322,7 @@ function ProductDetailsDrawer({
           <Card variant="compact" tone="subtle" elevation="none" className="flex flex-wrap items-center justify-between gap-3 p-4">
             <div>
               <p className="text-xs font-bold uppercase tracking-[0.16em] text-paw-muted">
-                Product details
+                {t("storeProductDetailsTitle")}
               </p>
               <p className="mt-1 text-2xl font-extrabold text-paw-primary">
                 {formatPrice(product)}
@@ -388,6 +372,7 @@ function CartDrawer({
   onUpdate: (id: string, qty: number) => void;
   onRemove: (id: string) => void;
 }) {
+  const { path, t } = useI18n();
   const shouldReduceMotion = useHydratedReducedMotion();
   const subtotal = items.reduce((s, i) => s + i.product.price * i.quantity, 0);
   const shipping = subtotal > 50 ? 0 : 5.99;
@@ -397,25 +382,25 @@ function CartDrawer({
     <Sheet
       open={isOpen}
       onClose={onClose}
-      ariaLabel={`Your Cart (${items.length})`}
+      ariaLabel={`${t("storeCartAriaPrefix")} (${items.length})`}
       title={
         <span className="inline-flex items-center gap-2">
           <ShoppingCart className="h-5 w-5 text-paw-primary" aria-hidden="true" />
-          Your Cart ({items.length})
+          {t("storeCartTitle")} ({items.length})
         </span>
       }
       footer={
         items.length > 0 ? (
           <div className="space-y-3">
             <div className="flex justify-between text-sm text-paw-body">
-              <span>Subtotal</span>
+              <span>{t("storeSubtotal")}</span>
               <span>€{subtotal.toFixed(2)}</span>
             </div>
             <div className="flex justify-between text-sm text-paw-body">
-              <span>Shipping</span>
+              <span>{t("storeShipping")}</span>
               <span>
                 {shipping === 0 ? (
-                  <span className="font-bold text-paw-success">Free</span>
+                  <span className="font-bold text-paw-success">{t("storeFreeShipping")}</span>
                 ) : (
                   `€${shipping.toFixed(2)}`
                 )}
@@ -423,18 +408,18 @@ function CartDrawer({
             </div>
             {subtotal < 50 && (
               <p className="rounded-paw-sm bg-paw-warning-soft px-3 py-2 text-xs font-semibold text-paw-body">
-                Add €{(50 - subtotal).toFixed(2)} more for free shipping.
+                {t("storeAddAmountPrefix")} €{(50 - subtotal).toFixed(2)} {t("storeFreeShippingSuffix")}
               </p>
             )}
             <div className="flex justify-between border-t border-paw-border pt-3 text-lg font-extrabold text-paw-ink">
-              <span>Total</span>
+              <span>{t("storeTotal")}</span>
               <span>€{total.toFixed(2)}</span>
             </div>
             <Link
-              href="/store/checkout"
+              href={path("/store/checkout")}
               className={buttonClassName({ size: "lg", className: "w-full" })}
             >
-              Proceed to Checkout <ArrowRight className="h-5 w-5" aria-hidden="true" />
+              {t("storeProceedToCheckout")} <ArrowRight className="h-5 w-5" aria-hidden="true" />
             </Link>
           </div>
         ) : undefined
@@ -443,8 +428,8 @@ function CartDrawer({
       {items.length === 0 ? (
         <EmptyState
           icon={ShoppingCart}
-          title="Your cart is empty"
-          description="Browse products and add items to get started."
+          title={t("storeCartEmptyTitle")}
+          description={t("storeCartEmptyDescription")}
         />
       ) : (
         <div className="space-y-4">
@@ -474,7 +459,7 @@ function CartDrawer({
                       shape="compact"
                       className="h-7 w-7"
                       onClick={() => onUpdate(item.product.id, item.quantity - 1)}
-                      aria-label={`Decrease ${item.product.name}`}
+                      aria-label={`${t("storeDecreasePrefix")} ${item.product.name}`}
                     >
                       <Minus className="h-3 w-3" aria-hidden="true" />
                     </Button>
@@ -488,7 +473,7 @@ function CartDrawer({
                       shape="compact"
                       className="h-7 w-7"
                       onClick={() => onUpdate(item.product.id, item.quantity + 1)}
-                      aria-label={`Increase ${item.product.name}`}
+                      aria-label={`${t("storeIncreasePrefix")} ${item.product.name}`}
                     >
                       <Plus className="h-3 w-3" aria-hidden="true" />
                     </Button>
@@ -501,7 +486,7 @@ function CartDrawer({
                     size="icon"
                     className="h-8 w-8 text-paw-muted hover:text-paw-danger"
                     onClick={() => onRemove(item.product.id)}
-                    aria-label={`Remove ${item.product.name}`}
+                    aria-label={`${t("storeRemovePrefix")} ${item.product.name}`}
                   >
                     <Trash2 className="h-4 w-4" aria-hidden="true" />
                   </Button>
@@ -520,6 +505,7 @@ function CartDrawer({
 
 // ─── Main Store Page ───────────────────────────────────
 function StorePageContent() {
+  const { path, t } = useI18n();
   const router = useRouter();
   const searchParams = useSearchParams();
   const shouldReduceMotion = useHydratedReducedMotion();
@@ -574,12 +560,12 @@ function StorePageContent() {
           setCatalogIssue(null);
         } else {
           setProducts(PRODUCTS.map(withProductAssetOverrides));
-          setCatalogIssue("No published catalog products found. Showing demo catalog.");
+          setCatalogIssue(t("storeNoCatalogFallback"));
         }
       })
       .catch((error: unknown) => {
         if (cancelled) return;
-        const message = error instanceof Error ? error.message : "Catalog unavailable";
+        const message = error instanceof Error ? error.message : t("storeCatalogUnavailable");
         setProducts(PRODUCTS.map(withProductAssetOverrides));
         setCatalogIssue(message);
       })
@@ -587,7 +573,7 @@ function StorePageContent() {
         if (!cancelled) setCatalogLoading(false);
       });
     return () => { cancelled = true; };
-  }, []);
+  }, [t]);
 
   useEffect(() => {
     let cancelled = false;
@@ -611,9 +597,9 @@ function StorePageContent() {
       }
       return [...prev, { product, quantity: 1 }];
     });
-    setToast(`✓ ${product.name} added to cart`);
+    setToast(`✓ ${product.name} ${t("storeAddedToCartSuffix")}`);
     setTimeout(() => setToast(null), 2500);
-  }, []);
+  }, [t]);
 
   const updateQuantity = useCallback((id: string, qty: number) => {
     if (qty <= 0) {
@@ -642,6 +628,30 @@ function StorePageContent() {
   ).length;
 
   const totalItems = cart.reduce((s, i) => s + i.quantity, 0);
+  const storePromises = [
+    {
+      icon: ShieldCheck,
+      label: t("storePromiseNfcLabel"),
+      copy: t("storePromiseNfcCopy"),
+    },
+    {
+      icon: Truck,
+      label: t("storePromiseFulfillmentLabel"),
+      copy: t("storePromiseFulfillmentCopy"),
+    },
+    {
+      icon: CheckCircle2,
+      label: t("storePromiseCheckoutLabel"),
+      copy: t("storePromiseCheckoutCopy"),
+    },
+  ];
+  const categoryLabels: Record<Category, string> = {
+    all: t("storeCategoryAll"),
+    food: t("storeCategoryFood"),
+    toys: t("storeCategoryToys"),
+    accessories: t("storeCategoryAccessories"),
+    health: t("storeCategoryHealth"),
+  };
 
   if (upgradeIntent) {
     return (
@@ -668,15 +678,14 @@ function StorePageContent() {
               {...fadeUpMotion(shouldReduceMotion, 18)}
               className="max-w-3xl font-brand text-paw-type-h1 font-black text-paw-ink sm:text-paw-type-display"
             >
-              Smart tags and walk gear for{" "}
-              <span className="text-paw-on-primary-soft">safer pet days</span>
+              {t("storeHeroTitlePrefix")}{" "}
+              <span className="text-paw-on-primary-soft">{t("storeHeroTitleHighlight")}</span>
             </motion.h1>
             <motion.p
               {...fadeUpMotion(shouldReduceMotion, 16, 0.08)}
               className="mt-paw-sm max-w-2xl text-paw-type-body text-paw-body sm:text-base"
             >
-              Start with PawPal NFC safety tags, then find practical gear for daily
-              walks, travel, cleanup, and care.
+              {t("storeHeroCopy")}
             </motion.p>
           </div>
 
@@ -692,8 +701,12 @@ function StorePageContent() {
                   <Sparkles className="h-4 w-4 text-paw-on-primary-soft" aria-hidden="true" />
                   <span>
                     {recommendedMatchCount > 0
-                      ? `${recommendedMatchCount} AI recommended product${recommendedMatchCount !== 1 ? "s" : ""} highlighted`
-                      : "AI recommendations are not in this catalog yet"}
+                      ? `${recommendedMatchCount} ${
+                          recommendedMatchCount === 1
+                            ? t("storeRecommendedProductHighlightedSuffix")
+                            : t("storeRecommendedProductsHighlightedSuffix")
+                        }`
+                      : t("storeRecommendationsMissing")}
                   </span>
                 </Card>
               </motion.div>
@@ -707,7 +720,7 @@ function StorePageContent() {
                 variant="search"
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                placeholder="Search products..."
+                placeholder={t("storeSearchPlaceholder")}
                 leftSlot={<Search className="h-5 w-5" aria-hidden="true" />}
               />
             </motion.div>
@@ -718,7 +731,7 @@ function StorePageContent() {
           {...fadeUpMotion(shouldReduceMotion, 14, 0.22)}
           className="grid grid-cols-3 gap-paw-sm"
         >
-          {STORE_PROMISES.map((promise) => (
+          {storePromises.map((promise) => (
             <Card
               key={promise.label}
               variant="compact"
@@ -745,7 +758,7 @@ function StorePageContent() {
         <div className="mx-auto max-w-7xl px-paw-md sm:px-paw-xl lg:px-paw-xxl">
         <div className="mb-paw-sm flex items-center gap-paw-xs">
           <SlidersHorizontal className="h-4 w-4 text-paw-muted" />
-          <span className="text-sm font-bold text-paw-muted">Filter by category</span>
+          <span className="text-sm font-bold text-paw-muted">{t("storeFilterByCategory")}</span>
         </div>
         <div className="-mx-paw-md mb-paw-sm flex gap-paw-sm overflow-x-auto px-paw-md pb-paw-xs sm:mx-0 sm:flex-wrap sm:overflow-visible sm:px-0 sm:pb-0">
           {CATEGORIES.map((cat) => (
@@ -764,7 +777,7 @@ function StorePageContent() {
                   })}
                 >
                   <CategoryIcon className="h-3.5 w-3.5 sm:h-4 sm:w-4" aria-hidden="true" />
-                  {cat.label}
+                  {categoryLabels[cat.key]}
                 </motion.button>
               );
             })()
@@ -772,16 +785,18 @@ function StorePageContent() {
         </div>
         <div className="mb-paw-md flex flex-wrap items-center justify-between gap-paw-sm">
           <div className="flex flex-wrap items-center gap-3">
-            <p className="text-sm font-semibold text-paw-muted">{filtered.length} product{filtered.length !== 1 ? "s" : ""}</p>
+            <p className="text-sm font-semibold text-paw-muted">
+              {filtered.length} {filtered.length === 1 ? t("storeProductCountSingular") : t("storeProductCountPlural")}
+            </p>
             {catalogLoading && (
               <Badge tone="neutral" variant="semantic" size="sm">
                 <RefreshCw className="h-3 w-3 animate-spin" aria-hidden="true" />
-                Syncing
+                {t("storeSyncing")}
               </Badge>
             )}
             {catalogIssue && (
               <Badge tone="warning" variant="semantic" size="sm">
-                Demo fallback
+                {t("storeDemoFallback")}
               </Badge>
             )}
           </div>
@@ -792,22 +807,22 @@ function StorePageContent() {
               className="inline-flex cursor-pointer items-center gap-1 text-sm font-bold text-paw-muted transition-colors hover:text-paw-primary"
             >
               <ShoppingCart className="h-4 w-4" aria-hidden="true" />
-              Cart {totalItems > 0 ? `(${totalItems})` : ""}
+              {t("storeCartButton")} {totalItems > 0 ? `(${totalItems})` : ""}
             </button>
             {isAdmin && (
               <button
-                onClick={() => router.push("/store/admin")}
+                onClick={() => router.push(path("/store/admin"))}
                 className="flex cursor-pointer items-center gap-1 text-sm font-bold text-paw-trust transition-colors hover:text-paw-trust-hover"
               >
                 <ShieldCheck className="h-4 w-4" aria-hidden="true" />
-                Manage catalog
+                {t("storeManageCatalog")}
               </button>
             )}
             <button
-              onClick={() => router.push("/store/orders")}
+              onClick={() => router.push(path("/store/orders"))}
               className="flex cursor-pointer items-center gap-1 text-sm font-bold text-paw-primary transition-colors hover:text-paw-primary-hover"
             >
-              My Orders <ChevronRight className="h-4 w-4" />
+              {t("storeMyOrders")} <ChevronRight className="h-4 w-4" />
             </button>
           </div>
         </div>
@@ -829,8 +844,8 @@ function StorePageContent() {
         {filtered.length === 0 && (
           <EmptyState
             icon={Search}
-            title="No products found"
-            description="Try adjusting your search or category filter."
+            title={t("storeNoProductsTitle")}
+            description={t("storeNoProductsDescription")}
             className="my-10"
           />
         )}
@@ -850,9 +865,9 @@ function StorePageContent() {
             className="fixed bottom-8 right-8 z-50"
           >
             <Link
-              href="/store/checkout"
+              href={path("/store/checkout")}
               className="relative flex h-16 w-16 items-center justify-center rounded-paw-panel bg-paw-primary text-paw-accent-ink shadow-paw-action transition-colors hover:bg-paw-primary-hover focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-paw-trust/20"
-              aria-label={`Proceed to checkout with ${totalItems} item${totalItems !== 1 ? "s" : ""}`}
+              aria-label={`${t("storeCheckoutWithPrefix")} ${totalItems} ${totalItems === 1 ? t("storeItemSingular") : t("storeItemPlural")}`}
             >
               <ShoppingCart className="h-6 w-6" aria-hidden="true" />
               <motion.span
@@ -900,11 +915,13 @@ function StorePageContent() {
 }
 
 export default function StorePage() {
+  const { t } = useI18n();
+
   return (
     <Suspense
       fallback={
         <div className="min-h-screen bg-paw-page pt-28 text-center text-sm font-bold text-paw-muted">
-          Loading store...
+          {t("storeLoading")}
         </div>
       }
     >

@@ -4,6 +4,9 @@ import Navbar from "@/components/Navbar";
 import Providers from "@/components/Providers";
 import ConditionalFooter from "@/components/ConditionalFooter";
 import CookieConsentBanner from "@/components/CookieConsentBanner";
+import { I18nProvider } from "@/i18n/I18nProvider";
+import { resolveMessages } from "@/i18n/messages";
+import { defaultLocale } from "@/i18n/locales";
 import { siteConfig } from "@/lib/site";
 import {
   PAWPAL_METADATA_BASE,
@@ -113,22 +116,27 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const locale = defaultLocale;
+  const messages = resolveMessages(locale);
+
   return (
-    <html lang="en" data-scroll-behavior="smooth">
+    <html lang={locale} data-scroll-behavior="smooth">
       <body className="min-h-screen bg-paw-page text-paw-ink antialiased selection:bg-paw-primary/20">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-        <Providers>
-          <a href="#main-content" className="skip-to-content">
-            Skip to PawPal content
-          </a>
-          <Navbar />
-          <main id="main-content" className="relative" style={{ zIndex: 20 }} tabIndex={-1}>{children}</main>
-          <ConditionalFooter />
-          <CookieConsentBanner />
-        </Providers>
+        <I18nProvider locale={locale} messages={messages}>
+          <Providers>
+            <a href="#main-content" className="skip-to-content">
+              {messages.skipToContent}
+            </a>
+            <Navbar />
+            <main id="main-content" className="relative" style={{ zIndex: 20 }} tabIndex={-1}>{children}</main>
+            <ConditionalFooter />
+            <CookieConsentBanner />
+          </Providers>
+        </I18nProvider>
       </body>
     </html>
   );

@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
+import { enMessages } from "@/i18n/messages";
 import { publicPageMetadata } from "../metadata";
 
 export const metadata: Metadata = publicPageMetadata({
-  title: "About",
-  description:
-    "Meet the PawPal team in Ghent and learn how the app, website, and NFC smart tags connect daily walks, safety, and local pet care.",
+  title: enMessages.aboutMetadataTitle,
+  description: enMessages.aboutMetadataDescription,
   path: "/about",
 });
 

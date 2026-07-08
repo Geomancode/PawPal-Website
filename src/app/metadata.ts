@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { enMessages } from "@/i18n/messages";
 
 export const PAWPAL_METADATA_BASE = "https://www.pawpal.be";
 export const PAWPAL_OG_IMAGE_PATH = "/images/pawpal-og.jpg";
@@ -7,7 +8,7 @@ export const PAWPAL_OG_IMAGE = {
   url: PAWPAL_OG_IMAGE_PATH,
   width: 1200,
   height: 630,
-  alt: "PawPal pet safety map, smart tags, and local pet community",
+  alt: enMessages.siteOgImageAlt,
 };
 
 type PublicPageMetadata = {

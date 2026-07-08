@@ -83,7 +83,7 @@ const VALUES = [
   { icon: Shield, title: "Privacy & Trust", desc: "GDPR-first design. Location recorded only during walks. NFC tags protect owner privacy by default. EU-hosted data with row-level security." },
   { icon: Users, title: "Local Community", desc: "PawPal connects neighbors through their pets — find nearby dog walkers, request mutual help, and build trust through verified interactions." },
   { icon: Sparkles, title: "AI-Powered Care", desc: "Gemini AI for breed recognition, behavior analysis, and daily care advice. Clearly labeled as non-medical — always consult a vet for health concerns." },
-  { icon: MapPin, title: "Born in Belgium", desc: "Founded in Ghent. Deep understanding of Flemish pet culture. 5-language support (EN/NL/FR/DE/ZH) ready for European expansion." },
+  { icon: MapPin, title: "Born in Belgium", desc: "Founded in Ghent. Deep understanding of Flemish pet culture. English is available now, with DE/FR/NL/ZH translation tracks in progress." },
   { icon: Map, title: "Gamified Exploration", desc: "H3 hexagonal fog-of-war maps turn every dog walk into an adventure. Earn PawPoints for exploring new areas, streaks, and community contributions." },
 ];
 
@@ -91,7 +91,7 @@ const VALUES = [
 const TIMELINE = [
   { year: "2024", event: "The idea is born — three pet lovers in Ghent imagine a smarter way to care for pets and connect local communities." },
   { year: "2025 Q1", event: "Full-stack MVP complete: Flutter app + Next.js website + Supabase backend with 52 database migrations and PostGIS spatial engine." },
-  { year: "2025 Q2", event: "AI agent (Gemini), NFC tag system, real-time chat, and 5-language internationalization (EN/NL/FR/DE/ZH) shipped." },
+  { year: "2025 Q2", event: "AI agent (Gemini), NFC tag system, real-time chat, and an English-first internationalization foundation shipped." },
   { year: "2025 H2", event: "Fog-of-war map engine (H3 hexagons), gamified walk tracking with weather sync, PawPoints reward system designed and built." },
   { year: "2026", event: "Ghent cold start: '500 NFC collars' campaign, local partnerships with pet shops and vet clinics, angel round fundraising." },
 ];
@@ -99,7 +99,7 @@ const TIMELINE = [
 const TEAM_STRENGTHS: Array<{ icon: LucideIcon; text: string }> = [
   { icon: GraduationCap, text: "GIS PhD × LBS Product" },
   { icon: Zap, text: "52 DB Migrations Shipped" },
-  { icon: Languages, text: "5 Languages Ready" },
+  { icon: Languages, text: "English Live; Locales Planned" },
   { icon: MapPin, text: "Rooted in Ghent" },
 ];
 

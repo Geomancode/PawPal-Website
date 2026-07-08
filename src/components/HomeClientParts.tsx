@@ -22,6 +22,7 @@ import {
 import type { LucideIcon } from "lucide-react";
 import { ReactNode, useEffect, useRef, useState, useSyncExternalStore } from "react";
 import { Card, CardContent, buttonClassName } from "@/components/ui";
+import { useI18n } from "@/i18n/I18nProvider";
 
 const ease = [0.25, 0.46, 0.45, 0.94] as const;
 const REDUCED_MOTION_QUERY = "(prefers-reduced-motion: reduce)";
@@ -123,19 +124,22 @@ export function HeroBlobs() {
 }
 
 export function AnimatedHeadline() {
+  const { t } = useI18n();
+
   return (
     <h1
-      aria-label="PawPal pet safety for every walk"
+      aria-label={t("homeHeroAriaLabel")}
       className="homepage-hero-headline max-w-3xl font-brand text-[3.15rem] font-extrabold leading-[1.02] tracking-normal text-paw-ink sm:text-6xl lg:text-[4.45rem] xl:text-[4.65rem]"
     >
-      <span className="block sm:whitespace-nowrap">PawPal pet safety</span>
+      <span className="block sm:whitespace-nowrap">{t("homeHeroLineOne")}</span>
       {" "}
-      <span className="block text-paw-primary">for every walk</span>
+      <span className="block text-paw-primary">{t("homeHeroLineTwo")}</span>
     </h1>
   );
 }
 
 export function HeroDescription() {
+  const { t } = useI18n();
   const shouldReduceMotion = useHydratedReducedMotion();
 
   return (
@@ -143,13 +147,13 @@ export function HeroDescription() {
       className="max-w-xl break-words text-base leading-7 text-paw-body sm:text-lg sm:leading-8"
       {...enterMotion(shouldReduceMotion, 18, 0.18)}
     >
-      Built in Belgium, PawPal connects live walks, smart finder
-      profiles, and local pet help in one calm product surface.
+      {t("homeHeroDescription")}
     </motion.p>
   );
 }
 
 export function HeroCTA() {
+  const { path, t } = useI18n();
   const shouldReduceMotion = useHydratedReducedMotion();
 
   return (
@@ -158,21 +162,21 @@ export function HeroCTA() {
       {...enterMotion(shouldReduceMotion, 14, 0.28)}
     >
       <Link
-        href="/globe"
+        href={path("/globe")}
         className={buttonClassName({ size: "lg", className: "w-full sm:w-auto" })}
       >
-        Open Live Map
+        {t("homeCtaOpenLiveMap")}
         <ArrowRight className="h-4 w-4" />
       </Link>
       <Link
-        href="/store"
+        href={path("/store")}
         className={buttonClassName({
           variant: "secondary",
           size: "lg",
           className: "w-full sm:w-auto",
         })}
       >
-        Shop Smart Tags
+        {t("homeCtaShopSmartTags")}
         <Store className="h-4 w-4" />
       </Link>
     </motion.div>
@@ -180,11 +184,12 @@ export function HeroCTA() {
 }
 
 export function HeroSignalRail() {
+  const { t } = useI18n();
   const shouldReduceMotion = useHydratedReducedMotion();
   const signals = [
-    { label: "Finder page", value: "1 tap", icon: ScanLine },
-    { label: "Walk reveal", value: "2.43 km", icon: Route },
-    { label: "Local help", value: "15 km", icon: HeartHandshake },
+    { label: t("homeSignalFinderPageLabel"), value: t("homeSignalFinderPageValue"), icon: ScanLine },
+    { label: t("homeSignalWalkRevealLabel"), value: t("homeSignalWalkRevealValue"), icon: Route },
+    { label: t("homeSignalLocalHelpLabel"), value: t("homeSignalLocalHelpValue"), icon: HeartHandshake },
   ];
 
   return (
@@ -209,24 +214,25 @@ export function HeroSignalRail() {
 }
 
 export function HeroBadges() {
+  const { t } = useI18n();
   const shouldReduceMotion = useHydratedReducedMotion();
   const badges = [
     {
       icon: ShieldCheck,
-      label: "Finder-ready",
-      copy: "NFC safety profiles",
+      label: t("homeBadgeFinderReadyLabel"),
+      copy: t("homeBadgeFinderReadyCopy"),
       tone: "bg-paw-primary-soft text-paw-on-primary-soft",
     },
     {
       icon: LockKeyhole,
-      label: "Privacy-first",
-      copy: "Owner-controlled details",
+      label: t("homeBadgePrivacyFirstLabel"),
+      copy: t("homeBadgePrivacyFirstCopy"),
       tone: "bg-paw-trust-soft text-paw-on-trust-soft",
     },
     {
       icon: Languages,
-      label: "EU-ready",
-      copy: "5-language product base",
+      label: t("homeBadgeEuReadyLabel"),
+      copy: t("homeBadgeEuReadyCopy"),
       tone: "bg-paw-accent-soft text-paw-on-accent-soft",
     },
   ];
@@ -283,28 +289,29 @@ export function GlobeSection() {
   );
 }
 
-const proofItems: Array<{ icon: LucideIcon; title: string; copy: string; tone: string }> = [
-  {
-    icon: Map,
-    title: "Walk map",
-    copy: "See live walks and safe routes around you.",
-    tone: "bg-paw-primary-soft text-paw-on-primary-soft",
-  },
-  {
-    icon: ScanLine,
-    title: "Smart tag",
-    copy: "NFC finder profiles help get your pet home safely.",
-    tone: "bg-paw-trust-soft text-paw-on-trust-soft",
-  },
-  {
-    icon: HeartHandshake,
-    title: "Local help",
-    copy: "Connect with nearby helpers and trusted pet services.",
-    tone: "bg-paw-accent-soft text-paw-on-accent-soft",
-  },
-];
-
 export function TrustMarquee() {
+  const { t } = useI18n();
+  const proofItems: Array<{ icon: LucideIcon; title: string; copy: string; tone: string }> = [
+    {
+      icon: Map,
+      title: t("homeProofWalkMapTitle"),
+      copy: t("homeProofWalkMapCopy"),
+      tone: "bg-paw-primary-soft text-paw-on-primary-soft",
+    },
+    {
+      icon: ScanLine,
+      title: t("homeProofSmartTagTitle"),
+      copy: t("homeProofSmartTagCopy"),
+      tone: "bg-paw-trust-soft text-paw-on-trust-soft",
+    },
+    {
+      icon: HeartHandshake,
+      title: t("homeProofLocalHelpTitle"),
+      copy: t("homeProofLocalHelpCopy"),
+      tone: "bg-paw-accent-soft text-paw-on-accent-soft",
+    },
+  ];
+
   return (
     <div className="grid gap-paw-sm px-paw-md py-paw-lg sm:grid-cols-3 sm:px-paw-lg">
       {proofItems.map((item) => (
@@ -325,34 +332,35 @@ export function TrustMarquee() {
   );
 }
 
-const readinessItems: Array<{ icon: LucideIcon; value: string; label: string; copy: string }> = [
-  {
-    icon: ScanLine,
-    value: "NFC",
-    label: "Instant finder profile",
-    copy: "Public pages are designed for quick owner contact without exposing private data by default.",
-  },
-  {
-    icon: Navigation,
-    value: "H3",
-    label: "Fog-of-war walks",
-    copy: "The mobile map turns daily routes into revealed places, route memory, and exploration rewards.",
-  },
-  {
-    icon: Bot,
-    value: "AI",
-    label: "Care copilot",
-    copy: "Breed, behavior, food safety, and local place help stay close to the walk and profile flows.",
-  },
-  {
-    icon: Users,
-    value: "EU",
-    label: "Local community base",
-    copy: "Built from Ghent outward with multilingual support and local pet parent coordination.",
-  },
-];
-
 export function LaunchReadinessPanel() {
+  const { t } = useI18n();
+  const readinessItems: Array<{ icon: LucideIcon; value: string; label: string; copy: string }> = [
+    {
+      icon: ScanLine,
+      value: t("homeReadinessNfcValue"),
+      label: t("homeReadinessNfcLabel"),
+      copy: t("homeReadinessNfcCopy"),
+    },
+    {
+      icon: Navigation,
+      value: t("homeReadinessH3Value"),
+      label: t("homeReadinessH3Label"),
+      copy: t("homeReadinessH3Copy"),
+    },
+    {
+      icon: Bot,
+      value: t("homeReadinessAiValue"),
+      label: t("homeReadinessAiLabel"),
+      copy: t("homeReadinessAiCopy"),
+    },
+    {
+      icon: Users,
+      value: t("homeReadinessEuValue"),
+      label: t("homeReadinessEuLabel"),
+      copy: t("homeReadinessEuCopy"),
+    },
+  ];
+
   return (
     <section className="relative overflow-hidden bg-paw-panel-subtle py-12">
       <div className="hero-map-grid absolute inset-0 opacity-[0.12]" aria-hidden="true" />
@@ -442,41 +450,38 @@ export function AnimatedCounter({ value, label, delay = 0 }: { value: string; la
   );
 }
 
-const flowSteps: Array<{
-  icon: LucideIcon;
-  number: string;
-  title: string;
-  copy: string;
-  color: string;
-  surface: string;
-}> = [
-  {
-    icon: Footprints,
-    number: "01",
-    title: "Walk & Explore",
-    copy: "Reveal map places, route history, and PawPoints without turning the walk into admin.",
-    color: "text-paw-primary",
-    surface: "bg-paw-primary-soft",
-  },
-  {
-    icon: ShieldCheck,
-    number: "02",
-    title: "Protect & Connect",
-    copy: "A smart tag gives finders the right profile, while owners control sensitive details.",
-    color: "text-paw-trust",
-    surface: "bg-paw-trust-soft",
-  },
-  {
-    icon: Users,
-    number: "03",
-    title: "Community & Care",
-    copy: "Local pet parents, alerts, AI advice, and trusted services stay near the map.",
-    color: "text-paw-accent",
-    surface: "bg-paw-accent-soft",
-  },
-];
-
 export function ProductFlow() {
+  const { t } = useI18n();
+  const flowSteps: Array<{
+    icon: LucideIcon;
+    title: string;
+    copy: string;
+    color: string;
+    surface: string;
+  }> = [
+    {
+      icon: Footprints,
+      title: t("homeFlowWalkTitle"),
+      copy: t("homeFlowWalkCopy"),
+      color: "text-paw-primary",
+      surface: "bg-paw-primary-soft",
+    },
+    {
+      icon: ShieldCheck,
+      title: t("homeFlowProtectTitle"),
+      copy: t("homeFlowProtectCopy"),
+      color: "text-paw-trust",
+      surface: "bg-paw-trust-soft",
+    },
+    {
+      icon: Users,
+      title: t("homeFlowCommunityTitle"),
+      copy: t("homeFlowCommunityCopy"),
+      color: "text-paw-accent",
+      surface: "bg-paw-accent-soft",
+    },
+  ];
+
   return (
     <div className="grid gap-paw-md md:grid-cols-3">
       {flowSteps.map((step, index) => (
@@ -503,53 +508,52 @@ export function ProductFlow() {
   );
 }
 
-const featureRows: Array<{ icon: LucideIcon; title: string; copy: string; color: string; surface: string }> = [
-  {
-    icon: Map,
-    title: "Fog-of-War Globe",
-    copy: "Reveal routes, pet-friendly places, and local context through daily movement.",
-    color: "text-paw-primary",
-    surface: "bg-paw-primary",
-  },
-  {
-    icon: ScanLine,
-    title: "NFC Safety Tag",
-    copy: "One tap can open pet ID, care notes, owner contact rules, and lost-mode details.",
-    color: "text-paw-trust",
-    surface: "bg-paw-trust",
-  },
-  {
-    icon: Bot,
-    title: "AI Pet Assistant",
-    copy: "Get clearly scoped care guidance for behavior, nutrition, breed traits, and training.",
-    color: "text-paw-accent",
-    surface: "bg-paw-accent",
-  },
-  {
-    icon: Users,
-    title: "Local Community",
-    copy: "Find nearby pet parents, missions, groups, trusted services, and practical help.",
-    color: "text-paw-primary",
-    surface: "bg-paw-primary",
-  },
-];
-
-const showcaseImages = [
-  { src: "/images/mockup-profile.png", alt: "PawPal pet profile screen", title: "Profile" },
-  { src: "/images/mockup-nfc.png", alt: "PawPal NFC safety screen", title: "NFC" },
-  { src: "/images/mockup-ai.png", alt: "PawPal AI assistant screen", title: "AI" },
-  { src: "/images/mockup-community.png", alt: "PawPal community screen", title: "Community" },
-];
-
 export function BentoFeatureGrid() {
+  const { t } = useI18n();
   const shouldReduceMotion = useHydratedReducedMotion();
+  const featureRows: Array<{ icon: LucideIcon; title: string; copy: string; color: string; surface: string }> = [
+    {
+      icon: Map,
+      title: t("homeFeatureFogTitle"),
+      copy: t("homeFeatureFogCopy"),
+      color: "text-paw-primary",
+      surface: "bg-paw-primary",
+    },
+    {
+      icon: ScanLine,
+      title: t("homeFeatureNfcTitle"),
+      copy: t("homeFeatureNfcCopy"),
+      color: "text-paw-trust",
+      surface: "bg-paw-trust",
+    },
+    {
+      icon: Bot,
+      title: t("homeFeatureAiTitle"),
+      copy: t("homeFeatureAiCopy"),
+      color: "text-paw-accent",
+      surface: "bg-paw-accent",
+    },
+    {
+      icon: Users,
+      title: t("homeFeatureCommunityTitle"),
+      copy: t("homeFeatureCommunityCopy"),
+      color: "text-paw-primary",
+      surface: "bg-paw-primary",
+    },
+  ];
+  const showcaseImages = [
+    { src: "/images/mockup-profile.png", alt: t("homeShowcaseProfileAlt"), title: t("homeShowcaseProfileTitle") },
+    { src: "/images/mockup-nfc.png", alt: t("homeShowcaseNfcAlt"), title: t("homeShowcaseNfcTitle") },
+    { src: "/images/mockup-ai.png", alt: t("homeShowcaseAiAlt"), title: t("homeShowcaseAiTitle") },
+    { src: "/images/mockup-community.png", alt: t("homeShowcaseCommunityAlt"), title: t("homeShowcaseCommunityTitle") },
+  ];
 
   return (
     <div className="grid items-center gap-12 lg:grid-cols-[0.8fr_1.2fr]">
       <FadeInView>
         <div>
           <h2 className="font-brand text-3xl font-extrabold leading-tight text-paw-ink md:text-5xl">
-            The daily pet stack, joined up.
+            {t("homeBentoTitle")}
           </h2>
           <div className="mt-8 space-y-6">
             {featureRows.map((feature) => (
@@ -571,10 +575,10 @@ export function BentoFeatureGrid() {
         <div className="feature-showcase-stage relative min-h-[430px] overflow-hidden rounded-paw-md border border-paw-border bg-gradient-to-br from-paw-panel-subtle to-paw-panel px-4 pb-8 pt-8 shadow-paw-panel sm:min-h-[540px] sm:px-8">
           <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-paw-panel to-transparent" />
           <div className="feature-showcase-header" aria-hidden="true">
-            <span>Profile</span>
-            <span>NFC</span>
-            <span>AI</span>
-            <span>Community</span>
+            <span>{t("homeShowcaseProfileTitle")}</span>
+            <span>{t("homeShowcaseNfcTitle")}</span>
+            <span>{t("homeShowcaseAiTitle")}</span>
+            <span>{t("homeShowcaseCommunityTitle")}</span>
           </div>
           <div className="relative z-10 grid grid-cols-2 gap-4 sm:flex sm:items-end sm:justify-center sm:gap-5">
             {showcaseImages.map((image, index) => (
@@ -606,6 +610,13 @@ export function BentoFeatureGrid() {
 }
 
 export function AppShowcase() {
+  const { t } = useI18n();
+  const showcaseItems = [
+    { icon: Map, title: t("homeShowcaseLiveMapTitle"), copy: t("homeShowcaseLiveMapCopy"), color: "text-paw-primary" },
+    { icon: ScanLine, title: t("homeShowcaseFinderTitle"), copy: t("homeShowcaseFinderCopy"), color: "text-paw-trust" },
+    { icon: HeartHandshake, title: t("homeShowcaseLocalHelpTitle"), copy: t("homeShowcaseLocalHelpCopy"), color: "text-paw-accent" },
+  ];
+
   return (
     <div className="homepage-showcase">
       <FadeInView delay={0.08}>
@@ -614,7 +625,7 @@ export function AppShowcase() {
           <div className="homepage-phone-frame">
             <Image
               src="/images/app-mockup.png"
-              alt="PawPal main app screen"
+              alt={t("homeAppMockupAlt")}
               width={1024}
               height={1024}
               sizes="(min-width: 1024px) 250px, 58vw"
@@ -632,17 +643,13 @@ export function AppShowcase() {
       <FadeInView>
         <div className="homepage-showcase-copy">
           <h2 className="font-brand text-3xl font-extrabold leading-tight text-paw-ink md:text-5xl">
-            Everything you need, in one calm place.
+            {t("homeShowcaseTitle")}
           </h2>
           <p className="mt-4 max-w-lg text-base leading-7 text-paw-body md:text-lg md:leading-8">
-            The map, finder profile, and local help stay connected without turning the Homepage into a control panel.
+            {t("homeShowcaseCopy")}
           </p>
           <div className="homepage-showcase-list">
-            {[
-              { icon: Map, title: "Live map", copy: "See walks and safer routes in your area.", color: "text-paw-primary" },
-              { icon: ScanLine, title: "Finder profile", copy: "Share what matters, not everything.", color: "text-paw-trust" },
-              { icon: HeartHandshake, title: "Local help", copy: "Find nearby helpers and trusted services.", color: "text-paw-accent" },
-            ].map((item) => (
+            {showcaseItems.map((item) => (
               <div key={item.title} className="homepage-showcase-row">
                 <item.icon className={`h-6 w-6 ${item.color}`} aria-hidden="true" />
                 <div>
@@ -659,20 +666,22 @@ export function AppShowcase() {
 }
 
 export function BottomCTA() {
+  const { path, t } = useI18n();
+
   return (
     <div className="flex flex-col gap-3 sm:flex-row">
       <Link
-        href="/globe"
+        href={path("/globe")}
         className={buttonClassName({ size: "lg" })}
       >
-        Open Live Map
+        {t("homeCtaOpenLiveMap")}
         <ArrowRight className="h-4 w-4" />
       </Link>
       <Link
-        href="/store"
+        href={path("/store")}
         className={buttonClassName({ variant: "secondary", size: "lg" })}
       >
-        Shop Smart Tags
+        {t("homeCtaShopSmartTags")}
         <Store className="h-4 w-4" />
       </Link>
     </div>

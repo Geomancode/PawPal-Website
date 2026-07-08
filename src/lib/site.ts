@@ -1,11 +1,12 @@
+import { enMessages } from "@/i18n/messages";
+
 export const SITE_URL = "https://pawpal.be";
 
 export const siteConfig = {
   name: "PawPal",
   url: SITE_URL,
-  title: "PawPal | Pet Safety Map, Smart Tags, and Local Pet Community",
-  description:
-    "PawPal combines smart pet walks, NFC safety profiles, AI care guidance, and a local pet community for owners in Belgium and across Europe.",
+  title: enMessages.siteTitle,
+  description: enMessages.siteDescription,
   keywords: [
     "PawPal",
     "pet safety",
@@ -29,4 +30,3 @@ export const sitemapEntries = [
   { path: "/privacy", priority: 0.35, changeFrequency: "yearly" as const },
   { path: "/terms", priority: 0.35, changeFrequency: "yearly" as const },
 ];
-

@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
+import { enMessages } from "@/i18n/messages";
 import { publicPageMetadata } from "../metadata";
 
 export const metadata: Metadata = publicPageMetadata({
-  title: "Store",
-  description:
-    "Shop PawPal NFC safety tags and curated pet gear for smarter walks, faster owner contact, and daily care.",
+  title: enMessages.storeMetadataTitle,
+  description: enMessages.storeMetadataDescription,
   path: "/store",
 });
 
