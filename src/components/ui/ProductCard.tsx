@@ -40,6 +40,7 @@ export default function ProductCard({
 }: ProductCardProps) {
   return (
     <Card
+      variant="hero"
       className={cn(
         "group overflow-hidden transition-[border-color,box-shadow,transform] duration-paw-fast hover:-translate-y-1 hover:border-paw-primary/30 hover:shadow-paw-floating",
         className,
@@ -47,7 +48,12 @@ export default function ProductCard({
     >
       <div className="store-product-media relative flex aspect-[4/3] items-center justify-center p-paw-xl">
         {badge && (
-          <Badge tone={badgeTone} className="absolute left-paw-md top-paw-md z-20">
+          <Badge
+            tone={badgeTone}
+            variant="semantic"
+            size="sm"
+            className="absolute left-paw-md top-paw-md z-20"
+          >
             {badge}
           </Badge>
         )}
@@ -62,7 +68,7 @@ export default function ProductCard({
               {name}
             </h3>
             <div className="shrink-0 text-right">
-              <span className="inline-flex rounded-paw-pill bg-paw-primary-soft px-paw-sm py-paw-xs text-sm font-black leading-none text-paw-on-primary-soft">
+              <span className="inline-flex rounded-paw-card bg-paw-primary-soft px-paw-sm py-paw-xs text-sm font-black leading-none text-paw-on-primary-soft">
                 {price}
               </span>
               {originalPrice && (
@@ -78,21 +84,21 @@ export default function ProductCard({
             </p>
           )}
         </div>
-        <div className="flex items-center justify-between gap-paw-sm">
+        <div className="flex items-center gap-paw-sm">
           {typeof rating === "number" ? (
-            <span className="inline-flex items-center gap-1 text-sm font-bold text-paw-on-warning-soft">
-              <Star className="h-4 w-4 fill-current" aria-hidden="true" />
-              {rating.toFixed(1)}
+            <span className="inline-flex min-w-0 flex-1 items-center gap-1 overflow-hidden text-sm font-bold text-paw-on-warning-soft">
+              <Star className="h-4 w-4 shrink-0 fill-current" aria-hidden="true" />
+              <span className="shrink-0">{rating.toFixed(1)}</span>
               {ratingDetail && (
-                <span className="font-semibold text-paw-muted">
+                <span className="min-w-0 truncate font-semibold text-paw-muted">
                   {ratingDetail}
                 </span>
               )}
             </span>
           ) : (
-            <span />
+            <span className="min-w-0 flex-1" />
           )}
-          <div className="flex items-center gap-paw-xs">
+          <div className="flex shrink-0 items-center gap-paw-xs">
             {onDetails && (
               <Button type="button" variant="secondary" size="sm" onClick={onDetails}>
                 <Info className="h-3.5 w-3.5" aria-hidden="true" />

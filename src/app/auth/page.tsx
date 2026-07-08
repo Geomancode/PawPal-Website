@@ -86,7 +86,7 @@ export default function AuthPage() {
       <div className="auth-layout mx-auto grid w-full max-w-6xl gap-6 lg:grid-cols-[minmax(0,1fr)_440px] lg:items-center">
         <aside className="auth-visual-panel hidden lg:block">
           <div className="relative z-10">
-            <Badge tone="primary">
+            <Badge tone="primary" variant="semantic">
               <Sparkles className="h-4 w-4" aria-hidden="true" />
               PawPal account
             </Badge>
@@ -116,7 +116,10 @@ export default function AuthPage() {
         </aside>
 
       <div className="w-full max-w-md justify-self-center lg:justify-self-end">
-        <Card className="auth-card bg-paw-panel-low/95 p-0 backdrop-blur-xl">
+        <Card
+          variant="hero"
+          className="auth-card bg-paw-panel-low/95 p-0 backdrop-blur-xl"
+        >
           <CardContent className="p-8">
           {/* Logo */}
           <div className="text-center mb-8">
@@ -158,6 +161,7 @@ export default function AuthPage() {
             <StatusMessage
               id="auth-error"
               tone="danger"
+              variant="compact"
               className="mb-4"
             >
               {error}
@@ -167,6 +171,7 @@ export default function AuthPage() {
             <StatusMessage
               id="auth-success"
               tone="success"
+              variant="compact"
               className="mb-4"
             >
               {success}
@@ -218,7 +223,7 @@ export default function AuthPage() {
                   type="button"
                   aria-label={showPassword ? "Hide password" : "Show password"}
                   onClick={() => setShowPassword(!showPassword)}
-                  className="rounded-paw-pill p-1 text-paw-muted transition hover:bg-paw-panel-subtle hover:text-paw-ink"
+                  className="rounded-paw-sm p-1 text-paw-muted transition hover:bg-paw-panel-subtle hover:text-paw-ink"
                 >
                   {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
                 </button>

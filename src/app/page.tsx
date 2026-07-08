@@ -68,7 +68,12 @@ export default function Home() {
 
       <section className="bg-paw-page py-paw-xxl sm:py-paw-xxxl">
         <div className="mx-auto max-w-7xl px-paw-md sm:px-paw-xl lg:px-paw-xxl">
-          <Card className="grid items-center gap-paw-xl bg-paw-primary-soft p-paw-xl text-center shadow-paw-strong sm:p-paw-xxl lg:grid-cols-[1fr_auto] lg:text-left">
+          <Card
+            variant="hero"
+            tone="primary"
+            elevation="subtle"
+            className="grid items-center gap-paw-xl p-paw-xl text-center sm:p-paw-xxl lg:grid-cols-[1fr_auto] lg:text-left"
+          >
             <FadeInView>
               <h2 className="font-brand text-paw-type-h1 font-black text-paw-ink sm:text-paw-type-display">
                 Ready to make every walk safer?

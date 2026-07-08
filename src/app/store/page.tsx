@@ -156,7 +156,7 @@ function SubscriptionUpgradePanel({
   return (
     <PageShell className="pt-28 sm:pt-32" contentClassName="space-y-paw-xl">
       <div className="max-w-2xl">
-        <Badge tone="primary" className="mb-paw-lg">
+        <Badge tone="primary" variant="semantic" className="mb-paw-lg">
           <Sparkles className="h-4 w-4" aria-hidden="true" />
           PawPal AI upgrade
         </Badge>
@@ -185,7 +185,11 @@ function SubscriptionUpgradePanel({
               key={tier}
               {...fadeUpMotion(shouldReduceMotion, 18)}
             >
-              <Card className={`h-full p-paw-xl ${active ? "border-paw-primary" : ""}`}>
+              <Card
+                variant="panel"
+                selected={active}
+                className="h-full p-paw-xl"
+              >
                 <div className="mb-paw-lg flex items-start justify-between gap-paw-md">
                   <div>
                     <div className="mb-paw-sm flex h-11 w-11 items-center justify-center rounded-paw-control bg-paw-primary-soft text-paw-on-primary-soft">
@@ -203,7 +207,7 @@ function SubscriptionUpgradePanel({
                     </p>
                   </div>
                   {plan.highlight && (
-                    <Badge tone="success" className="min-h-0 px-paw-sm py-paw-xs">
+                    <Badge tone="success" variant="semantic" size="sm">
                       Recommended
                     </Badge>
                   )}
@@ -244,7 +248,7 @@ function SubscriptionUpgradePanel({
         })}
       </div>
 
-      <Card className="p-paw-md text-sm leading-6 text-paw-body shadow-paw-panel">
+      <Card variant="compact" className="p-paw-md text-sm leading-6 text-paw-body">
         Existing Free features stay available after cancellation. Paid AI access is
         restored automatically after Stripe confirms your subscription; if the app
         is already open, use Refresh plan in Profile.
@@ -279,7 +283,12 @@ function ProductCard({
       className="relative"
     >
       {recommended && (
-        <Badge tone="primary" className="absolute right-paw-sm top-paw-sm z-10 min-h-0 px-paw-sm py-paw-xs">
+        <Badge
+          tone="primary"
+          variant="semantic"
+          size="sm"
+          className="absolute right-paw-sm top-paw-sm z-10"
+        >
           <Sparkles className="h-3 w-3" aria-hidden="true" />
           AI pick
         </Badge>
@@ -326,7 +335,7 @@ function ProductDetailsDrawer({
     >
       {product && (
         <div className="space-y-5">
-          <div className="flex flex-wrap items-center justify-between gap-3 rounded-paw-md border border-paw-border bg-paw-panel-subtle p-4">
+          <Card variant="compact" tone="subtle" elevation="none" className="flex flex-wrap items-center justify-between gap-3 p-4">
             <div>
               <p className="text-xs font-bold uppercase tracking-[0.16em] text-paw-muted">
                 Product details
@@ -336,11 +345,11 @@ function ProductDetailsDrawer({
               </p>
             </div>
             {product.badge && (
-              <Badge tone="primary" className="min-h-0 px-paw-sm py-paw-xs">
+              <Badge tone="primary" variant="semantic" size="sm">
                 {product.badge}
               </Badge>
             )}
-          </div>
+          </Card>
 
           {product.detailImages?.length ? (
             <div className="space-y-4">
@@ -353,15 +362,15 @@ function ProductDetailsDrawer({
                   height={1536}
                   sizes="(min-width: 768px) 640px, calc(100vw - 40px)"
                   style={{ width: "100%", height: "auto" }}
-                  className="w-full rounded-paw-md border border-paw-border bg-paw-panel object-contain shadow-paw-panel"
+                  className="w-full rounded-paw-panel border border-paw-border bg-paw-panel object-contain shadow-paw-panel"
                   loading="lazy"
                 />
               ))}
             </div>
           ) : (
-            <div className="flex justify-center rounded-paw-md border border-paw-border bg-paw-panel-subtle p-8">
+            <Card variant="compact" tone="subtle" elevation="none" className="flex justify-center p-8">
               <ProductVisual product={product} size="lg" />
-            </div>
+            </Card>
           )}
         </div>
       )}
@@ -447,7 +456,7 @@ function CartDrawer({
                 initial={false}
                 animate={{ opacity: 1, x: 0 }}
                 exit={shouldReduceMotion ? undefined : { opacity: 0, x: -20 }}
-                className="flex gap-4 rounded-paw-md border border-paw-border bg-paw-panel-subtle p-3"
+                className="flex gap-4 rounded-paw-card border border-paw-border bg-paw-panel-subtle p-3"
               >
                 <ProductVisual product={item.product} size="md" />
                 <div className="min-w-0 flex-1">
@@ -462,7 +471,8 @@ function CartDrawer({
                       type="button"
                       variant="secondary"
                       size="icon"
-                      className="h-7 w-7 rounded-paw-sm"
+                      shape="compact"
+                      className="h-7 w-7"
                       onClick={() => onUpdate(item.product.id, item.quantity - 1)}
                       aria-label={`Decrease ${item.product.name}`}
                     >
@@ -475,7 +485,8 @@ function CartDrawer({
                       type="button"
                       variant="secondary"
                       size="icon"
-                      className="h-7 w-7 rounded-paw-sm"
+                      shape="compact"
+                      className="h-7 w-7"
                       onClick={() => onUpdate(item.product.id, item.quantity + 1)}
                       aria-label={`Increase ${item.product.name}`}
                     >
@@ -673,14 +684,18 @@ function StorePageContent() {
             {recommendedProductIds.length > 0 && (
               <motion.div
                 {...fadeUpMotion(shouldReduceMotion, 10, 0.12)}
-                className="flex flex-wrap items-center gap-paw-xs rounded-paw-card border border-paw-outline-variant bg-paw-panel-low px-paw-sm py-paw-xs text-sm font-bold text-paw-ink shadow-paw-panel"
               >
-                <Sparkles className="h-4 w-4 text-paw-on-primary-soft" aria-hidden="true" />
-                <span>
-                  {recommendedMatchCount > 0
-                    ? `${recommendedMatchCount} AI recommended product${recommendedMatchCount !== 1 ? "s" : ""} highlighted`
-                    : "AI recommendations are not in this catalog yet"}
-                </span>
+                <Card
+                  variant="compact"
+                  className="flex flex-wrap items-center gap-paw-xs px-paw-sm py-paw-xs text-sm font-bold"
+                >
+                  <Sparkles className="h-4 w-4 text-paw-on-primary-soft" aria-hidden="true" />
+                  <span>
+                    {recommendedMatchCount > 0
+                      ? `${recommendedMatchCount} AI recommended product${recommendedMatchCount !== 1 ? "s" : ""} highlighted`
+                      : "AI recommendations are not in this catalog yet"}
+                  </span>
+                </Card>
               </motion.div>
             )}
 
@@ -689,11 +704,11 @@ function StorePageContent() {
               className="relative"
             >
               <Input
+                variant="search"
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 placeholder="Search products..."
                 leftSlot={<Search className="h-5 w-5" aria-hidden="true" />}
-                className="h-12 rounded-paw-control bg-paw-panel-low shadow-paw-control"
               />
             </motion.div>
           </div>
@@ -706,7 +721,8 @@ function StorePageContent() {
           {STORE_PROMISES.map((promise) => (
             <Card
               key={promise.label}
-              className="flex flex-col items-center gap-paw-xs p-paw-sm text-center shadow-paw-panel sm:flex-row sm:items-start sm:gap-paw-sm sm:text-left"
+              variant="compact"
+              className="flex flex-col items-center gap-paw-xs p-paw-sm text-center sm:flex-row sm:items-start sm:gap-paw-sm sm:text-left"
             >
               <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-paw-control bg-paw-primary-soft text-paw-on-primary-soft">
                 <promise.icon className="h-3.5 w-3.5 sm:h-4 sm:w-4" aria-hidden="true" />
@@ -758,13 +774,13 @@ function StorePageContent() {
           <div className="flex flex-wrap items-center gap-3">
             <p className="text-sm font-semibold text-paw-muted">{filtered.length} product{filtered.length !== 1 ? "s" : ""}</p>
             {catalogLoading && (
-              <Badge tone="neutral" className="min-h-0 px-paw-sm py-paw-xs">
+              <Badge tone="neutral" variant="semantic" size="sm">
                 <RefreshCw className="h-3 w-3 animate-spin" aria-hidden="true" />
                 Syncing
               </Badge>
             )}
             {catalogIssue && (
-              <Badge tone="warning" className="min-h-0 px-paw-sm py-paw-xs">
+              <Badge tone="warning" variant="semantic" size="sm">
                 Demo fallback
               </Badge>
             )}
@@ -835,7 +851,7 @@ function StorePageContent() {
           >
             <Link
               href="/store/checkout"
-              className="relative flex h-16 w-16 items-center justify-center rounded-paw-lg bg-paw-primary text-paw-accent-ink shadow-paw-action transition-colors hover:bg-paw-primary-hover focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-paw-trust/20"
+              className="relative flex h-16 w-16 items-center justify-center rounded-paw-panel bg-paw-primary text-paw-accent-ink shadow-paw-action transition-colors hover:bg-paw-primary-hover focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-paw-trust/20"
               aria-label={`Proceed to checkout with ${totalItems} item${totalItems !== 1 ? "s" : ""}`}
             >
               <ShoppingCart className="h-6 w-6" aria-hidden="true" />
@@ -872,7 +888,7 @@ function StorePageContent() {
             initial={false}
             animate={{ opacity: 1, y: 0 }}
             exit={shouldReduceMotion ? undefined : { opacity: 0, y: 40 }}
-            className="fixed bottom-28 left-1/2 z-50 flex -translate-x-1/2 items-center gap-paw-xs rounded-paw-next-card border border-paw-outline-variant bg-paw-panel-low px-paw-lg py-paw-sm text-sm font-bold text-paw-ink shadow-paw-strong"
+            className="fixed bottom-28 left-1/2 z-50 flex -translate-x-1/2 items-center gap-paw-xs rounded-paw-panel border border-paw-outline-variant bg-paw-panel-low px-paw-lg py-paw-sm text-sm font-bold text-paw-ink shadow-paw-panel"
           >
             <CheckCircle2 className="h-4 w-4 text-paw-on-success-soft" aria-hidden="true" />
             {toast}

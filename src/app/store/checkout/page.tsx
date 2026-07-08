@@ -18,6 +18,7 @@ import {
 } from "../storeData";
 import ProductVisual from "../ProductVisual";
 import {
+  Badge,
   Button,
   Card,
   CardContent,
@@ -69,25 +70,36 @@ function checkoutStepMotion(shouldReduceMotion: boolean) {
 // ─── Step Indicator ────────────────────────────────────
 function StepIndicator({ current }: { current: number }) {
   return (
-    <div className="checkout-stepper mb-10 flex items-center justify-center gap-2">
+    <Card
+      variant="panel"
+      className="mb-10 flex items-center justify-center gap-2 overflow-x-auto p-paw-sm"
+      aria-label="Checkout steps"
+    >
       {STEPS.map((step, i) => {
         const done = current > step.id;
         const active = current === step.id;
         return (
           <div key={step.id} className="flex items-center gap-2">
-            <div className={`flex min-h-paw-min-tap items-center gap-2 rounded-paw-pill px-paw-md py-paw-xs text-sm font-extrabold transition-all ${
-              active ? "bg-paw-primary text-paw-on-primary shadow-paw-action" : done ? "bg-paw-success-soft text-paw-on-success-soft" : "bg-paw-panel-subtle text-paw-muted"
-            }`}>
-              <step.icon className="w-4 h-4" />
+            <Badge
+              tone={done ? "success" : active ? "primary" : "neutral"}
+              variant="filter"
+              className={
+                active
+                  ? "bg-paw-primary text-paw-on-primary shadow-paw-action"
+                  : undefined
+              }
+              aria-current={active ? "step" : undefined}
+            >
+              <step.icon className="h-4 w-4" aria-hidden="true" />
               <span className="hidden sm:inline">{step.label}</span>
-            </div>
+            </Badge>
             {i < STEPS.length - 1 && (
               <div className={`h-0.5 w-8 ${done ? "bg-paw-success" : "bg-paw-border"}`} />
             )}
           </div>
         );
       })}
-    </div>
+    </Card>
   );
 }
 
@@ -113,7 +125,7 @@ function OrderSummary({ items }: { items: CartItem[] }) {
   const subtotal = items.reduce((s, i) => s + i.product.price * i.quantity, 0);
 
   return (
-    <Card className="checkout-summary-card">
+    <Card variant="panel">
       <CardContent>
       <h3 className="mb-4 flex items-center gap-2 font-extrabold text-paw-ink">
         <Package className="h-4 w-4 text-paw-primary" /> Order Summary
@@ -232,7 +244,10 @@ export default function CheckoutPage() {
           <ArrowLeft className="w-4 h-4" /> {step === 1 ? "Back to Store" : "Back"}
         </Button>
 
-        <div className="checkout-hero-panel mb-8">
+        <Card
+          variant="hero"
+          className="mb-8 flex flex-col items-start justify-between gap-5 p-paw-xl sm:flex-row sm:items-end"
+        >
           <div>
             <p className="text-sm font-bold uppercase tracking-[0.18em] text-paw-primary">PawPal Shop</p>
             <h1 className="mt-2 text-3xl font-extrabold text-paw-ink sm:text-5xl">Secure checkout</h1>
@@ -246,13 +261,18 @@ export default function CheckoutPage() {
               { icon: Truck, label: "Free shipping" },
               { icon: ShieldCheck, label: "NFC-safe catalog" },
             ].map((item) => (
-              <div key={item.label} className="checkout-assurance-chip">
+              <Card
+                key={item.label}
+                variant="compact"
+                elevation="none"
+                className="flex items-center gap-paw-sm p-paw-sm text-sm font-black text-paw-body"
+              >
                 <item.icon className="h-4 w-4" aria-hidden="true" />
                 {item.label}
-              </div>
+              </Card>
             ))}
           </div>
-        </div>
+        </Card>
 
         <StepIndicator current={step} />
 
@@ -266,7 +286,7 @@ export default function CheckoutPage() {
                   key="shipping"
                   {...checkoutStepMotion(shouldReduceMotion)}
                 >
-                  <Card className="checkout-main-card">
+                  <Card variant="panel">
                     <CardContent className="p-8">
                   <h2 className="mb-6 flex items-center gap-2 text-2xl font-extrabold text-paw-ink">
                     <MapPin className="h-5 w-5 text-paw-primary" /> Shipping Information
@@ -288,7 +308,7 @@ export default function CheckoutPage() {
                   </div>
 
                   {!emailLooksValid && shipping.email && (
-                    <StatusMessage tone="warning" className="mt-5" title="Check the email address">
+                    <StatusMessage tone="warning" variant="compact" className="mt-5" title="Check the email address">
                       Enter a valid email so Stripe and PawPal can send the order confirmation.
                     </StatusMessage>
                   )}
@@ -317,7 +337,7 @@ export default function CheckoutPage() {
                   key="review"
                   {...checkoutStepMotion(shouldReduceMotion)}
                 >
-                  <Card className="checkout-main-card">
+                  <Card variant="panel">
                     <CardContent className="p-8">
                   <h2 className="mb-6 flex items-center gap-2 text-2xl font-extrabold text-paw-ink">
                     <Package className="h-5 w-5 text-paw-primary" /> Review Your Order

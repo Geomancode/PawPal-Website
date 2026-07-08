@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import { Check } from "lucide-react";
 import { cn } from "@/lib/ui";
+import { Card } from "./Card";
 
 type CheckoutStepProps = {
   index: number;
@@ -20,17 +21,20 @@ export default function CheckoutStep({
   className,
 }: CheckoutStepProps) {
   return (
-    <section
+    <Card
+      variant="panel"
+      elevation="subtle"
       className={cn(
-        "rounded-paw-next-card border bg-paw-panel-low p-paw-lg shadow-paw-strong",
+        "p-paw-lg",
         active || complete ? "border-paw-primary/30" : "border-paw-outline-variant",
         className,
       )}
+      aria-current={active ? "step" : undefined}
     >
       <div className="flex items-center gap-paw-sm">
         <span
           className={cn(
-            "flex h-paw-min-tap w-paw-min-tap shrink-0 items-center justify-center rounded-paw-pill text-sm font-black",
+            "flex h-paw-min-tap w-paw-min-tap shrink-0 items-center justify-center rounded-paw-card text-sm font-black",
             complete
               ? "bg-paw-success text-paw-on-success"
               : active
@@ -43,6 +47,6 @@ export default function CheckoutStep({
         <h2 className="text-base font-extrabold text-paw-ink">{label}</h2>
       </div>
       {children && <div className="mt-5">{children}</div>}
-    </section>
+    </Card>
   );
 }

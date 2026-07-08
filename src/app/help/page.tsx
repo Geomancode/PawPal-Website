@@ -66,8 +66,8 @@ export default function HelpPage() {
   return (
     <PageShell className="pt-28 sm:pt-32" contentClassName="space-y-paw-xl">
       <section className="grid gap-paw-xl lg:grid-cols-[minmax(0,1fr)_390px] lg:items-center">
-        <Card className="p-paw-xl sm:p-paw-xxl">
-          <Badge tone="primary" className="mb-paw-lg">
+        <Card variant="hero" className="p-paw-xl sm:p-paw-xxl">
+          <Badge tone="primary" variant="semantic" className="mb-paw-lg">
             <LifeBuoy className="h-4 w-4" aria-hidden="true" />
             Support
           </Badge>
@@ -96,7 +96,7 @@ export default function HelpPage() {
           </div>
         </Card>
 
-        <Card className="p-paw-xl">
+        <Card variant="panel" className="p-paw-xl">
           <div className="flex items-center justify-between gap-4">
             <div>
               <p className="text-paw-type-caption font-black uppercase text-paw-muted">
@@ -136,6 +136,7 @@ export default function HelpPage() {
           {SUPPORT_LANES.map((item) => (
             <Card
               key={item.title}
+              variant="panel"
               className="h-full transition hover:-translate-y-1 hover:border-paw-primary/30 hover:shadow-paw-floating"
             >
               <CardContent className="flex h-full flex-col">
@@ -159,7 +160,7 @@ export default function HelpPage() {
           ))}
         </div>
 
-        <Card className="mt-paw-xl p-paw-lg shadow-paw-panel">
+        <Card variant="compact" className="mt-paw-xl p-paw-lg">
           <div className="flex flex-col justify-between gap-paw-md sm:flex-row sm:items-center">
           <div>
             <p className="text-sm font-extrabold text-paw-ink">
