@@ -68,18 +68,11 @@
   .profile-pet-status,
   .profile-tag,
   .profile-tag-link,
-  .tag-info-tile,
   .not-found-icon,
   .loading-panel-mark {
     border-color: color-mix(in srgb, var(--color-paw-primary) 24%, transparent);
     background: color-mix(in srgb, var(--color-paw-primary) 18%, transparent);
     color: var(--color-paw-primary);
-  }
-
-  .tag-info-tile-danger {
-    border-color: color-mix(in srgb, var(--color-paw-muted) 26%, transparent);
-    background: color-mix(in srgb, var(--color-paw-danger) 20%, transparent);
-    color: var(--color-paw-danger);
   }
 
   .profile-readiness-row,
@@ -192,30 +185,4 @@
     background: color-mix(in srgb, var(--color-paw-panel) 76%, transparent);
   }
 
-  .bg-white\/72,
-  .bg-white\/78,
-  .bg-white\/82,
-  .bg-white\/86,
-  .bg-white\/90,
-  .bg-white\/92,
-  .bg-white\/94,
-  .bg-white\/95 {
-    background-color: color-mix(in srgb, var(--color-paw-panel) 82%, transparent) !important;
-  }
-
-  .from-white {
-    --tw-gradient-from: var(--color-paw-page) var(--tw-gradient-from-position) !important;
-    --tw-gradient-to: color-mix(in srgb, var(--color-paw-globe-canvas) 0%, transparent) var(--tw-gradient-to-position) !important;
-    --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from), var(--tw-gradient-to)) !important;
-  }
-
-  .via-white,
-  .via-white\/95 {
-    --tw-gradient-via: color-mix(in srgb, var(--color-paw-globe-canvas) 95%, transparent) var(--tw-gradient-via-position) !important;
-    --tw-gradient-via-stops: var(--tw-gradient-position), var(--tw-gradient-from), var(--tw-gradient-via), var(--tw-gradient-to) !important;
-  }
-
-  .to-white {
-    --tw-gradient-to: var(--color-paw-panel) var(--tw-gradient-to-position) !important;
-  }
 }
