@@ -84,21 +84,21 @@ export default function ProductCard({
             </p>
           )}
         </div>
-        <div className="flex items-center justify-between gap-paw-sm">
+        <div className="flex items-center gap-paw-sm">
           {typeof rating === "number" ? (
-            <span className="inline-flex items-center gap-1 text-sm font-bold text-paw-on-warning-soft">
-              <Star className="h-4 w-4 fill-current" aria-hidden="true" />
-              {rating.toFixed(1)}
+            <span className="inline-flex min-w-0 flex-1 items-center gap-1 overflow-hidden text-sm font-bold text-paw-on-warning-soft">
+              <Star className="h-4 w-4 shrink-0 fill-current" aria-hidden="true" />
+              <span className="shrink-0">{rating.toFixed(1)}</span>
               {ratingDetail && (
-                <span className="font-semibold text-paw-muted">
+                <span className="min-w-0 truncate font-semibold text-paw-muted">
                   {ratingDetail}
                 </span>
               )}
             </span>
           ) : (
-            <span />
+            <span className="min-w-0 flex-1" />
           )}
-          <div className="flex items-center gap-paw-xs">
+          <div className="flex shrink-0 items-center gap-paw-xs">
             {onDetails && (
               <Button type="button" variant="secondary" size="sm" onClick={onDetails}>
                 <Info className="h-3.5 w-3.5" aria-hidden="true" />
