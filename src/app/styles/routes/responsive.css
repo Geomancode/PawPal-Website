@@ -1,0 +1,335 @@
+/* Owner: responsive overrides for profile, commerce, legal, and globe routes. */
+
+@media (min-width: 900px) {
+  .profile-workspace-grid {
+    grid-template-columns: minmax(0, 1.5fr) minmax(20rem, 0.85fr);
+    align-items: stretch;
+  }
+}
+
+@media (max-width: 768px) {
+  .support-contact-band,
+  .profile-command-header,
+  .profile-owner-topline,
+  .profile-section-heading,
+  .orders-hero-panel {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .profile-action-button {
+    width: 100%;
+  }
+
+  .profile-readiness-row {
+    align-items: flex-start;
+  }
+
+  .profile-page-shell {
+    padding-top: 5rem;
+    padding-bottom: 2.75rem;
+  }
+
+  .profile-command-header {
+    gap: 0.6rem;
+    margin-bottom: 0.75rem !important;
+  }
+
+  .profile-command-header h1 {
+    font-size: 1.75rem;
+    line-height: 1.1;
+  }
+
+  .profile-command-header h1 + p {
+    display: -webkit-box;
+    margin-top: 0.42rem;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    font-size: 0.86rem;
+    line-height: 1.45;
+  }
+
+  .profile-command-chip {
+    min-height: 2.35rem;
+    padding: 0.5rem 0.65rem;
+    font-size: 0.76rem;
+  }
+
+  .profile-workspace-grid {
+    gap: 0.65rem;
+    margin-bottom: 0.85rem !important;
+  }
+
+  .profile-owner-card,
+  .profile-readiness-card,
+  .profile-form-card {
+    border-radius: var(--radius-paw-md);
+    padding: 0.85rem !important;
+  }
+
+  .profile-owner-topline {
+    display: grid;
+    grid-template-columns: 3.25rem minmax(0, 1fr);
+    align-items: center;
+    gap: 0.7rem;
+  }
+
+  .profile-owner-topline .profile-avatar {
+    width: 3.25rem !important;
+    height: 3.25rem !important;
+    border-radius: var(--radius-paw-md);
+    font-size: 1.2rem;
+  }
+
+  .profile-owner-topline .profile-avatar > div {
+    font-size: 1.35rem;
+  }
+
+  .profile-owner-topline h2 {
+    margin-top: 0.1rem;
+    font-size: 1.18rem;
+    line-height: 1.12;
+  }
+
+  .profile-owner-topline .profile-action-button {
+    grid-column: 1 / -1;
+    min-height: 2.25rem;
+    padding: 0.55rem 0.7rem;
+    font-size: 0.78rem;
+  }
+
+  .profile-owner-card > .mt-5 {
+    margin-top: 0.65rem !important;
+  }
+
+  .profile-owner-card > .mt-5 > p {
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    font-size: 0.82rem;
+    line-height: 1.42;
+  }
+
+  .profile-meta-grid {
+    gap: 0.35rem;
+    margin-top: 0.6rem !important;
+  }
+
+  .profile-meta-chip {
+    padding: 0.3rem 0.45rem;
+    font-size: 0.68rem;
+  }
+
+  .profile-meta-chip:nth-child(4) {
+    display: none;
+  }
+
+  .profile-readiness-card > .flex:first-child {
+    align-items: center;
+  }
+
+  .profile-readiness-card > .flex:first-child h2 {
+    font-size: 1.08rem;
+    line-height: 1.18;
+  }
+
+  .profile-readiness-card > .mt-5 {
+    margin-top: 0.65rem !important;
+  }
+
+  .profile-readiness-row {
+    align-items: center;
+    gap: 0.5rem;
+    border-radius: var(--radius-paw-sm);
+    padding: 0.52rem 0.6rem;
+  }
+
+  .profile-readiness-row p + p {
+    display: none;
+  }
+
+  .profile-readiness-value {
+    min-width: 2.35rem;
+    padding: 0.3rem 0.42rem;
+    font-size: 0.78rem;
+  }
+
+  .profile-install-compact {
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 0.55rem;
+    margin-top: 0.65rem !important;
+    padding: 0.65rem;
+  }
+
+  .profile-install-compact .profile-action-button {
+    width: auto;
+    min-width: 6.75rem;
+    min-height: 2.35rem;
+    padding: 0.58rem 0.7rem;
+  }
+
+  .profile-install-compact p + p {
+    display: none;
+  }
+
+  .profile-readiness-card > .profile-action-button {
+    width: 100%;
+    min-height: 2.35rem;
+    padding: 0.58rem 0.7rem;
+  }
+
+  .profile-readiness-card > .profile-action-button {
+    margin-top: 0.65rem !important;
+  }
+
+  .profile-section-heading {
+    flex-direction: row;
+    align-items: center;
+    gap: 0.65rem;
+    margin-bottom: 0.65rem !important;
+  }
+
+  .profile-section-heading h2 {
+    font-size: 1.05rem;
+  }
+
+  .profile-section-heading .profile-action-button {
+    width: auto;
+    min-height: 2.25rem;
+    padding: 0.55rem 0.7rem;
+    white-space: nowrap;
+  }
+
+  .profile-empty-card {
+    padding: 1.15rem 0.9rem;
+  }
+
+  .profile-page-shell-add-mode .profile-owner-card > .mt-5 > p,
+  .profile-page-shell-add-mode .profile-install-compact,
+  .profile-page-shell-add-mode .profile-readiness-card > .profile-action-button {
+    display: none;
+  }
+
+  .profile-page-shell-add-mode .profile-readiness-row {
+    padding: 0.44rem 0.55rem;
+  }
+
+  .legal-hero-panel {
+    grid-template-columns: 1fr;
+  }
+
+  .checkout-assurance-grid {
+    width: 100%;
+  }
+
+  .globe-status-strip {
+    display: none;
+  }
+
+  .globe-fallback-stage {
+    grid-template-columns: 1fr;
+    align-content: start;
+    gap: 1.5rem;
+    padding:
+      calc(env(safe-area-inset-top, 0px) + 5.25rem)
+      1rem
+      calc(env(safe-area-inset-bottom, 0px) + 2rem);
+  }
+
+  .globe-fallback-copy h2 {
+    max-width: 20rem;
+    font-size: 2.35rem;
+  }
+
+  .globe-fallback-copy p:not(:first-child) {
+    max-width: 22rem;
+    font-size: 0.92rem;
+    line-height: 1.6;
+  }
+
+  .globe-fallback-actions {
+    gap: 0.65rem;
+  }
+
+  .globe-fallback-action {
+    min-height: 2.75rem;
+    padding: 0.72rem 0.82rem;
+    font-size: 0.78rem;
+  }
+
+  .globe-fallback-preview {
+    width: min(100%, 22rem);
+    min-height: 21rem;
+  }
+
+  .globe-fallback-preview .globe-static-preview-earth {
+    width: min(calc(100vw - 4rem), 18rem);
+  }
+
+  .globe-fallback-preview .globe-static-preview-card {
+    padding: 0.58rem 0.65rem;
+    font-size: 0.68rem;
+  }
+
+  .globe-weather-bar {
+    top: calc(env(safe-area-inset-top, 0px) + 4.45rem);
+    left: 0.75rem;
+    right: 0.75rem;
+    width: auto;
+    padding: 0.62rem 0.66rem;
+    transform: none;
+  }
+
+  .globe-weather-items {
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 0.38rem;
+    font-size: 0.72rem;
+  }
+
+  .globe-weather-item {
+    min-height: 1.55rem;
+    max-width: none;
+    padding: 0.28rem 0.42rem;
+  }
+
+  .globe-weather-item-advice {
+    justify-content: flex-start;
+    text-align: left;
+    line-height: 1.32;
+  }
+
+  .globe-weather-suffix {
+    padding-inline: 0.32rem;
+    font-size: 0.62rem;
+  }
+
+  .globe-layer-stack {
+    top: calc(env(safe-area-inset-top, 0px) + 13.2rem);
+    right: 0.75rem;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .globe-nearby-panel {
+    top: calc(env(safe-area-inset-top, 0px) + 21.75rem);
+    left: 0.75rem;
+    width: min(20rem, calc(100vw - 1.5rem));
+    max-height: min(13rem, calc(100dvh - 25.8rem));
+  }
+
+  .globe-chat-sheet-peek {
+    left: 0.75rem;
+    right: 4.65rem;
+    width: auto;
+    transform: none;
+  }
+
+  .globe-page-shell .maplibregl-ctrl-bottom-right {
+    right: 0.75rem !important;
+    bottom: calc(env(safe-area-inset-bottom, 0px) + 5.5rem) !important;
+  }
+}

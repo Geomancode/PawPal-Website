@@ -1,0 +1,48 @@
+/* Owner: /tag/[id] rescue and detail route styles. */
+
+.tag-rescue-panel,
+.tag-detail-card {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid color-mix(in srgb, var(--color-paw-border) 82%, transparent);
+  border-radius: var(--radius-paw-lg);
+  background:
+    linear-gradient(145deg, color-mix(in srgb, var(--color-paw-inverse-ink) 94%, transparent), color-mix(in srgb, var(--color-paw-panel-subtle) 90%, transparent)),
+    linear-gradient(90deg, color-mix(in srgb, var(--color-paw-primary) 8%, transparent), transparent);
+  box-shadow: var(--shadow-paw-panel);
+}
+
+.tag-rescue-panel {
+  min-height: 0;
+  padding: 1.15rem;
+}
+
+.tag-detail-card {
+  padding: 1rem;
+}
+
+.tag-info-tile {
+  display: flex;
+  min-width: 0;
+  min-height: 4.2rem;
+  align-items: center;
+  gap: 0.65rem;
+  border: 1px solid color-mix(in srgb, var(--color-paw-primary) 16%, transparent);
+  border-radius: var(--radius-paw-md);
+  background: color-mix(in srgb, var(--color-paw-primary-soft) 76%, transparent);
+  padding: 0.75rem;
+  color: var(--color-paw-primary);
+}
+
+.tag-info-tile-danger {
+  border-color: color-mix(in srgb, var(--color-paw-danger) 16%, transparent);
+  background: color-mix(in srgb, var(--color-paw-danger-soft) 78%, transparent);
+  color: var(--color-paw-danger);
+}
+
+@media (min-width: 1024px) {
+  .tag-rescue-panel {
+    min-height: min(32rem, calc(100dvh - 7rem));
+    padding: 1.25rem;
+  }
+}

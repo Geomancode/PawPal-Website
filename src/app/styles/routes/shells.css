@@ -1,0 +1,29 @@
+/* Owner: shared deep route shell backgrounds. */
+
+/* ── Deep page visual upgrade: support, auth, about, globe, profile ── */
+.deep-page-shell,
+.auth-page-shell,
+.profile-page-shell,
+.legal-page-shell,
+.commerce-page-shell,
+.admin-page-shell {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.deep-page-shell::before,
+.auth-page-shell::before,
+.profile-page-shell::before,
+.legal-page-shell::before,
+.commerce-page-shell::before,
+.admin-page-shell::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(circle at 16% 18%, color-mix(in srgb, var(--color-paw-primary) 10%, transparent), transparent 24rem),
+    radial-gradient(circle at 86% 20%, color-mix(in srgb, var(--color-paw-trust) 10%, transparent), transparent 22rem),
+    linear-gradient(180deg, var(--color-paw-inverse-ink) 0%, var(--color-paw-inverse-ink) 58%, var(--color-paw-panel-subtle) 100%);
+}

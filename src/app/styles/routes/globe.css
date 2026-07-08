@@ -1,0 +1,363 @@
+/* Owner: /globe map, fallback, weather, and HUD styles. */
+
+.globe-page-shell::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--color-paw-inverse-ink) 12%, transparent), transparent 18%),
+    linear-gradient(90deg, color-mix(in srgb, var(--color-paw-inverse-ink) 10%, transparent), transparent 18%, transparent 82%, color-mix(in srgb, var(--color-paw-inverse-ink) 10%, transparent));
+}
+
+.globe-fallback-stage {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(19rem, 0.75fr);
+  gap: clamp(1.5rem, 5vw, 4.5rem);
+  align-items: center;
+  overflow-y: auto;
+  padding:
+    calc(env(safe-area-inset-top, 0px) + 6.35rem)
+    clamp(1rem, 5vw, 5rem)
+    calc(env(safe-area-inset-bottom, 0px) + 3rem);
+  background:
+    radial-gradient(circle at 74% 42%, color-mix(in srgb, var(--color-paw-primary) 28%, transparent), transparent 26rem),
+    radial-gradient(circle at 24% 62%, color-mix(in srgb, var(--color-paw-trust) 18%, transparent), transparent 22rem),
+    linear-gradient(135deg, color-mix(in srgb, var(--color-paw-globe-canvas) 96%, transparent), color-mix(in srgb, var(--color-paw-panel) 94%, transparent));
+}
+
+.globe-fallback-copy {
+  max-width: 39rem;
+}
+
+.globe-fallback-actions {
+  align-items: center;
+}
+
+.globe-fallback-action {
+  display: inline-flex;
+  min-height: 2.75rem;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border: 1px solid color-mix(in srgb, var(--color-paw-inverse-ink) 22%, transparent);
+  border-radius: var(--radius-paw-sm);
+  background: color-mix(in srgb, var(--color-paw-inverse-ink) 8%, transparent);
+  padding: 0.75rem 1rem;
+  color: color-mix(in srgb, var(--color-paw-inverse-ink) 90%, transparent);
+  font-size: 0.875rem;
+  font-weight: 900;
+  line-height: 1;
+  box-shadow: 0 18px 38px color-mix(in srgb, var(--color-paw-shadow-ink) 12%, transparent);
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    background-color 180ms ease,
+    color 180ms ease;
+}
+
+.globe-fallback-action:hover,
+.globe-fallback-action:focus-visible {
+  border-color: color-mix(in srgb, var(--color-paw-inverse-ink) 44%, transparent);
+  background: color-mix(in srgb, var(--color-paw-inverse-ink) 14%, transparent);
+  color: var(--color-paw-inverse-ink);
+  transform: translateY(-1px);
+}
+
+.globe-fallback-action-primary {
+  border-color: color-mix(in srgb, var(--color-paw-trust) 62%, transparent);
+  background: var(--color-paw-trust);
+  color: var(--color-paw-on-trust);
+}
+
+.globe-fallback-action-primary:hover,
+.globe-fallback-action-primary:focus-visible {
+  border-color: color-mix(in srgb, var(--color-paw-inverse-ink) 72%, transparent);
+  background: var(--color-paw-trust-hover);
+  color: var(--color-paw-on-trust);
+}
+
+.globe-fallback-preview {
+  justify-self: center;
+  width: min(100%, 34rem);
+  min-height: min(31rem, calc(100dvh - 10rem));
+}
+
+.globe-fallback-preview .globe-static-preview-card {
+  background: color-mix(in srgb, var(--color-paw-inverse-ink) 92%, transparent);
+}
+
+.globe-fallback-preview .globe-static-preview-loading {
+  color: color-mix(in srgb, var(--color-paw-inverse-ink) 72%, transparent);
+}
+
+.globe-weather-bar {
+  top: calc(env(safe-area-inset-top, 0px) + 4.75rem);
+  left: 50%;
+  width: min(calc(100vw - 2rem), 58rem);
+  min-height: 3rem;
+  transform: translateX(-50%);
+  overflow: visible;
+  border: 1px solid color-mix(in srgb, var(--color-paw-inverse-ink) 34%, transparent);
+  border-radius: var(--radius-paw-md);
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--color-paw-globe-canvas) 95%, transparent), color-mix(in srgb, var(--color-paw-shadow-ink) 91%, transparent));
+  box-shadow:
+    0 22px 48px color-mix(in srgb, var(--color-paw-shadow-ink) 24%, transparent),
+    inset 0 1px 0 color-mix(in srgb, var(--color-paw-inverse-ink) 18%, transparent);
+  padding: 0.7rem 0.85rem;
+  color: var(--color-paw-inverse-ink);
+  backdrop-filter: blur(22px) saturate(1.08);
+  -webkit-backdrop-filter: blur(22px) saturate(1.08);
+}
+
+.globe-weather-content {
+  align-items: center;
+  min-width: 0;
+  gap: 0.55rem;
+}
+
+.globe-weather-items {
+  display: flex;
+  flex-wrap: wrap;
+  min-width: 0;
+  flex: 1 1 auto;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem 0.55rem;
+  overflow: visible;
+  color: color-mix(in srgb, var(--color-paw-inverse-ink) 96%, transparent);
+  font-size: 0.78rem;
+  font-weight: 820;
+  line-height: 1.2;
+}
+
+.globe-weather-item {
+  display: inline-flex;
+  min-width: 0;
+  max-width: none;
+  flex: 0 1 auto;
+  align-items: center;
+  gap: 0.35rem;
+  min-height: 1.72rem;
+  border: 1px solid color-mix(in srgb, var(--color-paw-inverse-ink) 18%, transparent);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--color-paw-inverse-ink) 10%, transparent);
+  padding: 0.32rem 0.52rem;
+  color: color-mix(in srgb, var(--color-paw-inverse-ink) 96%, transparent);
+  text-shadow: 0 1px 1px color-mix(in srgb, var(--color-paw-shadow-ink) 24%, transparent);
+  white-space: nowrap;
+}
+
+.globe-weather-item-place {
+  border-color: color-mix(in srgb, var(--color-paw-primary) 44%, transparent);
+  background: color-mix(in srgb, var(--color-paw-primary) 24%, transparent);
+  color: var(--color-paw-inverse-ink);
+  white-space: normal;
+}
+
+.globe-weather-item-advice {
+  flex: 1 1 100%;
+  justify-content: center;
+  border-color: color-mix(in srgb, var(--color-paw-yellow) 38%, transparent);
+  border-radius: var(--radius-paw-sm);
+  background: color-mix(in srgb, var(--color-paw-yellow) 18%, transparent);
+  color: var(--color-paw-inverse-ink);
+  text-align: center;
+  white-space: normal;
+}
+
+.globe-weather-item svg {
+  flex: 0 0 auto;
+}
+
+.globe-weather-label {
+  min-width: 0;
+  overflow: visible;
+  text-overflow: clip;
+}
+
+.globe-weather-suffix {
+  flex: 0 0 auto;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--color-paw-inverse-ink) 18%, transparent);
+  padding: 0.12rem 0.38rem;
+  color: color-mix(in srgb, var(--color-paw-inverse-ink) 88%, transparent);
+  font-size: 0.68rem;
+  font-weight: 900;
+}
+
+.globe-hud-panel,
+.globe-layer-button,
+.globe-status-strip {
+  border-color: color-mix(in srgb, var(--color-paw-border) 86%, transparent) !important;
+  background: color-mix(in srgb, var(--color-paw-inverse-ink) 86%, transparent);
+  box-shadow: 0 18px 42px color-mix(in srgb, var(--color-paw-ink) 14%, transparent);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+.globe-nearby-panel {
+  top: calc(env(safe-area-inset-top, 0px) + 10.8rem);
+  left: 1rem;
+  max-height: min(14.5rem, calc(100dvh - 17.5rem));
+  overflow: auto;
+  border-radius: var(--radius-paw-md);
+}
+
+.globe-layer-stack {
+  top: calc(env(safe-area-inset-top, 0px) + 10.8rem);
+  right: 1rem;
+  align-items: center;
+  border: 1px solid color-mix(in srgb, var(--color-paw-border) 86%, transparent);
+  border-radius: var(--radius-paw-md);
+  background: color-mix(in srgb, var(--color-paw-inverse-ink) 86%, transparent);
+  box-shadow: 0 18px 42px color-mix(in srgb, var(--color-paw-ink) 14%, transparent);
+  padding: 0.35rem;
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+.globe-layer-button {
+  white-space: nowrap;
+  box-shadow: none;
+}
+
+.globe-layer-button.is-active-mission,
+.globe-layer-button.is-active-place,
+.globe-layer-button.is-active-post {
+  box-shadow: 0 14px 34px color-mix(in srgb, var(--color-paw-ink) 16%, transparent);
+  color: var(--color-paw-on-action) !important;
+}
+
+.globe-layer-button.is-active-mission {
+  border-color: var(--color-paw-accent) !important;
+  background: var(--color-paw-accent) !important;
+}
+
+.globe-layer-button.is-active-place {
+  border-color: var(--color-paw-trust) !important;
+  background: var(--color-paw-trust) !important;
+}
+
+.globe-layer-button.is-active-post {
+  border-color: var(--color-paw-primary) !important;
+  background: var(--color-paw-primary) !important;
+}
+
+.globe-page-shell .maplibregl-popup-content {
+  overflow: hidden;
+  border: 1px solid var(--color-paw-outline-variant);
+  border-radius: var(--radius-paw-xl);
+  background: transparent;
+  box-shadow: var(--shadow-paw-panel);
+  padding: 0;
+}
+
+.globe-page-shell .maplibregl-popup-tip {
+  border-top-color: var(--color-paw-panel-low);
+}
+
+.globe-popup-card {
+  min-width: 11rem;
+  max-width: min(16rem, calc(100vw - 3rem));
+  background: var(--color-paw-panel-low);
+  color: var(--color-paw-ink);
+  padding: var(--spacing-paw-sm);
+}
+
+.globe-popup-title {
+  margin-bottom: var(--spacing-paw-xs);
+  color: var(--color-paw-ink);
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  font-weight: 900;
+  line-height: 1.25;
+}
+
+.globe-popup-row {
+  color: var(--color-paw-body);
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1.45;
+}
+
+.globe-popup-row + .globe-popup-row {
+  margin-top: 0.15rem;
+}
+
+.globe-popup-label {
+  color: var(--color-paw-muted);
+  font-weight: 900;
+}
+
+.globe-popup-value {
+  color: var(--color-paw-body);
+}
+
+.globe-inline-issue {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.4rem;
+  border: 1px solid color-mix(in srgb, var(--color-paw-accent) 22%, transparent);
+  border-radius: var(--radius-paw-sm);
+  background: var(--color-paw-warning-soft);
+  color: var(--color-paw-on-warning-soft);
+  padding: 0.45rem 0.55rem;
+  font-size: 0.68rem;
+  font-weight: 800;
+  line-height: 1.35;
+}
+
+.globe-status-strip {
+  position: absolute;
+  left: 1rem;
+  bottom: calc(env(safe-area-inset-bottom, 0px) + 5.4rem);
+  z-index: 40;
+  display: flex;
+  max-width: calc(100vw - 2rem);
+  align-items: center;
+  gap: 0.55rem;
+  border: 1px solid color-mix(in srgb, var(--color-paw-border) 86%, transparent);
+  border-radius: var(--radius-paw-md);
+  padding: 0.65rem 0.85rem;
+  color: var(--color-paw-body);
+  font-size: 0.75rem;
+  font-weight: 800;
+}
+
+.globe-status-strip strong {
+  color: var(--color-paw-primary);
+  font-weight: 950;
+}
+
+.globe-chat-sheet {
+  border: 1px solid color-mix(in srgb, var(--color-paw-border) 86%, transparent);
+}
+
+.globe-chat-sheet-peek {
+  left: 50%;
+  bottom: max(1rem, env(safe-area-inset-bottom, 0px));
+  width: min(30rem, calc(100vw - 7rem));
+  transform: translateX(-50%);
+}
+
+.globe-chat-sheet-expanded {
+  left: 0;
+  right: 0;
+  bottom: 0;
+  transform: none;
+}
+
+.globe-tutorial-card {
+  filter: drop-shadow(0 18px 44px color-mix(in srgb, var(--color-paw-on-action) 18%, transparent));
+}
+
+.globe-page-shell .maplibregl-ctrl-bottom-right {
+  right: 0.75rem !important;
+  bottom: calc(env(safe-area-inset-bottom, 0px) + 5.25rem) !important;
+}

@@ -1,0 +1,107 @@
+/* Owner: /help support route styles. */
+
+.support-hero {
+  position: relative;
+}
+
+.support-hero::after {
+  content: "";
+  position: absolute;
+  left: 1rem;
+  right: 1rem;
+  bottom: -1.5rem;
+  z-index: -1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--color-paw-border) 92%, transparent), transparent);
+}
+
+.support-route-panel,
+.auth-visual-panel,
+.about-system-panel,
+.profile-hero-card,
+.profile-readiness-card,
+.profile-form-card {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid color-mix(in srgb, var(--color-paw-border) 86%, transparent);
+  background:
+    linear-gradient(145deg, color-mix(in srgb, var(--color-paw-inverse-ink) 94%, transparent), color-mix(in srgb, var(--color-paw-panel-subtle) 90%, transparent)),
+    linear-gradient(90deg, color-mix(in srgb, var(--color-paw-primary) 8%, transparent), color-mix(in srgb, var(--color-paw-trust) 6%, transparent));
+  box-shadow: 0 20px 52px color-mix(in srgb, var(--color-paw-ink) 10%, transparent);
+}
+
+.support-route-panel {
+  border-radius: var(--radius-paw-lg);
+  padding: 1.25rem;
+}
+
+.support-route-panel::after,
+.about-system-panel::after {
+  content: "";
+  position: absolute;
+  right: -3rem;
+  top: -3rem;
+  width: 12rem;
+  height: 12rem;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--color-paw-primary) 14%, transparent);
+  background: radial-gradient(circle, color-mix(in srgb, var(--color-paw-primary) 10%, transparent), transparent 62%);
+  pointer-events: none;
+}
+
+.support-route-step {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  border: 1px solid color-mix(in srgb, var(--color-paw-border) 72%, transparent);
+  border-radius: var(--radius-paw-sm);
+  background: color-mix(in srgb, var(--color-paw-inverse-ink) 74%, transparent);
+  padding: 0.75rem;
+}
+
+.support-card {
+  position: relative;
+  overflow: hidden;
+  transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+}
+
+.support-card::after {
+  content: "";
+  position: absolute;
+  inset: auto -1.5rem -2rem auto;
+  width: 8rem;
+  height: 8rem;
+  border-radius: 999px;
+  background: radial-gradient(circle, color-mix(in srgb, var(--color-paw-trust) 12%, transparent), transparent 64%);
+}
+
+.support-card:hover {
+  transform: translateY(-3px);
+  border-color: color-mix(in srgb, var(--color-paw-primary) 34%, transparent);
+  box-shadow: 0 22px 54px color-mix(in srgb, var(--color-paw-ink) 12%, transparent);
+}
+
+.support-card-icon {
+  display: flex;
+  width: 2.75rem;
+  height: 2.75rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-paw-sm);
+  background: var(--color-paw-primary-soft);
+  color: var(--color-paw-primary);
+}
+
+.support-contact-band {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  border: 1px solid color-mix(in srgb, var(--color-paw-border) 82%, transparent);
+  border-radius: var(--radius-paw-md);
+  background:
+    linear-gradient(90deg, color-mix(in srgb, var(--color-paw-inverse-ink) 92%, transparent), color-mix(in srgb, var(--color-paw-panel-subtle) 88%, transparent)),
+    linear-gradient(90deg, color-mix(in srgb, var(--color-paw-accent) 8%, transparent), transparent);
+  padding: 1.1rem;
+  box-shadow: 0 14px 34px color-mix(in srgb, var(--color-paw-ink) 8%, transparent);
+}

@@ -1,0 +1,116 @@
+/* Owner: /store checkout, orders, success, and admin styles. */
+
+.checkout-assurance-grid {
+  display: grid;
+  min-width: min(100%, 17rem);
+  gap: 0.55rem;
+}
+
+.order-card-upgraded,
+.success-card-upgraded,
+.admin-card-upgraded,
+.admin-preview-card {
+  position: relative;
+  overflow: hidden;
+  border-color: color-mix(in srgb, var(--color-paw-border) 86%, transparent);
+  background:
+    linear-gradient(145deg, color-mix(in srgb, var(--color-paw-inverse-ink) 96%, transparent), color-mix(in srgb, var(--color-paw-panel-subtle) 90%, transparent));
+  box-shadow: 0 18px 48px color-mix(in srgb, var(--color-paw-ink) 10%, transparent);
+}
+
+.success-card-upgraded::after,
+.admin-preview-card::after {
+  content: "";
+  position: absolute;
+  right: -3rem;
+  top: -3rem;
+  width: 11rem;
+  height: 11rem;
+  border-radius: 999px;
+  background: radial-gradient(circle, color-mix(in srgb, var(--color-paw-trust) 12%, transparent), transparent 64%);
+  pointer-events: none;
+}
+
+.orders-hero-panel {
+  padding: 1.25rem;
+}
+
+.orders-count-pill {
+  flex: 0 0 auto;
+  border: 1px solid color-mix(in srgb, var(--color-paw-primary) 18%, transparent);
+  border-radius: var(--radius-paw-md);
+  background: var(--color-paw-primary-soft);
+  color: var(--color-paw-on-primary-soft);
+  padding: 0.65rem 0.85rem;
+}
+
+.order-card-upgraded {
+  transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+}
+
+.order-card-upgraded:hover {
+  transform: translateY(-2px);
+}
+
+.success-card-upgraded {
+  width: 100%;
+}
+
+.admin-page-shell {
+  background: transparent !important;
+}
+
+.admin-page-shell > div {
+  position: relative;
+  z-index: 1;
+}
+
+.admin-shell-header {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid color-mix(in srgb, var(--color-paw-border) 86%, transparent);
+  border-radius: var(--radius-paw-lg);
+  background:
+    linear-gradient(145deg, color-mix(in srgb, var(--color-paw-inverse-ink) 94%, transparent), color-mix(in srgb, var(--color-paw-panel-subtle) 90%, transparent)),
+    linear-gradient(90deg, color-mix(in srgb, var(--color-paw-primary) 8%, transparent), color-mix(in srgb, var(--color-paw-trust) 6%, transparent));
+  box-shadow: 0 20px 52px color-mix(in srgb, var(--color-paw-ink) 10%, transparent);
+  padding: clamp(1.25rem, 3vw, 2rem);
+}
+
+.admin-shell-header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, color-mix(in srgb, var(--color-paw-primary) 8%, transparent) 1px, transparent 1px),
+    linear-gradient(0deg, color-mix(in srgb, var(--color-paw-trust) 8%, transparent) 1px, transparent 1px);
+  background-size: 3.5rem 3.5rem;
+  mask-image: linear-gradient(180deg, var(--color-paw-shadow-ink) 0%, transparent 88%);
+  pointer-events: none;
+}
+
+.admin-shell-header > * {
+  position: relative;
+  z-index: 1;
+}
+
+.admin-card-upgraded,
+.admin-preview-card {
+  border-color: color-mix(in srgb, var(--color-paw-border) 86%, transparent);
+}
+
+.admin-asset-panel {
+  background:
+    linear-gradient(120deg, color-mix(in srgb, var(--color-paw-primary) 8%, transparent), color-mix(in srgb, var(--color-paw-trust) 8%, transparent)),
+    color-mix(in srgb, var(--color-paw-panel-subtle) 92%, transparent);
+}
+
+.admin-preview-media {
+  position: relative;
+  overflow: hidden;
+  background:
+    linear-gradient(120deg, color-mix(in srgb, var(--color-paw-primary) 12%, transparent), color-mix(in srgb, var(--color-paw-trust) 10%, transparent)),
+    linear-gradient(90deg, color-mix(in srgb, var(--color-paw-primary) 10%, transparent) 1px, transparent 1px),
+    linear-gradient(0deg, color-mix(in srgb, var(--color-paw-trust) 10%, transparent) 1px, transparent 1px);
+  background-size: auto, 2.4rem 2.4rem, 2.4rem 2.4rem;
+}

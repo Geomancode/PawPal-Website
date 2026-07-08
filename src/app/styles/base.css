@@ -1,0 +1,82 @@
+/* Owner: global reset, typography, focus, logo, and glass helpers. */
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  position: relative;
+}
+
+html {
+  max-width: 100%;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+body > * {
+  position: relative;
+  z-index: 1;
+}
+
+main:focus {
+  outline: none;
+}
+
+.skip-to-content {
+  position: fixed;
+  left: 1rem;
+  top: 1rem;
+  z-index: 10050;
+  transform: translateY(-160%);
+  border-radius: var(--radius-paw-sm);
+  background: var(--color-paw-ink);
+  color: var(--color-paw-inverse-ink);
+  padding: 0.7rem 0.9rem;
+  font-size: 0.88rem;
+  font-weight: 900;
+  box-shadow: var(--shadow-paw-control);
+  transition: transform 180ms ease;
+}
+
+.skip-to-content:focus-visible {
+  transform: translateY(0);
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 3px;
+}
+
+:where(a, button, input, select, textarea):focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 3px;
+}
+
+.pawpal-logo-light,
+.pawpal-logo-mark-light {
+  display: block;
+}
+
+.pawpal-logo-dark,
+.pawpal-logo-mark-dark {
+  display: none;
+}
+
+.font-brand,
+h1,
+h2,
+h3 {
+  text-wrap: balance;
+}
+
+p,
+li {
+  text-wrap: pretty;
+}
+
+/* ── Refined Glassmorphism — neutral tint ── */
+.glass {
+  background: color-mix(in srgb, var(--color-paw-panel) 78%, transparent);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid color-mix(in srgb, var(--color-paw-border) 72%, transparent);
+  box-shadow: var(--shadow-paw-panel);
+}
