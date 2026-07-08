@@ -30,14 +30,11 @@
   .hero-signal-rail,
   .auth-card,
   .auth-signal-card,
-  .auth-trust-panel,
   .profile-hero-card,
   .profile-readiness-card,
   .profile-form-card,
   .profile-empty-card,
   .profile-pet-card,
-  .support-route-panel,
-  .support-route-step,
   .about-context-panel,
   .about-system-row,
   .about-metric-tile,
@@ -112,8 +109,7 @@
   .hero-product-tag,
   .homepage-proof-icon,
   .homepage-showcase-visual,
-  .homepage-tag-disc,
-  .legal-trust-row {
+  .homepage-tag-disc {
     border-color: color-mix(in srgb, var(--color-paw-trust) 24%, transparent);
     background: color-mix(in srgb, var(--color-paw-panel) 82%, transparent);
     box-shadow: 0 18px 42px color-mix(in srgb, var(--color-paw-shadow-ink) 30%, transparent);
@@ -144,7 +140,6 @@
 
   .readiness-card,
   .workflow-card,
-  .legal-hero-panel,
   .orders-hero-panel,
   .order-card-upgraded,
   .success-card-upgraded,
@@ -155,6 +150,20 @@
       linear-gradient(145deg, color-mix(in srgb, var(--color-paw-panel) 96%, transparent), color-mix(in srgb, var(--color-paw-panel-subtle) 90%, transparent)),
       linear-gradient(90deg, color-mix(in srgb, var(--color-paw-primary) 8%, transparent), color-mix(in srgb, var(--color-paw-trust) 6%, transparent));
     box-shadow: 0 20px 54px color-mix(in srgb, var(--color-paw-shadow-ink) 34%, transparent);
+  }
+
+  .auth-trust-panel,
+  .support-route-panel,
+  .support-route-step,
+  .support-contact-band,
+  .legal-hero-panel,
+  .legal-trust-row,
+  .legal-prose-section,
+  .admin-gate-panel,
+  .admin-gate-shell .admin-shell-header {
+    border-color: color-mix(in srgb, var(--color-paw-trust) 22%, transparent);
+    background: transparent;
+    box-shadow: none;
   }
 
   .homepage-flow-number {

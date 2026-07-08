@@ -77,7 +77,7 @@ export default async function SharedUserPage({ params }: PageProps) {
   const username = profile.username ? `@${profile.username}` : "PawPal";
 
   return (
-    <section className="bg-paw-page px-4 py-10 text-paw-ink sm:px-6 sm:py-14">
+    <section className="bg-paw-page px-4 pb-10 pt-24 text-paw-ink sm:px-6 sm:pb-14 sm:pt-28">
       <div className="mx-auto max-w-4xl overflow-hidden rounded-paw-lg border border-paw-border bg-paw-panel shadow-paw-panel">
         <div className="bg-gradient-to-r from-paw-primary to-paw-accent px-6 py-10 text-center text-paw-on-primary">
           <div className="relative mx-auto h-24 w-24 overflow-hidden rounded-full border-4 border-paw-panel/70 bg-paw-panel/20">

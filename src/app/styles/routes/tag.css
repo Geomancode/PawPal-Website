@@ -40,6 +40,14 @@
   color: var(--color-paw-danger);
 }
 
+.tag-mini-facts {
+  align-items: start;
+}
+
+.tag-mini-fact {
+  align-self: start;
+}
+
 @media (min-width: 1024px) {
   .tag-rescue-panel {
     min-height: min(32rem, calc(100dvh - 7rem));

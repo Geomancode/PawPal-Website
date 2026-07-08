@@ -203,36 +203,37 @@ function SessionGate({
 
   if (authLoading || syncing) {
     return (
-      <Card className="admin-card-upgraded">
-        <CardContent>
-          <LoadingState
-            title="Checking admin access"
-            description={
-              email
-                ? `Verifying PawPal admin permissions for ${email}.`
-                : "Verifying the current PawPal session."
-            }
-          />
-        </CardContent>
-      </Card>
+      <section className="admin-gate-panel">
+        <LoadingState
+          title="Checking admin access"
+          description={
+            email
+              ? `Verifying PawPal admin permissions for ${email}.`
+              : "Verifying the current PawPal session."
+          }
+        />
+      </section>
     );
   }
 
   return (
-    <Card className="admin-card-upgraded">
-      <CardContent className="space-y-5">
-        <StatusMessage tone="warning" title="Sign in required">
+    <section className="admin-gate-panel">
+      <div>
+        <p className="text-lg font-extrabold text-paw-ink">
+          Sign in required
+        </p>
+        <p className="mt-2 text-sm leading-6 text-paw-body">
           {message ??
             "Use an approved PawPal admin account before opening the reports queue."}
-        </StatusMessage>
+        </p>
+      </div>
         <Link
           href="/auth?next=/admin/reports"
           className={buttonClassName({ variant: "primary" })}
         >
           Sign in
         </Link>
-      </CardContent>
-    </Card>
+    </section>
   );
 }
 
@@ -938,17 +939,20 @@ function ErrorPanel({
   onRetry: () => void;
 }) {
   return (
-    <Card className="admin-card-upgraded">
-      <CardContent className="space-y-5">
-        <StatusMessage tone="danger" title="Unable to load reports">
+    <section className="admin-gate-panel">
+      <div>
+        <p className="text-lg font-extrabold text-paw-ink">
+          Unable to load reports
+        </p>
+        <p className="mt-2 text-sm leading-6 text-paw-body">
           {message}
-        </StatusMessage>
+        </p>
+      </div>
         <Button type="button" variant="secondary" onClick={onRetry}>
           <RefreshCw className="h-4 w-4" aria-hidden="true" />
           Retry
         </Button>
-      </CardContent>
-    </Card>
+    </section>
   );
 }
 

@@ -122,7 +122,7 @@ export default function TagPageClient({ pet, owner }: TagPageClientProps) {
               </StatusMessage>
             )}
 
-            <div className="mt-4 grid grid-cols-2 gap-2">
+            <div className="tag-mini-facts mt-4 grid grid-cols-2 gap-2">
               <MiniFact label="Breed" value={pet.breed ?? "Not listed"} />
               <MiniFact label="Age" value={ageLabel} />
               <MiniFact label="Blood" value={pet.blood_type ?? "Not listed"} />
@@ -244,7 +244,7 @@ export default function TagPageClient({ pet, owner }: TagPageClientProps) {
 
 function MiniFact({ label, value }: { label: string; value: string }) {
   return (
-    <div className="min-w-0 rounded-paw-sm border border-paw-border bg-paw-panel-subtle px-3 py-2">
+    <div className="tag-mini-fact min-w-0 rounded-paw-sm border border-paw-border bg-paw-panel-subtle px-3 py-2">
       <span className="block text-[10px] font-black uppercase tracking-[0.12em] text-paw-muted">
         {label}
       </span>

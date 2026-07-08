@@ -4,20 +4,21 @@
 .orders-hero-panel {
   position: relative;
   overflow: hidden;
-  border: 1px solid color-mix(in srgb, var(--color-paw-border) 86%, transparent);
-  border-radius: var(--radius-paw-lg);
   background:
     linear-gradient(145deg, color-mix(in srgb, var(--color-paw-inverse-ink) 94%, transparent), color-mix(in srgb, var(--color-paw-panel-subtle) 90%, transparent)),
     linear-gradient(90deg, color-mix(in srgb, var(--color-paw-primary) 8%, transparent), color-mix(in srgb, var(--color-paw-trust) 6%, transparent));
-  box-shadow: 0 20px 52px color-mix(in srgb, var(--color-paw-ink) 10%, transparent);
 }
 
 .legal-hero-panel {
-  display: grid;
-  gap: 2rem;
-  grid-template-columns: minmax(0, 1fr) minmax(18rem, 24rem);
-  align-items: center;
-  padding: clamp(1.5rem, 4vw, 2.5rem);
+  display: block;
+  border-block: 1px solid color-mix(in srgb, var(--color-paw-border) 74%, transparent);
+  padding-block: clamp(1.5rem, 4vw, 2.75rem);
+}
+
+.orders-hero-panel {
+  border: 1px solid color-mix(in srgb, var(--color-paw-border) 86%, transparent);
+  border-radius: var(--radius-paw-lg);
+  box-shadow: 0 20px 52px color-mix(in srgb, var(--color-paw-ink) 10%, transparent);
 }
 
 .legal-hero-panel::before,
@@ -48,10 +49,8 @@
   display: grid;
   grid-template-columns: auto minmax(0, 1fr);
   gap: 0.8rem;
-  border: 1px solid color-mix(in srgb, var(--color-paw-border) 76%, transparent);
-  border-radius: var(--radius-paw-md);
-  background: color-mix(in srgb, var(--color-paw-inverse-ink) 78%, transparent);
-  padding: 0.9rem;
+  border-block-start: 1px solid color-mix(in srgb, var(--color-paw-border) 72%, transparent);
+  padding-block: 0.8rem;
 }
 
 .legal-info-card {
@@ -87,4 +86,21 @@
   border-radius: var(--radius-paw-sm);
   background: var(--color-paw-primary-soft);
   color: var(--color-paw-primary);
+}
+
+.legal-prose-grid {
+  display: grid;
+  gap: clamp(1.4rem, 3vw, 2rem);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr));
+}
+
+.legal-prose-grid-compact {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr));
+}
+
+.legal-prose-section {
+  scroll-margin-top: 7rem;
+  min-width: 0;
+  border-block-start: 1px solid color-mix(in srgb, var(--color-paw-border) 72%, transparent);
+  padding-block-start: 1.25rem;
 }

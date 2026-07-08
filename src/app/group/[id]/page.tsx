@@ -57,7 +57,7 @@ export default async function SharedGroupPage({ params }: PageProps) {
   const { group, memberCount } = data;
 
   return (
-    <section className="deep-page-shell bg-paw-page px-4 py-16 text-paw-ink sm:px-6 sm:py-24">
+    <section className="deep-page-shell bg-paw-page px-4 pb-16 pt-24 text-paw-ink sm:px-6 sm:pb-24 sm:pt-28">
       <Card className="mx-auto max-w-3xl text-center">
         <CardContent className="p-paw-xl sm:p-paw-xxl">
         <div className="relative mx-auto h-24 w-24 overflow-hidden rounded-paw-xl bg-paw-primary-soft text-paw-on-primary-soft shadow-paw-panel">

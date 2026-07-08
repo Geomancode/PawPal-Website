@@ -4,6 +4,10 @@
   position: relative;
 }
 
+.support-hero-copy {
+  padding-block: clamp(1.5rem, 4vw, 2.5rem);
+}
+
 .support-hero::after {
   content: "";
   position: absolute;
@@ -17,7 +21,6 @@
 
 .support-route-panel,
 .auth-visual-panel,
-.about-system-panel,
 .profile-hero-card,
 .profile-readiness-card,
 .profile-form-card {
@@ -31,32 +34,23 @@
 }
 
 .support-route-panel {
-  border-radius: var(--radius-paw-lg);
-  padding: 1.25rem;
+  border: 0;
+  border-block: 1px solid color-mix(in srgb, var(--color-paw-border) 74%, transparent);
+  background: transparent;
+  box-shadow: none;
+  padding-block: 1.25rem;
 }
 
-.support-route-panel::after,
-.about-system-panel::after {
-  content: "";
-  position: absolute;
-  right: -3rem;
-  top: -3rem;
-  width: 12rem;
-  height: 12rem;
-  border-radius: 999px;
-  border: 1px solid color-mix(in srgb, var(--color-paw-primary) 14%, transparent);
-  background: radial-gradient(circle, color-mix(in srgb, var(--color-paw-primary) 10%, transparent), transparent 62%);
-  pointer-events: none;
+.support-route-panel::after {
+  content: none;
 }
 
 .support-route-step {
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  border: 1px solid color-mix(in srgb, var(--color-paw-border) 72%, transparent);
-  border-radius: var(--radius-paw-sm);
-  background: color-mix(in srgb, var(--color-paw-inverse-ink) 74%, transparent);
-  padding: 0.75rem;
+  border-block-start: 1px solid color-mix(in srgb, var(--color-paw-border) 72%, transparent);
+  padding-block: 0.75rem;
 }
 
 .support-card {
@@ -97,11 +91,6 @@
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  border: 1px solid color-mix(in srgb, var(--color-paw-border) 82%, transparent);
-  border-radius: var(--radius-paw-md);
-  background:
-    linear-gradient(90deg, color-mix(in srgb, var(--color-paw-inverse-ink) 92%, transparent), color-mix(in srgb, var(--color-paw-panel-subtle) 88%, transparent)),
-    linear-gradient(90deg, color-mix(in srgb, var(--color-paw-accent) 8%, transparent), transparent);
-  padding: 1.1rem;
-  box-shadow: 0 14px 34px color-mix(in srgb, var(--color-paw-ink) 8%, transparent);
+  border-block: 1px solid color-mix(in srgb, var(--color-paw-border) 76%, transparent);
+  padding-block: 1.1rem;
 }

@@ -58,6 +58,7 @@
 
 .admin-page-shell {
   background: transparent !important;
+  padding-top: calc(env(safe-area-inset-top, 0px) + 8rem) !important;
 }
 
 .admin-page-shell > div {
@@ -92,6 +93,28 @@
 .admin-shell-header > * {
   position: relative;
   z-index: 1;
+}
+
+.admin-gate-shell .admin-shell-header {
+  border: 0;
+  border-block-end: 1px solid color-mix(in srgb, var(--color-paw-border) 74%, transparent);
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  padding: 0 0 clamp(1.25rem, 3vw, 2rem);
+}
+
+.admin-gate-shell .admin-shell-header::before {
+  content: none;
+}
+
+.admin-gate-panel {
+  display: flex;
+  max-width: 42rem;
+  flex-direction: column;
+  gap: 1.25rem;
+  border-block: 1px solid color-mix(in srgb, var(--color-paw-border) 74%, transparent);
+  padding-block: clamp(1.5rem, 4vw, 2.25rem);
 }
 
 .admin-card-upgraded,

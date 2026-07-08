@@ -108,7 +108,7 @@ export default function About() {
     <PageShell className="pt-28 sm:pt-32" contentClassName="space-y-paw-xxxl">
       {/* ===== HERO ===== */}
       <section className="grid gap-paw-xl lg:grid-cols-[minmax(0,1.05fr)_minmax(20rem,0.95fr)] lg:items-stretch">
-        <Card className="flex min-h-full flex-col justify-center p-paw-xl sm:p-paw-xxl">
+        <div className="about-hero-copy">
           <motion.div {...fadeUp()}>
             <Badge tone="primary" className="mb-paw-lg">
               <PawPrint className="h-4 w-4" aria-hidden="true" />
@@ -144,10 +144,10 @@ export default function About() {
               Shop smart tags
             </Link>
           </motion.div>
-        </Card>
+        </div>
 
         <motion.aside {...fadeUp(0.18)}>
-          <Card className="relative min-h-[31rem] overflow-hidden p-paw-xl sm:p-paw-xxl">
+          <div className="about-system-panel relative overflow-hidden">
             <div className="hero-map-grid pointer-events-none absolute inset-0 opacity-35" />
             <div className="relative z-10">
               <p className="text-paw-type-caption font-black uppercase text-paw-muted">
@@ -164,9 +164,9 @@ export default function About() {
                 ].map((item) => (
                   <div
                     key={item.label}
-                    className="grid grid-cols-[auto_minmax(0,1fr)] gap-paw-sm rounded-paw-card border border-paw-outline-variant bg-paw-panel-subtle p-paw-sm"
+                    className="about-system-row"
                   >
-                    <span className="flex h-11 w-11 items-center justify-center rounded-paw-control bg-paw-primary-soft text-paw-on-primary-soft">
+                    <span className="about-system-icon">
                       <item.icon className="h-5 w-5" aria-hidden="true" />
                     </span>
                     <div>
@@ -183,24 +183,24 @@ export default function About() {
                   { value: "Store orders", label: "Stripe-backed purchase path" },
                   { value: "Globe map", label: "Local pet-care context" },
                 ].map((s) => (
-                  <Card key={s.value} className="p-paw-sm text-center shadow-paw-panel">
+                  <div key={s.value} className="about-metric-tile text-center">
                     <div className="text-base font-black leading-tight text-paw-on-primary-soft">
                       {s.value}
                     </div>
                     <div className="mt-paw-xxs text-xs font-semibold text-paw-muted">
                       {s.label}
                     </div>
-                  </Card>
+                  </div>
                 ))}
               </div>
             </div>
-          </Card>
+          </div>
         </motion.aside>
       </section>
 
       {/* ===== MISSION STATEMENT ===== */}
-      <section>
-        <Card className="mx-auto max-w-3xl p-paw-xl text-center sm:p-paw-xxl">
+      <section className="about-text-band">
+        <div className="mx-auto max-w-3xl text-center">
           <motion.div {...fadeUp()}>
             <p className="text-paw-type-h2 font-black leading-snug text-paw-ink sm:text-3xl">
               &ldquo;PawPal&apos;s mission is not to replace companionship with technology, but to{" "}
@@ -209,7 +209,7 @@ export default function About() {
             </p>
             <p className="mt-paw-md text-sm font-semibold text-paw-muted">— PawPal Founding Team · Ghent, Belgium</p>
           </motion.div>
-        </Card>
+        </div>
       </section>
 
       {/* ===== PRODUCT ECOSYSTEM ===== */}
@@ -331,8 +331,8 @@ export default function About() {
       </section>
 
       {/* ===== CTA ===== */}
-      <section>
-        <Card className="mx-auto max-w-3xl p-paw-xl text-center sm:p-paw-xxl">
+      <section className="about-text-band">
+        <div className="mx-auto max-w-3xl text-center">
           <motion.div {...fadeUp()}>
             <h2 className="font-brand text-paw-type-h1 font-black text-paw-ink sm:text-paw-type-display">
               Join the PawPal Journey
@@ -361,7 +361,7 @@ export default function About() {
             <Mail className="h-4 w-4" />
             <span className="text-sm">Questions? Reach us at <a href="mailto:hello@pawpal.be" className="font-semibold text-paw-on-primary-soft hover:underline">hello@pawpal.be</a></span>
           </motion.div>
-        </Card>
+        </div>
       </section>
     </PageShell>
   );

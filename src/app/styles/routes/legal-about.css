@@ -8,9 +8,20 @@
 .about-metric-tile {
   border: 1px solid color-mix(in srgb, var(--color-paw-border) 82%, transparent);
   border-radius: var(--radius-paw-md);
-  background: color-mix(in srgb, var(--color-paw-inverse-ink) 82%, transparent);
-  box-shadow: 0 12px 28px color-mix(in srgb, var(--color-paw-ink) 7%, transparent);
+  background: color-mix(in srgb, var(--color-paw-inverse-ink) 74%, transparent);
   padding: 0.9rem 0.75rem;
+}
+
+.about-hero-copy {
+  display: flex;
+  min-height: 100%;
+  flex-direction: column;
+  justify-content: center;
+  padding-block: clamp(1.5rem, 4vw, 2.5rem);
+}
+
+.about-text-band {
+  padding-block: clamp(1.75rem, 5vw, 3.25rem);
 }
 
 .about-context-panel {
@@ -65,8 +76,7 @@
 
 .about-system-panel {
   min-height: 31rem;
-  border-radius: var(--radius-paw-lg);
-  padding: 1.5rem;
+  padding: clamp(1.5rem, 4vw, 2.5rem);
 }
 
 .about-system-row {
