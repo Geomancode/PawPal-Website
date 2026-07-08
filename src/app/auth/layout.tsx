@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
+import { enMessages } from "@/i18n/messages";
 import { privatePageMetadata } from "../metadata";
 
 export const metadata: Metadata = privatePageMetadata({
-  title: "Sign in",
-  description: "Sign in to manage PawPal profiles, smart tags, store orders, and app-connected settings.",
+  title: enMessages.authMetadataTitle,
+  description: enMessages.authMetadataDescription,
   path: "/auth",
 });
 

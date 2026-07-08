@@ -6,11 +6,6 @@ function expect(condition, message) {
   checks.push({ ok: Boolean(condition), message });
 }
 
-function hasRouteLink(source, href, label) {
-  const pattern = new RegExp(`<Link[^>]+href=["']${href}["'][\\s\\S]*?${label}`);
-  return pattern.test(source);
-}
-
 const [
   home,
   navbar,
@@ -22,6 +17,9 @@ const [
   mapMarker,
   weatherTicker,
   globalStyles,
+  enMessages,
+  nextConfig,
+  routing,
 ] = await Promise.all([
   readFile(new URL("../src/components/HomeClientParts.tsx", import.meta.url), "utf8"),
   readFile(new URL("../src/components/Navbar.tsx", import.meta.url), "utf8"),
@@ -33,28 +31,52 @@ const [
   readFile(new URL("../src/lib/createPawPalMapMarkerElement.ts", import.meta.url), "utf8"),
   readFile(new URL("../src/components/WeatherTicker.tsx", import.meta.url), "utf8"),
   readFile(new URL("../src/app/globals.css", import.meta.url), "utf8"),
+  readFile(new URL("../src/i18n/messages/en.ts", import.meta.url), "utf8"),
+  readFile(new URL("../next.config.ts", import.meta.url), "utf8"),
+  readFile(new URL("../src/i18n/routing.ts", import.meta.url), "utf8"),
 ]);
 
 const manifest = JSON.parse(manifestText);
 const shortcutUrls = new Set((manifest.shortcuts ?? []).map((shortcut) => shortcut.url));
 
 expect(
-  home.includes('aria-label="PawPal pet safety for every walk"') &&
-    home.includes("PawPal pet safety") &&
-    home.includes("for every walk"),
-  "Homepage H1 keeps the readable product headline.",
+  enMessages.includes("homeHeroAriaLabel: \"PawPal pet safety for every walk\"") &&
+    enMessages.includes("homeHeroLineOne: \"PawPal pet safety\"") &&
+    enMessages.includes("homeHeroLineTwo: \"for every walk\"") &&
+    home.includes('t("homeHeroAriaLabel")') &&
+    home.includes('t("homeHeroLineOne")') &&
+    home.includes('t("homeHeroLineTwo")'),
+  "Homepage H1 keeps the readable product headline through the English dictionary.",
 );
-expect(hasRouteLink(home, "/globe", "Open Live Map"), "Hero keeps Open Live Map -> /globe.");
-expect(hasRouteLink(home, "/store", "Shop Smart Tags"), "Hero keeps Shop Smart Tags -> /store.");
-expect(navbar.includes('{ href: "/", label: "Home" }'), "Navbar keeps Home link.");
-expect(navbar.includes('{ href: "/globe", label: "Globe" }'), "Navbar keeps Globe link.");
-expect(navbar.includes('{ href: "/about", label: "About Us" }'), "Navbar keeps About Us link.");
-expect(navbar.includes('{ href: "/store", label: "Store" }'), "Navbar keeps Store link.");
-expect(navbar.includes('href="/auth"') && navbar.includes("Login"), "Navbar keeps logged-out Login entry.");
-expect(navbar.includes('href="/profile"') && navbar.includes("Profile"), "Navbar keeps logged-in Profile entry.");
-expect(footer.includes('{ label: "Globe Map", href: "/globe" }'), "Footer keeps Globe Map link.");
-expect(footer.includes('{ label: "NFC Safety Tag", href: "/store" }'), "Footer keeps NFC Safety Tag link.");
-expect(footer.includes('{ label: "Help Center", href: "/help" }'), "Footer keeps Help Center link.");
+expect(
+  home.includes('href={path("/globe")}') &&
+    home.includes('t("homeCtaOpenLiveMap")') &&
+    enMessages.includes("homeCtaOpenLiveMap: \"Open Live Map\""),
+  "Hero keeps Open Live Map -> /globe through locale-aware routing.",
+);
+expect(
+  home.includes('href={path("/store")}') &&
+    home.includes('t("homeCtaShopSmartTags")') &&
+    enMessages.includes("homeCtaShopSmartTags: \"Shop Smart Tags\""),
+  "Hero keeps Shop Smart Tags -> /store through locale-aware routing.",
+);
+expect(navbar.includes('{ href: "/", label: t("navHome") }') && enMessages.includes('navHome: "Home"'), "Navbar keeps Home link.");
+expect(navbar.includes('{ href: "/globe", label: t("navGlobe") }') && enMessages.includes('navGlobe: "Globe"'), "Navbar keeps Globe link.");
+expect(navbar.includes('{ href: "/about", label: t("navAboutUs") }') && enMessages.includes('navAboutUs: "About Us"'), "Navbar keeps About Us link.");
+expect(navbar.includes('{ href: "/store", label: t("navStore") }') && enMessages.includes('navStore: "Store"'), "Navbar keeps Store link.");
+expect(navbar.includes('href={path("/auth")}') && enMessages.includes('navLogin: "Login"'), "Navbar keeps logged-out Login entry.");
+expect(navbar.includes('{ href: "/profile", label: t("navProfile") }') && enMessages.includes('navProfile: "Profile"'), "Navbar keeps logged-in Profile entry.");
+expect(footer.includes('{ label: t("footerGlobeMap"), href: "/globe" }') && enMessages.includes('footerGlobeMap: "Globe Map"'), "Footer keeps Globe Map link.");
+expect(footer.includes('{ label: t("footerNfcSafetyTag"), href: "/store" }') && enMessages.includes('footerNfcSafetyTag: "NFC Safety Tag"'), "Footer keeps NFC Safety Tag link.");
+expect(footer.includes('{ label: t("footerHelpCenter"), href: "/help" }') && enMessages.includes('footerHelpCenter: "Help Center"'), "Footer keeps Help Center link.");
+expect(
+  routing.includes("locale === defaultLocale") &&
+    routing.includes("return path") &&
+    nextConfig.includes("async rewrites()") &&
+    nextConfig.includes("nonDefaultLocales") &&
+    nextConfig.includes("destination: \"/:path*\""),
+  "Locale routing keeps default-locale links unprefixed and rewrites prefixed non-default locales.",
+);
 expect(manifest.start_url === "/", "PWA manifest keeps homepage start_url.");
 expect(shortcutUrls.has("/globe"), "PWA manifest keeps globe shortcut.");
 expect(shortcutUrls.has("/store"), "PWA manifest keeps store shortcut.");
