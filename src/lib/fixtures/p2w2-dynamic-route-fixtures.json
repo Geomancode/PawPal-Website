@@ -1,0 +1,264 @@
+{
+  "tags": {
+    "p2w2-tag-contact-visible": {
+      "pet": {
+        "id": "p2w2-tag-contact-visible",
+        "name": "Miso",
+        "breed": "Shiba Inu mix",
+        "age": 4,
+        "avatar_url": "/images/mockup-nfc.png",
+        "social_traits": {
+          "health_badges": ["Needs daily thyroid medicine", "Nervous around scooters"],
+          "social_tags": ["Gentle with adults", "Responds to Miso"],
+          "quirk": "Sits down when traffic gets loud. Speak softly and keep the leash short.",
+          "achievements": ["Smart tag paired", "Profile reviewed July 2026"]
+        },
+        "blood_type": "DEA 1.1+",
+        "owner_contact": "+32470123456",
+        "created_at": "2026-07-08T09:00:00.000Z",
+        "owner_id": "p2w2-owner-visible"
+      },
+      "owner": {
+        "display_name": "Noor Janssen",
+        "username": "noorj",
+        "avatar_url": "/team/lingfeng.png"
+      }
+    },
+    "p2w2-tag-contact-hidden": {
+      "pet": {
+        "id": "p2w2-tag-contact-hidden",
+        "name": "Biscuit",
+        "breed": "Cavalier King Charles Spaniel",
+        "age": 7,
+        "avatar_url": "/images/mockup-profile.png",
+        "social_traits": {
+          "health_badges": ["Heart medication twice daily", "Keep calm and shaded"],
+          "social_tags": ["Friendly", "Likes slow greetings"],
+          "quirk": "May cough after running. Avoid strenuous play and wait with Biscuit indoors.",
+          "achievements": ["Senior care plan active"]
+        },
+        "blood_type": "Not listed",
+        "owner_contact": null,
+        "created_at": "2026-07-08T09:00:00.000Z",
+        "owner_id": "p2w2-owner-hidden"
+      },
+      "owner": {
+        "display_name": "Maya Laurent",
+        "username": "mayal",
+        "avatar_url": null
+      }
+    },
+    "p2w2-tag-missing-avatar": {
+      "pet": {
+        "id": "p2w2-tag-missing-avatar",
+        "name": "Pip",
+        "breed": "Domestic shorthair",
+        "age": 2,
+        "avatar_url": null,
+        "social_traits": {
+          "health_badges": ["Indoor cat", "Do not feed dairy"],
+          "social_tags": ["Skittish", "Hides under parked cars"],
+          "quirk": "Pip calms down when covered with a light towel.",
+          "achievements": ["Public profile complete"]
+        },
+        "blood_type": "A",
+        "owner_contact": "pip.finder@example.com",
+        "created_at": "2026-07-08T09:00:00.000Z",
+        "owner_id": "p2w2-owner-missing-avatar"
+      },
+      "owner": {
+        "display_name": "Ada Verbeek",
+        "username": "adaverbeek",
+        "avatar_url": "/team/jieqiong.jpg"
+      }
+    },
+    "p2w2-tag-long-name": {
+      "pet": {
+        "id": "p2w2-tag-long-name",
+        "name": "Sir Waffles Marmalade von Snuggleton the Third",
+        "breed": "Golden Retriever",
+        "age": 5,
+        "avatar_url": "/images/mockup-walk.png",
+        "social_traits": {
+          "health_badges": ["Allergic to chicken", "Use front-clip harness"],
+          "social_tags": ["Very friendly", "Pulls toward children"],
+          "quirk": "Responds best to Waffles, not the full ceremonial name.",
+          "achievements": ["Neighborhood helper badge", "Smart tag checked"]
+        },
+        "blood_type": "DEA 1.1-",
+        "owner_contact": "+32470999888",
+        "created_at": "2026-07-08T09:00:00.000Z",
+        "owner_id": "p2w2-owner-long-name"
+      },
+      "owner": {
+        "display_name": "Julian Meers",
+        "username": "julianm",
+        "avatar_url": "/team/sean.jpg"
+      }
+    },
+    "p2w2-tag-long-breed": {
+      "pet": {
+        "id": "p2w2-tag-long-breed",
+        "name": "Luna",
+        "breed": "Miniature Australian Labradoodle and Border Collie rescue cross with unknown lineage",
+        "age": 3,
+        "avatar_url": "/images/mockup-ai.png",
+        "social_traits": {
+          "health_badges": ["Noise sensitive", "Needs space from bikes"],
+          "social_tags": ["Smart", "Food motivated", "Avoids crowds"],
+          "quirk": "Offer a treat low to the ground and avoid leaning over her.",
+          "achievements": ["Training plan active"]
+        },
+        "blood_type": null,
+        "owner_contact": "luna.safe@example.com",
+        "created_at": "2026-07-08T09:00:00.000Z",
+        "owner_id": "p2w2-owner-long-breed"
+      },
+      "owner": {
+        "display_name": "Emilie Peeters",
+        "username": "emiliep",
+        "avatar_url": null
+      }
+    },
+    "p2w2-tag-no-health-notes": {
+      "pet": {
+        "id": "p2w2-tag-no-health-notes",
+        "name": "Nova",
+        "breed": "Whippet",
+        "age": 1,
+        "avatar_url": "/images/mockup-community.png",
+        "social_traits": {
+          "health_badges": [],
+          "social_tags": ["Fast runner", "Gentle", "Needs warm coat"],
+          "quirk": "Nova may tremble when cold; keep her warm while waiting.",
+          "achievements": []
+        },
+        "blood_type": null,
+        "owner_contact": "+32470000111",
+        "created_at": "2026-07-08T09:00:00.000Z",
+        "owner_id": "p2w2-owner-no-health"
+      },
+      "owner": {
+        "display_name": "Rami Sato",
+        "username": "ramis",
+        "avatar_url": "/team/jieqiong.jpg"
+      }
+    },
+    "p2w2-tag-dark": {
+      "pet": {
+        "id": "p2w2-tag-dark",
+        "name": "Atlas",
+        "breed": "Belgian Shepherd",
+        "age": 6,
+        "avatar_url": "/images/mockup-nfc.png",
+        "social_traits": {
+          "health_badges": ["Working dog", "Do not grab collar suddenly"],
+          "social_tags": ["Calm with handler voice", "Protective"],
+          "quirk": "Stand sideways, show open hands, and call the owner before moving Atlas.",
+          "achievements": ["Verified safety profile", "NFC tag scanned"]
+        },
+        "blood_type": "DEA 1.1+",
+        "owner_contact": "atlas.handler@example.com",
+        "created_at": "2026-07-08T09:00:00.000Z",
+        "owner_id": "p2w2-owner-dark"
+      },
+      "owner": {
+        "display_name": "Sofia Martens",
+        "username": "sofiam",
+        "avatar_url": "/team/lingfeng.png"
+      }
+    },
+    "p2w2-pet-populated": {
+      "pet": {
+        "id": "p2w2-pet-populated",
+        "name": "Cedar",
+        "breed": "Mixed breed",
+        "age": 8,
+        "avatar_url": "/images/mockup-profile.png",
+        "social_traits": {
+          "health_badges": ["Senior dog", "Needs slow stairs"],
+          "social_tags": ["Gentle", "Likes quiet voices"],
+          "quirk": "Cedar may lie down when tired. Let him rest and contact the owner.",
+          "achievements": ["Pet alias route verified"]
+        },
+        "blood_type": null,
+        "owner_contact": "+32470111000",
+        "created_at": "2026-07-08T09:00:00.000Z",
+        "owner_id": "p2w2-owner-pet-alias"
+      },
+      "owner": {
+        "display_name": "Lin Moreau",
+        "username": "linm",
+        "avatar_url": "/team/sean.jpg"
+      }
+    }
+  },
+  "posts": {
+    "p2w2-post-populated": {
+      "post": {
+        "id": "p2w2-post-populated",
+        "user_id": "p2w2-user-author",
+        "content": "Found a quiet shaded route near the canal that worked well for our senior dog today. Sharing the spot for anyone avoiding the afternoon heat.",
+        "category": "walk_report",
+        "image_url": "/images/mockup-community.png",
+        "walk_map_image_url": null,
+        "likes_count": 42,
+        "comments_count": 8
+      },
+      "profile": {
+        "display_name": "Noor Janssen",
+        "username": "noorj",
+        "avatar_url": "/team/lingfeng.png"
+      },
+      "images": [
+        {
+          "url": "/images/mockup-community.png",
+          "sort_order": 0
+        }
+      ]
+    }
+  },
+  "groups": {
+    "p2w2-group-populated": {
+      "group": {
+        "id": "p2w2-group-populated",
+        "name": "Brussels Calm Walks",
+        "avatar_url": "/images/mockup-walk.png",
+        "owner_id": "p2w2-group-owner",
+        "created_at": "2026-07-08T09:00:00.000Z"
+      },
+      "memberCount": 128
+    }
+  },
+  "users": {
+    "p2w2-user-populated": {
+      "profile": {
+        "id": "p2w2-user-populated",
+        "display_name": "Maya Laurent",
+        "username": "mayal",
+        "avatar_url": "/team/jieqiong.jpg",
+        "bio": "Senior dog foster, quiet-route mapper, and PawPal smart tag advocate in Brussels.",
+        "paw_points": 1840,
+        "location_city": "Brussels",
+        "is_verified": true
+      },
+      "pets": [
+        {
+          "id": "p2w2-tag-contact-visible",
+          "name": "Miso",
+          "species_group": "dog",
+          "breed": "Shiba Inu mix",
+          "avatar_url": "/images/mockup-nfc.png"
+        },
+        {
+          "id": "p2w2-tag-no-health-notes",
+          "name": "Nova",
+          "species_group": "dog",
+          "breed": "Whippet",
+          "avatar_url": "/images/mockup-community.png"
+        }
+      ],
+      "postCount": 27
+    }
+  }
+}

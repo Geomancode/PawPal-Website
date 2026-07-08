@@ -7,6 +7,7 @@ import { BadgeCheck, MapPin, PawPrint, Smartphone } from "lucide-react";
 import { supabaseServer as supabase } from "@/lib/supabaseServer";
 import { AppDeepLinkButton } from "@/components/ui";
 import { publicPageMetadata } from "@/app/metadata";
+import { loadP2W2UserFixture } from "@/lib/p2w2DynamicRouteFixtures";
 
 interface PageProps {
   params: Promise<{ id: string }>;
@@ -21,6 +22,9 @@ type PetPreview = {
 };
 
 async function loadProfile(id: string) {
+  const fixture = await loadP2W2UserFixture(id);
+  if (fixture) return fixture;
+
   const { data: profile, error } = await supabase
     .from("profiles")
     .select("*")

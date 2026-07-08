@@ -7,12 +7,16 @@ import { UsersRound, PawPrint } from "lucide-react";
 import { supabaseServer as supabase } from "@/lib/supabaseServer";
 import { AppDeepLinkButton, Badge, Card, CardContent, buttonClassName } from "@/components/ui";
 import { publicPageMetadata } from "@/app/metadata";
+import { loadP2W2GroupFixture } from "@/lib/p2w2DynamicRouteFixtures";
 
 interface PageProps {
   params: Promise<{ id: string }>;
 }
 
 async function loadGroup(id: string) {
+  const fixture = await loadP2W2GroupFixture(id);
+  if (fixture) return fixture;
+
   const { data: group, error } = await supabase
     .from("groups")
     .select("id, name, avatar_url, owner_id, created_at")

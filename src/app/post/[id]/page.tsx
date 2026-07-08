@@ -7,6 +7,7 @@ import { MessageCircle, PawPrint, Share2, ThumbsUp } from "lucide-react";
 import { supabaseServer as supabase } from "@/lib/supabaseServer";
 import { AppDeepLinkButton } from "@/components/ui";
 import { publicPageMetadata } from "@/app/metadata";
+import { loadP2W2PostFixture } from "@/lib/p2w2DynamicRouteFixtures";
 
 interface PageProps {
   params: Promise<{ id: string }>;
@@ -20,6 +21,9 @@ type ProfileRow = {
 };
 
 async function loadPost(id: string) {
+  const fixture = await loadP2W2PostFixture(id);
+  if (fixture) return fixture;
+
   const { data: post, error } = await supabase
     .from("posts")
     .select("*")
