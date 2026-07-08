@@ -11,8 +11,6 @@ import {
 import type { LucideIcon } from "lucide-react";
 import {
   Badge,
-  Card,
-  CardContent,
   PageShell,
   buttonClassName,
 } from "@/components/ui";
@@ -76,8 +74,8 @@ const PRIVACY_SECTIONS: PrivacySection[] = [
 
 export default function PrivacyPage() {
   return (
-    <PageShell className="pt-28 sm:pt-32" contentClassName="space-y-paw-xl">
-      <Card className="overflow-hidden p-paw-xl sm:p-paw-xxl">
+    <PageShell className="legal-page-shell pt-28 sm:pt-32" contentClassName="space-y-paw-xl">
+      <section className="legal-hero-panel">
         <div className="grid gap-paw-xl lg:grid-cols-[minmax(0,1fr)_minmax(18rem,24rem)] lg:items-center">
           <div>
             <Badge tone="primary" className="mb-paw-lg">
@@ -102,7 +100,7 @@ export default function PrivacyPage() {
             ].map((item) => (
               <div
                 key={item.label}
-                className="grid grid-cols-[auto_minmax(0,1fr)] gap-paw-sm rounded-paw-card border border-paw-outline-variant bg-paw-panel-subtle p-paw-sm"
+                className="legal-trust-row"
               >
                 <item.icon className="h-4 w-4 text-paw-on-primary-soft" aria-hidden="true" />
                 <div>
@@ -113,9 +111,9 @@ export default function PrivacyPage() {
             ))}
           </aside>
         </div>
-      </Card>
+      </section>
 
-      <nav className="flex flex-wrap gap-paw-sm" aria-label="Privacy sections">
+      <nav className="legal-section-nav" aria-label="Privacy sections">
         {PRIVACY_SECTIONS.map((section) => (
           <a
             key={section.id}
@@ -127,11 +125,10 @@ export default function PrivacyPage() {
         ))}
       </nav>
 
-      <div className="grid gap-paw-md md:grid-cols-2 xl:grid-cols-4">
+      <div className="legal-prose-grid">
         {PRIVACY_SECTIONS.map((section) => (
-          <Card key={section.title} id={section.id} className="scroll-mt-28 transition hover:-translate-y-1 hover:border-paw-primary/30 hover:shadow-paw-floating">
-            <CardContent>
-              <div className="mb-paw-md flex h-11 w-11 items-center justify-center rounded-paw-control bg-paw-primary-soft text-paw-on-primary-soft">
+          <section key={section.title} id={section.id} className="legal-prose-section">
+              <div className="legal-info-icon">
                 <section.icon className="h-5 w-5" aria-hidden="true" />
               </div>
               <h2 className="text-paw-type-h2 font-black text-paw-ink">
@@ -153,8 +150,7 @@ export default function PrivacyPage() {
               <p className="mt-paw-md text-xs font-black uppercase text-paw-on-primary-soft">
                 {section.signal}
               </p>
-            </CardContent>
-          </Card>
+          </section>
         ))}
       </div>
     </PageShell>

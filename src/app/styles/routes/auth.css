@@ -57,11 +57,8 @@
 }
 
 .auth-trust-panel {
-  border: 1px solid color-mix(in srgb, var(--color-paw-border) 82%, transparent);
-  border-radius: var(--radius-paw-md);
-  background:
-    linear-gradient(145deg, color-mix(in srgb, var(--color-paw-inverse-ink) 86%, transparent), color-mix(in srgb, var(--color-paw-panel-subtle) 82%, transparent));
-  padding: 1rem;
+  border-top: 1px solid color-mix(in srgb, var(--color-paw-border) 78%, transparent);
+  padding-top: 1rem;
 }
 
 .auth-trust-icon {

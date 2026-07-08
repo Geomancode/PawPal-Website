@@ -546,7 +546,7 @@ export default function ParkRiskAdminPage() {
   if (!user) {
     return (
       <PageShell
-        className="min-h-screen pt-28"
+        className="admin-page-shell admin-gate-shell min-h-screen pt-28"
         eyebrow="Park risk admin"
         title="Sign in required"
         description="Use an approved PawPal admin account to review park risk reports."
@@ -556,13 +556,19 @@ export default function ParkRiskAdminPage() {
           </Button>
         }
       >
-        <Card className="p-8">
-          <EmptyState
-            icon={ShieldCheck}
-            title="No active session"
-            description="After signing in, return to /admin/park-risks."
-          />
-        </Card>
+        <section className="admin-gate-panel text-center">
+          <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-paw-pill bg-paw-primary-soft text-paw-on-primary-soft">
+            <ShieldCheck className="h-5 w-5" aria-hidden="true" />
+          </div>
+          <div>
+            <p className="text-lg font-extrabold text-paw-ink">
+              No active session
+            </p>
+            <p className="mt-2 text-sm leading-6 text-paw-body">
+              After signing in, return to /admin/park-risks.
+            </p>
+          </div>
+        </section>
       </PageShell>
     );
   }
@@ -570,7 +576,7 @@ export default function ParkRiskAdminPage() {
   if (!canViewQueue) {
     return (
       <PageShell
-        className="min-h-screen pt-28"
+        className="admin-page-shell admin-gate-shell min-h-screen pt-28"
         eyebrow="Park risk admin"
         title="Review access is restricted"
         description="This account is not listed in pawpal_admins. Add the email in Supabase before reviewing reports."
@@ -581,20 +587,26 @@ export default function ParkRiskAdminPage() {
           </Button>
         }
       >
-        <Card className="p-8">
-          <EmptyState
-            icon={ShieldCheck}
-            title="Not a PawPal admin"
-            description={user.email || "Current user is not authorized."}
-          />
-        </Card>
+        <section className="admin-gate-panel text-center">
+          <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-paw-pill bg-paw-primary-soft text-paw-on-primary-soft">
+            <ShieldCheck className="h-5 w-5" aria-hidden="true" />
+          </div>
+          <div>
+            <p className="text-lg font-extrabold text-paw-ink">
+              Not a PawPal admin
+            </p>
+            <p className="mt-2 text-sm leading-6 text-paw-body">
+              {user.email || "Current user is not authorized."}
+            </p>
+          </div>
+        </section>
       </PageShell>
     );
   }
 
   return (
     <PageShell
-      className="min-h-screen pt-28"
+      className="admin-page-shell min-h-screen pt-28"
       eyebrow="Park risk admin"
       title="Risk review queue"
       description="Review community-confirmed park risks and add verified official-source risks for highlighting in PawPal place pages."

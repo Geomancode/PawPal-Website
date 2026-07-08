@@ -70,7 +70,7 @@ export default async function AdminReportsPage({
 
   return (
     <PageShell
-      className="admin-page-shell min-h-screen pt-28"
+      className={`admin-page-shell min-h-screen pt-28 ${state.kind === "ready" ? "" : "admin-gate-shell"}`}
       headerClassName="admin-shell-header"
       eyebrow={
         <span className="inline-flex items-center gap-2">

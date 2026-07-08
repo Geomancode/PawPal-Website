@@ -66,7 +66,7 @@ export default function HelpPage() {
   return (
     <PageShell className="pt-28 sm:pt-32" contentClassName="space-y-paw-xl">
       <section className="grid gap-paw-xl lg:grid-cols-[minmax(0,1fr)_390px] lg:items-center">
-        <Card variant="hero" className="p-paw-xl sm:p-paw-xxl">
+        <div className="support-hero-copy">
           <Badge tone="primary" variant="semantic" className="mb-paw-lg">
             <LifeBuoy className="h-4 w-4" aria-hidden="true" />
             Support
@@ -94,9 +94,9 @@ export default function HelpPage() {
               <ArrowRight className="h-4 w-4" aria-hidden="true" />
             </Link>
           </div>
-        </Card>
+        </div>
 
-        <Card variant="panel" className="p-paw-xl">
+        <aside className="support-route-panel">
           <div className="flex items-center justify-between gap-4">
             <div>
               <p className="text-paw-type-caption font-black uppercase text-paw-muted">
@@ -114,7 +114,7 @@ export default function HelpPage() {
             {RESPONSE_STEPS.map((step) => (
               <div
                 key={step.label}
-                className="flex items-center gap-paw-sm rounded-paw-card border border-paw-outline-variant bg-paw-panel-subtle p-paw-sm"
+                className="support-route-step"
               >
                 <step.icon className="h-4 w-4 text-paw-on-primary-soft" aria-hidden="true" />
                 <div className="min-w-0">
@@ -128,7 +128,7 @@ export default function HelpPage() {
               </div>
             ))}
           </div>
-        </Card>
+        </aside>
       </section>
 
       <section>
@@ -137,7 +137,7 @@ export default function HelpPage() {
             <Card
               key={item.title}
               variant="panel"
-              className="h-full transition hover:-translate-y-1 hover:border-paw-primary/30 hover:shadow-paw-floating"
+              className="support-card h-full"
             >
               <CardContent className="flex h-full flex-col">
                 <div className="mb-paw-md flex h-11 w-11 items-center justify-center rounded-paw-control bg-paw-primary-soft text-paw-on-primary-soft">
@@ -160,7 +160,7 @@ export default function HelpPage() {
           ))}
         </div>
 
-        <Card variant="compact" className="mt-paw-xl p-paw-lg">
+        <div className="support-contact-band mt-paw-xl">
           <div className="flex flex-col justify-between gap-paw-md sm:flex-row sm:items-center">
           <div>
             <p className="text-sm font-extrabold text-paw-ink">
@@ -176,7 +176,7 @@ export default function HelpPage() {
             Belgium-first support
           </div>
           </div>
-        </Card>
+        </div>
       </section>
     </PageShell>
   );
