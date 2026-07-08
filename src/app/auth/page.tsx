@@ -123,9 +123,9 @@ export default function AuthPage() {
             <div className="mb-3 flex justify-center">
               <PawPalLogo iconOnly iconSize={56} variant="light" priority />
             </div>
-            <h1 className="text-2xl font-bold text-paw-ink">
+            <h2 className="text-2xl font-bold text-paw-ink">
               {isLogin ? "Welcome Back" : "Join PawPal"}
-            </h1>
+            </h2>
             <p className="text-paw-muted text-sm mt-1">
               {isLogin ? "Access profiles, tags, and orders securely" : "Create one account for pet safety and orders"}
             </p>
