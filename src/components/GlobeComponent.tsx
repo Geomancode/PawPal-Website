@@ -82,10 +82,85 @@ const GLOBE_RENDERER_CONFIG = {
   powerPreference: "high-performance",
 } as const;
 
-function readCssToken(name: string, fallback: string) {
+type RgbColor = {
+  r: number;
+  g: number;
+  b: number;
+};
+
+function isConcreteCssColor(value: string) {
+  return /^(#(?:[0-9a-f]{3,8})|rgba?\(|hsla?\()/i.test(value.trim());
+}
+
+function readConcreteCssColorToken(name: string, fallback: string) {
   if (typeof window === "undefined") return fallback;
-  const value = window.getComputedStyle(document.documentElement).getPropertyValue(name).trim();
-  return value || fallback;
+  const probe = document.createElement("span");
+  probe.style.color = fallback;
+  probe.style.color = `var(${name}, ${fallback})`;
+  probe.style.position = "fixed";
+  probe.style.pointerEvents = "none";
+  probe.style.visibility = "hidden";
+  document.documentElement.appendChild(probe);
+
+  const resolvedColor = window.getComputedStyle(probe).color.trim();
+  probe.remove();
+
+  return isConcreteCssColor(resolvedColor) ? resolvedColor : fallback;
+}
+
+function parseRgbChannel(value: string) {
+  const numericValue = Number.parseFloat(value);
+  if (!Number.isFinite(numericValue)) return null;
+  const channel = value.endsWith("%") ? (numericValue / 100) * 255 : numericValue;
+  return Math.round(Math.max(0, Math.min(255, channel)));
+}
+
+function parseHexColor(value: string): RgbColor | null {
+  const hex = value.trim().replace(/^#/, "");
+  if (![3, 4, 6, 8].includes(hex.length)) return null;
+  const normalized = hex.length <= 4
+    ? hex
+        .slice(0, 3)
+        .split("")
+        .map((char) => `${char}${char}`)
+        .join("")
+    : hex.slice(0, 6);
+  const parsed = Number.parseInt(normalized, 16);
+  if (!Number.isFinite(parsed)) return null;
+  return {
+    r: (parsed >> 16) & 255,
+    g: (parsed >> 8) & 255,
+    b: parsed & 255,
+  };
+}
+
+function parseRgbColor(value: string): RgbColor | null {
+  const rgbMatch = value.trim().match(/^rgba?\(([^)]+)\)$/i);
+  if (!rgbMatch) return parseHexColor(value);
+
+  const channels = rgbMatch[1]
+    .replaceAll(",", " ")
+    .replace("/", " ")
+    .trim()
+    .split(/\s+/)
+    .slice(0, 3)
+    .map(parseRgbChannel);
+
+  if (channels.length !== 3 || channels.some((channel) => channel === null)) {
+    return null;
+  }
+
+  return {
+    r: channels[0] ?? 255,
+    g: channels[1] ?? 255,
+    b: channels[2] ?? 255,
+  };
+}
+
+function cssColorWithAlpha(color: string, alpha: number) {
+  const rgb = parseRgbColor(color) ?? { r: 255, g: 255, b: 255 };
+  const clampedAlpha = Math.max(0, Math.min(1, alpha));
+  return `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, ${Number(clampedAlpha.toFixed(3))})`;
 }
 
 function subscribeToReducedMotion(onStoreChange: () => void) {
@@ -128,8 +203,8 @@ function createCloudTexture() {
   if (!ctx) return null;
 
   const random = seededRandom(20260526);
-  const cloudColor = readCssToken("--color-paw-panel-low", "white");
-  const cloudStop = (alpha: number) => `color-mix(in srgb, ${cloudColor} ${Math.round(alpha * 100)}%, transparent)`;
+  const cloudColor = readConcreteCssColorToken("--color-paw-panel-low", "#ffffff");
+  const cloudStop = (alpha: number) => cssColorWithAlpha(cloudColor, alpha);
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   ctx.filter = "blur(5px)";
 
@@ -176,7 +251,7 @@ export default function GlobeComponent() {
   const [canUseWebGL, setCanUseWebGL] = useState<boolean | null>(null);
   const [isInView, setIsInView] = useState(true);
   const [isDocumentVisible, setIsDocumentVisible] = useState(true);
-  const [atmosphereColor, setAtmosphereColor] = useState("cornflowerblue");
+  const [atmosphereColor, setAtmosphereColor] = useState("#4A90D9");
   const shouldReduceMotion = useReducedMotionPreference();
   const shouldAnimateGlobe = canUseWebGL === true && !shouldReduceMotion && isInView && isDocumentVisible;
   const globeState = canUseWebGL === null ? "checking" : canUseWebGL ? (shouldAnimateGlobe ? "animated" : "paused") : "fallback";
@@ -196,7 +271,7 @@ export default function GlobeComponent() {
 
   useEffect(() => {
     const syncAtmosphereColor = () => {
-      setAtmosphereColor(readCssToken("--color-paw-primary", "cornflowerblue"));
+      setAtmosphereColor(readConcreteCssColorToken("--color-paw-primary", "#4A90D9"));
     };
     syncAtmosphereColor();
 
@@ -469,7 +544,7 @@ export default function GlobeComponent() {
           bumpImageUrl={EARTH_RELIEF_TEXTURE_URL}
           bumpScale={0.028}
           showGlobe={true}
-          backgroundColor="transparent"
+          backgroundColor="rgba(0, 0, 0, 0)"
           atmosphereColor={atmosphereColor}
           atmosphereAltitude={0.2}
           showGraticules={false}
