@@ -3,12 +3,16 @@ import { supabaseServer as supabase } from "@/lib/supabaseServer";
 import { notFound } from "next/navigation";
 import TagPageClient from "./TagPageClient";
 import { publicPageMetadata } from "@/app/metadata";
+import { loadP2W2TagFixture } from "@/lib/p2w2DynamicRouteFixtures";
 
 interface PageProps {
   params: Promise<{ id: string }>;
 }
 
 async function loadTagPet(id: string) {
+  const fixture = await loadP2W2TagFixture(id);
+  if (fixture) return fixture;
+
   // Fetch pet data (public, no auth required)
   const { data: pet, error } = await supabase
     .from("pets")
