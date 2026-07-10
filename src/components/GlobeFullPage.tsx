@@ -176,6 +176,7 @@ function GlobeFallbackView({
       <GlobeStaticPreview
         className="globe-fallback-preview"
         statusLabel={t("globeStaticMapPreview")}
+        ariaLabel={t("globeStaticMapPreview")}
         pulseStatus={false}
       />
     </div>
