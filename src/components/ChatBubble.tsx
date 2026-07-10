@@ -1,6 +1,9 @@
 "use client";
 
 import { MapPin, Sparkles, AlertTriangle, CheckCircle, BookOpen } from "lucide-react";
+import type { MessageKey } from "@/i18n/messages/en";
+
+type GlobeTranslation = (key: MessageKey) => string;
 
 // ── Types ────────────────────────────────────────────────────────────────────
 
@@ -16,6 +19,7 @@ export interface ChatMessageData {
 interface ChatBubbleProps {
   message: ChatMessageData;
   onLocate?: (lat: number, lng: number) => void;
+  t: GlobeTranslation;
 }
 
 // ── Place / Quest emoji maps (same as GlobeFullPage) ─────────────────────────
@@ -34,7 +38,7 @@ const QUEST_EMOJI: Record<string, string> = {
 
 // ── Main Component ───────────────────────────────────────────────────────────
 
-export default function ChatBubble({ message, onLocate }: ChatBubbleProps) {
+export default function ChatBubble({ message, onLocate, t }: ChatBubbleProps) {
   switch (message.role) {
     case "user":
       return <UserBubble text={message.content} />;
@@ -48,6 +52,7 @@ export default function ChatBubble({ message, onLocate }: ChatBubbleProps) {
           toolName={message.toolName || ""}
           data={message.toolData || {}}
           onLocate={onLocate}
+          t={t}
         />
       );
     default:
@@ -105,18 +110,19 @@ interface ToolResultProps {
   toolName: string;
   data: Record<string, unknown>;
   onLocate?: (lat: number, lng: number) => void;
+  t: GlobeTranslation;
 }
 
-function ToolResultCard({ toolName, data, onLocate }: ToolResultProps) {
+function ToolResultCard({ toolName, data, onLocate, t }: ToolResultProps) {
   switch (toolName) {
     case "search_places":
       return <PlaceResults data={data} onLocate={onLocate} />;
     case "search_missions":
-      return <MissionResults data={data} onLocate={onLocate} />;
+      return <MissionResults data={data} onLocate={onLocate} t={t} />;
     case "check_food_safety":
-      return <FoodSafetyCard data={data} />;
+      return <FoodSafetyCard data={data} t={t} />;
     case "breed_encyclopedia":
-      return <BreedCard data={data} />;
+      return <BreedCard data={data} t={t} />;
     default:
       return null;
   }
@@ -197,9 +203,11 @@ interface MissionItem {
 function MissionResults({
   data,
   onLocate,
+  t,
 }: {
   data: Record<string, unknown>;
   onLocate?: (lat: number, lng: number) => void;
+  t: GlobeTranslation;
 }) {
   const missions = (data.missions as MissionItem[]) || [];
   if (missions.length === 0) return null;
@@ -220,7 +228,7 @@ function MissionResults({
               </div>
               <div className="min-w-0 flex-1">
                 <p className="text-sm font-semibold text-paw-ink truncate">
-                  {m.title || "Mission"}
+                  {m.title || t("globeChatMissionFallback")}
                 </p>
                 <p className="text-xs text-paw-muted truncate">
                   {m.quest_type} · {m.status}
@@ -240,7 +248,7 @@ function MissionResults({
 
 // ── Food Safety Card ─────────────────────────────────────────────────────────
 
-function FoodSafetyCard({ data }: { data: Record<string, unknown> }) {
+function FoodSafetyCard({ data, t }: { data: Record<string, unknown>; t: GlobeTranslation }) {
   const results = (data.results as Record<string, unknown>[]) || [];
   const found = data.found as boolean;
   const itemSearched = data.item_searched as string;
@@ -249,8 +257,7 @@ function FoodSafetyCard({ data }: { data: Record<string, unknown> }) {
     return (
       <div className="flex justify-start mb-3 pl-8">
         <div className="px-4 py-3 rounded-paw-md bg-paw-panel-subtle border border-paw-border text-sm text-paw-muted">
-          No toxicity data found for &quot;{itemSearched}&quot;. When in doubt, consult
-          your vet.
+          {t("globeChatNoToxicityData").replace("{item}", itemSearched)}
         </div>
       </div>
     );
@@ -308,7 +315,7 @@ function FoodSafetyCard({ data }: { data: Record<string, unknown> }) {
 
 // ── Breed Encyclopedia Card ──────────────────────────────────────────────────
 
-function BreedCard({ data }: { data: Record<string, unknown> }) {
+function BreedCard({ data, t }: { data: Record<string, unknown>; t: GlobeTranslation }) {
   const breeds = (data.breeds as Record<string, unknown>[]) || [];
   if (breeds.length === 0) return null;
 
@@ -334,25 +341,25 @@ function BreedCard({ data }: { data: Record<string, unknown> }) {
             <div className="grid grid-cols-2 gap-x-4 gap-y-1 text-xs text-paw-body">
               {typeof b.origin === "string" && b.origin && (
                 <p>
-                  🌍 <span className="text-paw-trust">Origin:</span>{" "}
+                  🌍 <span className="text-paw-trust">{t("globeChatBreedOrigin")}</span>{" "}
                   {b.origin}
                 </p>
               )}
               {b.care_difficulty != null && (
                 <p>
-                  🩺 <span className="text-paw-trust">Care:</span>{" "}
+                  🩺 <span className="text-paw-trust">{t("globeChatBreedCare")}</span>{" "}
                   {String(b.care_difficulty)}/5
                 </p>
               )}
               {typeof b.lifespan === "string" && b.lifespan && (
                 <p>
-                  ⏱️ <span className="text-paw-trust">Lifespan:</span>{" "}
+                  ⏱️ <span className="text-paw-trust">{t("globeChatBreedLifespan")}</span>{" "}
                   {b.lifespan}
                 </p>
               )}
               {typeof b.legal_status_be === "string" && b.legal_status_be && (
                 <p>
-                  🇧🇪 <span className="text-paw-trust">Belgium:</span>{" "}
+                  🇧🇪 <span className="text-paw-trust">{t("globeChatBreedBelgium")}</span>{" "}
                   {b.legal_status_be}
                 </p>
               )}

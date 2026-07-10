@@ -5,6 +5,9 @@ import { motion, AnimatePresence } from "framer-motion";
 import { X, ChevronRight, ChevronLeft, Sparkles } from "lucide-react";
 import { useAuth } from "./AuthProvider";
 import { useReducedMotionPreference } from "@/lib/useReducedMotionPreference";
+import type { MessageKey } from "@/i18n/messages/en";
+
+type GlobeTranslation = (key: MessageKey) => string;
 
 const STORAGE_KEY = "pawpal_globe_tutorial_done";
 const INTRO_DELAY_MS = 12000;
@@ -12,8 +15,8 @@ const INTRO_DELAY_MS = 12000;
 /* ── Step definitions ── */
 interface TourStep {
   targetId: string;          // DOM element id to spotlight
-  title: string;
-  description: string;
+  titleKey: MessageKey;
+  descriptionKey: MessageKey;
   emoji: string;
   position: "top" | "bottom" | "left" | "right"; // tooltip placement relative to element
 }
@@ -22,22 +25,22 @@ const STEPS: TourStep[] = [
   {
     targetId: "globe-map",
     emoji: "👋",
-    title: "Welcome to the Globe!",
-    description: "This interactive 3D map shows real-time pet missions and pet-friendly places worldwide. Drag to spin, scroll to zoom in.",
+    titleKey: "globeTutorialWelcomeTitle",
+    descriptionKey: "globeTutorialWelcomeDescription",
     position: "top",
   },
   {
     targetId: "globe-search",
     emoji: "🔍",
-    title: "AI-Powered Search",
-    description: "Ask anything in natural language — try \"dog parks near Ghent\" or \"adoption missions\". Our AI will find and highlight results on the map!",
+    titleKey: "globeTutorialSearchTitle",
+    descriptionKey: "globeTutorialSearchDescription",
     position: "top",
   },
   {
     targetId: "globe-layers",
     emoji: "🗂️",
-    title: "Filter Layers",
-    description: "Toggle Missions (🐾 Coral accent) and Places (📍 Paw Blue) on or off. Each layer has its own markers with relevant info popups.",
+    titleKey: "globeTutorialLayersTitle",
+    descriptionKey: "globeTutorialLayersDescription",
     position: "left",
   },
 ];
@@ -68,7 +71,7 @@ function getSpotlightClip(rect: DOMRect, padding: number = 12): string {
   )`;
 }
 
-export default function GlobeTutorial() {
+export default function GlobeTutorial({ t }: { t: GlobeTranslation }) {
   const { user, loading } = useAuth();
   const shouldReduceMotion = useReducedMotionPreference();
   const [visible, setVisible] = useState(false);
@@ -197,7 +200,7 @@ export default function GlobeTutorial() {
                     />
                   ))}
                 </div>
-                <button onClick={dismiss} aria-label="Close globe tutorial" className="text-paw-muted hover:text-paw-body transition-colors">
+                <button onClick={dismiss} aria-label={t("globeTutorialClose")} className="text-paw-muted hover:text-paw-body transition-colors">
                   <X className="w-4 h-4" />
                 </button>
               </div>
@@ -206,27 +209,27 @@ export default function GlobeTutorial() {
               <div className="flex items-start gap-3 mb-4">
                 <span className="text-2xl leading-none mt-0.5">{current.emoji}</span>
                 <div>
-                  <h3 className="text-base font-extrabold text-paw-ink mb-1">{current.title}</h3>
-                  <p className="text-sm text-paw-muted leading-relaxed">{current.description}</p>
+                  <h3 className="text-base font-extrabold text-paw-ink mb-1">{t(current.titleKey)}</h3>
+                  <p className="text-sm text-paw-muted leading-relaxed">{t(current.descriptionKey)}</p>
                 </div>
               </div>
 
               {/* Buttons */}
               <div className="flex items-center justify-between">
                 <button onClick={dismiss} className="text-xs text-paw-muted hover:text-paw-body font-medium">
-                  Skip
+                  {t("globeTutorialSkip")}
                 </button>
                 <div className="flex items-center gap-2">
                   {step > 0 && (
                     <button onClick={prev} className="flex items-center gap-1 px-3 py-1.5 text-xs font-semibold text-paw-muted bg-paw-panel-subtle hover:bg-paw-primary-soft rounded-paw-sm transition-all">
-                      <ChevronLeft className="w-3 h-3" /> Back
+                      <ChevronLeft className="w-3 h-3" /> {t("globeTutorialBack")}
                     </button>
                   )}
                   <button onClick={next} className="flex items-center gap-1 px-4 py-1.5 text-xs font-bold text-paw-accent-ink bg-paw-primary hover:bg-paw-primary-hover rounded-paw-sm transition-all shadow-paw-action">
                     {isLast ? (
-                      <><Sparkles className="w-3 h-3" /> Got it!</>
+                      <><Sparkles className="w-3 h-3" /> {t("globeTutorialDone")}</>
                     ) : (
-                      <>Next <ChevronRight className="w-3 h-3" /></>
+                      <>{t("globeTutorialNext")} <ChevronRight className="w-3 h-3" /></>
                     )}
                   </button>
                 </div>

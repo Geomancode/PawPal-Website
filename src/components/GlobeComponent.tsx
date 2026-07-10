@@ -934,7 +934,7 @@ export default function GlobeComponent() {
                 data-testid="home-globe-retry"
                 onClick={retryPosts}
               >
-                Try again
+                {t("publicRouteErrorRetry")}
               </button>
             </div>
           ) : null}
