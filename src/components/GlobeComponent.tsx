@@ -297,7 +297,7 @@ export default function GlobeComponent() {
   const shouldReduceMotion = useReducedMotionPreference();
   const shouldAnimateGlobe = canUseWebGL === true && !shouldReduceMotion && isInView && isDocumentVisible;
   const shouldAnimateGlobeRef = useRef(shouldAnimateGlobe);
-  const { posts, state: postsState } = useHomeGlobePosts({
+  const { posts, retry: retryPosts, state: postsState } = useHomeGlobePosts({
     canUseWebGL: canUseWebGL === true,
     globeReady: isGlobeReady,
     hasEnteredView,
@@ -922,9 +922,21 @@ export default function GlobeComponent() {
               {t("homeGlobeEmptyLabel")}
             </p>
           ) : postsState === "error" ? (
-            <p className="home-globe-posts-status" role="status">
-              {t("homeGlobeErrorLabel")}
-            </p>
+            <div
+              className="home-globe-posts-status flex items-center gap-2"
+              role="status"
+              style={{ maxWidth: "16.5rem", pointerEvents: "auto" }}
+            >
+              <span>{t("homeGlobeErrorLabel")}</span>
+              <button
+                type="button"
+                className="inline-flex min-h-paw-min-tap shrink-0 items-center justify-center rounded-paw-pill border border-paw-outline-variant bg-paw-panel px-3 font-black text-paw-ink transition hover:border-paw-primary focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-paw-trust/20"
+                data-testid="home-globe-retry"
+                onClick={retryPosts}
+              >
+                Try again
+              </button>
+            </div>
           ) : null}
         </>
       ) : (

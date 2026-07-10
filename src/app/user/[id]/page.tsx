@@ -31,9 +31,13 @@ async function loadProfile(id: string) {
     .eq("id", id)
     .maybeSingle();
 
-  if (!profile || error) return null;
+  if (error) throw error;
+  if (!profile) return null;
 
-  const [{ data: pets }, { data: posts }] = await Promise.all([
+  const [
+    { data: pets, error: petsError },
+    { data: posts, error: postsError },
+  ] = await Promise.all([
     supabase
       .from("pets")
       .select("id, name, species_group, breed, avatar_url")
@@ -42,6 +46,9 @@ async function loadProfile(id: string) {
       .limit(4),
     supabase.from("posts").select("id").eq("user_id", id).limit(200),
   ]);
+
+  if (petsError) throw petsError;
+  if (postsError) throw postsError;
 
   return {
     profile,
