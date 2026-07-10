@@ -15,6 +15,7 @@
     "capture:p2w2-3": "node scripts/p2w2-3-capture-dynamic-states.mjs",
     "test:home-runtime": "node scripts/homepage-runtime-smoke.mjs",
     "test:auth-h1": "node scripts/auth-heading-contract-check.mjs",
+    "test:i18n-parity": "node scripts/i18n-parity-check.mjs",
     "test:payment-guard": "node scripts/payment-guard-contract-check.mjs",
     "test:search-hardening": "node scripts/search-query-contract-check.mjs",
     "probe:search-injection": "node scripts/search-injection-probe.mjs"
