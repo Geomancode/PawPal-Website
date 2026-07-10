@@ -279,4 +279,230 @@ export const deMessages = {
   authTerms: "Bedingungen",
   authAnd: "und",
   authPrivacyPolicy: "Datenschutzerklärung",
+  aboutTeamAlexieRole: "Mitgründer & CEO",
+  aboutTeamAlexieDescription:
+    "Doktorand für GIS und Fernerkundung an der Universität Gent. Verantwortlich für Produktstrategie, technische Architektur und Finanzierung.",
+  aboutTeamNeumannRole: "Mitgründer & CPO",
+  aboutTeamNeumannDescription:
+    "Hintergrund in Wirtschaft und Marketing. Verantwortlich für Geschäftsmodell, Markteinführungsstrategie, Betrieb und Lieferkette.",
+  aboutTeamCarloRole: "Mitgründer & CDO",
+  aboutTeamCarloDescription:
+    "Designhintergrund. Verantwortlich für UI/UX-Design, visuelle Markenidentität und Nutzerforschung auf allen PawPal Plattformen.",
+  aboutEcosystemAppTitle: "PawPal-App",
+  aboutEcosystemAppDescription:
+    "Spaziergangsaufzeichnung mit Karte mit Erkundungsnebel, PawPoints-Prämien, Tierprofilen, täglichen Erinnerungen, KI-Assistent, NFC-Tag-Registrierung und Echtzeit-Gemeinschaft – alles in einer App.",
+  aboutEcosystemWebTitle: "PawPal-Web",
+  aboutEcosystemWebDescription:
+    "NFC-Tag-Scanseiten unter pawpal.be/tag/{id} ermöglichen Tierrettung ohne Download. Dazu kommen Onlineshop, KI-gestützte Suche und die interaktive Globuskarte.",
+  aboutEcosystemTagsTitle: "NFC-Smart-Tags",
+  aboutEcosystemTagsDescription:
+    "Ab 19 €. Dynamische Profilseiten ersetzen statische Tiermarken. Datenschutz zuerst: Kontaktdaten der Halter bleiben verborgen, bis der Verlustmodus aktiviert wird.",
+  aboutValueEnhanceTitle: "Stärken statt ersetzen",
+  aboutValueEnhanceDescription:
+    "Unsere Mission ist es nicht, Verbundenheit durch Technologie zu ersetzen, sondern die Beziehung zwischen Menschen und ihren Tieren mit intelligenten Werkzeugen zu stärken.",
+  aboutValuePrivacyTitle: "Datenschutz & Vertrauen",
+  aboutValuePrivacyDescription:
+    "DSGVO-orientiertes Design. Standortdaten werden nur während Spaziergängen erfasst. NFC-Tags schützen die Privatsphäre der Halter standardmäßig. In der EU gehostete Daten mit Sicherheit auf Zeilenebene.",
+  aboutValueCommunityTitle: "Lokale Gemeinschaft",
+  aboutValueCommunityDescription:
+    "PawPal verbindet Nachbarn über ihre Tiere – Personen für nahe Spaziergänge finden, gegenseitige Hilfe anfragen und durch verifizierte Interaktionen Vertrauen aufbauen.",
+  aboutValueAiCareTitle: "KI-gestützte Tierpflege",
+  aboutValueAiCareDescription:
+    "Gemini KI für Rassenerkennung, Verhaltensanalyse und tägliche Pflegehinweise. Klar als nicht medizinisch gekennzeichnet – bei Gesundheitsfragen immer tierärztlichen Rat einholen.",
+  aboutValueBelgiumTitle: "In Belgien entstanden",
+  aboutValueBelgiumDescription:
+    "Gegründet in Gent. Tiefes Verständnis der flämischen Tierkultur. Englisch ist bereits verfügbar; Übersetzungen für DE/FR/NL/ZH werden entwickelt.",
+  aboutValueExplorationTitle: "Spielerisches Erkunden",
+  aboutValueExplorationDescription:
+    "Sechseckige H3-Karten mit Erkundungsnebel machen jeden Hundespaziergang zum Abenteuer. PawPoints gibt es für neue Gebiete, Serien und Beiträge zur Gemeinschaft.",
+  aboutTimeline2024:
+    "Die Idee entsteht – drei Tierliebhaber in Gent stellen sich eine intelligentere Art vor, Tiere zu versorgen und lokale Gemeinschaften zu verbinden.",
+  aboutTimeline2025Q1:
+    "Full-Stack-MVP fertiggestellt: Flutter-App, Next.js-Website und Supabase-Backend mit 52 Datenbankmigrationen und räumlicher PostGIS-Engine.",
+  aboutTimeline2025Q2:
+    "KI-Agent (Gemini), NFC-Tag-System, Echtzeit-Chat und eine englischsprachige Internationalisierungsgrundlage werden veröffentlicht.",
+  aboutTimeline2025H2:
+    "Karten-Engine mit Erkundungsnebel (H3-Sechsecke), spielerische Spaziergangsaufzeichnung mit Wettersynchronisierung und PawPoints-Prämiensystem werden entwickelt und umgesetzt.",
+  aboutTimeline2026:
+    "Kaltstart in Gent: Kampagne ‚500 NFC-Halsbänder‘, lokale Partnerschaften mit Tierhandlungen und Tierarztpraxen sowie Finanzierung durch Business Angels.",
+  aboutStrengthGis: "GIS-Promotion × LBS-Produktkompetenz",
+  aboutStrengthMigrations: "52 DB-Migrationen ausgeliefert",
+  aboutStrengthLocales: "Englisch verfügbar; weitere Sprachen geplant",
+  aboutStrengthGhent: "In Gent verwurzelt",
+  aboutBadge: "Produktnachweis aus Gent",
+  aboutHeroTitle: "Eine vernetzte Sicherheitsebene für die tägliche Tierpflege.",
+  aboutHeroCopy:
+    "PawPal verbindet die Momente rund um ein Tier: Spaziergänge, Finder-Seiten, Smart Tags, Shop-Bestellungen und lokale Hilfe. Die Webebene bietet Haltern und Findern einen klaren Weg, ohne zuerst die App zu benötigen.",
+  aboutExploreGlobe: "Globus erkunden",
+  aboutShopSmartTags: "Smart Tags kaufen",
+  aboutProductSystemEyebrow: "Produktsystem",
+  aboutProductSystemTitle: "App, Web und NFC-Tags bilden einen gemeinsamen Kreislauf.",
+  aboutSystemDailyLabel: "Tägliche Pflege",
+  aboutSystemDailyCopy: "Spaziergänge, Tiere, Erinnerungen und KI-Hinweise.",
+  aboutSystemPhysicalLabel: "Physische Sicherheit",
+  aboutSystemPhysicalCopy: "Smart Tags öffnen kontrollierte Finder-Seiten.",
+  aboutSystemLocalLabel: "Lokales Netzwerk",
+  aboutSystemLocalCopy: "Kartenorte, Hilfe aus der Gemeinschaft und Supportwege.",
+  aboutMetricFinderValue: "Finder-Seiten",
+  aboutMetricFinderLabel: "Kontrollierter öffentlicher Sicherheitsablauf",
+  aboutMetricTagsValue: "Smart Tags für Tiere",
+  aboutMetricTagsLabel: "Physischer Einstieg per Scan",
+  aboutMetricStoreValue: "Shop-Bestellungen",
+  aboutMetricStoreLabel: "Stripe-gestützter Kaufweg",
+  aboutMetricGlobeValue: "Globuskarte",
+  aboutMetricGlobeLabel: "Lokaler Kontext für Tierpflege",
+  aboutMissionPrefix:
+    "„PawPals Mission ist es nicht, Verbundenheit durch Technologie zu ersetzen, sondern die Beziehung zwischen Menschen und ihren Tieren ",
+  aboutMissionHighlight: "zu stärken",
+  aboutMissionSuffix: " – mit intelligenten Werkzeugen.“",
+  aboutMissionAttribution: "— PawPal Gründungsteam · Gent, Belgien",
+  aboutEcosystemTitle: "Das PawPal-Ökosystem",
+  aboutEcosystemCopy:
+    "App + Web + Hardware – drei Produkte, eine Mission: jeden Moment mit dem eigenen Tier bereichern.",
+  aboutValuesTitle: "Wofür wir stehen",
+  aboutValuesCopy:
+    "Unsere Werte leiten jede Entscheidung – von den Funktionen, die wir entwickeln, bis zur Gemeinschaft, die wir aufbauen.",
+  aboutTeamTitle: "Das Gründungsteam kennenlernen",
+  aboutTeamCopy:
+    "Ein interdisziplinäres Trio aus Gent – Technik, Wirtschaft und Design – vereint durch die gemeinsame Liebe zu Tieren.",
+  aboutJourneyTitle: "Unser Weg",
+  aboutJourneyCopy: "Von einem ersten Gedanken zu einer produktionsreifen Plattform.",
+  aboutCtaTitle: "Teil der PawPal-Reise werden",
+  aboutCtaCopy:
+    "Wir bauen die Plattform, die wir selbst vermisst haben – für alle Menschen mit Hunden, Katzen oder anderen Tieren, die glauben, dass Technologie die Beziehung zum besten Freund stärken und nicht ersetzen sollte.",
+  aboutContactTeam: "Team kontaktieren",
+  aboutContactPrompt: "Fragen? Erreichbar unter ",
+  helpNfcTitle: "NFC-Tag oder Tierprofil",
+  helpNfcRoute: "Finder-Seite, QR/NFC, Verlustmodus",
+  helpNfcText:
+    "Wenn ein Scan nicht das erwartete Tierprofil öffnet, die Tag-ID und die Freigabe von Kontaktdaten durch den Halter angeben.",
+  helpNfcAction: "Tag kaufen oder ersetzen",
+  helpStoreTitle: "Hilfe zu Shop oder Bestellung",
+  helpStoreRoute: "Smart Tags, Kasse, Bestellstatus",
+  helpStoreText:
+    "Bei Fragen zum Shop Bestell-E-Mail, Produktname und die angezeigte Kassen- oder Erfolgsseite angeben.",
+  helpStoreAction: "Shop ansehen",
+  helpAccountTitle: "Konto und Gemeinschaft",
+  helpAccountRoute: "Anmeldung, Beiträge, Chat, Moderation",
+  helpAccountText:
+    "Bei Fragen zu Anmeldung, Beiträgen, Chat oder Moderation Konto-E-Mail und betroffene Ansicht angeben.",
+  helpAccountAction: "Support per E-Mail",
+  helpUrgentTitle: "Sicherheits- oder dringendes Tierproblem",
+  helpUrgentRoute: "Halterwarnungen, nahe Hilfe, Rettung",
+  helpUrgentText:
+    "Bei dringenden Rettungs- oder Sicherheitssituationen zuerst lokale Dienste kontaktieren und anschließend mit PawPal Halter oder Gemeinschaft benachrichtigen.",
+  helpUrgentAction: "Globus öffnen",
+  helpStepTagLabel: "Tag-Scan",
+  helpStepTagValue: "Tag-ID + Halterstatus",
+  helpStepStoreLabel: "Shop",
+  helpStepStoreValue: "Bestell-E-Mail + Produkt",
+  helpStepAccountLabel: "Konto",
+  helpStepAccountValue: "E-Mail + betroffene Ansicht",
+  helpStepUrgentLabel: "Dringend",
+  helpStepUrgentValue: "Lokale Dienste zuerst",
+  helpBadge: "Unterstützung",
+  helpHeroTitle: "Den richtigen PawPal-Hilfeweg finden.",
+  helpHeroCopy:
+    "Passenden Weg für Tag-Scans, Shop-Bestellungen, Kontozugriff, Aktivitäten in der Gemeinschaft oder dringende Tiersicherheit auswählen.",
+  helpContactSupport: "Support kontaktieren",
+  helpOpenGlobe: "Globus öffnen",
+  helpRouteEyebrow: "Supportweg",
+  helpRouteTitle: "Passenden Weg auswählen",
+  helpContextTitle: "Nur Angaben aufnehmen, die dem Support bei der Zuordnung helfen.",
+  helpContextCopy:
+    "Tag-ID, Konto-E-Mail, Bestell-E-Mail, Produktname, betroffene Ansicht und Screenshots reichen für die meisten Anfragen aus.",
+  helpBelgiumSupport: "Support mit Fokus auf Belgien",
+  guidelinesRespectTitle: "Alle Mitglieder respektieren",
+  guidelinesRespectText:
+    "Tierhalter, Finder, Partner und Nachbarn respektvoll behandeln. Belästigung, Mobbing, Drohungen, Hassrede oder Angriffe aufgrund von Identität oder geschützten Merkmalen sind nicht erlaubt.",
+  guidelinesRespectSignal: "Keine Belästigung",
+  guidelinesContentTitle: "Verbotene Inhalte",
+  guidelinesContentText:
+    "Keine Gewaltandrohungen, drastische Gewaltdarstellungen, sexuellen Inhalte, Tierquälerei, illegalen Geschäfte, Betrugsversuche, Spam oder wiederholte Werbung veröffentlichen, die die Gemeinschaft stört.",
+  guidelinesContentSignal: "Sichere Inhalte",
+  guidelinesPrivacyTitle: "Standort und Datenschutz",
+  guidelinesPrivacyText:
+    "Ohne Einwilligung weder den genauen Wohnort noch private Adressen, genaue Routinen, Kontaktdaten oder Identitätsangaben zu Tieren anderer Personen veröffentlichen.",
+  guidelinesPrivacySignal: "Standardmäßig privat",
+  guidelinesModerationTitle: "Meldungen und Moderation",
+  guidelinesModerationText:
+    "Jeder Inhalt in der App enthält eine Meldefunktion. PawPal prüft Meldungen und kann nach Verstößen Inhalte entfernen, Funktionen einschränken, Konten sperren oder Konten ausschließen.",
+  guidelinesModerationSignal: "In der App melden",
+  guidelinesAppealsTitle: "Einsprüche",
+  guidelinesAppealsText:
+    "Wenn eine Moderationsmaßnahme irrtümlich erfolgt zu sein scheint, hello@pawpal.be unter Angabe der Konto-E-Mail, des betroffenen Inhalts und aller relevanten Umstände kontaktieren.",
+  guidelinesAppealsSignal: "Prüfung durch den Support",
+  guidelinesBadge: "Gemeinschaftsrichtlinien",
+  guidelinesHeroTitle: "Sicherere Gemeinschaftsräume für Tiere und Menschen.",
+  guidelinesHeroCopy:
+    "Diese Richtlinien erläutern die Erwartungen bei der Nutzung von PawPal Gemeinschaftsfunktionen, öffentlichen Abläufen zur Tiersicherheit und Inhalten in der App.",
+  guidelinesTrustRespectLabel: "Respekt zuerst",
+  guidelinesTrustRespectValue: "Belästigung, Drohungen und Hassrede sind nicht erlaubt.",
+  guidelinesTrustReportLabel: "Meldefunktionen",
+  guidelinesTrustReportValue: "Jeder Inhalt in der App kann zur Prüfung gemeldet werden.",
+  guidelinesTrustModerationLabel: "Moderationsmaßnahmen",
+  guidelinesTrustModerationValue:
+    "Verstöße können zur Entfernung, Sperrung oder zum Ausschluss von Konten führen.",
+  guidelinesSectionsAriaLabel: "Abschnitte der Gemeinschaftsrichtlinien",
+  privacyDataTitle: "Verwendete Daten",
+  privacyDataText:
+    "PawPal verwendet Konto-, Tierprofil-, Karten-, Spaziergangs-, Shop- und Gemeinschaftsdaten, um die ausgewählten Produktfunktionen bereitzustellen.",
+  privacyDataSignal: "Auf Funktionen begrenzt",
+  privacyLocationTitle: "Standort und Sicherheit",
+  privacyLocationText:
+    "Standortfunktionen werden für Karten, Spaziergänge, nahe Orte und Sicherheitsabläufe verwendet. Öffentliche Finder-Seiten zeigen nur die Angaben, deren Veröffentlichung Halter festlegen.",
+  privacyLocationSignal: "Kontrollierte Freigabe",
+  privacyChoicesTitle: "Eigene Wahlmöglichkeiten",
+  privacyChoicesText:
+    "Kontodaten, Sichtbarkeit von Tierprofilen, Einstellungen des Verlustmodus und Kommunikationspräferenzen können in der App oder über den Support aktualisiert werden.",
+  privacyChoicesSignal: "Durch Halter verwaltet",
+  privacyCookiesTitle: "Cookies & lokaler Speicher",
+  privacyCookiesText:
+    "PawPal verwendet derzeit keine Analysen von Drittanbietern. Nicht notwendige Analysen dürfen erst nach Einwilligung geladen werden.",
+  privacyCookiesSignal: "Einwilligung erforderlich",
+  privacyCookieAuthLabel: "Authentifizierung",
+  privacyCookieAuthText:
+    "Notwendige Authentifizierungs-Cookies von Supabase halten Anmeldesitzungen funktionsfähig.",
+  privacyCookieCheckoutLabel: "Kassenvorgang",
+  privacyCookieCheckoutText:
+    "Notwendiger Stripe-Speicher für den Kassenvorgang unterstützt Zahlungs- und Bestellabläufe.",
+  privacyCookiePreferencesLabel: "Einstellungen",
+  privacyCookiePreferencesText:
+    "Lokale Einstellungen speichern Auswahlmöglichkeiten wie Globus-Tutorials und den Shop-Status.",
+  privacyBadge: "Datenschutz",
+  privacyHeroTitle: "Kontrollierte Freigabe in jedem Ablauf zur Tiersicherheit.",
+  privacyHeroCopy:
+    "PawPal ist auf kontrollierte Freigaben ausgelegt: Halter bestimmen, was öffentlich ist, was privat bleibt und wann Informationen des Verlustmodus sichtbar werden.",
+  privacyTrustOwnerLabel: "Vom Halter gewählte Freigabe",
+  privacyTrustOwnerValue: "Öffentliche Sicherheitsangaben werden vom Halter gesteuert.",
+  privacyTrustFinderLabel: "Finder-Seiten",
+  privacyTrustFinderValue: "Für Finder sichtbare Angaben bleiben auf den Rettungsablauf begrenzt.",
+  privacyTrustRequestsLabel: "Datenschutzanfragen",
+  privacyTrustRequestsValue:
+    "Der Support kann Fragen zu Kontodaten und Datenschutz weiterleiten.",
+  privacySectionsAriaLabel: "Abschnitte zum Datenschutz",
+  termsResponsibleTitle: "PawPal verantwortungsvoll verwenden",
+  termsResponsibleText:
+    "PawPal hilft Tierhaltern, Pflege, Spaziergänge, Sicherheit und Hilfe aus der Gemeinschaft zu koordinieren. Profile, Tags, Karten oder Gemeinschaftswerkzeuge dürfen nicht missbräuchlich verwendet werden.",
+  termsResponsibleSignal: "Vertrauen der Gemeinschaft",
+  termsStoreTitle: "Käufe im Shop",
+  termsStoreText:
+    "Der Kassenvorgang im Shop wird über Stripe abgewickelt. Produktverfügbarkeit, Preise und Versandangaben können sich ändern, bevor eine Bestellung abgeschlossen ist.",
+  termsStoreSignal: "Stripe-Kassenvorgang",
+  termsCommunityTitle: "Inhalte der Gemeinschaft",
+  termsCommunityText:
+    "Beiträge, Chats, Meldungen und öffentliche Rettungsinformationen sollen korrekt, respektvoll und für andere Halter und Finder sicher sein.",
+  termsCommunitySignal: "Öffentliche Sicherheit",
+  termsBadge: "Rechtliches",
+  termsHeroTitle: "Klare Regeln für Tierpflege, Handel und Gemeinschaft.",
+  termsHeroCopy:
+    "Diese Bedingungen fassen die erwartete Nutzung von PawPal auf Website, im Shop, in der App und in öffentlichen Abläufen zur Tiersicherheit zusammen.",
+  termsTrustSafetyLabel: "Sicherheit zuerst",
+  termsTrustSafetyValue: "Bei dringenden Rettungssituationen zuerst lokale Dienste nutzen.",
+  termsTrustPurchaseLabel: "Transparenz beim Kauf",
+  termsTrustPurchaseValue:
+    "Kassenvorgang, Preise und Versand werden vor der Zahlung bestätigt.",
+  termsTrustRespectLabel: "Respektvolle Nutzung",
+  termsTrustRespectValue: "Profile, Karten und Beiträge sollen Haltern und Findern helfen.",
+  termsSectionsAriaLabel: "Abschnitte der Bedingungen",
 } satisfies WebsiteMessages;

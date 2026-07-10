@@ -20,6 +20,7 @@ import {
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import {
   Badge,
   Card,
@@ -27,6 +28,9 @@ import {
   PageShell,
   buttonClassName,
 } from "@/components/ui";
+import { resolveMessages, type MessageKey } from "@/i18n/messages";
+import { localeFromPath } from "@/i18n/routing";
+import { siteConfig } from "@/lib/site";
 import { useReducedMotionPreference } from "@/lib/useReducedMotionPreference";
 
 /* ── Animation helpers ── */
@@ -43,70 +47,73 @@ const fadeUp = (shouldReduceMotion: boolean, delay = 0) => ({
 const TEAM = [
   {
     name: "Alexie",
-    role: "Co-founder & CEO",
-    desc: "PhD candidate in GIS & Remote Sensing at Ghent University. Leads product strategy, technical architecture, and fundraising.",
+    roleKey: "aboutTeamAlexieRole",
+    descKey: "aboutTeamAlexieDescription",
   },
   {
     name: "Neumann",
-    role: "Co-founder & CPO",
-    desc: "Business & Marketing background. Drives business model, go-to-market strategy, operations, and supply chain.",
+    roleKey: "aboutTeamNeumannRole",
+    descKey: "aboutTeamNeumannDescription",
   },
   {
     name: "Carlo",
-    role: "Co-founder & CDO",
-    desc: "Design background. Leads UI/UX design, brand visual identity, and user research across all PawPal platforms.",
+    roleKey: "aboutTeamCarloRole",
+    descKey: "aboutTeamCarloDescription",
   },
-];
+] as const;
 
 /* ── Product Ecosystem ── */
 const ECOSYSTEM = [
   {
     icon: Smartphone,
-    title: "PawPal App",
-    desc: "Walk recording with fog-of-war map, PawPoints rewards, pet profiles, daily reminders, AI assistant, NFC tag enrollment, and real-time community — all in one app.",
+    titleKey: "aboutEcosystemAppTitle",
+    descKey: "aboutEcosystemAppDescription",
     tone: "bg-paw-primary-soft text-paw-on-primary-soft",
   },
   {
     icon: Globe,
-    title: "PawPal Web",
-    desc: "NFC tag scan landing pages at pawpal.be/tag/{id} — zero-download pet rescue. Plus the online store, AI-powered search, and the interactive Globe map.",
+    titleKey: "aboutEcosystemWebTitle",
+    descKey: "aboutEcosystemWebDescription",
     tone: "bg-paw-trust-soft text-paw-on-trust-soft",
   },
   {
     icon: Nfc,
-    title: "NFC Smart Tags",
-    desc: "Starting at €19. Dynamic profile pages replace static dog tags. Privacy-first: owner contact info stays hidden until lost mode is activated.",
+    titleKey: "aboutEcosystemTagsTitle",
+    descKey: "aboutEcosystemTagsDescription",
     tone: "bg-paw-green-soft text-paw-on-green-soft",
   },
-];
+] as const;
 
 /* ── Values ── */
 const VALUES = [
-  { icon: Heart, title: "Enhance, Not Replace", desc: "Our mission is not to replace companionship with technology, but to enhance the bond between humans and their pets through smart tools." },
-  { icon: Shield, title: "Privacy & Trust", desc: "GDPR-first design. Location recorded only during walks. NFC tags protect owner privacy by default. EU-hosted data with row-level security." },
-  { icon: Users, title: "Local Community", desc: "PawPal connects neighbors through their pets — find nearby dog walkers, request mutual help, and build trust through verified interactions." },
-  { icon: Sparkles, title: "AI-Powered Care", desc: "Gemini AI for breed recognition, behavior analysis, and daily care advice. Clearly labeled as non-medical — always consult a vet for health concerns." },
-  { icon: MapPin, title: "Born in Belgium", desc: "Founded in Ghent. Deep understanding of Flemish pet culture. English is available now, with DE/FR/NL/ZH translation tracks in progress." },
-  { icon: Map, title: "Gamified Exploration", desc: "H3 hexagonal fog-of-war maps turn every dog walk into an adventure. Earn PawPoints for exploring new areas, streaks, and community contributions." },
-];
+  { icon: Heart, titleKey: "aboutValueEnhanceTitle", descKey: "aboutValueEnhanceDescription" },
+  { icon: Shield, titleKey: "aboutValuePrivacyTitle", descKey: "aboutValuePrivacyDescription" },
+  { icon: Users, titleKey: "aboutValueCommunityTitle", descKey: "aboutValueCommunityDescription" },
+  { icon: Sparkles, titleKey: "aboutValueAiCareTitle", descKey: "aboutValueAiCareDescription" },
+  { icon: MapPin, titleKey: "aboutValueBelgiumTitle", descKey: "aboutValueBelgiumDescription" },
+  { icon: Map, titleKey: "aboutValueExplorationTitle", descKey: "aboutValueExplorationDescription" },
+] as const;
 
 /* ── Real Timeline ── */
 const TIMELINE = [
-  { year: "2024", event: "The idea is born — three pet lovers in Ghent imagine a smarter way to care for pets and connect local communities." },
-  { year: "2025 Q1", event: "Full-stack MVP complete: Flutter app + Next.js website + Supabase backend with 52 database migrations and PostGIS spatial engine." },
-  { year: "2025 Q2", event: "AI agent (Gemini), NFC tag system, real-time chat, and an English-first internationalization foundation shipped." },
-  { year: "2025 H2", event: "Fog-of-war map engine (H3 hexagons), gamified walk tracking with weather sync, PawPoints reward system designed and built." },
-  { year: "2026", event: "Ghent cold start: '500 NFC collars' campaign, local partnerships with pet shops and vet clinics, angel round fundraising." },
-];
+  { year: "2024", eventKey: "aboutTimeline2024" },
+  { year: "2025 Q1", eventKey: "aboutTimeline2025Q1" },
+  { year: "2025 Q2", eventKey: "aboutTimeline2025Q2" },
+  { year: "2025 H2", eventKey: "aboutTimeline2025H2" },
+  { year: "2026", eventKey: "aboutTimeline2026" },
+] as const;
 
-const TEAM_STRENGTHS: Array<{ icon: LucideIcon; text: string }> = [
-  { icon: GraduationCap, text: "GIS PhD × LBS Product" },
-  { icon: Zap, text: "52 DB Migrations Shipped" },
-  { icon: Languages, text: "English Live; Locales Planned" },
-  { icon: MapPin, text: "Rooted in Ghent" },
+const TEAM_STRENGTHS: ReadonlyArray<{ icon: LucideIcon; textKey: "aboutStrengthGis" | "aboutStrengthMigrations" | "aboutStrengthLocales" | "aboutStrengthGhent" }> = [
+  { icon: GraduationCap, textKey: "aboutStrengthGis" },
+  { icon: Zap, textKey: "aboutStrengthMigrations" },
+  { icon: Languages, textKey: "aboutStrengthLocales" },
+  { icon: MapPin, textKey: "aboutStrengthGhent" },
 ];
 
 export default function About() {
+  const pathname = usePathname();
+  const messages = resolveMessages(localeFromPath(pathname));
+  const t = (key: MessageKey) => messages[key];
   const shouldReduceMotion = useReducedMotionPreference();
 
   return (
@@ -117,7 +124,7 @@ export default function About() {
           <motion.div {...fadeUp(shouldReduceMotion)}>
             <Badge tone="primary" className="mb-paw-lg">
               <PawPrint className="h-4 w-4" aria-hidden="true" />
-              Product proof from Ghent
+              {t("aboutBadge")}
             </Badge>
           </motion.div>
 
@@ -125,28 +132,26 @@ export default function About() {
             {...fadeUp(shouldReduceMotion, 0.1)}
             className="max-w-3xl font-brand text-paw-type-h1 font-black text-paw-ink sm:text-paw-type-display"
           >
-            A connected safety layer for everyday pet care.
+            {t("aboutHeroTitle")}
           </motion.h1>
 
           <motion.p
             {...fadeUp(shouldReduceMotion, 0.2)}
             className="mt-paw-md max-w-2xl text-paw-type-body text-paw-body sm:text-base"
           >
-            PawPal connects the moments around a pet: walks, finder pages,
-            smart tags, store orders, and local support. The web layer gives
-            owners and finders a clear path without requiring the app first.
+            {t("aboutHeroCopy")}
           </motion.p>
 
           <motion.div {...fadeUp(shouldReduceMotion, 0.3)} className="mt-paw-xl flex flex-wrap gap-paw-sm">
             <Link href="/globe" className={buttonClassName({ size: "lg" })}>
-              Explore Globe
+              {t("aboutExploreGlobe")}
               <ArrowRight className="h-4 w-4" aria-hidden="true" />
             </Link>
             <Link
               href="/store"
               className={buttonClassName({ variant: "secondary", size: "lg" })}
             >
-              Shop smart tags
+              {t("aboutShopSmartTags")}
             </Link>
           </motion.div>
         </div>
@@ -156,16 +161,16 @@ export default function About() {
             <div className="hero-map-grid pointer-events-none absolute inset-0 opacity-35" />
             <div className="relative z-10">
               <p className="text-paw-type-caption font-black uppercase text-paw-muted">
-                Product system
+                {t("aboutProductSystemEyebrow")}
               </p>
               <h2 className="mt-paw-xs text-paw-type-h2 font-black text-paw-ink">
-                App, Web, and NFC tags work as one loop.
+                {t("aboutProductSystemTitle")}
               </h2>
               <div className="mt-paw-lg space-y-paw-sm">
                 {[
-                  { icon: Smartphone, label: "Daily care", copy: "Walks, pets, reminders, and AI guidance." },
-                  { icon: Nfc, label: "Physical safety", copy: "Smart tags open controlled finder pages." },
-                  { icon: Globe, label: "Local network", copy: "Map places, community help, and support routes." },
+                  { icon: Smartphone, label: t("aboutSystemDailyLabel"), copy: t("aboutSystemDailyCopy") },
+                  { icon: Nfc, label: t("aboutSystemPhysicalLabel"), copy: t("aboutSystemPhysicalCopy") },
+                  { icon: Globe, label: t("aboutSystemLocalLabel"), copy: t("aboutSystemLocalCopy") },
                 ].map((item) => (
                   <div
                     key={item.label}
@@ -183,10 +188,10 @@ export default function About() {
               </div>
               <div className="mt-paw-lg grid grid-cols-2 gap-paw-sm">
                 {[
-                  { value: "Finder pages", label: "Controlled public safety flow" },
-                  { value: "Smart tags", label: "Physical scan entry" },
-                  { value: "Store orders", label: "Stripe-backed purchase path" },
-                  { value: "Globe map", label: "Local pet-care context" },
+                  { value: t("aboutMetricFinderValue"), label: t("aboutMetricFinderLabel") },
+                  { value: t("aboutMetricTagsValue"), label: t("aboutMetricTagsLabel") },
+                  { value: t("aboutMetricStoreValue"), label: t("aboutMetricStoreLabel") },
+                  { value: t("aboutMetricGlobeValue"), label: t("aboutMetricGlobeLabel") },
                 ].map((s) => (
                   <div key={s.value} className="about-metric-tile text-center">
                     <div className="text-base font-black leading-tight text-paw-on-primary-soft">
@@ -208,11 +213,11 @@ export default function About() {
         <div className="mx-auto max-w-3xl text-center">
           <motion.div {...fadeUp(shouldReduceMotion)}>
             <p className="text-paw-type-h2 font-black leading-snug text-paw-ink sm:text-3xl">
-              &ldquo;PawPal&apos;s mission is not to replace companionship with technology, but to{" "}
-              <span className="text-paw-on-primary-soft">enhance</span> the bond between humans and their pets
-              through smart tools.&rdquo;
+              {t("aboutMissionPrefix")}
+              <span className="text-paw-on-primary-soft">{t("aboutMissionHighlight")}</span>
+              {t("aboutMissionSuffix")}
             </p>
-            <p className="mt-paw-md text-sm font-semibold text-paw-muted">— PawPal Founding Team · Ghent, Belgium</p>
+            <p className="mt-paw-md text-sm font-semibold text-paw-muted">{t("aboutMissionAttribution")}</p>
           </motion.div>
         </div>
       </section>
@@ -220,20 +225,20 @@ export default function About() {
       {/* ===== PRODUCT ECOSYSTEM ===== */}
       <section>
         <motion.div {...fadeUp(shouldReduceMotion)} className="mx-auto mb-paw-xxl max-w-2xl text-center">
-          <h2 className="font-brand text-paw-type-h1 font-black text-paw-ink sm:text-paw-type-display">The PawPal Ecosystem</h2>
-          <p className="mx-auto mt-paw-sm text-paw-body">App + Web + Hardware — three products, one mission: enhance every moment with your pet.</p>
+          <h2 className="font-brand text-paw-type-h1 font-black text-paw-ink sm:text-paw-type-display">{t("aboutEcosystemTitle")}</h2>
+          <p className="mx-auto mt-paw-sm text-paw-body">{t("aboutEcosystemCopy")}</p>
         </motion.div>
 
         <div className="grid gap-paw-lg md:grid-cols-3">
           {ECOSYSTEM.map((item, i) => (
-            <motion.div key={item.title} {...fadeUp(shouldReduceMotion, i * 0.08)}>
+            <motion.div key={item.titleKey} {...fadeUp(shouldReduceMotion, i * 0.08)}>
               <Card className="h-full transition hover:-translate-y-1 hover:border-paw-primary/30 hover:shadow-paw-floating">
                 <CardContent>
                   <div className={`mb-paw-lg flex h-14 w-14 items-center justify-center rounded-paw-panel ${item.tone}`}>
                     <item.icon className="h-7 w-7" />
                   </div>
-                  <h3 className="text-paw-type-h3 font-black text-paw-ink">{item.title}</h3>
-                  <p className="mt-paw-sm text-sm leading-6 text-paw-body">{item.desc}</p>
+                  <h3 className="text-paw-type-h3 font-black text-paw-ink">{t(item.titleKey)}</h3>
+                  <p className="mt-paw-sm text-sm leading-6 text-paw-body">{t(item.descKey)}</p>
                 </CardContent>
               </Card>
             </motion.div>
@@ -244,20 +249,20 @@ export default function About() {
       {/* ===== VALUES ===== */}
       <section>
         <motion.div {...fadeUp(shouldReduceMotion)} className="mx-auto mb-paw-xxl max-w-2xl text-center">
-          <h2 className="font-brand text-paw-type-h1 font-black text-paw-ink sm:text-paw-type-display">What We Stand For</h2>
-          <p className="mx-auto mt-paw-sm text-paw-body">Our values guide every decision — from the features we build to the community we grow.</p>
+          <h2 className="font-brand text-paw-type-h1 font-black text-paw-ink sm:text-paw-type-display">{t("aboutValuesTitle")}</h2>
+          <p className="mx-auto mt-paw-sm text-paw-body">{t("aboutValuesCopy")}</p>
         </motion.div>
 
         <div className="grid gap-paw-md md:grid-cols-2 lg:grid-cols-3">
           {VALUES.map((v, i) => (
-            <motion.div key={v.title} {...fadeUp(shouldReduceMotion, i * 0.06)}>
+            <motion.div key={v.titleKey} {...fadeUp(shouldReduceMotion, i * 0.06)}>
               <Card className="h-full transition hover:border-paw-primary/30 hover:shadow-paw-floating">
                 <CardContent>
                   <span className="mb-paw-md flex h-11 w-11 items-center justify-center rounded-paw-control bg-paw-primary-soft text-paw-on-primary-soft">
                     <v.icon className="h-5 w-5" />
                   </span>
-                  <h3 className="text-base font-black text-paw-ink">{v.title}</h3>
-                  <p className="mt-paw-xs text-sm leading-6 text-paw-body">{v.desc}</p>
+                  <h3 className="text-base font-black text-paw-ink">{t(v.titleKey)}</h3>
+                  <p className="mt-paw-xs text-sm leading-6 text-paw-body">{t(v.descKey)}</p>
                 </CardContent>
               </Card>
             </motion.div>
@@ -268,8 +273,8 @@ export default function About() {
       {/* ===== TEAM ===== */}
       <section className="mx-auto max-w-5xl">
         <motion.div {...fadeUp(shouldReduceMotion)} className="mx-auto mb-paw-xxl max-w-2xl text-center">
-          <h2 className="font-brand text-paw-type-h1 font-black text-paw-ink sm:text-paw-type-display">Meet the Founding Team</h2>
-          <p className="mx-auto mt-paw-sm text-paw-body">A cross-disciplinary trio from Ghent — engineering, business, and design — united by a shared love for pets.</p>
+          <h2 className="font-brand text-paw-type-h1 font-black text-paw-ink sm:text-paw-type-display">{t("aboutTeamTitle")}</h2>
+          <p className="mx-auto mt-paw-sm text-paw-body">{t("aboutTeamCopy")}</p>
         </motion.div>
 
         <div className="grid gap-paw-lg md:grid-cols-3">
@@ -281,8 +286,8 @@ export default function About() {
                     {member.name.slice(0, 1)}
                   </div>
                   <h3 className="text-lg font-black text-paw-ink">{member.name}</h3>
-                  <p className="mb-paw-sm text-xs font-black uppercase text-paw-on-primary-soft">{member.role}</p>
-                  <p className="text-sm leading-6 text-paw-body">{member.desc}</p>
+                  <p className="mb-paw-sm text-xs font-black uppercase text-paw-on-primary-soft">{t(member.roleKey)}</p>
+                  <p className="text-sm leading-6 text-paw-body">{t(member.descKey)}</p>
                 </CardContent>
               </Card>
             </motion.div>
@@ -292,12 +297,12 @@ export default function About() {
         {/* Team strengths */}
         <motion.div {...fadeUp(shouldReduceMotion, 0.3)} className="mt-paw-xl grid gap-paw-sm sm:grid-cols-2 md:grid-cols-4">
           {TEAM_STRENGTHS.map((s) => (
-            <Card key={s.text} className="shadow-paw-panel">
+            <Card key={s.textKey} className="shadow-paw-panel">
               <CardContent className="flex items-center gap-paw-sm p-paw-md">
                 <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-paw-control bg-paw-primary-soft text-paw-on-primary-soft">
                   <s.icon className="h-4 w-4" aria-hidden="true" />
                 </span>
-                <span className="text-xs font-bold text-paw-body">{s.text}</span>
+                <span className="text-xs font-bold text-paw-body">{t(s.textKey)}</span>
               </CardContent>
             </Card>
           ))}
@@ -307,8 +312,8 @@ export default function About() {
       {/* ===== TIMELINE ===== */}
       <section className="mx-auto max-w-3xl">
         <motion.div {...fadeUp(shouldReduceMotion)} className="mb-paw-xxl text-center">
-          <h2 className="font-brand text-paw-type-h1 font-black text-paw-ink sm:text-paw-type-display">Our Journey</h2>
-          <p className="mt-paw-sm text-paw-body">From a spark of an idea to a production-ready platform.</p>
+          <h2 className="font-brand text-paw-type-h1 font-black text-paw-ink sm:text-paw-type-display">{t("aboutJourneyTitle")}</h2>
+          <p className="mt-paw-sm text-paw-body">{t("aboutJourneyCopy")}</p>
         </motion.div>
 
         <div className="relative">
@@ -328,7 +333,7 @@ export default function About() {
               {/* Card */}
               <Card className={`flex-1 p-paw-md shadow-paw-panel md:max-w-[45%] ${i % 2 === 0 ? "md:mr-auto" : "md:ml-auto"}`}>
                 <span className="text-xs font-black uppercase text-paw-on-primary-soft">{item.year}</span>
-                <p className="mt-paw-xxs text-sm leading-6 text-paw-body">{item.event}</p>
+                <p className="mt-paw-xxs text-sm leading-6 text-paw-body">{t(item.eventKey)}</p>
               </Card>
             </motion.div>
           ))}
@@ -340,23 +345,23 @@ export default function About() {
         <div className="mx-auto max-w-3xl text-center">
           <motion.div {...fadeUp(shouldReduceMotion)}>
             <h2 className="font-brand text-paw-type-h1 font-black text-paw-ink sm:text-paw-type-display">
-              Join the PawPal Journey
+              {t("aboutCtaTitle")}
             </h2>
             <p className="mx-auto mb-paw-xl mt-paw-md max-w-lg text-base leading-7 text-paw-body">
-              We&apos;re building the platform we wished existed — for every dog owner, cat lover, and pet parent who believes technology should strengthen, not replace, the bond with their best friend.
+              {t("aboutCtaCopy")}
             </p>
             <div className="flex flex-wrap justify-center gap-paw-sm">
               <a
                 href="mailto:hello@pawpal.be"
                 className={buttonClassName({ variant: "primary", size: "lg" })}
               >
-                Contact the team <Mail className="h-5 w-5" />
+                {t("aboutContactTeam")} <Mail className="h-5 w-5" />
               </a>
               <Link
                 href="/globe"
                 className={buttonClassName({ variant: "secondary", size: "lg" })}
               >
-                Explore Globe
+                {t("aboutExploreGlobe")}
               </Link>
             </div>
           </motion.div>
@@ -364,7 +369,7 @@ export default function About() {
           {/* Contact line */}
           <motion.div {...fadeUp(shouldReduceMotion, 0.2)} className="mt-paw-xl flex items-center justify-center gap-paw-xs text-paw-muted">
             <Mail className="h-4 w-4" />
-            <span className="text-sm">Questions? Reach us at <a href="mailto:hello@pawpal.be" className="about-inline-contact font-semibold text-paw-on-primary-soft hover:underline">hello@pawpal.be</a></span>
+            <span className="text-sm">{t("aboutContactPrompt")}<a href={`mailto:${siteConfig.email}`} className="about-inline-contact font-semibold text-paw-on-primary-soft hover:underline">{siteConfig.email}</a></span>
           </motion.div>
         </div>
       </section>

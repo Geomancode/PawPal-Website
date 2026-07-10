@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Ban,
   EyeOff,
@@ -8,52 +10,58 @@ import {
   Scale,
   ShieldCheck,
 } from "lucide-react";
-import { siteConfig } from "@/lib/site";
+import { usePathname } from "next/navigation";
 import {
   Badge,
   PageShell,
   buttonClassName,
 } from "@/components/ui";
+import { resolveMessages, type MessageKey } from "@/i18n/messages";
+import { localeFromPath } from "@/i18n/routing";
 
-const GUIDELINES_SECTIONS = [
+const GUIDELINE_DEFINITIONS = [
   {
     id: "guidelines-respect",
     icon: Handshake,
-    title: "Respect every member",
-    text: "Treat pet owners, finders, partners, and neighbors with respect. Harassment, bullying, threats, hate speech, or attacks based on identity or protected traits are not allowed.",
-    signal: "No harassment",
+    titleKey: "guidelinesRespectTitle",
+    textKey: "guidelinesRespectText",
+    signalKey: "guidelinesRespectSignal",
   },
   {
     id: "guidelines-prohibited-content",
     icon: Ban,
-    title: "Prohibited content",
-    text: "Do not post violent threats, graphic violence, sexual content, animal abuse, illegal trades, scams, spam, or repetitive marketing that disrupts the community.",
-    signal: "Content safety",
+    titleKey: "guidelinesContentTitle",
+    textKey: "guidelinesContentText",
+    signalKey: "guidelinesContentSignal",
   },
   {
     id: "guidelines-location-privacy",
     icon: EyeOff,
-    title: "Location and privacy",
-    text: "Do not publish another person's home-level location, private address, exact routine, contact details, or pet identity information without consent.",
-    signal: "Private by default",
+    titleKey: "guidelinesPrivacyTitle",
+    textKey: "guidelinesPrivacyText",
+    signalKey: "guidelinesPrivacySignal",
   },
   {
     id: "guidelines-reporting",
     icon: Flag,
-    title: "Reports and moderation",
-    text: "Each in-app content item includes a report control. PawPal reviews reports and may remove content, limit features, suspend accounts, or ban accounts after violations.",
-    signal: "Report in app",
+    titleKey: "guidelinesModerationTitle",
+    textKey: "guidelinesModerationText",
+    signalKey: "guidelinesModerationSignal",
   },
   {
     id: "guidelines-appeals",
     icon: Mail,
-    title: "Appeals",
-    text: `If you believe a moderation action was made in error, contact ${siteConfig.email} with your account email, the affected content, and any relevant context.`,
-    signal: "Support review",
+    titleKey: "guidelinesAppealsTitle",
+    textKey: "guidelinesAppealsText",
+    signalKey: "guidelinesAppealsSignal",
   },
-];
+] as const;
 
 export default function GuidelinesPage() {
+  const pathname = usePathname();
+  const messages = resolveMessages(localeFromPath(pathname));
+  const t = (key: MessageKey) => messages[key];
+
   return (
     <PageShell className="legal-page-shell pt-28 sm:pt-32" contentClassName="space-y-paw-xl">
       <section className="legal-hero-panel">
@@ -61,22 +69,21 @@ export default function GuidelinesPage() {
           <div>
             <Badge tone="primary" className="mb-paw-lg">
               <MessageSquareWarning className="h-4 w-4" aria-hidden="true" />
-              Community Guidelines
+              {t("guidelinesBadge")}
             </Badge>
             <h1 className="max-w-3xl font-brand text-paw-type-h1 font-black text-paw-ink sm:text-paw-type-display">
-              Safer community spaces for pets and people.
+              {t("guidelinesHeroTitle")}
             </h1>
             <p className="mt-paw-md max-w-2xl text-paw-type-body text-paw-body sm:text-base">
-              These guidelines explain what is expected when using PawPal
-              community features, public pet safety flows, and in-app content.
+              {t("guidelinesHeroCopy")}
             </p>
           </div>
 
           <aside className="grid gap-paw-sm">
             {[
-              { icon: ShieldCheck, label: "Respect first", value: "Harassment, threats, and hate speech are not allowed." },
-              { icon: Flag, label: "Report controls", value: "Every in-app content item includes a way to report concerns." },
-              { icon: Scale, label: "Moderation actions", value: "Violations can lead to removal, suspension, or account bans." },
+              { icon: ShieldCheck, label: t("guidelinesTrustRespectLabel"), value: t("guidelinesTrustRespectValue") },
+              { icon: Flag, label: t("guidelinesTrustReportLabel"), value: t("guidelinesTrustReportValue") },
+              { icon: Scale, label: t("guidelinesTrustModerationLabel"), value: t("guidelinesTrustModerationValue") },
             ].map((item) => (
               <div
                 key={item.label}
@@ -93,30 +100,30 @@ export default function GuidelinesPage() {
         </div>
       </section>
 
-      <nav className="legal-section-nav" aria-label="Community guideline sections">
-        {GUIDELINES_SECTIONS.map((section) => (
+      <nav className="legal-section-nav" aria-label={t("guidelinesSectionsAriaLabel")}>
+        {GUIDELINE_DEFINITIONS.map((section) => (
           <a
             key={section.id}
             href={`#${section.id}`}
             className={buttonClassName({ variant: "secondary", size: "sm" })}
           >
-            {section.title}
+            {t(section.titleKey)}
           </a>
         ))}
       </nav>
 
       <div className="legal-prose-grid">
-        {GUIDELINES_SECTIONS.map((section) => (
-          <section key={section.title} id={section.id} className="legal-prose-section">
+        {GUIDELINE_DEFINITIONS.map((section) => (
+          <section key={section.titleKey} id={section.id} className="legal-prose-section">
               <div className="legal-info-icon">
                 <section.icon className="h-5 w-5" aria-hidden="true" />
               </div>
               <h2 className="text-paw-type-h2 font-black text-paw-ink">
-                {section.title}
+                {t(section.titleKey)}
               </h2>
-              <p className="mt-paw-sm text-sm leading-6 text-paw-body">{section.text}</p>
+              <p className="mt-paw-sm text-sm leading-6 text-paw-body">{t(section.textKey)}</p>
               <p className="mt-paw-md text-xs font-black uppercase text-paw-on-primary-soft">
-                {section.signal}
+                {t(section.signalKey)}
               </p>
           </section>
         ))}

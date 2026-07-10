@@ -256,6 +256,234 @@ export const enMessages = {
   authTerms: "Terms",
   authAnd: "and",
   authPrivacyPolicy: "Privacy Policy",
+  aboutTeamAlexieRole: "Co-founder & CEO",
+  aboutTeamAlexieDescription:
+    "PhD candidate in GIS & Remote Sensing at Ghent University. Leads product strategy, technical architecture, and fundraising.",
+  aboutTeamNeumannRole: "Co-founder & CPO",
+  aboutTeamNeumannDescription:
+    "Business & Marketing background. Drives business model, go-to-market strategy, operations, and supply chain.",
+  aboutTeamCarloRole: "Co-founder & CDO",
+  aboutTeamCarloDescription:
+    "Design background. Leads UI/UX design, brand visual identity, and user research across all PawPal platforms.",
+  aboutEcosystemAppTitle: "PawPal App",
+  aboutEcosystemAppDescription:
+    "Walk recording with fog-of-war map, PawPoints rewards, pet profiles, daily reminders, AI assistant, NFC tag enrollment, and real-time community — all in one app.",
+  aboutEcosystemWebTitle: "PawPal Web",
+  aboutEcosystemWebDescription:
+    "NFC tag scan landing pages at pawpal.be/tag/{id} — zero-download pet rescue. Plus the online store, AI-powered search, and the interactive Globe map.",
+  aboutEcosystemTagsTitle: "NFC Smart Tags",
+  aboutEcosystemTagsDescription:
+    "Starting at €19. Dynamic profile pages replace static dog tags. Privacy-first: owner contact info stays hidden until lost mode is activated.",
+  aboutValueEnhanceTitle: "Enhance, Not Replace",
+  aboutValueEnhanceDescription:
+    "Our mission is not to replace companionship with technology, but to enhance the bond between humans and their pets through smart tools.",
+  aboutValuePrivacyTitle: "Privacy & Trust",
+  aboutValuePrivacyDescription:
+    "GDPR-first design. Location recorded only during walks. NFC tags protect owner privacy by default. EU-hosted data with row-level security.",
+  aboutValueCommunityTitle: "Local Community",
+  aboutValueCommunityDescription:
+    "PawPal connects neighbors through their pets — find nearby dog walkers, request mutual help, and build trust through verified interactions.",
+  aboutValueAiCareTitle: "AI-Powered Care",
+  aboutValueAiCareDescription:
+    "Gemini AI for breed recognition, behavior analysis, and daily care advice. Clearly labeled as non-medical — always consult a vet for health concerns.",
+  aboutValueBelgiumTitle: "Born in Belgium",
+  aboutValueBelgiumDescription:
+    "Founded in Ghent. Deep understanding of Flemish pet culture. English is available now, with DE/FR/NL/ZH translation tracks in progress.",
+  aboutValueExplorationTitle: "Gamified Exploration",
+  aboutValueExplorationDescription:
+    "H3 hexagonal fog-of-war maps turn every dog walk into an adventure. Earn PawPoints for exploring new areas, streaks, and community contributions.",
+  aboutTimeline2024:
+    "The idea is born — three pet lovers in Ghent imagine a smarter way to care for pets and connect local communities.",
+  aboutTimeline2025Q1:
+    "Full-stack MVP complete: Flutter app + Next.js website + Supabase backend with 52 database migrations and PostGIS spatial engine.",
+  aboutTimeline2025Q2:
+    "AI agent (Gemini), NFC tag system, real-time chat, and an English-first internationalization foundation shipped.",
+  aboutTimeline2025H2:
+    "Fog-of-war map engine (H3 hexagons), gamified walk tracking with weather sync, PawPoints reward system designed and built.",
+  aboutTimeline2026:
+    "Ghent cold start: '500 NFC collars' campaign, local partnerships with pet shops and vet clinics, angel round fundraising.",
+  aboutStrengthGis: "GIS PhD × LBS Product",
+  aboutStrengthMigrations: "52 DB Migrations Shipped",
+  aboutStrengthLocales: "English Live; Locales Planned",
+  aboutStrengthGhent: "Rooted in Ghent",
+  aboutBadge: "Product proof from Ghent",
+  aboutHeroTitle: "A connected safety layer for everyday pet care.",
+  aboutHeroCopy:
+    "PawPal connects the moments around a pet: walks, finder pages, smart tags, store orders, and local support. The web layer gives owners and finders a clear path without requiring the app first.",
+  aboutExploreGlobe: "Explore Globe",
+  aboutShopSmartTags: "Shop smart tags",
+  aboutProductSystemEyebrow: "Product system",
+  aboutProductSystemTitle: "App, Web, and NFC tags work as one loop.",
+  aboutSystemDailyLabel: "Daily care",
+  aboutSystemDailyCopy: "Walks, pets, reminders, and AI guidance.",
+  aboutSystemPhysicalLabel: "Physical safety",
+  aboutSystemPhysicalCopy: "Smart tags open controlled finder pages.",
+  aboutSystemLocalLabel: "Local network",
+  aboutSystemLocalCopy: "Map places, community help, and support routes.",
+  aboutMetricFinderValue: "Finder pages",
+  aboutMetricFinderLabel: "Controlled public safety flow",
+  aboutMetricTagsValue: "Smart tags",
+  aboutMetricTagsLabel: "Physical scan entry",
+  aboutMetricStoreValue: "Store orders",
+  aboutMetricStoreLabel: "Stripe-backed purchase path",
+  aboutMetricGlobeValue: "Globe map",
+  aboutMetricGlobeLabel: "Local pet-care context",
+  aboutMissionPrefix:
+    "“PawPal's mission is not to replace companionship with technology, but to ",
+  aboutMissionHighlight: "enhance",
+  aboutMissionSuffix:
+    " the bond between humans and their pets through smart tools.”",
+  aboutMissionAttribution: "— PawPal Founding Team · Ghent, Belgium",
+  aboutEcosystemTitle: "The PawPal Ecosystem",
+  aboutEcosystemCopy:
+    "App + Web + Hardware — three products, one mission: enhance every moment with your pet.",
+  aboutValuesTitle: "What We Stand For",
+  aboutValuesCopy:
+    "Our values guide every decision — from the features we build to the community we grow.",
+  aboutTeamTitle: "Meet the Founding Team",
+  aboutTeamCopy:
+    "A cross-disciplinary trio from Ghent — engineering, business, and design — united by a shared love for pets.",
+  aboutJourneyTitle: "Our Journey",
+  aboutJourneyCopy: "From a spark of an idea to a production-ready platform.",
+  aboutCtaTitle: "Join the PawPal Journey",
+  aboutCtaCopy:
+    "We're building the platform we wished existed — for every dog owner, cat lover, and pet parent who believes technology should strengthen, not replace, the bond with their best friend.",
+  aboutContactTeam: "Contact the team",
+  aboutContactPrompt: "Questions? Reach us at ",
+  helpNfcTitle: "NFC tag or pet profile",
+  helpNfcRoute: "Finder page, QR/NFC, lost mode",
+  helpNfcText:
+    "If a scan does not open the expected pet profile, include the tag ID and whether the owner has shared contact details.",
+  helpNfcAction: "Shop or replace a tag",
+  helpStoreTitle: "Store or order help",
+  helpStoreRoute: "Smart tags, checkout, order status",
+  helpStoreText:
+    "For store questions, include the order email, product name, and the checkout or success screen you saw.",
+  helpStoreAction: "View store",
+  helpAccountTitle: "Account and community",
+  helpAccountRoute: "Login, posts, chat, moderation",
+  helpAccountText:
+    "For sign-in, posting, chat, or moderation questions, include your account email and the affected screen.",
+  helpAccountAction: "Email support",
+  helpUrgentTitle: "Safety or urgent pet issue",
+  helpUrgentRoute: "Owner alerts, nearby help, rescue",
+  helpUrgentText:
+    "For urgent rescue or safety situations, contact local services first, then use PawPal to notify the owner or community.",
+  helpUrgentAction: "Open Globe",
+  helpStepTagLabel: "Tag scan",
+  helpStepTagValue: "Tag ID + owner state",
+  helpStepStoreLabel: "Store",
+  helpStepStoreValue: "Order email + product",
+  helpStepAccountLabel: "Account",
+  helpStepAccountValue: "Email + affected screen",
+  helpStepUrgentLabel: "Urgent",
+  helpStepUrgentValue: "Local services first",
+  helpBadge: "Support",
+  helpHeroTitle: "Find the right PawPal help path.",
+  helpHeroCopy:
+    "Choose a lane for tag scans, store orders, account access, community activity, or urgent pet safety.",
+  helpContactSupport: "Contact support",
+  helpOpenGlobe: "Open Globe",
+  helpRouteEyebrow: "Support route",
+  helpRouteTitle: "Pick the right lane",
+  helpContextTitle: "Include only the context that helps support route the issue.",
+  helpContextCopy:
+    "Tag ID, account email, order email, product name, affected screen, and screenshots are enough for most requests.",
+  helpBelgiumSupport: "Belgium-first support",
+  guidelinesRespectTitle: "Respect every member",
+  guidelinesRespectText:
+    "Treat pet owners, finders, partners, and neighbors with respect. Harassment, bullying, threats, hate speech, or attacks based on identity or protected traits are not allowed.",
+  guidelinesRespectSignal: "No harassment",
+  guidelinesContentTitle: "Prohibited content",
+  guidelinesContentText:
+    "Do not post violent threats, graphic violence, sexual content, animal abuse, illegal trades, scams, spam, or repetitive marketing that disrupts the community.",
+  guidelinesContentSignal: "Content safety",
+  guidelinesPrivacyTitle: "Location and privacy",
+  guidelinesPrivacyText:
+    "Do not publish another person's home-level location, private address, exact routine, contact details, or pet identity information without consent.",
+  guidelinesPrivacySignal: "Private by default",
+  guidelinesModerationTitle: "Reports and moderation",
+  guidelinesModerationText:
+    "Each in-app content item includes a report control. PawPal reviews reports and may remove content, limit features, suspend accounts, or ban accounts after violations.",
+  guidelinesModerationSignal: "Report in app",
+  guidelinesAppealsTitle: "Appeals",
+  guidelinesAppealsText:
+    "If you believe a moderation action was made in error, contact hello@pawpal.be with your account email, the affected content, and any relevant context.",
+  guidelinesAppealsSignal: "Support review",
+  guidelinesBadge: "Community Guidelines",
+  guidelinesHeroTitle: "Safer community spaces for pets and people.",
+  guidelinesHeroCopy:
+    "These guidelines explain what is expected when using PawPal community features, public pet safety flows, and in-app content.",
+  guidelinesTrustRespectLabel: "Respect first",
+  guidelinesTrustRespectValue: "Harassment, threats, and hate speech are not allowed.",
+  guidelinesTrustReportLabel: "Report controls",
+  guidelinesTrustReportValue:
+    "Every in-app content item includes a way to report concerns.",
+  guidelinesTrustModerationLabel: "Moderation actions",
+  guidelinesTrustModerationValue:
+    "Violations can lead to removal, suspension, or account bans.",
+  guidelinesSectionsAriaLabel: "Community guideline sections",
+  privacyDataTitle: "Data we use",
+  privacyDataText:
+    "PawPal uses account, pet profile, map, walk, store, and community data to provide the product features you choose to use.",
+  privacyDataSignal: "Feature-scoped",
+  privacyLocationTitle: "Location and safety",
+  privacyLocationText:
+    "Location features are used for maps, walks, nearby places, and safety workflows. Public finder pages only show the information owners choose to expose.",
+  privacyLocationSignal: "Controlled sharing",
+  privacyChoicesTitle: "Your choices",
+  privacyChoicesText:
+    "You can update account details, pet profile visibility, lost-mode settings, and communication preferences from the app or by contacting support.",
+  privacyChoicesSignal: "Owner managed",
+  privacyCookiesTitle: "Cookies & local storage",
+  privacyCookiesText:
+    "PawPal currently does not run third-party analytics. Non-essential analytics must be gated by consent before loading.",
+  privacyCookiesSignal: "Consent gated",
+  privacyCookieAuthLabel: "Auth",
+  privacyCookieAuthText:
+    "Necessary Supabase authentication cookies keep sign-in sessions working.",
+  privacyCookieCheckoutLabel: "Checkout",
+  privacyCookieCheckoutText:
+    "Necessary Stripe checkout storage supports payment and order flows.",
+  privacyCookiePreferencesLabel: "Preferences",
+  privacyCookiePreferencesText:
+    "Local preferences remember choices such as globe tutorials and store state.",
+  privacyBadge: "Privacy",
+  privacyHeroTitle: "Controlled sharing for every pet safety flow.",
+  privacyHeroCopy:
+    "PawPal is designed around controlled sharing: owners decide what is public, what stays private, and when lost-mode information should be visible.",
+  privacyTrustOwnerLabel: "Owner-selected sharing",
+  privacyTrustOwnerValue: "Public safety details are controlled by the owner.",
+  privacyTrustFinderLabel: "Finder pages",
+  privacyTrustFinderValue: "Finder-visible details stay scoped to the rescue flow.",
+  privacyTrustRequestsLabel: "Privacy requests",
+  privacyTrustRequestsValue:
+    "Support can route account-data and privacy questions.",
+  privacySectionsAriaLabel: "Privacy sections",
+  termsResponsibleTitle: "Use PawPal responsibly",
+  termsResponsibleText:
+    "PawPal helps pet owners coordinate care, walks, safety, and community help. Do not misuse profiles, tags, maps, or community tools.",
+  termsResponsibleSignal: "Community trust",
+  termsStoreTitle: "Store purchases",
+  termsStoreText:
+    "Store checkout is processed through Stripe. Product availability, pricing, and shipping details may change before an order is completed.",
+  termsStoreSignal: "Stripe checkout",
+  termsCommunityTitle: "Community content",
+  termsCommunityText:
+    "Posts, chats, reports, and public rescue information should be accurate, respectful, and safe for other owners and finders.",
+  termsCommunitySignal: "Public safety",
+  termsBadge: "Legal",
+  termsHeroTitle: "Clear rules for pet care, commerce, and community.",
+  termsHeroCopy:
+    "These terms summarize the expected use of PawPal across the website, store, app, and public pet safety flows.",
+  termsTrustSafetyLabel: "Safety first",
+  termsTrustSafetyValue: "Urgent rescue situations should use local services first.",
+  termsTrustPurchaseLabel: "Purchase clarity",
+  termsTrustPurchaseValue:
+    "Checkout, pricing, and shipping are confirmed before payment.",
+  termsTrustRespectLabel: "Respectful use",
+  termsTrustRespectValue: "Profiles, maps, and posts should help owners and finders.",
+  termsSectionsAriaLabel: "Terms sections",
 } as const;
 
 export type WebsiteMessages = {

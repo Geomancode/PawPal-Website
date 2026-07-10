@@ -281,4 +281,231 @@ export const nlMessages = {
   authTerms: "Voorwaarden",
   authAnd: "en",
   authPrivacyPolicy: "Privacybeleid",
+  aboutTeamAlexieRole: "Medeoprichter en CEO",
+  aboutTeamAlexieDescription:
+    "Doctoraatsonderzoeker in GIS en teledetectie aan de Universiteit Gent. Stuurt productstrategie, technische architectuur en fondsenwerving aan.",
+  aboutTeamNeumannRole: "Medeoprichter en CPO",
+  aboutTeamNeumannDescription:
+    "Achtergrond in business en marketing. Stuurt het bedrijfsmodel, de marktstrategie, de werking en de toeleveringsketen aan.",
+  aboutTeamCarloRole: "Medeoprichter en CDO",
+  aboutTeamCarloDescription:
+    "Achtergrond in design. Stuurt UI/UX-design, de visuele merkidentiteit en gebruikersonderzoek voor alle PawPal-platformen aan.",
+  aboutEcosystemAppTitle: "PawPal-app",
+  aboutEcosystemAppDescription:
+    "Wandelingen registreren met een kaart met ontdekkingsmist, PawPoints-beloningen, huisdierprofielen, dagelijkse herinneringen, een AI-assistent, koppeling van NFC-tags en een realtimecommunity, allemaal in één app.",
+  aboutEcosystemWebTitle: "PawPal-website",
+  aboutEcosystemWebDescription:
+    "Landingspagina’s na een NFC-scan op pawpal.be/tag/{id} helpen een dier terug te brengen zonder download. Daarnaast zijn er de webwinkel, zoeken met AI en de interactieve wereldkaart.",
+  aboutEcosystemTagsTitle: "NFC Smart Tags voor huisdieren",
+  aboutEcosystemTagsDescription:
+    "Vanaf € 19. Dynamische profielpagina’s vervangen statische dierenpenningen. Privacy voorop: contactgegevens van het baasje blijven verborgen tot de vermist-modus wordt geactiveerd.",
+  aboutValueEnhanceTitle: "Versterken, niet vervangen",
+  aboutValueEnhanceDescription:
+    "Onze missie is niet om gezelschap door technologie te vervangen, maar om de band tussen mensen en hun huisdieren met slimme hulpmiddelen te versterken.",
+  aboutValuePrivacyTitle: "Privacy en vertrouwen",
+  aboutValuePrivacyDescription:
+    "Ontwerp met de AVG als uitgangspunt. Locatie wordt alleen tijdens wandelingen geregistreerd. NFC-tags beschermen standaard de privacy van het baasje. Gegevens worden in de EU gehost met beveiliging op rijniveau.",
+  aboutValueCommunityTitle: "Lokale community",
+  aboutValueCommunityDescription:
+    "PawPal verbindt buren via hun huisdieren: vind hondenwandelaars in de buurt, vraag wederzijdse hulp en bouw vertrouwen op met geverifieerde interacties.",
+  aboutValueAiCareTitle: "Dierenzorg met AI",
+  aboutValueAiCareDescription:
+    "Gemini AI voor rasherkenning, gedragsanalyse en dagelijks zorgadvies. Duidelijk aangeduid als niet-medisch: contacteer bij gezondheidsvragen altijd een dierenarts.",
+  aboutValueBelgiumTitle: "Geboren in België",
+  aboutValueBelgiumDescription:
+    "Opgericht in Gent, met een grondige kennis van de Vlaamse huisdiercultuur. Engels is nu beschikbaar; vertalingen voor DE/FR/NL/ZH zijn in voorbereiding.",
+  aboutValueExplorationTitle: "Spelenderwijs verkennen",
+  aboutValueExplorationDescription:
+    "Zeshoekige H3-kaarten met ontdekkingsmist maken van elke hondenwandeling een avontuur. Verdien PawPoints met nieuwe gebieden, reeksen en bijdragen aan de community.",
+  aboutTimeline2024:
+    "Het idee ontstaat: drie dierenliefhebbers in Gent bedenken een slimmere manier om voor huisdieren te zorgen en lokale communities te verbinden.",
+  aboutTimeline2025Q1:
+    "Fullstack-MVP voltooid: Flutter-app, Next.js-website en Supabase-backend met 52 databasemigraties en een ruimtelijke PostGIS-engine.",
+  aboutTimeline2025Q2:
+    "De AI-agent Gemini, het NFC-tagsysteem, realtimechat en een internationaliseringsbasis met Engels als eerste taal worden opgeleverd.",
+  aboutTimeline2025H2:
+    "De kaartengine met ontdekkingsmist en H3-zeshoeken, speelse wandelregistratie met weersynchronisatie en het PawPoints-beloningssysteem worden ontworpen en gebouwd.",
+  aboutTimeline2026:
+    "Koude start in Gent: campagne ‘500 NFC-halsbanden’, lokale samenwerkingen met dierenwinkels en dierenartsenpraktijken, en een financieringsronde met angel-investeerders.",
+  aboutStrengthGis: "Doctoraat GIS × LBS-productkennis",
+  aboutStrengthMigrations: "52 DB-migraties opgeleverd",
+  aboutStrengthLocales: "Engels live; andere talen gepland",
+  aboutStrengthGhent: "Geworteld in Gent",
+  aboutBadge: "Productbewijs uit Gent",
+  aboutHeroTitle: "Een verbonden veiligheidslaag voor dagelijkse dierenzorg.",
+  aboutHeroCopy:
+    "PawPal verbindt de momenten rond een huisdier: wandelingen, vinderspagina’s, Smart Tags, winkelbestellingen en lokale hulp. De weblaag biedt baasjes en vinders een duidelijk pad zonder dat eerst de app nodig is.",
+  aboutExploreGlobe: "Wereldbol verkennen",
+  aboutShopSmartTags: "Smart Tags kopen",
+  aboutProductSystemEyebrow: "Productsysteem",
+  aboutProductSystemTitle: "App, website en NFC-tags werken samen in één kringloop.",
+  aboutSystemDailyLabel: "Dagelijkse zorg",
+  aboutSystemDailyCopy: "Wandelingen, huisdieren, herinneringen en AI-advies.",
+  aboutSystemPhysicalLabel: "Fysieke veiligheid",
+  aboutSystemPhysicalCopy: "Smart Tags openen gecontroleerde vinderspagina’s.",
+  aboutSystemLocalLabel: "Lokaal netwerk",
+  aboutSystemLocalCopy: "Kaartlocaties, hulp uit de community en ondersteuningsroutes.",
+  aboutMetricFinderValue: "Vinderspagina’s",
+  aboutMetricFinderLabel: "Gecontroleerde openbare veiligheidsstroom",
+  aboutMetricTagsValue: "Smart Tags voor dieren",
+  aboutMetricTagsLabel: "Fysieke toegang via scan",
+  aboutMetricStoreValue: "Winkelbestellingen",
+  aboutMetricStoreLabel: "Aankoopstroom ondersteund door Stripe",
+  aboutMetricGlobeValue: "Wereldkaart",
+  aboutMetricGlobeLabel: "Lokale context voor dierenzorg",
+  aboutMissionPrefix:
+    "“De missie van PawPal is niet om gezelschap door technologie te vervangen, maar om de band tussen mensen en hun huisdieren ",
+  aboutMissionHighlight: "te versterken",
+  aboutMissionSuffix: " met slimme hulpmiddelen.”",
+  aboutMissionAttribution: "— Oprichtingsteam van PawPal · Gent, België",
+  aboutEcosystemTitle: "Het PawPal-ecosysteem",
+  aboutEcosystemCopy:
+    "App + website + hardware: drie producten, één missie, elk moment met je huisdier versterken.",
+  aboutValuesTitle: "Waar we voor staan",
+  aboutValuesCopy:
+    "Onze waarden sturen elke beslissing, van de functies die we bouwen tot de community die we laten groeien.",
+  aboutTeamTitle: "Maak kennis met het oprichtingsteam",
+  aboutTeamCopy:
+    "Een multidisciplinair trio uit Gent, met techniek, business en design, verbonden door een gedeelde liefde voor huisdieren.",
+  aboutJourneyTitle: "Ons traject",
+  aboutJourneyCopy: "Van een eerste idee tot een productieklare omgeving.",
+  aboutCtaTitle: "Ga mee op het PawPal-traject",
+  aboutCtaCopy:
+    "We bouwen het platform dat we zelf misten, voor elk hondenbaasje, elke kattenliefhebber en iedereen met een huisdier die vindt dat technologie de band met zijn beste vriend moet versterken en niet vervangen.",
+  aboutContactTeam: "Contacteer het team",
+  aboutContactPrompt: "Vragen? Contacteer ons via ",
+  helpNfcTitle: "NFC-tag of huisdierprofiel",
+  helpNfcRoute: "Vinderspagina, QR/NFC, vermist-modus",
+  helpNfcText:
+    "Als een scan niet het verwachte huisdierprofiel opent, vermeld dan de tag-ID en of het baasje contactgegevens heeft gedeeld.",
+  helpNfcAction: "Een tag kopen of vervangen",
+  helpStoreTitle: "Hulp bij winkel of bestelling",
+  helpStoreRoute: "Smart Tags, afrekenen, bestelstatus",
+  helpStoreText:
+    "Vermeld bij winkelvragen het e-mailadres van de bestelling, de productnaam en het afreken- of bevestigingsscherm dat je zag.",
+  helpStoreAction: "Winkel bekijken",
+  helpAccountTitle: "Account en community",
+  helpAccountRoute: "Aanmelden, berichten, chat, moderatie",
+  helpAccountText:
+    "Vermeld bij vragen over aanmelden, berichten, chat of moderatie het e-mailadres van je account en het betrokken scherm.",
+  helpAccountAction: "Ondersteuning mailen",
+  helpUrgentTitle: "Veiligheid of dringend probleem met een huisdier",
+  helpUrgentRoute: "Meldingen aan het baasje, nabije hulp, redding",
+  helpUrgentText:
+    "Contacteer bij dringende reddings- of veiligheidssituaties eerst de lokale diensten en gebruik daarna PawPal om het baasje of de community te verwittigen.",
+  helpUrgentAction: "Wereldbol openen",
+  helpStepTagLabel: "Tagscan",
+  helpStepTagValue: "Tag-ID + status baasje",
+  helpStepStoreLabel: "Winkel",
+  helpStepStoreValue: "Bestelmail + product",
+  helpStepAccountLabel: "Gebruikersaccount",
+  helpStepAccountValue: "E-mail + betrokken scherm",
+  helpStepUrgentLabel: "Dringend",
+  helpStepUrgentValue: "Eerst lokale diensten",
+  helpBadge: "Ondersteuning",
+  helpHeroTitle: "Vind de juiste PawPal-hulproute.",
+  helpHeroCopy:
+    "Kies een route voor tagscans, winkelbestellingen, accounttoegang, communityactiviteit of dringende veiligheid van een huisdier.",
+  helpContactSupport: "Ondersteuning contacteren",
+  helpOpenGlobe: "Wereldbol openen",
+  helpRouteEyebrow: "Ondersteuningsroute",
+  helpRouteTitle: "Kies de juiste route",
+  helpContextTitle: "Vermeld alleen context die helpt om de vraag juist te behandelen.",
+  helpContextCopy:
+    "Tag-ID, e-mailadres van account en bestelling, productnaam, betrokken scherm en screenshots volstaan voor de meeste vragen.",
+  helpBelgiumSupport: "Ondersteuning eerst voor België",
+  guidelinesRespectTitle: "Respecteer elk lid",
+  guidelinesRespectText:
+    "Behandel baasjes, vinders, partners en buren met respect. Intimidatie, pesten, bedreigingen, haatspraak en aanvallen op basis van identiteit of beschermde kenmerken zijn niet toegestaan.",
+  guidelinesRespectSignal: "Geen intimidatie",
+  guidelinesContentTitle: "Verboden inhoud",
+  guidelinesContentText:
+    "Plaats geen gewelddadige bedreigingen, expliciet geweld, seksuele inhoud, dierenmishandeling, illegale handel, oplichting, spam of herhaalde marketing die de community verstoort.",
+  guidelinesContentSignal: "Veilige inhoud",
+  guidelinesPrivacyTitle: "Locatie en privacy",
+  guidelinesPrivacyText:
+    "Publiceer zonder toestemming niet de precieze thuislocatie, het privéadres, de exacte routine, contactgegevens of identificatiegegevens van het huisdier van iemand anders.",
+  guidelinesPrivacySignal: "Standaard privé",
+  guidelinesModerationTitle: "Meldingen en moderatie",
+  guidelinesModerationText:
+    "Elk inhoudsitem in de app bevat een meldknop. PawPal beoordeelt meldingen en kan na overtredingen inhoud verwijderen, functies beperken, accounts schorsen of accounts uitsluiten.",
+  guidelinesModerationSignal: "Melden in de app",
+  guidelinesAppealsTitle: "Beroep",
+  guidelinesAppealsText:
+    "Denk je dat een moderatiemaatregel ten onrechte is genomen, contacteer dan hello@pawpal.be met het e-mailadres van je account, de betrokken inhoud en alle relevante context.",
+  guidelinesAppealsSignal: "Beoordeling door ondersteuning",
+  guidelinesBadge: "Communityrichtlijnen",
+  guidelinesHeroTitle: "Veiligere communityruimtes voor dieren en mensen.",
+  guidelinesHeroCopy:
+    "Deze richtlijnen leggen uit wat wordt verwacht bij het gebruik van PawPal-communityfuncties, openbare veiligheidsstromen voor huisdieren en inhoud in de app.",
+  guidelinesTrustRespectLabel: "Respect voorop",
+  guidelinesTrustRespectValue: "Intimidatie, bedreigingen en haatspraak zijn niet toegestaan.",
+  guidelinesTrustReportLabel: "Meldknoppen",
+  guidelinesTrustReportValue:
+    "Elk inhoudsitem in de app biedt een manier om bezorgdheden te melden.",
+  guidelinesTrustModerationLabel: "Moderatiemaatregelen",
+  guidelinesTrustModerationValue:
+    "Overtredingen kunnen leiden tot verwijdering, schorsing of uitsluiting van accounts.",
+  guidelinesSectionsAriaLabel: "Onderdelen van de communityrichtlijnen",
+  privacyDataTitle: "Gegevens die we gebruiken",
+  privacyDataText:
+    "PawPal gebruikt gegevens over accounts, huisdierprofielen, kaarten, wandelingen, de winkel en de community om de productfuncties te leveren die je kiest.",
+  privacyDataSignal: "Beperkt tot functies",
+  privacyLocationTitle: "Locatie en veiligheid",
+  privacyLocationText:
+    "Locatiefuncties worden gebruikt voor kaarten, wandelingen, plaatsen in de buurt en veiligheidsstromen. Openbare vinderspagina’s tonen alleen informatie die het baasje openbaar wil maken.",
+  privacyLocationSignal: "Gecontroleerd delen",
+  privacyChoicesTitle: "Jouw keuzes",
+  privacyChoicesText:
+    "Je kunt accountgegevens, zichtbaarheid van het huisdierprofiel, instellingen van de vermist-modus en communicatievoorkeuren aanpassen in de app of door ondersteuning te contacteren.",
+  privacyChoicesSignal: "Beheerd door het baasje",
+  privacyCookiesTitle: "Cookies en lokale opslag",
+  privacyCookiesText:
+    "PawPal gebruikt momenteel geen externe analytics. Niet-essentiële analytics mogen pas na toestemming worden geladen.",
+  privacyCookiesSignal: "Toestemming vereist",
+  privacyCookieAuthLabel: "Aanmelding",
+  privacyCookieAuthText:
+    "Noodzakelijke authenticatiecookies van Supabase houden aanmeldsessies actief.",
+  privacyCookieCheckoutLabel: "Afrekenen",
+  privacyCookieCheckoutText:
+    "Noodzakelijke Stripe-opslag voor afrekenen ondersteunt betalings- en bestelstromen.",
+  privacyCookiePreferencesLabel: "Voorkeuren",
+  privacyCookiePreferencesText:
+    "Lokale voorkeuren onthouden keuzes zoals tutorials voor de wereldbol en de winkelstatus.",
+  privacyBadge: "Privacybescherming",
+  privacyHeroTitle: "Gecontroleerd delen in elke veiligheidsstroom voor huisdieren.",
+  privacyHeroCopy:
+    "PawPal is ontworpen rond gecontroleerd delen: baasjes bepalen wat openbaar is, wat privé blijft en wanneer informatie uit de vermist-modus zichtbaar wordt.",
+  privacyTrustOwnerLabel: "Delen gekozen door het baasje",
+  privacyTrustOwnerValue: "Openbare veiligheidsgegevens worden door het baasje beheerd.",
+  privacyTrustFinderLabel: "Vinderspagina’s",
+  privacyTrustFinderValue: "Gegevens voor vinders blijven beperkt tot de reddingsstroom.",
+  privacyTrustRequestsLabel: "Privacyvragen",
+  privacyTrustRequestsValue:
+    "Ondersteuning kan vragen over accountgegevens en privacy juist behandelen.",
+  privacySectionsAriaLabel: "Onderdelen van het privacybeleid",
+  termsResponsibleTitle: "Gebruik PawPal verantwoord",
+  termsResponsibleText:
+    "PawPal helpt baasjes om zorg, wandelingen, veiligheid en hulp uit de community te coördineren. Misbruik profielen, tags, kaarten of communitytools niet.",
+  termsResponsibleSignal: "Vertrouwen in de community",
+  termsStoreTitle: "Aankopen in de winkel",
+  termsStoreText:
+    "Afrekenen in de winkel wordt verwerkt via Stripe. Productbeschikbaarheid, prijzen en verzendgegevens kunnen wijzigen voordat een bestelling is voltooid.",
+  termsStoreSignal: "Afrekenen met Stripe",
+  termsCommunityTitle: "Community-inhoud",
+  termsCommunityText:
+    "Berichten, chats, meldingen en openbare reddingsinformatie moeten juist, respectvol en veilig zijn voor andere baasjes en vinders.",
+  termsCommunitySignal: "Openbare veiligheid",
+  termsBadge: "Juridische informatie",
+  termsHeroTitle: "Duidelijke regels voor dierenzorg, handel en community.",
+  termsHeroCopy:
+    "Deze voorwaarden vatten het verwachte gebruik van PawPal samen op de website, in de winkel, in de app en in openbare veiligheidsstromen voor huisdieren.",
+  termsTrustSafetyLabel: "Veiligheid voorop",
+  termsTrustSafetyValue: "Gebruik bij dringende reddingssituaties eerst lokale diensten.",
+  termsTrustPurchaseLabel: "Duidelijkheid bij aankoop",
+  termsTrustPurchaseValue:
+    "Afrekenen, prijzen en verzending worden vóór de betaling bevestigd.",
+  termsTrustRespectLabel: "Respectvol gebruik",
+  termsTrustRespectValue: "Profielen, kaarten en berichten moeten baasjes en vinders helpen.",
+  termsSectionsAriaLabel: "Onderdelen van de gebruiksvoorwaarden",
 } satisfies WebsiteMessages;
