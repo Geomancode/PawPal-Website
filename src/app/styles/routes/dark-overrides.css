@@ -13,6 +13,23 @@
       linear-gradient(180deg, var(--color-paw-globe-canvas) 0%, var(--color-paw-globe-canvas) 58%, var(--color-paw-panel) 100%);
   }
 
+  .globe-fallback-copy {
+    border-color: var(--color-paw-border-strong);
+    background: var(--color-paw-panel-low);
+  }
+
+  .globe-fallback-eyebrow {
+    color: var(--color-paw-trust);
+  }
+
+  .globe-fallback-title {
+    color: var(--color-paw-ink);
+  }
+
+  .globe-fallback-body {
+    color: var(--color-paw-body);
+  }
+
   .hero-safety-ribbon {
     background:
       linear-gradient(90deg, transparent 0%, color-mix(in srgb, var(--color-paw-primary) 11%, transparent) 32%, color-mix(in srgb, var(--color-paw-trust) 10%, transparent) 68%, transparent 100%),

@@ -17,13 +17,13 @@
   z-index: 2;
   display: grid;
   grid-template-columns: minmax(0, 0.9fr) minmax(19rem, 0.75fr);
-  gap: clamp(1.5rem, 5vw, 4.5rem);
+  gap: var(--spacing-paw-xxxl);
   align-items: center;
   overflow-y: auto;
   padding:
     calc(env(safe-area-inset-top, 0px) + 6.35rem)
-    clamp(1rem, 5vw, 5rem)
-    calc(env(safe-area-inset-bottom, 0px) + 3rem);
+    clamp(var(--spacing-paw-md), 5vw, calc(var(--spacing-paw-xxxl) * 2))
+    calc(env(safe-area-inset-bottom, 0px) + var(--spacing-paw-xxxl));
   background:
     radial-gradient(circle at 74% 42%, color-mix(in srgb, var(--color-paw-primary) 28%, transparent), transparent 26rem),
     radial-gradient(circle at 24% 62%, color-mix(in srgb, var(--color-paw-trust) 18%, transparent), transparent 22rem),
@@ -32,6 +32,23 @@
 
 .globe-fallback-copy {
   max-width: 39rem;
+  border: 1px solid var(--color-paw-border);
+  border-radius: var(--radius-paw-panel);
+  background: var(--color-paw-panel);
+  box-shadow: var(--shadow-paw-panel);
+  padding: var(--spacing-paw-xxxl);
+}
+
+.globe-fallback-eyebrow {
+  color: var(--color-paw-on-trust-soft);
+}
+
+.globe-fallback-title {
+  color: var(--color-paw-ink);
+}
+
+.globe-fallback-body {
+  color: var(--color-paw-body);
 }
 
 .globe-fallback-actions {
@@ -44,11 +61,11 @@
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  border: 1px solid color-mix(in srgb, var(--color-paw-inverse-ink) 22%, transparent);
+  border: 1px solid var(--color-paw-border);
   border-radius: var(--radius-paw-sm);
-  background: color-mix(in srgb, var(--color-paw-inverse-ink) 8%, transparent);
+  background: var(--color-paw-panel-subtle);
   padding: 0.75rem 1rem;
-  color: color-mix(in srgb, var(--color-paw-inverse-ink) 90%, transparent);
+  color: var(--color-paw-ink);
   font-size: 0.875rem;
   font-weight: 900;
   line-height: 1;
@@ -62,9 +79,9 @@
 
 .globe-fallback-action:hover,
 .globe-fallback-action:focus-visible {
-  border-color: color-mix(in srgb, var(--color-paw-inverse-ink) 44%, transparent);
-  background: color-mix(in srgb, var(--color-paw-inverse-ink) 14%, transparent);
-  color: var(--color-paw-inverse-ink);
+  border-color: var(--color-paw-primary);
+  background: var(--color-paw-primary-soft);
+  color: var(--color-paw-on-primary-soft);
   transform: translateY(-1px);
 }
 
