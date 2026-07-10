@@ -20,7 +20,6 @@ import {
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import {
   Badge,
   Card,
@@ -28,8 +27,7 @@ import {
   PageShell,
   buttonClassName,
 } from "@/components/ui";
-import { resolveMessages, type MessageKey } from "@/i18n/messages";
-import { localeFromPath } from "@/i18n/routing";
+import { useRouteTranslations } from "@/i18n/useRouteTranslations";
 import { siteConfig } from "@/lib/site";
 import { useReducedMotionPreference } from "@/lib/useReducedMotionPreference";
 
@@ -111,13 +109,12 @@ const TEAM_STRENGTHS: ReadonlyArray<{ icon: LucideIcon; textKey: "aboutStrengthG
 ];
 
 export default function About() {
-  const pathname = usePathname();
-  const messages = resolveMessages(localeFromPath(pathname));
-  const t = (key: MessageKey) => messages[key];
+  const { loader, t } = useRouteTranslations();
   const shouldReduceMotion = useReducedMotionPreference();
 
   return (
     <PageShell className="pt-28 sm:pt-32" contentClassName="space-y-paw-xxxl">
+      {loader}
       {/* ===== HERO ===== */}
       <section className="grid gap-paw-xl lg:grid-cols-[minmax(0,1.05fr)_minmax(20rem,0.95fr)] lg:items-stretch">
         <div className="about-hero-copy">

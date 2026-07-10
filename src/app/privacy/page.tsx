@@ -11,14 +11,13 @@ import {
   SlidersHorizontal,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
-import { usePathname } from "next/navigation";
 import {
   Badge,
   PageShell,
   buttonClassName,
 } from "@/components/ui";
-import { resolveMessages, type MessageKey } from "@/i18n/messages";
-import { localeFromPath } from "@/i18n/routing";
+import type { MessageKey } from "@/i18n/messages";
+import { useRouteTranslations } from "@/i18n/useRouteTranslations";
 
 type PrivacySection = {
   id: string;
@@ -78,12 +77,11 @@ const PRIVACY_DEFINITIONS: PrivacySection[] = [
 ];
 
 export default function PrivacyPage() {
-  const pathname = usePathname();
-  const messages = resolveMessages(localeFromPath(pathname));
-  const t = (key: MessageKey) => messages[key];
+  const { loader, t } = useRouteTranslations();
 
   return (
     <PageShell className="legal-page-shell pt-28 sm:pt-32" contentClassName="space-y-paw-xl">
+      {loader}
       <section className="legal-hero-panel">
         <div className="grid gap-paw-xl lg:grid-cols-[minmax(0,1fr)_minmax(18rem,24rem)] lg:items-center">
           <div>

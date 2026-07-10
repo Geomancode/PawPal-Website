@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import {
   ArrowRight,
   Clock3,
@@ -22,8 +21,7 @@ import {
   PageShell,
   buttonClassName,
 } from "@/components/ui";
-import { resolveMessages, type MessageKey } from "@/i18n/messages";
-import { localeFromPath } from "@/i18n/routing";
+import { useRouteTranslations } from "@/i18n/useRouteTranslations";
 
 const LANE_DEFINITIONS = [
   {
@@ -68,12 +66,11 @@ const ROUTE_DEFINITIONS = [
 ] as const;
 
 export default function HelpPage() {
-  const pathname = usePathname();
-  const messages = resolveMessages(localeFromPath(pathname));
-  const t = (key: MessageKey) => messages[key];
+  const { loader, t } = useRouteTranslations();
 
   return (
     <PageShell className="pt-28 sm:pt-32" contentClassName="space-y-paw-xl">
+      {loader}
       <section className="grid gap-paw-xl lg:grid-cols-[minmax(0,1fr)_390px] lg:items-center">
         <div className="support-hero-copy">
           <Badge tone="primary" variant="semantic" className="mb-paw-lg">

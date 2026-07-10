@@ -9,14 +9,12 @@ import {
   ShieldCheck,
   ShoppingBag,
 } from "lucide-react";
-import { usePathname } from "next/navigation";
 import {
   Badge,
   PageShell,
   buttonClassName,
 } from "@/components/ui";
-import { resolveMessages, type MessageKey } from "@/i18n/messages";
-import { localeFromPath } from "@/i18n/routing";
+import { useRouteTranslations } from "@/i18n/useRouteTranslations";
 
 const TERMS = [
   {
@@ -43,12 +41,11 @@ const TERMS = [
 ] as const;
 
 export default function TermsPage() {
-  const pathname = usePathname();
-  const messages = resolveMessages(localeFromPath(pathname));
-  const t = (key: MessageKey) => messages[key];
+  const { loader, t } = useRouteTranslations();
 
   return (
     <PageShell className="legal-page-shell pt-28 sm:pt-32" contentClassName="space-y-paw-xl">
+      {loader}
       <section className="legal-hero-panel">
         <div className="grid gap-paw-xl lg:grid-cols-[minmax(0,1fr)_minmax(18rem,24rem)] lg:items-center">
           <div>

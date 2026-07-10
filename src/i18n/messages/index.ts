@@ -1,26 +1,12 @@
-import { defaultLocale, type Locale } from "../locales";
-import { deMessages } from "./de";
+import type { Locale } from "../locales";
 import { enMessages, type WebsiteMessages } from "./en";
-import { frMessages } from "./fr";
-import { nlMessages } from "./nl";
-import { zhMessages } from "./zh";
 
 export { enMessages };
 export type { MessageKey, WebsiteMessages } from "./en";
 
-const localeOverrides = {
-  de: deMessages,
-  en: enMessages,
-  fr: frMessages,
-  nl: nlMessages,
-  zh: zhMessages,
-} satisfies Record<Locale, Partial<WebsiteMessages>>;
-
 export function resolveMessages(locale: Locale): WebsiteMessages {
-  if (locale === defaultLocale) return enMessages;
-  return {
-    ...enMessages,
-    ...localeOverrides[locale],
-  };
+  // Synchronous callers render the English SSR fallback. Client routes load
+  // non-default catalogs after hydration without adding them to initial JS.
+  void locale;
+  return enMessages;
 }
-
