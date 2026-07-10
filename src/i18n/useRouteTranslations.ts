@@ -1,6 +1,11 @@
 "use client";
 
-import { createElement, useCallback, useState } from "react";
+import {
+  createElement,
+  useCallback,
+  useState,
+  useSyncExternalStore,
+} from "react";
 import dynamic from "next/dynamic";
 import { usePathname } from "next/navigation";
 import { useI18n } from "./I18nProvider";
@@ -22,10 +27,19 @@ const DeferredRouteCatalogLoader = dynamic<RouteCatalogLoaderProps>(
   { ssr: false },
 );
 
+const subscribeToHydration = () => () => {};
+const getClientHydrationSnapshot = () => true;
+const getServerHydrationSnapshot = () => false;
+
 export function useRouteTranslations() {
   const pathname = usePathname();
   const { messages: englishMessages } = useI18n();
   const locale = localeFromPath(pathname);
+  const hydrated = useSyncExternalStore(
+    subscribeToHydration,
+    getClientHydrationSnapshot,
+    getServerHydrationSnapshot,
+  );
   const [loadedCatalog, setLoadedCatalog] = useState<{
     locale: Locale;
     messages: WebsiteMessages;
@@ -42,7 +56,7 @@ export function useRouteTranslations() {
     loadedCatalog?.locale === locale ? loadedCatalog.messages : englishMessages;
   const t = useCallback((key: MessageKey) => messages[key], [messages]);
   const loader =
-    locale === "en"
+    !hydrated || locale === "en"
       ? null
       : createElement(DeferredRouteCatalogLoader, {
           locale,
