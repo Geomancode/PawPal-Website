@@ -359,7 +359,7 @@ export default function About() {
           {/* Contact line */}
           <motion.div {...fadeUp(0.2)} className="mt-paw-xl flex items-center justify-center gap-paw-xs text-paw-muted">
             <Mail className="h-4 w-4" />
-            <span className="text-sm">Questions? Reach us at <a href="mailto:hello@pawpal.be" className="font-semibold text-paw-on-primary-soft hover:underline">hello@pawpal.be</a></span>
+            <span className="text-sm">Questions? Reach us at <a href="mailto:hello@pawpal.be" className="about-inline-contact font-semibold text-paw-on-primary-soft hover:underline">hello@pawpal.be</a></span>
           </motion.div>
         </div>
       </section>

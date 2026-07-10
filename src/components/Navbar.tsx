@@ -42,6 +42,8 @@ export default function Navbar() {
   const [showDropdown, setShowDropdown] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const mobileMenuButtonRef = useRef<HTMLButtonElement>(null);
+  const mobileMenuRef = useRef<HTMLDivElement>(null);
   const pathname = usePathname();
   const router = useRouter();
   const { user, loading, signOut } = useAuth();
@@ -75,6 +77,49 @@ export default function Navbar() {
     return () => document.removeEventListener("mousedown", handleClick);
   }, []);
 
+  useEffect(() => {
+    if (!isOpen) return;
+
+    function handleMobileMenuKeyDown(event: KeyboardEvent) {
+      const menu = mobileMenuRef.current;
+      const toggle = mobileMenuButtonRef.current;
+      if (!menu || !toggle || menu.getClientRects().length === 0) return;
+
+      if (event.key === "Escape") {
+        event.preventDefault();
+        setIsOpen(false);
+        requestAnimationFrame(() => toggle.focus());
+        return;
+      }
+
+      if (event.key !== "Tab") return;
+
+      const menuItems = Array.from(
+        menu.querySelectorAll<HTMLElement>(
+          'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])',
+        ),
+      ).filter((element) => element.getClientRects().length > 0);
+      const focusableElements = [toggle, ...menuItems];
+      const firstElement = focusableElements[0];
+      const lastElement = focusableElements[focusableElements.length - 1];
+      const activeElement = document.activeElement;
+
+      if (event.shiftKey && activeElement === firstElement) {
+        event.preventDefault();
+        lastElement.focus();
+      } else if (!event.shiftKey && activeElement === lastElement) {
+        event.preventDefault();
+        firstElement.focus();
+      } else if (!focusableElements.includes(activeElement as HTMLElement)) {
+        event.preventDefault();
+        (event.shiftKey ? lastElement : firstElement).focus();
+      }
+    }
+
+    document.addEventListener("keydown", handleMobileMenuKeyDown);
+    return () => document.removeEventListener("keydown", handleMobileMenuKeyDown);
+  }, [isOpen]);
+
   const handleSignOut = async () => {
     setShowDropdown(false);
     await signOut();
@@ -96,7 +141,7 @@ export default function Navbar() {
         <div className={`flex items-center justify-between transition-all duration-300 ${
           isGlobeRoute ? "h-12 sm:h-14" : scrolled ? "h-16" : "h-20"
         }`}>
-          <Link href={path("/")} className="flex items-center transition-opacity hover:opacity-80" aria-label="PawPal home">
+          <Link href={path("/")} className={`${styles.homeLink} transition-opacity hover:opacity-80`} aria-label="PawPal home">
             <PawPalLogo
               iconSize={isGlobeRoute ? 26 : scrolled ? 28 : 32}
               fontSize={isGlobeRoute ? 18 : scrolled ? 20 : 22}
@@ -199,10 +244,13 @@ export default function Navbar() {
           </div>
 
           <button
+            ref={mobileMenuButtonRef}
             type="button"
             aria-label={isOpen ? t("navCloseNavigationMenu") : t("navOpenNavigationMenu")}
+            aria-controls="pawpal-mobile-navigation"
+            aria-expanded={isOpen}
             onClick={() => setIsOpen((value) => !value)}
-            className="inline-flex h-11 w-11 items-center justify-center rounded-paw-sm border border-paw-border bg-paw-panel text-paw-ink md:hidden"
+            className="inline-flex h-paw-min-tap w-paw-min-tap items-center justify-center rounded-paw-sm border border-paw-border bg-paw-panel text-paw-ink md:hidden"
           >
             {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
@@ -212,6 +260,8 @@ export default function Navbar() {
       <AnimatePresence>
         {isOpen && (
           <motion.div
+            ref={mobileMenuRef}
+            id="pawpal-mobile-navigation"
             initial={shouldReduceMotion ? false : { opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}

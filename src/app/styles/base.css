@@ -29,6 +29,9 @@ main:focus {
   top: 1rem;
   z-index: 10050;
   transform: translateY(-160%);
+  display: inline-flex;
+  min-height: var(--spacing-paw-min-tap);
+  align-items: center;
   border-radius: var(--radius-paw-sm);
   background: var(--color-paw-ink);
   color: var(--color-paw-inverse-ink);

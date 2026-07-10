@@ -24,6 +24,12 @@
   padding-block: clamp(1.75rem, 5vw, 3.25rem);
 }
 
+.about-inline-contact {
+  display: inline-flex;
+  min-height: var(--spacing-paw-min-tap);
+  align-items: center;
+}
+
 .about-context-panel {
   display: flex;
   min-height: 100%;
@@ -53,7 +59,7 @@
 .legal-section-nav a {
   display: inline-flex;
   align-items: center;
-  min-height: 2.5rem;
+  min-height: var(--spacing-paw-min-tap);
   border: 1px solid color-mix(in srgb, var(--color-paw-border) 86%, transparent);
   border-radius: var(--radius-paw-sm);
   background: color-mix(in srgb, var(--color-paw-inverse-ink) 82%, transparent);

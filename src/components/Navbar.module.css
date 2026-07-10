@@ -29,7 +29,7 @@
 
 .siteNavMap .navLinkPill {
   min-width: 3.35rem;
-  height: 2.75rem;
+  height: var(--spacing-paw-min-tap);
   padding: 0 0.62rem;
 }
 
@@ -49,10 +49,17 @@
   }
 }
 
+.homeLink {
+  display: inline-flex;
+  min-width: var(--spacing-paw-min-tap);
+  min-height: var(--spacing-paw-min-tap);
+  align-items: center;
+}
+
 .navLinkPill {
   display: inline-flex;
   min-width: 4rem;
-  height: 2.75rem;
+  height: var(--spacing-paw-min-tap);
   align-items: center;
   justify-content: center;
   border: 1px solid transparent;

@@ -86,6 +86,10 @@
   color: var(--color-paw-primary);
 }
 
+.support-lane-action {
+  min-height: var(--spacing-paw-min-tap);
+}
+
 .support-contact-band {
   display: flex;
   align-items: center;
