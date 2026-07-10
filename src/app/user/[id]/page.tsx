@@ -96,8 +96,12 @@ export default async function SharedUserPage({ params }: PageProps) {
             )}
           </div>
           <h1 className="mt-4 font-brand text-3xl font-extrabold">{name}</h1>
-          <p className="mt-1 text-sm font-semibold text-paw-page/80">{username}</p>
-          {profile.bio && <p className="mx-auto mt-4 max-w-xl text-sm leading-6 text-paw-on-primary/85">{profile.bio}</p>}
+          <p className="public-profile-username mt-1 text-sm font-extrabold text-paw-on-primary">{username}</p>
+          {profile.bio && (
+            <p className="public-profile-bio mx-auto mt-4 max-w-xl text-sm font-medium leading-6 text-paw-on-primary">
+              {profile.bio}
+            </p>
+          )}
         </div>
 
         <div className="grid gap-6 p-6 lg:grid-cols-[1fr_280px]">
