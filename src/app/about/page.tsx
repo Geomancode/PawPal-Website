@@ -20,7 +20,6 @@ import {
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import {
   Badge,
   Card,
@@ -28,8 +27,7 @@ import {
   PageShell,
   buttonClassName,
 } from "@/components/ui";
-import { resolveMessages, type MessageKey } from "@/i18n/messages";
-import { localeFromPath } from "@/i18n/routing";
+import { useI18n } from "@/i18n/I18nProvider";
 import { siteConfig } from "@/lib/site";
 import { useReducedMotionPreference } from "@/lib/useReducedMotionPreference";
 
@@ -111,9 +109,7 @@ const TEAM_STRENGTHS: ReadonlyArray<{ icon: LucideIcon; textKey: "aboutStrengthG
 ];
 
 export default function About() {
-  const pathname = usePathname();
-  const messages = resolveMessages(localeFromPath(pathname));
-  const t = (key: MessageKey) => messages[key];
+  const { t } = useI18n();
   const shouldReduceMotion = useReducedMotionPreference();
 
   return (
