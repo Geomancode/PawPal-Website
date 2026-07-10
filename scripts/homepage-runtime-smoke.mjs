@@ -9,16 +9,22 @@ const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), ".."
 const require = createRequire(import.meta.url);
 const { chromium } = require("playwright");
 
-const MOBILE_VIEWPORT = { width: 375, height: 812 };
+const VIEWPORTS = [
+  { width: 375, height: 812 },
+  { width: 1440, height: 900 },
+];
 const evidenceDir =
+  process.env.P3GB2F_HOME_RUNTIME_EVIDENCE_DIR ||
   process.env.P3GB3_HOME_RUNTIME_EVIDENCE_DIR ||
   process.env.P2W2_HOME_SMOKE_EVIDENCE_DIR ||
   "";
 const providedBaseUrl =
+  process.env.P3GB2F_HOME_RUNTIME_BASE_URL ||
   process.env.P3GB3_HOME_RUNTIME_BASE_URL ||
   process.env.P2W2_HOME_SMOKE_BASE_URL ||
   "";
-const selectedCaseName = process.env.P3GB3_HOME_RUNTIME_CASE || "";
+const selectedCaseName =
+  process.env.P3GB2F_HOME_RUNTIME_CASE || process.env.P3GB3_HOME_RUNTIME_CASE || "";
 const injectConsoleError = process.env.P3GB3_INJECT_CONSOLE_ERROR === "1";
 
 const FRONT_POST_ID = "p3gb3-test-front";
@@ -280,6 +286,33 @@ async function inspectHomepage(page) {
           transitionDuration: style?.transitionDuration ?? null,
         };
       };
+      const bounds = (element) => {
+        if (!isVisible(element)) return null;
+        const rect = element.getBoundingClientRect();
+        return {
+          left: rect.left,
+          top: rect.top,
+          right: rect.right,
+          bottom: rect.bottom,
+          width: rect.width,
+          height: rect.height,
+        };
+      };
+      const liveStatus = globe?.querySelector(".home-globe-posts-status") ?? null;
+      const staticPreviewStatus =
+        globe?.querySelector(".home-globe-static-preview .globe-static-preview-loading") ?? null;
+      const visibleStatus = [liveStatus, staticPreviewStatus].find(isVisible) ?? null;
+      const pawPalBadge = document.querySelector(".hero-product-tag");
+      const statusPillBounds = bounds(visibleStatus);
+      const pawPalBadgeBounds = bounds(pawPalBadge);
+      const statusBadgeOverlap = Boolean(
+        statusPillBounds &&
+          pawPalBadgeBounds &&
+          statusPillBounds.left < pawPalBadgeBounds.right &&
+          statusPillBounds.right > pawPalBadgeBounds.left &&
+          statusPillBounds.top < pawPalBadgeBounds.bottom &&
+          statusPillBounds.bottom > pawPalBadgeBounds.top,
+      );
       const overlayText = Array.from(
         document.querySelectorAll("nextjs-portal, [data-nextjs-dialog], [data-nextjs-toast]"),
       )
@@ -298,7 +331,14 @@ async function inspectHomepage(page) {
         markerCountAttribute: Number(globe?.getAttribute("data-marker-count") ?? -1),
         postLinkCount: globe?.querySelectorAll("a[href*='/post/']").length ?? 0,
         staticPreviewVisible: isVisible(globe?.querySelector(".home-globe-static-preview")),
-        statusText: globe?.querySelector(".home-globe-posts-status")?.textContent?.trim() ?? "",
+        statusText: visibleStatus?.textContent?.replace(/\s+/g, " ").trim() ?? "",
+        statusTextFits: visibleStatus
+          ? visibleStatus.scrollWidth <= visibleStatus.clientWidth + 0.5 &&
+            visibleStatus.scrollHeight <= visibleStatus.clientHeight + 0.5
+          : null,
+        statusPillBounds,
+        pawPalBadgeBounds,
+        statusBadgeOverlap,
         h1: Array.from(document.querySelectorAll("h1")).map((element) =>
           (element.textContent || "").replace(/\s+/g, " ").trim(),
         ),
@@ -335,9 +375,18 @@ function addCommonFailures(result, failures) {
   }
   if (pageMeta?.hasFrameworkOverlay) failures.push("framework error overlay was visible");
   if (!pageMeta?.h1?.some(Boolean)) failures.push("homepage H1 was not visible");
+  if (!pageMeta?.pawPalBadgeBounds) failures.push("PawPal floating badge bounding box was unavailable");
+  if (pageMeta?.statusBadgeOverlap) {
+    failures.push(
+      `status/badge bounding-box overlap: status=${JSON.stringify(pageMeta.statusPillBounds)} ` +
+        `badge=${JSON.stringify(pageMeta.pawPalBadgeBounds)}`,
+    );
+  }
+  if (pageMeta?.statusTextFits === false) failures.push("visible globe status text was clipped");
   if ((pageMeta?.scrollWidth ?? Number.POSITIVE_INFINITY) > (pageMeta?.viewportWidth ?? 0)) {
     failures.push(
-      `375px overflow gate failed: scrollWidth=${pageMeta?.scrollWidth} viewportWidth=${pageMeta?.viewportWidth}`,
+      `${pageMeta?.viewportWidth ?? "unknown"}px overflow gate failed: ` +
+        `scrollWidth=${pageMeta?.scrollWidth} viewportWidth=${pageMeta?.viewportWidth}`,
     );
   }
 }
@@ -353,6 +402,7 @@ function addStateFailures(runtimeCase, result, failures) {
     if (result.apiRequestCount !== 0) failures.push(`expected zero API requests, got ${result.apiRequestCount}`);
     if (pageMeta.markerCount !== 0) failures.push(`expected zero live pins, got ${pageMeta.markerCount}`);
     if (pageMeta.postLinkCount !== 0) failures.push(`expected zero post links, got ${pageMeta.postLinkCount}`);
+    if (!pageMeta.statusPillBounds) failures.push("static-preview status bounding box was unavailable");
     return;
   }
 
@@ -398,6 +448,9 @@ function addStateFailures(runtimeCase, result, failures) {
   } else {
     if (pageMeta.markerCount !== 0) failures.push(`expected zero live pins, got ${pageMeta.markerCount}`);
     if (pageMeta.postLinkCount !== 0) failures.push(`expected zero post links, got ${pageMeta.postLinkCount}`);
+    if (!pageMeta.statusPillBounds) {
+      failures.push(`${runtimeCase.apiMode} status pill bounding box was unavailable`);
+    }
   }
 
   if (runtimeCase.reducedMotion === "reduce") {
@@ -417,9 +470,9 @@ function addStateFailures(runtimeCase, result, failures) {
   }
 }
 
-async function runCase(browser, baseUrl, runtimeCase) {
+async function runCase(browser, baseUrl, runtimeCase, viewport) {
   const context = await browser.newContext({
-    viewport: MOBILE_VIEWPORT,
+    viewport,
     colorScheme: runtimeCase.colorScheme,
     reducedMotion: runtimeCase.reducedMotion,
     deviceScaleFactor: 1,
@@ -509,7 +562,7 @@ async function runCase(browser, baseUrl, runtimeCase) {
 
     const globe = page.locator("[data-testid='home-globe']");
     await page.locator("h1").first().waitFor({ state: "visible", timeout: 15000 });
-    await globe.waitFor({ state: "attached", timeout: 15000 });
+    await globe.waitFor({ state: "attached", timeout: 30000 });
     await globe.scrollIntoViewIfNeeded({ timeout: 15000 });
 
     if (runtimeCase.disableWebGL) {
@@ -546,6 +599,7 @@ async function runCase(browser, baseUrl, runtimeCase) {
 
   const result = {
     caseName: runtimeCase.name,
+    viewport,
     responseStatus,
     navigationError,
     pageErrors,
@@ -561,11 +615,11 @@ async function runCase(browser, baseUrl, runtimeCase) {
     await mkdir(path.join(evidenceDir, "screenshots"), { recursive: true });
     await mkdir(path.join(evidenceDir, "runtime-meta"), { recursive: true });
     await page.screenshot({
-      path: path.join(evidenceDir, "screenshots", `${runtimeCase.name}-375.png`),
+      path: path.join(evidenceDir, "screenshots", `${runtimeCase.name}-${viewport.width}.png`),
       fullPage: false,
     });
     await writeFile(
-      path.join(evidenceDir, "runtime-meta", `${runtimeCase.name}.json`),
+      path.join(evidenceDir, "runtime-meta", `${runtimeCase.name}-${viewport.width}.json`),
       `${JSON.stringify({ runtimeCase, ...result }, null, 2)}\n`,
     );
   }
@@ -598,7 +652,9 @@ try {
   await waitForHttp(baseUrl, providedBaseUrl ? 60000 : 120000);
 
   console.log(`Homepage five-state runtime base URL: ${baseUrl}`);
-  console.log(`Viewport hard gate: ${MOBILE_VIEWPORT.width}x${MOBILE_VIEWPORT.height}`);
+  console.log(
+    `Viewport hard gates: ${VIEWPORTS.map(({ width, height }) => `${width}x${height}`).join(", ")}`,
+  );
   console.log("Fixture policy: Playwright-intercepted test data only; no live community API access.");
   if (evidenceDir) console.log(`Evidence output: ${evidenceDir}`);
   if (injectConsoleError) console.log("SELF-TEST: intentional console.error injection enabled.");
@@ -609,20 +665,24 @@ try {
   });
 
   const results = [];
-  for (const runtimeCase of selectedCases) {
-    const result = await runCase(browser, baseUrl, runtimeCase);
-    results.push(result);
-    const status = result.failures.length === 0 ? "PASS" : "FAIL";
-    console.log(
-      `${status} ${result.caseName} status=${result.responseStatus} ` +
-        `posts=${result.pageMeta?.postsState ?? "unknown"} globe=${result.pageMeta?.globeState ?? "unknown"} ` +
-        `markers=${result.pageMeta?.markerCount ?? "unknown"} apiRequests=${result.apiRequestCount} ` +
-        `scroll=${result.pageMeta?.scrollWidth ?? "unknown"}/${result.pageMeta?.viewportWidth ?? "unknown"} ` +
-        `pageErrors=${result.pageErrors.length} consoleErrors=${result.consoleErrors.length}`,
-    );
-    for (const failure of result.failures) console.log(`  - ${failure}`);
-    for (const pageError of result.pageErrors) console.log(`  pageerror: ${pageError}`);
-    for (const consoleError of result.consoleErrors) console.log(`  console.error: ${consoleError}`);
+  for (const viewport of VIEWPORTS) {
+    for (const runtimeCase of selectedCases) {
+      const result = await runCase(browser, baseUrl, runtimeCase, viewport);
+      results.push(result);
+      const status = result.failures.length === 0 ? "PASS" : "FAIL";
+      console.log(
+        `${status} ${result.caseName} viewport=${viewport.width}x${viewport.height} ` +
+          `status=${result.responseStatus} posts=${result.pageMeta?.postsState ?? "unknown"} ` +
+          `globe=${result.pageMeta?.globeState ?? "unknown"} ` +
+          `markers=${result.pageMeta?.markerCount ?? "unknown"} apiRequests=${result.apiRequestCount} ` +
+          `overlap=${result.pageMeta?.statusBadgeOverlap ?? "n/a"} ` +
+          `scroll=${result.pageMeta?.scrollWidth ?? "unknown"}/${result.pageMeta?.viewportWidth ?? "unknown"} ` +
+          `pageErrors=${result.pageErrors.length} consoleErrors=${result.consoleErrors.length}`,
+      );
+      for (const failure of result.failures) console.log(`  - ${failure}`);
+      for (const pageError of result.pageErrors) console.log(`  pageerror: ${pageError}`);
+      for (const consoleError of result.consoleErrors) console.log(`  console.error: ${consoleError}`);
+    }
   }
 
   const failed = results.filter((result) => result.failures.length > 0);
@@ -632,7 +692,8 @@ try {
   } else {
     console.log(
       `Homepage five-state runtime gate passed: ${results.length}/${results.length} cases passed ` +
-        "with zero console.error, pageerror, unhandled rejection, and 375px overflow.",
+        "at 375px and 1440px without status/badge overlap, clipped status text, " +
+        "console.error, pageerror, unhandled rejection, or horizontal overflow.",
     );
   }
 } finally {
