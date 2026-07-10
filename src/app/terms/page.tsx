@@ -9,12 +9,17 @@ import {
   ShieldCheck,
   ShoppingBag,
 } from "lucide-react";
+import { usePathname } from "next/navigation";
+import { use } from "react";
 import {
   Badge,
   PageShell,
   buttonClassName,
 } from "@/components/ui";
-import { useI18n } from "@/i18n/I18nProvider";
+import type { MessageKey } from "@/i18n/messages";
+import { localeFromPath } from "@/i18n/routing";
+
+const catalogPromise = import("@/i18n/messages");
 
 const TERMS = [
   {
@@ -41,7 +46,10 @@ const TERMS = [
 ] as const;
 
 export default function TermsPage() {
-  const { t } = useI18n();
+  const pathname = usePathname();
+  const { resolveMessages } = use(catalogPromise);
+  const messages = resolveMessages(localeFromPath(pathname));
+  const t = (key: MessageKey) => messages[key];
 
   return (
     <PageShell className="legal-page-shell pt-28 sm:pt-32" contentClassName="space-y-paw-xl">

@@ -1,6 +1,8 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { use } from "react";
 import {
   ArrowRight,
   Clock3,
@@ -21,7 +23,10 @@ import {
   PageShell,
   buttonClassName,
 } from "@/components/ui";
-import { useI18n } from "@/i18n/I18nProvider";
+import type { MessageKey } from "@/i18n/messages";
+import { localeFromPath } from "@/i18n/routing";
+
+const catalogPromise = import("@/i18n/messages");
 
 const LANE_DEFINITIONS = [
   {
@@ -66,7 +71,10 @@ const ROUTE_DEFINITIONS = [
 ] as const;
 
 export default function HelpPage() {
-  const { t } = useI18n();
+  const pathname = usePathname();
+  const { resolveMessages } = use(catalogPromise);
+  const messages = resolveMessages(localeFromPath(pathname));
+  const t = (key: MessageKey) => messages[key];
 
   return (
     <PageShell className="pt-28 sm:pt-32" contentClassName="space-y-paw-xl">
