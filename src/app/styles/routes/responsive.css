@@ -232,19 +232,23 @@
   .globe-fallback-stage {
     grid-template-columns: 1fr;
     align-content: start;
-    gap: 1.5rem;
+    gap: var(--spacing-paw-xl);
     padding:
       calc(env(safe-area-inset-top, 0px) + 5.25rem)
-      1rem
-      calc(env(safe-area-inset-bottom, 0px) + 2rem);
+      var(--spacing-paw-md)
+      calc(env(safe-area-inset-bottom, 0px) + var(--spacing-paw-xxl));
   }
 
-  .globe-fallback-copy h2 {
+  .globe-fallback-copy {
+    padding: var(--spacing-paw-lg);
+  }
+
+  .globe-fallback-title {
     max-width: 20rem;
     font-size: 2.35rem;
   }
 
-  .globe-fallback-copy p:not(:first-child) {
+  .globe-fallback-body {
     max-width: 22rem;
     font-size: 0.92rem;
     line-height: 1.6;
