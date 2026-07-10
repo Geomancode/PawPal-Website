@@ -56,6 +56,16 @@ export const enMessages = {
   homeHeroLineTwo: "for every walk",
   homeHeroDescription:
     "Built in Belgium, PawPal connects live walks, smart finder profiles, and local pet help in one calm product surface.",
+  homeGlobeRegionLabel: "Interactive globe of public PawPal community posts",
+  homeGlobeLoadingPreviewLabel: "Visual preview · Loading live posts",
+  homeGlobeStaticPreviewLabel:
+    "Static preview · This browser cannot display the live globe",
+  homeGlobeEmptyLabel: "No popular public posts to show yet",
+  homeGlobeErrorLabel: "Live community markers are temporarily unavailable",
+  homeGlobePostLinkLabel: "Open community post from",
+  homeGlobeLikesLabel: "likes",
+  homeGlobeCommentsLabel: "comments",
+  homeGlobeSnippetFallback: "Community update",
   homeCtaOpenLiveMap: "Open Live Map",
   homeCtaShopSmartTags: "Shop Smart Tags",
   homeSignalFinderPageLabel: "Finder page",
@@ -248,5 +258,7 @@ export const enMessages = {
   authPrivacyPolicy: "Privacy Policy",
 } as const;
 
-export type WebsiteMessages = typeof enMessages;
+export type WebsiteMessages = {
+  [Key in keyof typeof enMessages]: string;
+};
 export type MessageKey = keyof WebsiteMessages;

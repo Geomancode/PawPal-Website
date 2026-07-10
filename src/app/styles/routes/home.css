@@ -801,23 +801,237 @@
   color: var(--color-paw-inverse-ink);
 }
 
-.globe-static-fallback {
-  width: min(100%, 92vmin);
-  height: min(100%, 92vmin);
-  min-width: 18rem;
-  min-height: 18rem;
-  max-width: 100%;
-  max-height: 100%;
+.home-globe-marker {
+  display: block;
+  color: var(--color-paw-ink);
+  cursor: pointer;
+  text-decoration: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.home-globe-marker-visual {
+  position: relative;
+  display: flex;
+  width: 2rem;
+  height: 2rem;
+  box-sizing: border-box;
+  align-items: center;
+  overflow: hidden;
+  border: 1px solid color-mix(in srgb, var(--color-paw-primary) 68%, var(--color-paw-trust));
   border-radius: 999px;
-  background:
-    radial-gradient(circle at 34% 30%, color-mix(in srgb, var(--color-paw-inverse-ink) 50%, transparent), transparent 20%),
-    radial-gradient(circle at 72% 74%, color-mix(in srgb, var(--color-paw-primary) 28%, transparent), transparent 24%),
-    url("/earth-natural-relief.jpg") center / cover;
+  background: var(--color-paw-panel);
   box-shadow:
-    inset -34px -28px 58px color-mix(in srgb, var(--color-paw-primary) 28%, transparent),
-    inset 20px 16px 40px color-mix(in srgb, var(--color-paw-inverse-ink) 20%, transparent),
-    0 0 0 1px color-mix(in srgb, var(--color-paw-primary) 16%, transparent),
-    0 22px 60px color-mix(in srgb, var(--color-paw-primary) 20%, transparent);
+    0 0 0 3px color-mix(in srgb, var(--color-paw-primary) 10%, transparent),
+    0 5px 16px color-mix(in srgb, var(--color-paw-primary) 22%, transparent);
+  opacity: 0;
+  transform: translateY(6px) scale(0.88);
+  transform-origin: center;
+  transition:
+    opacity 180ms ease-in,
+    transform 180ms ease-in,
+    width 180ms ease,
+    height 180ms ease,
+    border-radius 180ms ease,
+    box-shadow 180ms ease;
+  will-change: opacity, transform;
+}
+
+.home-globe-marker-visual::before {
+  content: "";
+  position: absolute;
+  inset: 2px;
+  z-index: 0;
+  border: 1px solid color-mix(in srgb, var(--color-paw-primary) 18%, transparent);
+  border-right-color: color-mix(in srgb, var(--color-paw-trust) 48%, transparent);
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+.home-globe-marker.is-visible .home-globe-marker-visual {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  transition:
+    opacity 280ms ease-out,
+    transform 280ms ease-out,
+    width 180ms ease,
+    height 180ms ease,
+    border-radius 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.home-globe-marker.is-hidden .home-globe-marker-visual {
+  opacity: 0;
+  transform: translateY(0) scale(0.96);
+}
+
+.home-globe-marker-pin {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  width: 1.875rem;
+  height: 1.875rem;
+  flex: 0 0 1.875rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+}
+
+.home-globe-marker-icon {
+  font-size: 0.93rem;
+  line-height: 1;
+  filter: saturate(0.92);
+}
+
+.home-globe-marker-interaction-dot {
+  position: absolute;
+  right: 0.08rem;
+  bottom: 0.08rem;
+  width: 0.32rem;
+  height: 0.32rem;
+  border: 1px solid var(--color-paw-panel);
+  border-radius: 999px;
+  background: var(--color-paw-accent);
+}
+
+.home-globe-marker-card-content {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  width: 0;
+  min-width: 0;
+  gap: 0.12rem;
+  overflow: hidden;
+  opacity: 0;
+  text-align: left;
+  transition:
+    width 180ms ease,
+    opacity 180ms ease;
+}
+
+.home-globe-marker.is-featured .home-globe-marker-visual {
+  width: 10rem;
+  height: 4.4rem;
+  border-radius: 12px;
+  box-shadow:
+    0 0 0 3px color-mix(in srgb, var(--color-paw-primary) 9%, transparent),
+    0 12px 28px color-mix(in srgb, var(--color-paw-ink) 18%, transparent);
+}
+
+.home-globe-marker.is-featured .home-globe-marker-pin {
+  margin-left: 0.35rem;
+}
+
+.home-globe-marker.is-featured .home-globe-marker-card-content {
+  width: 7.2rem;
+  padding: 0.32rem 0.48rem 0.32rem 0.18rem;
+  opacity: 1;
+}
+
+.home-globe-marker-location,
+.home-globe-marker-snippet {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.home-globe-marker-location {
+  color: var(--color-paw-ink);
+  font-size: 0.68rem;
+  font-weight: 900;
+}
+
+.home-globe-marker-snippet {
+  color: var(--color-paw-body);
+  font-size: 0.61rem;
+  font-weight: 650;
+}
+
+.home-globe-marker-stats {
+  display: flex;
+  gap: 0.48rem;
+  color: var(--color-paw-muted);
+  font-size: 0.58rem;
+  font-weight: 850;
+}
+
+.home-globe-marker:focus-visible {
+  outline: none;
+}
+
+.home-globe-marker:focus-visible .home-globe-marker-visual,
+.home-globe-marker:hover .home-globe-marker-visual {
+  border-color: var(--color-paw-primary);
+  box-shadow:
+    0 0 0 4px color-mix(in srgb, var(--color-paw-primary) 16%, transparent),
+    0 14px 30px color-mix(in srgb, var(--color-paw-ink) 20%, transparent);
+}
+
+.home-globe-marker.is-visible:active .home-globe-marker-visual {
+  transform: scale(0.96);
+  transition-duration: 120ms;
+}
+
+.home-globe-marker.is-featured.is-visible .home-globe-marker-visual {
+  animation: home-globe-feature-pulse 2.8s ease-out infinite;
+}
+
+.home-globe-posts-status {
+  position: absolute;
+  left: 50%;
+  bottom: 0.35rem;
+  z-index: 25;
+  width: max-content;
+  max-width: calc(100% - 2rem);
+  transform: translateX(-50%);
+  border: 1px solid color-mix(in srgb, var(--color-paw-border) 82%, transparent);
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--color-paw-panel) 86%, transparent);
+  box-shadow: 0 10px 28px color-mix(in srgb, var(--color-paw-ink) 10%, transparent);
+  padding: 0.42rem 0.68rem;
+  color: var(--color-paw-muted);
+  font-size: 0.7rem;
+  font-weight: 800;
+  line-height: 1.25;
+  pointer-events: none;
+  text-align: center;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+@keyframes home-globe-feature-pulse {
+  0%,
+  10% {
+    box-shadow:
+      0 0 0 3px color-mix(in srgb, var(--color-paw-primary) 9%, transparent),
+      0 12px 28px color-mix(in srgb, var(--color-paw-ink) 18%, transparent);
+  }
+
+  5% {
+    box-shadow:
+      0 0 0 7px color-mix(in srgb, var(--color-paw-primary) 5%, transparent),
+      0 12px 28px color-mix(in srgb, var(--color-paw-ink) 18%, transparent);
+  }
+
+  11%,
+  100% {
+    box-shadow:
+      0 0 0 3px color-mix(in srgb, var(--color-paw-primary) 9%, transparent),
+      0 12px 28px color-mix(in srgb, var(--color-paw-ink) 18%, transparent);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-globe-marker-visual,
+  .home-globe-marker-card-content {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .home-globe-marker.is-visible .home-globe-marker-visual {
+    transform: none;
+  }
 }
 
 .globe-static-preview {
@@ -887,31 +1101,41 @@
   transform: rotate(25deg) scaleX(1.16);
 }
 
-.globe-static-preview-pin {
+.globe-static-preview-marker {
   position: absolute;
-  width: 0.68rem;
-  height: 0.68rem;
-  border: 2px solid var(--color-paw-inverse-ink);
+  width: 1.1rem;
+  height: 1.1rem;
+  border: 1px solid color-mix(in srgb, var(--color-paw-primary) 55%, var(--color-paw-trust));
   border-radius: 999px;
-  background: var(--color-paw-primary);
-  box-shadow: 0 8px 18px color-mix(in srgb, var(--color-paw-ink) 22%, transparent);
+  background: color-mix(in srgb, var(--color-paw-panel) 64%, transparent);
+  box-shadow:
+    inset 0 0 0 0.26rem color-mix(in srgb, var(--color-paw-primary) 10%, transparent),
+    0 0 0 0.28rem color-mix(in srgb, var(--color-paw-primary) 7%, transparent),
+    0 8px 18px color-mix(in srgb, var(--color-paw-ink) 16%, transparent);
 }
 
-.globe-static-preview-pin-a {
+.globe-static-preview-marker-a {
   left: 34%;
   top: 35%;
 }
 
-.globe-static-preview-pin-b {
+.globe-static-preview-marker-b {
   right: 29%;
   top: 48%;
-  background: var(--color-paw-trust);
 }
 
-.globe-static-preview-pin-c {
+.globe-static-preview-marker-c {
   bottom: 28%;
   left: 48%;
-  background: var(--color-paw-accent);
+}
+
+.home-globe-static-preview {
+  width: 100%;
+  min-height: 100%;
+}
+
+.home-globe-static-preview .globe-static-preview-earth {
+  width: min(82%, 29rem);
 }
 
 .globe-static-preview-card {

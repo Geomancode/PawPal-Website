@@ -9,6 +9,7 @@
     "lint": "eslint",
     "test:home-contract": "node scripts/homepage-contract-check.mjs",
     "test:home-globe-contract": "node scripts/home-globe-contract-check.mjs",
+    "test:globe-facing": "node scripts/globe-facing-check.mjs",
     "test:p2w2-3-fixture-guard": "node scripts/p2w2-3-fixture-guard-check.mjs",
     "capture:p2w2-3": "node scripts/p2w2-3-capture-dynamic-states.mjs",
     "test:home-runtime": "node scripts/homepage-runtime-smoke.mjs",
