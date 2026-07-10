@@ -27,13 +27,16 @@ import {
   PageShell,
   buttonClassName,
 } from "@/components/ui";
+import { useReducedMotionPreference } from "@/lib/useReducedMotionPreference";
 
 /* ── Animation helpers ── */
-const fadeUp = (delay = 0) => ({
+const fadeUp = (shouldReduceMotion: boolean, delay = 0) => ({
   initial: { opacity: 1, y: 0 },
   whileInView: { opacity: 1, y: 0 },
   viewport: { once: true },
-  transition: { duration: 0.6, delay },
+  transition: shouldReduceMotion
+    ? { duration: 0, delay: 0 }
+    : { duration: 0.6, delay },
 });
 
 /* ── Real Team Data ── */
@@ -104,12 +107,14 @@ const TEAM_STRENGTHS: Array<{ icon: LucideIcon; text: string }> = [
 ];
 
 export default function About() {
+  const shouldReduceMotion = useReducedMotionPreference();
+
   return (
     <PageShell className="pt-28 sm:pt-32" contentClassName="space-y-paw-xxxl">
       {/* ===== HERO ===== */}
       <section className="grid gap-paw-xl lg:grid-cols-[minmax(0,1.05fr)_minmax(20rem,0.95fr)] lg:items-stretch">
         <div className="about-hero-copy">
-          <motion.div {...fadeUp()}>
+          <motion.div {...fadeUp(shouldReduceMotion)}>
             <Badge tone="primary" className="mb-paw-lg">
               <PawPrint className="h-4 w-4" aria-hidden="true" />
               Product proof from Ghent
@@ -117,14 +122,14 @@ export default function About() {
           </motion.div>
 
           <motion.h1
-            {...fadeUp(0.1)}
+            {...fadeUp(shouldReduceMotion, 0.1)}
             className="max-w-3xl font-brand text-paw-type-h1 font-black text-paw-ink sm:text-paw-type-display"
           >
             A connected safety layer for everyday pet care.
           </motion.h1>
 
           <motion.p
-            {...fadeUp(0.2)}
+            {...fadeUp(shouldReduceMotion, 0.2)}
             className="mt-paw-md max-w-2xl text-paw-type-body text-paw-body sm:text-base"
           >
             PawPal connects the moments around a pet: walks, finder pages,
@@ -132,7 +137,7 @@ export default function About() {
             owners and finders a clear path without requiring the app first.
           </motion.p>
 
-          <motion.div {...fadeUp(0.3)} className="mt-paw-xl flex flex-wrap gap-paw-sm">
+          <motion.div {...fadeUp(shouldReduceMotion, 0.3)} className="mt-paw-xl flex flex-wrap gap-paw-sm">
             <Link href="/globe" className={buttonClassName({ size: "lg" })}>
               Explore Globe
               <ArrowRight className="h-4 w-4" aria-hidden="true" />
@@ -146,7 +151,7 @@ export default function About() {
           </motion.div>
         </div>
 
-        <motion.aside {...fadeUp(0.18)}>
+        <motion.aside {...fadeUp(shouldReduceMotion, 0.18)}>
           <div className="about-system-panel relative overflow-hidden">
             <div className="hero-map-grid pointer-events-none absolute inset-0 opacity-35" />
             <div className="relative z-10">
@@ -201,7 +206,7 @@ export default function About() {
       {/* ===== MISSION STATEMENT ===== */}
       <section className="about-text-band">
         <div className="mx-auto max-w-3xl text-center">
-          <motion.div {...fadeUp()}>
+          <motion.div {...fadeUp(shouldReduceMotion)}>
             <p className="text-paw-type-h2 font-black leading-snug text-paw-ink sm:text-3xl">
               &ldquo;PawPal&apos;s mission is not to replace companionship with technology, but to{" "}
               <span className="text-paw-on-primary-soft">enhance</span> the bond between humans and their pets
@@ -214,14 +219,14 @@ export default function About() {
 
       {/* ===== PRODUCT ECOSYSTEM ===== */}
       <section>
-        <motion.div {...fadeUp()} className="mx-auto mb-paw-xxl max-w-2xl text-center">
+        <motion.div {...fadeUp(shouldReduceMotion)} className="mx-auto mb-paw-xxl max-w-2xl text-center">
           <h2 className="font-brand text-paw-type-h1 font-black text-paw-ink sm:text-paw-type-display">The PawPal Ecosystem</h2>
           <p className="mx-auto mt-paw-sm text-paw-body">App + Web + Hardware — three products, one mission: enhance every moment with your pet.</p>
         </motion.div>
 
         <div className="grid gap-paw-lg md:grid-cols-3">
           {ECOSYSTEM.map((item, i) => (
-            <motion.div key={item.title} {...fadeUp(i * 0.08)}>
+            <motion.div key={item.title} {...fadeUp(shouldReduceMotion, i * 0.08)}>
               <Card className="h-full transition hover:-translate-y-1 hover:border-paw-primary/30 hover:shadow-paw-floating">
                 <CardContent>
                   <div className={`mb-paw-lg flex h-14 w-14 items-center justify-center rounded-paw-panel ${item.tone}`}>
@@ -238,14 +243,14 @@ export default function About() {
 
       {/* ===== VALUES ===== */}
       <section>
-        <motion.div {...fadeUp()} className="mx-auto mb-paw-xxl max-w-2xl text-center">
+        <motion.div {...fadeUp(shouldReduceMotion)} className="mx-auto mb-paw-xxl max-w-2xl text-center">
           <h2 className="font-brand text-paw-type-h1 font-black text-paw-ink sm:text-paw-type-display">What We Stand For</h2>
           <p className="mx-auto mt-paw-sm text-paw-body">Our values guide every decision — from the features we build to the community we grow.</p>
         </motion.div>
 
         <div className="grid gap-paw-md md:grid-cols-2 lg:grid-cols-3">
           {VALUES.map((v, i) => (
-            <motion.div key={v.title} {...fadeUp(i * 0.06)}>
+            <motion.div key={v.title} {...fadeUp(shouldReduceMotion, i * 0.06)}>
               <Card className="h-full transition hover:border-paw-primary/30 hover:shadow-paw-floating">
                 <CardContent>
                   <span className="mb-paw-md flex h-11 w-11 items-center justify-center rounded-paw-control bg-paw-primary-soft text-paw-on-primary-soft">
@@ -262,14 +267,14 @@ export default function About() {
 
       {/* ===== TEAM ===== */}
       <section className="mx-auto max-w-5xl">
-        <motion.div {...fadeUp()} className="mx-auto mb-paw-xxl max-w-2xl text-center">
+        <motion.div {...fadeUp(shouldReduceMotion)} className="mx-auto mb-paw-xxl max-w-2xl text-center">
           <h2 className="font-brand text-paw-type-h1 font-black text-paw-ink sm:text-paw-type-display">Meet the Founding Team</h2>
           <p className="mx-auto mt-paw-sm text-paw-body">A cross-disciplinary trio from Ghent — engineering, business, and design — united by a shared love for pets.</p>
         </motion.div>
 
         <div className="grid gap-paw-lg md:grid-cols-3">
           {TEAM.map((member, i) => (
-            <motion.div key={member.name} {...fadeUp(i * 0.1)}>
+            <motion.div key={member.name} {...fadeUp(shouldReduceMotion, i * 0.1)}>
               <Card className="h-full text-center transition hover:-translate-y-1 hover:border-paw-primary/30 hover:shadow-paw-floating">
                 <CardContent>
                   <div className="mx-auto mb-paw-md flex h-20 w-20 items-center justify-center rounded-paw-pill border border-paw-outline-variant bg-paw-primary-soft text-2xl font-black text-paw-on-primary-soft shadow-paw-panel">
@@ -285,7 +290,7 @@ export default function About() {
         </div>
 
         {/* Team strengths */}
-        <motion.div {...fadeUp(0.3)} className="mt-paw-xl grid gap-paw-sm sm:grid-cols-2 md:grid-cols-4">
+        <motion.div {...fadeUp(shouldReduceMotion, 0.3)} className="mt-paw-xl grid gap-paw-sm sm:grid-cols-2 md:grid-cols-4">
           {TEAM_STRENGTHS.map((s) => (
             <Card key={s.text} className="shadow-paw-panel">
               <CardContent className="flex items-center gap-paw-sm p-paw-md">
@@ -301,7 +306,7 @@ export default function About() {
 
       {/* ===== TIMELINE ===== */}
       <section className="mx-auto max-w-3xl">
-        <motion.div {...fadeUp()} className="mb-paw-xxl text-center">
+        <motion.div {...fadeUp(shouldReduceMotion)} className="mb-paw-xxl text-center">
           <h2 className="font-brand text-paw-type-h1 font-black text-paw-ink sm:text-paw-type-display">Our Journey</h2>
           <p className="mt-paw-sm text-paw-body">From a spark of an idea to a production-ready platform.</p>
         </motion.div>
@@ -313,7 +318,7 @@ export default function About() {
           {TIMELINE.map((item, i) => (
             <motion.div
               key={item.year}
-              {...fadeUp(i * 0.08)}
+              {...fadeUp(shouldReduceMotion, i * 0.08)}
               className={`relative mb-paw-xl flex items-start gap-paw-md md:mb-paw-xxl ${i % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"}`}
             >
               {/* Dot */}
@@ -333,7 +338,7 @@ export default function About() {
       {/* ===== CTA ===== */}
       <section className="about-text-band">
         <div className="mx-auto max-w-3xl text-center">
-          <motion.div {...fadeUp()}>
+          <motion.div {...fadeUp(shouldReduceMotion)}>
             <h2 className="font-brand text-paw-type-h1 font-black text-paw-ink sm:text-paw-type-display">
               Join the PawPal Journey
             </h2>
@@ -357,7 +362,7 @@ export default function About() {
           </motion.div>
 
           {/* Contact line */}
-          <motion.div {...fadeUp(0.2)} className="mt-paw-xl flex items-center justify-center gap-paw-xs text-paw-muted">
+          <motion.div {...fadeUp(shouldReduceMotion, 0.2)} className="mt-paw-xl flex items-center justify-center gap-paw-xs text-paw-muted">
             <Mail className="h-4 w-4" />
             <span className="text-sm">Questions? Reach us at <a href="mailto:hello@pawpal.be" className="about-inline-contact font-semibold text-paw-on-primary-soft hover:underline">hello@pawpal.be</a></span>
           </motion.div>
