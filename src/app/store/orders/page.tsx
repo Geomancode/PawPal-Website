@@ -18,6 +18,7 @@ import {
 import { Order, loadOrders } from "../storeData";
 import ProductVisual from "../ProductVisual";
 import { Badge, Button, Card, EmptyState } from "@/components/ui";
+import { useReducedMotionPreference } from "@/lib/useReducedMotionPreference";
 
 type OrderStatus = Order["status"];
 
@@ -39,6 +40,7 @@ const STATUS_INDEX: Record<OrderStatus, number> = {
 
 function OrderCard({ order }: { order: Order }) {
   const [expanded, setExpanded] = useState(false);
+  const shouldReduceMotion = useReducedMotionPreference();
   const status = STATUS_CONFIG[order.status] || STATUS_CONFIG.processing;
   const StatusIcon = status.icon;
   const date = new Date(order.createdAt);
@@ -48,7 +50,12 @@ function OrderCard({ order }: { order: Order }) {
   const currentStatusIndex = STATUS_INDEX[order.status] ?? STATUS_INDEX.processing;
 
   return (
-    <motion.div layout initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
+    <motion.div
+      layout={!shouldReduceMotion}
+      initial={shouldReduceMotion ? false : { opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={shouldReduceMotion ? { duration: 0 } : undefined}
+    >
       <Card className="order-card-upgraded overflow-hidden transition-colors hover:border-paw-primary/35">
         <button
           onClick={() => setExpanded(!expanded)}
@@ -86,10 +93,10 @@ function OrderCard({ order }: { order: Order }) {
         <AnimatePresence>
           {expanded && (
             <motion.div
-              initial={{ height: 0, opacity: 0 }}
+              initial={shouldReduceMotion ? false : { height: 0, opacity: 0 }}
               animate={{ height: "auto", opacity: 1 }}
               exit={{ height: 0, opacity: 0 }}
-              transition={{ duration: 0.25 }}
+              transition={{ duration: shouldReduceMotion ? 0 : 0.25 }}
               className="overflow-hidden"
             >
               <div className="space-y-5 border-t border-paw-border px-5 pb-6 pt-5 sm:px-6">

@@ -4,6 +4,7 @@ import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ChevronRight, ChevronLeft, Sparkles } from "lucide-react";
 import { useAuth } from "./AuthProvider";
+import { useReducedMotionPreference } from "@/lib/useReducedMotionPreference";
 
 const STORAGE_KEY = "pawpal_globe_tutorial_done";
 const INTRO_DELAY_MS = 12000;
@@ -69,6 +70,7 @@ function getSpotlightClip(rect: DOMRect, padding: number = 12): string {
 
 export default function GlobeTutorial() {
   const { user, loading } = useAuth();
+  const shouldReduceMotion = useReducedMotionPreference();
   const [visible, setVisible] = useState(false);
   const [step, setStep] = useState(0);
   const [targetRect, setTargetRect] = useState<DOMRect | null>(null);
@@ -130,24 +132,27 @@ export default function GlobeTutorial() {
     <>
       {/* Dark overlay with cutout around target */}
       <motion.div
-        initial={{ opacity: 0 }}
+        initial={shouldReduceMotion ? false : { opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
+        transition={shouldReduceMotion ? { duration: 0 } : undefined}
         className="fixed inset-0 z-[9998]"
         onClick={dismiss}
         style={{
           background: "color-mix(in srgb, var(--color-paw-ink) 38%, transparent)",
           clipPath: getSpotlightClip(targetRect),
-          transition: "clip-path 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
+          transition: shouldReduceMotion
+            ? "none"
+            : "clip-path 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
         }}
       />
 
       {/* Spotlight border ring around target */}
       <motion.div
         key={`ring-${step}`}
-        initial={{ opacity: 0, scale: 0.9 }}
+        initial={shouldReduceMotion ? false : { opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.4 }}
+        transition={{ duration: shouldReduceMotion ? 0 : 0.4 }}
         className="fixed z-[9999] pointer-events-none rounded-2xl"
         style={{
           top: targetRect.top - 14,
@@ -156,20 +161,22 @@ export default function GlobeTutorial() {
           height: targetRect.height + 28,
           border: "2px solid color-mix(in srgb, var(--color-paw-primary) 70%, transparent)",
           boxShadow: "0 0 0 4000px transparent, 0 0 20px color-mix(in srgb, var(--color-paw-primary) 35%, transparent)",
-          transition: "top 0.4s, left 0.4s, width 0.4s, height 0.4s",
+          transition: shouldReduceMotion
+            ? "none"
+            : "top 0.4s, left 0.4s, width 0.4s, height 0.4s",
         }}
       >
-        <div className="absolute inset-0 rounded-paw-lg border-2 border-paw-primary/40 animate-pulse" />
+        <div className={`absolute inset-0 rounded-paw-lg border-2 border-paw-primary/40 ${shouldReduceMotion ? "" : "animate-pulse"}`} />
       </motion.div>
 
       {/* Tooltip card anchored near the target */}
       <AnimatePresence mode="wait">
         <motion.div
           key={step}
-          initial={{ opacity: 0, y: current.position === "top" ? 20 : current.position === "bottom" ? -20 : 0, x: current.position === "left" ? 20 : current.position === "right" ? -20 : 0 }}
+          initial={shouldReduceMotion ? false : { opacity: 0, y: current.position === "top" ? 20 : current.position === "bottom" ? -20 : 0, x: current.position === "left" ? 20 : current.position === "right" ? -20 : 0 }}
           animate={{ opacity: 1, y: 0, x: 0 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.3 }}
+          transition={{ duration: shouldReduceMotion ? 0 : 0.3 }}
           className="globe-tutorial-card fixed z-[10000] w-[340px] max-w-[90vw]"
           style={tooltipStyle}
         >
@@ -184,7 +191,7 @@ export default function GlobeTutorial() {
                   {STEPS.map((_, i) => (
                     <div
                       key={i}
-                      className={`h-1.5 rounded-full transition-all duration-300 ${
+                      className={`h-1.5 rounded-full ${shouldReduceMotion ? "" : "transition-all duration-300"} ${
                         i === step ? "w-5 bg-paw-primary" : i < step ? "w-2.5 bg-paw-primary/45" : "w-2.5 bg-paw-border"
                       }`}
                     />
