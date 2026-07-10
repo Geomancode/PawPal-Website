@@ -1,3 +1,5 @@
+"use client";
+
 import {
   CheckCircle2,
   FileText,
@@ -12,55 +14,58 @@ import {
   PageShell,
   buttonClassName,
 } from "@/components/ui";
+import { useRouteTranslations } from "@/i18n/useRouteTranslations";
 
 const TERMS = [
   {
     id: "terms-responsible-use",
     icon: Handshake,
-    title: "Use PawPal responsibly",
-    text: "PawPal helps pet owners coordinate care, walks, safety, and community help. Do not misuse profiles, tags, maps, or community tools.",
-    signal: "Community trust",
+    titleKey: "termsResponsibleTitle",
+    textKey: "termsResponsibleText",
+    signalKey: "termsResponsibleSignal",
   },
   {
     id: "terms-store",
     icon: ShoppingBag,
-    title: "Store purchases",
-    text: "Store checkout is processed through Stripe. Product availability, pricing, and shipping details may change before an order is completed.",
-    signal: "Stripe checkout",
+    titleKey: "termsStoreTitle",
+    textKey: "termsStoreText",
+    signalKey: "termsStoreSignal",
   },
   {
     id: "terms-community",
     icon: MessageSquareWarning,
-    title: "Community content",
-    text: "Posts, chats, reports, and public rescue information should be accurate, respectful, and safe for other owners and finders.",
-    signal: "Public safety",
+    titleKey: "termsCommunityTitle",
+    textKey: "termsCommunityText",
+    signalKey: "termsCommunitySignal",
   },
-];
+] as const;
 
 export default function TermsPage() {
+  const { loader, t } = useRouteTranslations();
+
   return (
     <PageShell className="legal-page-shell pt-28 sm:pt-32" contentClassName="space-y-paw-xl">
+      {loader}
       <section className="legal-hero-panel">
         <div className="grid gap-paw-xl lg:grid-cols-[minmax(0,1fr)_minmax(18rem,24rem)] lg:items-center">
           <div>
             <Badge tone="primary" className="mb-paw-lg">
               <FileText className="h-4 w-4" aria-hidden="true" />
-              Legal
+              {t("termsBadge")}
             </Badge>
             <h1 className="max-w-3xl font-brand text-paw-type-h1 font-black text-paw-ink sm:text-paw-type-display">
-              Clear rules for pet care, commerce, and community.
+              {t("termsHeroTitle")}
             </h1>
             <p className="mt-paw-md max-w-2xl text-paw-type-body text-paw-body sm:text-base">
-              These terms summarize the expected use of PawPal across the
-              website, store, app, and public pet safety flows.
+              {t("termsHeroCopy")}
             </p>
           </div>
 
           <aside className="grid gap-paw-sm">
             {[
-              { icon: ShieldCheck, label: "Safety first", value: "Urgent rescue situations should use local services first." },
-              { icon: ReceiptText, label: "Purchase clarity", value: "Checkout, pricing, and shipping are confirmed before payment." },
-              { icon: CheckCircle2, label: "Respectful use", value: "Profiles, maps, and posts should help owners and finders." },
+              { icon: ShieldCheck, label: t("termsTrustSafetyLabel"), value: t("termsTrustSafetyValue") },
+              { icon: ReceiptText, label: t("termsTrustPurchaseLabel"), value: t("termsTrustPurchaseValue") },
+              { icon: CheckCircle2, label: t("termsTrustRespectLabel"), value: t("termsTrustRespectValue") },
             ].map((item) => (
               <div
                 key={item.label}
@@ -77,30 +82,30 @@ export default function TermsPage() {
         </div>
       </section>
 
-      <nav className="legal-section-nav" aria-label="Terms sections">
+      <nav className="legal-section-nav" aria-label={t("termsSectionsAriaLabel")}>
         {TERMS.map((section) => (
           <a
             key={section.id}
             href={`#${section.id}`}
             className={buttonClassName({ variant: "secondary", size: "sm" })}
           >
-            {section.title}
+            {t(section.titleKey)}
           </a>
         ))}
       </nav>
 
       <div className="legal-prose-grid legal-prose-grid-compact">
         {TERMS.map((section) => (
-          <section key={section.title} id={section.id} className="legal-prose-section">
+          <section key={section.titleKey} id={section.id} className="legal-prose-section">
               <div className="legal-info-icon">
                 <section.icon className="h-5 w-5" aria-hidden="true" />
               </div>
               <h2 className="text-paw-type-h2 font-black text-paw-ink">
-                {section.title}
+                {t(section.titleKey)}
               </h2>
-              <p className="mt-paw-sm text-sm leading-6 text-paw-body">{section.text}</p>
+              <p className="mt-paw-sm text-sm leading-6 text-paw-body">{t(section.textKey)}</p>
               <p className="mt-paw-md text-xs font-black uppercase text-paw-on-primary-soft">
-                {section.signal}
+                {t(section.signalKey)}
               </p>
           </section>
         ))}
