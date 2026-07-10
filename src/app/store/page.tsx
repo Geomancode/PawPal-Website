@@ -804,7 +804,7 @@ function StorePageContent() {
             <button
               type="button"
               onClick={() => setCartOpen(true)}
-              className="inline-flex cursor-pointer items-center gap-1 text-sm font-bold text-paw-muted transition-colors hover:text-paw-primary"
+              className="store-toolbar-action inline-flex cursor-pointer items-center gap-1 text-sm font-bold text-paw-muted transition-colors hover:text-paw-primary"
             >
               <ShoppingCart className="h-4 w-4" aria-hidden="true" />
               {t("storeCartButton")} {totalItems > 0 ? `(${totalItems})` : ""}
@@ -812,7 +812,7 @@ function StorePageContent() {
             {isAdmin && (
               <button
                 onClick={() => router.push(path("/store/admin"))}
-                className="flex cursor-pointer items-center gap-1 text-sm font-bold text-paw-trust transition-colors hover:text-paw-trust-hover"
+                className="store-toolbar-action flex cursor-pointer items-center gap-1 text-sm font-bold text-paw-trust transition-colors hover:text-paw-trust-hover"
               >
                 <ShieldCheck className="h-4 w-4" aria-hidden="true" />
                 {t("storeManageCatalog")}
@@ -820,7 +820,7 @@ function StorePageContent() {
             )}
             <button
               onClick={() => router.push(path("/store/orders"))}
-              className="flex cursor-pointer items-center gap-1 text-sm font-bold text-paw-primary transition-colors hover:text-paw-primary-hover"
+              className="store-toolbar-action flex cursor-pointer items-center gap-1 text-sm font-bold text-paw-primary transition-colors hover:text-paw-primary-hover"
             >
               {t("storeMyOrders")} <ChevronRight className="h-4 w-4" />
             </button>

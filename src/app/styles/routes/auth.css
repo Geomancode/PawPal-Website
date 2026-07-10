@@ -5,6 +5,26 @@
   align-items: center;
 }
 
+.auth-mode-tab {
+  min-height: var(--spacing-paw-min-tap);
+}
+
+.auth-password-toggle {
+  display: inline-flex;
+  width: var(--spacing-paw-min-tap);
+  height: var(--spacing-paw-min-tap);
+  align-items: center;
+  justify-content: center;
+}
+
+.auth-legal-link {
+  display: inline-flex;
+  min-width: var(--spacing-paw-min-tap);
+  min-height: var(--spacing-paw-min-tap);
+  align-items: center;
+  justify-content: center;
+}
+
 .auth-layout {
   position: relative;
   z-index: 1;

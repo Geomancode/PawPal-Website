@@ -150,7 +150,7 @@ export default function HelpPage() {
                 <p className="mt-paw-md text-xs font-bold text-paw-muted">{item.route}</p>
                 <a
                   href={item.href}
-                  className="mt-auto inline-flex items-center gap-paw-xs pt-paw-md text-sm font-extrabold text-paw-on-primary-soft transition hover:text-paw-primary-hover focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-paw-trust/20"
+                  className="support-lane-action mt-auto inline-flex items-center gap-paw-xs pt-paw-md text-sm font-extrabold text-paw-on-primary-soft transition hover:text-paw-primary-hover focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-paw-trust/20"
                 >
                   {item.action}
                   <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />

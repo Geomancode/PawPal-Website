@@ -1,5 +1,9 @@
 /* Owner: /store checkout, orders, success, and admin styles. */
 
+.store-toolbar-action {
+  min-height: var(--spacing-paw-min-tap);
+}
+
 .checkout-assurance-grid {
   display: grid;
   min-width: min(100%, 17rem);

@@ -140,7 +140,7 @@ export default function AuthPage() {
             <button
               onClick={() => { setIsLogin(true); setError(null); }}
               aria-pressed={isLogin}
-              className={`flex-1 py-2 rounded-paw-sm text-sm font-semibold transition-all ${
+              className={`auth-mode-tab flex-1 py-2 rounded-paw-sm text-sm font-semibold transition-all ${
                 isLogin ? "bg-paw-panel text-paw-ink shadow-sm" : "text-paw-muted hover:text-paw-body"
               }`}
             >
@@ -149,7 +149,7 @@ export default function AuthPage() {
             <button
               onClick={() => { setIsLogin(false); setError(null); }}
               aria-pressed={!isLogin}
-              className={`flex-1 py-2 rounded-paw-sm text-sm font-semibold transition-all ${
+              className={`auth-mode-tab flex-1 py-2 rounded-paw-sm text-sm font-semibold transition-all ${
                 !isLogin ? "bg-paw-panel text-paw-ink shadow-sm" : "text-paw-muted hover:text-paw-body"
               }`}
             >
@@ -218,13 +218,14 @@ export default function AuthPage() {
               placeholder={t("authPasswordPlaceholder")}
               required
               aria-invalid={Boolean(error && password.length > 0 && password.length < 6)}
+              className="pr-16"
               leftSlot={<Lock className="h-4 w-4" aria-hidden="true" />}
               rightSlot={
                 <button
                   type="button"
                   aria-label={showPassword ? t("authHidePassword") : t("authShowPassword")}
                   onClick={() => setShowPassword(!showPassword)}
-                  className="rounded-paw-sm p-1 text-paw-muted transition hover:bg-paw-panel-subtle hover:text-paw-ink"
+                  className="auth-password-toggle rounded-paw-sm p-1 text-paw-muted transition hover:bg-paw-panel-subtle hover:text-paw-ink"
                 >
                   {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
                 </button>
@@ -285,9 +286,9 @@ export default function AuthPage() {
         {/* Footer text */}
         <p className="text-center text-xs text-paw-muted mt-6">
           {t("authContinuePrefix")}{" "}
-          <a href={path("/terms")} className="text-paw-primary hover:underline">{t("authTerms")}</a>{" "}
+          <a href={path("/terms")} className="auth-legal-link text-paw-primary hover:underline">{t("authTerms")}</a>{" "}
           {t("authAnd")}{" "}
-          <a href={path("/privacy")} className="text-paw-primary hover:underline">{t("authPrivacyPolicy")}</a>
+          <a href={path("/privacy")} className="auth-legal-link text-paw-primary hover:underline">{t("authPrivacyPolicy")}</a>
         </p>
       </div>
       </div>
