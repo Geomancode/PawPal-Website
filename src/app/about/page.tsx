@@ -21,7 +21,6 @@ import {
 import type { LucideIcon } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { use } from "react";
 import {
   Badge,
   Card,
@@ -29,12 +28,10 @@ import {
   PageShell,
   buttonClassName,
 } from "@/components/ui";
-import type { MessageKey } from "@/i18n/messages";
+import { resolveMessages, type MessageKey } from "@/i18n/messages";
 import { localeFromPath } from "@/i18n/routing";
 import { siteConfig } from "@/lib/site";
 import { useReducedMotionPreference } from "@/lib/useReducedMotionPreference";
-
-const catalogPromise = import("@/i18n/messages");
 
 /* ── Animation helpers ── */
 const fadeUp = (shouldReduceMotion: boolean, delay = 0) => ({
@@ -115,7 +112,6 @@ const TEAM_STRENGTHS: ReadonlyArray<{ icon: LucideIcon; textKey: "aboutStrengthG
 
 export default function About() {
   const pathname = usePathname();
-  const { resolveMessages } = use(catalogPromise);
   const messages = resolveMessages(localeFromPath(pathname));
   const t = (key: MessageKey) => messages[key];
   const shouldReduceMotion = useReducedMotionPreference();

@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { use } from "react";
 import {
   ArrowRight,
   Clock3,
@@ -23,10 +22,8 @@ import {
   PageShell,
   buttonClassName,
 } from "@/components/ui";
-import type { MessageKey } from "@/i18n/messages";
+import { resolveMessages, type MessageKey } from "@/i18n/messages";
 import { localeFromPath } from "@/i18n/routing";
-
-const catalogPromise = import("@/i18n/messages");
 
 const LANE_DEFINITIONS = [
   {
@@ -72,7 +69,6 @@ const ROUTE_DEFINITIONS = [
 
 export default function HelpPage() {
   const pathname = usePathname();
-  const { resolveMessages } = use(catalogPromise);
   const messages = resolveMessages(localeFromPath(pathname));
   const t = (key: MessageKey) => messages[key];
 
