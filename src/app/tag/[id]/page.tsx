@@ -20,14 +20,17 @@ async function loadTagPet(id: string) {
     .eq("id", id)
     .maybeSingle();
 
-  if (!pet || error) return null;
+  if (error) throw error;
+  if (!pet) return null;
 
   // Fetch owner display name
-  const { data: owner } = await supabase
+  const { data: owner, error: ownerError } = await supabase
     .from("profiles")
     .select("display_name, username, avatar_url")
     .eq("id", pet.owner_id)
     .maybeSingle();
+
+  if (ownerError) throw ownerError;
 
   return { pet, owner };
 }

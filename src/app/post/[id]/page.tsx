@@ -30,9 +30,13 @@ async function loadPost(id: string) {
     .eq("id", id)
     .maybeSingle();
 
-  if (!post || error) return null;
+  if (error) throw error;
+  if (!post) return null;
 
-  const [{ data: profile }, { data: images }] = await Promise.all([
+  const [
+    { data: profile, error: profileError },
+    { data: images, error: imagesError },
+  ] = await Promise.all([
     supabase
       .from("profiles")
       .select("display_name, full_name, username, avatar_url")
@@ -44,6 +48,9 @@ async function loadPost(id: string) {
       .eq("post_id", id)
       .order("sort_order", { ascending: true }),
   ]);
+
+  if (profileError) throw profileError;
+  if (imagesError) throw imagesError;
 
   return {
     post,

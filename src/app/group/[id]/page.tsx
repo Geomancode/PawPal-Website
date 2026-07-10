@@ -23,13 +23,16 @@ async function loadGroup(id: string) {
     .eq("id", id)
     .maybeSingle();
 
-  if (!group || error) return null;
+  if (error) throw error;
+  if (!group) return null;
 
-  const { data: members } = await supabase
+  const { data: members, error: membersError } = await supabase
     .from("group_members")
     .select("user_id")
     .eq("group_id", id)
     .limit(500);
+
+  if (membersError) throw membersError;
 
   return {
     group,

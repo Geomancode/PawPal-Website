@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import type { HomeGlobePost } from "./homeGlobePosts";
 
 export type HomeGlobePostsState = "idle" | "loading" | "ready" | "empty" | "error";
@@ -8,6 +8,10 @@ export type HomeGlobePostsState = "idle" | "loading" | "ready" | "empty" | "erro
 type HomeGlobePostsSnapshot = {
   posts: HomeGlobePost[];
   state: HomeGlobePostsState;
+};
+
+type UseHomeGlobePostsResult = HomeGlobePostsSnapshot & {
+  retry: () => void;
 };
 
 type UseHomeGlobePostsOptions = {
@@ -79,10 +83,19 @@ export function useHomeGlobePosts({
   globeReady,
   hasEnteredView,
   isDocumentVisible,
-}: UseHomeGlobePostsOptions): HomeGlobePostsSnapshot {
+}: UseHomeGlobePostsOptions): UseHomeGlobePostsResult {
   const [snapshot, setSnapshot] = useState<HomeGlobePostsSnapshot>(INITIAL_SNAPSHOT);
+  const [requestVersion, setRequestVersion] = useState(0);
   const requestStartedRef = useRef(false);
   const abortControllerRef = useRef<AbortController | null>(null);
+
+  const retry = useCallback(() => {
+    abortControllerRef.current?.abort();
+    abortControllerRef.current = null;
+    requestStartedRef.current = false;
+    setSnapshot(INITIAL_SNAPSHOT);
+    setRequestVersion((version) => version + 1);
+  }, []);
 
   useEffect(() => {
     if (
@@ -140,7 +153,7 @@ export function useHomeGlobePosts({
       if (idleHandle !== null) idleWindow.cancelIdleCallback?.(idleHandle);
       if (timerHandle !== null) clearTimeout(timerHandle);
     };
-  }, [canUseWebGL, globeReady, hasEnteredView, isDocumentVisible]);
+  }, [canUseWebGL, globeReady, hasEnteredView, isDocumentVisible, requestVersion]);
 
   useEffect(
     () => () => {
@@ -149,5 +162,5 @@ export function useHomeGlobePosts({
     [],
   );
 
-  return snapshot;
+  return { ...snapshot, retry };
 }
