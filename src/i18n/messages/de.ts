@@ -1,17 +1,282 @@
 import type { WebsiteMessages } from "./en";
 
 export const deMessages = {
+  siteTitle:
+    "PawPal | Sicherheitskarte für Haustiere, Smart Tags und lokale Tiergemeinschaft",
+  siteDescription:
+    "PawPal verbindet intelligente Spaziergänge, NFC-Sicherheitsprofile, KI-gestützte Pflegehinweise und eine lokale Tiergemeinschaft für Menschen in Belgien und ganz Europa.",
+  siteOgImageAlt:
+    "PawPal Sicherheitskarte für Haustiere, Smart Tags und lokale Tiergemeinschaft",
+  homeMetadataTitle:
+    "Sicherheitskarte für Haustiere, Smart Tags und lokale Tiergemeinschaft | PawPal",
+  homeMetadataDescription:
+    "PawPal verbindet Spaziergänge mit Erkundungsnebel, NFC-Sicherheitsprofile, KI-gestützte Pflegehinweise und verlässliche lokale Hilfe – von Belgien aus.",
+  storeMetadataTitle: "Shop",
+  storeMetadataDescription:
+    "PawPal NFC-Sicherheitsanhänger und ausgewählte Tierausstattung für intelligentere Spaziergänge, schnelleren Halterkontakt und die tägliche Pflege kaufen.",
+  authMetadataTitle: "Anmelden",
+  authMetadataDescription:
+    "Anmelden, um PawPal Profile, Smart Tags, Shop-Bestellungen und App-Einstellungen zu verwalten.",
+  aboutMetadataTitle: "Über uns",
+  aboutMetadataDescription:
+    "Das PawPal Team in Gent kennenlernen und erfahren, wie App, Website und NFC Smart Tags tägliche Spaziergänge, Sicherheit und lokale Tierbetreuung verbinden.",
+  skipToContent: "Zum PawPal Inhalt springen",
+  navHome: "Startseite",
+  navGlobe: "Globus",
+  navAboutUs: "Über uns",
+  navStore: "Shop",
+  navProfile: "Profil",
+  navLogin: "Anmelden",
+  navLoadingAccountStatus: "Kontostatus wird geladen",
+  navUserFallback: "Nutzerkonto",
+  navOpenAccountMenu: "Kontomenü öffnen",
+  navMyProfile: "Mein Profil",
+  navSignOut: "Abmelden",
+  navCloseNavigationMenu: "Navigationsmenü schließen",
+  navOpenNavigationMenu: "Navigationsmenü öffnen",
+  footerHeading: "Fußzeile der PawPal Website",
+  footerTagline:
+    "Intelligente Spaziergänge. Sichere Tiere. Stärkere lokale Gemeinschaften für Tierhalterinnen und Tierhalter in Belgien und der EU.",
+  footerNavLabel: "Navigation in der Fußzeile",
+  footerProductHeading: "Produkt",
+  footerGlobeMap: "Globuskarte",
+  footerNfcSafetyTag: "NFC-Sicherheitsanhänger",
+  footerAiAssistant: "KI-Assistent",
+  footerCommunity: "Gemeinschaft",
+  footerCompanyHeading: "Unternehmen",
+  footerSupportHeading: "Hilfe",
+  footerHelpCenter: "Hilfecenter",
+  footerPrivacyPolicy: "Datenschutzerklärung",
+  footerTermsOfService: "Nutzungsbedingungen",
+  footerCommunityGuidelines: "Gemeinschaftsrichtlinien",
+  footerContact: "Kontakt",
+  footerPilotHeading: "Pilotprojekt Belgien",
+  footerPilotCopy:
+    "Fragen zu Partnerschaften, Tierarztpraxen, Tierhandlungen oder Smart Tags gehen direkt an unser Team.",
+  footerContactPawPal: "PawPal kontaktieren",
+  footerRights: "Alle Rechte vorbehalten.",
+  footerMadeInBelgiumEnglish: "Hergestellt in Belgien · Deutsch (DE)",
+  homeHeroAriaLabel: "PawPal Tiersicherheit bei jedem Spaziergang",
+  homeHeroLineOne: "Tiersicherheit mit PawPal",
+  homeHeroLineTwo: "bei jedem Spaziergang",
+  homeHeroDescription:
+    "PawPal wurde in Belgien entwickelt und verbindet Live-Spaziergänge, intelligente Finder-Profile und lokale Tierhilfe in einer ruhigen Oberfläche.",
   homeGlobeRegionLabel:
-    "Interaktiver Globus mit öffentlichen PawPal-Community-Beiträgen",
+    "Interaktiver Globus mit öffentlichen Beiträgen der PawPal Gemeinschaft",
   homeGlobeLoadingPreviewLabel:
     "Visuelle Vorschau · Live-Beiträge werden geladen",
   homeGlobeStaticPreviewLabel:
     "Statische Vorschau · Dieser Browser kann den Live-Globus nicht anzeigen",
-  homeGlobeEmptyLabel: "Noch keine beliebten öffentlichen Beiträge verfügbar",
+  homeGlobeEmptyLabel: "Noch keine beliebten öffentlichen Beiträge vorhanden",
   homeGlobeErrorLabel:
-    "Live-Community-Markierungen sind vorübergehend nicht verfügbar",
-  homeGlobePostLinkLabel: "Community-Beitrag öffnen aus",
+    "Live-Markierungen der Gemeinschaft sind vorübergehend nicht verfügbar",
+  homeGlobePostLinkLabel: "Gemeinschaftsbeitrag öffnen aus",
   homeGlobeLikesLabel: "Gefällt-mir-Angaben",
   homeGlobeCommentsLabel: "Kommentare",
-  homeGlobeSnippetFallback: "Community-Neuigkeit",
-} satisfies Partial<WebsiteMessages>;
+  homeGlobeSnippetFallback: "Neuigkeit aus der Gemeinschaft",
+  homeCtaOpenLiveMap: "Live-Karte öffnen",
+  homeCtaShopSmartTags: "Smart Tags kaufen",
+  homeSignalFinderPageLabel: "Finder-Seite",
+  homeSignalFinderPageValue: "mit 1 Tippen",
+  homeSignalWalkRevealLabel: "Beim Spaziergang aufgedeckt",
+  homeSignalWalkRevealValue: "2,43 km",
+  homeSignalLocalHelpLabel: "Lokale Hilfe",
+  homeSignalLocalHelpValue: "15 km Radius",
+  homeBadgeFinderReadyLabel: "Bereit zum Wiederfinden",
+  homeBadgeFinderReadyCopy: "NFC-Sicherheitsprofile",
+  homeBadgePrivacyFirstLabel: "Datenschutz zuerst",
+  homeBadgePrivacyFirstCopy: "Angaben unter Kontrolle der Halter",
+  homeBadgeEuReadyLabel: "Bereit für die EU",
+  homeBadgeEuReadyCopy: "Deutsch verfügbar; weitere Sprachen in Arbeit",
+  homeProofWalkMapTitle: "Spaziergangskarte",
+  homeProofWalkMapCopy:
+    "Live-Spaziergänge und sichere Routen in der Umgebung ansehen.",
+  homeProofSmartTagTitle: "Smart Tag",
+  homeProofSmartTagCopy:
+    "NFC Finder-Profile helfen, ein Tier sicher nach Hause zu bringen.",
+  homeProofLocalHelpTitle: "Lokale Hilfe",
+  homeProofLocalHelpCopy:
+    "Mit Helfenden in der Nähe und vertrauenswürdigen Tierdiensten verbinden.",
+  homeReadinessNfcValue: "NFC",
+  homeReadinessNfcLabel: "Sofortiges Finder-Profil",
+  homeReadinessNfcCopy:
+    "Öffentliche Seiten ermöglichen schnellen Halterkontakt, ohne standardmäßig private Daten offenzulegen.",
+  homeReadinessH3Value: "H3",
+  homeReadinessH3Label: "Spaziergänge mit Erkundungsnebel",
+  homeReadinessH3Copy:
+    "Die mobile Karte macht aus täglichen Routen aufgedeckte Orte, Routenerinnerungen und Erkundungsbelohnungen.",
+  homeReadinessAiValue: "KI",
+  homeReadinessAiLabel: "Begleiter für die Tierpflege",
+  homeReadinessAiCopy:
+    "Hilfe zu Rasse, Verhalten, Futtersicherheit und Orten in der Nähe bleibt eng mit Spaziergängen und Profilen verknüpft.",
+  homeReadinessEuValue: "EU",
+  homeReadinessEuLabel: "Lokale Gemeinschaft als Basis",
+  homeReadinessEuCopy:
+    "Von Gent aus entwickelt, mit Deutsch und einem vorbereiteten gemeinsamen Übersetzungsablauf.",
+  homeWorkflowTitle: "Vom Spaziergang bis zur Rettung – ein verbundener Ablauf.",
+  homeFlowWalkTitle: "Spazieren & Entdecken",
+  homeFlowWalkCopy:
+    "Orte auf der Karte, Routenverlauf und PawPoints entdecken, ohne den Spaziergang zur Verwaltungsaufgabe zu machen.",
+  homeFlowProtectTitle: "Schützen & Verbinden",
+  homeFlowProtectCopy:
+    "Ein Smart Tag zeigt Findenden das richtige Profil, während Halter sensible Angaben kontrollieren.",
+  homeFlowCommunityTitle: "Gemeinschaft & Pflege",
+  homeFlowCommunityCopy:
+    "Tierhalter in der Nähe, Meldungen, KI-Hinweise und vertrauenswürdige Dienste bleiben direkt an der Karte.",
+  homeFeatureFogTitle: "Globus mit Erkundungsnebel",
+  homeFeatureFogCopy:
+    "Routen, tierfreundliche Orte und lokale Hinweise durch tägliche Bewegung aufdecken.",
+  homeFeatureNfcTitle: "NFC Smart Tag",
+  homeFeatureNfcCopy:
+    "Ein Tippen kann Tier-ID, Pflegehinweise, Regeln für den Halterkontakt und Angaben zum Vermisstenmodus öffnen.",
+  homeFeatureAiTitle: "KI-Assistent für Haustiere",
+  homeFeatureAiCopy:
+    "Klar eingegrenzte Pflegehinweise zu Verhalten, Ernährung, Rassemerkmalen und Training erhalten.",
+  homeFeatureCommunityTitle: "Lokale Gemeinschaft",
+  homeFeatureCommunityCopy:
+    "Tierhalter, Aufgaben, Gruppen, vertrauenswürdige Dienste und praktische Hilfe in der Nähe finden.",
+  homeShowcaseProfileAlt: "PawPal Ansicht des Tierprofils",
+  homeShowcaseProfileTitle: "Profil",
+  homeShowcaseNfcAlt: "PawPal Ansicht der NFC-Sicherheit",
+  homeShowcaseNfcTitle: "NFC",
+  homeShowcaseAiAlt: "PawPal Ansicht des KI-Assistenten",
+  homeShowcaseAiTitle: "KI",
+  homeShowcaseCommunityAlt: "PawPal Ansicht der Gemeinschaft",
+  homeShowcaseCommunityTitle: "Gemeinschaft",
+  homeBentoTitle: "Alles für den Tieralltag, sinnvoll verbunden.",
+  homeAppMockupAlt: "Hauptansicht der PawPal App",
+  homeShowcaseTitle: "Alles Nötige an einem ruhigen Ort.",
+  homeShowcaseCopy:
+    "Karte, Finder-Profil und lokale Hilfe bleiben verbunden, ohne die Startseite in eine Steuerzentrale zu verwandeln.",
+  homeShowcaseLiveMapTitle: "Live-Karte",
+  homeShowcaseLiveMapCopy:
+    "Spaziergänge und sicherere Routen in der Umgebung ansehen.",
+  homeShowcaseFinderTitle: "Finder-Profil",
+  homeShowcaseFinderCopy: "Das Wichtige teilen, nicht alles.",
+  homeShowcaseLocalHelpTitle: "Lokale Hilfe",
+  homeShowcaseLocalHelpCopy:
+    "Helfende in der Nähe und vertrauenswürdige Dienste finden.",
+  homeFinalCtaTitle: "Bereit, jeden Spaziergang sicherer zu machen?",
+  homeFinalCtaCopy:
+    "Live-Karte öffnen, einen Smart Tag vorbereiten und das Tierprofil mit realer Hilfe vor Ort verbinden.",
+  storeUpgradeBadge: "PawPal AI Upgrade",
+  storeUpgradeTitle: "Passenden PawPal Tarif wählen",
+  storeUpgradeCopy:
+    "Basic schaltet die KI-Begleitung für Haustiere frei. Pro bietet bevorzugten Zugang zur nächsten Generation fortschrittlicher Funktionen für Spaziergänge, Sicherheit und mehrere Tiere.",
+  storeRecommended: "Empfohlen",
+  storePricePerMonth: "/ Monat",
+  storeUpgradeButtonPrefix: "Upgrade auf",
+  storeCheckoutStartError: "Abonnement-Checkout konnte nicht gestartet werden",
+  storeSubscriptionCheckoutFailed: "Abonnement-Checkout fehlgeschlagen",
+  storeFreeFeaturesNote:
+    "Bestehende Free-Funktionen bleiben nach der Kündigung verfügbar. Bezahlter KI-Zugang wird automatisch wiederhergestellt, sobald Stripe das Abonnement bestätigt. Ist die App bereits geöffnet, im Profil „Tarif aktualisieren“ wählen.",
+  storeAiPick: "KI-Auswahl",
+  storeProductDetailsButton: "Einzelheiten",
+  storeAddButton: "Hinzufügen",
+  storeProductDetailsAriaSuffix: "Produktdetails",
+  storeProductDetailsTitle: "Produktdetails",
+  storeCartAriaPrefix: "Warenkorb",
+  storeCartTitle: "Warenkorb",
+  storeSubtotal: "Zwischensumme",
+  storeShipping: "Versand",
+  storeFreeShipping: "Kostenlos",
+  storeAddAmountPrefix: "Noch",
+  storeFreeShippingSuffix: "für kostenlosen Versand hinzufügen.",
+  storeTotal: "Gesamtsumme",
+  storeProceedToCheckout: "Weiter zur Kasse",
+  storeCartEmptyTitle: "Der Warenkorb ist leer",
+  storeCartEmptyDescription:
+    "Produkte ansehen und Artikel hinzufügen, um zu beginnen.",
+  storeDecreasePrefix: "Anzahl verringern:",
+  storeIncreasePrefix: "Anzahl erhöhen:",
+  storeRemovePrefix: "Entfernen:",
+  storeHeroTitlePrefix: "Smart Tags und Ausstattung für Spaziergänge für",
+  storeHeroTitleHighlight: "sicherere Tage mit Haustieren",
+  storeHeroCopy:
+    "Mit PawPal NFC-Sicherheitsanhängern beginnen und praktische Ausstattung für tägliche Spaziergänge, Reisen, Sauberkeit und Pflege entdecken.",
+  storeRecommendedProductsHighlightedSuffix:
+    "von der KI empfohlene Produkte hervorgehoben",
+  storeRecommendedProductHighlightedSuffix:
+    "von der KI empfohlenes Produkt hervorgehoben",
+  storeRecommendationsMissing:
+    "Die KI-Empfehlungen sind noch nicht in diesem Katalog enthalten",
+  storeSearchPlaceholder: "Produkte suchen …",
+  storePromiseNfcLabel: "Bereit für NFC-Sicherheit",
+  storePromiseNfcCopy:
+    "Für öffentliche Finder-Seiten und kontrollierte Halterangaben entwickelt.",
+  storePromiseFulfillmentLabel: "Versand zuerst in der EU",
+  storePromiseFulfillmentCopy:
+    "Katalog und Checkout sind für einen von Belgien ausgehenden Start vorbereitet.",
+  storePromiseCheckoutLabel: "Sicherer Checkout",
+  storePromiseCheckoutCopy:
+    "Stripe-gestützter Zahlungsablauf mit einem Warenkorb, der über Besuche hinweg erhalten bleibt.",
+  storeFilterByCategory: "Nach Kategorie filtern",
+  storeCategoryAll: "Alle Produkte",
+  storeCategoryFood: "Futter & Leckerli",
+  storeCategoryToys: "Spielzeug & Spielen",
+  storeCategoryAccessories: "Zubehör",
+  storeCategoryHealth: "Gesundheit & Pflege",
+  storeProductCountSingular: "Produkt",
+  storeProductCountPlural: "Produkte",
+  storeSyncing: "Wird synchronisiert",
+  storeDemoFallback: "Demo-Ersatz",
+  storeNoCatalogFallback:
+    "Keine veröffentlichten Katalogprodukte gefunden. Der Demo-Katalog wird angezeigt.",
+  storeCatalogUnavailable: "Katalog nicht verfügbar",
+  storeCartButton: "Warenkorb",
+  storeManageCatalog: "Katalog verwalten",
+  storeMyOrders: "Meine Bestellungen",
+  storeCheckoutWithPrefix: "Weiter zur Kasse mit",
+  storeItemSingular: "Artikel",
+  storeItemPlural: "Artikel gesamt",
+  storeNoProductsTitle: "Keine Produkte gefunden",
+  storeNoProductsDescription:
+    "Suche oder Kategoriefilter anpassen und erneut versuchen.",
+  storeLoading: "Shop wird geladen …",
+  storeAddedToCartSuffix: "zum Warenkorb hinzugefügt",
+  authBadge: "PawPal Konto",
+  authHeroTitle:
+    "Eine Anmeldung für Spaziergänge, Smart Tags, Rettungsseiten und Shop-Bestellungen.",
+  authHeroCopy:
+    "Tierprofile, Sichtbarkeit des Finder-Profils, Kartenaktivität und Hilfe aus der Gemeinschaft bleiben mit einem einzigen sicheren Konto verbunden.",
+  authSignalNfcTitle: "Bereit für NFC",
+  authSignalNfcCopy: "Smart Tags mit kontrollierten Finder-Seiten verbinden.",
+  authSignalMapTitle: "Spaziergang im Kontext",
+  authSignalMapCopy:
+    "Kartenfunktionen und Hilfe in der Nähe bleiben mit dem Profil verbunden.",
+  authSignalPrivacyTitle: "Datenschutz zuerst",
+  authSignalPrivacyCopy:
+    "Halterangaben bleiben verborgen, bis sie bewusst geteilt werden.",
+  authWelcomeBackTitle: "Willkommen zurück",
+  authJoinTitle: "PawPal beitreten",
+  authWelcomeBackCopy: "Sicher auf Profile, Smart Tags und Bestellungen zugreifen",
+  authJoinCopy: "Ein Konto für Tiersicherheit und Bestellungen erstellen",
+  authSignInTab: "Anmelden",
+  authSignUpTab: "Registrieren",
+  authInvalidEmail: "Bitte eine gültige E-Mail-Adresse eingeben.",
+  authPasswordTooShort: "Das Passwort muss mindestens 6 Zeichen lang sein.",
+  authPasswordsDoNotMatch: "Die Passwörter stimmen nicht überein.",
+  authAccountCreated:
+    "Konto erstellt. Bitte die Bestätigungs-E-Mail prüfen und danach anmelden.",
+  authDisplayNameLabel: "Anzeigename",
+  authDisplayNamePlaceholder: "Name (optional)",
+  authEmailLabel: "E-Mail-Adresse",
+  authEmailPlaceholder: "name@beispiel.de",
+  authPasswordLabel: "Passwort",
+  authPasswordPlaceholder: "Passwort eingeben",
+  authConfirmPasswordLabel: "Passwort bestätigen",
+  authConfirmPasswordPlaceholder: "Passwort erneut eingeben",
+  authHidePassword: "Passwort ausblenden",
+  authShowPassword: "Passwort anzeigen",
+  authCreateAccountButton: "Konto erstellen",
+  authTrustTitle: "Kontozugriff nur per E-Mail",
+  authTrustCopy:
+    "PawPal verknüpft den Zugriff auf Profil, Rettungsanhänger und Bestellungen mit den oben eingegebenen E-Mail-Zugangsdaten.",
+  authTrustChecksLabel: "Prüfungen zur Kontosicherheit",
+  authTagControls: "Steuerung für Smart Tags",
+  authPrivateOwnerDetails: "Private Halterangaben",
+  authContinuePrefix: "Mit dem Fortfahren gelten die folgenden PawPal Dokumente:",
+  authTerms: "Bedingungen",
+  authAnd: "und",
+  authPrivacyPolicy: "Datenschutzerklärung",
+} satisfies WebsiteMessages;
