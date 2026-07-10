@@ -333,7 +333,7 @@ export default function StoreAdminPage() {
   if (!user) {
     return (
       <PageShell
-        className="admin-page-shell min-h-screen pt-28"
+        className="admin-page-shell admin-gate-shell min-h-screen pt-28"
         headerClassName="admin-shell-header"
         eyebrow="Store admin"
         title="Sign in required"
@@ -354,7 +354,7 @@ export default function StoreAdminPage() {
   if (!isAdmin) {
     return (
       <PageShell
-        className="admin-page-shell min-h-screen pt-28"
+        className="admin-page-shell admin-gate-shell min-h-screen pt-28"
         headerClassName="admin-shell-header"
         eyebrow="Store admin"
         title="Catalog access is restricted"
