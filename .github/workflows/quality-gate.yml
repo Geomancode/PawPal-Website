@@ -7,11 +7,17 @@ on:
     branches: [main]
 
 jobs:
-  nextjs-build:
-    name: Next.js Build Check
+  nextjs-quality-gate:
+    name: Next.js Quality Gate
     runs-on: ubuntu-latest
+    env:
+      NEXT_TELEMETRY_DISABLED: '1'
+      NEXT_PUBLIC_SUPABASE_URL: https://placeholder.supabase.co
+      NEXT_PUBLIC_SUPABASE_ANON_KEY: placeholder-key
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - uses: actions/setup-node@v4
         with:
@@ -21,14 +27,61 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Lint
+        run: npm run lint
+
+      - name: Homepage contract gate
+        run: npm run test:home-contract
+
+      - name: Globe facing gate
+        run: npm run test:globe-facing
+
+      - name: Homepage globe contract gate
+        run: npm run test:home-globe-contract
+
+      - name: Build verification
+        run: npm run build
+
+      - name: Bundle budget gate
+        env:
+          P3GB3_BUNDLE_BASE_REF: ${{ github.event_name == 'pull_request' && github.event.pull_request.base.sha || github.event.before }}
+          P3GB3_BUNDLE_HEAD_REF: ${{ github.sha }}
+        run: npm run test:bundle-budget -- --base "$P3GB3_BUNDLE_BASE_REF" --head "$P3GB3_BUNDLE_HEAD_REF"
+
+      - name: Install Chromium for runtime gate
+        id: runtime-browser
+        continue-on-error: true
+        run: npx playwright install --with-deps chromium
+
+      - name: Next start and homepage five-state runtime gate
+        if: steps.runtime-browser.outcome == 'success'
+        run: |
+          SERVER_LOG="$RUNNER_TEMP/pawpal-next-start.log"
+          npm run start -- --hostname 127.0.0.1 --port 3102 >"$SERVER_LOG" 2>&1 &
+          SERVER_PID=$!
+          cleanup() {
+            kill "$SERVER_PID" 2>/dev/null || true
+            wait "$SERVER_PID" 2>/dev/null || true
+          }
+          trap cleanup EXIT
+          set +e
+          P3GB3_HOME_RUNTIME_BASE_URL=http://127.0.0.1:3102 npm run test:home-runtime
+          STATUS=$?
+          set -e
+          if [ "$STATUS" -ne 0 ]; then
+            echo "Next.js production server log:"
+            sed -n '1,240p' "$SERVER_LOG"
+            exit "$STATUS"
+          fi
+
+      - name: Explicit runtime skip when Chromium is unavailable
+        if: steps.runtime-browser.outcome != 'success'
+        run: |
+          echo "::warning::SKIP test:home-runtime — Playwright Chromium installation failed in this CI environment."
+          echo "The skip is explicit; lint, contracts, build, and bundle gates still ran."
+
       - name: Dependency audit (high and critical)
         run: npm audit --audit-level=high
-
-      - name: Build verification (MUST pass)
-        run: npm run build
-        env:
-          NEXT_PUBLIC_SUPABASE_URL: https://placeholder.supabase.co
-          NEXT_PUBLIC_SUPABASE_ANON_KEY: placeholder-key
 
       - name: Check for raw REST URL usage
         run: |
