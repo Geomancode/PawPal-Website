@@ -1223,4 +1223,38 @@ export const nlMessages = {
   adminReportsRetry: "Opnieuw proberen",
   adminReportsUnknown: "onbekend",
   adminReportsLoadingDescription: "De wachtrij met openstaande meldingen wordt geladen.",
+  navbarHomeAriaLabel: "Startpagina van PawPal",
+  cookieConsentAriaLabel: "Toestemming voor cookies en opslag",
+  cookieConsentTitle:
+    "PawPal gebruikt essentiële opslag om de website te laten werken.",
+  cookieConsentDescription:
+    "Noodzakelijke opslag voor aanmelden en afrekenen is altijd actief. We slaan ook lokale voorkeuren op en laden toekomstige analytics pas nadat je Alles accepteren kiest. Lees het",
+  cookieConsentPrivacyPolicy: "privacybeleid.",
+  cookieConsentAcceptAll: "Alles accepteren",
+  cookieConsentEssentialOnly: "Alleen essentieel",
+  pwaOfflineTitle: "Offline-modus",
+  pwaOfflineDescription:
+    "PawPal toont pagina’s uit de cache totdat je verbinding terug is.",
+  pwaReconnecting: "Opnieuw verbinden",
+  pwaUpdateReadyTitle: "PawPal-update is klaar",
+  pwaUpdateReadyDescription:
+    "Vernieuw om de nieuwste verbeteringen voor veiligheid en de winkel te laden.",
+  pwaUpdateNow: "Nu bijwerken",
+  pwaLoadingLabel: "PawPal wordt geladen",
+  notFoundEyebrow: "Pagina niet gevonden",
+  notFoundTitle: "Deze PawPal-pagina is niet beschikbaar.",
+  notFoundDescription:
+    "De link is misschien verouderd, privé of mist een geldige id van een huisdier, bericht, groep of profiel. Vertrek in plaats daarvan vanaf een vertrouwde PawPal-pagina.",
+  notFoundBackHome: "Terug naar start",
+  notFoundShopSmartTags: "Smart Tags kopen",
+  notFoundScannedTagTitle: "Een Smart Tag gescand?",
+  notFoundScannedTagCopy:
+    "Controleer de afgedrukte code en probeer de volledige NFC- of QR-link opnieuw.",
+  notFoundLocalHelpTitle: "Lokale hulp gezocht?",
+  notFoundLocalHelpCopy:
+    "De live Globe houdt plaatsen, het weer en vragen uit de community dichtbij.",
+  rootErrorPageTitle: "PawPal kon deze pagina niet laden",
+  rootErrorFallbackDescription:
+    "Een probleem met de verbinding of weergave heeft deze pagina onderbroken.",
+  rootErrorTryAgain: "Opnieuw proberen",
 } satisfies WebsiteMessages;
