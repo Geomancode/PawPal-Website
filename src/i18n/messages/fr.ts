@@ -1225,4 +1225,38 @@ export const frMessages = {
   adminReportsRetry: "Réessayer",
   adminReportsUnknown: "inconnu",
   adminReportsLoadingDescription: "Chargement de la file des signalements en attente.",
+  navbarHomeAriaLabel: "Accueil PawPal",
+  cookieConsentAriaLabel: "Consentement aux cookies et au stockage",
+  cookieConsentTitle:
+    "PawPal utilise le stockage essentiel au fonctionnement du site.",
+  cookieConsentDescription:
+    "Le stockage nécessaire à l’authentification et au paiement est toujours actif. Nous enregistrons aussi les préférences locales et ne chargerons de futures analyses qu’après le choix Tout accepter. Consultez la",
+  cookieConsentPrivacyPolicy: "Politique de confidentialité.",
+  cookieConsentAcceptAll: "Tout accepter",
+  cookieConsentEssentialOnly: "Essentiels uniquement",
+  pwaOfflineTitle: "Mode hors ligne",
+  pwaOfflineDescription:
+    "PawPal affiche les pages mises en cache jusqu’au retour de la connexion.",
+  pwaReconnecting: "Reconnexion en cours",
+  pwaUpdateReadyTitle: "Mise à jour PawPal disponible",
+  pwaUpdateReadyDescription:
+    "Actualisez pour charger les dernières améliorations de sécurité et de la boutique.",
+  pwaUpdateNow: "Mettre à jour",
+  pwaLoadingLabel: "Chargement de PawPal",
+  notFoundEyebrow: "Page introuvable",
+  notFoundTitle: "Cette page PawPal n’est pas disponible.",
+  notFoundDescription:
+    "Le lien est peut-être ancien, privé ou dépourvu d’un identifiant valide d’animal, de publication, de groupe ou de profil. Repartez plutôt d’une page PawPal fiable.",
+  notFoundBackHome: "Retour à l’accueil",
+  notFoundShopSmartTags: "Acheter des Smart Tags",
+  notFoundScannedTagTitle: "Vous avez scanné un Smart Tag ?",
+  notFoundScannedTagCopy:
+    "Vérifiez le code imprimé et réessayez avec le lien NFC ou QR complet.",
+  notFoundLocalHelpTitle: "Vous cherchez de l’aide locale ?",
+  notFoundLocalHelpCopy:
+    "Le Globe en direct garde à portée de main les lieux, la météo et les besoins de la communauté.",
+  rootErrorPageTitle: "PawPal n’a pas pu charger cette page",
+  rootErrorFallbackDescription:
+    "Un problème de connexion ou d’affichage a interrompu cette vue.",
+  rootErrorTryAgain: "Réessayer",
 } satisfies WebsiteMessages;

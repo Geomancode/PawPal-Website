@@ -10,6 +10,7 @@ import {
   setConsent,
   type ConsentChoice,
 } from "@/lib/consent";
+import { useRouteTranslations } from "@/i18n/useRouteTranslations";
 
 function subscribeToConsentStore(onStoreChange: () => void) {
   if (typeof window === "undefined") {
@@ -34,6 +35,7 @@ function getServerBannerSnapshot() {
 }
 
 export default function CookieConsentBanner() {
+  const { loader, t } = useRouteTranslations();
   const shouldShowBanner = useSyncExternalStore(
     subscribeToConsentStore,
     getBannerSnapshot,
@@ -52,30 +54,28 @@ export default function CookieConsentBanner() {
 
   return (
     <section
-      aria-label="Cookie and storage consent"
+      aria-label={t("cookieConsentAriaLabel")}
       aria-describedby="cookie-consent-description"
       className="fixed inset-x-3 bottom-3 z-[10020] mx-auto max-w-5xl sm:inset-x-5 sm:bottom-5"
     >
+      {loader}
       <div className="rounded-paw-lg border border-paw-border-strong bg-paw-panel/95 p-4 text-paw-ink shadow-paw-panel backdrop-blur sm:p-5">
         <div className="grid gap-4 md:grid-cols-[minmax(0,1fr)_auto] md:items-center">
           <div className="min-w-0">
             <p className="text-sm font-extrabold text-paw-ink">
-              PawPal uses essential storage to keep the site working.
+              {t("cookieConsentTitle")}
             </p>
             <p
               id="cookie-consent-description"
               className="mt-1 max-w-3xl text-xs leading-5 text-paw-body sm:text-sm sm:leading-6"
             >
-              Necessary auth and checkout storage is always active. We also
-              store local preferences and will only load future analytics after
-              you choose Accept all. Read the{" "}
+              {t("cookieConsentDescription")} {" "}
               <Link
                 href="/privacy"
                 className="font-extrabold text-paw-primary underline-offset-4 hover:underline"
               >
-                Privacy Policy
+                {t("cookieConsentPrivacyPolicy")}
               </Link>
-              .
             </p>
           </div>
 
@@ -88,7 +88,7 @@ export default function CookieConsentBanner() {
               onClick={() => saveChoice("all")}
             >
               <CheckCircle2 className="h-4 w-4" aria-hidden="true" />
-              Accept all
+              {t("cookieConsentAcceptAll")}
             </Button>
             <Button
               type="button"
@@ -98,7 +98,7 @@ export default function CookieConsentBanner() {
               onClick={() => saveChoice("essential")}
             >
               <ShieldCheck className="h-4 w-4" aria-hidden="true" />
-              Essential only
+              {t("cookieConsentEssentialOnly")}
             </Button>
           </div>
         </div>

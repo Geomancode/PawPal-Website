@@ -1220,4 +1220,38 @@ export const deMessages = {
   adminReportsRetry: "Erneut versuchen",
   adminReportsUnknown: "unbekannt",
   adminReportsLoadingDescription: "Die Warteschlange ausstehender Meldungen wird geladen.",
+  navbarHomeAriaLabel: "PawPal-Startseite",
+  cookieConsentAriaLabel: "Einwilligung zu Cookies und Speicher",
+  cookieConsentTitle:
+    "PawPal verwendet notwendigen Speicher, damit die Website funktioniert.",
+  cookieConsentDescription:
+    "Notwendiger Speicher für Anmeldung und Bezahlvorgang ist immer aktiv. Lokale Einstellungen werden ebenfalls gespeichert; zukünftige Analysen werden erst geladen, nachdem Alle akzeptieren gewählt wurde. Mehr dazu in der",
+  cookieConsentPrivacyPolicy: "Datenschutzerklärung.",
+  cookieConsentAcceptAll: "Alle akzeptieren",
+  cookieConsentEssentialOnly: "Nur notwendige",
+  pwaOfflineTitle: "Offline-Modus",
+  pwaOfflineDescription:
+    "PawPal zeigt zwischengespeicherte Seiten an, bis die Verbindung wiederhergestellt ist.",
+  pwaReconnecting: "Verbindung wird wiederhergestellt",
+  pwaUpdateReadyTitle: "PawPal-Update verfügbar",
+  pwaUpdateReadyDescription:
+    "Aktualisieren, um die neuesten Verbesserungen für Sicherheit und Shop zu laden.",
+  pwaUpdateNow: "Jetzt aktualisieren",
+  pwaLoadingLabel: "PawPal wird geladen",
+  notFoundEyebrow: "Seite nicht gefunden",
+  notFoundTitle: "Diese PawPal-Seite ist nicht verfügbar.",
+  notFoundDescription:
+    "Der Link ist möglicherweise veraltet, privat oder enthält keine gültige Haustier-, Beitrags-, Gruppen- oder Profil-ID. Stattdessen von einer vertrauenswürdigen PawPal-Seite aus starten.",
+  notFoundBackHome: "Zur Startseite",
+  notFoundShopSmartTags: "Smart Tags kaufen",
+  notFoundScannedTagTitle: "Einen Smart Tag gescannt?",
+  notFoundScannedTagCopy:
+    "Den aufgedruckten Code prüfen und den vollständigen NFC- oder QR-Link erneut öffnen.",
+  notFoundLocalHelpTitle: "Lokale Hilfe gesucht?",
+  notFoundLocalHelpCopy:
+    "Der Live-Globe hält Orte, Wetter und Anliegen der Gemeinschaft in der Nähe bereit.",
+  rootErrorPageTitle: "PawPal konnte diese Seite nicht laden",
+  rootErrorFallbackDescription:
+    "Ein Verbindungs- oder Darstellungsproblem hat diese Ansicht unterbrochen.",
+  rootErrorTryAgain: "Erneut versuchen",
 } satisfies WebsiteMessages;

@@ -1,23 +1,28 @@
+"use client";
+
 import Link from "next/link";
 import { ArrowRight, Home, Map, ScanLine } from "lucide-react";
 import PawPalLogo from "@/components/PawPalLogo";
 import { buttonClassName } from "@/components/ui";
+import { useRouteTranslations } from "@/i18n/useRouteTranslations";
 
 export default function NotFound() {
+  const { loader, t } = useRouteTranslations();
+
   return (
     <section className="deep-page-shell min-h-[100dvh] bg-paw-page px-5 py-28 text-paw-ink">
+      {loader}
       <div className="mx-auto grid max-w-5xl gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
         <div>
           <PawPalLogo iconSize={44} fontSize={28} variant="light" />
           <p className="mt-8 text-sm font-black uppercase tracking-[0.18em] text-paw-on-primary-soft">
-            Page not found
+            {t("notFoundEyebrow")}
           </p>
           <h1 className="mt-3 max-w-xl font-brand text-4xl font-extrabold leading-tight text-paw-ink sm:text-6xl">
-            This PawPal route is not available.
+            {t("notFoundTitle")}
           </h1>
           <p className="mt-5 max-w-lg text-base leading-8 text-paw-body">
-            The link may be old, private, or missing a valid pet, post, group, or
-            profile ID. Start from a trusted PawPal page instead.
+            {t("notFoundDescription")}
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <Link
@@ -25,13 +30,13 @@ export default function NotFound() {
               className={buttonClassName({ variant: "primary", size: "lg" })}
             >
               <Home className="h-4 w-4" aria-hidden="true" />
-              Back home
+              {t("notFoundBackHome")}
             </Link>
             <Link
               href="/store"
               className={buttonClassName({ variant: "secondary", size: "lg" })}
             >
-              Shop smart tags
+              {t("notFoundShopSmartTags")}
               <ArrowRight className="h-4 w-4" aria-hidden="true" />
             </Link>
           </div>
@@ -43,13 +48,13 @@ export default function NotFound() {
             {[
               {
                 icon: ScanLine,
-                title: "Scanned a tag?",
-                copy: "Check the printed code and try the full NFC or QR link again.",
+                title: t("notFoundScannedTagTitle"),
+                copy: t("notFoundScannedTagCopy"),
               },
               {
                 icon: Map,
-                title: "Looking for local help?",
-                copy: "The live Globe keeps places, weather, and community needs close.",
+                title: t("notFoundLocalHelpTitle"),
+                copy: t("notFoundLocalHelpCopy"),
               },
             ].map((item) => (
               <div key={item.title} className="not-found-row">

@@ -29,6 +29,7 @@ export const enMessages = {
   navSignOut: "Sign Out",
   navCloseNavigationMenu: "Close navigation menu",
   navOpenNavigationMenu: "Open navigation menu",
+  navbarHomeAriaLabel: "PawPal home",
   footerHeading: "PawPal site footer",
   footerTagline:
     "Smart walks. Safe pets. Stronger local communities for pet parents across Belgium and the EU.",
@@ -51,6 +52,39 @@ export const enMessages = {
   footerContactPawPal: "Contact PawPal",
   footerRights: "All rights reserved.",
   footerMadeInBelgiumEnglish: "Made in Belgium · English (EN)",
+  cookieConsentAriaLabel: "Cookie and storage consent",
+  cookieConsentTitle:
+    "PawPal uses essential storage to keep the site working.",
+  cookieConsentDescription:
+    "Necessary auth and checkout storage is always active. We also store local preferences and will only load future analytics after you choose Accept all. Read the",
+  cookieConsentPrivacyPolicy: "Privacy Policy.",
+  cookieConsentAcceptAll: "Accept all",
+  cookieConsentEssentialOnly: "Essential only",
+  pwaOfflineTitle: "Offline mode",
+  pwaOfflineDescription:
+    "PawPal is showing cached pages until your connection returns.",
+  pwaReconnecting: "Reconnecting",
+  pwaUpdateReadyTitle: "PawPal update ready",
+  pwaUpdateReadyDescription:
+    "Refresh to load the latest safety and store improvements.",
+  pwaUpdateNow: "Update now",
+  pwaLoadingLabel: "PawPal is loading",
+  notFoundEyebrow: "Page not found",
+  notFoundTitle: "This PawPal route is not available.",
+  notFoundDescription:
+    "The link may be old, private, or missing a valid pet, post, group, or profile ID. Start from a trusted PawPal page instead.",
+  notFoundBackHome: "Back home",
+  notFoundShopSmartTags: "Shop smart tags",
+  notFoundScannedTagTitle: "Scanned a tag?",
+  notFoundScannedTagCopy:
+    "Check the printed code and try the full NFC or QR link again.",
+  notFoundLocalHelpTitle: "Looking for local help?",
+  notFoundLocalHelpCopy:
+    "The live Globe keeps places, weather, and community needs close.",
+  rootErrorPageTitle: "PawPal could not load this page",
+  rootErrorFallbackDescription:
+    "A connection or rendering issue interrupted this view.",
+  rootErrorTryAgain: "Try again",
   homeHeroAriaLabel: "PawPal pet safety for every walk",
   homeHeroLineOne: "PawPal pet safety",
   homeHeroLineTwo: "for every walk",
