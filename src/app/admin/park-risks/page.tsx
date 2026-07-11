@@ -339,7 +339,8 @@ export default function ParkRiskAdminPage() {
   );
   const queueReadOnly =
     ADMIN_FIXTURES_ENABLED || adminPreviewMode || Boolean(queueFallbackReason);
-  const canViewQueue = ADMIN_FIXTURES_ENABLED || isAdmin || adminPreviewMode;
+  const canViewQueue = isAdmin || adminPreviewMode;
+  const canRenderQueue = ADMIN_FIXTURES_ENABLED || canViewQueue;
 
   const refreshReports = useCallback(async () => {
     setLoadingReports(true);
@@ -406,14 +407,14 @@ export default function ParkRiskAdminPage() {
   }, [authLoading, currentAdminEmail]);
 
   useEffect(() => {
-    if (!canViewQueue) return;
+    if (!canRenderQueue) return;
     const timer = window.setTimeout(() => {
       void refreshReports();
     }, 0);
     return () => {
       window.clearTimeout(timer);
     };
-  }, [canViewQueue, refreshReports]);
+  }, [canRenderQueue, refreshReports]);
 
   const counts = useMemo(() => {
     return reports.reduce(
@@ -604,7 +605,7 @@ export default function ParkRiskAdminPage() {
     );
   }
 
-  if (!canViewQueue) {
+  if (!canRenderQueue) {
     return (
       <>
         {loader}

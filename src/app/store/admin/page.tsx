@@ -138,8 +138,8 @@ export default function StoreAdminPage() {
   const path = (href: string) => localizedPath(href, locale);
   const { loader, t } = useRouteTranslations();
   const { user, loading: authLoading } = useAuth();
-  const [isAdmin, setIsAdmin] = useState(ADMIN_FIXTURES_ENABLED);
-  const [checkingAdmin, setCheckingAdmin] = useState(!ADMIN_FIXTURES_ENABLED);
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [checkingAdmin, setCheckingAdmin] = useState(true);
   const [products, setProducts] = useState<Product[]>(() =>
     ADMIN_FIXTURES_ENABLED
       ? loadP3B1g2hAdminFixtures().products
@@ -399,7 +399,7 @@ export default function StoreAdminPage() {
     );
   }
 
-  if (!isAdmin) {
+  if (!ADMIN_FIXTURES_ENABLED && !isAdmin) {
     return (
       <>
         {loader}
