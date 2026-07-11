@@ -8,7 +8,7 @@ import {
   type FormEvent,
   type ReactNode,
 } from "react";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import {
   ArrowLeft,
   CheckCircle2,
@@ -23,7 +23,12 @@ import {
   XCircle,
 } from "lucide-react";
 import { supabase } from "@/lib/supabase";
+import { loadP3B1g2hAdminFixtures } from "@/lib/p3b1g2hAdminFixtures";
 import { useAuth } from "@/components/AuthProvider";
+import { useRouteTranslations } from "@/i18n/useRouteTranslations";
+import { localeFromPath, localizedPath } from "@/i18n/routing";
+import type { Locale } from "@/i18n/locales";
+import type { MessageKey } from "@/i18n/messages/en";
 import {
   Badge,
   Button,
@@ -128,31 +133,36 @@ const RISK_SELECT = [
   "updated_at",
 ].join(",");
 
-const riskTypeLabels: Record<RiskType, string> = {
-  toxic_plants: "Toxic plants",
-  wildlife: "Wildlife",
-  water_terrain: "Water or terrain",
-  construction_closure: "Construction or closure",
-  sanitation_pollution: "Sanitation or pollution",
-  other: "Other",
+const ADMIN_FIXTURES_ENABLED =
+  process.env.NEXT_PUBLIC_P3B1G2H_ADMIN_FIXTURES === "1";
+
+type ParkRiskTranslation = ReturnType<typeof useRouteTranslations>["t"];
+
+const riskTypeLabelKeys: Record<RiskType, MessageKey> = {
+  toxic_plants: "adminParkRisksTypeToxicPlants",
+  wildlife: "adminParkRisksTypeWildlife",
+  water_terrain: "adminParkRisksTypeWaterTerrain",
+  construction_closure: "adminParkRisksTypeConstructionClosure",
+  sanitation_pollution: "adminParkRisksTypeSanitationPollution",
+  other: "adminParkRisksTypeOther",
 };
 
-const severityLabels: Record<Severity, string> = {
-  info: "Info",
-  caution: "Caution",
-  high: "High",
+const severityLabelKeys: Record<Severity, MessageKey> = {
+  info: "adminParkRisksSeverityInfo",
+  caution: "adminParkRisksSeverityCaution",
+  high: "adminParkRisksSeverityHigh",
 };
 
-const statusLabels: Record<RiskStatus, string> = {
-  pending_confirmation: "Awaiting confirmations",
-  ready_for_review: "Ready for review",
-  approved: "Highlighted",
-  rejected: "Rejected",
-  archived: "Archived",
+const statusLabelKeys: Record<RiskStatus, MessageKey> = {
+  pending_confirmation: "adminParkRisksStatusAwaitingConfirmations",
+  ready_for_review: "adminParkRisksStatusReadyForReview",
+  approved: "adminParkRisksStatusHighlighted",
+  rejected: "adminParkRisksStatusRejected",
+  archived: "adminParkRisksStatusArchived",
 };
 
-const riskTypeOptions = Object.entries(riskTypeLabels) as [RiskType, string][];
-const severityOptions = Object.entries(severityLabels) as [Severity, string][];
+const riskTypeOptions = Object.entries(riskTypeLabelKeys) as [RiskType, MessageKey][];
+const severityOptions = Object.entries(severityLabelKeys) as [Severity, MessageKey][];
 
 const initialOfficialForm: OfficialRiskForm = {
   placeId: "",
@@ -167,7 +177,8 @@ const initialOfficialForm: OfficialRiskForm = {
   evidenceUrl: "",
 };
 
-const previewReports: ParkRiskReport[] = [
+function previewReports(t: ParkRiskTranslation): ParkRiskReport[] {
+  return [
   {
     id: "preview-risk-1",
     place_id: "preview-google-place-id-1",
@@ -177,9 +188,8 @@ const previewReports: ParkRiskReport[] = [
     longitude: 3.7174,
     risk_type: "water_terrain",
     severity: "caution",
-    title: "Preview: slippery path after rain",
-    description:
-      "This sample community report shows how a PawPal admin would review a park risk before it is highlighted.",
+    title: t("adminParkRisksPreviewSlipperyTitle"),
+    description: t("adminParkRisksPreviewSlipperyDescription"),
     evidence_url: null,
     source_type: "community",
     official_source_name: null,
@@ -203,9 +213,8 @@ const previewReports: ParkRiskReport[] = [
     longitude: 3.7284,
     risk_type: "wildlife",
     severity: "info",
-    title: "Preview: user report awaiting confirmations",
-    description:
-      "This sample item represents a community report that has not reached the confirmation threshold yet.",
+    title: t("adminParkRisksPreviewAwaitingTitle"),
+    description: t("adminParkRisksPreviewAwaitingDescription"),
     evidence_url: null,
     source_type: "community",
     official_source_name: null,
@@ -220,7 +229,8 @@ const previewReports: ParkRiskReport[] = [
     created_at: "2026-06-07T11:00:00.000Z",
     updated_at: "2026-06-07T11:15:00.000Z",
   },
-];
+  ];
+}
 
 async function checkPawPalAdmin(): Promise<AdminCheckResult> {
   const { data, error } = await supabase.rpc("is_pawpal_admin");
@@ -261,9 +271,13 @@ function severityTone(severity: Severity) {
   }
 }
 
-function formatDate(value: string | null) {
-  if (!value) return "Not reviewed";
-  return new Intl.DateTimeFormat("en", {
+function formatDate(
+  value: string | null,
+  locale: Locale,
+  t: ParkRiskTranslation,
+) {
+  if (!value) return t("adminParkRisksNotReviewed");
+  return new Intl.DateTimeFormat(locale, {
     dateStyle: "medium",
     timeStyle: "short",
   }).format(new Date(value));
@@ -276,6 +290,9 @@ function normalizeOptionalUrl(value: string) {
 
 export default function ParkRiskAdminPage() {
   const router = useRouter();
+  const locale = localeFromPath(usePathname());
+  const path = (href: string) => localizedPath(href, locale);
+  const { loader, t } = useRouteTranslations();
   const { user, loading: authLoading } = useAuth();
   const [adminCheck, setAdminCheck] = useState<{
     email: string | null;
@@ -320,15 +337,23 @@ export default function ParkRiskAdminPage() {
       !adminCheck.allowed &&
       adminCheck.unavailableReason,
   );
-  const queueReadOnly = adminPreviewMode || Boolean(queueFallbackReason);
+  const queueReadOnly =
+    ADMIN_FIXTURES_ENABLED || adminPreviewMode || Boolean(queueFallbackReason);
   const canViewQueue = isAdmin || adminPreviewMode;
+  const canRenderQueue = ADMIN_FIXTURES_ENABLED || canViewQueue;
 
   const refreshReports = useCallback(async () => {
     setLoadingReports(true);
+    if (ADMIN_FIXTURES_ENABLED) {
+      setReports(loadP3B1g2hAdminFixtures().parkRisks);
+      setQueueFallbackReason(null);
+      setLoadingReports(false);
+      return;
+    }
     if (adminPreviewMode) {
-      setReports(previewReports);
+      setReports(previewReports(t));
       setQueueFallbackReason(
-        adminCheck.unavailableReason ?? "PawPal admin check is unavailable.",
+        adminCheck.unavailableReason ?? t("adminParkRisksAdminCheckUnavailable"),
       );
       setLoadingReports(false);
       return;
@@ -342,19 +367,20 @@ export default function ParkRiskAdminPage() {
     if (error) {
       setMessage({
         tone: "warning",
-        text: `Risk queue is not ready yet. Showing a read-only preview: ${error.message}`,
+        text: `${t("adminParkRisksQueueUnavailablePrefix")} ${error.message}`,
       });
       setQueueFallbackReason(error.message);
-      setReports(previewReports);
+      setReports(previewReports(t));
     } else {
       setQueueFallbackReason(null);
       setReports((data ?? []) as unknown as ParkRiskReport[]);
     }
     setLoadingReports(false);
-  }, [adminCheck.unavailableReason, adminPreviewMode]);
+  }, [adminCheck.unavailableReason, adminPreviewMode, t]);
 
   useEffect(() => {
     let cancelled = false;
+    if (ADMIN_FIXTURES_ENABLED) return;
     if (authLoading) return;
     if (!currentAdminEmail) return;
     const timer = window.setTimeout(() => {
@@ -381,14 +407,14 @@ export default function ParkRiskAdminPage() {
   }, [authLoading, currentAdminEmail]);
 
   useEffect(() => {
-    if (!canViewQueue) return;
+    if (!canRenderQueue) return;
     const timer = window.setTimeout(() => {
       void refreshReports();
     }, 0);
     return () => {
       window.clearTimeout(timer);
     };
-  }, [canViewQueue, refreshReports]);
+  }, [canRenderQueue, refreshReports]);
 
   const counts = useMemo(() => {
     return reports.reduce(
@@ -437,7 +463,7 @@ export default function ParkRiskAdminPage() {
     if (queueReadOnly) {
       setMessage({
         tone: "warning",
-        text: "Preview mode is read-only. Apply the database migration and restore Supabase access before reviewing reports.",
+        text: t("adminParkRisksReviewReadOnlyMessage"),
       });
       return;
     }
@@ -460,8 +486,8 @@ export default function ParkRiskAdminPage() {
         tone: "success",
         text:
           decision === "approved"
-            ? "Risk approved and highlighted."
-            : "Risk rejected.",
+            ? t("adminParkRisksApprovedMessage")
+            : t("adminParkRisksRejectedMessage"),
       });
       setNotes((current) => ({ ...current, [report.id]: "" }));
       await refreshReports();
@@ -474,7 +500,7 @@ export default function ParkRiskAdminPage() {
     if (queueReadOnly) {
       setMessage({
         tone: "warning",
-        text: "Preview mode is read-only. Official risks can be added after the live queue is available.",
+        text: t("adminParkRisksOfficialReadOnlyMessage"),
       });
       return;
     }
@@ -490,7 +516,7 @@ export default function ParkRiskAdminPage() {
     ) {
       setMessage({
         tone: "danger",
-        text: "Place, title, description, source name, and source URL are required.",
+        text: t("adminParkRisksRequiredFieldsMessage"),
       });
       return;
     }
@@ -516,7 +542,7 @@ export default function ParkRiskAdminPage() {
       reviewer_id: user.id,
       reviewed_at: now,
       highlighted_at: now,
-      review_note: "Official source verified by PawPal admin.",
+      review_note: t("adminParkRisksOfficialVerifiedNote"),
     });
 
     if (error) {
@@ -527,7 +553,7 @@ export default function ParkRiskAdminPage() {
     } else {
       setMessage({
         tone: "success",
-        text: "Official risk added and highlighted.",
+        text: t("adminParkRisksOfficialAddedMessage"),
       });
       setOfficialForm(initialOfficialForm);
       await refreshReports();
@@ -535,24 +561,29 @@ export default function ParkRiskAdminPage() {
     setCreatingOfficial(false);
   }
 
-  if (authLoading || checkingAdmin) {
+  if (!ADMIN_FIXTURES_ENABLED && (authLoading || checkingAdmin)) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-paw-page pt-24 text-paw-ink">
-        <Loader2 className="h-8 w-8 animate-spin text-paw-primary" aria-hidden="true" />
-      </div>
+      <>
+        {loader}
+        <div className="flex min-h-screen items-center justify-center bg-paw-page pt-24 text-paw-ink">
+          <Loader2 className="h-8 w-8 animate-spin text-paw-primary" aria-hidden="true" />
+        </div>
+      </>
     );
   }
 
-  if (!user) {
+  if (!ADMIN_FIXTURES_ENABLED && !user) {
     return (
-      <PageShell
+      <>
+        {loader}
+        <PageShell
         className="admin-page-shell admin-gate-shell min-h-screen pt-28"
-        eyebrow="Park risk admin"
-        title="Sign in required"
-        description="Use an approved PawPal admin account to review park risk reports."
+        eyebrow={t("adminParkRisksEyebrow")}
+        title={t("adminParkRisksSignInRequired")}
+        description={t("adminParkRisksSignInDescription")}
         actions={
-          <Button type="button" onClick={() => router.push("/auth")}>
-            Sign in
+          <Button type="button" onClick={() => router.push(path("/auth"))}>
+            {t("adminParkRisksSignIn")}
           </Button>
         }
       >
@@ -562,28 +593,31 @@ export default function ParkRiskAdminPage() {
           </div>
           <div>
             <p className="text-lg font-extrabold text-paw-ink">
-              No active session
+              {t("adminParkRisksNoActiveSession")}
             </p>
             <p className="mt-2 text-sm leading-6 text-paw-body">
-              After signing in, return to /admin/park-risks.
+              {t("adminParkRisksReturnAfterSignIn")}
             </p>
           </div>
         </section>
-      </PageShell>
+        </PageShell>
+      </>
     );
   }
 
-  if (!canViewQueue) {
+  if (!canRenderQueue) {
     return (
-      <PageShell
+      <>
+        {loader}
+        <PageShell
         className="admin-page-shell admin-gate-shell min-h-screen pt-28"
-        eyebrow="Park risk admin"
-        title="Review access is restricted"
-        description="This account is not listed in pawpal_admins. Add the email in Supabase before reviewing reports."
+        eyebrow={t("adminParkRisksEyebrow")}
+        title={t("adminParkRisksAccessRestricted")}
+        description={t("adminParkRisksAccessRestrictedDescription")}
         actions={
-          <Button type="button" variant="secondary" onClick={() => router.push("/")}>
+          <Button type="button" variant="secondary" onClick={() => router.push(path("/"))}>
             <ArrowLeft className="h-4 w-4" aria-hidden="true" />
-            Home
+            {t("adminParkRisksHome")}
           </Button>
         }
       >
@@ -593,32 +627,35 @@ export default function ParkRiskAdminPage() {
           </div>
           <div>
             <p className="text-lg font-extrabold text-paw-ink">
-              Not a PawPal admin
+              {t("adminParkRisksNotAdmin")}
             </p>
             <p className="mt-2 text-sm leading-6 text-paw-body">
-              {user.email || "Current user is not authorized."}
+              {user?.email || t("adminParkRisksNotAuthorized")}
             </p>
           </div>
         </section>
-      </PageShell>
+        </PageShell>
+      </>
     );
   }
 
   return (
-    <PageShell
+    <>
+      {loader}
+      <PageShell
       className="admin-page-shell min-h-screen pt-28"
-      eyebrow="Park risk admin"
-      title="Risk review queue"
-      description="Review community-confirmed park risks and add verified official-source risks for highlighting in PawPal place pages."
+      eyebrow={t("adminParkRisksEyebrow")}
+      title={t("adminParkRisksQueueTitle")}
+      description={t("adminParkRisksQueueDescription")}
       actions={
         <>
-          <Button type="button" variant="secondary" onClick={() => router.push("/")}>
+          <Button type="button" variant="secondary" onClick={() => router.push(path("/"))}>
             <ArrowLeft className="h-4 w-4" aria-hidden="true" />
-            Home
+            {t("adminParkRisksHome")}
           </Button>
           <Button type="button" variant="trust" onClick={refreshReports} disabled={loadingReports}>
             <RefreshCw className={loadingReports ? "h-4 w-4 animate-spin" : "h-4 w-4"} aria-hidden="true" />
-            Refresh
+            {t("adminParkRisksRefresh")}
           </Button>
         </>
       }
@@ -626,11 +663,11 @@ export default function ParkRiskAdminPage() {
       <div className="grid grid-cols-1 gap-6 xl:grid-cols-[minmax(0,1.35fr)_minmax(360px,0.65fr)]">
         <div className="space-y-6">
           <div className="grid grid-cols-2 gap-3 md:grid-cols-5">
-            <QueueMetric label="Queue" value={counts.queue} tone="warning" />
-            <QueueMetric label="Ready" value={counts.ready_for_review} tone="danger" />
-            <QueueMetric label="Waiting" value={counts.pending_confirmation} tone="trust" />
-            <QueueMetric label="Highlighted" value={counts.approved} tone="success" />
-            <QueueMetric label="Rejected" value={counts.rejected} tone="neutral" />
+            <QueueMetric label={t("adminParkRisksQueueMetric")} value={counts.queue} tone="warning" />
+            <QueueMetric label={t("adminParkRisksReadyMetric")} value={counts.ready_for_review} tone="danger" />
+            <QueueMetric label={t("adminParkRisksWaitingMetric")} value={counts.pending_confirmation} tone="trust" />
+            <QueueMetric label={t("adminParkRisksHighlightedMetric")} value={counts.approved} tone="success" />
+            <QueueMetric label={t("adminParkRisksRejectedMetric")} value={counts.rejected} tone="neutral" />
           </div>
 
           {message && (
@@ -641,9 +678,7 @@ export default function ParkRiskAdminPage() {
 
           {queueFallbackReason && (
             <div className="rounded-paw-md border border-paw-warning/20 bg-paw-warning-soft px-4 py-3 text-sm font-bold leading-6 text-paw-on-warning-soft">
-              Preview mode active. The live park risk queue is unavailable, so
-              this page is showing local sample reports and all write actions
-              are disabled. Reason: {queueFallbackReason}
+              {t("adminParkRisksFallbackPrefix")} {queueFallbackReason}
             </div>
           )}
 
@@ -652,23 +687,23 @@ export default function ParkRiskAdminPage() {
               <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
                 <div className="flex items-center gap-2">
                   <ClipboardList className="h-5 w-5 text-paw-primary" aria-hidden="true" />
-                  <h2 className="text-xl font-extrabold text-paw-ink">Reports</h2>
+                  <h2 className="text-xl font-extrabold text-paw-ink">{t("adminParkRisksReports")}</h2>
                 </div>
                 <div className="flex flex-wrap gap-2">
                   <FilterButton active={statusFilter === "queue"} onClick={() => setStatusFilter("queue")}>
-                    Queue
+                    {t("adminParkRisksQueueMetric")}
                   </FilterButton>
                   <FilterButton active={statusFilter === "ready_for_review"} onClick={() => setStatusFilter("ready_for_review")}>
-                    Ready
+                    {t("adminParkRisksReadyMetric")}
                   </FilterButton>
                   <FilterButton active={statusFilter === "pending_confirmation"} onClick={() => setStatusFilter("pending_confirmation")}>
-                    Waiting
+                    {t("adminParkRisksWaitingMetric")}
                   </FilterButton>
                   <FilterButton active={statusFilter === "approved"} onClick={() => setStatusFilter("approved")}>
-                    Highlighted
+                    {t("adminParkRisksHighlightedMetric")}
                   </FilterButton>
                   <FilterButton active={statusFilter === "rejected"} onClick={() => setStatusFilter("rejected")}>
-                    Rejected
+                    {t("adminParkRisksRejectedMetric")}
                   </FilterButton>
                 </div>
               </div>
@@ -680,8 +715,8 @@ export default function ParkRiskAdminPage() {
               ) : filteredReports.length === 0 ? (
                 <EmptyState
                   icon={FileCheck2}
-                  title="No reports in this view"
-                  description="Community reports appear here after submission or confirmation."
+                  title={t("adminParkRisksEmptyTitle")}
+                  description={t("adminParkRisksEmptyDescription")}
                 />
               ) : (
                 <div className="space-y-4">
@@ -692,6 +727,8 @@ export default function ParkRiskAdminPage() {
                       note={notes[report.id] ?? ""}
                       busy={busyId === report.id}
                       readOnly={queueReadOnly}
+                      locale={locale}
+                      t={t}
                       onNoteChange={(value) =>
                         setNotes((current) => ({ ...current, [report.id]: value }))
                       }
@@ -710,87 +747,87 @@ export default function ParkRiskAdminPage() {
             <form onSubmit={handleCreateOfficialRisk} className="space-y-5">
               <div className="flex items-center gap-2">
                 <PlusCircle className="h-5 w-5 text-paw-trust" aria-hidden="true" />
-                <h2 className="text-xl font-extrabold text-paw-ink">Official source</h2>
+                <h2 className="text-xl font-extrabold text-paw-ink">{t("adminParkRisksOfficialSource")}</h2>
               </div>
               <p className="text-sm leading-6 text-paw-body">
-                Add verified official-source information. These entries are highlighted immediately.
+                {t("adminParkRisksOfficialSourceDescription")}
               </p>
 
               <Input
-                label="Google Place ID"
+                label={t("adminParkRisksGooglePlaceId")}
                 value={officialForm.placeId}
                 onChange={(event) => updateOfficialForm("placeId", event.target.value)}
-                placeholder="places/ChIJ... or ChIJ..."
+                placeholder={t("adminParkRisksGooglePlaceIdPlaceholder")}
                 required
               />
               <Input
-                label="Place name"
+                label={t("adminParkRisksPlaceName")}
                 value={officialForm.placeName}
                 onChange={(event) => updateOfficialForm("placeName", event.target.value)}
-                placeholder="Citadelpark"
+                placeholder={t("adminParkRisksPlaceNamePlaceholder")}
                 required
               />
               <Input
-                label="Address"
+                label={t("adminParkRisksAddress")}
                 value={officialForm.placeAddress}
                 onChange={(event) => updateOfficialForm("placeAddress", event.target.value)}
-                placeholder="Citadelpark, 9000 Gent"
+                placeholder={t("adminParkRisksAddressPlaceholder")}
               />
 
               <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                 <label className="block space-y-1.5">
-                  <span className="block text-sm font-bold text-paw-ink">Risk type</span>
+                  <span className="block text-sm font-bold text-paw-ink">{t("adminParkRisksRiskType")}</span>
                   <select
                     value={officialForm.riskType}
                     onChange={(event) => updateOfficialForm("riskType", event.target.value as RiskType)}
                     className="h-11 w-full rounded-paw-md border border-paw-border bg-paw-panel px-3 text-sm font-bold text-paw-ink shadow-sm focus-visible:border-paw-trust focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-paw-trust/20"
                   >
-                    {riskTypeOptions.map(([value, label]) => (
-                      <option key={value} value={value}>{label}</option>
+                    {riskTypeOptions.map(([value, labelKey]) => (
+                      <option key={value} value={value}>{t(labelKey)}</option>
                     ))}
                   </select>
                 </label>
                 <label className="block space-y-1.5">
-                  <span className="block text-sm font-bold text-paw-ink">Severity</span>
+                  <span className="block text-sm font-bold text-paw-ink">{t("adminParkRisksSeverity")}</span>
                   <select
                     value={officialForm.severity}
                     onChange={(event) => updateOfficialForm("severity", event.target.value as Severity)}
                     className="h-11 w-full rounded-paw-md border border-paw-border bg-paw-panel px-3 text-sm font-bold text-paw-ink shadow-sm focus-visible:border-paw-trust focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-paw-trust/20"
                   >
-                    {severityOptions.map(([value, label]) => (
-                      <option key={value} value={value}>{label}</option>
+                    {severityOptions.map(([value, labelKey]) => (
+                      <option key={value} value={value}>{t(labelKey)}</option>
                     ))}
                   </select>
                 </label>
               </div>
 
               <Input
-                label="Title"
+                label={t("adminParkRisksTitleLabel")}
                 value={officialForm.title}
                 onChange={(event) => updateOfficialForm("title", event.target.value)}
-                placeholder="Temporary leash restriction"
+                placeholder={t("adminParkRisksTitlePlaceholder")}
                 required
               />
               <label className="block space-y-1.5">
-                <span className="block text-sm font-bold text-paw-ink">Description</span>
+                <span className="block text-sm font-bold text-paw-ink">{t("adminParkRisksDescriptionLabel")}</span>
                 <textarea
                   value={officialForm.description}
                   onChange={(event) => updateOfficialForm("description", event.target.value)}
                   rows={5}
                   className="w-full rounded-paw-md border border-paw-border bg-paw-panel px-3 py-3 text-sm text-paw-ink shadow-sm transition placeholder:text-paw-muted focus-visible:border-paw-trust focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-paw-trust/20"
-                  placeholder="Summarize the official notice in pet-owner language."
+                  placeholder={t("adminParkRisksDescriptionPlaceholder")}
                   required
                 />
               </label>
               <Input
-                label="Official source name"
+                label={t("adminParkRisksOfficialSourceName")}
                 value={officialForm.sourceName}
                 onChange={(event) => updateOfficialForm("sourceName", event.target.value)}
-                placeholder="City of Ghent"
+                placeholder={t("adminParkRisksOfficialSourceNamePlaceholder")}
                 required
               />
               <Input
-                label="Official source URL"
+                label={t("adminParkRisksOfficialSourceUrl")}
                 type="url"
                 value={officialForm.sourceUrl}
                 onChange={(event) => updateOfficialForm("sourceUrl", event.target.value)}
@@ -798,11 +835,11 @@ export default function ParkRiskAdminPage() {
                 required
               />
               <Input
-                label="Evidence URL"
+                label={t("adminParkRisksEvidenceUrl")}
                 type="url"
                 value={officialForm.evidenceUrl}
                 onChange={(event) => updateOfficialForm("evidenceUrl", event.target.value)}
-                placeholder="Optional supporting link"
+                placeholder={t("adminParkRisksEvidenceUrlPlaceholder")}
               />
 
               <Button
@@ -816,13 +853,16 @@ export default function ParkRiskAdminPage() {
                 ) : (
                   <ShieldCheck className="h-5 w-5" aria-hidden="true" />
                 )}
-                {queueReadOnly ? "Preview only" : "Highlight official risk"}
+                {queueReadOnly
+                  ? t("adminParkRisksPreviewOnly")
+                  : t("adminParkRisksHighlightOfficialRisk")}
               </Button>
             </form>
           </CardContent>
         </Card>
       </div>
-    </PageShell>
+      </PageShell>
+    </>
   );
 }
 
@@ -879,6 +919,8 @@ function RiskReportCard({
   note,
   busy,
   readOnly,
+  locale,
+  t,
   onNoteChange,
   onApprove,
   onReject,
@@ -887,6 +929,8 @@ function RiskReportCard({
   note: string;
   busy: boolean;
   readOnly: boolean;
+  locale: Locale;
+  t: ParkRiskTranslation;
   onNoteChange: (value: string) => void;
   onApprove: () => void;
   onReject: () => void;
@@ -901,23 +945,25 @@ function RiskReportCard({
       <div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
         <div className="min-w-0 space-y-2">
           <div className="flex flex-wrap items-center gap-2">
-            <Badge tone={statusTone(report.status)}>{statusLabels[report.status]}</Badge>
-            <Badge tone={severityTone(report.severity)}>{severityLabels[report.severity]}</Badge>
+            <Badge tone={statusTone(report.status)}>{t(statusLabelKeys[report.status])}</Badge>
+            <Badge tone={severityTone(report.severity)}>{t(severityLabelKeys[report.severity])}</Badge>
             <Badge tone={report.source_type === "official" ? "success" : "trust"}>
-              {report.source_type === "official" ? "Official" : "Community"}
+              {report.source_type === "official"
+                ? t("adminParkRisksOfficial")
+                : t("adminParkRisksCommunity")}
             </Badge>
             <span className="text-xs font-bold text-paw-muted">
-              {report.confirmation_count}/3 confirmations
+              {report.confirmation_count}/3 {t("adminParkRisksConfirmations")}
             </span>
           </div>
           <h3 className="text-lg font-extrabold text-paw-ink">{report.title}</h3>
           <p className="text-sm font-bold text-paw-primary">
-            {riskTypeLabels[report.risk_type]}
+            {t(riskTypeLabelKeys[report.risk_type])}
           </p>
         </div>
         <div className="text-left text-xs font-semibold text-paw-muted md:text-right">
-          <p>Updated {formatDate(report.updated_at)}</p>
-          <p>Reviewed {formatDate(report.reviewed_at)}</p>
+          <p>{t("adminParkRisksUpdated")} {formatDate(report.updated_at, locale, t)}</p>
+          <p>{t("adminParkRisksReviewed")} {formatDate(report.reviewed_at, locale, t)}</p>
         </div>
       </div>
 
@@ -926,7 +972,7 @@ function RiskReportCard({
           <p className="text-sm leading-6 text-paw-body">{report.description}</p>
           {report.review_note && (
             <div className="rounded-paw-sm border border-paw-border bg-paw-panel px-3 py-2 text-sm font-semibold text-paw-body">
-              Review note: {report.review_note}
+              {t("adminParkRisksReviewNoteColon")} {report.review_note}
             </div>
           )}
           <div className="flex flex-wrap gap-2">
@@ -938,7 +984,7 @@ function RiskReportCard({
                 className="inline-flex items-center gap-1.5 text-xs font-extrabold text-paw-trust hover:underline"
               >
                 <ExternalLink className="h-3.5 w-3.5" aria-hidden="true" />
-                Evidence
+                {t("adminParkRisksEvidence")}
               </a>
             )}
             {report.official_source_url && (
@@ -949,7 +995,7 @@ function RiskReportCard({
                 className="inline-flex items-center gap-1.5 text-xs font-extrabold text-paw-success hover:underline"
               >
                 <ExternalLink className="h-3.5 w-3.5" aria-hidden="true" />
-                {report.official_source_name || "Official source"}
+                {report.official_source_name || t("adminParkRisksOfficialSource")}
               </a>
             )}
           </div>
@@ -978,13 +1024,13 @@ function RiskReportCard({
       {canReview && (
         <div className="mt-4 space-y-3 border-t border-paw-border pt-4">
           <label className="block space-y-1.5">
-            <span className="block text-sm font-bold text-paw-ink">Review note</span>
+            <span className="block text-sm font-bold text-paw-ink">{t("adminParkRisksReviewNote")}</span>
             <textarea
               value={note}
               onChange={(event) => onNoteChange(event.target.value)}
               rows={2}
               className="w-full rounded-paw-md border border-paw-border bg-paw-panel px-3 py-2 text-sm text-paw-ink shadow-sm transition placeholder:text-paw-muted focus-visible:border-paw-trust focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-paw-trust/20"
-              placeholder="Optional internal note shown with this review."
+              placeholder={t("adminParkRisksReviewNotePlaceholder")}
             />
           </label>
           <div className="flex flex-wrap gap-2">
@@ -994,7 +1040,7 @@ function RiskReportCard({
               ) : (
                 <CheckCircle2 className="h-4 w-4" aria-hidden="true" />
               )}
-              Approve
+              {t("adminParkRisksApprove")}
             </Button>
             <Button type="button" variant="danger" onClick={onReject} disabled={busy}>
               {busy ? (
@@ -1002,7 +1048,7 @@ function RiskReportCard({
               ) : (
                 <XCircle className="h-4 w-4" aria-hidden="true" />
               )}
-              Reject
+              {t("adminParkRisksReject")}
             </Button>
           </div>
         </div>
@@ -1011,7 +1057,7 @@ function RiskReportCard({
         (report.status === "ready_for_review" ||
           report.status === "pending_confirmation") && (
           <div className="mt-4 rounded-paw-sm border border-paw-warning/20 bg-paw-warning-soft px-3 py-2 text-sm font-bold text-paw-on-warning-soft">
-            Preview mode is read-only. Review actions will unlock when the live queue is available.
+            {t("adminParkRisksReviewActionsReadOnly")}
           </div>
         )}
     </div>

@@ -1,10 +1,7 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { cookies } from "next/headers";
 import { notFound } from "next/navigation";
-import { ArrowLeft, ShieldCheck } from "lucide-react";
 
-import { buttonClassName, PageShell } from "@/components/ui";
 import {
   ADMIN_REPORTS_SESSION_COOKIE,
   loadPendingReports,
@@ -68,39 +65,7 @@ export default async function AdminReportsPage({
     }
   }
 
-  return (
-    <PageShell
-      className={`admin-page-shell min-h-screen pt-28 ${state.kind === "ready" ? "" : "admin-gate-shell"}`}
-      headerClassName="admin-shell-header"
-      eyebrow={
-        <span className="inline-flex items-center gap-2">
-          <ShieldCheck className="h-4 w-4" aria-hidden="true" />
-          PawPal admin
-        </span>
-      }
-      title="Moderation reports"
-      description="Review pending community reports, inspect the reported target, and resolve each item with a dismiss, content removal, or user ban action."
-      actions={
-        <>
-          <Link
-            href="/"
-            className={buttonClassName({ variant: "secondary" })}
-          >
-            <ArrowLeft className="h-4 w-4" aria-hidden="true" />
-            Home
-          </Link>
-          <Link
-            href="/admin/park-risks"
-            className={buttonClassName({ variant: "ghost" })}
-          >
-            Park risks
-          </Link>
-        </>
-      }
-    >
-      <ReportsClientParts state={state} />
-    </PageShell>
-  );
+  return <ReportsClientParts state={state} />;
 }
 
 function parsePage(value: string | string[] | undefined) {

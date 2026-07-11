@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useState, type FormEvent } from "react";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import {
   ArrowLeft,
   ImagePlus,
@@ -13,7 +13,11 @@ import {
   UploadCloud,
 } from "lucide-react";
 import { supabase } from "@/lib/supabase";
+import { loadP3B1g2hAdminFixtures } from "@/lib/p3b1g2hAdminFixtures";
 import { useAuth } from "@/components/AuthProvider";
+import { useRouteTranslations } from "@/i18n/useRouteTranslations";
+import { localeFromPath, localizedPath } from "@/i18n/routing";
+import type { MessageKey } from "@/i18n/messages/en";
 import {
   Badge,
   Button,
@@ -76,10 +80,34 @@ const initialForm: ProductForm = {
   tags: "",
 };
 
+const ADMIN_FIXTURES_ENABLED =
+  process.env.NEXT_PUBLIC_P3B1G2H_ADMIN_FIXTURES === "1";
+
 const storeCategories = CATEGORIES.filter(
   (item): item is { key: Exclude<Category, "all">; label: string; icon: string } =>
     item.key !== "all",
 );
+
+const categoryLabelKeys: Record<Exclude<Category, "all">, MessageKey> = {
+  food: "storeCategoryFood",
+  toys: "storeCategoryToys",
+  accessories: "storeCategoryAccessories",
+  health: "storeCategoryHealth",
+};
+
+const categoryValueKeys: Record<Category, MessageKey> = {
+  all: "storeAdminCategoryValueAll",
+  food: "storeAdminCategoryValueFood",
+  toys: "storeAdminCategoryValueToys",
+  accessories: "storeAdminCategoryValueAccessories",
+  health: "storeAdminCategoryValueHealth",
+};
+
+const badgeLabelKeys: Record<ProductBadge, MessageKey> = {
+  New: "storeAdminBadgeNew",
+  "Best Seller": "storeAdminBadgeBestSeller",
+  Sale: "storeAdminBadgeSale",
+};
 
 function slugify(value: string) {
   return value
@@ -106,10 +134,17 @@ function numberOrNull(value: string) {
 
 export default function StoreAdminPage() {
   const router = useRouter();
+  const locale = localeFromPath(usePathname());
+  const path = (href: string) => localizedPath(href, locale);
+  const { loader, t } = useRouteTranslations();
   const { user, loading: authLoading } = useAuth();
   const [isAdmin, setIsAdmin] = useState(false);
   const [checkingAdmin, setCheckingAdmin] = useState(true);
-  const [products, setProducts] = useState<Product[]>([]);
+  const [products, setProducts] = useState<Product[]>(() =>
+    ADMIN_FIXTURES_ENABLED
+      ? loadP3B1g2hAdminFixtures().products
+      : [],
+  );
   const [form, setForm] = useState<ProductForm>(initialForm);
   const [file, setFile] = useState<File | null>(null);
   const [filePreview, setFilePreview] = useState<string | null>(null);
@@ -119,7 +154,7 @@ export default function StoreAdminPage() {
 
   const previewProduct = useMemo<Product>(() => ({
     id: form.id || "preview",
-    name: form.name || "New product",
+    name: form.name || t("storeAdminNewProduct"),
     description: form.description,
     price: Number(form.price) || 0,
     originalPrice: numberOrNull(form.originalPrice) ?? undefined,
@@ -132,10 +167,15 @@ export default function StoreAdminPage() {
     inStock: form.inStock,
     published: form.published,
     tags: splitTags(form.tags),
-  }), [filePreview, form]);
+  }), [filePreview, form, t]);
 
   const refreshProducts = useCallback(async () => {
     setLoadingProducts(true);
+    if (ADMIN_FIXTURES_ENABLED) {
+      setProducts(loadP3B1g2hAdminFixtures().products);
+      setLoadingProducts(false);
+      return;
+    }
     const { data, error } = await supabase
       .from("products")
       .select(PRODUCT_SELECT)
@@ -144,17 +184,18 @@ export default function StoreAdminPage() {
     if (error) {
       setMessage({
         tone: "warning",
-        text: `Catalog table is not ready yet: ${error.message}`,
+        text: `${t("storeAdminCatalogUnavailablePrefix")} ${error.message}`,
       });
       setProducts([]);
     } else {
       setProducts((data ?? []).map((row) => productFromRow(row as unknown as ProductRow)));
     }
     setLoadingProducts(false);
-  }, []);
+  }, [t]);
 
   useEffect(() => {
     let cancelled = false;
+    if (ADMIN_FIXTURES_ENABLED) return;
     if (authLoading) return;
     if (!user) {
       setCheckingAdmin(false);
@@ -249,11 +290,12 @@ export default function StoreAdminPage() {
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    if (ADMIN_FIXTURES_ENABLED) return;
     if (!user) return;
 
     const productId = slugify(form.id || form.name);
     if (!productId || !form.name.trim() || !form.price.trim()) {
-      setMessage({ tone: "danger", text: "Product ID, name, and price are required." });
+      setMessage({ tone: "danger", text: t("storeAdminRequiredFieldsMessage") });
       return;
     }
 
@@ -308,87 +350,98 @@ export default function StoreAdminPage() {
         if (assetError) throw assetError;
       }
 
-      setMessage({ tone: "success", text: "Product saved and catalog synced." });
+      setMessage({ tone: "success", text: t("storeAdminProductSavedMessage") });
       setForm(initialForm);
       setFile(null);
       await refreshProducts();
     } catch (error) {
       setMessage({
         tone: "danger",
-        text: error instanceof Error ? error.message : "Failed to save product.",
+        text: error instanceof Error ? error.message : t("storeAdminSaveFailedMessage"),
       });
     } finally {
       setSaving(false);
     }
   }
 
-  if (authLoading || checkingAdmin) {
+  if (!ADMIN_FIXTURES_ENABLED && (authLoading || checkingAdmin)) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-paw-page pt-24 text-paw-ink">
-        <Loader2 className="h-8 w-8 animate-spin text-paw-primary" aria-hidden="true" />
-      </div>
+      <>
+        {loader}
+        <div className="flex min-h-screen items-center justify-center bg-paw-page pt-24 text-paw-ink">
+          <Loader2 className="h-8 w-8 animate-spin text-paw-primary" aria-hidden="true" />
+        </div>
+      </>
     );
   }
 
-  if (!user) {
+  if (!ADMIN_FIXTURES_ENABLED && !user) {
     return (
-      <PageShell
+      <>
+        {loader}
+        <PageShell
         className="admin-page-shell admin-gate-shell min-h-screen pt-28"
         headerClassName="admin-shell-header"
-        eyebrow="Store admin"
-        title="Sign in required"
-        description="Use an approved store admin account to upload product assets and publish catalog items."
+        eyebrow={t("storeAdminEyebrow")}
+        title={t("storeAdminSignInRequired")}
+        description={t("storeAdminSignInDescription")}
         actions={
-          <Button type="button" onClick={() => router.push("/auth")}>
-            Sign in
+          <Button type="button" onClick={() => router.push(path("/auth"))}>
+            {t("storeAdminSignIn")}
           </Button>
         }
       >
         <Card className="admin-card-upgraded p-8">
-          <EmptyState icon={ShieldCheck} title="No active session" description="After signing in, return to /store/admin." />
+          <EmptyState icon={ShieldCheck} title={t("storeAdminNoActiveSession")} description={t("storeAdminReturnAfterSignIn")} />
         </Card>
-      </PageShell>
+        </PageShell>
+      </>
     );
   }
 
-  if (!isAdmin) {
+  if (!ADMIN_FIXTURES_ENABLED && !isAdmin) {
     return (
-      <PageShell
+      <>
+        {loader}
+        <PageShell
         className="admin-page-shell admin-gate-shell min-h-screen pt-28"
         headerClassName="admin-shell-header"
-        eyebrow="Store admin"
-        title="Catalog access is restricted"
-        description="This account is not listed in store_admins. Add the email in Supabase before uploading products."
+        eyebrow={t("storeAdminEyebrow")}
+        title={t("storeAdminAccessRestricted")}
+        description={t("storeAdminAccessRestrictedDescription")}
         actions={
-          <Button type="button" variant="secondary" onClick={() => router.push("/store")}>
+          <Button type="button" variant="secondary" onClick={() => router.push(path("/store"))}>
             <ArrowLeft className="h-4 w-4" aria-hidden="true" />
-            Back to Store
+            {t("storeAdminBackToStore")}
           </Button>
         }
       >
         <Card className="admin-card-upgraded p-8">
-          <EmptyState icon={ShieldCheck} title="Not a store admin" description={user.email || "Current user is not authorized."} />
+          <EmptyState icon={ShieldCheck} title={t("storeAdminNotAdmin")} description={user?.email || t("storeAdminNotAuthorized")} />
         </Card>
-      </PageShell>
+        </PageShell>
+      </>
     );
   }
 
   return (
-    <PageShell
+    <>
+      {loader}
+      <PageShell
       className="admin-page-shell min-h-screen pt-28"
       headerClassName="admin-shell-header"
-      eyebrow="Store admin"
-      title="Product catalog"
-      description="Upload product assets, fill catalog data, and publish items to the website and app store."
+      eyebrow={t("storeAdminEyebrow")}
+      title={t("storeAdminCatalogTitle")}
+      description={t("storeAdminCatalogDescription")}
       actions={
         <>
-          <Button type="button" variant="secondary" onClick={() => router.push("/store")}>
+          <Button type="button" variant="secondary" onClick={() => router.push(path("/store"))}>
             <ArrowLeft className="h-4 w-4" aria-hidden="true" />
-            Store
+            {t("storeAdminStore")}
           </Button>
           <Button type="button" variant="trust" onClick={refreshProducts} disabled={loadingProducts}>
             <RefreshCw className={loadingProducts ? "h-4 w-4 animate-spin" : "h-4 w-4"} aria-hidden="true" />
-            Refresh
+            {t("storeAdminRefresh")}
           </Button>
         </>
       }
@@ -399,7 +452,7 @@ export default function StoreAdminPage() {
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="flex items-center gap-2">
                 <PackagePlus className="h-5 w-5 text-paw-primary" aria-hidden="true" />
-                <h2 className="text-xl font-extrabold text-paw-ink">Product information</h2>
+                <h2 className="text-xl font-extrabold text-paw-ink">{t("storeAdminProductInformation")}</h2>
               </div>
 
               {message && (
@@ -409,80 +462,80 @@ export default function StoreAdminPage() {
               )}
 
               <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-                <Input label="Product ID" value={form.id} onChange={(e) => updateForm("id", slugify(e.target.value))} placeholder="pawpal-nfc-tag" required />
-                <Input label="SKU" value={form.sku} onChange={(e) => updateForm("sku", e.target.value.toUpperCase())} placeholder="PAWPAL-NFC-TAG" required />
-                <Input label="Name" value={form.name} onChange={(e) => updateForm("name", e.target.value)} placeholder="PawPal NFC Safety Tag" required containerClassName="md:col-span-2" />
-                <Input label="Short description" value={form.description} onChange={(e) => updateForm("description", e.target.value)} placeholder="Smart safety tag for pet collars." required containerClassName="md:col-span-2" />
+                <Input label={t("storeAdminProductId")} value={form.id} onChange={(e) => updateForm("id", slugify(e.target.value))} placeholder={t("storeAdminProductIdPlaceholder")} required />
+                <Input label={t("storeAdminSku")} value={form.sku} onChange={(e) => updateForm("sku", e.target.value.toUpperCase())} placeholder={t("storeAdminSkuPlaceholder")} required />
+                <Input label={t("storeAdminName")} value={form.name} onChange={(e) => updateForm("name", e.target.value)} placeholder={t("storeAdminNamePlaceholder")} required containerClassName="md:col-span-2" />
+                <Input label={t("storeAdminShortDescription")} value={form.description} onChange={(e) => updateForm("description", e.target.value)} placeholder={t("storeAdminShortDescriptionPlaceholder")} required containerClassName="md:col-span-2" />
                 <div className="md:col-span-2">
-                  <label className="mb-1.5 block text-sm font-bold text-paw-ink" htmlFor="details">Details</label>
+                  <label className="mb-1.5 block text-sm font-bold text-paw-ink" htmlFor="details">{t("storeAdminDetails")}</label>
                   <textarea
                     id="details"
                     value={form.details}
                     onChange={(e) => updateForm("details", e.target.value)}
                     rows={4}
                     className="w-full rounded-paw-md border border-paw-border bg-paw-panel px-3 py-3 text-sm text-paw-ink shadow-sm transition placeholder:text-paw-muted focus-visible:border-paw-trust focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-paw-trust/20"
-                    placeholder="Materials, size, compatibility, package contents..."
+                    placeholder={t("storeAdminDetailsPlaceholder")}
                   />
                 </div>
                 <label className="block space-y-1.5">
-                  <span className="block text-sm font-bold text-paw-ink">Category</span>
+                  <span className="block text-sm font-bold text-paw-ink">{t("storeAdminCategory")}</span>
                   <select
                     value={form.category}
                     onChange={(e) => updateForm("category", e.target.value as ProductForm["category"])}
                     className="h-11 w-full rounded-paw-md border border-paw-border bg-paw-panel px-3 text-sm font-bold text-paw-ink shadow-sm focus-visible:border-paw-trust focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-paw-trust/20"
                   >
                     {storeCategories.map((category) => (
-                      <option key={category.key} value={category.key}>{category.icon} {category.label}</option>
+                      <option key={category.key} value={category.key}>{category.icon} {t(categoryLabelKeys[category.key])}</option>
                     ))}
                   </select>
                 </label>
                 <label className="block space-y-1.5">
-                  <span className="block text-sm font-bold text-paw-ink">Badge</span>
+                  <span className="block text-sm font-bold text-paw-ink">{t("storeAdminBadge")}</span>
                   <select
                     value={form.badge}
                     onChange={(e) => updateForm("badge", e.target.value as ProductForm["badge"])}
                     className="h-11 w-full rounded-paw-md border border-paw-border bg-paw-panel px-3 text-sm font-bold text-paw-ink shadow-sm focus-visible:border-paw-trust focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-paw-trust/20"
                   >
-                    <option value="">None</option>
-                    <option value="New">New</option>
-                    <option value="Best Seller">Best Seller</option>
-                    <option value="Sale">Sale</option>
+                    <option value="">{t("storeAdminBadgeNone")}</option>
+                    <option value="New">{t("storeAdminBadgeNew")}</option>
+                    <option value="Best Seller">{t("storeAdminBadgeBestSeller")}</option>
+                    <option value="Sale">{t("storeAdminBadgeSale")}</option>
                   </select>
                 </label>
-                <Input label="Price EUR" type="number" step="0.01" min="0" value={form.price} onChange={(e) => updateForm("price", e.target.value)} placeholder="12.99" required />
-                <Input label="Original price" type="number" step="0.01" min="0" value={form.originalPrice} onChange={(e) => updateForm("originalPrice", e.target.value)} placeholder="19.99" />
-                <Input label="Rating" type="number" step="0.1" min="0" max="5" value={form.rating} onChange={(e) => updateForm("rating", e.target.value)} placeholder="0" />
-                <Input label="Review count" type="number" min="0" value={form.reviewCount} onChange={(e) => updateForm("reviewCount", e.target.value)} placeholder="0" />
-                <Input label="Stock quantity" type="number" min="0" value={form.stockQuantity} onChange={(e) => updateForm("stockQuantity", e.target.value)} placeholder="10" />
-                <Input label="Tags" value={form.tags} onChange={(e) => updateForm("tags", e.target.value)} placeholder="nfc, safety, dog, cat" />
+                <Input label={t("storeAdminPriceEur")} type="number" step="0.01" min="0" value={form.price} onChange={(e) => updateForm("price", e.target.value)} placeholder="12.99" required />
+                <Input label={t("storeAdminOriginalPrice")} type="number" step="0.01" min="0" value={form.originalPrice} onChange={(e) => updateForm("originalPrice", e.target.value)} placeholder="19.99" />
+                <Input label={t("storeAdminRating")} type="number" step="0.1" min="0" max="5" value={form.rating} onChange={(e) => updateForm("rating", e.target.value)} placeholder="0" />
+                <Input label={t("storeAdminReviewCount")} type="number" min="0" value={form.reviewCount} onChange={(e) => updateForm("reviewCount", e.target.value)} placeholder="0" />
+                <Input label={t("storeAdminStockQuantity")} type="number" min="0" value={form.stockQuantity} onChange={(e) => updateForm("stockQuantity", e.target.value)} placeholder="10" />
+                <Input label={t("storeAdminTags")} value={form.tags} onChange={(e) => updateForm("tags", e.target.value)} placeholder={t("storeAdminTagsPlaceholder")} />
               </div>
 
               <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
                 <label className="flex items-center gap-3 rounded-paw-md border border-paw-border bg-paw-panel-subtle px-4 py-3 text-sm font-bold text-paw-ink">
                   <input type="checkbox" checked={form.inStock} onChange={(e) => updateForm("inStock", e.target.checked)} className="h-4 w-4 accent-paw-primary" />
-                  In stock
+                  {t("storeAdminInStock")}
                 </label>
                 <label className="flex items-center gap-3 rounded-paw-md border border-paw-border bg-paw-panel-subtle px-4 py-3 text-sm font-bold text-paw-ink">
                   <input type="checkbox" checked={form.published} onChange={(e) => updateForm("published", e.target.checked)} className="h-4 w-4 accent-paw-primary" />
-                  Published
+                  {t("storeAdminPublished")}
                 </label>
               </div>
 
               <div className="admin-asset-panel space-y-4 rounded-paw-lg border border-paw-border bg-paw-panel-subtle p-4">
                 <div className="flex items-center gap-2">
                   <ImagePlus className="h-5 w-5 text-paw-trust" aria-hidden="true" />
-                  <h3 className="font-extrabold text-paw-ink">Product asset</h3>
+                  <h3 className="font-extrabold text-paw-ink">{t("storeAdminProductAsset")}</h3>
                 </div>
                 <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-                  <Input label="Fallback emoji" value={form.imageEmoji} onChange={(e) => updateForm("imageEmoji", e.target.value)} placeholder="📦" maxLength={4} />
-                  <Input label="Existing image URL" value={form.imageUrl} onChange={(e) => updateForm("imageUrl", e.target.value)} placeholder="https://..." />
+                  <Input label={t("storeAdminFallbackEmoji")} value={form.imageEmoji} onChange={(e) => updateForm("imageEmoji", e.target.value)} placeholder="📦" maxLength={4} />
+                  <Input label={t("storeAdminExistingImageUrl")} value={form.imageUrl} onChange={(e) => updateForm("imageUrl", e.target.value)} placeholder="https://..." />
                 </div>
                 <label className="flex cursor-pointer flex-col items-center justify-center gap-2 rounded-paw-md border border-dashed border-paw-border bg-paw-panel px-4 py-8 text-center transition hover:border-paw-trust hover:bg-paw-trust-soft/40">
                   <UploadCloud className="h-8 w-8 text-paw-trust" aria-hidden="true" />
                   <span className="text-sm font-extrabold text-paw-ink">
-                    {file ? file.name : "Upload main image"}
+                    {file ? file.name : t("storeAdminUploadMainImage")}
                   </span>
-                  <span className="text-xs font-semibold text-paw-muted">JPEG, PNG, WebP, GIF up to 10MB</span>
+                  <span className="text-xs font-semibold text-paw-muted">{t("storeAdminUploadFormats")}</span>
                   <input
                     type="file"
                     accept="image/png,image/jpeg,image/webp,image/gif"
@@ -494,7 +547,7 @@ export default function StoreAdminPage() {
 
               <Button type="submit" size="lg" disabled={saving} className="w-full">
                 {saving ? <Loader2 className="h-5 w-5 animate-spin" aria-hidden="true" /> : <Save className="h-5 w-5" aria-hidden="true" />}
-                Save product
+                {t("storeAdminSaveProduct")}
               </Button>
             </form>
           </CardContent>
@@ -504,15 +557,15 @@ export default function StoreAdminPage() {
           <Card className="admin-preview-card">
             <CardContent className="space-y-4">
               <div className="flex items-center justify-between gap-3">
-                <h2 className="text-lg font-extrabold text-paw-ink">Preview</h2>
-                {previewProduct.badge && <Badge tone="accent">{previewProduct.badge}</Badge>}
+                <h2 className="text-lg font-extrabold text-paw-ink">{t("storeAdminPreview")}</h2>
+                {previewProduct.badge && <Badge tone="accent">{t(badgeLabelKeys[previewProduct.badge])}</Badge>}
               </div>
               <div className="admin-preview-media flex justify-center rounded-paw-md bg-paw-primary-soft p-6">
                 <ProductVisual product={previewProduct} size="lg" />
               </div>
               <div>
                 <p className="text-lg font-extrabold text-paw-ink">{previewProduct.name}</p>
-                <p className="mt-1 text-sm leading-6 text-paw-body">{previewProduct.description || "Product description preview."}</p>
+                <p className="mt-1 text-sm leading-6 text-paw-body">{previewProduct.description || t("storeAdminProductDescriptionPreview")}</p>
                 <p className="mt-3 text-xl font-extrabold text-paw-primary">€{previewProduct.price.toFixed(2)}</p>
               </div>
             </CardContent>
@@ -521,11 +574,11 @@ export default function StoreAdminPage() {
           <Card className="admin-card-upgraded">
             <CardContent>
               <div className="mb-4 flex items-center justify-between">
-                <h2 className="text-lg font-extrabold text-paw-ink">Catalog</h2>
+                <h2 className="text-lg font-extrabold text-paw-ink">{t("storeAdminCatalog")}</h2>
                 <Badge tone="trust">{products.length}</Badge>
               </div>
               {products.length === 0 ? (
-                <EmptyState icon={PackagePlus} title="No products loaded" description="Apply the Supabase migration, then refresh the catalog." />
+                <EmptyState icon={PackagePlus} title={t("storeAdminNoProductsLoaded")} description={t("storeAdminNoProductsDescription")} />
               ) : (
                 <div className="max-h-[520px] space-y-3 overflow-y-auto pr-1">
                   {products.map((product) => (
@@ -538,10 +591,10 @@ export default function StoreAdminPage() {
                       <ProductVisual product={product} size="sm" />
                       <div className="min-w-0 flex-1">
                         <p className="truncate text-sm font-extrabold text-paw-ink">{product.name}</p>
-                        <p className="text-xs font-semibold text-paw-muted">€{product.price.toFixed(2)} · {product.category}</p>
+                        <p className="text-xs font-semibold text-paw-muted">€{product.price.toFixed(2)} · {t(categoryValueKeys[product.category])}</p>
                       </div>
                       <Badge tone={product.published === false ? "warning" : "success"}>
-                        {product.published === false ? "Draft" : "Live"}
+                        {product.published === false ? t("storeAdminDraft") : t("storeAdminLive")}
                       </Badge>
                     </button>
                   ))}
@@ -551,6 +604,7 @@ export default function StoreAdminPage() {
           </Card>
         </div>
       </div>
-    </PageShell>
+      </PageShell>
+    </>
   );
 }
