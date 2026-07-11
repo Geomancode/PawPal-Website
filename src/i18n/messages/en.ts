@@ -473,6 +473,10 @@ export const enMessages = {
   pushUpdateError: "Push settings could not be updated.",
   pushDefaultDescription:
     "Choose whether this browser should receive PawPal alerts.",
+  appDeepLinkOpenInApp: "Open in App",
+  appDeepLinkContinueOnWeb: "Continue on web",
+  appDeepLinkFallbackDescription:
+    "If the app did not open, keep browsing here or install PawPal first.",
   authBadge: "PawPal account",
   authHeroTitle: "One login for walks, tags, rescue pages, and store orders.",
   authHeroCopy:
