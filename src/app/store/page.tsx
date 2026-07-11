@@ -40,6 +40,8 @@ import {
   Sheet,
 } from "@/components/ui";
 import { useI18n } from "@/i18n/I18nProvider";
+import type { MessageKey } from "@/i18n/messages/en";
+import { useRouteTranslations } from "@/i18n/useRouteTranslations";
 
 const CATEGORY_ICONS: Record<Category, LucideIcon> = {
   all: ShoppingBag,
@@ -52,6 +54,8 @@ const CATEGORY_ICONS: Record<Category, LucideIcon> = {
 const REDUCED_MOTION_QUERY = "(prefers-reduced-motion: reduce)";
 const ACCOUNT_FIXTURES_ENABLED =
   process.env.NEXT_PUBLIC_P3B1G1_ACCOUNT_FIXTURES === "1";
+
+type StoreTranslation = (key: MessageKey) => string;
 
 function fadeUpMotion(shouldReduceMotion: boolean | null, y: number, delay = 0) {
   void y;
@@ -95,14 +99,15 @@ function SubscriptionUpgradePanel({
   appUserId,
   appEmail,
   accessToken,
+  t,
 }: {
   initialTier: Exclude<SubscriptionTier, "free">;
   source: string;
   appUserId: string | null;
   appEmail: string | null;
   accessToken?: string;
+  t: StoreTranslation;
 }) {
-  const { t } = useI18n();
   const shouldReduceMotion = useHydratedReducedMotion();
   const [selectedTier, setSelectedTier] =
     useState<Exclude<SubscriptionTier, "free">>(initialTier);
@@ -242,14 +247,14 @@ function SubscriptionUpgradePanel({
 
 // ─── Product Card ──────────────────────────────────────
 function ProductCard({
-  product, onAdd, onDetails, recommended = false,
+  product, onAdd, onDetails, t, recommended = false,
 }: {
   product: Product;
   onAdd: (p: Product) => void;
   onDetails: (p: Product) => void;
+  t: StoreTranslation;
   recommended?: boolean;
 }) {
-  const { t } = useI18n();
   const shouldReduceMotion = useHydratedReducedMotion();
   const badgeTone: Record<NonNullable<Product["badge"]>, "success" | "warning" | "accent"> = {
     New: "success",
@@ -304,11 +309,12 @@ function ProductCard({
 function ProductDetailsDrawer({
   product,
   onClose,
+  t,
 }: {
   product: Product | null;
   onClose: () => void;
+  t: StoreTranslation;
 }) {
-  const { t } = useI18n();
 
   return (
     <Sheet
@@ -366,15 +372,16 @@ function ProductDetailsDrawer({
 
 // ─── Cart Drawer ───────────────────────────────────────
 function CartDrawer({
-  isOpen, onClose, items, onUpdate, onRemove,
+  isOpen, onClose, items, onUpdate, onRemove, t,
 }: {
   isOpen: boolean;
   onClose: () => void;
   items: CartItem[];
   onUpdate: (id: string, qty: number) => void;
   onRemove: (id: string) => void;
+  t: StoreTranslation;
 }) {
-  const { path, t } = useI18n();
+  const { path } = useI18n();
   const shouldReduceMotion = useHydratedReducedMotion();
   const subtotal = items.reduce((s, i) => s + i.product.price * i.quantity, 0);
   const shipping = subtotal > 50 ? 0 : 5.99;
@@ -506,8 +513,8 @@ function CartDrawer({
 }
 
 // ─── Main Store Page ───────────────────────────────────
-function StorePageContent() {
-  const { path, t } = useI18n();
+function StorePageContent({ t }: { t: StoreTranslation }) {
+  const { path } = useI18n();
   const router = useRouter();
   const searchParams = useSearchParams();
   const shouldReduceMotion = useHydratedReducedMotion();
@@ -669,6 +676,7 @@ function StorePageContent() {
         appUserId={appUserId}
         appEmail={appEmail}
         accessToken={session?.access_token}
+        t={t}
       />
     );
   }
@@ -843,6 +851,7 @@ function StorePageContent() {
                 product={product}
                 onAdd={addToCart}
                 onDetails={setSelectedProduct}
+                t={t}
                 recommended={recommendedProductIdSet.has(product.id)}
               />
             ))}
@@ -897,11 +906,13 @@ function StorePageContent() {
         items={cart}
         onUpdate={updateQuantity}
         onRemove={removeItem}
+        t={t}
       />
 
       <ProductDetailsDrawer
         product={selectedProduct}
         onClose={() => setSelectedProduct(null)}
+        t={t}
       />
 
       {/* ===== ADD-TO-CART TOAST ===== */}
@@ -923,17 +934,20 @@ function StorePageContent() {
 }
 
 export default function StorePage() {
-  const { t } = useI18n();
+  const { loader, t } = useRouteTranslations();
 
   return (
-    <Suspense
-      fallback={
-        <div className="min-h-screen bg-paw-page pt-28 text-center text-sm font-bold text-paw-muted">
-          {t("storeLoading")}
-        </div>
-      }
-    >
-      <StorePageContent />
-    </Suspense>
+    <>
+      {loader}
+      <Suspense
+        fallback={
+          <div className="min-h-screen bg-paw-page pt-28 text-center text-sm font-bold text-paw-muted">
+            {t("storeLoading")}
+          </div>
+        }
+      >
+        <StorePageContent t={t} />
+      </Suspense>
+    </>
   );
 }
