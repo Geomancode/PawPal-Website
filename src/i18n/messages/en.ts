@@ -52,6 +52,22 @@ export const enMessages = {
   footerContactPawPal: "Contact PawPal",
   footerRights: "All rights reserved.",
   footerMadeInBelgiumEnglish: "Made in Belgium · English (EN)",
+  cookieConsentAriaLabel: "Cookie and storage consent",
+  cookieConsentTitle:
+    "PawPal uses essential storage to keep the site working.",
+  cookieConsentDescription:
+    "Necessary auth and checkout storage is always active. We also store local preferences and will only load future analytics after you choose Accept all. Read the",
+  cookieConsentPrivacyPolicy: "Privacy Policy.",
+  cookieConsentAcceptAll: "Accept all",
+  cookieConsentEssentialOnly: "Essential only",
+  pwaOfflineTitle: "Offline mode",
+  pwaOfflineDescription:
+    "PawPal is showing cached pages until your connection returns.",
+  pwaReconnecting: "Reconnecting",
+  pwaUpdateReadyTitle: "PawPal update ready",
+  pwaUpdateReadyDescription:
+    "Refresh to load the latest safety and store improvements.",
+  pwaUpdateNow: "Update now",
   homeHeroAriaLabel: "PawPal pet safety for every walk",
   homeHeroLineOne: "PawPal pet safety",
   homeHeroLineTwo: "for every walk",
