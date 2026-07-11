@@ -6,9 +6,11 @@ import PawPalLogo from "./PawPalLogo";
 import styles from "./Footer.module.css";
 import { siteConfig } from "@/lib/site";
 import { useI18n } from "@/i18n/I18nProvider";
+import { useRouteTranslations } from "@/i18n/useRouteTranslations";
 
 export default function Footer() {
-  const { path, t } = useI18n();
+  const { path } = useI18n();
+  const { loader, t } = useRouteTranslations();
   const footerNav = {
     [t("footerProductHeading")]: [
       { label: t("footerGlobeMap"), href: "/globe" },
@@ -31,6 +33,7 @@ export default function Footer() {
 
   return (
     <footer aria-labelledby="footer-heading" className={`${styles.visual} border-t border-paw-border text-paw-body`}>
+      {loader}
       <h2 id="footer-heading" className="sr-only">
         {t("footerHeading")}
       </h2>

@@ -29,6 +29,7 @@ export const enMessages = {
   navSignOut: "Sign Out",
   navCloseNavigationMenu: "Close navigation menu",
   navOpenNavigationMenu: "Open navigation menu",
+  navbarHomeAriaLabel: "PawPal home",
   footerHeading: "PawPal site footer",
   footerTagline:
     "Smart walks. Safe pets. Stronger local communities for pet parents across Belgium and the EU.",

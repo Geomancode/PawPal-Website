@@ -10,6 +10,7 @@ import PawPalLogo from "./PawPalLogo";
 import styles from "./Navbar.module.css";
 import { useI18n } from "@/i18n/I18nProvider";
 import { stripLocalePrefix } from "@/i18n/routing";
+import { useRouteTranslations } from "@/i18n/useRouteTranslations";
 
 const REDUCED_MOTION_QUERY = "(prefers-reduced-motion: reduce)";
 
@@ -37,7 +38,8 @@ function useReducedMotionPreference() {
 }
 
 export default function Navbar() {
-  const { path, t } = useI18n();
+  const { path } = useI18n();
+  const { loader, t } = useRouteTranslations();
   const [isOpen, setIsOpen] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -137,11 +139,12 @@ export default function Navbar() {
       animate={{ y: 0 }}
       transition={shouldReduceMotion ? { duration: 0 } : { duration: 0.45, ease: [0.25, 0.46, 0.45, 0.94] }}
     >
+      {loader}
       <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
         <div className={`flex items-center justify-between transition-all duration-300 ${
           isGlobeRoute ? "h-12 sm:h-14" : scrolled ? "h-16" : "h-20"
         }`}>
-          <Link href={path("/")} className={`${styles.homeLink} transition-opacity hover:opacity-80`} aria-label="PawPal home">
+          <Link href={path("/")} className={`${styles.homeLink} transition-opacity hover:opacity-80`} aria-label={t("navbarHomeAriaLabel")}>
             <PawPalLogo
               iconSize={isGlobeRoute ? 26 : scrolled ? 28 : 32}
               fontSize={isGlobeRoute ? 18 : scrolled ? 20 : 22}
@@ -327,5 +330,18 @@ export default function Navbar() {
         )}
       </AnimatePresence>
     </motion.nav>
+  );
+}
+
+export function LocalizedSkipLink() {
+  const { loader, t } = useRouteTranslations();
+
+  return (
+    <>
+      {loader}
+      <a href="#main-content" className="skip-to-content">
+        {t("skipToContent")}
+      </a>
+    </>
   );
 }

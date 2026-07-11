@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import Navbar from "@/components/Navbar";
+import Navbar, { LocalizedSkipLink } from "@/components/Navbar";
 import Providers from "@/components/Providers";
 import ConditionalFooter from "@/components/ConditionalFooter";
 import CookieConsentBanner from "@/components/CookieConsentBanner";
@@ -128,9 +128,7 @@ export default function RootLayout({
         />
         <I18nProvider locale={locale} messages={messages}>
           <Providers>
-            <a href="#main-content" className="skip-to-content">
-              {messages.skipToContent}
-            </a>
+            <LocalizedSkipLink />
             <Navbar />
             <main id="main-content" className="relative" style={{ zIndex: 20 }} tabIndex={-1}>{children}</main>
             <ConditionalFooter />
