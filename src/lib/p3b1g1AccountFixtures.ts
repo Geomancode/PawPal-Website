@@ -1,6 +1,11 @@
 import { PRODUCTS, type CartItem, type Order, type ShippingInfo } from "@/app/store/storeData";
 import type { Pet, Profile } from "@/app/profile/ProfileWorkspaceView";
 
+export function loadP3B1g1AccountFixtures() {
+if (process.env.NODE_ENV === "production") {
+  throw new Error("Account fixtures are unavailable in production.");
+}
+
 const shipping: ShippingInfo = {
   fullName: "Alex Morgan",
   email: "alex.fixture@example.com",
@@ -105,7 +110,6 @@ const successSession = {
   })),
 };
 
-export function loadP3B1g1AccountFixtures() {
   return {
     profile: { profile, pets },
     checkout: { cart, shipping },

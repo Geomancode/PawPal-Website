@@ -28,6 +28,7 @@ import {
 } from "@/components/ui";
 import type { MessageKey } from "@/i18n/messages/en";
 import { useRouteTranslations } from "@/i18n/useRouteTranslations";
+import { loadP3B1g1AccountFixtures } from "@/lib/p3b1g1AccountFixtures";
 
 const STEPS = [
   { id: 1, icon: MapPin },
@@ -188,7 +189,7 @@ export default function CheckoutPage() {
   useEffect(() => {
     let cancelled = false;
     if (ACCOUNT_FIXTURES_ENABLED) {
-      import("@/lib/p3b1g1AccountFixtures").then(({ loadP3B1g1AccountFixtures }) => {
+      queueMicrotask(() => {
         if (cancelled) return;
         const fixture = loadP3B1g1AccountFixtures().checkout;
         setCart(fixture.cart);

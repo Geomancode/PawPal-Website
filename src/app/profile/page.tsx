@@ -9,6 +9,7 @@ import { supabase } from "@/lib/supabase";
 import ProfileWorkspaceView, { type Pet, type PetSocialTraits, type Profile } from "./ProfileWorkspaceView";
 import PushSubscriptionSettings from "./PushSubscriptionSettings";
 import { useRouteTranslations } from "@/i18n/useRouteTranslations";
+import { loadP3B1g1AccountFixtures } from "@/lib/p3b1g1AccountFixtures";
 
 const ACCOUNT_FIXTURES_ENABLED =
   process.env.NEXT_PUBLIC_P3B1G1_ACCOUNT_FIXTURES === "1";
@@ -130,7 +131,7 @@ export default function ProfilePage() {
   useEffect(() => {
     if (ACCOUNT_FIXTURES_ENABLED) {
       let cancelled = false;
-      import("@/lib/p3b1g1AccountFixtures").then(({ loadP3B1g1AccountFixtures }) => {
+      queueMicrotask(() => {
         if (cancelled) return;
         const fixture = loadP3B1g1AccountFixtures().profile;
         setProfile(fixture.profile);

@@ -14,6 +14,7 @@ import {
 import { saveOrder, saveCart, generateOrderId, loadCart } from "../storeData";
 import { Badge, Button, Card } from "@/components/ui";
 import { useRouteTranslations } from "@/i18n/useRouteTranslations";
+import { loadP3B1g1AccountFixtures } from "@/lib/p3b1g1AccountFixtures";
 
 const ACCOUNT_FIXTURES_ENABLED =
   process.env.NEXT_PUBLIC_P3B1G1_ACCOUNT_FIXTURES === "1";
@@ -63,7 +64,7 @@ function SuccessContent() {
   useEffect(() => {
     if (ACCOUNT_FIXTURES_ENABLED) {
       let cancelled = false;
-      import("@/lib/p3b1g1AccountFixtures").then(({ loadP3B1g1AccountFixtures }) => {
+      queueMicrotask(() => {
         if (cancelled) return;
         const fixture = loadP3B1g1AccountFixtures().success;
         setOrderId(fixture.orderId);
