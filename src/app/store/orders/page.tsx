@@ -19,29 +19,48 @@ import { Order, loadOrders } from "../storeData";
 import ProductVisual from "../ProductVisual";
 import { Badge, Button, Card, EmptyState } from "@/components/ui";
 import { useReducedMotionPreference } from "@/lib/useReducedMotionPreference";
+import type { MessageKey } from "@/i18n/messages/en";
+import { useRouteTranslations } from "@/i18n/useRouteTranslations";
+import { loadP3B1g1AccountFixtures } from "@/lib/p3b1g1AccountFixtures";
+
+const ACCOUNT_FIXTURES_ENABLED =
+  process.env.NEXT_PUBLIC_P3B1G1_ACCOUNT_FIXTURES === "1";
+
+type OrdersTranslation = (key: MessageKey) => string;
 
 type OrderStatus = Order["status"];
 
 const STATUS_CONFIG: Record<
   OrderStatus,
-  { tone: "warning" | "trust" | "success"; icon: typeof Clock; label: string }
+  { tone: "warning" | "trust" | "success"; icon: typeof Clock }
 > = {
-  processing: { tone: "warning", icon: Clock, label: "Processing" },
-  shipped: { tone: "trust", icon: Truck, label: "Shipped" },
-  delivered: { tone: "success", icon: CheckCircle2, label: "Delivered" },
+  processing: { tone: "warning", icon: Clock },
+  shipped: { tone: "trust", icon: Truck },
+  delivered: { tone: "success", icon: CheckCircle2 },
 };
 
-const PROGRESS_STEPS = ["Order Placed", "Processing", "Shipped", "Delivered"];
 const STATUS_INDEX: Record<OrderStatus, number> = {
   processing: 1,
   shipped: 2,
   delivered: 3,
 };
 
-function OrderCard({ order }: { order: Order }) {
+function OrderCard({ order, t }: { order: Order; t: OrdersTranslation }) {
   const [expanded, setExpanded] = useState(false);
   const shouldReduceMotion = useReducedMotionPreference();
   const status = STATUS_CONFIG[order.status] || STATUS_CONFIG.processing;
+  const statusLabel =
+    order.status === "shipped"
+      ? t("ordersStatusShipped")
+      : order.status === "delivered"
+        ? t("ordersStatusDelivered")
+        : t("ordersStatusProcessing");
+  const progressSteps = [
+    t("ordersProgressPlaced"),
+    t("ordersStatusProcessing"),
+    t("ordersStatusShipped"),
+    t("ordersStatusDelivered"),
+  ];
   const StatusIcon = status.icon;
   const date = new Date(order.createdAt);
   const dateStr = date.toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" });
@@ -71,11 +90,11 @@ function OrderCard({ order }: { order: Order }) {
               <p className="font-mono text-sm font-bold text-paw-ink">{order.id}</p>
               <Badge tone={status.tone}>
                 <StatusIcon className="h-3 w-3" aria-hidden="true" />
-                {status.label}
+                {statusLabel}
               </Badge>
             </div>
             <p className="mt-1 text-sm text-paw-muted">
-              {dateStr} at {timeStr} · {itemCount} item{itemCount !== 1 ? "s" : ""}
+              {dateStr} {t("ordersAt")} {timeStr} · {itemCount} {itemCount === 1 ? t("ordersItemSingular") : t("ordersItemPlural")}
             </p>
           </div>
 
@@ -101,7 +120,7 @@ function OrderCard({ order }: { order: Order }) {
             >
               <div className="space-y-5 border-t border-paw-border px-5 pb-6 pt-5 sm:px-6">
                 <div className="flex flex-wrap items-center gap-2">
-                  {PROGRESS_STEPS.map((label, index) => {
+                  {progressSteps.map((label, index) => {
                     const done = index <= currentStatusIndex;
                     return (
                       <div key={label} className="flex items-center gap-2">
@@ -109,7 +128,7 @@ function OrderCard({ order }: { order: Order }) {
                         <span className={`text-xs font-bold ${done ? "text-paw-success" : "text-paw-muted"}`}>
                           {label}
                         </span>
-                        {index < PROGRESS_STEPS.length - 1 && (
+                        {index < progressSteps.length - 1 && (
                           <div className={`h-0.5 w-6 ${done ? "bg-paw-success/40" : "bg-paw-border"}`} />
                         )}
                       </div>
@@ -120,7 +139,7 @@ function OrderCard({ order }: { order: Order }) {
                 <div>
                   <h4 className="mb-2 flex items-center gap-1.5 text-sm font-bold text-paw-ink">
                     <ShoppingBag className="h-4 w-4 text-paw-primary" aria-hidden="true" />
-                    Items
+                    {t("ordersItemsTitle")}
                   </h4>
                   <div className="space-y-2">
                     {order.items.map((item) => (
@@ -142,7 +161,7 @@ function OrderCard({ order }: { order: Order }) {
                   <div className="rounded-paw-md border border-paw-border bg-paw-panel-subtle p-4">
                     <h4 className="mb-2 flex items-center gap-1.5 text-sm font-bold text-paw-ink">
                       <MapPin className="h-4 w-4 text-paw-primary" aria-hidden="true" />
-                      Shipping
+                      {t("ordersShippingTitle")}
                     </h4>
                     <p className="text-xs font-bold text-paw-body">{order.shipping.fullName}</p>
                     <p className="text-xs text-paw-muted">{order.shipping.address}</p>
@@ -152,17 +171,17 @@ function OrderCard({ order }: { order: Order }) {
                   <div className="rounded-paw-md border border-paw-border bg-paw-panel-subtle p-4">
                     <h4 className="mb-2 flex items-center gap-1.5 text-sm font-bold text-paw-ink">
                       <CreditCard className="h-4 w-4 text-paw-primary" aria-hidden="true" />
-                      Payment
+                      {t("ordersPaymentTitle")}
                     </h4>
                     <p className="text-xs font-bold text-paw-body">
-                      {order.payment.brand} ending in ****{order.payment.last4}
+                      {order.payment.brand} {t("ordersCardEndingIn")} ****{order.payment.last4}
                     </p>
                     <div className="mt-3 space-y-1.5">
-                      <p className="flex justify-between text-xs text-paw-muted"><span>Subtotal</span><span>€{order.subtotal.toFixed(2)}</span></p>
-                      <p className="flex justify-between text-xs text-paw-muted"><span>Shipping</span><span>{order.shippingCost === 0 ? "Free" : `€${order.shippingCost.toFixed(2)}`}</span></p>
-                      <p className="flex justify-between text-xs text-paw-muted"><span>Tax</span><span>€{order.tax.toFixed(2)}</span></p>
+                      <p className="flex justify-between text-xs text-paw-muted"><span>{t("ordersSubtotal")}</span><span>€{order.subtotal.toFixed(2)}</span></p>
+                      <p className="flex justify-between text-xs text-paw-muted"><span>{t("ordersShippingTitle")}</span><span>{order.shippingCost === 0 ? t("ordersFree") : `€${order.shippingCost.toFixed(2)}`}</span></p>
+                      <p className="flex justify-between text-xs text-paw-muted"><span>{t("ordersTax")}</span><span>€{order.tax.toFixed(2)}</span></p>
                       <p className="flex justify-between border-t border-paw-border pt-2 text-xs font-extrabold text-paw-ink">
-                        <span>Total</span><span>€{order.total.toFixed(2)}</span>
+                        <span>{t("ordersTotal")}</span><span>€{order.total.toFixed(2)}</span>
                       </p>
                     </div>
                   </div>
@@ -177,19 +196,27 @@ function OrderCard({ order }: { order: Order }) {
 }
 
 export default function OrdersPage() {
+  const { loader, t } = useRouteTranslations();
   const router = useRouter();
   const [orders, setOrders] = useState<Order[]>([]);
 
   useEffect(() => {
     let cancelled = false;
-    queueMicrotask(() => {
-      if (!cancelled) setOrders(loadOrders());
-    });
+    if (ACCOUNT_FIXTURES_ENABLED) {
+      queueMicrotask(() => {
+        if (!cancelled) setOrders(loadP3B1g1AccountFixtures().orders);
+      });
+    } else {
+      queueMicrotask(() => {
+        if (!cancelled) setOrders(loadOrders());
+      });
+    }
     return () => { cancelled = true; };
   }, []);
 
   return (
     <div className="commerce-page-shell min-h-screen bg-paw-page pt-28 pb-20 text-paw-ink">
+      {loader}
       <div className="mx-auto max-w-3xl px-4">
         <Button
           type="button"
@@ -199,41 +226,41 @@ export default function OrdersPage() {
           className="mb-6 -ml-2 text-paw-muted hover:text-paw-primary"
         >
           <ArrowLeft className="h-4 w-4" aria-hidden="true" />
-          Back to Store
+          {t("ordersBackToStore")}
         </Button>
 
         <div className="orders-hero-panel mb-8 flex items-end justify-between gap-4">
           <div>
-            <Badge tone="primary" className="mb-3">Purchase history</Badge>
+            <Badge tone="primary" className="mb-3">{t("ordersPurchaseHistory")}</Badge>
             <h1 className="flex items-center gap-3 text-3xl font-extrabold text-paw-ink sm:text-4xl">
               <Package className="h-7 w-7 text-paw-primary" aria-hidden="true" />
-              My Orders
+              {t("ordersTitle")}
             </h1>
             <p className="mt-3 max-w-xl text-sm leading-6 text-paw-body">
-              Track PawPal store purchases, delivery progress, and payment details in one place.
+              {t("ordersDescription")}
             </p>
           </div>
           <span className="orders-count-pill text-sm font-bold text-paw-muted">
-            {orders.length} order{orders.length !== 1 ? "s" : ""}
+            {orders.length} {orders.length === 1 ? t("ordersCountSingular") : t("ordersCountPlural")}
           </span>
         </div>
 
         {orders.length === 0 ? (
           <EmptyState
             icon={ShoppingBag}
-            title="No orders yet"
-            description="Stripe-confirmed PawPal purchases will appear here with delivery and payment status."
+            title={t("ordersEmptyTitle")}
+            description={t("ordersEmptyDescription")}
             className="orders-empty-state"
             action={
               <Button type="button" onClick={() => router.push("/store")}>
-                Browse Products
+                {t("ordersBrowseProducts")}
               </Button>
             }
           />
         ) : (
           <div className="space-y-4">
             {orders.map((order) => (
-              <OrderCard key={order.id} order={order} />
+              <OrderCard key={order.id} order={order} t={t} />
             ))}
           </div>
         )}

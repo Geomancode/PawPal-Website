@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Smartphone, ArrowRight } from "lucide-react";
 import { useState } from "react";
 import { cn } from "@/lib/ui";
+import { useRouteTranslations } from "@/i18n/useRouteTranslations";
 import { buttonClassName } from "./Button";
 
 type AppDeepLinkButtonProps = {
@@ -17,14 +18,19 @@ type AppDeepLinkButtonProps = {
 export default function AppDeepLinkButton({
   href,
   fallbackHref = "/",
-  children = "Open in App",
+  children,
   className,
-  fallbackLabel = "Continue on web",
+  fallbackLabel,
 }: AppDeepLinkButtonProps) {
+  const { loader, t } = useRouteTranslations();
   const [showFallback, setShowFallback] = useState(false);
+  const buttonLabel = children === undefined ? t("appDeepLinkOpenInApp") : children;
+  const webFallbackLabel =
+    fallbackLabel === undefined ? t("appDeepLinkContinueOnWeb") : fallbackLabel;
 
   return (
     <div className="grid gap-2">
+      {loader}
       <a
         href={href}
         onClick={() => {
@@ -33,16 +39,16 @@ export default function AppDeepLinkButton({
         className={cn(buttonClassName({ size: "lg" }), className)}
       >
         <Smartphone className="h-4 w-4" aria-hidden="true" />
-        {children}
+        {buttonLabel}
       </a>
       {showFallback && (
         <div className="rounded-paw-xl border border-paw-outline-variant bg-paw-panel-subtle px-paw-sm py-paw-xs text-xs leading-5 text-paw-body shadow-paw-panel">
-          If the app did not open, keep browsing here or install PawPal first.
+          {t("appDeepLinkFallbackDescription")} {" "}
           <Link
             href={fallbackHref}
             className="mt-2 inline-flex items-center gap-1 font-extrabold text-paw-on-primary-soft hover:underline"
           >
-            {fallbackLabel}
+            {webFallbackLabel}
             <ArrowRight className="h-3 w-3" aria-hidden="true" />
           </Link>
         </div>

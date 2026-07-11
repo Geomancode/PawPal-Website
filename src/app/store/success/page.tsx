@@ -13,6 +13,12 @@ import {
 } from "lucide-react";
 import { saveOrder, saveCart, generateOrderId, loadCart } from "../storeData";
 import { Badge, Button, Card } from "@/components/ui";
+import { useRouteTranslations } from "@/i18n/useRouteTranslations";
+import { loadP3B1g1AccountFixtures } from "@/lib/p3b1g1AccountFixtures";
+
+const ACCOUNT_FIXTURES_ENABLED =
+  process.env.NEXT_PUBLIC_P3B1G1_ACCOUNT_FIXTURES === "1";
+const MISSING_SESSION_ERROR = "missing-session-id";
 
 interface StripeSession {
   id: string;
@@ -26,32 +32,48 @@ interface StripeSession {
 }
 
 function LoadingState() {
+  const { loader, t } = useRouteTranslations();
+
   return (
     <div className="commerce-page-shell flex min-h-screen items-center justify-center bg-paw-page text-paw-ink">
+      {loader}
       <div className="flex flex-col items-center gap-4">
         <Loader2 className="h-8 w-8 animate-spin text-paw-primary" aria-hidden="true" />
-        <p className="text-sm font-bold text-paw-muted">Confirming your payment...</p>
+        <p className="text-sm font-bold text-paw-muted">{t("successConfirmingPayment")}</p>
       </div>
     </div>
   );
 }
 
 function SuccessContent() {
+  const { loader, t } = useRouteTranslations();
   const router = useRouter();
   const searchParams = useSearchParams();
   const sessionId = searchParams.get("session_id");
   const intent = searchParams.get("intent");
   const requestedSubscription = intent === "subscription";
   const [session, setSession] = useState<StripeSession | null>(null);
-  const [loading, setLoading] = useState(() => Boolean(sessionId));
-  const [error, setError] = useState(() => sessionId ? "" : "No session ID found");
-  const [orderId] = useState(() => generateOrderId());
+  const [loading, setLoading] = useState(() => Boolean(sessionId) || ACCOUNT_FIXTURES_ENABLED);
+  const [error, setError] = useState(() => sessionId || ACCOUNT_FIXTURES_ENABLED ? "" : MISSING_SESSION_ERROR);
+  const [orderId, setOrderId] = useState(() => generateOrderId());
   const isSubscription =
     requestedSubscription ||
     session?.mode === "subscription" ||
     session?.metadata?.intent === "ai-upgrade";
 
   useEffect(() => {
+    if (ACCOUNT_FIXTURES_ENABLED) {
+      let cancelled = false;
+      queueMicrotask(() => {
+        if (cancelled) return;
+        const fixture = loadP3B1g1AccountFixtures().success;
+        setOrderId(fixture.orderId);
+        setSession(fixture.session);
+        setLoading(false);
+      });
+      return () => { cancelled = true; };
+    }
+
     if (!sessionId) {
       return;
     }
@@ -110,25 +132,26 @@ function SuccessContent() {
   if (error) {
     return (
       <div className="commerce-page-shell success-status-shell flex min-h-[100dvh] items-start justify-center bg-paw-page px-4 pb-16 pt-28 text-paw-ink">
+        {loader}
         <Card className="success-card-upgraded w-full max-w-lg p-7 text-center sm:p-8">
           <div className="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-paw-xl bg-paw-critical-soft text-paw-on-critical-soft">
             <AlertTriangle className="h-7 w-7" aria-hidden="true" />
           </div>
-          <Badge tone="danger" className="mb-3">Checkout status</Badge>
-          <h1 className="text-2xl font-extrabold text-paw-ink">We could not verify this payment</h1>
-          <p className="mt-3 text-sm leading-6 text-paw-body">{error}</p>
+          <Badge tone="danger" className="mb-3">{t("successCheckoutStatus")}</Badge>
+          <h1 className="text-2xl font-extrabold text-paw-ink">{t("successVerificationFailedTitle")}</h1>
+          <p className="mt-3 text-sm leading-6 text-paw-body">{error === MISSING_SESSION_ERROR ? t("successNoSessionId") : error}</p>
           <div className="mt-5 rounded-paw-md border border-paw-border bg-paw-panel-subtle p-4 text-left">
-            <p className="text-xs font-black uppercase tracking-[0.14em] text-paw-muted">What this means</p>
+            <p className="text-xs font-black uppercase tracking-[0.14em] text-paw-muted">{t("successWhatThisMeans")}</p>
             <p className="mt-2 text-sm leading-6 text-paw-body">
-              PawPal only saves an order after Stripe returns a confirmed checkout session. This page alone cannot create a charge or order.
+              {t("successVerificationExplanation")}
             </p>
           </div>
           <div className="success-action-row mt-6">
             <Button type="button" onClick={() => router.push("/store")}>
-              Back to Store
+              {t("successBackToStore")}
             </Button>
             <Button type="button" variant="secondary" onClick={() => router.push("/store/orders")}>
-              View Orders
+              {t("successViewOrders")}
             </Button>
           </div>
         </Card>
@@ -138,31 +161,32 @@ function SuccessContent() {
 
   return (
     <div className="commerce-page-shell min-h-screen bg-paw-page pt-28 pb-20 text-paw-ink">
+      {loader}
       <div className="mx-auto max-w-2xl px-4">
         <Card className="success-card-upgraded p-8 text-center sm:p-10">
           <div className="mx-auto mb-6 flex h-24 w-24 items-center justify-center rounded-paw-pill bg-paw-success-soft text-paw-on-success-soft">
             <CheckCircle2 className="h-12 w-12" aria-hidden="true" />
           </div>
 
-          <Badge tone="success" className="mb-3">Payment confirmed</Badge>
+          <Badge tone="success" className="mb-3">{t("successPaymentConfirmed")}</Badge>
           <h1 className="text-3xl font-extrabold text-paw-ink">
-            {isSubscription ? "Plan activated" : "Payment successful"}
+            {isSubscription ? t("successPlanActivated") : t("successPaymentSuccessful")}
           </h1>
           <p className="mx-auto mt-2 max-w-md text-paw-body">
             {isSubscription
-              ? "Your PawPal AI access will be available as soon as the app refreshes your plan."
-              : "Thank you for your PawPal purchase."}
+              ? t("successSubscriptionDescription")
+              : t("successPurchaseThanks")}
           </p>
 
           {isSubscription ? (
             <div className="mt-5 inline-flex items-center gap-2 rounded-paw-pill border border-paw-primary/20 bg-paw-primary-soft px-4 py-2 text-sm font-extrabold text-paw-on-primary-soft">
               <Sparkles className="h-4 w-4" aria-hidden="true" />
-              PawPal {session?.metadata?.tier === "pro" ? "Pro" : "Basic"}
+              {session?.metadata?.tier === "pro" ? t("successPlanProLabel") : t("successPlanBasicLabel")}
             </div>
           ) : (
             <div className="mt-5 inline-flex items-center gap-2 rounded-paw-pill border border-paw-primary/20 bg-paw-primary-soft px-4 py-2 font-mono text-sm font-extrabold text-paw-on-primary-soft">
               <Receipt className="h-4 w-4" aria-hidden="true" />
-              Order #{orderId}
+              {t("successOrderNumberPrefix")}#{orderId}
             </div>
           )}
 
@@ -170,7 +194,7 @@ function SuccessContent() {
             <div className="mt-7 space-y-4 text-left">
               <div className="rounded-paw-md border border-paw-success/20 bg-paw-success-soft p-4 text-center">
                 <p className="text-sm text-paw-on-success-soft">
-                  Paid <strong>€{((session.amount_total || 0) / 100).toFixed(2)}</strong> via Stripe
+                  {t("successPaidPrefix")} <strong>€{((session.amount_total || 0) / 100).toFixed(2)}</strong> {t("successViaStripeSuffix")}
                 </p>
               </div>
 
@@ -178,7 +202,7 @@ function SuccessContent() {
                 <div className="rounded-paw-md border border-paw-border bg-paw-panel-subtle p-4">
                   <h2 className="mb-3 flex items-center gap-2 text-sm font-extrabold text-paw-ink">
                     <Package className="h-4 w-4 text-paw-primary" aria-hidden="true" />
-                    Items
+                    {t("successItemsTitle")}
                   </h2>
                   <div className="space-y-2">
                     {session.line_items.map((item, index) => (
@@ -194,13 +218,13 @@ function SuccessContent() {
               {isSubscription ? (
                 <div className="rounded-paw-md border border-paw-trust/20 bg-paw-trust-soft p-4">
                   <p className="text-sm leading-6 text-paw-on-trust-soft">
-                    Return to the PawPal app and tap <strong>Refresh plan</strong> in Profile if AI does not unlock immediately.
+                    {t("successRefreshPlanPrefix")} <strong>{t("successRefreshPlanAction")}</strong> {t("successRefreshPlanSuffix")}
                   </p>
                 </div>
               ) : (
                 <div className="rounded-paw-md border border-paw-warning/20 bg-paw-warning-soft p-4">
                   <p className="text-sm leading-6 text-paw-on-warning-soft">
-                    Receipt sent to <strong>{session.customer_email}</strong>. Your order will ship within 1-2 business days.
+                    {t("successReceiptSentPrefix")} <strong>{session.customer_email}</strong>{t("successShippingEstimateSuffix")}
                   </p>
                 </div>
               )}
@@ -210,17 +234,17 @@ function SuccessContent() {
           <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
             {isSubscription ? (
               <Button type="button" onClick={() => router.push("/store?intent=ai-upgrade")}>
-                Manage Plans
+                {t("successManagePlans")}
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </Button>
             ) : (
               <Button type="button" onClick={() => router.push("/store/orders")}>
-                View My Orders
+                {t("successViewMyOrders")}
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </Button>
             )}
             <Button type="button" variant="secondary" onClick={() => router.push("/store")}>
-              Continue Shopping
+              {t("successContinueShopping")}
             </Button>
           </div>
         </Card>
