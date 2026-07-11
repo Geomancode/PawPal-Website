@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useState, type FormEvent } from "react";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import {
   ArrowLeft,
   ImagePlus,
@@ -15,8 +15,8 @@ import {
 import { supabase } from "@/lib/supabase";
 import { loadP3B1g2hAdminFixtures } from "@/lib/p3b1g2hAdminFixtures";
 import { useAuth } from "@/components/AuthProvider";
-import { useI18n } from "@/i18n/I18nProvider";
 import { useRouteTranslations } from "@/i18n/useRouteTranslations";
+import { localeFromPath, localizedPath } from "@/i18n/routing";
 import type { MessageKey } from "@/i18n/messages/en";
 import {
   Badge,
@@ -134,7 +134,8 @@ function numberOrNull(value: string) {
 
 export default function StoreAdminPage() {
   const router = useRouter();
-  const { path } = useI18n();
+  const locale = localeFromPath(usePathname());
+  const path = (href: string) => localizedPath(href, locale);
   const { loader, t } = useRouteTranslations();
   const { user, loading: authLoading } = useAuth();
   const [isAdmin, setIsAdmin] = useState(ADMIN_FIXTURES_ENABLED);

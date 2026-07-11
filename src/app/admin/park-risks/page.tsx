@@ -8,7 +8,7 @@ import {
   type FormEvent,
   type ReactNode,
 } from "react";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import {
   ArrowLeft,
   CheckCircle2,
@@ -25,8 +25,8 @@ import {
 import { supabase } from "@/lib/supabase";
 import { loadP3B1g2hAdminFixtures } from "@/lib/p3b1g2hAdminFixtures";
 import { useAuth } from "@/components/AuthProvider";
-import { useI18n } from "@/i18n/I18nProvider";
 import { useRouteTranslations } from "@/i18n/useRouteTranslations";
+import { localeFromPath, localizedPath } from "@/i18n/routing";
 import type { Locale } from "@/i18n/locales";
 import type { MessageKey } from "@/i18n/messages/en";
 import {
@@ -290,7 +290,8 @@ function normalizeOptionalUrl(value: string) {
 
 export default function ParkRiskAdminPage() {
   const router = useRouter();
-  const { locale, path } = useI18n();
+  const locale = localeFromPath(usePathname());
+  const path = (href: string) => localizedPath(href, locale);
   const { loader, t } = useRouteTranslations();
   const { user, loading: authLoading } = useAuth();
   const [adminCheck, setAdminCheck] = useState<{

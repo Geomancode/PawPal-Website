@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import {
   AlertTriangle,
   ArrowLeft,
@@ -44,8 +44,9 @@ import {
 } from "@/components/ui";
 import { cn } from "@/lib/ui";
 import { loadP3B1g2hAdminFixtures } from "@/lib/p3b1g2hAdminFixtures";
-import { useI18n } from "@/i18n/I18nProvider";
 import { useRouteTranslations } from "@/i18n/useRouteTranslations";
+import { localeFromPath, localizedPath } from "@/i18n/routing";
+import type { Locale } from "@/i18n/locales";
 import type { MessageKey } from "@/i18n/messages/en";
 import {
   clearAdminReportsSession,
@@ -74,10 +75,11 @@ type Confirmation = {
 };
 
 type ReportsTranslation = ReturnType<typeof useRouteTranslations>["t"];
-type ReportsI18nContextValue = Pick<
-  ReturnType<typeof useI18n>,
-  "locale" | "path"
-> & { t: ReportsTranslation };
+type ReportsI18nContextValue = {
+  locale: Locale;
+  path: (href: string) => string;
+  t: ReportsTranslation;
+};
 
 const ReportsI18nContext = createContext<ReportsI18nContextValue>(null as never);
 
@@ -107,11 +109,11 @@ export default function ReportsClientParts({
 }: {
   state: ReportsClientState;
 }) {
-  const { locale, path } = useI18n();
+  const locale = localeFromPath(usePathname());
   const { loader, t } = useRouteTranslations();
   const i18nValue = useMemo(
-    () => ({ locale, path, t }),
-    [locale, path, t],
+    () => ({ locale, path: (href: string) => localizedPath(href, locale), t }),
+    [locale, t],
   );
 
   return (
@@ -131,14 +133,14 @@ export default function ReportsClientParts({
         actions={
           <>
             <Link
-              href={path("/")}
+              href={i18nValue.path("/")}
               className={buttonClassName({ variant: "secondary" })}
             >
               <ArrowLeft className="h-4 w-4" aria-hidden="true" />
               {t("adminReportsHome")}
             </Link>
             <Link
-              href={path("/admin/park-risks")}
+              href={i18nValue.path("/admin/park-risks")}
               className={buttonClassName({ variant: "ghost" })}
             >
               {t("adminReportsParkRisks")}
