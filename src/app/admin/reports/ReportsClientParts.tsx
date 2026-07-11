@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import {
   AlertTriangle,
+  ArrowLeft,
   Ban,
   CheckCircle2,
   ChevronLeft,
@@ -14,12 +15,15 @@ import {
   Loader2,
   MessageSquare,
   RefreshCw,
+  ShieldCheck,
   Trash2,
   UserCircle2,
   X,
 } from "lucide-react";
 import {
+  createContext,
   useEffect,
+  useContext,
   useMemo,
   useRef,
   useState,
@@ -34,11 +38,15 @@ import {
   Card,
   CardContent,
   EmptyState,
+  PageShell,
   StatusMessage,
   buttonClassName,
 } from "@/components/ui";
 import { cn } from "@/lib/ui";
 import { loadP3B1g2hAdminFixtures } from "@/lib/p3b1g2hAdminFixtures";
+import { useI18n } from "@/i18n/I18nProvider";
+import { useRouteTranslations } from "@/i18n/useRouteTranslations";
+import type { MessageKey } from "@/i18n/messages/en";
 import {
   clearAdminReportsSession,
   resolveReportAction,
@@ -65,16 +73,28 @@ type Confirmation = {
   action: Extract<ReportResolutionAction, "content_removed" | "user_banned">;
 };
 
-const targetTypeLabels: Record<ReportTargetType, string> = {
-  post: "Post",
-  comment: "Comment",
-  user: "User",
+type ReportsTranslation = ReturnType<typeof useRouteTranslations>["t"];
+type ReportsI18nContextValue = Pick<
+  ReturnType<typeof useI18n>,
+  "locale" | "path"
+> & { t: ReportsTranslation };
+
+const ReportsI18nContext = createContext<ReportsI18nContextValue>(null as never);
+
+function useReportsI18n() {
+  return useContext(ReportsI18nContext);
+}
+
+const targetTypeLabelKeys: Record<ReportTargetType, MessageKey> = {
+  post: "adminReportsTargetPost",
+  comment: "adminReportsTargetComment",
+  user: "adminReportsTargetUser",
 };
 
-const actionLabels: Record<ReportResolutionAction, string> = {
-  dismissed: "Dismiss",
-  content_removed: "Remove content",
-  user_banned: "Ban user",
+const actionLabelKeys: Record<ReportResolutionAction, MessageKey> = {
+  dismissed: "adminReportsDismiss",
+  content_removed: "adminReportsRemoveContent",
+  user_banned: "adminReportsBanUser",
 };
 
 const ACTION_REFRESH_DELAY_MS = 600;
@@ -87,6 +107,52 @@ export default function ReportsClientParts({
 }: {
   state: ReportsClientState;
 }) {
+  const { locale, path } = useI18n();
+  const { loader, t } = useRouteTranslations();
+  const i18nValue = useMemo(
+    () => ({ locale, path, t }),
+    [locale, path, t],
+  );
+
+  return (
+    <ReportsI18nContext.Provider value={i18nValue}>
+      {loader}
+      <PageShell
+        className={`admin-page-shell min-h-screen pt-28 ${state.kind === "ready" ? "" : "admin-gate-shell"}`}
+        headerClassName="admin-shell-header"
+        eyebrow={
+          <span className="inline-flex items-center gap-2">
+            <ShieldCheck className="h-4 w-4" aria-hidden="true" />
+            {t("adminReportsEyebrow")}
+          </span>
+        }
+        title={t("adminReportsTitle")}
+        description={t("adminReportsDescription")}
+        actions={
+          <>
+            <Link
+              href={path("/")}
+              className={buttonClassName({ variant: "secondary" })}
+            >
+              <ArrowLeft className="h-4 w-4" aria-hidden="true" />
+              {t("adminReportsHome")}
+            </Link>
+            <Link
+              href={path("/admin/park-risks")}
+              className={buttonClassName({ variant: "ghost" })}
+            >
+              {t("adminReportsParkRisks")}
+            </Link>
+          </>
+        }
+      >
+        <ReportsClientBody state={state} />
+      </PageShell>
+    </ReportsI18nContext.Provider>
+  );
+}
+
+function ReportsClientBody({ state }: { state: ReportsClientState }) {
   if (ADMIN_FIXTURES_ENABLED) {
     return (
       <ReportsQueue
@@ -101,6 +167,7 @@ export default function ReportsClientParts({
 
 function LiveReportsClientParts({ state }: { state: ReportsClientState }) {
   const router = useRouter();
+  const { t } = useReportsI18n();
   const { loading: authLoading, session, user } = useAuth();
   const [sessionError, setSessionError] = useState<string | null>(null);
   const needsSession =
@@ -154,7 +221,7 @@ function LiveReportsClientParts({ state }: { state: ReportsClientState }) {
         setSessionError(
           error instanceof Error
             ? error.message
-            : "Unable to verify this PawPal session.",
+            : t("adminReportsUnableToVerifySession"),
         );
       });
 
@@ -169,6 +236,7 @@ function LiveReportsClientParts({ state }: { state: ReportsClientState }) {
     session?.access_token,
     bridgePage,
     state.kind,
+    t,
   ]);
 
   if (needsSession) {
@@ -208,6 +276,7 @@ function SessionGate({
   sessionError: string | null;
   syncing: boolean;
 }) {
+  const { path, t } = useReportsI18n();
   if (sessionError) {
     return (
       <ErrorPanel
@@ -221,11 +290,11 @@ function SessionGate({
     return (
       <section className="admin-gate-panel">
         <LoadingState
-          title="Checking admin access"
+          title={t("adminReportsCheckingAccess")}
           description={
             email
-              ? `Verifying PawPal admin permissions for ${email}.`
-              : "Verifying the current PawPal session."
+              ? `${t("adminReportsVerifyingPermissionsPrefix")} ${email}.`
+              : t("adminReportsVerifyingSession")
           }
         />
       </section>
@@ -236,18 +305,18 @@ function SessionGate({
     <section className="admin-gate-panel">
       <div>
         <p className="text-lg font-extrabold text-paw-ink">
-          Sign in required
+          {t("adminReportsSignInRequired")}
         </p>
         <p className="mt-2 text-sm leading-6 text-paw-body">
           {message ??
-            "Use an approved PawPal admin account before opening the reports queue."}
+            t("adminReportsSignInDescription")}
         </p>
       </div>
         <Link
-          href="/auth?next=/admin/reports"
+          href={path("/auth?next=/admin/reports")}
           className={buttonClassName({ variant: "primary" })}
         >
-          Sign in
+          {t("adminReportsSignIn")}
         </Link>
     </section>
   );
@@ -261,6 +330,7 @@ function ReportsQueue({
   fixtureMode: boolean;
 }) {
   const router = useRouter();
+  const { t } = useReportsI18n();
   const [resolvedReportIds, setResolvedReportIds] = useState<Set<string>>(
     () => new Set(),
   );
@@ -350,7 +420,7 @@ function ReportsQueue({
       });
       setToast({
         tone: "success",
-        title: actionLabels[action],
+        title: t(actionLabelKeys[action]),
         text: result.message,
       });
       setConfirmation(null);
@@ -358,7 +428,7 @@ function ReportsQueue({
     } else {
       setToast({
         tone: "danger",
-        title: "Action failed",
+        title: t("adminReportsActionFailed"),
         text: result.message,
       });
     }
@@ -369,10 +439,10 @@ function ReportsQueue({
   return (
     <div className="space-y-6">
       <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
-        <QueueMetric label="Pending" value={displayPayload.total} tone="warning" />
-        <QueueMetric label="Posts" value={counts.post} tone="primary" />
-        <QueueMetric label="Comments" value={counts.comment} tone="trust" />
-        <QueueMetric label="Users" value={counts.user} tone="danger" />
+        <QueueMetric label={t("adminReportsPending")} value={displayPayload.total} tone="warning" />
+        <QueueMetric label={t("adminReportsPosts")} value={counts.post} tone="primary" />
+        <QueueMetric label={t("adminReportsComments")} value={counts.comment} tone="trust" />
+        <QueueMetric label={t("adminReportsUsers")} value={counts.user} tone="danger" />
       </div>
 
       {toast && (
@@ -386,11 +456,10 @@ function ReportsQueue({
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <div>
               <h2 className="text-xl font-extrabold text-paw-ink">
-                Pending queue
+                {t("adminReportsPendingQueue")}
               </h2>
               <p className="mt-1 text-sm leading-6 text-paw-body">
-                Newest reports are listed first. Each page shows up to{" "}
-                {payload.pageSize} reports.
+                {t("adminReportsNewestPrefix")} {payload.pageSize} {t("adminReportsNewestSuffix")}
               </p>
             </div>
             <Button
@@ -399,15 +468,15 @@ function ReportsQueue({
               onClick={() => router.refresh()}
             >
               <RefreshCw className="h-4 w-4" aria-hidden="true" />
-              Refresh
+              {t("adminReportsRefresh")}
             </Button>
           </div>
 
           {reports.length === 0 ? (
             <EmptyState
               icon={FileCheck2}
-              title="No pending reports"
-              description="Resolved reports leave the moderation queue automatically."
+              title={t("adminReportsEmptyTitle")}
+              description={t("adminReportsEmptyDescription")}
             />
           ) : (
             <div className="space-y-4">
@@ -456,6 +525,7 @@ function ReportCard({
     action: Extract<ReportResolutionAction, "content_removed" | "user_banned">,
   ) => void;
 }) {
+  const { locale, t } = useReportsI18n();
   const canRemoveContent =
     report.targetType !== "user" && report.target.type !== "missing";
   const disabled = Boolean(busy);
@@ -466,24 +536,24 @@ function ReportCard({
         <div className="min-w-0 space-y-2">
           <div className="flex flex-wrap items-center gap-2">
             <Badge tone={targetBadgeTone(report.targetType)}>
-              {targetTypeLabels[report.targetType]}
+              {t(targetTypeLabelKeys[report.targetType])}
             </Badge>
-            <Badge tone="warning">Pending</Badge>
+            <Badge tone="warning">{t("adminReportsPending")}</Badge>
             <span className="text-xs font-bold text-paw-muted">
-              {formatDate(report.createdAt)}
+              {formatDate(report.createdAt, locale)}
             </span>
           </div>
           <h3 className="text-lg font-extrabold leading-tight text-paw-ink">
             {report.reason}
           </h3>
           <p className="break-all text-xs font-semibold text-paw-muted">
-            Report {report.id}
+            {t("adminReportsReport")} {report.id}
           </p>
         </div>
 
         <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 lg:min-w-[340px]">
-          <ProfileChip label="Reporter" profile={report.reporter} />
-          <ProfileChip label="Reported user" profile={report.reportedUser} />
+          <ProfileChip label={t("adminReportsReporter")} profile={report.reporter} />
+          <ProfileChip label={t("adminReportsReportedUser")} profile={report.reportedUser} />
         </div>
       </div>
 
@@ -493,8 +563,7 @@ function ReportCard({
 
       {!canRemoveContent && report.targetType === "user" && (
         <p className="mt-3 text-xs font-semibold text-paw-muted">
-          Remove content is available for post and comment reports. User reports
-          can be dismissed or resolved with a user ban.
+          {t("adminReportsUserRemovalHint")}
         </p>
       )}
 
@@ -511,7 +580,7 @@ function ReportCard({
           ) : (
             <CheckCircle2 className="h-4 w-4" aria-hidden="true" />
           )}
-          Dismiss
+          {t("adminReportsDismiss")}
         </Button>
         <Button
           type="button"
@@ -522,7 +591,7 @@ function ReportCard({
           title={
             canRemoveContent
               ? undefined
-              : "Remove content is only available for post and comment reports."
+              : t("adminReportsRemoveContentUnavailable")
           }
         >
           {busy === "content_removed" ? (
@@ -530,7 +599,7 @@ function ReportCard({
           ) : (
             <Trash2 className="h-4 w-4" aria-hidden="true" />
           )}
-          Remove content
+          {t("adminReportsRemoveContent")}
         </Button>
         <Button
           type="button"
@@ -544,7 +613,7 @@ function ReportCard({
           ) : (
             <Ban className="h-4 w-4" aria-hidden="true" />
           )}
-          Ban user
+          {t("adminReportsBanUser")}
         </Button>
       </div>
     </article>
@@ -552,6 +621,7 @@ function ReportCard({
 }
 
 function TargetPreview({ target }: { target: ReportTargetSummary }) {
+  const { locale, t } = useReportsI18n();
   if (target.type === "missing") {
     return (
       <div className="rounded-paw-md border border-paw-warning/20 bg-paw-warning-soft p-4">
@@ -563,7 +633,7 @@ function TargetPreview({ target }: { target: ReportTargetSummary }) {
           <div className="min-w-0">
             <p className="font-extrabold text-paw-ink">{target.label}</p>
             <p className="mt-1 break-all text-sm leading-6 text-paw-body">
-              Target id: {target.id ?? "not provided"}
+              {t("adminReportsTargetId")} {target.id ?? t("adminReportsNotProvided")}
             </p>
           </div>
         </div>
@@ -574,20 +644,20 @@ function TargetPreview({ target }: { target: ReportTargetSummary }) {
   if (target.type === "post") {
     return (
       <div className="grid gap-4 rounded-paw-md border border-paw-border bg-paw-panel p-4 md:grid-cols-[112px_minmax(0,1fr)]">
-        <MediaThumb imageUrl={target.imageUrl} label="Reported post image" />
+        <MediaThumb imageUrl={target.imageUrl} label={t("adminReportsReportedPostImage")} />
         <div className="min-w-0">
           <TargetHeader
             icon={<FileText className="h-4 w-4" aria-hidden="true" />}
-            title="Reported post"
+            title={t("adminReportsReportedPost")}
             removedAt={target.removedAt}
           />
           <p className="mt-2 text-sm leading-6 text-paw-body">
             {target.bodyPreview}
           </p>
           <TargetMeta>
-            <span>Author: {target.author?.displayName ?? "Unknown user"}</span>
-            <span>Created {formatNullableDate(target.createdAt)}</span>
-            <span className="break-all">Post {target.id}</span>
+            <span>{t("adminReportsAuthor")} {target.author?.displayName ?? t("adminReportsUnknownUser")}</span>
+            <span>{t("adminReportsCreated")} {formatNullableDate(target.createdAt, locale, t)}</span>
+            <span className="break-all">{t("adminReportsTargetPost")} {target.id}</span>
           </TargetMeta>
         </div>
       </div>
@@ -599,19 +669,19 @@ function TargetPreview({ target }: { target: ReportTargetSummary }) {
       <div className="rounded-paw-md border border-paw-border bg-paw-panel p-4">
         <TargetHeader
           icon={<MessageSquare className="h-4 w-4" aria-hidden="true" />}
-          title="Reported comment"
+          title={t("adminReportsReportedComment")}
           removedAt={target.removedAt}
         />
         <blockquote className="mt-3 border-l-4 border-paw-primary/30 pl-4 text-sm leading-6 text-paw-body">
           {target.bodyPreview}
         </blockquote>
         <TargetMeta>
-          <span>Author: {target.author?.displayName ?? "Unknown user"}</span>
-          <span>Created {formatNullableDate(target.createdAt)}</span>
+          <span>{t("adminReportsAuthor")} {target.author?.displayName ?? t("adminReportsUnknownUser")}</span>
+          <span>{t("adminReportsCreated")} {formatNullableDate(target.createdAt, locale, t)}</span>
           {target.contentId && (
-            <span className="break-all">Parent post {target.contentId}</span>
+            <span className="break-all">{t("adminReportsParentPost")} {target.contentId}</span>
           )}
-          <span className="break-all">Comment {target.id}</span>
+          <span className="break-all">{t("adminReportsTargetComment")} {target.id}</span>
         </TargetMeta>
       </div>
     );
@@ -621,13 +691,13 @@ function TargetPreview({ target }: { target: ReportTargetSummary }) {
     <div className="rounded-paw-md border border-paw-border bg-paw-panel p-4">
       <TargetHeader
         icon={<UserCircle2 className="h-4 w-4" aria-hidden="true" />}
-        title="Reported user"
+        title={t("adminReportsReportedUser")}
       />
       <div className="mt-4">
-        <ProfileChip label="Account" profile={target.profile} large />
+        <ProfileChip label={t("adminReportsAccount")} profile={target.profile} large />
       </div>
       <p className="mt-3 break-all text-xs font-semibold text-paw-muted">
-        User {target.id}
+        {t("adminReportsTargetUser")} {target.id}
       </p>
     </div>
   );
@@ -644,18 +714,19 @@ function ConfirmationDialog({
   onCancel: () => void;
   onConfirm: () => void;
 }) {
+  const { t } = useReportsI18n();
   const copy =
     confirmation.action === "content_removed"
       ? {
-          title: "Remove reported content?",
-          text: "This resolves the report and marks the reported post or comment as removed. Ordinary users should no longer see it.",
-          button: "Remove content",
+          title: t("adminReportsRemoveDialogTitle"),
+          text: t("adminReportsRemoveDialogDescription"),
+          button: t("adminReportsRemoveContent"),
           icon: Trash2,
         }
       : {
-          title: "Ban reported user?",
-          text: "This resolves the report and marks the reported user profile as banned. Banned users are blocked from creating new posts and comments.",
-          button: "Ban user",
+          title: t("adminReportsBanDialogTitle"),
+          text: t("adminReportsBanDialogDescription"),
+          button: t("adminReportsBanUser"),
           icon: Ban,
         };
   const Icon = copy.icon;
@@ -690,7 +761,7 @@ function ConfirmationDialog({
             type="button"
             onClick={onCancel}
             className="rounded-paw-sm p-2 text-paw-muted transition hover:bg-paw-panel-subtle hover:text-paw-ink"
-            aria-label="Close confirmation"
+            aria-label={t("adminReportsCloseConfirmation")}
             disabled={isBusy}
           >
             <X className="h-5 w-5" aria-hidden="true" />
@@ -699,7 +770,7 @@ function ConfirmationDialog({
 
         <div className="mt-5 rounded-paw-md border border-paw-border bg-paw-panel-subtle p-3">
           <p className="text-xs font-extrabold uppercase tracking-wide text-paw-muted">
-            Report reason
+            {t("adminReportsReportReason")}
           </p>
           <p className="mt-1 text-sm font-bold text-paw-ink">
             {confirmation.report.reason}
@@ -713,7 +784,7 @@ function ConfirmationDialog({
             onClick={onCancel}
             disabled={isBusy}
           >
-            Cancel
+            {t("adminReportsCancel")}
           </Button>
           <Button
             type="button"
@@ -765,20 +836,20 @@ function Pagination({
   payload: ReportsPagePayload;
   currentCount: number;
 }) {
+  const { path, t } = useReportsI18n();
   if (payload.totalPages <= 1 && currentCount === payload.total) return null;
 
   const previousHref =
-    payload.page <= 2 ? "/admin/reports" : `/admin/reports?page=${payload.page - 1}`;
-  const nextHref = `/admin/reports?page=${payload.page + 1}`;
+    payload.page <= 2 ? path("/admin/reports") : path(`/admin/reports?page=${payload.page - 1}`);
+  const nextHref = path(`/admin/reports?page=${payload.page + 1}`);
 
   return (
     <nav
       className="flex flex-col gap-3 border-t border-paw-border pt-4 sm:flex-row sm:items-center sm:justify-between"
-      aria-label="Reports pagination"
+      aria-label={t("adminReportsPagination")}
     >
       <p className="text-sm font-semibold text-paw-muted">
-        Page {payload.page} of {payload.totalPages} · {payload.total} pending
-        total
+        {t("adminReportsPage")} {payload.page} {t("adminReportsOf")} {payload.totalPages} · {payload.total} {t("adminReportsPendingTotal")}
       </p>
       <div className="flex gap-2">
         {payload.hasPrevious ? (
@@ -787,7 +858,7 @@ function Pagination({
             className={buttonClassName({ variant: "secondary", size: "sm" })}
           >
             <ChevronLeft className="h-4 w-4" aria-hidden="true" />
-            Previous
+            {t("adminReportsPrevious")}
           </Link>
         ) : (
           <span
@@ -798,7 +869,7 @@ function Pagination({
             })}
           >
             <ChevronLeft className="h-4 w-4" aria-hidden="true" />
-            Previous
+            {t("adminReportsPrevious")}
           </span>
         )}
         {payload.hasNext ? (
@@ -806,7 +877,7 @@ function Pagination({
             href={nextHref}
             className={buttonClassName({ variant: "secondary", size: "sm" })}
           >
-            Next
+            {t("adminReportsNext")}
             <ChevronRight className="h-4 w-4" aria-hidden="true" />
           </Link>
         ) : (
@@ -817,7 +888,7 @@ function Pagination({
               className: "pointer-events-none opacity-50",
             })}
           >
-            Next
+            {t("adminReportsNext")}
             <ChevronRight className="h-4 w-4" aria-hidden="true" />
           </span>
         )}
@@ -835,6 +906,7 @@ function ProfileChip({
   profile: ProfileSummary | null;
   large?: boolean;
 }) {
+  const { t } = useReportsI18n();
   return (
     <div
       className={cn(
@@ -849,15 +921,15 @@ function ProfileChip({
         <Avatar profile={profile} size={large ? 44 : 36} />
         <div className="min-w-0">
           <p className="truncate text-sm font-extrabold text-paw-ink">
-            {profile?.displayName ?? "Unknown user"}
+            {profile?.displayName ?? t("adminReportsUnknownUser")}
           </p>
           <p className="truncate text-xs font-semibold text-paw-muted">
-            {profile?.username ? `@${profile.username}` : profile?.id ?? "No profile"}
+            {profile?.username ? `@${profile.username}` : profile?.id ?? t("adminReportsNoProfile")}
           </p>
         </div>
         {profile?.bannedAt && (
           <Badge tone="danger" className="ml-auto">
-            Banned
+            {t("adminReportsBanned")}
           </Badge>
         )}
       </div>
@@ -935,13 +1007,14 @@ function TargetHeader({
   title: string;
   removedAt?: string | null;
 }) {
+  const { t } = useReportsI18n();
   return (
     <div className="flex flex-wrap items-center gap-2">
       <span className="inline-flex items-center gap-2 text-sm font-extrabold text-paw-ink">
         {icon}
         {title}
       </span>
-      {removedAt && <Badge tone="neutral">Already removed</Badge>}
+      {removedAt && <Badge tone="neutral">{t("adminReportsAlreadyRemoved")}</Badge>}
     </div>
   );
 }
@@ -961,11 +1034,12 @@ function ErrorPanel({
   message: string;
   onRetry: () => void;
 }) {
+  const { t } = useReportsI18n();
   return (
     <section className="admin-gate-panel">
       <div>
         <p className="text-lg font-extrabold text-paw-ink">
-          Unable to load reports
+          {t("adminReportsUnableToLoad")}
         </p>
         <p className="mt-2 text-sm leading-6 text-paw-body">
           {message}
@@ -973,7 +1047,7 @@ function ErrorPanel({
       </div>
         <Button type="button" variant="secondary" onClick={onRetry}>
           <RefreshCw className="h-4 w-4" aria-hidden="true" />
-          Retry
+          {t("adminReportsRetry")}
         </Button>
     </section>
   );
@@ -1011,14 +1085,18 @@ function targetBadgeTone(targetType: ReportTargetType) {
   }
 }
 
-function formatDate(value: string) {
-  return new Intl.DateTimeFormat("en", {
+function formatDate(value: string, locale: string) {
+  return new Intl.DateTimeFormat(locale, {
     dateStyle: "medium",
     timeStyle: "short",
   }).format(new Date(value));
 }
 
-function formatNullableDate(value: string | null) {
-  if (!value) return "unknown";
-  return formatDate(value);
+function formatNullableDate(
+  value: string | null,
+  locale: string,
+  t: ReportsTranslation,
+) {
+  if (!value) return t("adminReportsUnknown");
+  return formatDate(value, locale);
 }
