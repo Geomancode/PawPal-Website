@@ -38,6 +38,7 @@ import {
   buttonClassName,
 } from "@/components/ui";
 import { cn } from "@/lib/ui";
+import { loadP3B1g2hAdminFixtures } from "@/lib/p3b1g2hAdminFixtures";
 import {
   clearAdminReportsSession,
   resolveReportAction,
@@ -78,12 +79,27 @@ const actionLabels: Record<ReportResolutionAction, string> = {
 
 const ACTION_REFRESH_DELAY_MS = 600;
 const SESSION_REDIRECT_DELAY_MS = 1200;
+const ADMIN_FIXTURES_ENABLED =
+  process.env.NEXT_PUBLIC_P3B1G2H_ADMIN_FIXTURES === "1";
 
 export default function ReportsClientParts({
   state,
 }: {
   state: ReportsClientState;
 }) {
+  if (ADMIN_FIXTURES_ENABLED) {
+    return (
+      <ReportsQueue
+        payload={loadP3B1g2hAdminFixtures().reports}
+        fixtureMode
+      />
+    );
+  }
+
+  return <LiveReportsClientParts state={state} />;
+}
+
+function LiveReportsClientParts({ state }: { state: ReportsClientState }) {
   const router = useRouter();
   const { loading: authLoading, session, user } = useAuth();
   const [sessionError, setSessionError] = useState<string | null>(null);
@@ -176,7 +192,7 @@ export default function ReportsClientParts({
     );
   }
 
-  return <ReportsQueue payload={state.payload} />;
+  return <ReportsQueue payload={state.payload} fixtureMode={false} />;
 }
 
 function SessionGate({
@@ -237,7 +253,13 @@ function SessionGate({
   );
 }
 
-function ReportsQueue({ payload }: { payload: ReportsPagePayload }) {
+function ReportsQueue({
+  payload,
+  fixtureMode,
+}: {
+  payload: ReportsPagePayload;
+  fixtureMode: boolean;
+}) {
   const router = useRouter();
   const [resolvedReportIds, setResolvedReportIds] = useState<Set<string>>(
     () => new Set(),
@@ -314,6 +336,7 @@ function ReportsQueue({ payload }: { payload: ReportsPagePayload }) {
     report: PendingReportView,
     action: ReportResolutionAction,
   ) {
+    if (fixtureMode) return;
     setBusy({ reportId: report.id, action });
     setToast(null);
 

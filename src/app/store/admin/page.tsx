@@ -13,6 +13,7 @@ import {
   UploadCloud,
 } from "lucide-react";
 import { supabase } from "@/lib/supabase";
+import { loadP3B1g2hAdminFixtures } from "@/lib/p3b1g2hAdminFixtures";
 import { useAuth } from "@/components/AuthProvider";
 import {
   Badge,
@@ -76,6 +77,9 @@ const initialForm: ProductForm = {
   tags: "",
 };
 
+const ADMIN_FIXTURES_ENABLED =
+  process.env.NEXT_PUBLIC_P3B1G2H_ADMIN_FIXTURES === "1";
+
 const storeCategories = CATEGORIES.filter(
   (item): item is { key: Exclude<Category, "all">; label: string; icon: string } =>
     item.key !== "all",
@@ -107,9 +111,13 @@ function numberOrNull(value: string) {
 export default function StoreAdminPage() {
   const router = useRouter();
   const { user, loading: authLoading } = useAuth();
-  const [isAdmin, setIsAdmin] = useState(false);
-  const [checkingAdmin, setCheckingAdmin] = useState(true);
-  const [products, setProducts] = useState<Product[]>([]);
+  const [isAdmin, setIsAdmin] = useState(ADMIN_FIXTURES_ENABLED);
+  const [checkingAdmin, setCheckingAdmin] = useState(!ADMIN_FIXTURES_ENABLED);
+  const [products, setProducts] = useState<Product[]>(() =>
+    ADMIN_FIXTURES_ENABLED
+      ? loadP3B1g2hAdminFixtures().products
+      : [],
+  );
   const [form, setForm] = useState<ProductForm>(initialForm);
   const [file, setFile] = useState<File | null>(null);
   const [filePreview, setFilePreview] = useState<string | null>(null);
@@ -136,6 +144,11 @@ export default function StoreAdminPage() {
 
   const refreshProducts = useCallback(async () => {
     setLoadingProducts(true);
+    if (ADMIN_FIXTURES_ENABLED) {
+      setProducts(loadP3B1g2hAdminFixtures().products);
+      setLoadingProducts(false);
+      return;
+    }
     const { data, error } = await supabase
       .from("products")
       .select(PRODUCT_SELECT)
@@ -155,6 +168,7 @@ export default function StoreAdminPage() {
 
   useEffect(() => {
     let cancelled = false;
+    if (ADMIN_FIXTURES_ENABLED) return;
     if (authLoading) return;
     if (!user) {
       setCheckingAdmin(false);
@@ -249,6 +263,7 @@ export default function StoreAdminPage() {
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    if (ADMIN_FIXTURES_ENABLED) return;
     if (!user) return;
 
     const productId = slugify(form.id || form.name);
@@ -322,7 +337,7 @@ export default function StoreAdminPage() {
     }
   }
 
-  if (authLoading || checkingAdmin) {
+  if (!ADMIN_FIXTURES_ENABLED && (authLoading || checkingAdmin)) {
     return (
       <div className="flex min-h-screen items-center justify-center bg-paw-page pt-24 text-paw-ink">
         <Loader2 className="h-8 w-8 animate-spin text-paw-primary" aria-hidden="true" />
@@ -330,7 +345,7 @@ export default function StoreAdminPage() {
     );
   }
 
-  if (!user) {
+  if (!ADMIN_FIXTURES_ENABLED && !user) {
     return (
       <PageShell
         className="admin-page-shell admin-gate-shell min-h-screen pt-28"
@@ -367,7 +382,7 @@ export default function StoreAdminPage() {
         }
       >
         <Card className="admin-card-upgraded p-8">
-          <EmptyState icon={ShieldCheck} title="Not a store admin" description={user.email || "Current user is not authorized."} />
+          <EmptyState icon={ShieldCheck} title="Not a store admin" description={user?.email || "Current user is not authorized."} />
         </Card>
       </PageShell>
     );

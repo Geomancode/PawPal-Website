@@ -23,6 +23,7 @@ import {
   XCircle,
 } from "lucide-react";
 import { supabase } from "@/lib/supabase";
+import { loadP3B1g2hAdminFixtures } from "@/lib/p3b1g2hAdminFixtures";
 import { useAuth } from "@/components/AuthProvider";
 import {
   Badge,
@@ -127,6 +128,9 @@ const RISK_SELECT = [
   "created_at",
   "updated_at",
 ].join(",");
+
+const ADMIN_FIXTURES_ENABLED =
+  process.env.NEXT_PUBLIC_P3B1G2H_ADMIN_FIXTURES === "1";
 
 const riskTypeLabels: Record<RiskType, string> = {
   toxic_plants: "Toxic plants",
@@ -320,11 +324,18 @@ export default function ParkRiskAdminPage() {
       !adminCheck.allowed &&
       adminCheck.unavailableReason,
   );
-  const queueReadOnly = adminPreviewMode || Boolean(queueFallbackReason);
-  const canViewQueue = isAdmin || adminPreviewMode;
+  const queueReadOnly =
+    ADMIN_FIXTURES_ENABLED || adminPreviewMode || Boolean(queueFallbackReason);
+  const canViewQueue = ADMIN_FIXTURES_ENABLED || isAdmin || adminPreviewMode;
 
   const refreshReports = useCallback(async () => {
     setLoadingReports(true);
+    if (ADMIN_FIXTURES_ENABLED) {
+      setReports(loadP3B1g2hAdminFixtures().parkRisks);
+      setQueueFallbackReason(null);
+      setLoadingReports(false);
+      return;
+    }
     if (adminPreviewMode) {
       setReports(previewReports);
       setQueueFallbackReason(
@@ -355,6 +366,7 @@ export default function ParkRiskAdminPage() {
 
   useEffect(() => {
     let cancelled = false;
+    if (ADMIN_FIXTURES_ENABLED) return;
     if (authLoading) return;
     if (!currentAdminEmail) return;
     const timer = window.setTimeout(() => {
@@ -535,7 +547,7 @@ export default function ParkRiskAdminPage() {
     setCreatingOfficial(false);
   }
 
-  if (authLoading || checkingAdmin) {
+  if (!ADMIN_FIXTURES_ENABLED && (authLoading || checkingAdmin)) {
     return (
       <div className="flex min-h-screen items-center justify-center bg-paw-page pt-24 text-paw-ink">
         <Loader2 className="h-8 w-8 animate-spin text-paw-primary" aria-hidden="true" />
@@ -543,7 +555,7 @@ export default function ParkRiskAdminPage() {
     );
   }
 
-  if (!user) {
+  if (!ADMIN_FIXTURES_ENABLED && !user) {
     return (
       <PageShell
         className="admin-page-shell admin-gate-shell min-h-screen pt-28"
@@ -596,7 +608,7 @@ export default function ParkRiskAdminPage() {
               Not a PawPal admin
             </p>
             <p className="mt-2 text-sm leading-6 text-paw-body">
-              {user.email || "Current user is not authorized."}
+              {user?.email || "Current user is not authorized."}
             </p>
           </div>
         </section>
