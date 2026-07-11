@@ -974,6 +974,110 @@ export const enMessages = {
   publicRouteErrorMessage:
     "A temporary connection or service problem interrupted this page. Please try again.",
   publicRouteErrorRetry: "Try again",
+  adminParkRisksTypeToxicPlants: "Toxic plants",
+  adminParkRisksTypeWildlife: "Wildlife",
+  adminParkRisksTypeWaterTerrain: "Water or terrain",
+  adminParkRisksTypeConstructionClosure: "Construction or closure",
+  adminParkRisksTypeSanitationPollution: "Sanitation or pollution",
+  adminParkRisksTypeOther: "Other",
+  adminParkRisksSeverityInfo: "Info",
+  adminParkRisksSeverityCaution: "Caution",
+  adminParkRisksSeverityHigh: "High",
+  adminParkRisksStatusAwaitingConfirmations: "Awaiting confirmations",
+  adminParkRisksStatusReadyForReview: "Ready for review",
+  adminParkRisksStatusHighlighted: "Highlighted",
+  adminParkRisksStatusRejected: "Rejected",
+  adminParkRisksStatusArchived: "Archived",
+  adminParkRisksPreviewSlipperyTitle: "Preview: slippery path after rain",
+  adminParkRisksPreviewSlipperyDescription:
+    "This sample community report shows how a PawPal admin would review a park risk before it is highlighted.",
+  adminParkRisksPreviewAwaitingTitle:
+    "Preview: user report awaiting confirmations",
+  adminParkRisksPreviewAwaitingDescription:
+    "This sample item represents a community report that has not reached the confirmation threshold yet.",
+  adminParkRisksNotReviewed: "Not reviewed",
+  adminParkRisksAdminCheckUnavailable:
+    "PawPal admin check is unavailable.",
+  adminParkRisksQueueUnavailablePrefix:
+    "Risk queue is not ready yet. Showing a read-only preview:",
+  adminParkRisksReviewReadOnlyMessage:
+    "Preview mode is read-only. Apply the database migration and restore Supabase access before reviewing reports.",
+  adminParkRisksApprovedMessage: "Risk approved and highlighted.",
+  adminParkRisksRejectedMessage: "Risk rejected.",
+  adminParkRisksOfficialReadOnlyMessage:
+    "Preview mode is read-only. Official risks can be added after the live queue is available.",
+  adminParkRisksRequiredFieldsMessage:
+    "Place, title, description, source name, and source URL are required.",
+  adminParkRisksOfficialVerifiedNote:
+    "Official source verified by PawPal admin.",
+  adminParkRisksOfficialAddedMessage:
+    "Official risk added and highlighted.",
+  adminParkRisksEyebrow: "Park risk admin",
+  adminParkRisksSignInRequired: "Sign in required",
+  adminParkRisksSignInDescription:
+    "Use an approved PawPal admin account to review park risk reports.",
+  adminParkRisksSignIn: "Sign in",
+  adminParkRisksNoActiveSession: "No active session",
+  adminParkRisksReturnAfterSignIn:
+    "After signing in, return to /admin/park-risks.",
+  adminParkRisksAccessRestricted: "Review access is restricted",
+  adminParkRisksAccessRestrictedDescription:
+    "This account is not listed in pawpal_admins. Add the email in Supabase before reviewing reports.",
+  adminParkRisksHome: "Home",
+  adminParkRisksNotAdmin: "Not a PawPal admin",
+  adminParkRisksNotAuthorized: "Current user is not authorized.",
+  adminParkRisksQueueTitle: "Risk review queue",
+  adminParkRisksQueueDescription:
+    "Review community-confirmed park risks and add verified official-source risks for highlighting in PawPal place pages.",
+  adminParkRisksRefresh: "Refresh",
+  adminParkRisksQueueMetric: "Queue",
+  adminParkRisksReadyMetric: "Ready",
+  adminParkRisksWaitingMetric: "Waiting",
+  adminParkRisksHighlightedMetric: "Highlighted",
+  adminParkRisksRejectedMetric: "Rejected",
+  adminParkRisksFallbackPrefix:
+    "Preview mode active. The live park risk queue is unavailable, so this page is showing local sample reports and all write actions are disabled. Reason:",
+  adminParkRisksReports: "Reports",
+  adminParkRisksEmptyTitle: "No reports in this view",
+  adminParkRisksEmptyDescription:
+    "Community reports appear here after submission or confirmation.",
+  adminParkRisksOfficialSource: "Official source",
+  adminParkRisksOfficialSourceDescription:
+    "Add verified official-source information. These entries are highlighted immediately.",
+  adminParkRisksGooglePlaceId: "Google Place ID",
+  adminParkRisksGooglePlaceIdPlaceholder: "places/ChIJ... or ChIJ...",
+  adminParkRisksPlaceName: "Place name",
+  adminParkRisksPlaceNamePlaceholder: "Citadelpark",
+  adminParkRisksAddress: "Address",
+  adminParkRisksAddressPlaceholder: "Citadelpark, 9000 Gent",
+  adminParkRisksRiskType: "Risk type",
+  adminParkRisksSeverity: "Severity",
+  adminParkRisksTitleLabel: "Title",
+  adminParkRisksTitlePlaceholder: "Temporary leash restriction",
+  adminParkRisksDescriptionLabel: "Description",
+  adminParkRisksDescriptionPlaceholder:
+    "Summarize the official notice in pet-owner language.",
+  adminParkRisksOfficialSourceName: "Official source name",
+  adminParkRisksOfficialSourceNamePlaceholder: "City of Ghent",
+  adminParkRisksOfficialSourceUrl: "Official source URL",
+  adminParkRisksEvidenceUrl: "Evidence URL",
+  adminParkRisksEvidenceUrlPlaceholder: "Optional supporting link",
+  adminParkRisksPreviewOnly: "Preview only",
+  adminParkRisksHighlightOfficialRisk: "Highlight official risk",
+  adminParkRisksOfficial: "Official",
+  adminParkRisksCommunity: "Community",
+  adminParkRisksConfirmations: "confirmations",
+  adminParkRisksUpdated: "Updated",
+  adminParkRisksReviewed: "Reviewed",
+  adminParkRisksReviewNoteColon: "Review note:",
+  adminParkRisksEvidence: "Evidence",
+  adminParkRisksReviewNote: "Review note",
+  adminParkRisksReviewNotePlaceholder:
+    "Optional internal note shown with this review.",
+  adminParkRisksApprove: "Approve",
+  adminParkRisksReject: "Reject",
+  adminParkRisksReviewActionsReadOnly:
+    "Preview mode is read-only. Review actions will unlock when the live queue is available.",
 } as const;
 
 export type WebsiteMessages = {
