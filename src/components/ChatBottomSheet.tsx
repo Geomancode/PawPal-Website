@@ -13,6 +13,19 @@ import ChatBubble, { type ChatMessageData } from "./ChatBubble";
 import { useAuth } from "./AuthProvider";
 import { createPawPalMapMarkerElement } from "@/lib/createPawPalMapMarkerElement";
 import type maplibregl from "maplibre-gl";
+import type { MessageKey } from "@/i18n/messages/en";
+
+type GlobeTranslation = (key: MessageKey) => string;
+
+function formatMessage(
+  message: string,
+  values: Record<string, string | number>,
+): string {
+  return Object.entries(values).reduce(
+    (formatted, [key, value]) => formatted.replaceAll(`{${key}}`, String(value)),
+    message,
+  );
+}
 
 // ── Species emoji map ────────────────────────────────────────────────────────
 
@@ -28,6 +41,7 @@ type SnapPoint = "peek" | "half" | "full";
 
 interface ChatBottomSheetProps {
   mapRef: MutableRefObject<maplibregl.Map | null>;
+  t: GlobeTranslation;
 }
 
 // ── SSE Parser ───────────────────────────────────────────────────────────────
@@ -111,7 +125,7 @@ function createSearchMarker(
 
 // ── Component ────────────────────────────────────────────────────────────────
 
-export default function ChatBottomSheet({ mapRef }: ChatBottomSheetProps) {
+export default function ChatBottomSheet({ mapRef, t }: ChatBottomSheetProps) {
   const { session } = useAuth();
   const [snap, setSnap] = useState<SnapPoint>("peek");
   const [messages, setMessages] = useState<ChatMessageData[]>([]);
@@ -285,19 +299,27 @@ export default function ChatBottomSheet({ mapRef }: ChatBottomSheetProps) {
             const quests = results.filter((r) => r.source === "quest");
             let summary = "";
             if (places.length > 0) {
-              summary += `📍 Found ${places.length} place${places.length > 1 ? "s" : ""}:\n`;
+              summary += formatMessage(
+                t(places.length > 1 ? "globeChatFoundPlaces" : "globeChatFoundPlace"),
+                { count: places.length },
+              );
               places.slice(0, 5).forEach((r) => {
                 const name = r.localizedName ?? r.originalName;
                 const rating = r.rating ? ` ⭐${r.rating.toFixed(1)}` : "";
                 summary += `• ${name}${rating}\n`;
               });
-              if (places.length > 5) summary += `  ...and ${places.length - 5} more on the map\n`;
+              if (places.length > 5) {
+                summary += formatMessage(t("globeChatMoreOnMap"), { count: places.length - 5 });
+              }
             }
             if (quests.length > 0) {
-              summary += `\n🐾 Found ${quests.length} community quest${quests.length > 1 ? "s" : ""}:\n`;
+              summary += formatMessage(
+                t(quests.length > 1 ? "globeChatFoundQuests" : "globeChatFoundQuest"),
+                { count: quests.length },
+              );
               quests.slice(0, 3).forEach((r) => { summary += `• ${r.originalName}\n`; });
             }
-            summary += "\nTap a pin on the map to see details!";
+            summary += t("globeChatTapPin");
 
             setMessages((prev) => [...prev, {
               id: `search_${Date.now()}`, role: "assistant",
@@ -323,12 +345,12 @@ export default function ChatBottomSheet({ mapRef }: ChatBottomSheetProps) {
         });
 
         if (!response.ok || !response.body) {
-          let message = "Failed to connect to AI Agent";
+          let message = t("globeChatAiConnectionError");
           try {
             const data = await response.json();
             if (data?.upgradeRequired) {
               message =
-                "PawPal AI requires an active Basic or Pro plan. Open Store > PawPal AI upgrade to continue.";
+                t("globeChatUpgradeRequired");
             } else if (typeof data?.error === "string") {
               message = data.error;
             }
@@ -425,7 +447,7 @@ export default function ChatBottomSheet({ mapRef }: ChatBottomSheetProps) {
                   {
                     id: `err_${Date.now()}`,
                     role: "assistant",
-                    content: `⚠️ ${event.data.message || "Something went wrong."}`,
+                    content: `⚠️ ${event.data.message || t("globeChatGenericError")}`,
                     timestamp: Date.now(),
                   },
                 ]);
@@ -442,7 +464,7 @@ export default function ChatBottomSheet({ mapRef }: ChatBottomSheetProps) {
           {
             id: `err_${Date.now()}`,
             role: "assistant",
-            content: `⚠️ ${e instanceof Error ? e.message : "Connection failed. Please try again."}`,
+            content: `⚠️ ${e instanceof Error ? e.message : t("globeChatConnectionFailed")}`,
             timestamp: Date.now(),
           },
         ]);
@@ -450,7 +472,7 @@ export default function ChatBottomSheet({ mapRef }: ChatBottomSheetProps) {
         setIsStreaming(false);
       }
     },
-    [isStreaming, messages, snap, addMarkersFromResults, clearSearchMarkers, mapRef, session]
+    [isStreaming, messages, snap, addMarkersFromResults, clearSearchMarkers, mapRef, session, t]
   );
 
   // ── Keyboard handler ─────────────────────────────────────────────────────
@@ -552,7 +574,7 @@ export default function ChatBottomSheet({ mapRef }: ChatBottomSheetProps) {
                 )}
               </div>
               <span className="text-sm font-bold text-paw-ink">
-                {activePetName ?? "PawPal AI"}
+                {activePetName ?? t("globeChatAiName")}
               </span>
             </div>
             <div className="flex items-center gap-1">
@@ -560,8 +582,8 @@ export default function ChatBottomSheet({ mapRef }: ChatBottomSheetProps) {
                 <button
                   onClick={() => setSnap("half")}
                   className="p-1.5 rounded-full hover:bg-paw-panel-subtle text-paw-muted transition-colors"
-                  aria-label="Collapse search panel"
-                  title="Collapse"
+                  aria-label={t("globeChatCollapseAria")}
+                  title={t("globeChatCollapseTitle")}
                 >
                   <ChevronDown className="w-4 h-4" />
                 </button>
@@ -569,8 +591,8 @@ export default function ChatBottomSheet({ mapRef }: ChatBottomSheetProps) {
               <button
                 onClick={handleClose}
                 className="p-1.5 rounded-full hover:bg-paw-panel-subtle text-paw-muted transition-colors"
-                aria-label="Close search panel"
-                title="Close"
+                aria-label={t("globeChatCloseAria")}
+                title={t("globeChatCloseTitle")}
               >
                 <X className="w-4 h-4" />
               </button>
@@ -591,20 +613,20 @@ export default function ChatBottomSheet({ mapRef }: ChatBottomSheetProps) {
                   <Sparkles className="w-5 h-5 text-paw-trust" />
                 </div>
                 <p className="text-sm font-medium text-paw-body mb-1">
-                  Search & ask in any language
+                  {t("globeChatIntroTitle")}
                 </p>
                 <p className="text-xs text-paw-muted max-w-[260px] mb-4">
-                  Find vets, check food safety, explore breeds — or just chat about pets 🐾
+                  {t("globeChatIntroDescription")}
                 </p>
                 {/* Quick suggestion chips */}
                 <div className="flex flex-wrap justify-center gap-1.5 max-w-[320px]">
                   {[
-                    "Find a vet nearby",
-                    "附近宠物店",
-                    "Is chocolate safe for dogs?",
-                    "Dierenarts Gent",
-                    "Golden Retriever info",
-                    "遥歩任务",
+                    t("globeChatSuggestionVet"),
+                    t("globeChatSuggestionPetShop"),
+                    t("globeChatSuggestionFoodSafety"),
+                    t("globeChatSuggestionVetGhent"),
+                    t("globeChatSuggestionBreed"),
+                    t("globeChatSuggestionWalkMission"),
                   ].map((chip) => (
                     <button
                       key={chip}
@@ -623,6 +645,7 @@ export default function ChatBottomSheet({ mapRef }: ChatBottomSheetProps) {
                 key={msg.id}
                 message={msg}
                 onLocate={handleLocate}
+                t={t}
               />
             ))}
 
@@ -671,8 +694,8 @@ export default function ChatBottomSheet({ mapRef }: ChatBottomSheetProps) {
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={handleKeyDown}
             onFocus={handleInputFocus}
-            aria-label="Search or ask PawPal AI on the globe"
-            placeholder="Search or ask anything · 搜索 · Zoek · Chercher…"
+            aria-label={t("globeChatSearchAria")}
+            placeholder={t("globeChatSearchPlaceholder")}
             disabled={isStreaming}
             className="flex-1 bg-transparent text-paw-body placeholder-paw-muted outline-none text-sm font-light min-w-0 disabled:opacity-50"
           />
@@ -686,7 +709,7 @@ export default function ChatBottomSheet({ mapRef }: ChatBottomSheetProps) {
             ) : (
               <Search className="w-3.5 h-3.5" />
             )}
-            {isStreaming ? "Thinking…" : "Ask"}
+            {isStreaming ? t("globeChatThinking") : t("globeChatAsk")}
           </button>
         </div>
       </div>

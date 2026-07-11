@@ -13,6 +13,9 @@ import GlobeTutorial from "./GlobeTutorial";
 import ChatBottomSheet from "./ChatBottomSheet";
 import GlobeStaticPreview from "./GlobeStaticPreview";
 import { createPawPalMapMarkerElement } from "@/lib/createPawPalMapMarkerElement";
+import type { MessageKey } from "@/i18n/messages/en";
+
+type GlobeTranslation = (key: MessageKey) => string;
 
 /* ── Quest type → emoji mapping ── */
 const QUEST_EMOJI: Record<string, string> = {
@@ -20,15 +23,15 @@ const QUEST_EMOJI: Record<string, string> = {
   skill: "🛠️", transport: "🚗", foster: "🏠", vet_accompany: "🏥",
 };
 
-const QUEST_LABEL: Record<string, string> = {
-  walk: "Walk help",
-  care: "Care need",
-  knowledge: "Advice",
-  share: "Share",
-  skill: "Skill help",
-  transport: "Transport",
-  foster: "Foster",
-  vet_accompany: "Vet buddy",
+const QUEST_LABEL: Record<string, MessageKey> = {
+  walk: "globeQuestWalkHelp",
+  care: "globeQuestCareNeed",
+  knowledge: "globeQuestAdvice",
+  share: "globeQuestShare",
+  skill: "globeQuestSkillHelp",
+  transport: "globeQuestTransport",
+  foster: "globeQuestFoster",
+  vet_accompany: "globeQuestVetBuddy",
 };
 
 /* ── Place type → emoji mapping ── */
@@ -49,14 +52,14 @@ const POST_ICON: Record<string, string> = {
   custom: "✨",
 };
 
-const POST_LABEL: Record<string, string> = {
-  food: "Food",
-  vet: "Vet",
-  store: "Store",
-  adoption: "Adoption",
-  lostAndFound: "Lost & Found",
-  walk: "Walk",
-  custom: "Update",
+const POST_LABEL: Record<string, MessageKey> = {
+  food: "globePostFood",
+  vet: "globePostVet",
+  store: "globePostStore",
+  adoption: "globePostAdoption",
+  lostAndFound: "globePostLostAndFound",
+  walk: "globePostWalk",
+  custom: "globePostUpdate",
 };
 
 const POST_COLOR: Record<string, string> = {
@@ -75,7 +78,16 @@ type MapWithSky = maplibregl.Map & {
 
 const DEFAULT_USER_LOCATION = { lat: 51.05, lng: 3.72 };
 const NEARBY_RADIUS_KM = 15;
-const WEBGL_FALLBACK_MESSAGE = "Live map rendering is unavailable in this browser.";
+
+function formatMessage(
+  message: string,
+  values: Record<string, string | number>,
+): string {
+  return Object.entries(values).reduce(
+    (formatted, [key, value]) => formatted.replaceAll(`{${key}}`, String(value)),
+    message,
+  );
+}
 
 function getErrorMessage(error: unknown): string {
   if (error instanceof Error) return error.message;
@@ -93,10 +105,10 @@ function getPostCategoryKey(post: MapPost): string {
   return post.pin_icon || post.category || "custom";
 }
 
-function getPostLabel(post: MapPost): string {
+function getPostLabel(post: MapPost, t: GlobeTranslation): string {
   const key = getPostCategoryKey(post);
-  if (key === "custom") return post.custom_category_label?.trim() || POST_LABEL.custom;
-  return POST_LABEL[key] ?? key.replace(/_/g, " ");
+  if (key === "custom") return post.custom_category_label?.trim() || t(POST_LABEL.custom);
+  return POST_LABEL[key] ? t(POST_LABEL[key]) : key.replace(/_/g, " ");
 }
 
 function formatPostDate(isoDate: string): string {
@@ -129,39 +141,42 @@ function hasUsableWebGL(): boolean {
 function GlobeFallbackView({
   reason,
   onRetry,
+  t,
 }: {
-  reason: string;
+  reason: MessageKey;
   onRetry: () => void;
+  t: GlobeTranslation;
 }) {
   return (
     <div className="globe-fallback-stage">
       <section className="globe-fallback-copy" aria-labelledby="globe-fallback-title">
-        <p className="globe-fallback-eyebrow text-xs font-black uppercase tracking-[0.18em]">PawPal Globe</p>
+        <p className="globe-fallback-eyebrow text-xs font-black uppercase tracking-[0.18em]">{t("globeBrandLabel")}</p>
         <h2 id="globe-fallback-title" className="globe-fallback-title mt-3 text-4xl font-black leading-tight sm:text-5xl">
-          Map preview is still ready
+          {t("globeFallbackTitle")}
         </h2>
         <p className="globe-fallback-body mt-4 max-w-xl text-sm font-medium leading-6 sm:text-base">
-          {reason} You can still review the PawPal pet-safety flow, smart tags, and local help paths while the live map is unavailable.
+          {t(reason)} {t("globeFallbackBody")}
         </p>
         <div className="globe-fallback-actions mt-6 flex flex-wrap gap-3">
           <button type="button" onClick={onRetry} className="globe-fallback-action globe-fallback-action-primary">
             <RefreshCw className="h-4 w-4" aria-hidden="true" />
-            Try live map
+            {t("globeTryLiveMap")}
           </button>
           <Link href="/store" className="globe-fallback-action">
             <ShoppingBag className="h-4 w-4" aria-hidden="true" />
-            Shop smart tags
+            {t("globeShopSmartTags")}
           </Link>
           <Link href="/help" className="globe-fallback-action">
             <LifeBuoy className="h-4 w-4" aria-hidden="true" />
-            Local help
+            {t("globeLocalHelp")}
           </Link>
         </div>
       </section>
 
       <GlobeStaticPreview
         className="globe-fallback-preview"
-        statusLabel="Static map preview"
+        statusLabel={t("globeStaticMapPreview")}
+        ariaLabel={t("globeStaticMapPreview")}
         pulseStatus={false}
       />
     </div>
@@ -203,7 +218,7 @@ function createPopupContent(
 /* ─────────────────────────────────────────
    Component
    ───────────────────────────────────────── */
-export default function MapGlobeComponent() {
+export default function MapGlobeComponent({ t }: { t: GlobeTranslation }) {
   const mapContainer = useRef<HTMLDivElement>(null);
   const mapRef = useRef<maplibregl.Map | null>(null);
   const [showQuests, setShowQuests] = useState(true);
@@ -213,10 +228,10 @@ export default function MapGlobeComponent() {
   const [places, setPlaces] = useState<Place[]>([]);
   const [posts, setPosts] = useState<MapPost[]>([]);
   const [nearbyLoading, setNearbyLoading] = useState(true);
-  const [nearbyIssue, setNearbyIssue] = useState<string | null>(null);
-  const [locationIssue, setLocationIssue] = useState<string | null>(null);
+  const [nearbyIssue, setNearbyIssue] = useState<MessageKey | null>(null);
+  const [locationIssue, setLocationIssue] = useState<MessageKey | null>(null);
   const [isOffline, setIsOffline] = useState(false);
-  const [mapUnavailableReason, setMapUnavailableReason] = useState<string | null>(null);
+  const [mapUnavailableReason, setMapUnavailableReason] = useState<MessageKey | null>(null);
   const [nearbyCenter, setNearbyCenter] = useState<{ lat: number; lng: number }>(DEFAULT_USER_LOCATION);
   const questMarkersRef = useRef<maplibregl.Marker[]>([]);
   const placeMarkersRef = useRef<maplibregl.Marker[]>([]);
@@ -238,10 +253,10 @@ export default function MapGlobeComponent() {
         type,
         count,
         emoji: QUEST_EMOJI[type] ?? "🐾",
-        label: QUEST_LABEL[type] ?? type.replace(/_/g, " "),
+        label: QUEST_LABEL[type] ? t(QUEST_LABEL[type]) : type.replace(/_/g, " "),
       }))
       .sort((a, b) => b.count - a.count);
-  }, [quests]);
+  }, [quests, t]);
 
   const loadNearbyData = useCallback(async (center: { lat: number; lng: number }) => {
     setNearbyLoading(true);
@@ -260,7 +275,7 @@ export default function MapGlobeComponent() {
       setQuests([]);
       setPlaces([]);
       setPosts([]);
-      setNearbyIssue("Nearby data is unavailable. The map remains usable.");
+      setNearbyIssue("globeNearbyUnavailable");
     } finally {
       setNearbyLoading(false);
     }
@@ -313,7 +328,7 @@ export default function MapGlobeComponent() {
     setMapUnavailableReason(null);
   }, []);
 
-  const enterMapFallback = useCallback((reason = WEBGL_FALLBACK_MESSAGE) => {
+  const enterMapFallback = useCallback((reason: MessageKey = "globeWebglUnavailable") => {
     setMapUnavailableReason(reason);
   }, []);
 
@@ -369,7 +384,7 @@ export default function MapGlobeComponent() {
       });
     } catch (error) {
       const message = getErrorMessage(error);
-      enterMapFallback(isWebGLFailureMessage(message) ? WEBGL_FALLBACK_MESSAGE : "The live map could not start.");
+      enterMapFallback(isWebGLFailureMessage(message) ? "globeWebglUnavailable" : "globeLiveMapStartError");
       return;
     }
 
@@ -393,7 +408,7 @@ export default function MapGlobeComponent() {
         enterMapFallback();
         return;
       }
-      setNearbyIssue("A map layer could not load. Try again with a stronger connection.");
+      setNearbyIssue("globeMapLayerError");
     };
 
     map.on("error", handleMapError);
@@ -420,7 +435,7 @@ export default function MapGlobeComponent() {
         () => {
           if (!isCurrentMap()) return;
           setUserLocation(DEFAULT_USER_LOCATION);
-          setLocationIssue("Using Ghent as the starting point. Enable location for nearby results.");
+          setLocationIssue("globeLocationFallback");
         },
         { timeout: 8000 }
       );
@@ -554,8 +569,12 @@ export default function MapGlobeComponent() {
     quests.forEach((q) => {
       if (q.lat == null || q.lng == null) return;
       const emoji = QUEST_EMOJI[q.quest_type] || "🐾";
-      const label = QUEST_LABEL[q.quest_type] ?? q.quest_type.replace(/_/g, " ");
-      const distance = q.distance_km != null ? `${q.distance_km.toFixed(1)} km away` : "";
+      const label = QUEST_LABEL[q.quest_type]
+        ? t(QUEST_LABEL[q.quest_type])
+        : q.quest_type.replace(/_/g, " ");
+      const distance = q.distance_km != null
+        ? formatMessage(t("globeDistanceAway"), { distance: q.distance_km.toFixed(1) })
+        : "";
       const el = createPawPalMapMarkerElement({
         icon: emoji,
         color: "var(--color-paw-accent)",
@@ -563,16 +582,16 @@ export default function MapGlobeComponent() {
         tone: "mission",
       });
       const popup = new maplibregl.Popup({ offset: 28, closeButton: false })
-        .setDOMContent(createPopupContent(`${emoji} ${q.title || "Mission"}`, [
-          { label: "Need", value: label },
-          { label: "Status", value: q.status },
-          { label: "Distance", value: distance },
-          { label: "Reward", value: q.reward_type || "none" },
+        .setDOMContent(createPopupContent(`${emoji} ${q.title || t("globeMissionFallback")}`, [
+          { label: t("globePopupNeed"), value: label },
+          { label: t("globePopupStatus"), value: q.status },
+          { label: t("globePopupDistance"), value: distance },
+          { label: t("globePopupReward"), value: q.reward_type || t("globePopupNoReward") },
         ]));
       const marker = new maplibregl.Marker({ element: el, anchor: "bottom" }).setLngLat([q.lng, q.lat]).setPopup(popup).addTo(map);
       questMarkersRef.current.push(marker);
     });
-  }, [quests, showQuests]);
+  }, [quests, showQuests, t]);
 
   /* ── Render Place markers ── */
   useEffect(() => {
@@ -590,18 +609,20 @@ export default function MapGlobeComponent() {
         tone: "place",
       });
       const ratingStr = p.rating_avg != null ? `⭐ ${Number(p.rating_avg).toFixed(1)}` : "";
-      const distance = p.distance_km != null ? `${p.distance_km.toFixed(1)} km away` : "";
+      const distance = p.distance_km != null
+        ? formatMessage(t("globeDistanceAway"), { distance: p.distance_km.toFixed(1) })
+        : "";
       const popup = new maplibregl.Popup({ offset: 28, closeButton: false })
         .setDOMContent(createPopupContent(`${emoji} ${p.name}`, [
-          { label: "Type", value: p.place_type },
+          { label: t("globePopupType"), value: p.place_type },
           { value: p.city ? `📍 ${p.city}` : "" },
-          { label: "Distance", value: distance },
+          { label: t("globePopupDistance"), value: distance },
           { value: ratingStr },
         ]));
       const marker = new maplibregl.Marker({ element: el, anchor: "bottom" }).setLngLat([p.lng, p.lat]).setPopup(popup).addTo(map);
       placeMarkersRef.current.push(marker);
     });
-  }, [places, showPlaces]);
+  }, [places, showPlaces, t]);
 
   /* ── Render Post markers ── */
   useEffect(() => {
@@ -614,13 +635,19 @@ export default function MapGlobeComponent() {
       if (post.lat == null || post.lng == null) return;
       const key = getPostCategoryKey(post);
       const icon = POST_ICON[key] ?? POST_ICON.custom;
-      const label = getPostLabel(post);
+      const label = getPostLabel(post, t);
       const color = POST_COLOR[key] ?? POST_COLOR.custom;
       const content = truncatePostContent(post.content);
-      const distance = post.distance_km != null ? `${post.distance_km.toFixed(1)} km away` : "";
+      const distance = post.distance_km != null
+        ? formatMessage(t("globeDistanceAway"), { distance: post.distance_km.toFixed(1) })
+        : "";
       const activity = [
-        post.like_count ? `${post.like_count} likes` : "",
-        post.comment_count ? `${post.comment_count} comments` : "",
+        post.like_count
+          ? formatMessage(t("globePostLikes"), { count: post.like_count })
+          : "",
+        post.comment_count
+          ? formatMessage(t("globePostComments"), { count: post.comment_count })
+          : "",
       ].filter(Boolean).join(" · ");
       const el = createPawPalMapMarkerElement({
         icon,
@@ -631,24 +658,25 @@ export default function MapGlobeComponent() {
       const popup = new maplibregl.Popup({ offset: 28, closeButton: false })
         .setDOMContent(createPopupContent(`${icon} ${label}`, [
           { value: content },
-          { label: "Distance", value: distance },
-          { label: "Posted", value: formatPostDate(post.created_at) },
+          { label: t("globePopupDistance"), value: distance },
+          { label: t("globePopupPosted"), value: formatPostDate(post.created_at) },
           { value: activity },
         ]));
       const marker = new maplibregl.Marker({ element: el, anchor: "bottom" }).setLngLat([post.lng, post.lat]).setPopup(popup).addTo(map);
       postMarkersRef.current.push(marker);
     });
-  }, [posts, showPosts]);
+  }, [posts, showPosts, t]);
 
   return (
     <div className="globe-page-shell fixed inset-0 h-[100dvh] w-full overflow-hidden bg-paw-ink">
       {mapUnavailableReason ? (
-        <GlobeFallbackView reason={mapUnavailableReason} onRetry={handleRetryMap} />
+        <GlobeFallbackView reason={mapUnavailableReason} onRetry={handleRetryMap} t={t} />
       ) : (
         <>
           <WeatherTicker
             mapCenter={mapCenter}
             onRecenterRequest={handleRecenterRequest}
+            t={t}
           />
           <div ref={mapContainer} id="globe-map" className="absolute inset-0 w-full h-full" />
 
@@ -656,9 +684,12 @@ export default function MapGlobeComponent() {
           <div className="globe-hud-panel globe-nearby-panel absolute z-40 w-[min(320px,calc(100vw-2rem))] rounded-paw-lg border border-paw-border bg-paw-panel/90 p-3 shadow-paw-panel backdrop-blur-md">
             <div className="mb-2 flex items-center justify-between gap-3">
               <div>
-                <p className="text-xs font-black uppercase tracking-[0.16em] text-paw-accent">Nearby needs</p>
+                <p className="text-xs font-black uppercase tracking-[0.16em] text-paw-accent">{t("globeNearbyNeeds")}</p>
                 <p className="text-[11px] font-medium text-paw-muted">
-                  {nearbyCenter.lat.toFixed(3)}, {nearbyCenter.lng.toFixed(3)} · {NEARBY_RADIUS_KM} km
+                  {formatMessage(t("globeNearbyCoordinates"), {
+                    coordinates: `${nearbyCenter.lat.toFixed(3)}, ${nearbyCenter.lng.toFixed(3)}`,
+                    radius: NEARBY_RADIUS_KM,
+                  })}
                 </p>
               </div>
               <span className="rounded-paw-pill bg-paw-accent-soft px-2 py-1 text-[11px] font-black text-paw-on-accent-soft">
@@ -670,19 +701,19 @@ export default function MapGlobeComponent() {
                 {isOffline && (
                   <p className="globe-inline-issue">
                     <WifiOff className="h-3.5 w-3.5" aria-hidden="true" />
-                    Offline mode. Live places and missions may be stale.
+                    {t("globeOfflineIssue")}
                   </p>
                 )}
                 {locationIssue && (
                   <p className="globe-inline-issue">
                     <MapPin className="h-3.5 w-3.5" aria-hidden="true" />
-                    {locationIssue}
+                    {t(locationIssue)}
                   </p>
                 )}
                 {nearbyIssue && (
                   <p className="globe-inline-issue">
                     <AlertCircle className="h-3.5 w-3.5" aria-hidden="true" />
-                    {nearbyIssue}
+                    {t(nearbyIssue)}
                   </p>
                 )}
               </div>
@@ -699,7 +730,7 @@ export default function MapGlobeComponent() {
               </div>
             ) : (
               <p className="text-xs font-medium text-paw-muted">
-                {nearbyLoading ? "Loading nearby needs..." : "No open needs in this area yet."}
+                {nearbyLoading ? t("globeLoadingNearbyNeeds") : t("globeNoOpenNeeds")}
               </p>
             )}
           </div>
@@ -708,33 +739,33 @@ export default function MapGlobeComponent() {
           <div id="globe-layers" className="globe-layer-stack absolute z-40 flex gap-1.5">
             <button onClick={() => setShowQuests(!showQuests)} className={`globe-layer-button flex items-center gap-2 rounded-paw-pill border px-3 py-2 text-xs font-bold transition-all ${showQuests ? "is-active-mission bg-paw-accent text-paw-on-accent border-paw-accent" : "bg-paw-panel/80 text-paw-muted border-paw-border"}`}>
               <PawPrint className="h-3.5 w-3.5" aria-hidden="true" />
-              Missions {quests.length > 0 && <span className="rounded-paw-pill bg-paw-panel/30 px-1.5 py-0.5 text-[10px]">{quests.length}</span>}
+              {t("globeLayerMissions")} {quests.length > 0 && <span className="rounded-paw-pill bg-paw-panel/30 px-1.5 py-0.5 text-[10px]">{quests.length}</span>}
             </button>
             <button onClick={() => setShowPlaces(!showPlaces)} className={`globe-layer-button flex items-center gap-2 rounded-paw-pill border px-3 py-2 text-xs font-bold transition-all ${showPlaces ? "is-active-place bg-paw-trust text-paw-on-trust border-paw-trust" : "bg-paw-panel/80 text-paw-muted border-paw-border"}`}>
               <MapPin className="h-3.5 w-3.5" aria-hidden="true" />
-              Places {places.length > 0 && <span className="rounded-paw-pill bg-paw-panel/30 px-1.5 py-0.5 text-[10px]">{places.length}</span>}
+              {t("globeLayerPlaces")} {places.length > 0 && <span className="rounded-paw-pill bg-paw-panel/30 px-1.5 py-0.5 text-[10px]">{places.length}</span>}
             </button>
             <button onClick={() => setShowPosts(!showPosts)} className={`globe-layer-button flex items-center gap-2 rounded-paw-pill border px-3 py-2 text-xs font-bold transition-all ${showPosts ? "is-active-post bg-paw-primary text-paw-on-primary border-paw-primary" : "bg-paw-panel/80 text-paw-muted border-paw-border"}`}>
               <MessageCircle className="h-3.5 w-3.5" aria-hidden="true" />
-              Posts {posts.length > 0 && <span className="rounded-paw-pill bg-paw-panel/30 px-1.5 py-0.5 text-[10px]">{posts.length}</span>}
+              {t("globeLayerPosts")} {posts.length > 0 && <span className="rounded-paw-pill bg-paw-panel/30 px-1.5 py-0.5 text-[10px]">{posts.length}</span>}
             </button>
           </div>
 
           <div className="globe-status-strip">
-            <span>Ghent pilot</span>
+            <span>{t("globeStatusGhentPilot")}</span>
             <strong>{quests.length}</strong>
-            <span>open needs</span>
+            <span>{t("globeStatusOpenNeeds")}</span>
             <strong>{places.length}</strong>
-            <span>mapped places</span>
+            <span>{t("globeStatusMappedPlaces")}</span>
             <strong>{posts.length}</strong>
-            <span>public posts</span>
+            <span>{t("globeStatusPublicPosts")}</span>
           </div>
 
           {/* AI Chat Bottom Sheet */}
-          <ChatBottomSheet mapRef={mapRef} />
+          <ChatBottomSheet mapRef={mapRef} t={t} />
 
           {/* Tutorial overlay for first-time visitors */}
-          <GlobeTutorial />
+          <GlobeTutorial t={t} />
         </>
       )}
     </div>

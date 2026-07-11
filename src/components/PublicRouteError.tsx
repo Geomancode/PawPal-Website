@@ -5,11 +5,20 @@ import { RotateCcw } from "lucide-react";
 
 import { Button, StatusMessage } from "@/components/ui";
 import { reportError } from "@/lib/errorReporting";
+import { useRouteTranslations } from "@/i18n/useRouteTranslations";
+import type { MessageKey } from "@/i18n/messages/en";
+
+const RESOURCE_KEYS: Record<PublicRouteErrorProps["resourceName"], MessageKey> = {
+  post: "publicRouteErrorPost",
+  group: "publicRouteErrorGroup",
+  profile: "publicRouteErrorProfile",
+  tag: "publicRouteErrorTag",
+};
 
 type PublicRouteErrorProps = {
   error: Error & { digest?: string };
   reset: () => void;
-  resourceName: string;
+  resourceName: "post" | "group" | "profile" | "tag";
 };
 
 export default function PublicRouteError({
@@ -17,6 +26,8 @@ export default function PublicRouteError({
   reset,
   resourceName,
 }: PublicRouteErrorProps) {
+  const { loader, t } = useRouteTranslations();
+
   useEffect(() => {
     reportError(error, {
       source: "public-route-error-boundary",
@@ -30,12 +41,16 @@ export default function PublicRouteError({
       className="deep-page-shell flex min-h-[100dvh] items-center justify-center bg-paw-page px-5 py-28 text-paw-ink"
       data-testid="public-route-error"
     >
+      {loader}
       <div className="mx-auto w-full max-w-xl">
         <h1 className="font-brand text-3xl font-extrabold leading-tight sm:text-4xl">
-          PawPal could not load this {resourceName}
+          {t("publicRouteErrorTitle").replace(
+            "{resourceName}",
+            t(RESOURCE_KEYS[resourceName]),
+          )}
         </h1>
         <StatusMessage tone="danger" className="mt-4">
-          A temporary connection or service problem interrupted this page. Please try again.
+          {t("publicRouteErrorMessage")}
         </StatusMessage>
         <Button
           type="button"
@@ -45,7 +60,7 @@ export default function PublicRouteError({
           onClick={reset}
         >
           <RotateCcw className="h-4 w-4" aria-hidden="true" />
-          Try again
+          {t("publicRouteErrorRetry")}
         </Button>
       </div>
     </section>

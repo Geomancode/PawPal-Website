@@ -8,6 +8,7 @@ import { useI18n } from "@/i18n/I18nProvider";
 import { facingScore, passesFacingHysteresis } from "@/lib/globeFacing";
 import type { HomeGlobePost } from "@/lib/homeGlobePosts";
 import { useHomeGlobePosts } from "@/lib/useHomeGlobePosts";
+import { useRouteTranslations } from "@/i18n/useRouteTranslations";
 
 const GlobeT = dynamic(() => import("react-globe.gl").then((m) => m.default), {
   ssr: false,
@@ -270,6 +271,7 @@ function createCloudTexture() {
 
 export default function GlobeComponent() {
   const { path, t } = useI18n();
+  const { loader, t: routeT } = useRouteTranslations();
   const containerRef = useRef<HTMLDivElement | null>(null);
   const globeEl = useRef<GlobeRef | null>(null);
   const markerElementsRef = useRef(new Map<string, HTMLAnchorElement>());
@@ -884,6 +886,7 @@ export default function GlobeComponent() {
       data-has-entered-view={hasEnteredView ? "true" : "false"}
       data-document-visible={isDocumentVisible ? "true" : "false"}
     >
+      {loader}
       {canUseWebGL === null ? (
         <GlobeStaticPreview
           className="home-globe-static-preview"
@@ -934,7 +937,7 @@ export default function GlobeComponent() {
                 data-testid="home-globe-retry"
                 onClick={retryPosts}
               >
-                Try again
+                {routeT("publicRouteErrorRetry")}
               </button>
             </div>
           ) : null}

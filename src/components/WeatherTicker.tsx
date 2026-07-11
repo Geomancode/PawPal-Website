@@ -6,35 +6,48 @@ import {
   CloudSnow, Cloud, CloudLightning, CloudFog,
   Navigation, Dog, RefreshCw,
 } from "lucide-react";
+import type { MessageKey } from "@/i18n/messages/en";
+
+type GlobeTranslation = (key: MessageKey) => string;
+
+function formatMessage(
+  message: string,
+  values: Record<string, string | number>,
+): string {
+  return Object.entries(values).reduce(
+    (formatted, [key, value]) => formatted.replaceAll(`{${key}}`, String(value)),
+    message,
+  );
+}
 
 /* ── WMO Weather Code → Icon + Label ── */
-function getWeatherInfo(code: number): { icon: React.ReactNode; label: string } {
-  if (code === 0) return { icon: <Sun className="w-4 h-4 text-paw-warning" />, label: "Clear Sky" };
-  if (code <= 3) return { icon: <Cloud className="w-4 h-4 text-paw-page/70" />, label: code === 1 ? "Mainly Clear" : code === 2 ? "Partly Cloudy" : "Overcast" };
-  if (code <= 48) return { icon: <CloudFog className="w-4 h-4 text-paw-page/60" />, label: "Foggy" };
-  if (code <= 57) return { icon: <CloudRain className="w-4 h-4 text-paw-trust" />, label: "Drizzle" };
-  if (code <= 67) return { icon: <CloudRain className="w-4 h-4 text-paw-trust" />, label: "Rain" };
-  if (code <= 77) return { icon: <CloudSnow className="w-4 h-4 text-paw-trust" />, label: "Snow" };
-  if (code <= 82) return { icon: <CloudRain className="w-4 h-4 text-paw-trust" />, label: "Rain Showers" };
-  if (code <= 86) return { icon: <CloudSnow className="w-4 h-4 text-paw-trust" />, label: "Snow Showers" };
-  if (code <= 99) return { icon: <CloudLightning className="w-4 h-4 text-paw-warning" />, label: "Thunderstorm" };
-  return { icon: <Cloud className="w-4 h-4 text-paw-page/70" />, label: "Unknown" };
+function getWeatherInfo(code: number, t: GlobeTranslation): { icon: React.ReactNode; label: string } {
+  if (code === 0) return { icon: <Sun className="w-4 h-4 text-paw-warning" />, label: t("globeWeatherClearSky") };
+  if (code <= 3) return { icon: <Cloud className="w-4 h-4 text-paw-page/70" />, label: code === 1 ? t("globeWeatherMainlyClear") : code === 2 ? t("globeWeatherPartlyCloudy") : t("globeWeatherOvercast") };
+  if (code <= 48) return { icon: <CloudFog className="w-4 h-4 text-paw-page/60" />, label: t("globeWeatherFoggy") };
+  if (code <= 57) return { icon: <CloudRain className="w-4 h-4 text-paw-trust" />, label: t("globeWeatherDrizzle") };
+  if (code <= 67) return { icon: <CloudRain className="w-4 h-4 text-paw-trust" />, label: t("globeWeatherRain") };
+  if (code <= 77) return { icon: <CloudSnow className="w-4 h-4 text-paw-trust" />, label: t("globeWeatherSnow") };
+  if (code <= 82) return { icon: <CloudRain className="w-4 h-4 text-paw-trust" />, label: t("globeWeatherRainShowers") };
+  if (code <= 86) return { icon: <CloudSnow className="w-4 h-4 text-paw-trust" />, label: t("globeWeatherSnowShowers") };
+  if (code <= 99) return { icon: <CloudLightning className="w-4 h-4 text-paw-warning" />, label: t("globeWeatherThunderstorm") };
+  return { icon: <Cloud className="w-4 h-4 text-paw-page/70" />, label: t("globeWeatherUnknown") };
 }
 
 /* ── Dog Walk Advice ── */
-function getWalkAdvice(temp: number, windSpeed: number, rainProb: number, uvIndex: number, weatherCode: number): { emoji: string; text: string } {
-  if (weatherCode >= 95) return { emoji: "⛈️", text: "Stay indoors — thunderstorms!" };
-  if (weatherCode >= 71 && weatherCode <= 77) return { emoji: "❄️", text: "Cold & snowy — short walks only, paw protection recommended" };
-  if (temp < 0) return { emoji: "🥶", text: "Below freezing — protect paws from ice and salt" };
-  if (temp > 35) return { emoji: "🔥", text: "Too hot! Risk of burnt paws — walk early morning or late evening" };
-  if (temp > 28) return { emoji: "☀️", text: "Hot pavement alert — walk in shaded areas, bring water" };
-  if (rainProb > 70) return { emoji: "🌧️", text: "High chance of rain — bring a raincoat for your pup" };
-  if (windSpeed > 50) return { emoji: "💨", text: "Very windy — keep small dogs on short leash" };
-  if (uvIndex >= 8) return { emoji: "🧴", text: "High UV — avoid midday walks, light-skinned dogs need protection" };
-  if (rainProb > 40) return { emoji: "🌤️", text: "Might rain later — good time for a quick walk now!" };
-  if (temp >= 15 && temp <= 25 && windSpeed < 20 && rainProb < 30) return { emoji: "🐕", text: "Perfect weather for a long walk! Enjoy!" };
-  if (temp >= 8 && temp <= 15) return { emoji: "🧥", text: "Cool & pleasant — great walking weather" };
-  return { emoji: "👍", text: "Decent conditions — enjoy your walk!" };
+function getWalkAdvice(temp: number, windSpeed: number, rainProb: number, uvIndex: number, weatherCode: number, t: GlobeTranslation): { emoji: string; text: string } {
+  if (weatherCode >= 95) return { emoji: "⛈️", text: t("globeWalkAdviceThunderstorms") };
+  if (weatherCode >= 71 && weatherCode <= 77) return { emoji: "❄️", text: t("globeWalkAdviceSnow") };
+  if (temp < 0) return { emoji: "🥶", text: t("globeWalkAdviceFreezing") };
+  if (temp > 35) return { emoji: "🔥", text: t("globeWalkAdviceExtremeHeat") };
+  if (temp > 28) return { emoji: "☀️", text: t("globeWalkAdviceHotPavement") };
+  if (rainProb > 70) return { emoji: "🌧️", text: t("globeWalkAdviceHeavyRain") };
+  if (windSpeed > 50) return { emoji: "💨", text: t("globeWalkAdviceWind") };
+  if (uvIndex >= 8) return { emoji: "🧴", text: t("globeWalkAdviceUv") };
+  if (rainProb > 40) return { emoji: "🌤️", text: t("globeWalkAdvicePossibleRain") };
+  if (temp >= 15 && temp <= 25 && windSpeed < 20 && rainProb < 30) return { emoji: "🐕", text: t("globeWalkAdvicePerfect") };
+  if (temp >= 8 && temp <= 15) return { emoji: "🧥", text: t("globeWalkAdviceCool") };
+  return { emoji: "👍", text: t("globeWalkAdviceDecent") };
 }
 
 /* ── Types ── */
@@ -55,6 +68,7 @@ interface WeatherTickerProps {
   mapCenter?: { lat: number; lng: number } | null;
   /** Called when user clicks "back to my location" */
   onRecenterRequest?: () => void;
+  t: GlobeTranslation;
 }
 
 /* ── Default location: Ghent, Belgium ── */
@@ -66,7 +80,7 @@ const REFRESH_MS = 15 * 60 * 1000;
 /* ── Debounce delay for map drag: 800ms ── */
 const DRAG_DEBOUNCE_MS = 800;
 
-export default function WeatherTicker({ mapCenter, onRecenterRequest }: WeatherTickerProps) {
+export default function WeatherTicker({ mapCenter, onRecenterRequest, t }: WeatherTickerProps) {
   const [weather, setWeather] = useState<WeatherData | null>(null);
   const [loading, setLoading] = useState(false);
   const [weatherIssue, setWeatherIssue] = useState(false);
@@ -99,7 +113,7 @@ export default function WeatherTicker({ mapCenter, onRecenterRequest }: WeatherT
         geoData.address?.village ||
         geoData.address?.state ||
         geoData.address?.country ||
-        "Unknown Area";
+        t("globeWeatherUnknownArea");
 
       setWeather({
         temp: Math.round(weatherData.current?.temperature_2m ?? 0),
@@ -117,7 +131,7 @@ export default function WeatherTicker({ mapCenter, onRecenterRequest }: WeatherT
     } finally {
       setLoading(false);
     }
-  }, [weather]);
+  }, [weather, t]);
 
   /* ── Initial load: get user location ── */
   useEffect(() => {
@@ -188,11 +202,11 @@ export default function WeatherTicker({ mapCenter, onRecenterRequest }: WeatherT
         <div className="flex items-center justify-center gap-2 text-sm">
           {loading && !weatherIssue ? (
             <>
-              <RefreshCw className="w-4 h-4 animate-spin" /> Loading weather...
+              <RefreshCw className="w-4 h-4 animate-spin" /> {t("globeWeatherLoading")}
             </>
           ) : (
             <>
-              <Cloud className="w-4 h-4 text-paw-page/70" /> Weather temporarily unavailable
+              <Cloud className="w-4 h-4 text-paw-page/70" /> {t("globeWeatherUnavailable")}
             </>
           )}
         </div>
@@ -200,15 +214,15 @@ export default function WeatherTicker({ mapCenter, onRecenterRequest }: WeatherT
     );
   }
 
-  const weatherInfo = getWeatherInfo(weather.weatherCode);
-  const walkAdvice = getWalkAdvice(weather.temp, weather.windSpeed, weather.rainProb, weather.uvIndex, weather.weatherCode);
+  const weatherInfo = getWeatherInfo(weather.weatherCode, t);
+  const walkAdvice = getWalkAdvice(weather.temp, weather.windSpeed, weather.rainProb, weather.uvIndex, weather.weatherCode, t);
   const weatherItems = [
     {
       key: "place",
       className: "globe-weather-item-place",
       icon: <MapPin className="w-4 h-4" aria-hidden="true" />,
       label: weather.city,
-      suffix: !weather.isUserLocation ? "MAP" : "",
+      suffix: !weather.isUserLocation ? t("globeWeatherMapSuffix") : "",
     },
     {
       key: "condition",
@@ -219,12 +233,12 @@ export default function WeatherTicker({ mapCenter, onRecenterRequest }: WeatherT
       key: "temperature",
       icon: <Thermometer className="w-4 h-4 text-paw-success" aria-hidden="true" />,
       label: `${weather.temp}°C`,
-      suffix: `feels ${weather.feelsLike}°C`,
+      suffix: formatMessage(t("globeWeatherFeels"), { temperature: weather.feelsLike }),
     },
     {
       key: "wind",
       icon: <Wind className="w-4 h-4 text-paw-trust" aria-hidden="true" />,
-      label: `${weather.windSpeed} km/h`,
+      label: formatMessage(t("globeWeatherWindSpeed"), { speed: weather.windSpeed }),
     },
     {
       key: "humidity",
@@ -234,12 +248,14 @@ export default function WeatherTicker({ mapCenter, onRecenterRequest }: WeatherT
     {
       key: "rain",
       icon: <CloudRain className="w-4 h-4 text-paw-trust" aria-hidden="true" />,
-      label: weather.rainProb > 0 ? `${weather.rainProb}% rain` : "No rain",
+      label: weather.rainProb > 0
+        ? formatMessage(t("globeWeatherRainChance"), { chance: weather.rainProb })
+        : t("globeWeatherNoRain"),
     },
     {
       key: "uv",
       icon: <Sun className="w-4 h-4 text-paw-warning" aria-hidden="true" />,
-      label: `UV ${weather.uvIndex}`,
+      label: formatMessage(t("globeWeatherUvIndex"), { index: weather.uvIndex }),
     },
     {
       key: "advice",
@@ -257,10 +273,10 @@ export default function WeatherTicker({ mapCenter, onRecenterRequest }: WeatherT
           <button
             onClick={handleRecenter}
             className="shrink-0 ml-3 mr-1 flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-paw-primary/90 hover:bg-paw-primary text-paw-accent-ink text-[11px] font-bold transition-all z-10 shadow-paw-action"
-            title="Back to my location"
+            title={t("globeWeatherBackToLocation")}
           >
             <Navigation className="w-3.5 h-3.5" />
-            My Location
+            {t("globeWeatherMyLocation")}
           </button>
         )}
 
