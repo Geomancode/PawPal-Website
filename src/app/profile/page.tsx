@@ -8,6 +8,7 @@ import { useAuth } from "@/components/AuthProvider";
 import { supabase } from "@/lib/supabase";
 import ProfileWorkspaceView, { type Pet, type PetSocialTraits, type Profile } from "./ProfileWorkspaceView";
 import PushSubscriptionSettings from "./PushSubscriptionSettings";
+import { useRouteTranslations } from "@/i18n/useRouteTranslations";
 
 const ACCOUNT_FIXTURES_ENABLED =
   process.env.NEXT_PUBLIC_P3B1G1_ACCOUNT_FIXTURES === "1";
@@ -28,12 +29,12 @@ function fallbackUsername(user: User): string {
   return `${safePrefix || "pawpal"}_${user.id.slice(0, 8)}`;
 }
 
-function errorMessage(error: unknown): string {
+function errorMessage(error: unknown, fallback: string): string {
   if (error && typeof error === "object" && "message" in error) {
     const message = String((error as { message?: unknown }).message ?? "");
     if (message) return message;
   }
-  return "Something went wrong. Please try again.";
+  return fallback;
 }
 
 async function loadOrCreateProfile(user: User): Promise<Profile> {
@@ -70,6 +71,7 @@ async function loadOrCreateProfile(user: User): Promise<Profile> {
 }
 
 export default function ProfilePage() {
+  const { loader, t } = useRouteTranslations();
   const { user, session, loading: authLoading } = useAuth();
   const router = useRouter();
   const [profile, setProfile] = useState<Profile | null>(null);
@@ -114,7 +116,7 @@ export default function ProfilePage() {
     const handleInstalled = () => {
       setIsInstalled(true);
       setInstallPrompt(null);
-      setInstallStatus("PawPal is installed on this device.");
+      setInstallStatus(t("profileInstalledOnDevice"));
     };
 
     window.addEventListener("beforeinstallprompt", handleBeforeInstall);
@@ -123,7 +125,7 @@ export default function ProfilePage() {
       window.removeEventListener("beforeinstallprompt", handleBeforeInstall);
       window.removeEventListener("appinstalled", handleInstalled);
     };
-  }, []);
+  }, [t]);
 
   useEffect(() => {
     if (ACCOUNT_FIXTURES_ENABLED) {
@@ -160,13 +162,13 @@ export default function ProfilePage() {
         if (petsRes.error) throw petsRes.error;
         setPets((petsRes.data ?? []) as Pet[]);
       } catch (e) {
-        setProfileError(errorMessage(e));
+        setProfileError(errorMessage(e, t("profileGenericError")));
       } finally {
         setLoading(false);
       }
     }
     fetchData();
-  }, [user]);
+  }, [user, t]);
 
   const handleSave = async () => {
     if (!user || !profile) return;
@@ -182,7 +184,7 @@ export default function ProfilePage() {
       setProfile({ ...profile, display_name: editName.trim() || null, bio: editBio.trim() || null, location_city: editCity.trim() || null });
       setEditing(false);
     } else {
-      setProfileError(errorMessage(error));
+      setProfileError(errorMessage(error, t("profileGenericError")));
     }
     setSaving(false);
   };
@@ -217,7 +219,7 @@ export default function ProfilePage() {
       setPetSpecies("canine");
       setShowAddPet(false);
     } else if (error) {
-      setPetError(errorMessage(error));
+      setPetError(errorMessage(error, t("profileGenericError")));
     }
     setAddingPet(false);
   };
@@ -228,12 +230,12 @@ export default function ProfilePage() {
 
   const handleInstall = async () => {
     if (isInstalled) {
-      setInstallStatus("PawPal is already installed on this device.");
+      setInstallStatus(t("profileAlreadyInstalled"));
       return;
     }
 
     if (!installPrompt) {
-      setInstallStatus("Open your browser menu and choose Add to Home Screen.");
+      setInstallStatus(t("profileInstallFromBrowserMenu"));
       return;
     }
 
@@ -242,14 +244,15 @@ export default function ProfilePage() {
     setInstallPrompt(null);
     setInstallStatus(
       choice.outcome === "accepted"
-        ? "PawPal is installing now."
-        : "Install dismissed. You can try again from the browser menu."
+        ? t("profileInstallingNow")
+        : t("profileInstallDismissed")
     );
   };
 
   if ((!ACCOUNT_FIXTURES_ENABLED && authLoading) || loading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-paw-page pt-20">
+        {loader}
         <Loader2 className="w-8 h-8 text-paw-primary animate-spin" />
       </div>
     );
@@ -258,17 +261,20 @@ export default function ProfilePage() {
   if (!profile) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-paw-page px-4 pt-20">
+        {loader}
         <div className="max-w-md rounded-paw-lg border border-paw-danger/20 bg-paw-panel p-6 text-center shadow-paw-panel">
           <AlertCircle className="mx-auto mb-3 h-8 w-8 text-paw-danger" />
-          <h1 className="text-lg font-extrabold text-paw-ink">Profile unavailable</h1>
-          <p className="mt-2 text-sm text-paw-muted">{profileError ?? "We could not load your profile."}</p>
+          <h1 className="text-lg font-extrabold text-paw-ink">{t("profileUnavailableTitle")}</h1>
+          <p className="mt-2 text-sm text-paw-muted">{profileError ?? t("profileUnavailableDescription")}</p>
         </div>
       </div>
     );
   }
 
   return (
-    <ProfileWorkspaceView
+    <>
+      {loader}
+      <ProfileWorkspaceView
       profile={profile}
       pets={pets}
       profileError={profileError}
@@ -279,7 +285,8 @@ export default function ProfilePage() {
       petError={petError}
       installStatus={installStatus}
       isInstalled={isInstalled}
-      notificationSettings={<PushSubscriptionSettings accessToken={session?.access_token ?? null} />}
+      notificationSettings={<PushSubscriptionSettings accessToken={session?.access_token ?? null} t={t} />}
+      t={t}
       editName={editName}
       editBio={editBio}
       editCity={editCity}
@@ -306,6 +313,7 @@ export default function ProfilePage() {
       onPetContactChange={setPetContact}
       onToggleSocialTag={(tag) => toggleTag(tag, petSocialTags, setPetSocialTags)}
       onToggleHealthBadge={(tag) => toggleTag(tag, petHealthBadges, setPetHealthBadges)}
-    />
+      />
+    </>
   );
 }

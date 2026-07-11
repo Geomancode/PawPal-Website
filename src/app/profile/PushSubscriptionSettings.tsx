@@ -2,11 +2,13 @@
 
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { Bell, BellOff, BellRing, CheckCircle, Loader2, ShieldAlert, WifiOff } from "lucide-react";
+import type { ProfileTranslation } from "./ProfileWorkspaceView";
 
 type PushStatus = "checking" | "unsupported" | "available" | "denied" | "enabled" | "error";
 
 type PushSubscriptionSettingsProps = {
   accessToken: string | null;
+  t: ProfileTranslation;
 };
 
 function browserSupportsPush() {
@@ -35,7 +37,7 @@ function subscriptionPayload(subscription: PushSubscription) {
   return typeof subscription.toJSON === "function" ? subscription.toJSON() : subscription;
 }
 
-export default function PushSubscriptionSettings({ accessToken }: PushSubscriptionSettingsProps) {
+export default function PushSubscriptionSettings({ accessToken, t }: PushSubscriptionSettingsProps) {
   const publicVapidKey = process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY ?? "";
   const [status, setStatus] = useState<PushStatus>("checking");
   const [busy, setBusy] = useState(false);
@@ -44,19 +46,19 @@ export default function PushSubscriptionSettings({ accessToken }: PushSubscripti
   const refreshStatus = useCallback(async () => {
     if (!browserSupportsPush()) {
       setStatus("unsupported");
-      setMessage("This browser does not support Web Push notifications.");
+      setMessage(t("pushUnsupportedMessage"));
       return;
     }
 
     if (Notification.permission === "denied") {
       setStatus("denied");
-      setMessage("Notifications are blocked in this browser. Enable them in site settings to receive PawPal alerts.");
+      setMessage(t("pushBlockedMessage"));
       return;
     }
 
     if (Notification.permission !== "granted") {
       setStatus("available");
-      setMessage("Enable browser push to receive PawPal alerts even when the website is closed.");
+      setMessage(t("pushAvailableMessage"));
       return;
     }
 
@@ -66,84 +68,84 @@ export default function PushSubscriptionSettings({ accessToken }: PushSubscripti
       setStatus(existing ? "enabled" : "available");
       setMessage(
         existing
-          ? "Browser push is active for this device."
-          : "Notifications are allowed. Enable browser push for this device.",
+          ? t("pushActiveMessage")
+          : t("pushAllowedMessage"),
       );
     } catch (error) {
       setStatus("error");
-      setMessage(error instanceof Error ? error.message : "Unable to read push subscription status.");
+      setMessage(error instanceof Error ? error.message : t("pushReadStatusError"));
     }
-  }, []);
+  }, [t]);
 
   useEffect(() => {
     refreshStatus().catch((error) => {
       setStatus("error");
-      setMessage(error instanceof Error ? error.message : "Unable to read push subscription status.");
+      setMessage(error instanceof Error ? error.message : t("pushReadStatusError"));
     });
-  }, [refreshStatus]);
+  }, [refreshStatus, t]);
 
   const viewModel = useMemo(() => {
     switch (status) {
       case "unsupported":
         return {
           icon: <WifiOff className="h-5 w-5" aria-hidden="true" />,
-          eyebrow: "Not supported",
-          title: "Browser push unavailable",
+          eyebrow: t("pushUnsupportedEyebrow"),
+          title: t("pushUnsupportedTitle"),
           tone: "bg-paw-danger-soft text-paw-on-danger-soft",
-          action: "Unavailable",
+          action: t("pushUnavailableAction"),
           disabled: true,
         };
       case "denied":
         return {
           icon: <ShieldAlert className="h-5 w-5" aria-hidden="true" />,
-          eyebrow: "Blocked",
-          title: "Notifications blocked",
+          eyebrow: t("pushBlockedEyebrow"),
+          title: t("pushBlockedTitle"),
           tone: "bg-paw-warning-soft text-paw-on-warning-soft",
-          action: "Blocked",
+          action: t("pushBlockedAction"),
           disabled: true,
         };
       case "enabled":
         return {
           icon: <CheckCircle className="h-5 w-5" aria-hidden="true" />,
-          eyebrow: "Enabled",
-          title: "Push notifications on",
+          eyebrow: t("pushEnabledEyebrow"),
+          title: t("pushEnabledTitle"),
           tone: "bg-paw-success-soft text-paw-on-success-soft",
-          action: "Disable push",
+          action: t("pushDisableAction"),
           disabled: false,
         };
       case "error":
         return {
           icon: <BellOff className="h-5 w-5" aria-hidden="true" />,
-          eyebrow: "Needs attention",
-          title: "Push setup needs attention",
+          eyebrow: t("pushErrorEyebrow"),
+          title: t("pushErrorTitle"),
           tone: "bg-paw-danger-soft text-paw-on-danger-soft",
-          action: "Try again",
+          action: t("pushTryAgainAction"),
           disabled: false,
         };
       case "checking":
         return {
           icon: <Loader2 className="h-5 w-5 animate-spin" aria-hidden="true" />,
-          eyebrow: "Checking",
-          title: "Checking notification status",
+          eyebrow: t("pushCheckingEyebrow"),
+          title: t("pushCheckingTitle"),
           tone: "bg-paw-primary-soft text-paw-on-primary-soft",
-          action: "Checking",
+          action: t("pushCheckingAction"),
           disabled: true,
         };
       default:
         return {
           icon: <BellRing className="h-5 w-5" aria-hidden="true" />,
-          eyebrow: "Available",
-          title: "Push notifications off",
+          eyebrow: t("pushAvailableEyebrow"),
+          title: t("pushAvailableTitle"),
           tone: "bg-paw-primary-soft text-paw-on-primary-soft",
-          action: "Enable push",
+          action: t("pushEnableAction"),
           disabled: false,
         };
     }
-  }, [status]);
+  }, [status, t]);
 
   const saveSubscription = async (subscription: PushSubscription) => {
     if (!accessToken) {
-      throw new Error("Sign in again before changing push settings.");
+      throw new Error(t("pushSignInAgainError"));
     }
 
     const response = await fetch("/api/push/subscribe", {
@@ -156,13 +158,13 @@ export default function PushSubscriptionSettings({ accessToken }: PushSubscripti
     });
 
     if (!response.ok) {
-      throw new Error("PawPal could not save this browser subscription.");
+      throw new Error(t("pushSaveSubscriptionError"));
     }
   };
 
   const removeSubscription = async (endpoint: string) => {
     if (!accessToken) {
-      throw new Error("Sign in again before changing push settings.");
+      throw new Error(t("pushSignInAgainError"));
     }
 
     const response = await fetch("/api/push/subscribe", {
@@ -175,13 +177,13 @@ export default function PushSubscriptionSettings({ accessToken }: PushSubscripti
     });
 
     if (!response.ok) {
-      throw new Error("PawPal could not remove this browser subscription.");
+      throw new Error(t("pushRemoveSubscriptionError"));
     }
   };
 
   const enablePush = async () => {
     if (!publicVapidKey.trim()) {
-      throw new Error("Push notifications are not configured for this deployment.");
+      throw new Error(t("pushNotConfiguredError"));
     }
 
     let permission = Notification.permission;
@@ -191,7 +193,7 @@ export default function PushSubscriptionSettings({ accessToken }: PushSubscripti
 
     if (permission === "denied") {
       setStatus("denied");
-      setMessage("Notifications are blocked in this browser. Enable them in site settings to receive PawPal alerts.");
+      setMessage(t("pushBlockedMessage"));
       return;
     }
 
@@ -206,7 +208,7 @@ export default function PushSubscriptionSettings({ accessToken }: PushSubscripti
 
     await saveSubscription(subscription);
     setStatus("enabled");
-    setMessage("Browser push is active for this device.");
+    setMessage(t("pushActiveMessage"));
   };
 
   const disablePush = async () => {
@@ -214,7 +216,7 @@ export default function PushSubscriptionSettings({ accessToken }: PushSubscripti
     const subscription = await registration?.pushManager.getSubscription();
     if (!subscription) {
       setStatus("available");
-      setMessage("Push notifications are off for this browser.");
+      setMessage(t("pushOffMessage"));
       return;
     }
 
@@ -222,7 +224,7 @@ export default function PushSubscriptionSettings({ accessToken }: PushSubscripti
     await subscription.unsubscribe();
     await removeSubscription(endpoint);
     setStatus("available");
-    setMessage("Push notifications are off for this browser.");
+    setMessage(t("pushOffMessage"));
   };
 
   const handleAction = async () => {
@@ -238,7 +240,7 @@ export default function PushSubscriptionSettings({ accessToken }: PushSubscripti
       }
     } catch (error) {
       setStatus("error");
-      setMessage(error instanceof Error ? error.message : "Push settings could not be updated.");
+      setMessage(error instanceof Error ? error.message : t("pushUpdateError"));
     } finally {
       setBusy(false);
     }
@@ -264,7 +266,7 @@ export default function PushSubscriptionSettings({ accessToken }: PushSubscripti
               {viewModel.title}
             </h2>
             <p className="mt-1 max-w-2xl text-sm leading-6 text-paw-body">
-              {message ?? "Choose whether this browser should receive PawPal alerts."}
+              {message ?? t("pushDefaultDescription")}
             </p>
           </div>
         </div>
@@ -279,7 +281,7 @@ export default function PushSubscriptionSettings({ accessToken }: PushSubscripti
           } shrink-0`}
         >
           {busy ? <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" /> : <Bell className="h-4 w-4" aria-hidden="true" />}
-          {busy ? "Saving..." : viewModel.action}
+          {busy ? t("profileSaving") : viewModel.action}
         </button>
       </div>
     </section>
