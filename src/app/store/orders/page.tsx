@@ -127,7 +127,7 @@ function OrderCard({ order, t }: { order: Order; t: OrdersTranslation }) {
                         <span className={`text-xs font-bold ${done ? "text-paw-success" : "text-paw-muted"}`}>
                           {label}
                         </span>
-                        {index < PROGRESS_STEPS.length - 1 && (
+                        {index < progressSteps.length - 1 && (
                           <div className={`h-0.5 w-6 ${done ? "bg-paw-success/40" : "bg-paw-border"}`} />
                         )}
                       </div>
