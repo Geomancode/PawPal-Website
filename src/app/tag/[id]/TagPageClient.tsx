@@ -16,6 +16,7 @@ import {
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { AppDeepLinkButton, Badge, Card, StatusMessage } from "@/components/ui";
+import { useRouteTranslations } from "@/i18n/useRouteTranslations";
 
 type PetSocialTraits = {
   health_badges?: string[];
@@ -45,12 +46,13 @@ interface TagPageClientProps {
 }
 
 export default function TagPageClient({ pet, owner }: TagPageClientProps) {
+  const { loader, t } = useRouteTranslations();
   const healthBadges: string[] = pet.social_traits?.health_badges ?? [];
   const socialTags: string[] = pet.social_traits?.social_tags ?? [];
   const quirk: string | undefined = pet.social_traits?.quirk;
   const achievements: string[] = pet.social_traits?.achievements ?? [];
-  const ownerName = owner?.display_name || owner?.username || "PawPal owner";
-  const ownerLabel = owner ? ownerName : "Owner profile not public";
+  const ownerName = owner?.display_name || owner?.username || t("tagPageOwnerFallback");
+  const ownerLabel = owner ? ownerName : t("tagPageOwnerNotPublic");
   const contactHref = pet.owner_contact
     ? pet.owner_contact.includes("@")
       ? `mailto:${pet.owner_contact}`
@@ -60,21 +62,27 @@ export default function TagPageClient({ pet, owner }: TagPageClientProps) {
   const ContactIcon = contactIsEmail ? Mail : Phone;
   const contactType = contactHref
     ? contactIsEmail
-      ? "Public email"
-      : "Public phone"
-    : "Contact hidden";
+      ? t("tagPagePublicEmail")
+      : t("tagPagePublicPhone")
+    : t("tagPageContactHidden");
   const ageLabel =
-    pet.age != null ? `${pet.age} year${pet.age === 1 ? "" : "s"}` : "Not listed";
-  const careLabel = healthBadges[0] ?? "No public notes";
+    pet.age != null
+      ? t(pet.age === 1 ? "tagPageAgeYear" : "tagPageAgeYears").replace(
+          "{age}",
+          String(pet.age),
+        )
+      : t("tagPageNotListed");
+  const careLabel = healthBadges[0] ?? t("tagPageNoPublicNotes");
 
   return (
     <div className="relative min-h-[100dvh] overflow-hidden bg-paw-page px-4 py-8 pt-24 text-paw-ink">
+      {loader}
       <main className="mx-auto grid max-w-6xl gap-5 lg:grid-cols-[0.82fr_1.18fr] lg:items-start">
         <section className="tag-rescue-panel">
           <div className="relative z-10 flex h-full flex-col">
             <p className="inline-flex w-fit items-center gap-2 rounded-paw-sm border border-paw-primary/20 bg-paw-primary-soft px-3 py-2 text-xs font-black uppercase tracking-[0.16em] text-paw-primary">
               <ScanLine className="h-4 w-4" aria-hidden="true" />
-              Scanned PawPal tag
+              {t("tagPageScannedBadge")}
             </p>
 
             <div className="mt-4 flex items-start gap-4">
@@ -95,10 +103,13 @@ export default function TagPageClient({ pet, owner }: TagPageClientProps) {
               </div>
               <div className="min-w-0">
                 <h1 className="break-words font-brand text-3xl font-extrabold leading-tight text-paw-ink sm:text-4xl">
-                  Help {pet.name} get home.
+                  {t("tagPageHelpPetGetHome").replace("{petName}", pet.name)}
                 </h1>
                 <p className="mt-2 text-sm font-bold leading-6 text-paw-body">
-                  Safety profile managed by {ownerLabel}.
+                  {t("tagPageSafetyProfileManagedBy").replace(
+                    "{ownerLabel}",
+                    ownerLabel,
+                  )}
                 </p>
               </div>
             </div>
@@ -110,32 +121,36 @@ export default function TagPageClient({ pet, owner }: TagPageClientProps) {
                   className="inline-flex h-14 w-full items-center justify-center gap-2 rounded-paw-md bg-paw-primary px-5 text-base font-extrabold text-paw-accent-ink shadow-paw-action transition hover:bg-paw-primary-hover"
                 >
                   <ContactIcon className="h-5 w-5" aria-hidden="true" />
-                  Contact owner now
+                  {t("tagPageContactOwnerNow")}
                 </a>
                 <p className="mt-2 text-xs font-bold uppercase tracking-[0.12em] text-paw-muted">
-                  Owner shared a {contactIsEmail ? "public email" : "public phone"} for this tag
+                  {t(
+                    contactIsEmail
+                      ? "tagPageOwnerSharedPublicEmail"
+                      : "tagPageOwnerSharedPublicPhone",
+                  )}
                 </p>
               </div>
             ) : (
-              <StatusMessage tone="warning" variant="compact" className="mt-7" title="Owner contact is hidden">
-                This profile is available, but direct contact details are not public right now.
+              <StatusMessage tone="warning" variant="compact" className="mt-7" title={t("tagPageContactHiddenTitle")}>
+                {t("tagPageContactHiddenBody")}
               </StatusMessage>
             )}
 
             <div className="tag-mini-facts mt-4 grid grid-cols-2 gap-2">
-              <MiniFact label="Breed" value={pet.breed ?? "Not listed"} />
-              <MiniFact label="Age" value={ageLabel} />
-              <MiniFact label="Blood" value={pet.blood_type ?? "Not listed"} />
-              <MiniFact label="Care" value={careLabel} />
+              <MiniFact label={t("tagPageBreedLabel")} value={pet.breed ?? t("tagPageNotListed")} />
+              <MiniFact label={t("tagPageAgeLabel")} value={ageLabel} />
+              <MiniFact label={t("tagPageBloodLabel")} value={pet.blood_type ?? t("tagPageNotListed")} />
+              <MiniFact label={t("tagPageCareLabel")} value={careLabel} />
             </div>
 
             <StatusMessage
               tone="warning"
               variant="compact"
               className="mt-4"
-              title="If this looks urgent, contact local services first."
+              title={t("tagPageUrgentTitle")}
             >
-                PawPal only shows owner-approved profile details to support a safe return.
+                {t("tagPageUrgentBody")}
             </StatusMessage>
           </div>
         </section>
@@ -145,10 +160,10 @@ export default function TagPageClient({ pet, owner }: TagPageClientProps) {
             <div className="flex items-start justify-between gap-4">
               <div className="min-w-0">
                 <p className="text-xs font-black uppercase tracking-[0.16em] text-paw-muted">
-                  Critical details
+                  {t("tagPageCriticalDetails")}
                 </p>
                 <h2 className="mt-1 break-words text-2xl font-extrabold text-paw-ink">
-                  What to know before moving {pet.name}
+                  {t("tagPageBeforeMovingPet").replace("{petName}", pet.name)}
                 </h2>
               </div>
               <span className="inline-flex h-11 w-11 items-center justify-center rounded-paw-sm bg-paw-primary-soft text-paw-on-primary-soft">
@@ -157,34 +172,34 @@ export default function TagPageClient({ pet, owner }: TagPageClientProps) {
             </div>
 
             <div className="mt-5 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
-              <InfoTile label="Contact" value={contactType} icon={ContactIcon} />
-              <InfoTile label="Breed" value={pet.breed ?? "Not listed"} icon={PawPrint} />
-              <InfoTile label="Age" value={ageLabel} icon={Calendar} />
-              <InfoTile label="Blood" value={pet.blood_type ?? "Not listed"} icon={Droplets} tone="danger" />
+              <InfoTile label={t("tagPageContactLabel")} value={contactType} icon={ContactIcon} />
+              <InfoTile label={t("tagPageBreedLabel")} value={pet.breed ?? t("tagPageNotListed")} icon={PawPrint} />
+              <InfoTile label={t("tagPageAgeLabel")} value={ageLabel} icon={Calendar} />
+              <InfoTile label={t("tagPageBloodLabel")} value={pet.blood_type ?? t("tagPageNotListed")} icon={Droplets} tone="danger" />
             </div>
           </Card>
 
           <div className="grid gap-4 lg:grid-cols-2">
             <TagSection
               icon={ShieldCheck}
-              title="Health and care"
+              title={t("tagPageHealthAndCare")}
               values={healthBadges}
               tone="success"
-              emptyText="No public health or care notes are listed for this tag."
+              emptyText={t("tagPageHealthEmpty")}
             />
             <TagSection
               icon={Heart}
-              title="Personality"
+              title={t("tagPagePersonality")}
               values={socialTags}
               tone="trust"
-              emptyText="No public personality notes are listed for this tag."
+              emptyText={t("tagPagePersonalityEmpty")}
             />
           </div>
 
           {quirk && (
             <Card variant="panel" className="p-4">
               <p className="text-xs font-black uppercase tracking-[0.14em] text-paw-muted">
-                Behavior note
+                {t("tagPageBehaviorNote")}
               </p>
               <p className="mt-2 text-sm italic leading-6 text-paw-body">
                 &ldquo;{quirk}&rdquo;
@@ -199,13 +214,13 @@ export default function TagPageClient({ pet, owner }: TagPageClientProps) {
               </span>
               <div className="min-w-0">
                 <p className="text-xs font-black uppercase tracking-[0.16em] text-paw-muted">
-                  Owner and next steps
+                  {t("tagPageOwnerAndNextSteps")}
                 </p>
                 <p className="mt-1 break-words text-sm font-extrabold text-paw-ink">
                   {ownerLabel}
                 </p>
                 <p className="mt-1 text-sm leading-6 text-paw-body">
-                  Secondary actions are available after the rescue/contact state is clear.
+                  {t("tagPageSecondaryActions")}
                 </p>
               </div>
             </div>
@@ -215,26 +230,26 @@ export default function TagPageClient({ pet, owner }: TagPageClientProps) {
                 fallbackHref="/"
                 className="border border-paw-border bg-paw-panel text-paw-ink shadow-none hover:border-paw-primary hover:bg-paw-primary-soft"
               >
-                Open this tag in PawPal
+                {t("tagPageOpenInPawPal")}
               </AppDeepLinkButton>
               <Link
                 href="/store"
                 className="inline-flex h-12 items-center justify-center rounded-paw-md border border-paw-border bg-paw-panel px-4 text-sm font-extrabold text-paw-ink transition hover:border-paw-primary hover:text-paw-primary sm:h-full"
               >
-                Get a PawPal tag
+                {t("tagPageGetTag")}
               </Link>
             </div>
             <p className="mt-4 text-xs leading-5 text-paw-muted">
-              Scanned a PawPal NFC tag? Download the app to create and control your own pet safety profile.
+              {t("tagPageDownloadApp")}
             </p>
           </Card>
 
           <TagSection
             icon={Award}
-            title="Achievements"
+            title={t("tagPageAchievements")}
             values={achievements}
             tone="primary"
-            emptyText="No public achievements are listed for this tag."
+            emptyText={t("tagPageAchievementsEmpty")}
           />
         </section>
       </main>
