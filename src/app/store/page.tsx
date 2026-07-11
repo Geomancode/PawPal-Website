@@ -50,6 +50,8 @@ const CATEGORY_ICONS: Record<Category, LucideIcon> = {
 };
 
 const REDUCED_MOTION_QUERY = "(prefers-reduced-motion: reduce)";
+const ACCOUNT_FIXTURES_ENABLED =
+  process.env.NEXT_PUBLIC_P3B1G1_ACCOUNT_FIXTURES === "1";
 
 function fadeUpMotion(shouldReduceMotion: boolean | null, y: number, delay = 0) {
   void y;
@@ -552,6 +554,12 @@ function StorePageContent() {
 
   useEffect(() => {
     let cancelled = false;
+    if (ACCOUNT_FIXTURES_ENABLED) {
+      queueMicrotask(() => {
+        if (!cancelled) setCatalogLoading(false);
+      });
+      return () => { cancelled = true; };
+    }
     fetchCatalogProducts()
       .then((remoteProducts) => {
         if (cancelled) return;

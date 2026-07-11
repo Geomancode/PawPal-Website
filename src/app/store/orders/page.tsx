@@ -20,6 +20,9 @@ import ProductVisual from "../ProductVisual";
 import { Badge, Button, Card, EmptyState } from "@/components/ui";
 import { useReducedMotionPreference } from "@/lib/useReducedMotionPreference";
 
+const ACCOUNT_FIXTURES_ENABLED =
+  process.env.NEXT_PUBLIC_P3B1G1_ACCOUNT_FIXTURES === "1";
+
 type OrderStatus = Order["status"];
 
 const STATUS_CONFIG: Record<
@@ -182,9 +185,15 @@ export default function OrdersPage() {
 
   useEffect(() => {
     let cancelled = false;
-    queueMicrotask(() => {
-      if (!cancelled) setOrders(loadOrders());
-    });
+    if (ACCOUNT_FIXTURES_ENABLED) {
+      import("@/lib/p3b1g1AccountFixtures").then(({ loadP3B1g1AccountFixtures }) => {
+        if (!cancelled) setOrders(loadP3B1g1AccountFixtures().orders);
+      });
+    } else {
+      queueMicrotask(() => {
+        if (!cancelled) setOrders(loadOrders());
+      });
+    }
     return () => { cancelled = true; };
   }, []);
 

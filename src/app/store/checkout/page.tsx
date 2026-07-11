@@ -34,6 +34,8 @@ const STEPS = [
 ];
 
 const REDUCED_MOTION_QUERY = "(prefers-reduced-motion: reduce)";
+const ACCOUNT_FIXTURES_ENABLED =
+  process.env.NEXT_PUBLIC_P3B1G1_ACCOUNT_FIXTURES === "1";
 
 function subscribeToReducedMotion(onStoreChange: () => void) {
   if (typeof window === "undefined") return () => {};
@@ -174,14 +176,23 @@ export default function CheckoutPage() {
 
   useEffect(() => {
     let cancelled = false;
-    queueMicrotask(() => {
-      const loaded = loadCart();
-      if (cancelled) return;
-      if (loaded.length === 0) {
-        router.push("/store");
-      }
-      setCart(loaded);
-    });
+    if (ACCOUNT_FIXTURES_ENABLED) {
+      import("@/lib/p3b1g1AccountFixtures").then(({ loadP3B1g1AccountFixtures }) => {
+        if (cancelled) return;
+        const fixture = loadP3B1g1AccountFixtures().checkout;
+        setCart(fixture.cart);
+        setShipping(fixture.shipping);
+      });
+    } else {
+      queueMicrotask(() => {
+        const loaded = loadCart();
+        if (cancelled) return;
+        if (loaded.length === 0) {
+          router.push("/store");
+        }
+        setCart(loaded);
+      });
+    }
     return () => { cancelled = true; };
   }, [router]);
 

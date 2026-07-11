@@ -9,6 +9,9 @@ import { supabase } from "@/lib/supabase";
 import ProfileWorkspaceView, { type Pet, type PetSocialTraits, type Profile } from "./ProfileWorkspaceView";
 import PushSubscriptionSettings from "./PushSubscriptionSettings";
 
+const ACCOUNT_FIXTURES_ENABLED =
+  process.env.NEXT_PUBLIC_P3B1G1_ACCOUNT_FIXTURES === "1";
+
 type BeforeInstallPromptEvent = Event & {
   prompt: () => Promise<void>;
   userChoice: Promise<{ outcome: "accepted" | "dismissed"; platform: string }>;
@@ -95,7 +98,7 @@ export default function ProfilePage() {
   const [petHealthBadges, setPetHealthBadges] = useState<string[]>([]);
 
   useEffect(() => {
-    if (!authLoading && !user) router.push("/auth");
+    if (!ACCOUNT_FIXTURES_ENABLED && !authLoading && !user) router.push("/auth");
   }, [user, authLoading, router]);
 
   useEffect(() => {
@@ -123,6 +126,21 @@ export default function ProfilePage() {
   }, []);
 
   useEffect(() => {
+    if (ACCOUNT_FIXTURES_ENABLED) {
+      let cancelled = false;
+      import("@/lib/p3b1g1AccountFixtures").then(({ loadP3B1g1AccountFixtures }) => {
+        if (cancelled) return;
+        const fixture = loadP3B1g1AccountFixtures().profile;
+        setProfile(fixture.profile);
+        setPets(fixture.pets);
+        setEditName(fixture.profile.display_name || "");
+        setEditBio(fixture.profile.bio || "");
+        setEditCity(fixture.profile.location_city || "");
+        setLoading(false);
+      });
+      return () => { cancelled = true; };
+    }
+
     if (!user) return;
 
     async function fetchData() {
@@ -229,7 +247,7 @@ export default function ProfilePage() {
     );
   };
 
-  if (authLoading || loading) {
+  if ((!ACCOUNT_FIXTURES_ENABLED && authLoading) || loading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-paw-page pt-20">
         <Loader2 className="w-8 h-8 text-paw-primary animate-spin" />

@@ -14,6 +14,9 @@ import {
 import { saveOrder, saveCart, generateOrderId, loadCart } from "../storeData";
 import { Badge, Button, Card } from "@/components/ui";
 
+const ACCOUNT_FIXTURES_ENABLED =
+  process.env.NEXT_PUBLIC_P3B1G1_ACCOUNT_FIXTURES === "1";
+
 interface StripeSession {
   id: string;
   mode: string | null;
@@ -43,15 +46,27 @@ function SuccessContent() {
   const intent = searchParams.get("intent");
   const requestedSubscription = intent === "subscription";
   const [session, setSession] = useState<StripeSession | null>(null);
-  const [loading, setLoading] = useState(() => Boolean(sessionId));
-  const [error, setError] = useState(() => sessionId ? "" : "No session ID found");
-  const [orderId] = useState(() => generateOrderId());
+  const [loading, setLoading] = useState(() => Boolean(sessionId) || ACCOUNT_FIXTURES_ENABLED);
+  const [error, setError] = useState(() => sessionId || ACCOUNT_FIXTURES_ENABLED ? "" : "No session ID found");
+  const [orderId, setOrderId] = useState(() => generateOrderId());
   const isSubscription =
     requestedSubscription ||
     session?.mode === "subscription" ||
     session?.metadata?.intent === "ai-upgrade";
 
   useEffect(() => {
+    if (ACCOUNT_FIXTURES_ENABLED) {
+      let cancelled = false;
+      import("@/lib/p3b1g1AccountFixtures").then(({ loadP3B1g1AccountFixtures }) => {
+        if (cancelled) return;
+        const fixture = loadP3B1g1AccountFixtures().success;
+        setOrderId(fixture.orderId);
+        setSession(fixture.session);
+        setLoading(false);
+      });
+      return () => { cancelled = true; };
+    }
+
     if (!sessionId) {
       return;
     }
