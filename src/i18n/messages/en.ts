@@ -68,6 +68,23 @@ export const enMessages = {
   pwaUpdateReadyDescription:
     "Refresh to load the latest safety and store improvements.",
   pwaUpdateNow: "Update now",
+  pwaLoadingLabel: "PawPal is loading",
+  notFoundEyebrow: "Page not found",
+  notFoundTitle: "This PawPal route is not available.",
+  notFoundDescription:
+    "The link may be old, private, or missing a valid pet, post, group, or profile ID. Start from a trusted PawPal page instead.",
+  notFoundBackHome: "Back home",
+  notFoundShopSmartTags: "Shop smart tags",
+  notFoundScannedTagTitle: "Scanned a tag?",
+  notFoundScannedTagCopy:
+    "Check the printed code and try the full NFC or QR link again.",
+  notFoundLocalHelpTitle: "Looking for local help?",
+  notFoundLocalHelpCopy:
+    "The live Globe keeps places, weather, and community needs close.",
+  rootErrorPageTitle: "PawPal could not load this page",
+  rootErrorFallbackDescription:
+    "A connection or rendering issue interrupted this view.",
+  rootErrorTryAgain: "Try again",
   homeHeroAriaLabel: "PawPal pet safety for every walk",
   homeHeroLineOne: "PawPal pet safety",
   homeHeroLineTwo: "for every walk",
