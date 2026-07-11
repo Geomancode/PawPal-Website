@@ -162,6 +162,20 @@
     box-shadow: 0 20px 54px color-mix(in srgb, var(--color-paw-shadow-ink) 34%, transparent);
   }
 
+  .admin-shell-header {
+    border-color: color-mix(in srgb, var(--color-paw-trust) 24%, transparent);
+    background:
+      linear-gradient(145deg, color-mix(in srgb, var(--color-paw-panel) 96%, transparent), color-mix(in srgb, var(--color-paw-panel-subtle) 90%, transparent)),
+      linear-gradient(90deg, color-mix(in srgb, var(--color-paw-primary) 8%, transparent), color-mix(in srgb, var(--color-paw-trust) 6%, transparent));
+    box-shadow: 0 20px 54px color-mix(in srgb, var(--color-paw-shadow-ink) 34%, transparent);
+  }
+
+  .admin-shell-header::before {
+    background:
+      linear-gradient(90deg, color-mix(in srgb, var(--color-paw-primary) 6%, transparent) 1px, transparent 1px),
+      linear-gradient(0deg, color-mix(in srgb, var(--color-paw-trust) 5%, transparent) 1px, transparent 1px);
+  }
+
   .auth-trust-panel,
   .support-route-panel,
   .support-route-step,
