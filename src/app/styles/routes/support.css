@@ -65,7 +65,7 @@
   inset: auto -1.5rem -2rem auto;
   width: 8rem;
   height: 8rem;
-  border-radius: 999px;
+  border-radius: var(--radius-paw-pill);
   background: radial-gradient(circle, color-mix(in srgb, var(--color-paw-trust) 12%, transparent), transparent 64%);
 }
 

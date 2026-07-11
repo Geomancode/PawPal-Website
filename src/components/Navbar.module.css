@@ -38,7 +38,8 @@
 }
 
 .siteNavMap .navMobilePanel {
-  border-radius: 0 0 var(--radius-paw-md) var(--radius-paw-md);
+  border-bottom-right-radius: var(--radius-paw-card);
+  border-bottom-left-radius: var(--radius-paw-card);
   background: color-mix(in srgb, var(--color-paw-panel) 94%, transparent);
 }
 

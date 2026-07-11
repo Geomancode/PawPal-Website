@@ -66,7 +66,7 @@ function UserBubble({ text }: { text: string }) {
   return (
     <div className="flex justify-end mb-3">
       <div
-        className="max-w-[80%] px-4 py-2.5 rounded-2xl rounded-br-md bg-paw-primary text-sm text-paw-on-primary leading-relaxed shadow-paw-action"
+        className="max-w-[80%] px-4 py-2.5 rounded-paw-panel [border-bottom-right-radius:var(--radius-paw-xs)] bg-paw-primary text-sm text-paw-on-primary leading-relaxed shadow-paw-action"
       >
         {text}
       </div>
@@ -83,7 +83,7 @@ function AssistantBubble({ text }: { text: string }) {
         <div className="w-6 h-6 rounded-full bg-gradient-to-br from-paw-trust to-paw-primary flex items-center justify-center shrink-0 mt-0.5">
           <Sparkles className="w-3 h-3 text-paw-on-primary" />
         </div>
-        <div className="px-4 py-2.5 rounded-2xl rounded-bl-md bg-paw-panel/90 border border-paw-border shadow-sm text-sm text-paw-body leading-relaxed whitespace-pre-wrap">
+        <div className="px-4 py-2.5 rounded-paw-panel [border-bottom-left-radius:var(--radius-paw-xs)] bg-paw-panel/90 border border-paw-border shadow-sm text-sm text-paw-body leading-relaxed whitespace-pre-wrap">
           {text}
         </div>
       </div>
@@ -276,7 +276,7 @@ function FoodSafetyCard({ data, t }: { data: Record<string, unknown>; t: GlobeTr
           return (
             <div
               key={i}
-              className={`px-4 py-3 rounded-xl border text-sm ${
+              className={`px-4 py-3 rounded-paw-card border text-sm ${
                 isDangerous
                   ? "bg-paw-danger-soft border-paw-danger/25"
                   : "bg-paw-success-soft border-paw-success/25"

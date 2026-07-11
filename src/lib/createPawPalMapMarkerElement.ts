@@ -80,7 +80,7 @@ function createCore(icon: string, color: string): HTMLElement {
     height: ${CORE_SIZE}px;
     transform: translateX(-50%);
     padding: 4px;
-    border-radius: 999px;
+    border-radius: var(--radius-paw-pill);
     background: var(--color-paw-panel);
     border: 2px solid var(--color-paw-panel-low);
     box-shadow:
@@ -93,7 +93,7 @@ function createCore(icon: string, color: string): HTMLElement {
     width: 100%;
     height: 100%;
     padding: 3px;
-    border-radius: 999px;
+    border-radius: var(--radius-paw-pill);
     border: 3px solid ${color};
     background:
       linear-gradient(135deg, color-mix(in srgb, ${color} 14%, transparent), var(--color-paw-panel));
@@ -106,7 +106,7 @@ function createCore(icon: string, color: string): HTMLElement {
   glyph.style.cssText = `
     width: 100%;
     height: 100%;
-    border-radius: 999px;
+    border-radius: var(--radius-paw-pill);
     background: color-mix(in srgb, ${color} 16%, var(--color-paw-panel));
     display: flex;
     align-items: center;
@@ -152,7 +152,7 @@ function createLabel(label: string, color: string): HTMLElement {
     align-items: center;
     gap: 6px;
     padding: 5px 9px 5px 8px;
-    border-radius: 999px;
+    border-radius: var(--radius-paw-pill);
     background: color-mix(in srgb, var(--color-paw-panel) 96%, transparent);
     border: 1px solid color-mix(in srgb, ${color} 30%, transparent);
     box-shadow: var(--shadow-paw-control);
@@ -165,7 +165,7 @@ function createLabel(label: string, color: string): HTMLElement {
     width: 7px;
     height: 7px;
     flex: 0 0 auto;
-    border-radius: 999px;
+    border-radius: var(--radius-paw-pill);
     background: ${color};
     box-shadow: 0 0 7px color-mix(in srgb, ${color} 40%, transparent);
   `;

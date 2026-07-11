@@ -156,7 +156,7 @@ export default function GlobeTutorial({ t }: { t: GlobeTranslation }) {
         initial={shouldReduceMotion ? false : { opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: shouldReduceMotion ? 0 : 0.4 }}
-        className="fixed z-[9999] pointer-events-none rounded-2xl"
+        className="fixed z-[9999] pointer-events-none rounded-paw-panel"
         style={{
           top: targetRect.top - 14,
           left: targetRect.left - 14,

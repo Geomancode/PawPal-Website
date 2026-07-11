@@ -656,7 +656,7 @@ export default function ChatBottomSheet({ mapRef, t }: ChatBottomSheetProps) {
                   <div className="w-6 h-6 rounded-full bg-gradient-to-br from-paw-trust to-paw-primary flex items-center justify-center">
                     <Sparkles className="w-3 h-3 text-paw-on-primary" />
                   </div>
-                  <div className="flex gap-1 px-3 py-2 rounded-2xl bg-paw-panel/90 border border-paw-border shadow-sm">
+                  <div className="flex gap-1 px-3 py-2 rounded-paw-panel bg-paw-panel/90 border border-paw-border shadow-sm">
                     <div
                       className="w-2 h-2 rounded-full bg-paw-trust animate-bounce"
                       style={{ animationDelay: "0ms" }}
