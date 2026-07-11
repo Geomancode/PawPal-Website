@@ -689,7 +689,7 @@ export const deMessages = {
   tagPageNotListed: "Nicht angegeben",
   tagPageNoPublicNotes: "Keine öffentlichen Hinweise",
   tagPageScannedBadge: "PawPal Anhänger gescannt",
-  tagPageHelpPetGetHome: "Hilf {petName}, nach Hause zu kommen.",
+  tagPageHelpPetGetHome: "{petName} sicher nach Hause bringen.",
   tagPageSafetyProfileManagedBy: "Sicherheitsprofil verwaltet von {ownerLabel}.",
   tagPageContactOwnerNow: "Halter jetzt kontaktieren",
   tagPageOwnerSharedPublicEmail:
