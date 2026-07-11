@@ -30,9 +30,9 @@ import type { MessageKey } from "@/i18n/messages/en";
 import { useRouteTranslations } from "@/i18n/useRouteTranslations";
 
 const STEPS = [
-  { id: 1, labelKey: "checkoutStepShipping", icon: MapPin },
-  { id: 2, labelKey: "checkoutStepReview", icon: Package },
-  { id: 3, labelKey: "checkoutStepPayment", icon: CreditCard },
+  { id: 1, icon: MapPin },
+  { id: 2, icon: Package },
+  { id: 3, icon: CreditCard },
 ] as const;
 
 const REDUCED_MOTION_QUERY = "(prefers-reduced-motion: reduce)";
@@ -84,6 +84,12 @@ function StepIndicator({ current, t }: { current: number; t: CheckoutTranslation
       {STEPS.map((step, i) => {
         const done = current > step.id;
         const active = current === step.id;
+        const label =
+          step.id === 1
+            ? t("checkoutStepShipping")
+            : step.id === 2
+              ? t("checkoutStepReview")
+              : t("checkoutStepPayment");
         return (
           <div key={step.id} className="flex items-center gap-2">
             <Badge
@@ -97,7 +103,7 @@ function StepIndicator({ current, t }: { current: number; t: CheckoutTranslation
               aria-current={active ? "step" : undefined}
             >
               <step.icon className="h-4 w-4" aria-hidden="true" />
-              <span className="hidden sm:inline">{t(step.labelKey)}</span>
+              <span className="hidden sm:inline">{label}</span>
             </Badge>
             {i < STEPS.length - 1 && (
               <div className={`h-0.5 w-8 ${done ? "bg-paw-success" : "bg-paw-border"}`} />

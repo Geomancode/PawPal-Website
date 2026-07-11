@@ -31,19 +31,13 @@ type OrderStatus = Order["status"];
 
 const STATUS_CONFIG: Record<
   OrderStatus,
-  { tone: "warning" | "trust" | "success"; icon: typeof Clock; labelKey: MessageKey }
+  { tone: "warning" | "trust" | "success"; icon: typeof Clock }
 > = {
-  processing: { tone: "warning", icon: Clock, labelKey: "ordersStatusProcessing" },
-  shipped: { tone: "trust", icon: Truck, labelKey: "ordersStatusShipped" },
-  delivered: { tone: "success", icon: CheckCircle2, labelKey: "ordersStatusDelivered" },
+  processing: { tone: "warning", icon: Clock },
+  shipped: { tone: "trust", icon: Truck },
+  delivered: { tone: "success", icon: CheckCircle2 },
 };
 
-const PROGRESS_STEPS: MessageKey[] = [
-  "ordersProgressPlaced",
-  "ordersStatusProcessing",
-  "ordersStatusShipped",
-  "ordersStatusDelivered",
-];
 const STATUS_INDEX: Record<OrderStatus, number> = {
   processing: 1,
   shipped: 2,
@@ -54,6 +48,18 @@ function OrderCard({ order, t }: { order: Order; t: OrdersTranslation }) {
   const [expanded, setExpanded] = useState(false);
   const shouldReduceMotion = useReducedMotionPreference();
   const status = STATUS_CONFIG[order.status] || STATUS_CONFIG.processing;
+  const statusLabel =
+    order.status === "shipped"
+      ? t("ordersStatusShipped")
+      : order.status === "delivered"
+        ? t("ordersStatusDelivered")
+        : t("ordersStatusProcessing");
+  const progressSteps = [
+    t("ordersProgressPlaced"),
+    t("ordersStatusProcessing"),
+    t("ordersStatusShipped"),
+    t("ordersStatusDelivered"),
+  ];
   const StatusIcon = status.icon;
   const date = new Date(order.createdAt);
   const dateStr = date.toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" });
@@ -83,7 +89,7 @@ function OrderCard({ order, t }: { order: Order; t: OrdersTranslation }) {
               <p className="font-mono text-sm font-bold text-paw-ink">{order.id}</p>
               <Badge tone={status.tone}>
                 <StatusIcon className="h-3 w-3" aria-hidden="true" />
-                {t(status.labelKey)}
+                {statusLabel}
               </Badge>
             </div>
             <p className="mt-1 text-sm text-paw-muted">
@@ -113,13 +119,13 @@ function OrderCard({ order, t }: { order: Order; t: OrdersTranslation }) {
             >
               <div className="space-y-5 border-t border-paw-border px-5 pb-6 pt-5 sm:px-6">
                 <div className="flex flex-wrap items-center gap-2">
-                  {PROGRESS_STEPS.map((labelKey, index) => {
+                  {progressSteps.map((label, index) => {
                     const done = index <= currentStatusIndex;
                     return (
-                      <div key={labelKey} className="flex items-center gap-2">
+                      <div key={label} className="flex items-center gap-2">
                         <div className={`h-3 w-3 rounded-full ${done ? "bg-paw-success" : "bg-paw-border"}`} />
                         <span className={`text-xs font-bold ${done ? "text-paw-success" : "text-paw-muted"}`}>
-                          {t(labelKey)}
+                          {label}
                         </span>
                         {index < PROGRESS_STEPS.length - 1 && (
                           <div className={`h-0.5 w-6 ${done ? "bg-paw-success/40" : "bg-paw-border"}`} />

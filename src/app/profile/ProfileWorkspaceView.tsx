@@ -87,51 +87,62 @@ type ProfileWorkspaceViewProps = {
   onToggleHealthBadge: (tag: string) => void;
 };
 
-const TRUST_LABELS: Record<number, { labelKey: MessageKey; color: string }> = {
-  1: { labelKey: "profileTrustNewcomer", color: "bg-paw-panel-subtle text-paw-muted" },
-  2: { labelKey: "profileTrustFriendly", color: "bg-paw-trust-soft text-paw-on-trust-soft" },
-  3: { labelKey: "profileTrustTrusted", color: "bg-paw-success-soft text-paw-on-success-soft" },
-  4: { labelKey: "profileTrustVeteran", color: "bg-paw-primary-soft text-paw-on-primary-soft" },
-  5: { labelKey: "profileTrustLegend", color: "bg-paw-warning-soft text-paw-on-warning-soft" },
+const LEVEL_COLORS: Record<number, string> = {
+  1: "bg-paw-panel-subtle text-paw-muted",
+  2: "bg-paw-trust-soft text-paw-on-trust-soft",
+  3: "bg-paw-success-soft text-paw-on-success-soft",
+  4: "bg-paw-primary-soft text-paw-on-primary-soft",
+  5: "bg-paw-warning-soft text-paw-on-warning-soft",
 };
 
 const SPECIES_OPTIONS = [
-  { id: "canine", emoji: "🐕", labelKey: "profileSpeciesDog" },
-  { id: "feline", emoji: "🐈", labelKey: "profileSpeciesCat" },
-  { id: "lagomorph", emoji: "🐰", labelKey: "profileSpeciesRabbit" },
-  { id: "bird", emoji: "🦜", labelKey: "profileSpeciesBird" },
-  { id: "reptile", emoji: "🦎", labelKey: "profileSpeciesReptile" },
-  { id: "fish", emoji: "🐠", labelKey: "profileSpeciesFish" },
-  { id: "small_mammal", emoji: "🐹", labelKey: "profileSpeciesSmallMammal" },
-  { id: "equine", emoji: "🐴", labelKey: "profileSpeciesHorse" },
-  { id: "other", emoji: "🐾", labelKey: "profileSpeciesOther" },
+  { id: "canine", emoji: "🐕" },
+  { id: "feline", emoji: "🐈" },
+  { id: "lagomorph", emoji: "🐰" },
+  { id: "bird", emoji: "🦜" },
+  { id: "reptile", emoji: "🦎" },
+  { id: "fish", emoji: "🐠" },
+  { id: "small_mammal", emoji: "🐹" },
+  { id: "equine", emoji: "🐴" },
+  { id: "other", emoji: "🐾" },
 ] as const;
 
 const BLOOD_TYPES = ["Unknown", "DEA 1.1+", "DEA 1.1-", "DEA 1.2+", "DEA 3", "DEA 4", "DEA 5", "DEA 7", "Type A", "Type B", "Type AB"];
-const SOCIAL_PRESETS: Array<{ value: string; labelKey: MessageKey }> = [
-  { value: "Friendly", labelKey: "profileSocialFriendly" },
-  { value: "High Energy", labelKey: "profileSocialHighEnergy" },
-  { value: "Slow to warm up", labelKey: "profileSocialSlowToWarm" },
-  { value: "Good with Kids", labelKey: "profileSocialGoodWithKids" },
-  { value: "Good with Dogs", labelKey: "profileSocialGoodWithDogs" },
-  { value: "Not good with Cats", labelKey: "profileSocialNotGoodWithCats" },
-  { value: "Vocal", labelKey: "profileSocialVocal" },
-  { value: "Cuddly", labelKey: "profileSocialCuddly" },
-];
-const HEALTH_PRESETS: Array<{ value: string; labelKey: MessageKey }> = [
-  { value: "Fully Vaccinated", labelKey: "profileHealthFullyVaccinated" },
-  { value: "Neutered", labelKey: "profileHealthNeutered" },
-  { value: "Spayed", labelKey: "profileHealthSpayed" },
-  { value: "Special Diet", labelKey: "profileHealthSpecialDiet" },
-  { value: "Allergies", labelKey: "profileHealthAllergies" },
-];
+const SOCIAL_PRESETS = ["Friendly", "High Energy", "Slow to warm up", "Good with Kids", "Good with Dogs", "Not good with Cats", "Vocal", "Cuddly"];
+const HEALTH_PRESETS = ["Fully Vaccinated", "Neutered", "Spayed", "Special Diet", "Allergies"];
 
-const TRAIT_LABEL_KEYS = new Map(
-  [...SOCIAL_PRESETS, ...HEALTH_PRESETS].map(({ value, labelKey }) => [
-    value,
-    labelKey,
-  ]),
-);
+function speciesLabel(id: string, t: ProfileTranslation) {
+  switch (id) {
+    case "canine": return t("profileSpeciesDog");
+    case "feline": return t("profileSpeciesCat");
+    case "lagomorph": return t("profileSpeciesRabbit");
+    case "bird": return t("profileSpeciesBird");
+    case "reptile": return t("profileSpeciesReptile");
+    case "fish": return t("profileSpeciesFish");
+    case "small_mammal": return t("profileSpeciesSmallMammal");
+    case "equine": return t("profileSpeciesHorse");
+    default: return t("profileSpeciesOther");
+  }
+}
+
+function traitLabel(value: string, t: ProfileTranslation) {
+  switch (value) {
+    case "Friendly": return t("profileSocialFriendly");
+    case "High Energy": return t("profileSocialHighEnergy");
+    case "Slow to warm up": return t("profileSocialSlowToWarm");
+    case "Good with Kids": return t("profileSocialGoodWithKids");
+    case "Good with Dogs": return t("profileSocialGoodWithDogs");
+    case "Not good with Cats": return t("profileSocialNotGoodWithCats");
+    case "Vocal": return t("profileSocialVocal");
+    case "Cuddly": return t("profileSocialCuddly");
+    case "Fully Vaccinated": return t("profileHealthFullyVaccinated");
+    case "Neutered": return t("profileHealthNeutered");
+    case "Spayed": return t("profileHealthSpayed");
+    case "Special Diet": return t("profileHealthSpecialDiet");
+    case "Allergies": return t("profileHealthAllergies");
+    default: return value;
+  }
+}
 
 function computeAge(birthDate: string | null): number | null {
   if (!birthDate) return null;
@@ -183,7 +194,17 @@ export default function ProfileWorkspaceView({
   onToggleSocialTag,
   onToggleHealthBadge,
 }: ProfileWorkspaceViewProps) {
-  const trust = TRUST_LABELS[profile.trust_level] || TRUST_LABELS[1];
+  const trustColor = LEVEL_COLORS[profile.trust_level] || LEVEL_COLORS[1];
+  const trustLabel =
+    profile.trust_level === 2
+      ? t("profileTrustFriendly")
+      : profile.trust_level === 3
+        ? t("profileTrustTrusted")
+        : profile.trust_level === 4
+          ? t("profileTrustVeteran")
+          : profile.trust_level === 5
+            ? t("profileTrustLegend")
+            : t("profileTrustNewcomer");
   const memberSince = new Date(profile.created_at).toLocaleDateString("en-US", { year: "numeric", month: "long" });
   const displayName = profile.display_name || profile.username;
   const nfcReadyPets = pets.filter((pet) => Boolean(pet.nfc_tag_uid)).length;
@@ -309,9 +330,9 @@ export default function ProfileWorkspaceView({
                       <MapPin className="h-3.5 w-3.5" aria-hidden="true" />
                       <span className="break-words">{profile.location_city || t("profileCityNotListed")}</span>
                     </span>
-                    <span className={`profile-meta-chip ${trust.color}`}>
+                    <span className={`profile-meta-chip ${trustColor}`}>
                       <Shield className="h-3.5 w-3.5" aria-hidden="true" />
-                      {t(trust.labelKey)}
+                      {trustLabel}
                     </span>
                     <span className="profile-meta-chip text-paw-primary bg-paw-primary-soft">
                       <PawPrint className="h-3.5 w-3.5" aria-hidden="true" />
@@ -440,7 +461,7 @@ export default function ProfileWorkspaceView({
                               ? "bg-paw-primary text-paw-accent-ink border-paw-primary"
                               : "bg-paw-panel-subtle text-paw-body border-paw-border hover:border-paw-primary/40"
                           }`}>
-                          <span aria-hidden="true">{s.emoji}</span> {t(s.labelKey)}
+                          <span aria-hidden="true">{s.emoji}</span> {speciesLabel(s.id, t)}
                         </button>
                       ))}
                     </div>
@@ -472,14 +493,14 @@ export default function ProfileWorkspaceView({
                     <legend className="text-xs font-bold text-paw-muted uppercase tracking-wider">{t("profilePersonalityTagsLabel")}</legend>
                     <div className="flex flex-wrap gap-1.5 mt-2">
                       {SOCIAL_PRESETS.map((tag) => (
-                        <button key={tag.value} type="button" onClick={() => onToggleSocialTag(tag.value)}
-                          aria-pressed={petSocialTags.includes(tag.value)}
+                        <button key={tag} type="button" onClick={() => onToggleSocialTag(tag)}
+                          aria-pressed={petSocialTags.includes(tag)}
                           className={`px-3 py-1 rounded-paw-sm text-xs font-medium transition-all border ${
-                            petSocialTags.includes(tag.value)
+                            petSocialTags.includes(tag)
                               ? "bg-paw-trust text-paw-accent-ink border-paw-trust"
                               : "bg-paw-trust-soft text-paw-on-trust-soft border-paw-trust/15 hover:border-paw-trust/40"
                           }`}>
-                          {t(tag.labelKey)}
+                          {traitLabel(tag, t)}
                         </button>
                       ))}
                     </div>
@@ -489,14 +510,14 @@ export default function ProfileWorkspaceView({
                     <legend className="text-xs font-bold text-paw-muted uppercase tracking-wider">{t("profileHealthCareLabel")}</legend>
                     <div className="flex flex-wrap gap-1.5 mt-2">
                       {HEALTH_PRESETS.map((tag) => (
-                        <button key={tag.value} type="button" onClick={() => onToggleHealthBadge(tag.value)}
-                          aria-pressed={petHealthBadges.includes(tag.value)}
+                        <button key={tag} type="button" onClick={() => onToggleHealthBadge(tag)}
+                          aria-pressed={petHealthBadges.includes(tag)}
                           className={`px-3 py-1 rounded-paw-sm text-xs font-medium transition-all border ${
-                            petHealthBadges.includes(tag.value)
+                            petHealthBadges.includes(tag)
                               ? "bg-paw-success text-paw-accent-ink border-paw-success"
                               : "bg-paw-success-soft text-paw-on-success-soft border-paw-success/15 hover:border-paw-success/40"
                           }`}>
-                          {t(tag.labelKey)}
+                          {traitLabel(tag, t)}
                         </button>
                       ))}
                     </div>
@@ -593,14 +614,12 @@ export default function ProfileWorkspaceView({
 
                         {(healthBadges.length > 0 || socialTags.length > 0) ? (
                           <div className="flex flex-wrap gap-1.5 mt-3">
-                            {healthBadges.map((badge) => {
-                              const labelKey = TRAIT_LABEL_KEYS.get(badge);
-                              return <span key={badge} className="profile-tag profile-tag-care">{labelKey ? t(labelKey) : badge}</span>;
-                            })}
-                            {socialTags.map((tag) => {
-                              const labelKey = TRAIT_LABEL_KEYS.get(tag);
-                              return <span key={tag} className="profile-tag profile-tag-social">{labelKey ? t(labelKey) : tag}</span>;
-                            })}
+                            {healthBadges.map((badge) => (
+                              <span key={badge} className="profile-tag profile-tag-care">{traitLabel(badge, t)}</span>
+                            ))}
+                            {socialTags.map((tag) => (
+                              <span key={tag} className="profile-tag profile-tag-social">{traitLabel(tag, t)}</span>
+                            ))}
                           </div>
                         ) : (
                           <p className="mt-3 text-xs text-paw-muted">{t("profileNoTraitsListed")}</p>
