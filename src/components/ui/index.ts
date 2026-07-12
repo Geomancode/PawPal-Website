@@ -16,3 +16,5 @@ export { default as ProfileStat } from "./ProfileStat";
 export { default as Sheet } from "./Sheet";
 export { default as StatusMessage } from "./StatusMessage";
 export type { StatusTone, StatusVariant } from "./StatusMessage";
+export { default as StatePanel } from "./StatePanel";
+export type { StatePanelLayout, StatePanelProps, StatePanelState } from "./StatePanel";
