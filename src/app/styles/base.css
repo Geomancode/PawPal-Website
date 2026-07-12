@@ -36,7 +36,7 @@ main:focus {
   background: var(--color-paw-ink);
   color: var(--color-paw-inverse-ink);
   padding: 0.7rem 0.9rem;
-  font-size: 0.88rem;
+  font-size: var(--text-paw-type-body);
   font-weight: 900;
   box-shadow: var(--shadow-paw-control);
   transition: transform 180ms ease;

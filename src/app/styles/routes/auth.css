@@ -109,6 +109,6 @@
   background: var(--color-paw-primary-soft);
   color: var(--color-paw-on-primary-soft);
   padding: 0.45rem 0.55rem;
-  font-size: 0.72rem;
+  font-size: var(--text-paw-type-caption);
   font-weight: 900;
 }

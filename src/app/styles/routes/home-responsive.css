@@ -24,7 +24,6 @@
   .hero-stage .hero-headline {
     max-width: 100%;
     overflow-wrap: break-word;
-    font-size: clamp(2.35rem, 12vw, 2.75rem);
     line-height: 1.03;
   }
 

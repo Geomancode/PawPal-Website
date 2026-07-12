@@ -32,11 +32,11 @@
 
   .profile-command-header {
     gap: 0.6rem;
-    margin-bottom: 0.75rem !important;
+    margin-bottom: 0.75rem;
   }
 
   .profile-command-header h1 {
-    font-size: 1.75rem;
+    font-size: var(--text-paw-type-h1);
     line-height: 1.1;
   }
 
@@ -46,26 +46,26 @@
     overflow: hidden;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
-    font-size: 0.86rem;
+    font-size: var(--text-paw-type-body);
     line-height: 1.45;
   }
 
   .profile-command-chip {
     min-height: 2.35rem;
     padding: 0.5rem 0.65rem;
-    font-size: 0.76rem;
+    font-size: var(--text-paw-type-caption);
   }
 
   .profile-workspace-grid {
     gap: 0.65rem;
-    margin-bottom: 0.85rem !important;
+    margin-bottom: 0.85rem;
   }
 
   .profile-owner-card,
   .profile-readiness-card,
   .profile-form-card {
     border-radius: var(--radius-paw-md);
-    padding: 0.85rem !important;
+    padding: 0.85rem;
   }
 
   .profile-owner-topline {
@@ -76,19 +76,19 @@
   }
 
   .profile-owner-topline .profile-avatar {
-    width: 3.25rem !important;
-    height: 3.25rem !important;
+    width: 3.25rem;
+    height: 3.25rem;
     border-radius: var(--radius-paw-md);
-    font-size: 1.2rem;
+    font-size: var(--text-paw-type-h3);
   }
 
   .profile-owner-topline .profile-avatar > div {
-    font-size: 1.35rem;
+    font-size: var(--text-paw-type-h2);
   }
 
   .profile-owner-topline h2 {
     margin-top: 0.1rem;
-    font-size: 1.18rem;
+    font-size: var(--text-paw-type-h3);
     line-height: 1.12;
   }
 
@@ -96,11 +96,11 @@
     grid-column: 1 / -1;
     min-height: 2.25rem;
     padding: 0.55rem 0.7rem;
-    font-size: 0.78rem;
+    font-size: var(--text-paw-type-caption);
   }
 
   .profile-owner-card > .mt-5 {
-    margin-top: 0.65rem !important;
+    margin-top: 0.65rem;
   }
 
   .profile-owner-card > .mt-5 > p {
@@ -108,18 +108,18 @@
     overflow: hidden;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
-    font-size: 0.82rem;
+    font-size: var(--text-paw-type-body);
     line-height: 1.42;
   }
 
   .profile-meta-grid {
     gap: 0.35rem;
-    margin-top: 0.6rem !important;
+    margin-top: 0.6rem;
   }
 
   .profile-meta-chip {
     padding: 0.3rem 0.45rem;
-    font-size: 0.68rem;
+    font-size: var(--text-paw-type-caption);
   }
 
   .profile-meta-chip:nth-child(4) {
@@ -131,12 +131,12 @@
   }
 
   .profile-readiness-card > .flex:first-child h2 {
-    font-size: 1.08rem;
+    font-size: var(--text-paw-type-h3);
     line-height: 1.18;
   }
 
   .profile-readiness-card > .mt-5 {
-    margin-top: 0.65rem !important;
+    margin-top: 0.65rem;
   }
 
   .profile-readiness-row {
@@ -153,14 +153,14 @@
   .profile-readiness-value {
     min-width: 2.35rem;
     padding: 0.3rem 0.42rem;
-    font-size: 0.78rem;
+    font-size: var(--text-paw-type-caption);
   }
 
   .profile-install-compact {
     grid-template-columns: minmax(0, 1fr) auto;
     align-items: center;
     gap: 0.55rem;
-    margin-top: 0.65rem !important;
+    margin-top: 0.65rem;
     padding: 0.65rem;
   }
 
@@ -182,18 +182,18 @@
   }
 
   .profile-readiness-card > .profile-action-button {
-    margin-top: 0.65rem !important;
+    margin-top: 0.65rem;
   }
 
   .profile-section-heading {
     flex-direction: row;
     align-items: center;
     gap: 0.65rem;
-    margin-bottom: 0.65rem !important;
+    margin-bottom: 0.65rem;
   }
 
   .profile-section-heading h2 {
-    font-size: 1.05rem;
+    font-size: var(--text-paw-type-h3);
   }
 
   .profile-section-heading .profile-action-button {
@@ -245,12 +245,12 @@
 
   .globe-fallback-title {
     max-width: 20rem;
-    font-size: 2.35rem;
+    font-size: var(--text-paw-type-display);
   }
 
   .globe-fallback-body {
     max-width: 22rem;
-    font-size: 0.92rem;
+    font-size: var(--text-paw-type-body);
     line-height: 1.6;
   }
 
@@ -261,7 +261,7 @@
   .globe-fallback-action {
     min-height: 2.75rem;
     padding: 0.72rem 0.82rem;
-    font-size: 0.78rem;
+    font-size: var(--text-paw-type-caption);
   }
 
   .globe-fallback-preview {
@@ -275,7 +275,7 @@
 
   .globe-fallback-preview .globe-static-preview-card {
     padding: 0.58rem 0.65rem;
-    font-size: 0.68rem;
+    font-size: var(--text-paw-type-caption);
   }
 
   .globe-weather-bar {
@@ -291,7 +291,7 @@
     align-items: flex-start;
     justify-content: flex-start;
     gap: 0.38rem;
-    font-size: 0.72rem;
+    font-size: var(--text-paw-type-caption);
   }
 
   .globe-weather-item {
@@ -308,7 +308,7 @@
 
   .globe-weather-suffix {
     padding-inline: 0.32rem;
-    font-size: 0.62rem;
+    font-size: var(--text-paw-type-caption);
   }
 
   .globe-layer-stack {

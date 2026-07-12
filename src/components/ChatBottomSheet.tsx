@@ -631,7 +631,7 @@ export default function ChatBottomSheet({ mapRef, t }: ChatBottomSheetProps) {
                     <button
                       key={chip}
                       onClick={() => { setInput(chip); sendMessage(chip); }}
-                      className="px-2.5 py-1 text-[11px] rounded-full bg-paw-trust-soft text-paw-on-trust-soft hover:bg-paw-primary-soft transition-colors border border-paw-trust/15 whitespace-nowrap"
+                      className="px-2.5 py-1 text-paw-type-caption rounded-full bg-paw-trust-soft text-paw-on-trust-soft hover:bg-paw-primary-soft transition-colors border border-paw-trust/15 whitespace-nowrap"
                     >
                       {chip}
                     </button>

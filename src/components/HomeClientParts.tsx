@@ -205,7 +205,7 @@ export function HeroSignalRail() {
           </span>
           <span>
             <span className="block text-xs font-black text-paw-ink">{signal.value}</span>
-            <span className="block text-[11px] font-semibold text-paw-muted">{signal.label}</span>
+            <span className="block text-paw-type-caption font-semibold text-paw-muted">{signal.label}</span>
           </span>
         </div>
       ))}
@@ -597,7 +597,7 @@ export function BentoFeatureGrid() {
                   loading="lazy"
                   className="object-cover"
                 />
-                <span className="absolute left-3 top-3 rounded-paw-control bg-paw-panel-low px-2 py-1 text-[10px] font-black text-paw-ink shadow-paw-control">
+                <span className="absolute left-3 top-3 rounded-paw-control bg-paw-panel-low px-2 py-1 text-paw-type-caption font-black text-paw-ink shadow-paw-control">
                   {image.title}
                 </span>
               </motion.div>

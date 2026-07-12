@@ -61,8 +61,8 @@
 }
 
 .admin-page-shell {
-  background: transparent !important;
-  padding-top: calc(env(safe-area-inset-top, 0px) + 8rem) !important;
+  background: transparent;
+  padding-top: calc(env(safe-area-inset-top, 0px) + 8rem);
 }
 
 .admin-page-shell > div {
