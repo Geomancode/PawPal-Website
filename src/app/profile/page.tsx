@@ -2,9 +2,9 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { AlertCircle, Loader2 } from "lucide-react";
 import type { User } from "@supabase/supabase-js";
 import { useAuth } from "@/components/AuthProvider";
+import { StatePanel } from "@/components/ui";
 import { supabase } from "@/lib/supabase";
 import ProfileWorkspaceView, { type Pet, type PetSocialTraits, type Profile } from "./ProfileWorkspaceView";
 import PushSubscriptionSettings from "./PushSubscriptionSettings";
@@ -252,23 +252,23 @@ export default function ProfilePage() {
 
   if ((!ACCOUNT_FIXTURES_ENABLED && authLoading) || loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-paw-page pt-20">
+      <>
         {loader}
-        <Loader2 className="w-8 h-8 text-paw-primary animate-spin" />
-      </div>
+        <StatePanel state="loading" title={t("pwaLoadingLabel")} />
+      </>
     );
   }
 
   if (!profile) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-paw-page px-4 pt-20">
+      <>
         {loader}
-        <div className="max-w-md rounded-paw-lg border border-paw-danger/20 bg-paw-panel p-6 text-center shadow-paw-panel">
-          <AlertCircle className="mx-auto mb-3 h-8 w-8 text-paw-danger" />
-          <h1 className="text-lg font-extrabold text-paw-ink">{t("profileUnavailableTitle")}</h1>
-          <p className="mt-2 text-sm text-paw-muted">{profileError ?? t("profileUnavailableDescription")}</p>
-        </div>
-      </div>
+        <StatePanel
+          state="error"
+          title={t("profileUnavailableTitle")}
+          body={profileError ?? t("profileUnavailableDescription")}
+        />
+      </>
     );
   }
 

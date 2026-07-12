@@ -38,6 +38,7 @@ import {
   PageShell,
   ProductCard as StoreProductCard,
   Sheet,
+  StatusMessage,
 } from "@/components/ui";
 import { useI18n } from "@/i18n/I18nProvider";
 import type { MessageKey } from "@/i18n/messages/en";
@@ -160,9 +161,9 @@ function SubscriptionUpgradePanel({
       </div>
 
       {error && (
-        <div className="rounded-paw-card border border-paw-critical/20 bg-paw-critical-soft px-paw-md py-paw-sm text-sm font-bold text-paw-on-critical-soft">
+        <StatusMessage tone="critical" variant="compact">
           {error}
-        </div>
+        </StatusMessage>
       )}
 
       <div className="grid gap-paw-lg md:grid-cols-2">
