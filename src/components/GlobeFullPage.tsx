@@ -685,14 +685,14 @@ export default function MapGlobeComponent({ t }: { t: GlobeTranslation }) {
             <div className="mb-2 flex items-center justify-between gap-3">
               <div>
                 <p className="text-xs font-black uppercase tracking-[0.16em] text-paw-accent">{t("globeNearbyNeeds")}</p>
-                <p className="text-[11px] font-medium text-paw-muted">
+                <p className="text-paw-type-caption font-medium text-paw-muted">
                   {formatMessage(t("globeNearbyCoordinates"), {
                     coordinates: `${nearbyCenter.lat.toFixed(3)}, ${nearbyCenter.lng.toFixed(3)}`,
                     radius: NEARBY_RADIUS_KM,
                   })}
                 </p>
               </div>
-              <span className="rounded-paw-pill bg-paw-accent-soft px-2 py-1 text-[11px] font-black text-paw-on-accent-soft">
+              <span className="rounded-paw-pill bg-paw-accent-soft px-2 py-1 text-paw-type-caption font-black text-paw-on-accent-soft">
                 {nearbyLoading ? "..." : quests.length}
               </span>
             </div>
@@ -721,7 +721,7 @@ export default function MapGlobeComponent({ t }: { t: GlobeTranslation }) {
             {nearbyQuestTags.length > 0 ? (
               <div className="flex flex-wrap gap-1.5">
                 {nearbyQuestTags.slice(0, 6).map((tag) => (
-                  <span key={tag.type} className="inline-flex items-center gap-1 rounded-paw-pill border border-paw-accent/20 bg-paw-accent-soft px-2.5 py-1 text-[11px] font-bold text-paw-on-accent-soft">
+                  <span key={tag.type} className="inline-flex items-center gap-1 rounded-paw-pill border border-paw-accent/20 bg-paw-accent-soft px-2.5 py-1 text-paw-type-caption font-bold text-paw-on-accent-soft">
                     <span>{tag.emoji}</span>
                     <span>{tag.label}</span>
                     <span className="font-black">{tag.count}</span>
@@ -739,15 +739,15 @@ export default function MapGlobeComponent({ t }: { t: GlobeTranslation }) {
           <div id="globe-layers" className="globe-layer-stack absolute z-40 flex gap-1.5">
             <button onClick={() => setShowQuests(!showQuests)} className={`globe-layer-button flex items-center gap-2 rounded-paw-pill border px-3 py-2 text-xs font-bold transition-all ${showQuests ? "is-active-mission bg-paw-accent text-paw-on-accent border-paw-accent" : "bg-paw-panel/80 text-paw-muted border-paw-border"}`}>
               <PawPrint className="h-3.5 w-3.5" aria-hidden="true" />
-              {t("globeLayerMissions")} {quests.length > 0 && <span className="rounded-paw-pill bg-paw-panel/30 px-1.5 py-0.5 text-[10px]">{quests.length}</span>}
+              {t("globeLayerMissions")} {quests.length > 0 && <span className="rounded-paw-pill bg-paw-panel/30 px-1.5 py-0.5 text-paw-type-caption">{quests.length}</span>}
             </button>
             <button onClick={() => setShowPlaces(!showPlaces)} className={`globe-layer-button flex items-center gap-2 rounded-paw-pill border px-3 py-2 text-xs font-bold transition-all ${showPlaces ? "is-active-place bg-paw-trust text-paw-on-trust border-paw-trust" : "bg-paw-panel/80 text-paw-muted border-paw-border"}`}>
               <MapPin className="h-3.5 w-3.5" aria-hidden="true" />
-              {t("globeLayerPlaces")} {places.length > 0 && <span className="rounded-paw-pill bg-paw-panel/30 px-1.5 py-0.5 text-[10px]">{places.length}</span>}
+              {t("globeLayerPlaces")} {places.length > 0 && <span className="rounded-paw-pill bg-paw-panel/30 px-1.5 py-0.5 text-paw-type-caption">{places.length}</span>}
             </button>
             <button onClick={() => setShowPosts(!showPosts)} className={`globe-layer-button flex items-center gap-2 rounded-paw-pill border px-3 py-2 text-xs font-bold transition-all ${showPosts ? "is-active-post bg-paw-primary text-paw-on-primary border-paw-primary" : "bg-paw-panel/80 text-paw-muted border-paw-border"}`}>
               <MessageCircle className="h-3.5 w-3.5" aria-hidden="true" />
-              {t("globeLayerPosts")} {posts.length > 0 && <span className="rounded-paw-pill bg-paw-panel/30 px-1.5 py-0.5 text-[10px]">{posts.length}</span>}
+              {t("globeLayerPosts")} {posts.length > 0 && <span className="rounded-paw-pill bg-paw-panel/30 px-1.5 py-0.5 text-paw-type-caption">{posts.length}</span>}
             </button>
           </div>
 

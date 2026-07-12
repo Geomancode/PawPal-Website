@@ -757,7 +757,7 @@ function StorePageContent({ t }: { t: StoreTranslation }) {
                 <promise.icon className="h-3.5 w-3.5 sm:h-4 sm:w-4" aria-hidden="true" />
               </span>
               <div>
-                <p className="text-[11px] font-extrabold leading-tight text-paw-ink sm:text-sm">
+                <p className="text-paw-type-caption font-extrabold leading-tight text-paw-ink sm:text-sm">
                   {promise.label}
                 </p>
                 <p className="mt-0.5 hidden text-xs leading-5 text-paw-body sm:block">

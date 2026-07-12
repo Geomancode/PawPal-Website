@@ -333,7 +333,7 @@ function BreedCard({ data, t }: { data: Record<string, unknown>; t: GlobeTransla
                 {String(b.breed_name ?? "")}
               </span>
               {typeof b.species_group === "string" && b.species_group && (
-                <span className="px-2 py-0.5 rounded-full bg-paw-panel text-paw-trust text-[10px] font-bold uppercase">
+                <span className="px-2 py-0.5 rounded-full bg-paw-panel text-paw-trust text-paw-type-caption font-bold uppercase">
                   {b.species_group}
                 </span>
               )}

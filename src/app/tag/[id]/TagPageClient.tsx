@@ -260,7 +260,7 @@ export default function TagPageClient({ pet, owner }: TagPageClientProps) {
 function MiniFact({ label, value }: { label: string; value: string }) {
   return (
     <div className="tag-mini-fact min-w-0 rounded-paw-sm border border-paw-border bg-paw-panel-subtle px-3 py-2">
-      <span className="block text-[10px] font-black uppercase tracking-[0.12em] text-paw-muted">
+      <span className="block text-paw-type-caption font-black uppercase tracking-[0.12em] text-paw-muted">
         {label}
       </span>
       <span className="mt-0.5 block break-words text-xs font-extrabold leading-5 text-paw-ink">
@@ -285,7 +285,7 @@ function InfoTile({
     <div className={tone === "danger" ? "tag-info-tile tag-info-tile-danger" : "tag-info-tile"}>
       <Icon className="h-4 w-4" aria-hidden="true" />
       <span className="min-w-0">
-        <span className="block text-[10px] font-black uppercase tracking-[0.12em] text-paw-muted">
+        <span className="block text-paw-type-caption font-black uppercase tracking-[0.12em] text-paw-muted">
           {label}
         </span>
         <span className="mt-0.5 block break-words text-sm font-extrabold text-paw-ink">

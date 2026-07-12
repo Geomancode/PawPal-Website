@@ -65,7 +65,7 @@
   background: color-mix(in srgb, var(--color-paw-inverse-ink) 82%, transparent);
   color: var(--color-paw-body);
   padding: 0.55rem 0.8rem;
-  font-size: 0.82rem;
+  font-size: var(--text-paw-type-caption);
   font-weight: 900;
   transition: border-color 180ms ease, color 180ms ease, background 180ms ease;
 }

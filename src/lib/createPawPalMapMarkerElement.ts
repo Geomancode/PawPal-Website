@@ -111,7 +111,7 @@ function createCore(icon: string, color: string): HTMLElement {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 21px;
+    font-size: var(--text-paw-type-h2);
     line-height: 1;
     overflow: hidden;
   `;
@@ -176,7 +176,7 @@ function createLabel(label: string, color: string): HTMLElement {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    font-size: 11px;
+    font-size: var(--text-paw-type-caption);
     font-weight: 800;
     line-height: 1.05;
   `;

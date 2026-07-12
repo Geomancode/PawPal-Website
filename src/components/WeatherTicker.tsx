@@ -272,7 +272,7 @@ export default function WeatherTicker({ mapCenter, onRecenterRequest, t }: Weath
         {!weather.isUserLocation && (
           <button
             onClick={handleRecenter}
-            className="shrink-0 ml-3 mr-1 flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-paw-primary/90 hover:bg-paw-primary text-paw-accent-ink text-[11px] font-bold transition-all z-10 shadow-paw-action"
+            className="shrink-0 ml-3 mr-1 flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-paw-primary/90 hover:bg-paw-primary text-paw-accent-ink text-paw-type-caption font-bold transition-all z-10 shadow-paw-action"
             title={t("globeWeatherBackToLocation")}
           >
             <Navigation className="w-3.5 h-3.5" />

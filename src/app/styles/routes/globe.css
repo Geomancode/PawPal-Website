@@ -66,7 +66,7 @@
   background: var(--color-paw-panel-subtle);
   padding: 0.75rem 1rem;
   color: var(--color-paw-ink);
-  font-size: 0.875rem;
+  font-size: var(--text-paw-type-body);
   font-weight: 900;
   line-height: 1;
   box-shadow: 0 18px 38px color-mix(in srgb, var(--color-paw-shadow-ink) 12%, transparent);
@@ -148,7 +148,7 @@
   gap: 0.45rem 0.55rem;
   overflow: visible;
   color: color-mix(in srgb, var(--color-paw-inverse-ink) 96%, transparent);
-  font-size: 0.78rem;
+  font-size: var(--text-paw-type-caption);
   font-weight: 820;
   line-height: 1.2;
 }
@@ -204,14 +204,14 @@
   background: color-mix(in srgb, var(--color-paw-inverse-ink) 18%, transparent);
   padding: 0.12rem 0.38rem;
   color: color-mix(in srgb, var(--color-paw-inverse-ink) 88%, transparent);
-  font-size: 0.68rem;
+  font-size: var(--text-paw-type-caption);
   font-weight: 900;
 }
 
 .globe-hud-panel,
 .globe-layer-button,
 .globe-status-strip {
-  border-color: color-mix(in srgb, var(--color-paw-border) 86%, transparent) !important;
+  border-color: color-mix(in srgb, var(--color-paw-border) 86%, transparent);
   background: color-mix(in srgb, var(--color-paw-inverse-ink) 86%, transparent);
   box-shadow: 0 18px 42px color-mix(in srgb, var(--color-paw-ink) 14%, transparent);
   backdrop-filter: blur(18px);
@@ -248,22 +248,22 @@
 .globe-layer-button.is-active-place,
 .globe-layer-button.is-active-post {
   box-shadow: 0 14px 34px color-mix(in srgb, var(--color-paw-ink) 16%, transparent);
-  color: var(--color-paw-on-action) !important;
+  color: var(--color-paw-on-action);
 }
 
 .globe-layer-button.is-active-mission {
-  border-color: var(--color-paw-accent) !important;
-  background: var(--color-paw-accent) !important;
+  border-color: var(--color-paw-accent);
+  background: var(--color-paw-accent);
 }
 
 .globe-layer-button.is-active-place {
-  border-color: var(--color-paw-trust) !important;
-  background: var(--color-paw-trust) !important;
+  border-color: var(--color-paw-trust);
+  background: var(--color-paw-trust);
 }
 
 .globe-layer-button.is-active-post {
-  border-color: var(--color-paw-primary) !important;
-  background: var(--color-paw-primary) !important;
+  border-color: var(--color-paw-primary);
+  background: var(--color-paw-primary);
 }
 
 .globe-page-shell .maplibregl-popup-content {
@@ -291,14 +291,14 @@
   margin-bottom: var(--spacing-paw-xs);
   color: var(--color-paw-ink);
   font-family: var(--font-sans);
-  font-size: 0.875rem;
+  font-size: var(--text-paw-type-body);
   font-weight: 900;
   line-height: 1.25;
 }
 
 .globe-popup-row {
   color: var(--color-paw-body);
-  font-size: 0.75rem;
+  font-size: var(--text-paw-type-caption);
   font-weight: 700;
   line-height: 1.45;
 }
@@ -325,7 +325,7 @@
   background: var(--color-paw-warning-soft);
   color: var(--color-paw-on-warning-soft);
   padding: 0.45rem 0.55rem;
-  font-size: 0.68rem;
+  font-size: var(--text-paw-type-caption);
   font-weight: 800;
   line-height: 1.35;
 }
@@ -343,7 +343,7 @@
   border-radius: var(--radius-paw-md);
   padding: 0.65rem 0.85rem;
   color: var(--color-paw-body);
-  font-size: 0.75rem;
+  font-size: var(--text-paw-type-caption);
   font-weight: 800;
 }
 
