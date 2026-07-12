@@ -30,7 +30,7 @@ export default function Home() {
 
       <section className="relative isolate overflow-hidden pt-16 lg:pt-20">
         <HeroBlobs />
-        <div className="mx-auto grid min-w-0 max-w-7xl items-center gap-5 px-4 pb-4 pt-5 sm:px-6 md:gap-8 md:pb-8 lg:min-h-[560px] lg:grid-cols-[0.9fr_1.1fr] lg:gap-8 lg:px-8 lg:pb-0 lg:pt-0">
+        <div className="mx-auto grid min-w-0 max-w-7xl items-center gap-5 px-paw-md pb-4 pt-5 sm:px-paw-xl md:gap-8 md:pb-8 lg:min-h-[560px] lg:grid-cols-[0.9fr_1.1fr] lg:gap-8 lg:px-paw-xxl lg:pb-0 lg:pt-0">
           <FadeIn className="z-10 min-w-0 max-w-2xl space-y-5 lg:space-y-6">
             <AnimatedHeadline />
             <HeroDescription />

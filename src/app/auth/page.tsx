@@ -84,7 +84,7 @@ export default function AuthPage() {
   };
 
   return (
-    <div className="auth-page-shell min-h-screen px-4 pt-24 pb-12 bg-paw-page">
+    <div className="auth-page-shell min-h-screen px-paw-md pt-24 pb-12 bg-paw-page sm:px-paw-xl lg:px-paw-xxl">
       <div className="auth-layout mx-auto grid w-full max-w-6xl gap-6 lg:grid-cols-[minmax(0,1fr)_440px] lg:items-center">
         <aside className="auth-visual-panel hidden lg:block">
           <div className="relative z-10">

@@ -230,7 +230,7 @@ export default function ProfileWorkspaceView({
 
   return (
     <div className={`profile-page-shell ${showAddPet ? "profile-page-shell-add-mode" : ""} relative min-h-screen overflow-hidden bg-paw-page pt-24 pb-16`}>
-      <div className="mx-auto max-w-6xl px-4">
+      <div className="mx-auto max-w-6xl px-paw-md sm:px-paw-xl lg:px-paw-xxl">
         {profileError && (
           <StatusMessage tone="critical" variant="compact" className="mb-4">
             {profileError}

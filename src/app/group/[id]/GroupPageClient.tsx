@@ -33,7 +33,7 @@ export default function GroupPageClient({
   ).replace("{count}", String(memberCount));
 
   return (
-    <section className="deep-page-shell bg-paw-page px-4 pb-16 pt-24 text-paw-ink sm:px-6 sm:pb-24 sm:pt-28">
+    <section className="deep-page-shell bg-paw-page px-paw-md pb-16 pt-24 text-paw-ink sm:px-paw-xl sm:pb-24 sm:pt-28 lg:px-paw-xxl">
       {loader}
       <Card className="mx-auto max-w-3xl text-center">
         <CardContent className="p-paw-xl sm:p-paw-xxl">
