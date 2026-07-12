@@ -137,7 +137,7 @@ function SuccessContent() {
           <div className="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-paw-xl bg-paw-critical-soft text-paw-on-critical-soft">
             <AlertTriangle className="h-7 w-7" aria-hidden="true" />
           </div>
-          <Badge tone="danger" className="mb-3">{t("successCheckoutStatus")}</Badge>
+          <Badge tone="critical" className="mb-3">{t("successCheckoutStatus")}</Badge>
           <h1 className="text-2xl font-extrabold text-paw-ink">{t("successVerificationFailedTitle")}</h1>
           <p className="mt-3 text-sm leading-6 text-paw-body">{error === MISSING_SESSION_ERROR ? t("successNoSessionId") : error}</p>
           <div className="mt-5 rounded-paw-md border border-paw-border bg-paw-panel-subtle p-4 text-left">

@@ -4,8 +4,9 @@ import type { ReactNode } from "react";
 import {
   MapPin, Shield, PawPrint, Edit3, Save,
   X, Plus, Calendar, Droplets, Nfc, Loader2, Smartphone,
-  AlertCircle, Download, CheckCircle, ExternalLink, HeartPulse,
+  Download, CheckCircle, ExternalLink, HeartPulse,
 } from "lucide-react";
+import { StatusMessage } from "@/components/ui";
 import type { MessageKey } from "@/i18n/messages/en";
 
 export type ProfileTranslation = (key: MessageKey) => string;
@@ -231,10 +232,9 @@ export default function ProfileWorkspaceView({
     <div className={`profile-page-shell ${showAddPet ? "profile-page-shell-add-mode" : ""} relative min-h-screen overflow-hidden bg-paw-page pt-24 pb-16`}>
       <div className="mx-auto max-w-6xl px-4">
         {profileError && (
-          <div className="mb-4 flex items-center gap-2 rounded-paw-md border border-paw-danger/20 bg-paw-danger-soft px-4 py-3 text-sm font-medium text-paw-danger">
-            <AlertCircle className="h-4 w-4 shrink-0" aria-hidden="true" />
+          <StatusMessage tone="critical" variant="compact" className="mb-4">
             {profileError}
-          </div>
+          </StatusMessage>
         )}
 
         <div className="profile-command-header mb-6">
@@ -438,10 +438,9 @@ export default function ProfileWorkspaceView({
             <div className="overflow-hidden mb-4">
                 <div className="profile-form-card bg-paw-panel rounded-paw-lg shadow-paw-panel border border-paw-border p-6 space-y-5">
                   {petError && (
-                    <div className="flex items-center gap-2 rounded-paw-md border border-paw-danger/20 bg-paw-danger-soft px-4 py-3 text-sm font-medium text-paw-danger" role="alert">
-                      <AlertCircle className="h-4 w-4 shrink-0" aria-hidden="true" />
+                    <StatusMessage tone="critical" variant="compact" role="alert">
                       {petError}
-                    </div>
+                    </StatusMessage>
                   )}
 
                   <div>

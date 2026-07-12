@@ -12,7 +12,6 @@ export type BadgeTone =
   | "success"
   | "warning"
   | "yellow"
-  | "danger"
   | "critical"
   | "neutral";
 export type BadgeVariant = "status" | "filter" | "semantic" | "count";
@@ -29,7 +28,6 @@ const tones: Record<BadgeTone, string> = {
   success: "bg-paw-success-soft text-paw-on-success-soft border-paw-success/20",
   warning: "bg-paw-warning-soft text-paw-on-warning-soft border-paw-warning/20",
   yellow: "bg-paw-warning-soft text-paw-on-warning-soft border-paw-warning/20",
-  danger: "bg-paw-critical-soft text-paw-on-critical-soft border-paw-critical/20",
   critical: "bg-paw-critical-soft text-paw-on-critical-soft border-paw-critical/20",
   neutral: "bg-paw-panel-low text-paw-body border-paw-outline-variant",
 };

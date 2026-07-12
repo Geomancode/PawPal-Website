@@ -18,6 +18,7 @@
     "test:i18n-parity": "node scripts/i18n-parity-check.mjs",
     "test:payment-guard": "node scripts/payment-guard-contract-check.mjs",
     "test:search-hardening": "node scripts/search-query-contract-check.mjs",
+    "test:tone-contract": "node scripts/tone-contract-check.mjs",
     "probe:search-injection": "node scripts/search-injection-probe.mjs"
   },
   "dependencies": {

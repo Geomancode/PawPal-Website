@@ -27,7 +27,7 @@ export default function Error({
     <section className="deep-page-shell flex min-h-[100dvh] items-center justify-center bg-paw-page px-5 py-28 text-paw-ink">
       {loader}
       <div className="mx-auto w-full max-w-xl">
-        <StatusMessage tone="danger" title={t("rootErrorPageTitle")}>
+        <StatusMessage tone="critical" title={t("rootErrorPageTitle")}>
           {error.message || t("rootErrorFallbackDescription")}
         </StatusMessage>
         <Button type="button" size="lg" onClick={reset} className="mt-5">

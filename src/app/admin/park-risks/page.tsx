@@ -85,7 +85,7 @@ type ParkRiskReport = {
 };
 
 type Message = {
-  tone: "success" | "danger" | "warning";
+  tone: "success" | "critical" | "warning";
   text: string;
 };
 
@@ -263,7 +263,7 @@ function statusTone(status: RiskStatus) {
 function severityTone(severity: Severity) {
   switch (severity) {
     case "high":
-      return "danger";
+      return "critical";
     case "caution":
       return "warning";
     case "info":
@@ -478,7 +478,7 @@ export default function ParkRiskAdminPage() {
 
     if (error) {
       setMessage({
-        tone: "danger",
+        tone: "critical",
         text: error.message,
       });
     } else {
@@ -515,7 +515,7 @@ export default function ParkRiskAdminPage() {
       !officialForm.sourceUrl.trim()
     ) {
       setMessage({
-        tone: "danger",
+        tone: "critical",
         text: t("adminParkRisksRequiredFieldsMessage"),
       });
       return;
@@ -547,7 +547,7 @@ export default function ParkRiskAdminPage() {
 
     if (error) {
       setMessage({
-        tone: "danger",
+        tone: "critical",
         text: error.message,
       });
     } else {
@@ -883,7 +883,7 @@ function QueueMetric({
         </p>
         <div className="mt-2 flex items-center justify-between gap-3">
           <p className="text-2xl font-extrabold text-paw-ink">{value}</p>
-          <Badge tone={tone}>{label}</Badge>
+          <Badge tone={tone === "danger" ? "critical" : tone}>{label}</Badge>
         </div>
       </CardContent>
     </Card>
@@ -1042,7 +1042,7 @@ function RiskReportCard({
               )}
               {t("adminParkRisksApprove")}
             </Button>
-            <Button type="button" variant="danger" onClick={onReject} disabled={busy}>
+            <Button type="button" variant="critical" onClick={onReject} disabled={busy}>
               {busy ? (
                 <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />
               ) : (

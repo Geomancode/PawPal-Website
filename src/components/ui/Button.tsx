@@ -12,8 +12,6 @@ export type ButtonVariant =
   | "secondary"
   | "ghost"
   | "text"
-  | "destructive"
-  | "danger"
   | "critical";
 export type ButtonSize = "sm" | "md" | "lg" | "icon";
 export type ButtonShape = "control" | "compact" | "pill" | "circle";
@@ -42,10 +40,6 @@ const variants: Record<ButtonVariant, string> = {
     "border-transparent bg-transparent text-paw-body shadow-none hover:bg-paw-panel-subtle active:translate-y-px",
   text:
     "border-transparent bg-transparent px-0 text-paw-primary shadow-none hover:text-paw-primary-hover active:translate-y-px",
-  destructive:
-    `border-transparent bg-paw-critical text-paw-on-critical hover:bg-paw-critical/90 [--paw-button-depth-color:var(--color-paw-critical)] ${tactileDepth}`,
-  danger:
-    `border-transparent bg-paw-critical text-paw-on-critical hover:bg-paw-critical/90 [--paw-button-depth-color:var(--color-paw-critical)] ${tactileDepth}`,
   critical:
     `border-transparent bg-paw-critical text-paw-on-critical hover:bg-paw-critical/90 [--paw-button-depth-color:var(--color-paw-critical)] ${tactileDepth}`,
 };
