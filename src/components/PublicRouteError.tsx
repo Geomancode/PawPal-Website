@@ -49,7 +49,7 @@ export default function PublicRouteError({
             t(RESOURCE_KEYS[resourceName]),
           )}
         </h1>
-        <StatusMessage tone="danger" className="mt-4">
+        <StatusMessage tone="critical" className="mt-4">
           {t("publicRouteErrorMessage")}
         </StatusMessage>
         <Button

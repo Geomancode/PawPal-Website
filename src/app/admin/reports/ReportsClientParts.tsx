@@ -64,7 +64,7 @@ import type {
 } from "./types";
 
 type Toast = {
-  tone: "success" | "danger" | "warning";
+  tone: "success" | "critical" | "warning";
   title: string;
   text: string;
 };
@@ -429,7 +429,7 @@ function ReportsQueue({
       scheduleRefresh();
     } else {
       setToast({
-        tone: "danger",
+        tone: "critical",
         title: t("adminReportsActionFailed"),
         text: result.message,
       });
@@ -586,7 +586,7 @@ function ReportCard({
         </Button>
         <Button
           type="button"
-          variant="danger"
+          variant="critical"
           className="w-full sm:w-auto"
           onClick={() => onConfirm("content_removed")}
           disabled={disabled || !canRemoveContent}
@@ -605,7 +605,7 @@ function ReportCard({
         </Button>
         <Button
           type="button"
-          variant="danger"
+          variant="critical"
           className="w-full sm:w-auto"
           onClick={() => onConfirm("user_banned")}
           disabled={disabled}
@@ -790,7 +790,7 @@ function ConfirmationDialog({
           </Button>
           <Button
             type="button"
-            variant="danger"
+            variant="critical"
             onClick={onConfirm}
             disabled={isBusy}
           >
@@ -824,7 +824,7 @@ function QueueMetric({
         </p>
         <div className="mt-2 flex items-center justify-between gap-3">
           <p className="text-2xl font-extrabold text-paw-ink">{value}</p>
-          <Badge tone={tone}>{label}</Badge>
+          <Badge tone={tone === "danger" ? "critical" : tone}>{label}</Badge>
         </div>
       </CardContent>
     </Card>
@@ -930,7 +930,7 @@ function ProfileChip({
           </p>
         </div>
         {profile?.bannedAt && (
-          <Badge tone="danger" className="ml-auto">
+          <Badge tone="critical" className="ml-auto">
             {t("adminReportsBanned")}
           </Badge>
         )}
@@ -1083,7 +1083,7 @@ function targetBadgeTone(targetType: ReportTargetType) {
     case "comment":
       return "trust";
     case "user":
-      return "danger";
+      return "critical";
   }
 }
 

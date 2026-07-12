@@ -161,7 +161,7 @@ export default function AuthPage() {
           {error && (
             <StatusMessage
               id="auth-error"
-              tone="danger"
+              tone="critical"
               variant="compact"
               className="mb-4"
             >

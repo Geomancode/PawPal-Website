@@ -150,7 +150,7 @@ export default function StoreAdminPage() {
   const [filePreview, setFilePreview] = useState<string | null>(null);
   const [loadingProducts, setLoadingProducts] = useState(false);
   const [saving, setSaving] = useState(false);
-  const [message, setMessage] = useState<{ tone: "success" | "danger" | "warning"; text: string } | null>(null);
+  const [message, setMessage] = useState<{ tone: "success" | "critical" | "warning"; text: string } | null>(null);
 
   const previewProduct = useMemo<Product>(() => ({
     id: form.id || "preview",
@@ -295,7 +295,7 @@ export default function StoreAdminPage() {
 
     const productId = slugify(form.id || form.name);
     if (!productId || !form.name.trim() || !form.price.trim()) {
-      setMessage({ tone: "danger", text: t("storeAdminRequiredFieldsMessage") });
+      setMessage({ tone: "critical", text: t("storeAdminRequiredFieldsMessage") });
       return;
     }
 
@@ -356,7 +356,7 @@ export default function StoreAdminPage() {
       await refreshProducts();
     } catch (error) {
       setMessage({
-        tone: "danger",
+        tone: "critical",
         text: error instanceof Error ? error.message : t("storeAdminSaveFailedMessage"),
       });
     } finally {

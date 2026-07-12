@@ -403,7 +403,7 @@ export default function CheckoutPage() {
                   {/* Stripe Pay Button */}
                   <div className="space-y-3">
                     {checkoutError && (
-                      <StatusMessage tone="danger" title={t("checkoutPaymentStartErrorTitle")}>
+                      <StatusMessage tone="critical" title={t("checkoutPaymentStartErrorTitle")}>
                         {checkoutError}
                       </StatusMessage>
                     )}

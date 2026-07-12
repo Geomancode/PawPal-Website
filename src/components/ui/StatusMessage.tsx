@@ -8,7 +8,7 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/ui";
 
-export type StatusTone = "info" | "success" | "warning" | "danger";
+export type StatusTone = "info" | "success" | "warning" | "critical";
 export type StatusVariant = "compact" | "panel" | "hero";
 
 const toneStyles: Record<
@@ -32,7 +32,7 @@ const toneStyles: Record<
     icon: "bg-paw-warning text-paw-on-warning",
     Icon: TriangleAlert,
   },
-  danger: {
+  critical: {
     container: "border-paw-critical/20 bg-paw-critical-soft text-paw-on-critical-soft",
     icon: "bg-paw-critical text-paw-on-critical",
     Icon: AlertCircle,
@@ -81,7 +81,7 @@ export default function StatusMessage({
         styles.container,
         className,
       )}
-      role={tone === "danger" ? "alert" : "status"}
+      role={tone === "critical" ? "alert" : "status"}
       {...props}
     >
       <span

@@ -8,8 +8,7 @@ export type CardTone =
   | "primary"
   | "trust"
   | "success"
-  | "warning"
-  | "danger";
+  | "warning";
 export type CardElevation = "none" | "subtle" | "raised" | "floating";
 
 type CardProps = HTMLAttributes<HTMLDivElement> & {
@@ -34,7 +33,6 @@ const toneClasses: Record<CardTone, string> = {
   trust: "border-paw-trust/20 bg-paw-trust-soft text-paw-on-trust-soft",
   success: "border-paw-success/20 bg-paw-success-soft text-paw-on-success-soft",
   warning: "border-paw-warning/20 bg-paw-warning-soft text-paw-on-warning-soft",
-  danger: "border-paw-critical/20 bg-paw-critical-soft text-paw-on-critical-soft",
 };
 
 const elevationClasses: Record<CardElevation, string> = {

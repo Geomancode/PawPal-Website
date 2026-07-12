@@ -25,7 +25,7 @@ export default function GlobalError({
         <main className="deep-page-shell flex min-h-[100dvh] items-center justify-center bg-paw-page px-5 py-16 text-paw-ink">
           <Card className="w-full max-w-xl">
             <CardContent className="space-y-paw-lg">
-            <StatusMessage tone="danger" title="Application error">
+            <StatusMessage tone="critical" title="Application error">
               A rendering or connection issue interrupted the app shell.
             </StatusMessage>
             <h1 className="text-2xl font-extrabold text-paw-ink">
