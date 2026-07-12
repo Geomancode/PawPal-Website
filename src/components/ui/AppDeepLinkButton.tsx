@@ -42,7 +42,7 @@ export default function AppDeepLinkButton({
         {buttonLabel}
       </a>
       {showFallback && (
-        <div className="rounded-paw-xl border border-paw-outline-variant bg-paw-panel-subtle px-paw-sm py-paw-xs text-xs leading-5 text-paw-body shadow-paw-panel">
+        <div className="rounded-paw-xl border border-paw-outline-variant bg-paw-panel-subtle px-paw-sm py-paw-xs text-paw-type-caption leading-5 text-paw-body shadow-paw-panel">
           {t("appDeepLinkFallbackDescription")} {" "}
           <Link
             href={fallbackHref}

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Nunito_Sans } from "next/font/google";
 import "./globals.css";
 import Navbar, { LocalizedSkipLink } from "@/components/Navbar";
 import Providers from "@/components/Providers";
@@ -13,6 +14,12 @@ import {
   PAWPAL_OG_IMAGE,
   PAWPAL_OG_IMAGE_PATH,
 } from "./metadata";
+
+const nunitoSans = Nunito_Sans({
+  variable: "--font-nunito-sans",
+  subsets: ["latin", "latin-ext"],
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL(PAWPAL_METADATA_BASE),
@@ -120,7 +127,7 @@ export default function RootLayout({
   const messages = resolveMessages(locale);
 
   return (
-    <html lang={locale} data-scroll-behavior="smooth">
+    <html lang={locale} data-scroll-behavior="smooth" className={nunitoSans.variable}>
       <body className="min-h-screen bg-paw-page text-paw-ink antialiased selection:bg-paw-primary/20">
         <script
           type="application/ld+json"

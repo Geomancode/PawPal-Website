@@ -38,7 +38,7 @@ export default function PageShell({
           >
             <div className="max-w-2xl">
               {eyebrow && (
-                <div className="mb-paw-xs text-xs font-black uppercase text-paw-on-primary-soft">
+                <div className="mb-paw-xs text-paw-type-caption font-black uppercase text-paw-on-primary-soft">
                   {eyebrow}
                 </div>
               )}

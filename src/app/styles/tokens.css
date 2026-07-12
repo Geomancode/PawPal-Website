@@ -1,10 +1,10 @@
 /* Owner: global tokens and Tailwind theme. */
 
 @theme {
-  --font-sans: "Nunito", "Nunito Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  --font-sans: var(--font-nunito-sans), "Nunito", "Nunito Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
   --font-mono: ui-monospace, "Cascadia Code", "Fira Code", monospace;
-  --font-brand: "Nunito", "Avenir Next", "Nunito Sans", "Segoe UI", system-ui, sans-serif;
-  --font-app-logo: "Nunito", "Avenir Next", "Segoe UI", system-ui, sans-serif;
+  --font-brand: var(--font-nunito-sans), "Nunito", "Avenir Next", "Nunito Sans", "Segoe UI", system-ui, sans-serif;
+  --font-app-logo: var(--font-nunito-sans), "Nunito", "Avenir Next", "Segoe UI", system-ui, sans-serif;
 
   /* PawPalNextTokens / PawPalColors, exposed to Tailwind v4 utilities. */
   --color-brand-blue: var(--color-paw-blue);

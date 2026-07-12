@@ -64,29 +64,29 @@ export default function ProductCard({
       <CardContent className="space-y-paw-md">
         <div>
           <div className="flex items-start justify-between gap-paw-sm">
-            <h3 className="min-w-0 text-base font-extrabold leading-6 text-paw-ink">
+            <h3 className="min-w-0 text-paw-type-body font-extrabold leading-6 text-paw-ink">
               {name}
             </h3>
             <div className="shrink-0 text-right">
-              <span className="inline-flex rounded-paw-card bg-paw-primary-soft px-paw-sm py-paw-xs text-sm font-black leading-none text-paw-on-primary-soft">
+              <span className="inline-flex rounded-paw-card bg-paw-primary-soft px-paw-sm py-paw-xs text-paw-type-body font-black leading-none text-paw-on-primary-soft">
                 {price}
               </span>
               {originalPrice && (
-                <span className="mt-1 block text-xs font-bold text-paw-muted line-through">
+                <span className="mt-1 block text-paw-type-caption font-bold text-paw-muted line-through">
                   {originalPrice}
                 </span>
               )}
             </div>
           </div>
           {description && (
-            <p className="mt-2 line-clamp-2 text-sm leading-6 text-paw-body">
+            <p className="mt-2 line-clamp-2 text-paw-type-body leading-6 text-paw-body">
               {description}
             </p>
           )}
         </div>
         <div className="flex items-center gap-paw-sm">
           {typeof rating === "number" ? (
-            <span className="inline-flex min-w-0 flex-1 items-center gap-1 overflow-hidden text-sm font-bold text-paw-on-warning-soft">
+            <span className="inline-flex min-w-0 flex-1 items-center gap-1 overflow-hidden text-paw-type-body font-bold text-paw-on-warning-soft">
               <Star className="h-4 w-4 shrink-0 fill-current" aria-hidden="true" />
               <span className="shrink-0">{rating.toFixed(1)}</span>
               {ratingDetail && (

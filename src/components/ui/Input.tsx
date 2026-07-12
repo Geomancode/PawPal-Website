@@ -18,10 +18,10 @@ type InputProps = Omit<InputHTMLAttributes<HTMLInputElement>, "size"> & {
 };
 
 const variants: Record<InputVariant, string> = {
-  field: "min-h-paw-min-tap rounded-paw-card px-paw-sm text-sm shadow-paw-control",
-  search: "h-12 rounded-paw-card px-paw-md text-sm shadow-paw-control",
-  command: "h-12 rounded-paw-panel px-paw-md text-sm shadow-paw-panel",
-  compact: "min-h-10 rounded-paw-sm px-paw-sm text-sm shadow-none",
+  field: "min-h-paw-min-tap rounded-paw-card px-paw-sm text-paw-type-body shadow-paw-control",
+  search: "h-12 rounded-paw-card px-paw-md text-paw-type-body shadow-paw-control",
+  command: "h-12 rounded-paw-panel px-paw-md text-paw-type-body shadow-paw-panel",
+  compact: "min-h-10 rounded-paw-sm px-paw-sm text-paw-type-body shadow-none",
 };
 
 const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
@@ -44,7 +44,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
   return (
     <div className={cn("block space-y-1.5", containerClassName)}>
       {label && (
-        <label htmlFor={id} className="block text-sm font-bold text-paw-ink">
+        <label htmlFor={id} className="block text-paw-type-caption font-bold text-paw-ink">
           {label}
         </label>
       )}
@@ -83,7 +83,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
         <span
           id={helperId}
           className={cn(
-            "block text-xs leading-5",
+            "block text-paw-type-caption leading-5",
             error ? "text-paw-on-critical-soft" : "text-paw-muted",
           )}
         >

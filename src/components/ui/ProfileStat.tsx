@@ -25,10 +25,10 @@ export default function ProfileStat({
     >
       <div className="flex items-start justify-between gap-paw-sm">
         <div className="min-w-0">
-          <p className="text-xs font-extrabold uppercase text-paw-muted">
+          <p className="text-paw-type-caption font-extrabold uppercase text-paw-muted">
             {label}
           </p>
-          <div className="mt-1 text-xl font-extrabold leading-7 text-paw-ink">
+          <div className="mt-1 text-paw-type-h2 font-extrabold leading-7 text-paw-ink">
             {value}
           </div>
         </div>
@@ -38,7 +38,7 @@ export default function ProfileStat({
           </div>
         )}
       </div>
-      {helper && <p className="mt-2 text-sm leading-6 text-paw-body">{helper}</p>}
+      {helper && <p className="mt-2 text-paw-type-body leading-6 text-paw-body">{helper}</p>}
     </div>
   );
 }

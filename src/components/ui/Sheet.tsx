@@ -61,12 +61,12 @@ export default function Sheet({
           <header className="flex items-start justify-between gap-paw-md border-b border-paw-outline-variant px-paw-lg py-paw-md">
             <div className="min-w-0">
               {title && (
-                <h2 className="text-base font-extrabold leading-6 text-paw-ink">
+                <h2 className="text-paw-type-body font-extrabold leading-6 text-paw-ink">
                   {title}
                 </h2>
               )}
               {description && (
-                <p className="mt-1 text-sm leading-6 text-paw-body">
+                <p className="mt-1 text-paw-type-body leading-6 text-paw-body">
                   {description}
                 </p>
               )}
