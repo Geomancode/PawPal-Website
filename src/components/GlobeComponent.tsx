@@ -96,6 +96,16 @@ const GLOBE_RENDERER_CONFIG = {
   preserveDrawingBuffer: true,
   powerPreference: "high-performance",
 } as const;
+const GLOBE_COLOR_TOKENS = {
+  cloud: {
+    cssVariable: "--color-paw-panel-low",
+    fallback: "rgb(255, 255, 255)",
+  },
+  atmosphere: {
+    cssVariable: "--color-paw-primary",
+    fallback: "rgb(74, 144, 217)",
+  },
+} as const;
 
 const PIN_ICON_EMOJI: Readonly<Record<string, string>> = {
   food: "🍽️",
@@ -228,7 +238,10 @@ function createCloudTexture() {
   if (!ctx) return null;
 
   const random = seededRandom(20260526);
-  const cloudColor = readConcreteCssColorToken("--color-paw-panel-low", "#ffffff");
+  const cloudColor = readConcreteCssColorToken(
+    GLOBE_COLOR_TOKENS.cloud.cssVariable,
+    GLOBE_COLOR_TOKENS.cloud.fallback,
+  );
   const cloudStop = (alpha: number) => cssColorWithAlpha(cloudColor, alpha);
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   ctx.filter = "blur(5px)";
@@ -295,7 +308,9 @@ export default function GlobeComponent() {
   const [hasEnteredView, setHasEnteredView] = useState(false);
   const [isDocumentVisible, setIsDocumentVisible] = useState(true);
   const [isGlobeReady, setIsGlobeReady] = useState(false);
-  const [atmosphereColor, setAtmosphereColor] = useState("#4A90D9");
+  const [atmosphereColor, setAtmosphereColor] = useState<string>(
+    GLOBE_COLOR_TOKENS.atmosphere.fallback,
+  );
   const shouldReduceMotion = useReducedMotionPreference();
   const shouldAnimateGlobe = canUseWebGL === true && !shouldReduceMotion && isInView && isDocumentVisible;
   const shouldAnimateGlobeRef = useRef(shouldAnimateGlobe);
@@ -569,7 +584,10 @@ export default function GlobeComponent() {
 
   useEffect(() => {
     const syncAtmosphereColor = () => {
-      setAtmosphereColor(readConcreteCssColorToken("--color-paw-primary", "#4A90D9"));
+      setAtmosphereColor(readConcreteCssColorToken(
+        GLOBE_COLOR_TOKENS.atmosphere.cssVariable,
+        GLOBE_COLOR_TOKENS.atmosphere.fallback,
+      ));
     };
     syncAtmosphereColor();
 

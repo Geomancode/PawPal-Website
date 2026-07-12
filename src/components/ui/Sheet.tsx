@@ -19,8 +19,8 @@ type SheetProps = {
 };
 
 const panelBySide: Record<SheetSide, string> = {
-  right: "right-0 top-0 h-full w-full max-w-md rounded-l-paw-sheet border-l",
-  bottom: "bottom-0 left-0 max-h-[86vh] w-full rounded-t-paw-sheet border-t",
+  right: "right-0 top-0 h-full w-full max-w-md [border-top-left-radius:var(--radius-paw-sheet)] [border-bottom-left-radius:var(--radius-paw-sheet)] border-l",
+  bottom: "bottom-0 left-0 max-h-[86vh] w-full [border-top-left-radius:var(--radius-paw-sheet)] [border-top-right-radius:var(--radius-paw-sheet)] border-t",
 };
 
 export default function Sheet({

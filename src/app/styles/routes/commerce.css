@@ -30,7 +30,7 @@
   top: -3rem;
   width: 11rem;
   height: 11rem;
-  border-radius: 999px;
+  border-radius: var(--radius-paw-pill);
   background: radial-gradient(circle, color-mix(in srgb, var(--color-paw-trust) 12%, transparent), transparent 64%);
   pointer-events: none;
 }
