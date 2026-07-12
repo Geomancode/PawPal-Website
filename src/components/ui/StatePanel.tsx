@@ -115,7 +115,7 @@ export default function StatePanel({
     <section
       className={cn(
         layout === "fullscreen"
-          ? "deep-page-shell flex min-h-[100dvh] items-center justify-center bg-paw-page px-5 py-28 text-paw-ink"
+          ? "deep-page-shell flex min-h-[100dvh] items-center justify-center bg-paw-page px-paw-md py-28 text-paw-ink sm:px-paw-xl lg:px-paw-xxl"
           : "w-full",
         className,
       )}

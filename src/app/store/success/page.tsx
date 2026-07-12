@@ -131,7 +131,7 @@ function SuccessContent() {
 
   if (error) {
     return (
-      <div className="commerce-page-shell success-status-shell flex min-h-[100dvh] items-start justify-center bg-paw-page px-4 pb-16 pt-28 text-paw-ink">
+      <div className="commerce-page-shell success-status-shell flex min-h-[100dvh] items-start justify-center bg-paw-page px-paw-md pb-16 pt-28 text-paw-ink sm:px-paw-xl lg:px-paw-xxl">
         {loader}
         <Card className="success-card-upgraded w-full max-w-lg p-7 text-center sm:p-8">
           <div className="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-paw-xl bg-paw-critical-soft text-paw-on-critical-soft">

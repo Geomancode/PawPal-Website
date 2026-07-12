@@ -19,6 +19,20 @@ const cases = [
   { name: "profile-fixture-light-375", route: "/profile", colorScheme: "light", selector: ".profile-page-shell > .max-w-6xl" },
   { name: "not-found-light-375", route: "/p4e1e-not-found", colorScheme: "light", selector: ".deep-page-shell", expectedStatus: 404 },
   { name: "not-found-dark-375", route: "/p4e1e-not-found-dark", colorScheme: "dark", selector: ".deep-page-shell", expectedStatus: 404 },
+  {
+    name: "tag-fixture-light-375",
+    route: "/tag/p2w2-tag-contact-visible",
+    colorScheme: "light",
+    selector: "#main-content > div",
+    stateNote: "reachable P2W2 populated tag fixture",
+  },
+  {
+    name: "success-fixture-light-375",
+    route: "/store/success",
+    colorScheme: "light",
+    selector: ".commerce-page-shell > .mx-auto",
+    stateNote: "reachable P3B1g1 confirmed checkout fixture",
+  },
 ];
 
 function delay(ms) {
@@ -180,7 +194,8 @@ async function captureCase(browser, baseUrl, definition) {
     throw new Error(`${definition.name} screenshot is only ${screenshotStat.size} bytes.`);
   }
 
-  console.log(`${definition.name}: ${screenshotStat.size} bytes; gutters ${metrics.paddingLeft}/${metrics.paddingRight}; no overflow`);
+  const stateNote = definition.stateNote ? `; state: ${definition.stateNote}` : "";
+  console.log(`${definition.name}: ${screenshotStat.size} bytes; gutters ${metrics.paddingLeft}/${metrics.paddingRight}; no overflow${stateNote}`);
   await context.close();
 }
 

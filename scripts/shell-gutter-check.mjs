@@ -16,8 +16,11 @@ const targets = [
   { file: "src/app/profile/ProfileWorkspaceView.tsx", anchor: "mx-auto max-w-6xl" },
   { file: "src/app/page.tsx", anchor: "grid min-w-0 max-w-7xl" },
   { file: "src/app/dev/state-panel/page.tsx", anchor: "deep-page-shell min-h-[100dvh] bg-paw-page" },
+  { file: "src/app/store/success/page.tsx", anchor: "commerce-page-shell success-status-shell" },
+  { file: "src/app/tag/[id]/TagPageClient.tsx", anchor: "relative min-h-[100dvh] overflow-hidden" },
+  { file: "src/components/PublicRouteError.tsx", anchor: "deep-page-shell flex min-h-[100dvh]" },
+  { file: "src/components/ui/StatePanel.tsx", anchor: "deep-page-shell flex min-h-[100dvh]" },
 ];
-const targetFiles = new Set(targets.map(({ file }) => file));
 
 const toolShellAllowlist = new Map([
   [
@@ -46,13 +49,13 @@ function relativePath(filePath) {
 
 const failures = [];
 const sources = new Map();
+const scannedFiles = await tsxFiles(srcRoot);
 
-for (const filePath of await tsxFiles(srcRoot)) {
+for (const filePath of scannedFiles) {
   const file = relativePath(filePath);
   const source = await readFile(filePath, "utf8");
   sources.set(file, source);
 
-  if (!targetFiles.has(file) && !toolShellAllowlist.has(file)) continue;
   if (toolShellAllowlist.has(file)) continue;
 
   source.split(/\r?\n/).forEach((line, index) => {
@@ -90,6 +93,7 @@ if (failures.length > 0) {
 }
 
 console.log("Shell gutter contract check passed.");
+console.log(`Scanned all ${scannedFiles.length} TSX files under src/.`);
 console.log(`Verified ${targets.length} page-level containers use px-paw-md sm:px-paw-xl lg:px-paw-xxl.`);
 console.log("Verified target shell lines contain no raw px-N utilities.");
 console.log("Full-screen tool-shell allowlist:");

@@ -75,7 +75,7 @@ export default function TagPageClient({ pet, owner }: TagPageClientProps) {
   const careLabel = healthBadges[0] ?? t("tagPageNoPublicNotes");
 
   return (
-    <div className="relative min-h-[100dvh] overflow-hidden bg-paw-page px-4 py-8 pt-24 text-paw-ink">
+    <div className="relative min-h-[100dvh] overflow-hidden bg-paw-page px-paw-md py-8 pt-24 text-paw-ink sm:px-paw-xl lg:px-paw-xxl">
       {loader}
       <main className="mx-auto grid max-w-6xl gap-5 lg:grid-cols-[0.82fr_1.18fr] lg:items-start">
         <section className="tag-rescue-panel">
