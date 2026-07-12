@@ -21,6 +21,8 @@
     "test:tone-contract": "node scripts/tone-contract-check.mjs",
     "test:state-contract": "node scripts/state-contract-check.mjs",
     "capture:p4e1c": "node scripts/p4e1c-capture-states.mjs",
+    "test:type-contract": "node scripts/type-contract-check.mjs",
+    "capture:p4e1d": "node scripts/p4e1d-capture-type.mjs",
     "probe:search-injection": "node scripts/search-injection-probe.mjs"
   },
   "dependencies": {

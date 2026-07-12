@@ -45,9 +45,9 @@ const variants: Record<ButtonVariant, string> = {
 };
 
 const sizes: Record<ButtonSize, string> = {
-  sm: "min-h-paw-min-tap px-paw-sm py-paw-xs text-sm",
-  md: "min-h-[calc(var(--spacing-paw-xl)+var(--spacing-paw-xl)+var(--spacing-paw-xxs))] px-paw-lg py-paw-sm text-sm",
-  lg: "min-h-[calc(var(--spacing-paw-xl)+var(--spacing-paw-xl)+var(--spacing-paw-xs))] px-paw-xl py-paw-sm text-base",
+  sm: "min-h-paw-min-tap px-paw-sm py-paw-xs text-paw-type-body",
+  md: "min-h-[calc(var(--spacing-paw-xl)+var(--spacing-paw-xl)+var(--spacing-paw-xxs))] px-paw-lg py-paw-sm text-paw-type-body",
+  lg: "min-h-[calc(var(--spacing-paw-xl)+var(--spacing-paw-xl)+var(--spacing-paw-xs))] px-paw-xl py-paw-sm text-paw-type-body",
   icon: "h-paw-min-tap w-paw-min-tap p-0",
 };
 

@@ -48,7 +48,7 @@ type StatusMessageProps = HTMLAttributes<HTMLDivElement> & {
 
 const variantStyles: Record<StatusVariant, { container: string; icon: string }> = {
   compact: {
-    container: "rounded-paw-card p-paw-sm text-sm shadow-none",
+    container: "rounded-paw-card p-paw-sm text-paw-type-body shadow-none",
     icon: "h-9 w-9 rounded-paw-sm",
   },
   panel: {

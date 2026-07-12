@@ -74,10 +74,10 @@ export default function StatePanel({
   const panel = state === "loading" ? (
     <div className="loading-panel" data-state-panel-surface="loading">
       <div className="loading-panel-mark">{visual}</div>
-      <p className="mt-5 text-sm font-black uppercase tracking-[0.16em] text-paw-primary">
+      <p className="mt-5 text-paw-type-caption font-black uppercase tracking-[0.16em] text-paw-primary">
         {title}
       </p>
-      {body && <div className="mt-paw-sm text-sm leading-6 text-paw-body">{body}</div>}
+      {body && <div className="mt-paw-sm text-paw-type-body leading-6 text-paw-body">{body}</div>}
       <div className="mt-4 h-2 overflow-hidden rounded-full bg-paw-primary-soft" aria-hidden="true">
         <div className="globe-loading-bar h-full rounded-full" />
       </div>
@@ -106,7 +106,7 @@ export default function StatePanel({
       <Title className="mt-paw-md font-brand text-paw-type-h2 font-black text-inherit">
         {title}
       </Title>
-      {body && <div className="mt-paw-sm max-w-md text-sm leading-6 text-inherit">{body}</div>}
+      {body && <div className="mt-paw-sm max-w-md text-paw-type-body leading-6 text-inherit">{body}</div>}
       {action && <div className="mt-paw-lg">{action}</div>}
     </div>
   );

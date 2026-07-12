@@ -51,14 +51,14 @@ export default function NfcIdentityCard({
       <div className="bg-paw-primary px-paw-lg py-paw-xl text-paw-on-primary">
         <div className="flex items-start justify-between gap-paw-md">
           <div className="flex min-w-0 items-center gap-paw-md">
-            <div className="flex h-16 w-16 shrink-0 items-center justify-center overflow-hidden rounded-paw-xl border border-paw-on-primary/20 bg-paw-panel/20 text-2xl font-extrabold">
+            <div className="flex h-16 w-16 shrink-0 items-center justify-center overflow-hidden rounded-paw-xl border border-paw-on-primary/20 bg-paw-panel/20 text-paw-type-h2 font-extrabold">
               {avatar ?? name.slice(0, 1).toUpperCase()}
             </div>
             <div className="min-w-0">
-              <h2 className="truncate text-2xl font-extrabold leading-8">
+              <h2 className="truncate text-paw-type-h2 font-extrabold leading-8">
                 {name}
               </h2>
-              {subtitle && <p className="mt-1 text-sm text-paw-on-primary/75">{subtitle}</p>}
+              {subtitle && <p className="mt-1 text-paw-type-body text-paw-on-primary/75">{subtitle}</p>}
             </div>
           </div>
           <Badge
@@ -85,7 +85,7 @@ export default function NfcIdentityCard({
               >
                 <dt
                   className={cn(
-                    "text-xs font-extrabold uppercase",
+                    "text-paw-type-caption font-extrabold uppercase",
                     fact.tone === "urgent"
                       ? "text-paw-on-critical-soft"
                       : "text-paw-muted",
@@ -95,7 +95,7 @@ export default function NfcIdentityCard({
                 </dt>
                 <dd
                   className={cn(
-                    "mt-1 text-sm font-extrabold",
+                    "mt-1 text-paw-type-body font-extrabold",
                     fact.tone === "urgent"
                       ? "text-paw-on-critical-soft"
                       : "text-paw-ink",
@@ -108,7 +108,7 @@ export default function NfcIdentityCard({
           </dl>
         )}
         {notes && (
-          <div className="rounded-paw-xl border border-paw-warning/25 bg-paw-warning-soft p-paw-md text-sm leading-6 text-paw-on-warning-soft">
+          <div className="rounded-paw-xl border border-paw-warning/25 bg-paw-warning-soft p-paw-md text-paw-type-body leading-6 text-paw-on-warning-soft">
             {notes}
           </div>
         )}

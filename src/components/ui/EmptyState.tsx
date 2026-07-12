@@ -32,9 +32,9 @@ export default function EmptyState({
           <Icon className="h-6 w-6" aria-hidden="true" />
         </div>
       )}
-      <h3 className="text-base font-extrabold text-paw-ink">{title}</h3>
+      <h3 className="text-paw-type-body font-extrabold text-paw-ink">{title}</h3>
       {description && (
-        <p className="mt-2 max-w-sm text-sm leading-6 text-paw-body">
+        <p className="mt-2 max-w-sm text-paw-type-body leading-6 text-paw-body">
           {description}
         </p>
       )}

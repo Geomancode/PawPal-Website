@@ -40,8 +40,8 @@ const variants: Record<BadgeVariant, string> = {
 };
 
 const sizes: Record<BadgeSize, string> = {
-  sm: "min-h-0 px-paw-sm py-paw-xs text-xs",
-  md: "min-h-[38px] px-paw-sm py-paw-xs text-xs",
+  sm: "min-h-0 px-paw-sm py-paw-xs text-paw-type-caption",
+  md: "min-h-[38px] px-paw-sm py-paw-xs text-paw-type-caption",
 };
 
 export default function Badge({
