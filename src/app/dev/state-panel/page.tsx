@@ -54,7 +54,7 @@ export default function StatePanelHarness() {
       </div>
 
       <div data-harness-case="store-subscription-error" hidden>
-        <section className="deep-page-shell min-h-[100dvh] bg-paw-page px-5 py-32 text-paw-ink">
+        <section className="deep-page-shell min-h-[100dvh] bg-paw-page px-paw-md py-32 text-paw-ink sm:px-paw-xl lg:px-paw-xxl">
           <div className="mx-auto max-w-2xl">
             <h1 className="font-brand text-paw-type-h1 font-black">Choose your PawPal plan</h1>
             <div className="mt-paw-lg" data-capture-target="store-subscription-error">

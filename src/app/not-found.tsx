@@ -10,7 +10,7 @@ export default function NotFound() {
   const { loader, t } = useRouteTranslations();
 
   return (
-    <section className="deep-page-shell min-h-[100dvh] bg-paw-page px-5 py-28 text-paw-ink">
+    <section className="deep-page-shell min-h-[100dvh] bg-paw-page px-paw-md py-28 text-paw-ink sm:px-paw-xl lg:px-paw-xxl">
       {loader}
       <div className="mx-auto grid max-w-5xl gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
         <div>

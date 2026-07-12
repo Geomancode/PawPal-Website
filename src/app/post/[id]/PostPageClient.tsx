@@ -46,7 +46,7 @@ export default function PostPageClient({
     : t("postPageCategoryFallback");
 
   return (
-    <section className="bg-paw-page px-4 pb-10 pt-24 text-paw-ink sm:px-6 sm:pb-14 sm:pt-28">
+    <section className="bg-paw-page px-paw-md pb-10 pt-24 text-paw-ink sm:px-paw-xl sm:pb-14 sm:pt-28 lg:px-paw-xxl">
       {loader}
       <div className="mx-auto grid max-w-5xl gap-8 lg:grid-cols-[1.15fr_0.85fr] lg:items-start">
         <article className="overflow-hidden rounded-paw-lg border border-paw-border bg-paw-panel shadow-paw-panel">

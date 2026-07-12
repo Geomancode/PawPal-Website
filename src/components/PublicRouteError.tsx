@@ -38,7 +38,7 @@ export default function PublicRouteError({
 
   return (
     <section
-      className="deep-page-shell flex min-h-[100dvh] items-center justify-center bg-paw-page px-5 py-28 text-paw-ink"
+      className="deep-page-shell flex min-h-[100dvh] items-center justify-center bg-paw-page px-paw-md py-28 text-paw-ink sm:px-paw-xl lg:px-paw-xxl"
       data-testid="public-route-error"
     >
       {loader}
