@@ -17,6 +17,7 @@ const files = {
   profile: source("src/app/profile/page.tsx"),
   store: source("src/app/store/page.tsx"),
   harness: source("src/app/dev/state-panel/page.tsx"),
+  proxy: source("src/proxy.ts"),
 };
 
 const failures = [];
@@ -59,6 +60,11 @@ requireMatch("profile", /<StatePanel\s+state="error"/, "Profile unavailable must
 // embedded subscription banners continue to use StatusMessage.
 requireMatch("store", /<StatusMessage\s+tone="critical"\s+variant="compact">\s*\{error\}\s*<\/StatusMessage>/s, "Store subscription error must use compact critical StatusMessage.");
 requireMatch("harness", /process\.env\.NODE_ENV !== "development"\) notFound\(\)/, "The state panel harness must return notFound outside development.");
+requireMatch(
+  "proxy",
+  /matcher:\s*\[\s*"\/dev\/state-panel"\s*,\s*"\/dev\/state-panel\/:path\*"\s*\]/,
+  "Proxy matcher must be limited to the state panel harness and its subpaths.",
+);
 
 if (failures.length > 0) {
   console.error("State contract check failed:");
@@ -68,4 +74,4 @@ if (failures.length > 0) {
 
 console.log("State contract check passed.");
 console.log("Verified StatePanel state/role/loading-brand contract and barrel export.");
-console.log("Verified root loading/error, Profile full-screen states, Store banner, and dev-only harness boundaries.");
+console.log("Verified root loading/error, Profile full-screen states, Store banner, and layered dev-only harness boundaries.");
