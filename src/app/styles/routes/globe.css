@@ -3,6 +3,7 @@
 :root {
   --globe-fallback-stage-grid-template-columns: 19rem;
   --globe-fallback-stage-padding-calculation: calc(env(safe-area-inset-top, 0px) + 6.35rem);
+  --globe-fallback-stage-padding-fluid: 5vw;
   --globe-fallback-copy-max-width: 39rem;
   --globe-fallback-action-focus-visible-transform: -1px;
   --globe-fallback-preview-width: 34rem;
@@ -74,7 +75,7 @@
   overflow-y: auto;
   padding:
     var(--globe-fallback-stage-padding-calculation)
-    clamp(var(--spacing-paw-md), 5vw, calc(var(--spacing-paw-xxxl) * 2))
+    clamp(var(--spacing-paw-md), var(--globe-fallback-stage-padding-fluid), calc(var(--spacing-paw-xxxl) * 2))
     calc(env(safe-area-inset-bottom, 0px) + var(--spacing-paw-xxxl));
   background:
     radial-gradient(circle at 74% 42%, color-mix(in srgb, var(--color-paw-primary) 28%, transparent), transparent 26rem),

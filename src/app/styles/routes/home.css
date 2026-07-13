@@ -2,6 +2,8 @@
 
 :root {
   --home-hero-stage-min-height-range: clamp(640px, 82svh, 860px);
+  --home-hero-globe-diameter-fallback: min(90vw, 420px);
+  --home-hero-globe-radius-fallback: min(45vw, 210px);
   --home-hero-globe-shape-height-range: clamp(640px, 82svh, 860px);
   --home-hero-globe-shape-shape-margin-range: clamp(1.5rem, 3vw, 3rem);
   --home-hero-stage-hero-headline-width: 32.25rem;
@@ -167,8 +169,8 @@
   inset: auto;
   left: 50%;
   top: 50%;
-  width: var(--hero-globe-diameter, min(90vw, 420px));
-  height: var(--hero-globe-diameter, min(90vw, 420px));
+  width: var(--hero-globe-diameter, var(--home-hero-globe-diameter-fallback));
+  height: var(--hero-globe-diameter, var(--home-hero-globe-diameter-fallback));
   transform: translate(-50%, -50%);
   border-radius: 0;
   overflow: visible;
@@ -178,7 +180,7 @@
 
 .hero-globe-hint {
   left: 50%;
-  top: calc(50% + var(--hero-globe-radius, min(45vw, 210px)) + 0.5rem);
+  top: calc(50% + var(--hero-globe-radius, var(--home-hero-globe-radius-fallback)) + var(--spacing-paw-xs));
   transform: translateX(-50%);
 }
 
@@ -353,7 +355,7 @@
   }
 
   .hero-globe-hint {
-    top: calc(var(--hero-globe-center-y) + var(--hero-globe-radius) + 0.75rem);
+    top: calc(var(--hero-globe-center-y) + var(--hero-globe-radius) + var(--spacing-paw-sm));
     left: var(--hero-globe-center-x);
     right: auto;
     transform: translateX(-50%);

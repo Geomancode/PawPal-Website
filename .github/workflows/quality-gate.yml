@@ -30,6 +30,17 @@ jobs:
       - name: Lint
         run: npm run lint
 
+      - name: Design token contract gates
+        run: |
+          npm run test:component-px
+          npm run test:route-css-token
+          npm run test:token-hotspot
+          npm run test:tone-contract
+          npm run test:state-contract
+          npm run test:type-contract
+          npm run test:shell-gutter
+          npm run test:icon-contract
+
       - name: Homepage contract gate
         run: npm run test:home-contract
 

@@ -1,13 +1,29 @@
 /* Owner: /store checkout, orders, success, and admin styles. */
 
+:root {
+  --commerce-checkout-assurance-min-width: min(100%, 17rem);
+  --commerce-checkout-assurance-gap: 0.55rem;
+  --commerce-card-orb-offset: -3rem;
+  --commerce-card-orb-size: 11rem;
+  --commerce-orders-count-padding-block: 0.65rem;
+  --commerce-orders-count-padding-inline: 0.85rem;
+  --commerce-order-card-hover-offset: -2px;
+  --commerce-admin-shell-top-offset: 8rem;
+  --commerce-admin-shell-header-padding-range: clamp(1.25rem, 3vw, 2rem);
+  --commerce-admin-gate-panel-max-width: 42rem;
+  --commerce-admin-gate-panel-padding-range: clamp(1.5rem, 4vw, 2.25rem);
+  --commerce-admin-header-grid-size: 3.5rem;
+  --commerce-admin-preview-grid-size: 2.4rem;
+}
+
 .store-toolbar-action {
   min-height: var(--spacing-paw-min-tap);
 }
 
 .checkout-assurance-grid {
   display: grid;
-  min-width: min(100%, 17rem);
-  gap: 0.55rem;
+  min-width: var(--commerce-checkout-assurance-min-width);
+  gap: var(--commerce-checkout-assurance-gap);
 }
 
 .order-card-upgraded,
@@ -26,17 +42,17 @@
 .admin-preview-card::after {
   content: "";
   position: absolute;
-  right: -3rem;
-  top: -3rem;
-  width: 11rem;
-  height: 11rem;
+  right: var(--commerce-card-orb-offset);
+  top: var(--commerce-card-orb-offset);
+  width: var(--commerce-card-orb-size);
+  height: var(--commerce-card-orb-size);
   border-radius: var(--radius-paw-pill);
   background: radial-gradient(circle, color-mix(in srgb, var(--color-paw-trust) 12%, transparent), transparent 64%);
   pointer-events: none;
 }
 
 .orders-hero-panel {
-  padding: 1.25rem;
+  padding: var(--spacing-paw-lg);
 }
 
 .orders-count-pill {
@@ -45,7 +61,7 @@
   border-radius: var(--radius-paw-md);
   background: var(--color-paw-primary-soft);
   color: var(--color-paw-on-primary-soft);
-  padding: 0.65rem 0.85rem;
+  padding: var(--commerce-orders-count-padding-block) var(--commerce-orders-count-padding-inline);
 }
 
 .order-card-upgraded {
@@ -53,7 +69,7 @@
 }
 
 .order-card-upgraded:hover {
-  transform: translateY(-2px);
+  transform: translateY(var(--commerce-order-card-hover-offset));
 }
 
 .success-card-upgraded {
@@ -62,7 +78,7 @@
 
 .admin-page-shell {
   background: transparent;
-  padding-top: calc(env(safe-area-inset-top, 0px) + 8rem);
+  padding-top: calc(env(safe-area-inset-top, 0px) + var(--commerce-admin-shell-top-offset));
 }
 
 .admin-page-shell > div {
@@ -79,7 +95,7 @@
     linear-gradient(145deg, color-mix(in srgb, var(--color-paw-inverse-ink) 94%, transparent), color-mix(in srgb, var(--color-paw-panel-subtle) 90%, transparent)),
     linear-gradient(90deg, color-mix(in srgb, var(--color-paw-primary) 8%, transparent), color-mix(in srgb, var(--color-paw-trust) 6%, transparent));
   box-shadow: 0 20px 52px color-mix(in srgb, var(--color-paw-ink) 10%, transparent);
-  padding: clamp(1.25rem, 3vw, 2rem);
+  padding: var(--commerce-admin-shell-header-padding-range);
 }
 
 .admin-shell-header::before {
@@ -89,7 +105,7 @@
   background:
     linear-gradient(90deg, color-mix(in srgb, var(--color-paw-primary) 8%, transparent) 1px, transparent 1px),
     linear-gradient(0deg, color-mix(in srgb, var(--color-paw-trust) 8%, transparent) 1px, transparent 1px);
-  background-size: 3.5rem 3.5rem;
+  background-size: var(--commerce-admin-header-grid-size) var(--commerce-admin-header-grid-size);
   mask-image: linear-gradient(180deg, var(--color-paw-shadow-ink) 0%, transparent 88%);
   pointer-events: none;
 }
@@ -105,7 +121,7 @@
   border-radius: 0;
   background: transparent;
   box-shadow: none;
-  padding: 0 0 clamp(1.25rem, 3vw, 2rem);
+  padding: 0 0 var(--commerce-admin-shell-header-padding-range);
 }
 
 .admin-gate-shell .admin-shell-header::before {
@@ -114,11 +130,11 @@
 
 .admin-gate-panel {
   display: flex;
-  max-width: 42rem;
+  max-width: var(--commerce-admin-gate-panel-max-width);
   flex-direction: column;
-  gap: 1.25rem;
+  gap: var(--spacing-paw-lg);
   border-block: 1px solid color-mix(in srgb, var(--color-paw-border) 74%, transparent);
-  padding-block: clamp(1.5rem, 4vw, 2.25rem);
+  padding-block: var(--commerce-admin-gate-panel-padding-range);
 }
 
 .admin-card-upgraded,
@@ -139,5 +155,5 @@
     linear-gradient(120deg, color-mix(in srgb, var(--color-paw-primary) 12%, transparent), color-mix(in srgb, var(--color-paw-trust) 10%, transparent)),
     linear-gradient(90deg, color-mix(in srgb, var(--color-paw-primary) 10%, transparent) 1px, transparent 1px),
     linear-gradient(0deg, color-mix(in srgb, var(--color-paw-trust) 10%, transparent) 1px, transparent 1px);
-  background-size: auto, 2.4rem 2.4rem, 2.4rem 2.4rem;
+  background-size: auto, var(--commerce-admin-preview-grid-size) var(--commerce-admin-preview-grid-size), var(--commerce-admin-preview-grid-size) var(--commerce-admin-preview-grid-size);
 }

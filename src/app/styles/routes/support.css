@@ -1,21 +1,33 @@
 /* Owner: /help support route styles. */
 
+:root {
+  --support-hero-padding-range: clamp(1.5rem, 4vw, 2.5rem);
+  --support-hero-rule-bottom: -1.5rem;
+  --support-hero-rule-height: 1px;
+  --support-card-orb-inline-offset: -1.5rem;
+  --support-card-orb-block-offset: -2rem;
+  --support-card-orb-size: 8rem;
+  --support-card-hover-offset: -3px;
+  --support-card-icon-size: 2.75rem;
+  --support-contact-band-padding: 1.1rem;
+}
+
 .support-hero {
   position: relative;
 }
 
 .support-hero-copy {
-  padding-block: clamp(1.5rem, 4vw, 2.5rem);
+  padding-block: var(--support-hero-padding-range);
 }
 
 .support-hero::after {
   content: "";
   position: absolute;
-  left: 1rem;
-  right: 1rem;
-  bottom: -1.5rem;
+  left: var(--spacing-paw-md);
+  right: var(--spacing-paw-md);
+  bottom: var(--support-hero-rule-bottom);
   z-index: -1;
-  height: 1px;
+  height: var(--support-hero-rule-height);
   background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--color-paw-border) 92%, transparent), transparent);
 }
 
@@ -38,7 +50,7 @@
   border-block: 1px solid color-mix(in srgb, var(--color-paw-border) 74%, transparent);
   background: transparent;
   box-shadow: none;
-  padding-block: 1.25rem;
+  padding-block: var(--spacing-paw-lg);
 }
 
 .support-route-panel::after {
@@ -48,9 +60,9 @@
 .support-route-step {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: var(--spacing-paw-sm);
   border-block-start: 1px solid color-mix(in srgb, var(--color-paw-border) 72%, transparent);
-  padding-block: 0.75rem;
+  padding-block: var(--spacing-paw-sm);
 }
 
 .support-card {
@@ -62,23 +74,23 @@
 .support-card::after {
   content: "";
   position: absolute;
-  inset: auto -1.5rem -2rem auto;
-  width: 8rem;
-  height: 8rem;
+  inset: auto var(--support-card-orb-inline-offset) var(--support-card-orb-block-offset) auto;
+  width: var(--support-card-orb-size);
+  height: var(--support-card-orb-size);
   border-radius: var(--radius-paw-pill);
   background: radial-gradient(circle, color-mix(in srgb, var(--color-paw-trust) 12%, transparent), transparent 64%);
 }
 
 .support-card:hover {
-  transform: translateY(-3px);
+  transform: translateY(var(--support-card-hover-offset));
   border-color: color-mix(in srgb, var(--color-paw-primary) 34%, transparent);
   box-shadow: 0 22px 54px color-mix(in srgb, var(--color-paw-ink) 12%, transparent);
 }
 
 .support-card-icon {
   display: flex;
-  width: 2.75rem;
-  height: 2.75rem;
+  width: var(--support-card-icon-size);
+  height: var(--support-card-icon-size);
   align-items: center;
   justify-content: center;
   border-radius: var(--radius-paw-sm);
@@ -94,7 +106,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 1rem;
+  gap: var(--spacing-paw-md);
   border-block: 1px solid color-mix(in srgb, var(--color-paw-border) 76%, transparent);
-  padding-block: 1.1rem;
+  padding-block: var(--support-contact-band-padding);
 }

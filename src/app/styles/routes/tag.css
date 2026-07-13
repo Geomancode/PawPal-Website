@@ -1,5 +1,12 @@
 /* Owner: /tag/[id] rescue and detail route styles. */
 
+:root {
+  --tag-rescue-panel-padding: 1.15rem;
+  --tag-info-tile-min-height: 4.2rem;
+  --tag-info-tile-gap: 0.65rem;
+  --tag-rescue-panel-min-height-wide: min(32rem, calc(100dvh - 7rem));
+}
+
 .tag-rescue-panel,
 .tag-detail-card {
   position: relative;
@@ -14,23 +21,23 @@
 
 .tag-rescue-panel {
   min-height: 0;
-  padding: 1.15rem;
+  padding: var(--tag-rescue-panel-padding);
 }
 
 .tag-detail-card {
-  padding: 1rem;
+  padding: var(--spacing-paw-md);
 }
 
 .tag-info-tile {
   display: flex;
   min-width: 0;
-  min-height: 4.2rem;
+  min-height: var(--tag-info-tile-min-height);
   align-items: center;
-  gap: 0.65rem;
+  gap: var(--tag-info-tile-gap);
   border: 1px solid color-mix(in srgb, var(--color-paw-primary) 16%, transparent);
   border-radius: var(--radius-paw-md);
   background: color-mix(in srgb, var(--color-paw-primary-soft) 76%, transparent);
-  padding: 0.75rem;
+  padding: var(--spacing-paw-sm);
   color: var(--color-paw-primary);
 }
 
@@ -50,7 +57,7 @@
 
 @media (min-width: 1024px) {
   .tag-rescue-panel {
-    min-height: min(32rem, calc(100dvh - 7rem));
-    padding: 1.25rem;
+    min-height: var(--tag-rescue-panel-min-height-wide);
+    padding: var(--spacing-paw-lg);
   }
 }
