@@ -18,6 +18,8 @@
     "test:i18n-parity": "node scripts/i18n-parity-check.mjs",
     "test:payment-guard": "node scripts/payment-guard-contract-check.mjs",
     "test:search-hardening": "node scripts/search-query-contract-check.mjs",
+    "test:map-search-center": "node scripts/map-search-center-unit.mjs",
+    "test:globe-search-runtime": "node scripts/globe-search-runtime-check.mjs",
     "test:icon-contract": "node scripts/icon-contract-check.mjs",
     "test:tone-contract": "node scripts/tone-contract-check.mjs",
     "test:state-contract": "node scripts/state-contract-check.mjs",

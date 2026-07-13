@@ -41,6 +41,8 @@ type SnapPoint = "peek" | "half" | "full";
 
 interface ChatBottomSheetProps {
   mapRef: MutableRefObject<maplibregl.Map | null>;
+  searchCenter: { lat: number; lng: number } | null;
+  // Null leaves center resolution to the server-side geo-IP fallback chain.
   t: GlobeTranslation;
 }
 
@@ -125,7 +127,7 @@ function createSearchMarker(
 
 // ── Component ────────────────────────────────────────────────────────────────
 
-export default function ChatBottomSheet({ mapRef, t }: ChatBottomSheetProps) {
+export default function ChatBottomSheet({ mapRef, searchCenter, t }: ChatBottomSheetProps) {
   const { session } = useAuth();
   const [snap, setSnap] = useState<SnapPoint>("peek");
   const [messages, setMessages] = useState<ChatMessageData[]>([]);
@@ -253,14 +255,12 @@ export default function ChatBottomSheet({ mapRef, t }: ChatBottomSheetProps) {
 
       try {
         // ── Phase A: Smart Map Search (no subscription required) ──────
-        const currentCenter = mapRef.current?.getCenter();
         const searchResp = await fetch("/api/map-search", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             query: text.trim(),
-            lat: currentCenter?.lat,
-            lng: currentCenter?.lng,
+            ...(searchCenter ? { lat: searchCenter.lat, lng: searchCenter.lng } : {}),
           }),
         });
 
@@ -472,7 +472,7 @@ export default function ChatBottomSheet({ mapRef, t }: ChatBottomSheetProps) {
         setIsStreaming(false);
       }
     },
-    [isStreaming, messages, snap, addMarkersFromResults, clearSearchMarkers, mapRef, session, t]
+    [isStreaming, messages, snap, addMarkersFromResults, clearSearchMarkers, mapRef, searchCenter, session, t]
   );
 
   // ── Keyboard handler ─────────────────────────────────────────────────────
