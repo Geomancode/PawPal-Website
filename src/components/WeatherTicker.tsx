@@ -1,11 +1,7 @@
 "use client";
 
 import { useEffect, useState, useCallback, useRef } from "react";
-import {
-  CloudRain, Wind, Thermometer, MapPin, Droplets, Sun,
-  CloudSnow, Cloud, CloudLightning, CloudFog,
-  Navigation, Dog, RefreshCw,
-} from "lucide-react";
+import PawIcon from "@/components/icons/PawIcon";
 import type { MessageKey } from "@/i18n/messages/en";
 
 type GlobeTranslation = (key: MessageKey) => string;
@@ -22,16 +18,16 @@ function formatMessage(
 
 /* ── WMO Weather Code → Icon + Label ── */
 function getWeatherInfo(code: number, t: GlobeTranslation): { icon: React.ReactNode; label: string } {
-  if (code === 0) return { icon: <Sun className="w-4 h-4 text-paw-warning" />, label: t("globeWeatherClearSky") };
-  if (code <= 3) return { icon: <Cloud className="w-4 h-4 text-paw-page/70" />, label: code === 1 ? t("globeWeatherMainlyClear") : code === 2 ? t("globeWeatherPartlyCloudy") : t("globeWeatherOvercast") };
-  if (code <= 48) return { icon: <CloudFog className="w-4 h-4 text-paw-page/60" />, label: t("globeWeatherFoggy") };
-  if (code <= 57) return { icon: <CloudRain className="w-4 h-4 text-paw-trust" />, label: t("globeWeatherDrizzle") };
-  if (code <= 67) return { icon: <CloudRain className="w-4 h-4 text-paw-trust" />, label: t("globeWeatherRain") };
-  if (code <= 77) return { icon: <CloudSnow className="w-4 h-4 text-paw-trust" />, label: t("globeWeatherSnow") };
-  if (code <= 82) return { icon: <CloudRain className="w-4 h-4 text-paw-trust" />, label: t("globeWeatherRainShowers") };
-  if (code <= 86) return { icon: <CloudSnow className="w-4 h-4 text-paw-trust" />, label: t("globeWeatherSnowShowers") };
-  if (code <= 99) return { icon: <CloudLightning className="w-4 h-4 text-paw-warning" />, label: t("globeWeatherThunderstorm") };
-  return { icon: <Cloud className="w-4 h-4 text-paw-page/70" />, label: t("globeWeatherUnknown") };
+  if (code === 0) return { icon: <PawIcon name="sun" className="w-4 h-4 text-paw-warning" />, label: t("globeWeatherClearSky") };
+  if (code <= 3) return { icon: <PawIcon name="cloud" className="w-4 h-4 text-paw-page/70" />, label: code === 1 ? t("globeWeatherMainlyClear") : code === 2 ? t("globeWeatherPartlyCloudy") : t("globeWeatherOvercast") };
+  if (code <= 48) return { icon: <PawIcon name="fog" className="w-4 h-4 text-paw-page/60" />, label: t("globeWeatherFoggy") };
+  if (code <= 57) return { icon: <PawIcon name="rain" className="w-4 h-4 text-paw-trust" />, label: t("globeWeatherDrizzle") };
+  if (code <= 67) return { icon: <PawIcon name="rain" className="w-4 h-4 text-paw-trust" />, label: t("globeWeatherRain") };
+  if (code <= 77) return { icon: <PawIcon name="snow" className="w-4 h-4 text-paw-trust" />, label: t("globeWeatherSnow") };
+  if (code <= 82) return { icon: <PawIcon name="rain" className="w-4 h-4 text-paw-trust" />, label: t("globeWeatherRainShowers") };
+  if (code <= 86) return { icon: <PawIcon name="snow" className="w-4 h-4 text-paw-trust" />, label: t("globeWeatherSnowShowers") };
+  if (code <= 99) return { icon: <PawIcon name="storm" className="w-4 h-4 text-paw-warning" />, label: t("globeWeatherThunderstorm") };
+  return { icon: <PawIcon name="cloud" className="w-4 h-4 text-paw-page/70" />, label: t("globeWeatherUnknown") };
 }
 
 /* ── Dog Walk Advice ── */
@@ -202,11 +198,11 @@ export default function WeatherTicker({ mapCenter, onRecenterRequest, t }: Weath
         <div className="flex items-center justify-center gap-2 text-sm">
           {loading && !weatherIssue ? (
             <>
-              <RefreshCw className="w-4 h-4 animate-spin" /> {t("globeWeatherLoading")}
+              <PawIcon name="refresh" className="w-4 h-4 animate-spin" /> {t("globeWeatherLoading")}
             </>
           ) : (
             <>
-              <Cloud className="w-4 h-4 text-paw-page/70" /> {t("globeWeatherUnavailable")}
+              <PawIcon name="cloud" className="w-4 h-4 text-paw-page/70" /> {t("globeWeatherUnavailable")}
             </>
           )}
         </div>
@@ -220,7 +216,7 @@ export default function WeatherTicker({ mapCenter, onRecenterRequest, t }: Weath
     {
       key: "place",
       className: "globe-weather-item-place",
-      icon: <MapPin className="w-4 h-4" aria-hidden="true" />,
+      icon: <PawIcon name="location" className="w-4 h-4" aria-hidden="true" />,
       label: weather.city,
       suffix: !weather.isUserLocation ? t("globeWeatherMapSuffix") : "",
     },
@@ -231,36 +227,36 @@ export default function WeatherTicker({ mapCenter, onRecenterRequest, t }: Weath
     },
     {
       key: "temperature",
-      icon: <Thermometer className="w-4 h-4 text-paw-success" aria-hidden="true" />,
+      icon: <PawIcon name="temperature" className="w-4 h-4 text-paw-success" aria-hidden="true" />,
       label: `${weather.temp}°C`,
       suffix: formatMessage(t("globeWeatherFeels"), { temperature: weather.feelsLike }),
     },
     {
       key: "wind",
-      icon: <Wind className="w-4 h-4 text-paw-trust" aria-hidden="true" />,
+      icon: <PawIcon name="wind" className="w-4 h-4 text-paw-trust" aria-hidden="true" />,
       label: formatMessage(t("globeWeatherWindSpeed"), { speed: weather.windSpeed }),
     },
     {
       key: "humidity",
-      icon: <Droplets className="w-4 h-4 text-paw-trust" aria-hidden="true" />,
+      icon: <PawIcon name="humidity" className="w-4 h-4 text-paw-trust" aria-hidden="true" />,
       label: `${weather.humidity}%`,
     },
     {
       key: "rain",
-      icon: <CloudRain className="w-4 h-4 text-paw-trust" aria-hidden="true" />,
+      icon: <PawIcon name="rain" className="w-4 h-4 text-paw-trust" aria-hidden="true" />,
       label: weather.rainProb > 0
         ? formatMessage(t("globeWeatherRainChance"), { chance: weather.rainProb })
         : t("globeWeatherNoRain"),
     },
     {
       key: "uv",
-      icon: <Sun className="w-4 h-4 text-paw-warning" aria-hidden="true" />,
+      icon: <PawIcon name="sun" className="w-4 h-4 text-paw-warning" aria-hidden="true" />,
       label: formatMessage(t("globeWeatherUvIndex"), { index: weather.uvIndex }),
     },
     {
       key: "advice",
       className: "globe-weather-item-advice",
-      icon: <Dog className="w-4 h-4 text-paw-primary" aria-hidden="true" />,
+      icon: <PawIcon name="dog" className="w-4 h-4 text-paw-primary" aria-hidden="true" />,
       label: `${walkAdvice.emoji} ${walkAdvice.text}`,
     },
   ];
@@ -275,7 +271,7 @@ export default function WeatherTicker({ mapCenter, onRecenterRequest, t }: Weath
             className="shrink-0 ml-3 mr-1 flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-paw-primary/90 hover:bg-paw-primary text-paw-accent-ink text-paw-type-caption font-bold transition-all z-10 shadow-paw-action"
             title={t("globeWeatherBackToLocation")}
           >
-            <Navigation className="w-3.5 h-3.5" />
+            <PawIcon name="navigate" className="w-3.5 h-3.5" />
             {t("globeWeatherMyLocation")}
           </button>
         )}
@@ -295,7 +291,7 @@ export default function WeatherTicker({ mapCenter, onRecenterRequest, t }: Weath
         {/* Loading indicator */}
         {loading && (
           <div className="shrink-0 mr-3">
-            <RefreshCw className="w-4 h-4 text-paw-page/40 animate-spin" />
+            <PawIcon name="refresh" className="w-4 h-4 text-paw-page/40 animate-spin" />
           </div>
         )}
       </div>

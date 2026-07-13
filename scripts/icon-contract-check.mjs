@@ -58,6 +58,32 @@ const semanticIconMap = {
   chevronUp: "ChevronUp",
   chevronRight: "ChevronRight",
   chevronDown: "ChevronDown",
+  navigate: "Navigation",
+  humidity: "Droplets",
+  wind: "Wind",
+  dog: "Dog",
+  offline: "WifiOff",
+  snow: "CloudSnow",
+  community: "Users",
+  rain: "CloudRain",
+  temperature: "Thermometer",
+  storm: "CloudLightning",
+  sun: "Sun",
+  fog: "CloudFog",
+  shop: "Store",
+  cloud: "Cloud",
+  route: "Route",
+  chevronLeft: "ChevronLeft",
+  paw: "PawPrint",
+  confirm: "CheckCircle",
+  chat: "MessageCircle",
+  assistant: "Bot",
+  privacy: "LockKeyhole",
+  guide: "BookOpen",
+  support: "LifeBuoy",
+  care: "HeartHandshake",
+  language: "Languages",
+  footprints: "Footprints",
 };
 
 const migratedFiles = [
@@ -77,6 +103,16 @@ const migratedFiles = [
   "src/app/store/orders/page.tsx",
   "src/app/store/page.tsx",
   "src/app/store/success/page.tsx",
+  "src/components/GlobeTutorial.tsx",
+  "src/components/CookieConsentBanner.tsx",
+  "src/components/ChatBubble.tsx",
+  "src/components/GlobeStaticPreview.tsx",
+  "src/components/HomeClientParts.tsx",
+  "src/components/PublicRouteError.tsx",
+  "src/components/ChatBottomSheet.tsx",
+  "src/components/GlobeFullPage.tsx",
+  "src/components/WeatherTicker.tsx",
+  "src/components/ui/EmptyState.tsx",
 ];
 
 // Explicit migration debt. This set is bidirectional: adding or removing a direct
@@ -99,16 +135,6 @@ const pendingFiles = [
   "src/app/tag/[id]/TagPageClient.tsx",
   "src/app/terms/page.tsx",
   "src/app/user/[id]/UserPageClient.tsx",
-  "src/components/ChatBottomSheet.tsx",
-  "src/components/ChatBubble.tsx",
-  "src/components/CookieConsentBanner.tsx",
-  "src/components/GlobeFullPage.tsx",
-  "src/components/GlobeStaticPreview.tsx",
-  "src/components/GlobeTutorial.tsx",
-  "src/components/HomeClientParts.tsx",
-  "src/components/PublicRouteError.tsx",
-  "src/components/WeatherTicker.tsx",
-  "src/components/ui/EmptyState.tsx",
 ];
 
 const sourceExtensions = new Set([".js", ".jsx", ".mjs", ".cjs", ".ts", ".tsx"]);
@@ -201,6 +227,6 @@ if (mapStart === -1 || mapEnd === -1) {
 
 if (process.exitCode) process.exit(process.exitCode);
 console.log(
-  `icon contract PASS: 51 fixed semantic mappings; 16 migrated files; ` +
+  `icon contract PASS: 77 fixed semantic mappings; 26 migrated files; ` +
     `${pendingFiles.length} exact pending files; ${directImportFiles.length} total direct-import files.`,
 );

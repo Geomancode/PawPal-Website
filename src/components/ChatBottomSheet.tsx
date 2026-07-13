@@ -8,7 +8,7 @@ import {
   type MutableRefObject,
   type KeyboardEvent,
 } from "react";
-import { Sparkles, Search, X, ChevronDown } from "lucide-react";
+import PawIcon from "@/components/icons/PawIcon";
 import ChatBubble, { type ChatMessageData } from "./ChatBubble";
 import { useAuth } from "./AuthProvider";
 import { createPawPalMapMarkerElement } from "@/lib/createPawPalMapMarkerElement";
@@ -570,7 +570,7 @@ export default function ChatBottomSheet({ mapRef, t }: ChatBottomSheetProps) {
                 {activePetSpecies ? (
                   <span className="text-sm">{SPECIES_EMOJI[activePetSpecies] ?? "🐾"}</span>
                 ) : (
-                  <Sparkles className="w-3 h-3 text-paw-on-primary" />
+                  <PawIcon name="sparkle" className="w-3 h-3 text-paw-on-primary" />
                 )}
               </div>
               <span className="text-sm font-bold text-paw-ink">
@@ -585,7 +585,7 @@ export default function ChatBottomSheet({ mapRef, t }: ChatBottomSheetProps) {
                   aria-label={t("globeChatCollapseAria")}
                   title={t("globeChatCollapseTitle")}
                 >
-                  <ChevronDown className="w-4 h-4" />
+                  <PawIcon name="chevronDown" className="w-4 h-4" />
                 </button>
               )}
               <button
@@ -594,7 +594,7 @@ export default function ChatBottomSheet({ mapRef, t }: ChatBottomSheetProps) {
                 aria-label={t("globeChatCloseAria")}
                 title={t("globeChatCloseTitle")}
               >
-                <X className="w-4 h-4" />
+                <PawIcon name="close" className="w-4 h-4" />
               </button>
             </div>
           </div>
@@ -610,7 +610,7 @@ export default function ChatBottomSheet({ mapRef, t }: ChatBottomSheetProps) {
             {messages.length === 0 && !isStreaming && (
               <div className="flex flex-col items-center justify-center h-full text-center py-6">
                 <div className="w-12 h-12 rounded-full bg-gradient-to-br from-paw-trust-soft to-paw-primary-soft flex items-center justify-center mb-3">
-                  <Sparkles className="w-5 h-5 text-paw-trust" />
+                  <PawIcon name="sparkle" className="w-5 h-5 text-paw-trust" />
                 </div>
                 <p className="text-sm font-medium text-paw-body mb-1">
                   {t("globeChatIntroTitle")}
@@ -654,7 +654,7 @@ export default function ChatBottomSheet({ mapRef, t }: ChatBottomSheetProps) {
               <div className="flex justify-start mb-3">
                 <div className="flex gap-2 items-center">
                   <div className="w-6 h-6 rounded-full bg-gradient-to-br from-paw-trust to-paw-primary flex items-center justify-center">
-                    <Sparkles className="w-3 h-3 text-paw-on-primary" />
+                    <PawIcon name="sparkle" className="w-3 h-3 text-paw-on-primary" />
                   </div>
                   <div className="flex gap-1 px-3 py-2 rounded-paw-panel bg-paw-panel/90 border border-paw-border shadow-sm">
                     <div
@@ -685,7 +685,7 @@ export default function ChatBottomSheet({ mapRef, t }: ChatBottomSheetProps) {
           }}
         >
           {snap === "peek" && (
-            <Sparkles className="w-4 h-4 text-paw-trust shrink-0 ml-2" />
+            <PawIcon name="sparkle" className="w-4 h-4 text-paw-trust shrink-0 ml-2" />
           )}
           <input
             id="globe-search"
@@ -707,7 +707,7 @@ export default function ChatBottomSheet({ mapRef, t }: ChatBottomSheetProps) {
             {isStreaming ? (
               <div className="w-3.5 h-3.5 border-2 border-paw-on-primary/30 border-t-paw-on-primary rounded-full animate-spin" />
             ) : (
-              <Search className="w-3.5 h-3.5" />
+              <PawIcon name="search" className="w-3.5 h-3.5" />
             )}
             {isStreaming ? t("globeChatThinking") : t("globeChatAsk")}
           </button>

@@ -1,4 +1,4 @@
-import { Radio } from "lucide-react";
+import PawIcon from "@/components/icons/PawIcon";
 
 interface GlobeStaticPreviewProps {
   ariaLabel?: string;
@@ -28,7 +28,7 @@ export default function GlobeStaticPreview({
         <span className="globe-static-preview-marker globe-static-preview-marker-c" />
       </div>
       <div className="globe-static-preview-loading">
-        <Radio className={`h-4 w-4 ${pulseStatus ? "animate-pulse" : ""}`.trim()} aria-hidden="true" />
+        <PawIcon name="live" className={`h-4 w-4 ${pulseStatus ? "animate-pulse" : ""}`.trim()} aria-hidden="true" />
         {statusLabel}
       </div>
     </div>

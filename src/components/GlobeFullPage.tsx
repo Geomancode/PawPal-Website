@@ -4,7 +4,7 @@ import { useEffect, useRef, useState, useCallback, useMemo } from "react";
 import Link from "next/link";
 import maplibregl from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
-import { AlertCircle, LifeBuoy, MapPin, MessageCircle, PawPrint, RefreshCw, ShoppingBag, WifiOff } from "lucide-react";
+import PawIcon from "@/components/icons/PawIcon";
 import WeatherTicker from "./WeatherTicker";
 import { fetchQuests, Quest } from "@/lib/fetchQuests";
 import { fetchPlaces, Place } from "@/lib/fetchPlaces";
@@ -159,15 +159,15 @@ function GlobeFallbackView({
         </p>
         <div className="globe-fallback-actions mt-6 flex flex-wrap gap-3">
           <button type="button" onClick={onRetry} className="globe-fallback-action globe-fallback-action-primary">
-            <RefreshCw className="h-4 w-4" aria-hidden="true" />
+            <PawIcon name="refresh" className="h-4 w-4" aria-hidden="true" />
             {t("globeTryLiveMap")}
           </button>
           <Link href="/store" className="globe-fallback-action">
-            <ShoppingBag className="h-4 w-4" aria-hidden="true" />
+            <PawIcon name="cart" className="h-4 w-4" aria-hidden="true" />
             {t("globeShopSmartTags")}
           </Link>
           <Link href="/help" className="globe-fallback-action">
-            <LifeBuoy className="h-4 w-4" aria-hidden="true" />
+            <PawIcon name="support" className="h-4 w-4" aria-hidden="true" />
             {t("globeLocalHelp")}
           </Link>
         </div>
@@ -700,19 +700,19 @@ export default function MapGlobeComponent({ t }: { t: GlobeTranslation }) {
               <div className="mb-2 space-y-1.5">
                 {isOffline && (
                   <p className="globe-inline-issue">
-                    <WifiOff className="h-3.5 w-3.5" aria-hidden="true" />
+                    <PawIcon name="offline" className="h-3.5 w-3.5" aria-hidden="true" />
                     {t("globeOfflineIssue")}
                   </p>
                 )}
                 {locationIssue && (
                   <p className="globe-inline-issue">
-                    <MapPin className="h-3.5 w-3.5" aria-hidden="true" />
+                    <PawIcon name="location" className="h-3.5 w-3.5" aria-hidden="true" />
                     {t(locationIssue)}
                   </p>
                 )}
                 {nearbyIssue && (
                   <p className="globe-inline-issue">
-                    <AlertCircle className="h-3.5 w-3.5" aria-hidden="true" />
+                    <PawIcon name="critical" className="h-3.5 w-3.5" aria-hidden="true" />
                     {t(nearbyIssue)}
                   </p>
                 )}
@@ -738,15 +738,15 @@ export default function MapGlobeComponent({ t }: { t: GlobeTranslation }) {
           {/* Layer Toggle */}
           <div id="globe-layers" className="globe-layer-stack absolute z-40 flex gap-1.5">
             <button onClick={() => setShowQuests(!showQuests)} className={`globe-layer-button flex items-center gap-2 rounded-paw-pill border px-3 py-2 text-xs font-bold transition-all ${showQuests ? "is-active-mission bg-paw-accent text-paw-on-accent border-paw-accent" : "bg-paw-panel/80 text-paw-muted border-paw-border"}`}>
-              <PawPrint className="h-3.5 w-3.5" aria-hidden="true" />
+              <PawIcon name="paw" className="h-3.5 w-3.5" aria-hidden="true" />
               {t("globeLayerMissions")} {quests.length > 0 && <span className="rounded-paw-pill bg-paw-panel/30 px-1.5 py-0.5 text-paw-type-caption">{quests.length}</span>}
             </button>
             <button onClick={() => setShowPlaces(!showPlaces)} className={`globe-layer-button flex items-center gap-2 rounded-paw-pill border px-3 py-2 text-xs font-bold transition-all ${showPlaces ? "is-active-place bg-paw-trust text-paw-on-trust border-paw-trust" : "bg-paw-panel/80 text-paw-muted border-paw-border"}`}>
-              <MapPin className="h-3.5 w-3.5" aria-hidden="true" />
+              <PawIcon name="location" className="h-3.5 w-3.5" aria-hidden="true" />
               {t("globeLayerPlaces")} {places.length > 0 && <span className="rounded-paw-pill bg-paw-panel/30 px-1.5 py-0.5 text-paw-type-caption">{places.length}</span>}
             </button>
             <button onClick={() => setShowPosts(!showPosts)} className={`globe-layer-button flex items-center gap-2 rounded-paw-pill border px-3 py-2 text-xs font-bold transition-all ${showPosts ? "is-active-post bg-paw-primary text-paw-on-primary border-paw-primary" : "bg-paw-panel/80 text-paw-muted border-paw-border"}`}>
-              <MessageCircle className="h-3.5 w-3.5" aria-hidden="true" />
+              <PawIcon name="chat" className="h-3.5 w-3.5" aria-hidden="true" />
               {t("globeLayerPosts")} {posts.length > 0 && <span className="rounded-paw-pill bg-paw-panel/30 px-1.5 py-0.5 text-paw-type-caption">{posts.length}</span>}
             </button>
           </div>

@@ -1,6 +1,6 @@
 "use client";
 
-import { MapPin, Sparkles, AlertTriangle, CheckCircle, BookOpen } from "lucide-react";
+import PawIcon from "@/components/icons/PawIcon";
 import type { MessageKey } from "@/i18n/messages/en";
 
 type GlobeTranslation = (key: MessageKey) => string;
@@ -81,7 +81,7 @@ function AssistantBubble({ text }: { text: string }) {
     <div className="flex justify-start mb-3">
       <div className="flex gap-2 max-w-[85%]">
         <div className="w-6 h-6 rounded-full bg-gradient-to-br from-paw-trust to-paw-primary flex items-center justify-center shrink-0 mt-0.5">
-          <Sparkles className="w-3 h-3 text-paw-on-primary" />
+          <PawIcon name="sparkle" className="w-3 h-3 text-paw-on-primary" />
         </div>
         <div className="px-4 py-2.5 rounded-paw-panel [border-bottom-left-radius:var(--radius-paw-xs)] bg-paw-panel/90 border border-paw-border shadow-sm text-sm text-paw-body leading-relaxed whitespace-pre-wrap">
           {text}
@@ -178,7 +178,7 @@ function PlaceResults({
                 </p>
               </div>
               {p.lat && p.lng && (
-                <MapPin className="w-4 h-4 text-paw-muted group-hover:text-paw-trust shrink-0 transition-colors" />
+                <PawIcon name="location" className="w-4 h-4 text-paw-muted group-hover:text-paw-trust shrink-0 transition-colors" />
               )}
             </button>
           );
@@ -236,7 +236,7 @@ function MissionResults({
                 </p>
               </div>
               {m.lat && m.lng && (
-                <MapPin className="w-4 h-4 text-paw-muted group-hover:text-paw-accent shrink-0 transition-colors" />
+                <PawIcon name="location" className="w-4 h-4 text-paw-muted group-hover:text-paw-accent shrink-0 transition-colors" />
               )}
             </button>
           );
@@ -284,9 +284,9 @@ function FoodSafetyCard({ data, t }: { data: Record<string, unknown>; t: GlobeTr
             >
               <div className="flex items-center gap-2 mb-1">
                 {isDangerous ? (
-                  <AlertTriangle className="w-4 h-4 text-paw-danger" />
+                  <PawIcon name="warning" className="w-4 h-4 text-paw-danger" />
                 ) : (
-                  <CheckCircle className="w-4 h-4 text-paw-success" />
+                  <PawIcon name="confirm" className="w-4 h-4 text-paw-success" />
                 )}
                 <span
                   className={`font-semibold ${
@@ -328,7 +328,7 @@ function BreedCard({ data, t }: { data: Record<string, unknown>; t: GlobeTransla
             className="px-4 py-3 rounded-paw-md bg-paw-trust-soft border border-paw-trust/20 text-sm"
           >
             <div className="flex items-center gap-2 mb-2">
-              <BookOpen className="w-4 h-4 text-paw-trust" />
+              <PawIcon name="guide" className="w-4 h-4 text-paw-trust" />
               <span className="font-semibold text-paw-ink">
                 {String(b.breed_name ?? "")}
               </span>

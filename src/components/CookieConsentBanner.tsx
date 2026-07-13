@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { CheckCircle2, ShieldCheck } from "lucide-react";
+import PawIcon from "@/components/icons/PawIcon";
 import { useState, useSyncExternalStore } from "react";
 import Button from "@/components/ui/Button";
 import {
@@ -87,7 +87,7 @@ export default function CookieConsentBanner() {
               className="w-full whitespace-nowrap sm:w-auto"
               onClick={() => saveChoice("all")}
             >
-              <CheckCircle2 className="h-4 w-4" aria-hidden="true" />
+              <PawIcon name="success" className="h-4 w-4" aria-hidden="true" />
               {t("cookieConsentAcceptAll")}
             </Button>
             <Button
@@ -97,7 +97,7 @@ export default function CookieConsentBanner() {
               className="w-full whitespace-nowrap sm:w-auto"
               onClick={() => saveChoice("essential")}
             >
-              <ShieldCheck className="h-4 w-4" aria-hidden="true" />
+              <PawIcon name="shield" className="h-4 w-4" aria-hidden="true" />
               {t("cookieConsentEssentialOnly")}
             </Button>
           </div>

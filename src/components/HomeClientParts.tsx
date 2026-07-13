@@ -4,22 +4,7 @@ import { motion, useInView, useScroll, useSpring } from "framer-motion";
 import Globe from "@/components/Globe";
 import Image from "next/image";
 import Link from "next/link";
-import {
-  ArrowRight,
-  Bot,
-  Footprints,
-  HeartHandshake,
-  Languages,
-  LockKeyhole,
-  Map,
-  Navigation,
-  Route,
-  ScanLine,
-  ShieldCheck,
-  Store,
-  Users,
-} from "lucide-react";
-import type { LucideIcon } from "lucide-react";
+import PawIcon, { type PawIconName } from "@/components/icons/PawIcon";
 import { ReactNode, useEffect, useRef, useState, useSyncExternalStore } from "react";
 import { Card, CardContent, buttonClassName } from "@/components/ui";
 import { useI18n } from "@/i18n/I18nProvider";
@@ -166,7 +151,7 @@ export function HeroCTA() {
         className={buttonClassName({ size: "lg", className: "w-full sm:w-auto" })}
       >
         {t("homeCtaOpenLiveMap")}
-        <ArrowRight className="h-4 w-4" />
+        <PawIcon name="forward" className="h-4 w-4" />
       </Link>
       <Link
         href={path("/store")}
@@ -177,7 +162,7 @@ export function HeroCTA() {
         })}
       >
         {t("homeCtaShopSmartTags")}
-        <Store className="h-4 w-4" />
+        <PawIcon name="shop" className="h-4 w-4" />
       </Link>
     </motion.div>
   );
@@ -186,10 +171,10 @@ export function HeroCTA() {
 export function HeroSignalRail() {
   const { t } = useI18n();
   const shouldReduceMotion = useHydratedReducedMotion();
-  const signals = [
-    { label: t("homeSignalFinderPageLabel"), value: t("homeSignalFinderPageValue"), icon: ScanLine },
-    { label: t("homeSignalWalkRevealLabel"), value: t("homeSignalWalkRevealValue"), icon: Route },
-    { label: t("homeSignalLocalHelpLabel"), value: t("homeSignalLocalHelpValue"), icon: HeartHandshake },
+  const signals: Array<{ label: string; value: string; icon: PawIconName }> = [
+    { label: t("homeSignalFinderPageLabel"), value: t("homeSignalFinderPageValue"), icon: "nfcScan" },
+    { label: t("homeSignalWalkRevealLabel"), value: t("homeSignalWalkRevealValue"), icon: "route" },
+    { label: t("homeSignalLocalHelpLabel"), value: t("homeSignalLocalHelpValue"), icon: "care" },
   ];
 
   return (
@@ -201,7 +186,7 @@ export function HeroSignalRail() {
       {signals.map((signal) => (
         <div key={signal.label} className="hero-signal-item">
           <span className="hero-signal-icon">
-            <signal.icon className="h-4 w-4" aria-hidden="true" />
+            <PawIcon name={signal.icon} className="h-4 w-4" aria-hidden="true" />
           </span>
           <span>
             <span className="block text-xs font-black text-paw-ink">{signal.value}</span>
@@ -216,21 +201,21 @@ export function HeroSignalRail() {
 export function HeroBadges() {
   const { t } = useI18n();
   const shouldReduceMotion = useHydratedReducedMotion();
-  const badges = [
+  const badges: Array<{ icon: PawIconName; label: string; copy: string; tone: string }> = [
     {
-      icon: ShieldCheck,
+      icon: "shield",
       label: t("homeBadgeFinderReadyLabel"),
       copy: t("homeBadgeFinderReadyCopy"),
       tone: "bg-paw-primary-soft text-paw-on-primary-soft",
     },
     {
-      icon: LockKeyhole,
+      icon: "privacy",
       label: t("homeBadgePrivacyFirstLabel"),
       copy: t("homeBadgePrivacyFirstCopy"),
       tone: "bg-paw-trust-soft text-paw-on-trust-soft",
     },
     {
-      icon: Languages,
+      icon: "language",
       label: t("homeBadgeEuReadyLabel"),
       copy: t("homeBadgeEuReadyCopy"),
       tone: "bg-paw-accent-soft text-paw-on-accent-soft",
@@ -250,7 +235,7 @@ export function HeroBadges() {
           className="flex min-w-0 items-center gap-3 rounded-paw-card border border-paw-outline-variant bg-paw-panel-low p-paw-sm shadow-paw-panel"
         >
           <span className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-paw-control ${badge.tone}`}>
-            <badge.icon className="h-5 w-5" aria-hidden="true" />
+            <PawIcon name={badge.icon} className="h-5 w-5" aria-hidden="true" />
           </span>
           <div className="min-w-0">
             <p className="truncate text-sm font-extrabold text-paw-ink">{badge.label}</p>
@@ -281,7 +266,7 @@ export function GlobeSection() {
 
       <div className="hero-product-tag" aria-hidden="true">
         <span className="hero-product-tag-mark">
-          <ScanLine className="h-5 w-5" />
+          <PawIcon name="nfcScan" className="h-5 w-5" />
         </span>
         <span className="mt-1 font-brand text-sm font-black text-paw-primary">PawPal</span>
       </div>
@@ -291,21 +276,21 @@ export function GlobeSection() {
 
 export function TrustMarquee() {
   const { t } = useI18n();
-  const proofItems: Array<{ icon: LucideIcon; title: string; copy: string; tone: string }> = [
+  const proofItems: Array<{ icon: PawIconName; title: string; copy: string; tone: string }> = [
     {
-      icon: Map,
+      icon: "map",
       title: t("homeProofWalkMapTitle"),
       copy: t("homeProofWalkMapCopy"),
       tone: "bg-paw-primary-soft text-paw-on-primary-soft",
     },
     {
-      icon: ScanLine,
+      icon: "nfcScan",
       title: t("homeProofSmartTagTitle"),
       copy: t("homeProofSmartTagCopy"),
       tone: "bg-paw-trust-soft text-paw-on-trust-soft",
     },
     {
-      icon: HeartHandshake,
+      icon: "care",
       title: t("homeProofLocalHelpTitle"),
       copy: t("homeProofLocalHelpCopy"),
       tone: "bg-paw-accent-soft text-paw-on-accent-soft",
@@ -320,7 +305,7 @@ export function TrustMarquee() {
           className="flex min-h-full items-center gap-paw-md p-paw-lg shadow-paw-panel"
         >
           <span className={`flex h-14 w-14 shrink-0 items-center justify-center rounded-paw-pill ${item.tone}`}>
-            <item.icon className="h-6 w-6" />
+            <PawIcon name={item.icon} className="h-6 w-6" />
           </span>
           <div>
             <h3 className="text-sm font-extrabold text-paw-ink">{item.title}</h3>
@@ -334,27 +319,27 @@ export function TrustMarquee() {
 
 export function LaunchReadinessPanel() {
   const { t } = useI18n();
-  const readinessItems: Array<{ icon: LucideIcon; value: string; label: string; copy: string }> = [
+  const readinessItems: Array<{ icon: PawIconName; value: string; label: string; copy: string }> = [
     {
-      icon: ScanLine,
+      icon: "nfcScan",
       value: t("homeReadinessNfcValue"),
       label: t("homeReadinessNfcLabel"),
       copy: t("homeReadinessNfcCopy"),
     },
     {
-      icon: Navigation,
+      icon: "navigate",
       value: t("homeReadinessH3Value"),
       label: t("homeReadinessH3Label"),
       copy: t("homeReadinessH3Copy"),
     },
     {
-      icon: Bot,
+      icon: "assistant",
       value: t("homeReadinessAiValue"),
       label: t("homeReadinessAiLabel"),
       copy: t("homeReadinessAiCopy"),
     },
     {
-      icon: Users,
+      icon: "community",
       value: t("homeReadinessEuValue"),
       label: t("homeReadinessEuLabel"),
       copy: t("homeReadinessEuCopy"),
@@ -376,7 +361,7 @@ export function LaunchReadinessPanel() {
                 </div>
                 <div className="mb-5 flex items-center justify-between gap-4">
                   <span className="flex h-11 w-11 items-center justify-center rounded-paw-sm bg-paw-primary-soft text-paw-on-primary-soft">
-                    <item.icon className="h-5 w-5" aria-hidden="true" />
+                    <PawIcon name={item.icon} className="h-5 w-5" aria-hidden="true" />
                   </span>
                   <span className="font-brand text-2xl font-black text-paw-primary">{item.value}</span>
                 </div>
@@ -453,28 +438,28 @@ export function AnimatedCounter({ value, label, delay = 0 }: { value: string; la
 export function ProductFlow() {
   const { t } = useI18n();
   const flowSteps: Array<{
-    icon: LucideIcon;
+    icon: PawIconName;
     title: string;
     copy: string;
     color: string;
     surface: string;
   }> = [
     {
-      icon: Footprints,
+      icon: "footprints",
       title: t("homeFlowWalkTitle"),
       copy: t("homeFlowWalkCopy"),
       color: "text-paw-primary",
       surface: "bg-paw-primary-soft",
     },
     {
-      icon: ShieldCheck,
+      icon: "shield",
       title: t("homeFlowProtectTitle"),
       copy: t("homeFlowProtectCopy"),
       color: "text-paw-trust",
       surface: "bg-paw-trust-soft",
     },
     {
-      icon: Users,
+      icon: "community",
       title: t("homeFlowCommunityTitle"),
       copy: t("homeFlowCommunityCopy"),
       color: "text-paw-accent",
@@ -493,7 +478,7 @@ export function ProductFlow() {
                 {index + 1}
               </span>
               <span className={`flex h-14 w-14 items-center justify-center rounded-paw-pill ${step.surface} ${step.color}`}>
-                <step.icon className="h-5 w-5" />
+                <PawIcon name={step.icon} className="h-5 w-5" />
               </span>
             </div>
             <div>
@@ -511,30 +496,30 @@ export function ProductFlow() {
 export function BentoFeatureGrid() {
   const { t } = useI18n();
   const shouldReduceMotion = useHydratedReducedMotion();
-  const featureRows: Array<{ icon: LucideIcon; title: string; copy: string; color: string; surface: string }> = [
+  const featureRows: Array<{ icon: PawIconName; title: string; copy: string; color: string; surface: string }> = [
     {
-      icon: Map,
+      icon: "map",
       title: t("homeFeatureFogTitle"),
       copy: t("homeFeatureFogCopy"),
       color: "text-paw-primary",
       surface: "bg-paw-primary",
     },
     {
-      icon: ScanLine,
+      icon: "nfcScan",
       title: t("homeFeatureNfcTitle"),
       copy: t("homeFeatureNfcCopy"),
       color: "text-paw-trust",
       surface: "bg-paw-trust",
     },
     {
-      icon: Bot,
+      icon: "assistant",
       title: t("homeFeatureAiTitle"),
       copy: t("homeFeatureAiCopy"),
       color: "text-paw-accent",
       surface: "bg-paw-accent",
     },
     {
-      icon: Users,
+      icon: "community",
       title: t("homeFeatureCommunityTitle"),
       copy: t("homeFeatureCommunityCopy"),
       color: "text-paw-primary",
@@ -559,7 +544,7 @@ export function BentoFeatureGrid() {
             {featureRows.map((feature) => (
               <div key={feature.title} className="grid grid-cols-[48px_1fr] gap-4">
                 <div className={`flex h-12 w-12 items-center justify-center rounded-paw-control ${feature.surface} text-paw-on-primary shadow-paw-control`}>
-                  <feature.icon className="h-5 w-5" />
+                  <PawIcon name={feature.icon} className="h-5 w-5" />
                 </div>
                 <div>
                   <h3 className="text-base font-extrabold text-paw-ink">{feature.title}</h3>
@@ -611,10 +596,10 @@ export function BentoFeatureGrid() {
 
 export function AppShowcase() {
   const { t } = useI18n();
-  const showcaseItems = [
-    { icon: Map, title: t("homeShowcaseLiveMapTitle"), copy: t("homeShowcaseLiveMapCopy"), color: "text-paw-primary" },
-    { icon: ScanLine, title: t("homeShowcaseFinderTitle"), copy: t("homeShowcaseFinderCopy"), color: "text-paw-trust" },
-    { icon: HeartHandshake, title: t("homeShowcaseLocalHelpTitle"), copy: t("homeShowcaseLocalHelpCopy"), color: "text-paw-accent" },
+  const showcaseItems: Array<{ icon: PawIconName; title: string; copy: string; color: string }> = [
+    { icon: "map", title: t("homeShowcaseLiveMapTitle"), copy: t("homeShowcaseLiveMapCopy"), color: "text-paw-primary" },
+    { icon: "nfcScan", title: t("homeShowcaseFinderTitle"), copy: t("homeShowcaseFinderCopy"), color: "text-paw-trust" },
+    { icon: "care", title: t("homeShowcaseLocalHelpTitle"), copy: t("homeShowcaseLocalHelpCopy"), color: "text-paw-accent" },
   ];
 
   return (
@@ -634,7 +619,7 @@ export function AppShowcase() {
             />
           </div>
           <div className="homepage-tag-disc" aria-hidden="true">
-            <ScanLine className="h-6 w-6" />
+            <PawIcon name="nfcScan" className="h-6 w-6" />
             <span>PawPal</span>
           </div>
         </div>
@@ -651,7 +636,7 @@ export function AppShowcase() {
           <div className="homepage-showcase-list">
             {showcaseItems.map((item) => (
               <div key={item.title} className="homepage-showcase-row">
-                <item.icon className={`h-6 w-6 ${item.color}`} aria-hidden="true" />
+                <PawIcon name={item.icon} className={`h-6 w-6 ${item.color}`} aria-hidden="true" />
                 <div>
                   <h3 className="text-sm font-extrabold text-paw-ink">{item.title}</h3>
                   <p className="mt-1 text-sm leading-6 text-paw-body">{item.copy}</p>
@@ -675,14 +660,14 @@ export function BottomCTA() {
         className={buttonClassName({ size: "lg" })}
       >
         {t("homeCtaOpenLiveMap")}
-        <ArrowRight className="h-4 w-4" />
+        <PawIcon name="forward" className="h-4 w-4" />
       </Link>
       <Link
         href={path("/store")}
         className={buttonClassName({ variant: "secondary", size: "lg" })}
       >
         {t("homeCtaShopSmartTags")}
-        <Store className="h-4 w-4" />
+        <PawIcon name="shop" className="h-4 w-4" />
       </Link>
     </div>
   );
