@@ -1,20 +1,15 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import {
+  forwardRef,
+  useState,
+  useEffect,
+  type ComponentProps,
+  type ComponentPropsWithoutRef,
+} from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useRouter } from "next/navigation";
-import {
-  ArrowLeft,
-  Package,
-  ChevronDown,
-  ChevronUp,
-  MapPin,
-  CreditCard,
-  Clock,
-  Truck,
-  CheckCircle2,
-  ShoppingBag,
-} from "lucide-react";
+import PawIcon, { type PawIconName } from "@/components/icons/PawIcon";
 import { Order, loadOrders } from "../storeData";
 import ProductVisual from "../ProductVisual";
 import { Badge, Button, Card, EmptyState } from "@/components/ui";
@@ -28,15 +23,26 @@ const ACCOUNT_FIXTURES_ENABLED =
 
 type OrdersTranslation = (key: MessageKey) => string;
 
+type EmptyStateIconProps = ComponentPropsWithoutRef<
+  NonNullable<ComponentProps<typeof EmptyState>["icon"]>
+>;
+
+const CartEmptyStateIcon = forwardRef<SVGSVGElement, EmptyStateIconProps>(
+  function CartEmptyStateIcon({ className, "aria-hidden": ariaHidden }, ref) {
+    void ref;
+    return <PawIcon name="cart" className={className} aria-hidden={ariaHidden} />;
+  },
+);
+
 type OrderStatus = Order["status"];
 
 const STATUS_CONFIG: Record<
   OrderStatus,
-  { tone: "warning" | "trust" | "success"; icon: typeof Clock }
+  { tone: "warning" | "trust" | "success"; icon: PawIconName }
 > = {
-  processing: { tone: "warning", icon: Clock },
-  shipped: { tone: "trust", icon: Truck },
-  delivered: { tone: "success", icon: CheckCircle2 },
+  processing: { tone: "warning", icon: "clock" },
+  shipped: { tone: "trust", icon: "shipping" },
+  delivered: { tone: "success", icon: "success" },
 };
 
 const STATUS_INDEX: Record<OrderStatus, number> = {
@@ -61,7 +67,6 @@ function OrderCard({ order, t }: { order: Order; t: OrdersTranslation }) {
     t("ordersStatusShipped"),
     t("ordersStatusDelivered"),
   ];
-  const StatusIcon = status.icon;
   const date = new Date(order.createdAt);
   const dateStr = date.toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" });
   const timeStr = date.toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit" });
@@ -82,14 +87,14 @@ function OrderCard({ order, t }: { order: Order; t: OrdersTranslation }) {
           aria-expanded={expanded}
         >
           <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-paw-xl bg-paw-primary-soft text-paw-on-primary-soft">
-            <Package className="h-6 w-6" aria-hidden="true" />
+            <PawIcon name="package" className="h-6 w-6" aria-hidden="true" />
           </div>
 
           <div className="min-w-0 flex-1">
             <div className="flex flex-wrap items-center gap-2">
               <p className="font-mono text-sm font-bold text-paw-ink">{order.id}</p>
               <Badge tone={status.tone}>
-                <StatusIcon className="h-3 w-3" aria-hidden="true" />
+                <PawIcon name={status.icon} className="h-3 w-3" aria-hidden="true" />
                 {statusLabel}
               </Badge>
             </div>
@@ -103,9 +108,9 @@ function OrderCard({ order, t }: { order: Order; t: OrdersTranslation }) {
           </div>
 
           {expanded ? (
-            <ChevronUp className="h-5 w-5 shrink-0 text-paw-muted" aria-hidden="true" />
+            <PawIcon name="chevronUp" className="h-5 w-5 shrink-0 text-paw-muted" aria-hidden="true" />
           ) : (
-            <ChevronDown className="h-5 w-5 shrink-0 text-paw-muted" aria-hidden="true" />
+            <PawIcon name="chevronDown" className="h-5 w-5 shrink-0 text-paw-muted" aria-hidden="true" />
           )}
         </button>
 
@@ -138,7 +143,7 @@ function OrderCard({ order, t }: { order: Order; t: OrdersTranslation }) {
 
                 <div>
                   <h4 className="mb-2 flex items-center gap-1.5 text-sm font-bold text-paw-ink">
-                    <ShoppingBag className="h-4 w-4 text-paw-primary" aria-hidden="true" />
+                    <PawIcon name="cart" className="h-4 w-4 text-paw-primary" aria-hidden="true" />
                     {t("ordersItemsTitle")}
                   </h4>
                   <div className="space-y-2">
@@ -160,7 +165,7 @@ function OrderCard({ order, t }: { order: Order; t: OrdersTranslation }) {
                 <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                   <div className="rounded-paw-md border border-paw-border bg-paw-panel-subtle p-4">
                     <h4 className="mb-2 flex items-center gap-1.5 text-sm font-bold text-paw-ink">
-                      <MapPin className="h-4 w-4 text-paw-primary" aria-hidden="true" />
+                      <PawIcon name="location" className="h-4 w-4 text-paw-primary" aria-hidden="true" />
                       {t("ordersShippingTitle")}
                     </h4>
                     <p className="text-xs font-bold text-paw-body">{order.shipping.fullName}</p>
@@ -170,7 +175,7 @@ function OrderCard({ order, t }: { order: Order; t: OrdersTranslation }) {
                   </div>
                   <div className="rounded-paw-md border border-paw-border bg-paw-panel-subtle p-4">
                     <h4 className="mb-2 flex items-center gap-1.5 text-sm font-bold text-paw-ink">
-                      <CreditCard className="h-4 w-4 text-paw-primary" aria-hidden="true" />
+                      <PawIcon name="payment" className="h-4 w-4 text-paw-primary" aria-hidden="true" />
                       {t("ordersPaymentTitle")}
                     </h4>
                     <p className="text-xs font-bold text-paw-body">
@@ -225,7 +230,7 @@ export default function OrdersPage() {
           onClick={() => router.push("/store")}
           className="mb-6 -ml-2 text-paw-muted hover:text-paw-primary"
         >
-          <ArrowLeft className="h-4 w-4" aria-hidden="true" />
+          <PawIcon name="back" className="h-4 w-4" aria-hidden="true" />
           {t("ordersBackToStore")}
         </Button>
 
@@ -233,7 +238,7 @@ export default function OrdersPage() {
           <div>
             <Badge tone="primary" className="mb-3">{t("ordersPurchaseHistory")}</Badge>
             <h1 className="flex items-center gap-3 text-3xl font-extrabold text-paw-ink sm:text-4xl">
-              <Package className="h-7 w-7 text-paw-primary" aria-hidden="true" />
+              <PawIcon name="package" className="h-7 w-7 text-paw-primary" aria-hidden="true" />
               {t("ordersTitle")}
             </h1>
             <p className="mt-3 max-w-xl text-sm leading-6 text-paw-body">
@@ -247,7 +252,7 @@ export default function OrdersPage() {
 
         {orders.length === 0 ? (
           <EmptyState
-            icon={ShoppingBag}
+            icon={CartEmptyStateIcon}
             title={t("ordersEmptyTitle")}
             description={t("ordersEmptyDescription")}
             className="orders-empty-state"

@@ -29,6 +29,35 @@ const semanticIconMap = {
   star: "Star",
   health: "HeartPulse",
   shield: "ShieldCheck",
+  spinner: "Loader2",
+  search: "Search",
+  shipping: "Truck",
+  save: "Save",
+  package: "Package",
+  receipt: "Receipt",
+  back: "ArrowLeft",
+  add: "Plus",
+  sparkle: "Sparkles",
+  subtract: "Minus",
+  refresh: "RefreshCw",
+  packageAdd: "PackagePlus",
+  location: "MapPin",
+  secure: "Lock",
+  payment: "CreditCard",
+  imageAdd: "ImagePlus",
+  upload: "UploadCloud",
+  externalLink: "ExternalLink",
+  delete: "Trash2",
+  dumbbell: "Dumbbell",
+  tags: "Tags",
+  crown: "Crown",
+  filters: "SlidersHorizontal",
+  clock: "Clock",
+  basket: "ShoppingCart",
+  bone: "Bone",
+  chevronUp: "ChevronUp",
+  chevronRight: "ChevronRight",
+  chevronDown: "ChevronDown",
 };
 
 const migratedFiles = [
@@ -43,6 +72,11 @@ const migratedFiles = [
   "src/components/ui/Sheet.tsx",
   "src/components/ui/StatePanel.tsx",
   "src/components/ui/StatusMessage.tsx",
+  "src/app/store/admin/page.tsx",
+  "src/app/store/checkout/page.tsx",
+  "src/app/store/orders/page.tsx",
+  "src/app/store/page.tsx",
+  "src/app/store/success/page.tsx",
 ];
 
 // Explicit migration debt. This set is bidirectional: adding or removing a direct
@@ -62,11 +96,6 @@ const pendingFiles = [
   "src/app/privacy/page.tsx",
   "src/app/profile/ProfileWorkspaceView.tsx",
   "src/app/profile/PushSubscriptionSettings.tsx",
-  "src/app/store/admin/page.tsx",
-  "src/app/store/checkout/page.tsx",
-  "src/app/store/orders/page.tsx",
-  "src/app/store/page.tsx",
-  "src/app/store/success/page.tsx",
   "src/app/tag/[id]/TagPageClient.tsx",
   "src/app/terms/page.tsx",
   "src/app/user/[id]/UserPageClient.tsx",
@@ -172,6 +201,6 @@ if (mapStart === -1 || mapEnd === -1) {
 
 if (process.exitCode) process.exit(process.exitCode);
 console.log(
-  `icon contract PASS: 22 fixed semantic mappings; 11 migrated files; ` +
+  `icon contract PASS: 51 fixed semantic mappings; 16 migrated files; ` +
     `${pendingFiles.length} exact pending files; ${directImportFiles.length} total direct-import files.`,
 );

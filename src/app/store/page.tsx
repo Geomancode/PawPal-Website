@@ -1,17 +1,21 @@
 "use client";
 
-import { Suspense, useState, useEffect, useCallback, useMemo, useSyncExternalStore } from "react";
+import {
+  Suspense,
+  forwardRef,
+  useState,
+  useEffect,
+  useCallback,
+  useMemo,
+  useSyncExternalStore,
+  type ComponentProps,
+  type ComponentPropsWithoutRef,
+} from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { useRouter, useSearchParams } from "next/navigation";
-import {
-  ShoppingCart, Plus, Minus, Trash2, ArrowRight,
-  Search, SlidersHorizontal, ChevronRight, RefreshCw,
-  ShieldCheck, Sparkles, Crown, CheckCircle2, Loader2,
-  Bone, Dumbbell, HeartPulse, ShoppingBag, Tags, Truck,
-} from "lucide-react";
-import type { LucideIcon } from "lucide-react";
+import PawIcon, { type PawIconName } from "@/components/icons/PawIcon";
 import {
   PRODUCTS, CATEGORIES, Product, CartItem, Category,
   checkStoreAdmin,
@@ -44,12 +48,12 @@ import { useI18n } from "@/i18n/I18nProvider";
 import type { MessageKey } from "@/i18n/messages/en";
 import { useRouteTranslations } from "@/i18n/useRouteTranslations";
 
-const CATEGORY_ICONS: Record<Category, LucideIcon> = {
-  all: ShoppingBag,
-  food: Bone,
-  toys: Dumbbell,
-  accessories: Tags,
-  health: HeartPulse,
+const CATEGORY_ICONS: Record<Category, PawIconName> = {
+  all: "cart",
+  food: "bone",
+  toys: "dumbbell",
+  accessories: "tags",
+  health: "health",
 };
 
 const REDUCED_MOTION_QUERY = "(prefers-reduced-motion: reduce)";
@@ -66,6 +70,23 @@ const STORE_METRIC_CLASSES = {
 } as const;
 
 type StoreTranslation = (key: MessageKey) => string;
+
+type EmptyStateIconProps = ComponentPropsWithoutRef<
+  NonNullable<ComponentProps<typeof EmptyState>["icon"]>
+>;
+
+function createEmptyStateIcon(name: PawIconName) {
+  return forwardRef<SVGSVGElement, EmptyStateIconProps>(function EmptyStatePawIcon({
+    className,
+    "aria-hidden": ariaHidden,
+  }, ref) {
+    void ref;
+    return <PawIcon name={name} className={className} aria-hidden={ariaHidden} />;
+  });
+}
+
+const BasketEmptyStateIcon = createEmptyStateIcon("basket");
+const SearchEmptyStateIcon = createEmptyStateIcon("search");
 
 function fadeUpMotion(shouldReduceMotion: boolean | null, y: number, delay = 0) {
   void y;
@@ -158,7 +179,7 @@ function SubscriptionUpgradePanel({
     <PageShell className={STORE_METRIC_CLASSES.shellTopSpacing} contentClassName="space-y-paw-xl">
       <div className="max-w-2xl">
         <Badge tone="primary" variant="semantic" className="mb-paw-lg">
-          <Sparkles className="h-paw-md w-paw-md" aria-hidden="true" />
+          <PawIcon name="sparkle" className="h-paw-md w-paw-md" aria-hidden="true" />
           {t("storeUpgradeBadge")}
         </Badge>
         <h1 className="font-brand text-paw-type-h1 font-black text-paw-ink sm:text-paw-type-display">
@@ -194,9 +215,9 @@ function SubscriptionUpgradePanel({
                   <div>
                     <div className="mb-paw-sm flex h-paw-min-tap w-paw-min-tap items-center justify-center rounded-paw-control bg-paw-primary-soft text-paw-on-primary-soft">
                       {tier === "pro" ? (
-                        <Crown className="h-paw-lg w-paw-lg" aria-hidden="true" />
+                        <PawIcon name="crown" className="h-paw-lg w-paw-lg" aria-hidden="true" />
                       ) : (
-                        <Sparkles className="h-paw-lg w-paw-lg" aria-hidden="true" />
+                        <PawIcon name="sparkle" className="h-paw-lg w-paw-lg" aria-hidden="true" />
                       )}
                     </div>
                     <h2 className="text-paw-type-h2 font-black text-paw-ink">
@@ -225,7 +246,7 @@ function SubscriptionUpgradePanel({
                 <div className="mb-paw-xl space-y-paw-sm">
                   {plan.features.map((feature) => (
                     <div key={feature} className="flex items-start gap-paw-xs text-sm text-paw-body">
-                      <CheckCircle2 className="mt-0.5 h-paw-md w-paw-md shrink-0 text-paw-on-success-soft" aria-hidden="true" />
+                      <PawIcon name="success" className="mt-0.5 h-paw-md w-paw-md shrink-0 text-paw-on-success-soft" aria-hidden="true" />
                       <span>{feature}</span>
                     </div>
                   ))}
@@ -239,7 +260,7 @@ function SubscriptionUpgradePanel({
                   onClick={() => startCheckout(tier)}
                   className="w-full"
                 >
-                  {busy && <Loader2 className="h-paw-md w-paw-md animate-spin" aria-hidden="true" />}
+                  {busy && <PawIcon name="spinner" className="h-paw-md w-paw-md animate-spin" aria-hidden="true" />}
                   {t("storeUpgradeButtonPrefix")} {plan.name}
                 </Button>
               </Card>
@@ -288,7 +309,7 @@ function ProductCard({
           size="sm"
           className="absolute right-paw-sm top-paw-sm z-10"
         >
-          <Sparkles className="h-paw-sm w-paw-sm" aria-hidden="true" />
+          <PawIcon name="sparkle" className="h-paw-sm w-paw-sm" aria-hidden="true" />
           {t("storeAiPick")}
         </Badge>
       )}
@@ -403,7 +424,7 @@ function CartDrawer({
       ariaLabel={`${t("storeCartAriaPrefix")} (${items.length})`}
       title={
         <span className="inline-flex items-center gap-paw-xs">
-          <ShoppingCart className="h-paw-lg w-paw-lg text-paw-primary" aria-hidden="true" />
+          <PawIcon name="basket" className="h-paw-lg w-paw-lg text-paw-primary" aria-hidden="true" />
           {t("storeCartTitle")} ({items.length})
         </span>
       }
@@ -437,7 +458,7 @@ function CartDrawer({
               href={path("/store/checkout")}
               className={buttonClassName({ size: "lg", className: "w-full" })}
             >
-              {t("storeProceedToCheckout")} <ArrowRight className="h-paw-lg w-paw-lg" aria-hidden="true" />
+              {t("storeProceedToCheckout")} <PawIcon name="forward" className="h-paw-lg w-paw-lg" aria-hidden="true" />
             </Link>
           </div>
         ) : undefined
@@ -445,7 +466,7 @@ function CartDrawer({
     >
       {items.length === 0 ? (
         <EmptyState
-          icon={ShoppingCart}
+          icon={BasketEmptyStateIcon}
           title={t("storeCartEmptyTitle")}
           description={t("storeCartEmptyDescription")}
         />
@@ -479,7 +500,7 @@ function CartDrawer({
                       onClick={() => onUpdate(item.product.id, item.quantity - 1)}
                       aria-label={`${t("storeDecreasePrefix")} ${item.product.name}`}
                     >
-                      <Minus className="h-paw-sm w-paw-sm" aria-hidden="true" />
+                      <PawIcon name="subtract" className="h-paw-sm w-paw-sm" aria-hidden="true" />
                     </Button>
                     <span className={`${STORE_METRIC_CLASSES.quantityLabelWidth} text-center text-sm font-extrabold text-paw-ink`}>
                       {item.quantity}
@@ -493,7 +514,7 @@ function CartDrawer({
                       onClick={() => onUpdate(item.product.id, item.quantity + 1)}
                       aria-label={`${t("storeIncreasePrefix")} ${item.product.name}`}
                     >
-                      <Plus className="h-paw-sm w-paw-sm" aria-hidden="true" />
+                      <PawIcon name="add" className="h-paw-sm w-paw-sm" aria-hidden="true" />
                     </Button>
                   </div>
                 </div>
@@ -506,7 +527,7 @@ function CartDrawer({
                     onClick={() => onRemove(item.product.id)}
                     aria-label={`${t("storeRemovePrefix")} ${item.product.name}`}
                   >
-                    <Trash2 className="h-paw-md w-paw-md" aria-hidden="true" />
+                    <PawIcon name="delete" className="h-paw-md w-paw-md" aria-hidden="true" />
                   </Button>
                   <span className="text-sm font-extrabold text-paw-ink">
                     €{(item.product.price * item.quantity).toFixed(2)}
@@ -654,17 +675,17 @@ function StorePageContent({ t }: { t: StoreTranslation }) {
   const totalItems = cart.reduce((s, i) => s + i.quantity, 0);
   const storePromises = [
     {
-      icon: ShieldCheck,
+      icon: "shield" as const,
       label: t("storePromiseNfcLabel"),
       copy: t("storePromiseNfcCopy"),
     },
     {
-      icon: Truck,
+      icon: "shipping" as const,
       label: t("storePromiseFulfillmentLabel"),
       copy: t("storePromiseFulfillmentCopy"),
     },
     {
-      icon: CheckCircle2,
+      icon: "success" as const,
       label: t("storePromiseCheckoutLabel"),
       copy: t("storePromiseCheckoutCopy"),
     },
@@ -723,7 +744,7 @@ function StorePageContent({ t }: { t: StoreTranslation }) {
                   variant="compact"
                   className="flex flex-wrap items-center gap-paw-xs px-paw-sm py-paw-xs text-sm font-bold"
                 >
-                  <Sparkles className="h-paw-md w-paw-md text-paw-on-primary-soft" aria-hidden="true" />
+                  <PawIcon name="sparkle" className="h-paw-md w-paw-md text-paw-on-primary-soft" aria-hidden="true" />
                   <span>
                     {recommendedMatchCount > 0
                       ? `${recommendedMatchCount} ${
@@ -746,7 +767,7 @@ function StorePageContent({ t }: { t: StoreTranslation }) {
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 placeholder={t("storeSearchPlaceholder")}
-                leftSlot={<Search className="h-paw-lg w-paw-lg" aria-hidden="true" />}
+                leftSlot={<PawIcon name="search" className="h-paw-lg w-paw-lg" aria-hidden="true" />}
               />
             </motion.div>
           </div>
@@ -763,7 +784,7 @@ function StorePageContent({ t }: { t: StoreTranslation }) {
               className="flex flex-col items-center gap-paw-xs p-paw-sm text-center sm:flex-row sm:items-start sm:gap-paw-sm sm:text-left"
             >
               <span className="flex h-paw-xxl w-paw-xxl shrink-0 items-center justify-center rounded-paw-control bg-paw-primary-soft text-paw-on-primary-soft">
-                <promise.icon className={`${STORE_METRIC_CLASSES.compactIconSize} sm:h-paw-md sm:w-paw-md`} aria-hidden="true" />
+                <PawIcon name={promise.icon} className={`${STORE_METRIC_CLASSES.compactIconSize} sm:h-paw-md sm:w-paw-md`} aria-hidden="true" />
               </span>
               <div>
                 <p className="text-paw-type-caption font-extrabold leading-tight text-paw-ink sm:text-sm">
@@ -782,13 +803,13 @@ function StorePageContent({ t }: { t: StoreTranslation }) {
       <section className="bg-paw-panel-subtle py-paw-lg">
         <div className="mx-auto max-w-7xl px-paw-md sm:px-paw-xl lg:px-paw-xxl">
         <div className="mb-paw-sm flex items-center gap-paw-xs">
-          <SlidersHorizontal className="h-paw-md w-paw-md text-paw-muted" />
+          <PawIcon name="filters" className="h-paw-md w-paw-md text-paw-muted" />
           <span className="text-sm font-bold text-paw-muted">{t("storeFilterByCategory")}</span>
         </div>
         <div className="-mx-paw-md mb-paw-sm flex gap-paw-sm overflow-x-auto px-paw-md pb-paw-xs sm:mx-0 sm:flex-wrap sm:overflow-visible sm:px-0 sm:pb-0">
           {CATEGORIES.map((cat) => (
             (() => {
-              const CategoryIcon = CATEGORY_ICONS[cat.key];
+              const categoryIcon = CATEGORY_ICONS[cat.key];
               const active = category === cat.key;
               return (
                 <motion.button
@@ -801,7 +822,7 @@ function StorePageContent({ t }: { t: StoreTranslation }) {
                     className: "shrink-0 cursor-pointer",
                   })}
                 >
-                  <CategoryIcon className={`${STORE_METRIC_CLASSES.compactIconSize} sm:h-paw-md sm:w-paw-md`} aria-hidden="true" />
+                  <PawIcon name={categoryIcon} className={`${STORE_METRIC_CLASSES.compactIconSize} sm:h-paw-md sm:w-paw-md`} aria-hidden="true" />
                   {categoryLabels[cat.key]}
                 </motion.button>
               );
@@ -815,7 +836,7 @@ function StorePageContent({ t }: { t: StoreTranslation }) {
             </p>
             {catalogLoading && (
               <Badge tone="neutral" variant="semantic" size="sm">
-                <RefreshCw className="h-paw-sm w-paw-sm animate-spin" aria-hidden="true" />
+                <PawIcon name="refresh" className="h-paw-sm w-paw-sm animate-spin" aria-hidden="true" />
                 {t("storeSyncing")}
               </Badge>
             )}
@@ -831,7 +852,7 @@ function StorePageContent({ t }: { t: StoreTranslation }) {
               onClick={() => setCartOpen(true)}
               className="store-toolbar-action inline-flex cursor-pointer items-center gap-paw-xxs text-sm font-bold text-paw-muted transition-colors hover:text-paw-primary"
             >
-              <ShoppingCart className="h-paw-md w-paw-md" aria-hidden="true" />
+              <PawIcon name="basket" className="h-paw-md w-paw-md" aria-hidden="true" />
               {t("storeCartButton")} {totalItems > 0 ? `(${totalItems})` : ""}
             </button>
             {isAdmin && (
@@ -839,7 +860,7 @@ function StorePageContent({ t }: { t: StoreTranslation }) {
                 onClick={() => router.push(path("/store/admin"))}
                 className="store-toolbar-action flex cursor-pointer items-center gap-paw-xxs text-sm font-bold text-paw-trust transition-colors hover:text-paw-trust-hover"
               >
-                <ShieldCheck className="h-paw-md w-paw-md" aria-hidden="true" />
+                <PawIcon name="shield" className="h-paw-md w-paw-md" aria-hidden="true" />
                 {t("storeManageCatalog")}
               </button>
             )}
@@ -847,7 +868,7 @@ function StorePageContent({ t }: { t: StoreTranslation }) {
               onClick={() => router.push(path("/store/orders"))}
               className="store-toolbar-action flex cursor-pointer items-center gap-paw-xxs text-sm font-bold text-paw-primary transition-colors hover:text-paw-primary-hover"
             >
-              {t("storeMyOrders")} <ChevronRight className="h-paw-md w-paw-md" />
+              {t("storeMyOrders")} <PawIcon name="chevronRight" className="h-paw-md w-paw-md" />
             </button>
           </div>
         </div>
@@ -869,7 +890,7 @@ function StorePageContent({ t }: { t: StoreTranslation }) {
 
         {filtered.length === 0 && (
           <EmptyState
-            icon={Search}
+            icon={SearchEmptyStateIcon}
             title={t("storeNoProductsTitle")}
             description={t("storeNoProductsDescription")}
             className="my-paw-xxxl"
@@ -895,7 +916,7 @@ function StorePageContent({ t }: { t: StoreTranslation }) {
               className={`relative flex ${STORE_METRIC_CLASSES.floatingCartSize} items-center justify-center rounded-paw-panel bg-paw-primary text-paw-accent-ink shadow-paw-action transition-colors hover:bg-paw-primary-hover focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-paw-trust/20`}
               aria-label={`${t("storeCheckoutWithPrefix")} ${totalItems} ${totalItems === 1 ? t("storeItemSingular") : t("storeItemPlural")}`}
             >
-              <ShoppingCart className="h-paw-xl w-paw-xl" aria-hidden="true" />
+              <PawIcon name="basket" className="h-paw-xl w-paw-xl" aria-hidden="true" />
               <motion.span
                 initial={false}
                 animate={{ scale: 1 }}
@@ -933,7 +954,7 @@ function StorePageContent({ t }: { t: StoreTranslation }) {
             exit={shouldReduceMotion ? undefined : { opacity: 0, y: 40 }}
             className={`fixed ${STORE_METRIC_CLASSES.toastBottomOffset} left-1/2 z-50 flex -translate-x-1/2 items-center gap-paw-xs rounded-paw-panel border border-paw-outline-variant bg-paw-panel-low px-paw-lg py-paw-sm text-sm font-bold text-paw-ink shadow-paw-panel`}
           >
-            <CheckCircle2 className="h-paw-md w-paw-md text-paw-on-success-soft" aria-hidden="true" />
+            <PawIcon name="success" className="h-paw-md w-paw-md text-paw-on-success-soft" aria-hidden="true" />
             {toast}
           </motion.div>
         )}

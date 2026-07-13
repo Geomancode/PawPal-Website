@@ -1,17 +1,17 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useState, type FormEvent } from "react";
-import { usePathname, useRouter } from "next/navigation";
 import {
-  ArrowLeft,
-  ImagePlus,
-  Loader2,
-  PackagePlus,
-  RefreshCw,
-  Save,
-  ShieldCheck,
-  UploadCloud,
-} from "lucide-react";
+  forwardRef,
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
+  type ComponentProps,
+  type ComponentPropsWithoutRef,
+  type FormEvent,
+} from "react";
+import { usePathname, useRouter } from "next/navigation";
+import PawIcon, { type PawIconName } from "@/components/icons/PawIcon";
 import { supabase } from "@/lib/supabase";
 import { loadP3B1g2hAdminFixtures } from "@/lib/p3b1g2hAdminFixtures";
 import { useAuth } from "@/components/AuthProvider";
@@ -59,6 +59,23 @@ type ProductForm = {
   published: boolean;
   tags: string;
 };
+
+type EmptyStateIconProps = ComponentPropsWithoutRef<
+  NonNullable<ComponentProps<typeof EmptyState>["icon"]>
+>;
+
+function createEmptyStateIcon(name: PawIconName) {
+  return forwardRef<SVGSVGElement, EmptyStateIconProps>(function EmptyStatePawIcon({
+    className,
+    "aria-hidden": ariaHidden,
+  }, ref) {
+    void ref;
+    return <PawIcon name={name} className={className} aria-hidden={ariaHidden} />;
+  });
+}
+
+const ShieldEmptyStateIcon = createEmptyStateIcon("shield");
+const PackageAddEmptyStateIcon = createEmptyStateIcon("packageAdd");
 
 const initialForm: ProductForm = {
   id: "",
@@ -369,7 +386,7 @@ export default function StoreAdminPage() {
       <>
         {loader}
         <div className="flex min-h-screen items-center justify-center bg-paw-page pt-24 text-paw-ink">
-          <Loader2 className="h-8 w-8 animate-spin text-paw-primary" aria-hidden="true" />
+          <PawIcon name="spinner" className="h-8 w-8 animate-spin text-paw-primary" aria-hidden="true" />
         </div>
       </>
     );
@@ -392,7 +409,7 @@ export default function StoreAdminPage() {
         }
       >
         <Card className="admin-card-upgraded p-8">
-          <EmptyState icon={ShieldCheck} title={t("storeAdminNoActiveSession")} description={t("storeAdminReturnAfterSignIn")} />
+          <EmptyState icon={ShieldEmptyStateIcon} title={t("storeAdminNoActiveSession")} description={t("storeAdminReturnAfterSignIn")} />
         </Card>
         </PageShell>
       </>
@@ -411,13 +428,13 @@ export default function StoreAdminPage() {
         description={t("storeAdminAccessRestrictedDescription")}
         actions={
           <Button type="button" variant="secondary" onClick={() => router.push(path("/store"))}>
-            <ArrowLeft className="h-4 w-4" aria-hidden="true" />
+            <PawIcon name="back" className="h-4 w-4" aria-hidden="true" />
             {t("storeAdminBackToStore")}
           </Button>
         }
       >
         <Card className="admin-card-upgraded p-8">
-          <EmptyState icon={ShieldCheck} title={t("storeAdminNotAdmin")} description={user?.email || t("storeAdminNotAuthorized")} />
+          <EmptyState icon={ShieldEmptyStateIcon} title={t("storeAdminNotAdmin")} description={user?.email || t("storeAdminNotAuthorized")} />
         </Card>
         </PageShell>
       </>
@@ -436,11 +453,11 @@ export default function StoreAdminPage() {
       actions={
         <>
           <Button type="button" variant="secondary" onClick={() => router.push(path("/store"))}>
-            <ArrowLeft className="h-4 w-4" aria-hidden="true" />
+            <PawIcon name="back" className="h-4 w-4" aria-hidden="true" />
             {t("storeAdminStore")}
           </Button>
           <Button type="button" variant="trust" onClick={refreshProducts} disabled={loadingProducts}>
-            <RefreshCw className={loadingProducts ? "h-4 w-4 animate-spin" : "h-4 w-4"} aria-hidden="true" />
+            <PawIcon name="refresh" className={loadingProducts ? "h-4 w-4 animate-spin" : "h-4 w-4"} aria-hidden="true" />
             {t("storeAdminRefresh")}
           </Button>
         </>
@@ -451,7 +468,7 @@ export default function StoreAdminPage() {
           <CardContent>
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="flex items-center gap-2">
-                <PackagePlus className="h-5 w-5 text-paw-primary" aria-hidden="true" />
+                <PawIcon name="packageAdd" className="h-5 w-5 text-paw-primary" aria-hidden="true" />
                 <h2 className="text-xl font-extrabold text-paw-ink">{t("storeAdminProductInformation")}</h2>
               </div>
 
@@ -523,7 +540,7 @@ export default function StoreAdminPage() {
 
               <div className="admin-asset-panel space-y-4 rounded-paw-lg border border-paw-border bg-paw-panel-subtle p-4">
                 <div className="flex items-center gap-2">
-                  <ImagePlus className="h-5 w-5 text-paw-trust" aria-hidden="true" />
+                  <PawIcon name="imageAdd" className="h-5 w-5 text-paw-trust" aria-hidden="true" />
                   <h3 className="font-extrabold text-paw-ink">{t("storeAdminProductAsset")}</h3>
                 </div>
                 <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
@@ -531,7 +548,7 @@ export default function StoreAdminPage() {
                   <Input label={t("storeAdminExistingImageUrl")} value={form.imageUrl} onChange={(e) => updateForm("imageUrl", e.target.value)} placeholder="https://..." />
                 </div>
                 <label className="flex cursor-pointer flex-col items-center justify-center gap-2 rounded-paw-md border border-dashed border-paw-border bg-paw-panel px-4 py-8 text-center transition hover:border-paw-trust hover:bg-paw-trust-soft/40">
-                  <UploadCloud className="h-8 w-8 text-paw-trust" aria-hidden="true" />
+                  <PawIcon name="upload" className="h-8 w-8 text-paw-trust" aria-hidden="true" />
                   <span className="text-sm font-extrabold text-paw-ink">
                     {file ? file.name : t("storeAdminUploadMainImage")}
                   </span>
@@ -546,7 +563,7 @@ export default function StoreAdminPage() {
               </div>
 
               <Button type="submit" size="lg" disabled={saving} className="w-full">
-                {saving ? <Loader2 className="h-5 w-5 animate-spin" aria-hidden="true" /> : <Save className="h-5 w-5" aria-hidden="true" />}
+                {saving ? <PawIcon name="spinner" className="h-5 w-5 animate-spin" aria-hidden="true" /> : <PawIcon name="save" className="h-5 w-5" aria-hidden="true" />}
                 {t("storeAdminSaveProduct")}
               </Button>
             </form>
@@ -578,7 +595,7 @@ export default function StoreAdminPage() {
                 <Badge tone="trust">{products.length}</Badge>
               </div>
               {products.length === 0 ? (
-                <EmptyState icon={PackagePlus} title={t("storeAdminNoProductsLoaded")} description={t("storeAdminNoProductsDescription")} />
+                <EmptyState icon={PackageAddEmptyStateIcon} title={t("storeAdminNoProductsLoaded")} description={t("storeAdminNoProductsDescription")} />
               ) : (
                 <div className="max-h-[520px] space-y-3 overflow-y-auto pr-1">
                   {products.map((product) => (

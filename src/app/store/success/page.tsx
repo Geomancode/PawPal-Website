@@ -2,15 +2,7 @@
 
 import { useState, useEffect, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import {
-  CheckCircle2,
-  Package,
-  ArrowRight,
-  Loader2,
-  AlertTriangle,
-  Receipt,
-  Sparkles,
-} from "lucide-react";
+import PawIcon from "@/components/icons/PawIcon";
 import { saveOrder, saveCart, generateOrderId, loadCart } from "../storeData";
 import { Badge, Button, Card } from "@/components/ui";
 import { useRouteTranslations } from "@/i18n/useRouteTranslations";
@@ -38,7 +30,7 @@ function LoadingState() {
     <div className="commerce-page-shell flex min-h-screen items-center justify-center bg-paw-page text-paw-ink">
       {loader}
       <div className="flex flex-col items-center gap-4">
-        <Loader2 className="h-8 w-8 animate-spin text-paw-primary" aria-hidden="true" />
+        <PawIcon name="spinner" className="h-8 w-8 animate-spin text-paw-primary" aria-hidden="true" />
         <p className="text-sm font-bold text-paw-muted">{t("successConfirmingPayment")}</p>
       </div>
     </div>
@@ -135,7 +127,7 @@ function SuccessContent() {
         {loader}
         <Card className="success-card-upgraded w-full max-w-lg p-7 text-center sm:p-8">
           <div className="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-paw-xl bg-paw-critical-soft text-paw-on-critical-soft">
-            <AlertTriangle className="h-7 w-7" aria-hidden="true" />
+            <PawIcon name="warning" className="h-7 w-7" aria-hidden="true" />
           </div>
           <Badge tone="critical" className="mb-3">{t("successCheckoutStatus")}</Badge>
           <h1 className="text-2xl font-extrabold text-paw-ink">{t("successVerificationFailedTitle")}</h1>
@@ -165,7 +157,7 @@ function SuccessContent() {
       <div className="mx-auto max-w-2xl px-4">
         <Card className="success-card-upgraded p-8 text-center sm:p-10">
           <div className="mx-auto mb-6 flex h-24 w-24 items-center justify-center rounded-paw-pill bg-paw-success-soft text-paw-on-success-soft">
-            <CheckCircle2 className="h-12 w-12" aria-hidden="true" />
+            <PawIcon name="success" className="h-12 w-12" aria-hidden="true" />
           </div>
 
           <Badge tone="success" className="mb-3">{t("successPaymentConfirmed")}</Badge>
@@ -180,12 +172,12 @@ function SuccessContent() {
 
           {isSubscription ? (
             <div className="mt-5 inline-flex items-center gap-2 rounded-paw-pill border border-paw-primary/20 bg-paw-primary-soft px-4 py-2 text-sm font-extrabold text-paw-on-primary-soft">
-              <Sparkles className="h-4 w-4" aria-hidden="true" />
+              <PawIcon name="sparkle" className="h-4 w-4" aria-hidden="true" />
               {session?.metadata?.tier === "pro" ? t("successPlanProLabel") : t("successPlanBasicLabel")}
             </div>
           ) : (
             <div className="mt-5 inline-flex items-center gap-2 rounded-paw-pill border border-paw-primary/20 bg-paw-primary-soft px-4 py-2 font-mono text-sm font-extrabold text-paw-on-primary-soft">
-              <Receipt className="h-4 w-4" aria-hidden="true" />
+              <PawIcon name="receipt" className="h-4 w-4" aria-hidden="true" />
               {t("successOrderNumberPrefix")}#{orderId}
             </div>
           )}
@@ -201,7 +193,7 @@ function SuccessContent() {
               {session.line_items && session.line_items.length > 0 && (
                 <div className="rounded-paw-md border border-paw-border bg-paw-panel-subtle p-4">
                   <h2 className="mb-3 flex items-center gap-2 text-sm font-extrabold text-paw-ink">
-                    <Package className="h-4 w-4 text-paw-primary" aria-hidden="true" />
+                    <PawIcon name="package" className="h-4 w-4 text-paw-primary" aria-hidden="true" />
                     {t("successItemsTitle")}
                   </h2>
                   <div className="space-y-2">
@@ -235,12 +227,12 @@ function SuccessContent() {
             {isSubscription ? (
               <Button type="button" onClick={() => router.push("/store?intent=ai-upgrade")}>
                 {t("successManagePlans")}
-                <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                <PawIcon name="forward" className="h-4 w-4" aria-hidden="true" />
               </Button>
             ) : (
               <Button type="button" onClick={() => router.push("/store/orders")}>
                 {t("successViewMyOrders")}
-                <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                <PawIcon name="forward" className="h-4 w-4" aria-hidden="true" />
               </Button>
             )}
             <Button type="button" variant="secondary" onClick={() => router.push("/store")}>

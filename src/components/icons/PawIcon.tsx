@@ -22,6 +22,35 @@ import {
   TriangleAlert,
   UserCircle,
   X,
+  Loader2,
+  Search,
+  Truck,
+  Save,
+  Package,
+  Receipt,
+  ArrowLeft,
+  Plus,
+  Sparkles,
+  Minus,
+  RefreshCw,
+  PackagePlus,
+  MapPin,
+  Lock,
+  CreditCard,
+  ImagePlus,
+  UploadCloud,
+  ExternalLink,
+  Trash2,
+  Dumbbell,
+  Tags,
+  Crown,
+  SlidersHorizontal,
+  Clock,
+  ShoppingCart,
+  Bone,
+  ChevronUp,
+  ChevronRight,
+  ChevronDown,
   type LucideIcon,
 } from "lucide-react";
 
@@ -57,7 +86,36 @@ export type PawIconName =
   | "cart"
   | "star"
   | "health"
-  | "shield";
+  | "shield"
+  | "spinner"
+  | "search"
+  | "shipping"
+  | "save"
+  | "package"
+  | "receipt"
+  | "back"
+  | "add"
+  | "sparkle"
+  | "subtract"
+  | "refresh"
+  | "packageAdd"
+  | "location"
+  | "secure"
+  | "payment"
+  | "imageAdd"
+  | "upload"
+  | "externalLink"
+  | "delete"
+  | "dumbbell"
+  | "tags"
+  | "crown"
+  | "filters"
+  | "clock"
+  | "basket"
+  | "bone"
+  | "chevronUp"
+  | "chevronRight"
+  | "chevronDown";
 
 const semanticIconMap = {
   info: Info,
@@ -82,6 +140,35 @@ const semanticIconMap = {
   star: Star,
   health: HeartPulse,
   shield: ShieldCheck,
+  spinner: Loader2,
+  search: Search,
+  shipping: Truck,
+  save: Save,
+  package: Package,
+  receipt: Receipt,
+  back: ArrowLeft,
+  add: Plus,
+  sparkle: Sparkles,
+  subtract: Minus,
+  refresh: RefreshCw,
+  packageAdd: PackagePlus,
+  location: MapPin,
+  secure: Lock,
+  payment: CreditCard,
+  imageAdd: ImagePlus,
+  upload: UploadCloud,
+  externalLink: ExternalLink,
+  delete: Trash2,
+  dumbbell: Dumbbell,
+  tags: Tags,
+  crown: Crown,
+  filters: SlidersHorizontal,
+  clock: Clock,
+  basket: ShoppingCart,
+  bone: Bone,
+  chevronUp: ChevronUp,
+  chevronRight: ChevronRight,
+  chevronDown: ChevronDown,
 } satisfies Record<PawIconName, LucideIcon>;
 
 type PawIconProps = {
