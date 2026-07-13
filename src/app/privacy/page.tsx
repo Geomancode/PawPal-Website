@@ -82,7 +82,7 @@ export default function PrivacyPage() {
             <h1 className="max-w-3xl font-brand text-paw-type-h1 font-black text-paw-ink sm:text-paw-type-display">
               {t("privacyHeroTitle")}
             </h1>
-            <p className="mt-paw-md max-w-2xl text-paw-type-body text-paw-body sm:text-base">
+            <p className="mt-paw-md max-w-2xl text-paw-type-body text-paw-body sm:text-paw-type-body">
               {t("privacyHeroCopy")}
             </p>
           </div>
@@ -99,8 +99,8 @@ export default function PrivacyPage() {
               >
                 <PawIcon name={item.icon} className="h-4 w-4 text-paw-on-primary-soft" aria-hidden="true" />
                 <div>
-                  <p className="text-sm font-extrabold text-paw-ink">{item.label}</p>
-                  <p className="mt-paw-xxs text-xs leading-5 text-paw-body">{item.value}</p>
+                  <p className="text-paw-type-body font-extrabold text-paw-ink">{item.label}</p>
+                  <p className="mt-paw-xxs text-paw-type-caption leading-5 text-paw-body">{item.value}</p>
                 </div>
               </div>
             ))}
@@ -129,9 +129,9 @@ export default function PrivacyPage() {
               <h2 className="text-paw-type-h2 font-black text-paw-ink">
                 {t(section.titleKey)}
               </h2>
-              <p className="mt-paw-sm text-sm leading-6 text-paw-body">{t(section.textKey)}</p>
+              <p className="mt-paw-sm text-paw-type-body leading-6 text-paw-body">{t(section.textKey)}</p>
               {section.items ? (
-                <ul className="mt-paw-md space-y-paw-sm text-sm leading-6 text-paw-body">
+                <ul className="mt-paw-md space-y-paw-sm text-paw-type-body leading-6 text-paw-body">
                   {section.items.map((item) => (
                     <li key={item.labelKey}>
                       <span className="font-extrabold text-paw-ink">
@@ -142,7 +142,7 @@ export default function PrivacyPage() {
                   ))}
                 </ul>
               ) : null}
-              <p className="mt-paw-md text-xs font-black uppercase text-paw-on-primary-soft">
+              <p className="mt-paw-md text-paw-type-caption font-black uppercase text-paw-on-primary-soft">
                 {t(section.signalKey)}
               </p>
           </section>

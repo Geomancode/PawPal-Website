@@ -62,12 +62,12 @@ export default function CookieConsentBanner() {
       <div className="rounded-paw-lg border border-paw-border-strong bg-paw-panel/95 p-4 text-paw-ink shadow-paw-panel backdrop-blur sm:p-5">
         <div className="grid gap-4 md:grid-cols-[minmax(0,1fr)_auto] md:items-center">
           <div className="min-w-0">
-            <p className="text-sm font-extrabold text-paw-ink">
+            <p className="text-paw-type-body font-extrabold text-paw-ink">
               {t("cookieConsentTitle")}
             </p>
             <p
               id="cookie-consent-description"
-              className="mt-1 max-w-3xl text-xs leading-5 text-paw-body sm:text-sm sm:leading-6"
+              className="mt-1 max-w-3xl text-paw-type-caption leading-5 text-paw-body sm:text-paw-type-body sm:leading-6"
             >
               {t("cookieConsentDescription")} {" "}
               <Link

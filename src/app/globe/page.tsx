@@ -20,10 +20,10 @@ function GlobeLoading() {
         <div className="mt-5 h-1.5 overflow-hidden rounded-full bg-paw-panel/10">
           <div className="globe-loading-bar h-full rounded-full" />
         </div>
-        <p className="mt-4 text-sm font-bold text-paw-page/70">
+        <p className="mt-4 text-paw-type-body font-bold text-paw-page/70">
           {t("globePageLoadingTitle")}
         </p>
-        <p className="mt-1 text-xs text-paw-page/45">
+        <p className="mt-1 text-paw-type-caption text-paw-page/45">
           {t("globePageLoadingDescription")}
         </p>
       </div>

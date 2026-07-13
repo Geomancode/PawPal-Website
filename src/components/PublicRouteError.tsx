@@ -43,7 +43,7 @@ export default function PublicRouteError({
     >
       {loader}
       <div className="mx-auto w-full max-w-xl">
-        <h1 className="font-brand text-3xl font-extrabold leading-tight sm:text-4xl">
+        <h1 className="font-brand text-paw-type-h1 font-extrabold leading-tight sm:text-paw-type-display">
           {t("publicRouteErrorTitle").replace(
             "{resourceName}",
             t(RESOURCE_KEYS[resourceName]),

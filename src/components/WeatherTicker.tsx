@@ -195,7 +195,7 @@ export default function WeatherTicker({ mapCenter, onRecenterRequest, t }: Weath
   if (!weather) {
     return (
       <div className="globe-weather-bar absolute z-40 text-paw-page/80">
-        <div className="flex items-center justify-center gap-2 text-sm">
+        <div className="flex items-center justify-center gap-2 text-paw-type-body">
           {loading && !weatherIssue ? (
             <>
               <PawIcon name="refresh" className="w-4 h-4 animate-spin" /> {t("globeWeatherLoading")}

@@ -259,13 +259,13 @@ export default function PushSubscriptionSettings({ accessToken, t }: PushSubscri
             {viewModel.icon}
           </div>
           <div className="min-w-0">
-            <p className="text-xs font-black uppercase tracking-[0.12em] text-paw-primary">
+            <p className="text-paw-type-caption font-black uppercase tracking-[0.12em] text-paw-primary">
               {viewModel.eyebrow}
             </p>
-            <h2 id="push-settings-heading" className="mt-1 text-xl font-extrabold text-paw-ink">
+            <h2 id="push-settings-heading" className="mt-1 text-paw-type-h2 font-extrabold text-paw-ink">
               {viewModel.title}
             </h2>
-            <p className="mt-1 max-w-2xl text-sm leading-6 text-paw-body">
+            <p className="mt-1 max-w-2xl text-paw-type-body leading-6 text-paw-body">
               {message ?? t("pushDefaultDescription")}
             </p>
           </div>

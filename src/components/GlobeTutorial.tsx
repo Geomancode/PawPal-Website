@@ -207,25 +207,25 @@ export default function GlobeTutorial({ t }: { t: GlobeTranslation }) {
 
               {/* Content */}
               <div className="flex items-start gap-3 mb-4">
-                <span className="text-2xl leading-none mt-0.5">{current.emoji}</span>
+                <span className="text-paw-type-h2 leading-none mt-0.5">{current.emoji}</span>
                 <div>
-                  <h3 className="text-base font-extrabold text-paw-ink mb-1">{t(current.titleKey)}</h3>
-                  <p className="text-sm text-paw-muted leading-relaxed">{t(current.descriptionKey)}</p>
+                  <h3 className="text-paw-type-body font-extrabold text-paw-ink mb-1">{t(current.titleKey)}</h3>
+                  <p className="text-paw-type-body text-paw-muted leading-relaxed">{t(current.descriptionKey)}</p>
                 </div>
               </div>
 
               {/* Buttons */}
               <div className="flex items-center justify-between">
-                <button onClick={dismiss} className="text-xs text-paw-muted hover:text-paw-body font-medium">
+                <button onClick={dismiss} className="text-paw-type-caption text-paw-muted hover:text-paw-body font-medium">
                   {t("globeTutorialSkip")}
                 </button>
                 <div className="flex items-center gap-2">
                   {step > 0 && (
-                    <button onClick={prev} className="flex items-center gap-1 px-3 py-1.5 text-xs font-semibold text-paw-muted bg-paw-panel-subtle hover:bg-paw-primary-soft rounded-paw-sm transition-all">
+                    <button onClick={prev} className="flex items-center gap-1 px-3 py-1.5 text-paw-type-caption font-semibold text-paw-muted bg-paw-panel-subtle hover:bg-paw-primary-soft rounded-paw-sm transition-all">
                       <PawIcon name="chevronLeft" className="w-3 h-3" /> {t("globeTutorialBack")}
                     </button>
                   )}
-                  <button onClick={next} className="flex items-center gap-1 px-4 py-1.5 text-xs font-bold text-paw-accent-ink bg-paw-primary hover:bg-paw-primary-hover rounded-paw-sm transition-all shadow-paw-action">
+                  <button onClick={next} className="flex items-center gap-1 px-4 py-1.5 text-paw-type-caption font-bold text-paw-accent-ink bg-paw-primary hover:bg-paw-primary-hover rounded-paw-sm transition-all shadow-paw-action">
                     {isLast ? (
                       <><PawIcon name="sparkle" className="w-3 h-3" /> {t("globeTutorialDone")}</>
                     ) : (

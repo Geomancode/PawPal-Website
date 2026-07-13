@@ -28,10 +28,10 @@ export default function GlobalError({
             <StatusMessage tone="critical" title="Application error">
               A rendering or connection issue interrupted the app shell.
             </StatusMessage>
-            <h1 className="text-2xl font-extrabold text-paw-ink">
+            <h1 className="text-paw-type-h2 font-extrabold text-paw-ink">
               PawPal could not recover this view
             </h1>
-            <p className="text-sm leading-6 text-paw-body">
+            <p className="text-paw-type-body leading-6 text-paw-body">
               Try reloading this view. PawPal has recorded the error context for review.
             </p>
             <Button

@@ -68,7 +68,7 @@ export default function HelpPage() {
           <h1 className="max-w-3xl font-brand text-paw-type-h1 font-black text-paw-ink sm:text-paw-type-display">
             {t("helpHeroTitle")}
           </h1>
-          <p className="mt-paw-md max-w-2xl text-paw-type-body text-paw-body sm:text-base">
+          <p className="mt-paw-md max-w-2xl text-paw-type-body text-paw-body sm:text-paw-type-body">
             {t("helpHeroCopy")}
           </p>
           <div className="mt-paw-xl flex flex-wrap gap-paw-sm">
@@ -111,10 +111,10 @@ export default function HelpPage() {
               >
                 <PawIcon name={step.icon} className="h-4 w-4 text-paw-on-primary-soft" aria-hidden="true" />
                 <div className="min-w-0">
-                  <p className="text-xs font-black uppercase text-paw-muted">
+                  <p className="text-paw-type-caption font-black uppercase text-paw-muted">
                     {t(step.labelKey)}
                   </p>
-                  <p className="truncate text-sm font-extrabold text-paw-ink">
+                  <p className="truncate text-paw-type-body font-extrabold text-paw-ink">
                     {t(step.valueKey)}
                   </p>
                 </div>
@@ -139,11 +139,11 @@ export default function HelpPage() {
                 <h2 className="text-paw-type-h3 font-black text-paw-ink">
                   {t(item.titleKey)}
                 </h2>
-                <p className="mt-paw-sm text-sm leading-6 text-paw-body">{t(item.textKey)}</p>
-                <p className="mt-paw-md text-xs font-bold text-paw-muted">{t(item.routeKey)}</p>
+                <p className="mt-paw-sm text-paw-type-body leading-6 text-paw-body">{t(item.textKey)}</p>
+                <p className="mt-paw-md text-paw-type-caption font-bold text-paw-muted">{t(item.routeKey)}</p>
                 <a
                   href={item.href}
-                  className="support-lane-action mt-auto inline-flex items-center gap-paw-xs pt-paw-md text-sm font-extrabold text-paw-on-primary-soft transition hover:text-paw-primary-hover focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-paw-trust/20"
+                  className="support-lane-action mt-auto inline-flex items-center gap-paw-xs pt-paw-md text-paw-type-body font-extrabold text-paw-on-primary-soft transition hover:text-paw-primary-hover focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-paw-trust/20"
                 >
                   {t(item.actionKey)}
                   <PawIcon name="forward" className="h-3.5 w-3.5" aria-hidden="true" />
@@ -156,14 +156,14 @@ export default function HelpPage() {
         <div className="support-contact-band mt-paw-xl">
           <div className="flex flex-col justify-between gap-paw-md sm:flex-row sm:items-center">
           <div>
-            <p className="text-sm font-extrabold text-paw-ink">
+            <p className="text-paw-type-body font-extrabold text-paw-ink">
               {t("helpContextTitle")}
             </p>
-            <p className="mt-1 text-sm leading-6 text-paw-body">
+            <p className="mt-1 text-paw-type-body leading-6 text-paw-body">
               {t("helpContextCopy")}
             </p>
           </div>
-          <div className="flex items-center gap-paw-xs text-sm font-bold text-paw-on-primary-soft">
+          <div className="flex items-center gap-paw-xs text-paw-type-body font-bold text-paw-on-primary-soft">
             <PawIcon name="location" className="h-4 w-4" aria-hidden="true" />
             {t("helpBelgiumSupport")}
           </div>

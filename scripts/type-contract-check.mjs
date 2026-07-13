@@ -16,6 +16,24 @@ const migratedRouteFiles = [
   "src/app/store/admin/page.tsx",
   "src/components/ChatBubble.tsx",
   "src/app/store/success/page.tsx",
+  "src/components/Navbar.tsx",
+  "src/app/user/[id]/UserPageClient.tsx",
+  "src/app/help/page.tsx",
+  "src/components/Footer.tsx",
+  "src/app/post/[id]/PostPageClient.tsx",
+  "src/components/PwaRuntime.tsx",
+  "src/components/GlobeTutorial.tsx",
+  "src/components/ChatBottomSheet.tsx",
+  "src/app/privacy/page.tsx",
+  "src/app/terms/page.tsx",
+  "src/app/guidelines/page.tsx",
+  "src/app/group/[id]/GroupPageClient.tsx",
+  "src/components/CookieConsentBanner.tsx",
+  "src/app/profile/PushSubscriptionSettings.tsx",
+  "src/components/PublicRouteError.tsx",
+  "src/app/globe/page.tsx",
+  "src/app/global-error.tsx",
+  "src/components/WeatherTicker.tsx",
 ];
 
 function assert(condition, message) {
@@ -55,7 +73,7 @@ async function assertUiUtilities() {
 
 async function assertMigratedRouteUtilities() {
   assert(
-    migratedRouteFiles.length >= 11,
+    migratedRouteFiles.length >= 29,
     "migratedRouteFiles lost required coverage; removing a migrated route entry is stale.",
   );
   const offenders = [];
