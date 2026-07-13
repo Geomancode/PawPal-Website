@@ -40,16 +40,21 @@ interface SearchCenter {
 
 const FALLBACK_CENTER_GHENT: SearchCenter = { lat: 51.0543, lng: 3.7174 };
 
-function hasValidCoordinatePair(lat: unknown, lng: unknown): lat is number {
+function isValidLatitude(value: unknown): value is number {
   return (
-    typeof lat === "number" &&
-    Number.isFinite(lat) &&
-    lat >= -90 &&
-    lat <= 90 &&
-    typeof lng === "number" &&
-    Number.isFinite(lng) &&
-    lng >= -180 &&
-    lng <= 180
+    typeof value === "number" &&
+    Number.isFinite(value) &&
+    value >= -90 &&
+    value <= 90
+  );
+}
+
+function isValidLongitude(value: unknown): value is number {
+  return (
+    typeof value === "number" &&
+    Number.isFinite(value) &&
+    value >= -180 &&
+    value <= 180
   );
 }
 
@@ -67,13 +72,13 @@ function resolveSearchCenter(
     ? body as Record<string, unknown>
     : {};
 
-  if (hasValidCoordinatePair(payload.lat, payload.lng)) {
-    return { lat: payload.lat, lng: payload.lng as number };
+  if (isValidLatitude(payload.lat) && isValidLongitude(payload.lng)) {
+    return { lat: payload.lat, lng: payload.lng };
   }
 
   const headerLat = parseGeoHeader(headers.get("x-vercel-ip-latitude"));
   const headerLng = parseGeoHeader(headers.get("x-vercel-ip-longitude"));
-  if (hasValidCoordinatePair(headerLat, headerLng)) {
+  if (isValidLatitude(headerLat) && isValidLongitude(headerLng)) {
     return { lat: headerLat, lng: headerLng };
   }
 
