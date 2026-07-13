@@ -8,7 +8,8 @@ import ts from "typescript";
 const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const routePath = path.join(repoRoot, "src", "app", "api", "map-search", "route.ts");
 const routeSource = await readFile(routePath, "utf8");
-const transpiledRoute = ts.transpileModule(routeSource, {
+const routeSourceWithTestExports = `${routeSource}\nexport { FALLBACK_CENTER_GHENT, resolveSearchCenter };\n`;
+const transpiledRoute = ts.transpileModule(routeSourceWithTestExports, {
   compilerOptions: {
     module: ts.ModuleKind.CommonJS,
     target: ts.ScriptTarget.ES2022,

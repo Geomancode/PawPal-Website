@@ -33,12 +33,12 @@ const MAX_QUERY_CHARS = 240;
 const SEARCH_RATE_WINDOW_MS = 60_000;
 const SEARCH_RATE_LIMIT = 12;
 
-export interface SearchCenter {
+interface SearchCenter {
   readonly lat: number;
   readonly lng: number;
 }
 
-export const FALLBACK_CENTER_GHENT: SearchCenter = { lat: 51.0543, lng: 3.7174 };
+const FALLBACK_CENTER_GHENT: SearchCenter = { lat: 51.0543, lng: 3.7174 };
 
 function hasValidCoordinatePair(lat: unknown, lng: unknown): lat is number {
   return (
@@ -59,7 +59,7 @@ function parseGeoHeader(value: string | null): number | null {
   return Number.isFinite(parsed) ? parsed : null;
 }
 
-export function resolveSearchCenter(
+function resolveSearchCenter(
   body: unknown,
   headers: Pick<Headers, "get">,
 ): SearchCenter {
