@@ -243,7 +243,6 @@ export default function MapGlobeComponent({ t }: { t: GlobeTranslation }) {
   const [userLocation, setUserLocation] = useState<{ lat: number; lng: number } | null>(DEFAULT_USER_LOCATION);
   const [searchCenter, setSearchCenter] = useState<{ lat: number; lng: number } | null>(null);
   const isDraggingRef = useRef(false);
-
   const nearbyQuestTags = useMemo(() => {
     const counts = new Map<string, number>();
     quests.forEach((quest) => {
@@ -292,14 +291,12 @@ export default function MapGlobeComponent({ t }: { t: GlobeTranslation }) {
       window.removeEventListener("offline", updateConnectionState);
     };
   }, []);
-
   const scheduleNearbyRefresh = useCallback((center: { lat: number; lng: number }) => {
     if (refreshTimerRef.current) clearTimeout(refreshTimerRef.current);
     refreshTimerRef.current = setTimeout(() => {
       void loadNearbyData(center);
     }, 450);
   }, [loadNearbyData]);
-
   /* ── Update map center on drag end (debounced via ticker) ── */
   const updateMapCenter = useCallback((confirmForSearch = false) => {
     const map = mapRef.current;
@@ -310,7 +307,6 @@ export default function MapGlobeComponent({ t }: { t: GlobeTranslation }) {
     if (confirmForSearch) setSearchCenter(nextCenter);
     scheduleNearbyRefresh(nextCenter);
   }, [scheduleNearbyRefresh]);
-
   /* ── Recenter map to user location ── */
   const handleRecenterRequest = useCallback(() => {
     const map = mapRef.current;

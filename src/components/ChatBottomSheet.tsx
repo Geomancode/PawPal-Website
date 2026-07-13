@@ -42,6 +42,7 @@ type SnapPoint = "peek" | "half" | "full";
 interface ChatBottomSheetProps {
   mapRef: MutableRefObject<maplibregl.Map | null>;
   searchCenter: { lat: number; lng: number } | null;
+  // Null leaves center resolution to the server-side geo-IP fallback chain.
   t: GlobeTranslation;
 }
 
