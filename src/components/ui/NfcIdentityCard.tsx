@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { AlertTriangle, HeartPulse, ShieldCheck } from "lucide-react";
+import PawIcon, { type PawIconName } from "@/components/icons/PawIcon";
 import { cn } from "@/lib/ui";
 import Badge from "./Badge";
 import { Card, CardContent } from "./Card";
@@ -18,20 +18,23 @@ type NfcIdentityCardProps = {
 const statusConfig = {
   safe: {
     label: "Verified identity",
-    icon: ShieldCheck,
+    icon: "shield",
     tone: "success" as const,
   },
   attention: {
     label: "Needs attention",
-    icon: HeartPulse,
+    icon: "health",
     tone: "warning" as const,
   },
   urgent: {
     label: "Emergency details",
-    icon: AlertTriangle,
+    icon: "warning",
     tone: "accent" as const,
   },
-};
+} satisfies Record<
+  NonNullable<NfcIdentityCardProps["status"]>,
+  { label: string; icon: PawIconName; tone: "success" | "warning" | "accent" }
+>;
 
 export default function NfcIdentityCard({
   name,
@@ -44,7 +47,7 @@ export default function NfcIdentityCard({
   className,
 }: NfcIdentityCardProps) {
   const current = statusConfig[status];
-  const StatusIcon = current.icon;
+  const statusIcon = current.icon;
 
   return (
     <Card className={cn("overflow-hidden", className)}>
@@ -65,7 +68,7 @@ export default function NfcIdentityCard({
             tone={current.tone}
             className="shrink-0 border-paw-on-primary/20 bg-paw-panel/20 text-paw-on-primary"
           >
-            <StatusIcon className="h-3.5 w-3.5" aria-hidden="true" />
+            <PawIcon name={statusIcon} className="h-3.5 w-3.5" aria-hidden="true" />
             {current.label}
           </Badge>
         </div>

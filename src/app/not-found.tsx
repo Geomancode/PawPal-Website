@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowRight, Home, Map, ScanLine } from "lucide-react";
+import PawIcon, { type PawIconName } from "@/components/icons/PawIcon";
 import PawPalLogo from "@/components/PawPalLogo";
 import { buttonClassName } from "@/components/ui";
 import { useRouteTranslations } from "@/i18n/useRouteTranslations";
@@ -29,7 +29,7 @@ export default function NotFound() {
               href="/"
               className={buttonClassName({ variant: "primary", size: "lg" })}
             >
-              <Home className="h-4 w-4" aria-hidden="true" />
+              <PawIcon name="home" className="h-4 w-4" aria-hidden="true" />
               {t("notFoundBackHome")}
             </Link>
             <Link
@@ -37,7 +37,7 @@ export default function NotFound() {
               className={buttonClassName({ variant: "secondary", size: "lg" })}
             >
               {t("notFoundShopSmartTags")}
-              <ArrowRight className="h-4 w-4" aria-hidden="true" />
+              <PawIcon name="forward" className="h-4 w-4" aria-hidden="true" />
             </Link>
           </div>
         </div>
@@ -45,21 +45,21 @@ export default function NotFound() {
         <aside className="not-found-panel">
           <div className="hero-map-grid absolute inset-0 opacity-35" aria-hidden="true" />
           <div className="relative z-10 space-y-4">
-            {[
+            {([
               {
-                icon: ScanLine,
+                icon: "nfcScan",
                 title: t("notFoundScannedTagTitle"),
                 copy: t("notFoundScannedTagCopy"),
               },
               {
-                icon: Map,
+                icon: "map",
                 title: t("notFoundLocalHelpTitle"),
                 copy: t("notFoundLocalHelpCopy"),
               },
-            ].map((item) => (
+            ] satisfies Array<{ icon: PawIconName; title: string; copy: string }>).map((item) => (
               <div key={item.title} className="not-found-row">
                 <span className="not-found-icon">
-                  <item.icon className="h-5 w-5" aria-hidden="true" />
+                  <PawIcon name={item.icon} className="h-5 w-5" aria-hidden="true" />
                 </span>
                 <span>
                   <span className="block text-sm font-extrabold text-paw-ink">

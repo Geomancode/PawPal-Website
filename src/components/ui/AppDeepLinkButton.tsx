@@ -1,8 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { Smartphone, ArrowRight } from "lucide-react";
 import { useState } from "react";
+import PawIcon from "@/components/icons/PawIcon";
 import { cn } from "@/lib/ui";
 import { useRouteTranslations } from "@/i18n/useRouteTranslations";
 import { buttonClassName } from "./Button";
@@ -38,7 +38,7 @@ export default function AppDeepLinkButton({
         }}
         className={cn(buttonClassName({ size: "lg" }), className)}
       >
-        <Smartphone className="h-4 w-4" aria-hidden="true" />
+        <PawIcon name="appLink" className="h-4 w-4" aria-hidden="true" />
         {buttonLabel}
       </a>
       {showFallback && (
@@ -49,7 +49,7 @@ export default function AppDeepLinkButton({
             className="mt-2 inline-flex items-center gap-1 font-extrabold text-paw-on-primary-soft hover:underline"
           >
             {webFallbackLabel}
-            <ArrowRight className="h-3 w-3" aria-hidden="true" />
+            <PawIcon name="forward" className="h-3 w-3" aria-hidden="true" />
           </Link>
         </div>
       )}

@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { Check } from "lucide-react";
+import PawIcon from "@/components/icons/PawIcon";
 import { cn } from "@/lib/ui";
 import { Card } from "./Card";
 
@@ -42,7 +42,7 @@ export default function CheckoutStep({
                 : "bg-paw-panel-subtle text-paw-muted",
           )}
         >
-          {complete ? <Check className="h-4 w-4" aria-hidden="true" /> : index}
+          {complete ? <PawIcon name="check" className="h-4 w-4" aria-hidden="true" /> : index}
         </span>
         <h2 className="text-paw-type-body font-extrabold text-paw-ink">{label}</h2>
       </div>
