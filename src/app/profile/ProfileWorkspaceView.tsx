@@ -111,9 +111,9 @@ const PROFILE_METRIC_CLASSES = {
   shellSpacing: "pt-[96px] pb-[64px]",
   ownerAvatarSize: "h-[80px] w-[80px]",
   fieldPaddingBlock: "py-[10px]",
-  metadataIconSize: "h-[14px] w-[14px]",
-  compactChipSpacing: "gap-[6px] py-[6px]",
-  compactGap: "gap-[6px]",
+  metadataIconSize: "h-paw-web-icon-compact w-paw-web-icon-compact",
+  compactChipSpacing: "gap-paw-web-micro py-paw-web-micro",
+  compactGap: "gap-paw-web-micro",
   petAvatarSize: "h-[56px] w-[56px]",
 } as const;
 

@@ -173,14 +173,14 @@ const riskTypeOptions = Object.entries(riskTypeLabelKeys) as [RiskType, MessageK
 const severityOptions = Object.entries(severityLabelKeys) as [Severity, MessageKey][];
 const PARK_RISK_METRIC_CLASSES = {
   loadingShellTopSpacing: "pt-[96px]",
-  adminShellTopSpacing: "pt-[112px]",
+  adminShellTopSpacing: "pt-paw-web-shell-top",
   gateIconSize: "h-[48px] w-[48px]",
   loadingPanelMinHeight: "min-h-[288px]",
   loadingSpinnerSize: "h-[28px] w-[28px]",
-  fieldStackSpacing: "space-y-[6px]",
-  filterPaddingBlock: "py-[6px]",
-  inlineLinkGap: "gap-[6px]",
-  inlineLinkIconSize: "h-[14px] w-[14px]",
+  fieldStackSpacing: "space-y-paw-web-micro",
+  filterPaddingBlock: "py-paw-web-micro",
+  inlineLinkGap: "gap-paw-web-micro",
+  inlineLinkIconSize: "h-paw-web-icon-compact w-paw-web-icon-compact",
 } as const;
 
 const initialOfficialForm: OfficialRiskForm = {

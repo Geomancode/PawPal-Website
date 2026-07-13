@@ -106,7 +106,7 @@ const actionLabelKeys: Record<ReportResolutionAction, MessageKey> = {
 const ACTION_REFRESH_DELAY_MS = 600;
 const SESSION_REDIRECT_DELAY_MS = 1200;
 const REPORT_METRIC_CLASSES = {
-  shellTopSpacing: "pt-[112px]",
+  shellTopSpacing: "pt-paw-web-shell-top",
   previewMediaSize: "h-[112px] md:h-[112px] md:w-[112px]",
   emptyStateMinHeight: "min-h-[256px]",
 } as const;
