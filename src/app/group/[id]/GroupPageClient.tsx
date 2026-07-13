@@ -53,14 +53,14 @@ export default function GroupPageClient({
           )}
         </div>
         <Badge tone="primary" className="mt-6">{t("groupPageInviteBadge")}</Badge>
-        <h1 className="mt-2 font-brand text-3xl font-extrabold sm:text-4xl">
+        <h1 className="mt-2 font-brand text-paw-type-h1 font-extrabold sm:text-paw-type-display">
           {group.name}
         </h1>
-        <p className="mx-auto mt-3 max-w-xl text-sm leading-6 text-paw-body">
+        <p className="mx-auto mt-3 max-w-xl text-paw-type-body leading-6 text-paw-body">
           {t("groupPageDescription")}
         </p>
 
-        <div className="mx-auto mt-6 flex max-w-sm items-center justify-center gap-3 rounded-paw-xl border border-paw-outline-variant bg-paw-panel-subtle px-paw-md py-paw-sm text-sm font-bold text-paw-body shadow-paw-panel">
+        <div className="mx-auto mt-6 flex max-w-sm items-center justify-center gap-3 rounded-paw-xl border border-paw-outline-variant bg-paw-panel-subtle px-paw-md py-paw-sm text-paw-type-body font-bold text-paw-body shadow-paw-panel">
           <PawIcon name="paw" className="h-4 w-4 text-paw-on-primary-soft" />
           {memberLabel}
         </div>

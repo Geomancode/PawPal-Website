@@ -86,13 +86,13 @@ export default function PostPageClient({
               </div>
               <div>
                 <p className="font-extrabold">{authorName}</p>
-                <p className="text-sm capitalize text-paw-muted">{category}</p>
+                <p className="text-paw-type-body capitalize text-paw-muted">{category}</p>
               </div>
             </div>
-            <p className="whitespace-pre-line text-base leading-7 text-paw-body">
+            <p className="whitespace-pre-line text-paw-type-body leading-7 text-paw-body">
               {post.content}
             </p>
-            <div className="flex gap-5 border-t border-paw-border pt-4 text-sm font-bold text-paw-muted">
+            <div className="flex gap-5 border-t border-paw-border pt-4 text-paw-type-body font-bold text-paw-muted">
               <span className="inline-flex items-center gap-1.5">
                 <PawIcon name="thumbsUp" className="h-4 w-4" />
                 {post.likes_count ?? post.like_count ?? 0}
@@ -110,20 +110,20 @@ export default function PostPageClient({
         </article>
 
         <aside className="rounded-paw-lg border border-paw-border bg-paw-panel p-6 shadow-paw-panel">
-          <p className="text-xs font-extrabold uppercase tracking-wide text-paw-primary">
+          <p className="text-paw-type-caption font-extrabold uppercase tracking-wide text-paw-primary">
             {t("postPageOpenInPawPal")}
           </p>
-          <h1 className="mt-2 font-brand text-3xl font-extrabold leading-tight">
+          <h1 className="mt-2 font-brand text-paw-type-h1 font-extrabold leading-tight">
             {t("postPageContinueConversation")}
           </h1>
-          <p className="mt-3 text-sm leading-6 text-paw-body">
+          <p className="mt-3 text-paw-type-body leading-6 text-paw-body">
             {t("postPageOpenDescription")}
           </p>
           <div className="mt-6 flex flex-col gap-3">
             <AppDeepLinkButton href={`pawpal://post/${id}`} fallbackHref={`/post/${id}`} />
             <Link
               href="/"
-              className="inline-flex h-12 items-center justify-center rounded-paw-md border border-paw-border bg-paw-panel-subtle px-5 text-sm font-extrabold text-paw-ink transition hover:border-paw-primary"
+              className="inline-flex h-12 items-center justify-center rounded-paw-md border border-paw-border bg-paw-panel-subtle px-5 text-paw-type-body font-extrabold text-paw-ink transition hover:border-paw-primary"
             >
               {t("postPageInstallPawPal")}
             </Link>

@@ -160,7 +160,7 @@ export default function Navbar() {
                 <Link
                   key={link.href}
                   href={path(link.href)}
-                  className={`${styles.navLinkPill} relative text-sm font-bold transition-colors ${
+                  className={`${styles.navLinkPill} relative text-paw-type-body font-bold transition-colors ${
                     isActive ? `${styles.isActive} text-paw-primary` : "text-paw-body hover:text-paw-primary"
                   }`}
                 >
@@ -191,9 +191,9 @@ export default function Navbar() {
                   aria-label={t("navOpenAccountMenu")}
                   aria-expanded={showDropdown}
                   onClick={() => setShowDropdown((value) => !value)}
-                  className="inline-flex h-11 items-center gap-2 rounded-paw-sm border border-paw-border-strong bg-paw-panel px-3 text-sm font-bold text-paw-ink transition hover:border-paw-primary hover:text-paw-primary"
+                  className="inline-flex h-11 items-center gap-2 rounded-paw-sm border border-paw-border-strong bg-paw-panel px-3 text-paw-type-body font-bold text-paw-ink transition hover:border-paw-primary hover:text-paw-primary"
                 >
-                  <span className="flex h-7 w-7 items-center justify-center rounded-full bg-paw-primary text-xs font-black text-paw-on-primary">
+                  <span className="flex h-7 w-7 items-center justify-center rounded-full bg-paw-primary text-paw-type-caption font-black text-paw-on-primary">
                     {displayName.charAt(0).toUpperCase()}
                   </span>
                   <span className="max-w-28 truncate">{displayName}</span>
@@ -209,13 +209,13 @@ export default function Navbar() {
                       className="absolute right-0 mt-3 w-56 overflow-hidden rounded-paw-md border border-paw-border bg-paw-panel py-1 shadow-paw-panel"
                     >
                       <div className="border-b border-paw-border px-4 py-3">
-                        <p className="truncate text-sm font-extrabold text-paw-ink">{displayName}</p>
-                        <p className="truncate text-xs text-paw-muted">{user.email}</p>
+                        <p className="truncate text-paw-type-body font-extrabold text-paw-ink">{displayName}</p>
+                        <p className="truncate text-paw-type-caption text-paw-muted">{user.email}</p>
                       </div>
                       <Link
                         href={path("/profile")}
                         onClick={() => setShowDropdown(false)}
-                        className="flex w-full items-center gap-2 px-4 py-3 text-sm font-semibold text-paw-ink transition-colors hover:bg-paw-primary-soft"
+                        className="flex w-full items-center gap-2 px-4 py-3 text-paw-type-body font-semibold text-paw-ink transition-colors hover:bg-paw-primary-soft"
                       >
                         <PawIcon name="account" className="h-4 w-4" />
                         {t("navMyProfile")}
@@ -223,7 +223,7 @@ export default function Navbar() {
                       <button
                         type="button"
                         onClick={handleSignOut}
-                        className="flex w-full items-center gap-2 px-4 py-3 text-sm font-semibold text-paw-danger transition-colors hover:bg-paw-danger-soft"
+                        className="flex w-full items-center gap-2 px-4 py-3 text-paw-type-body font-semibold text-paw-danger transition-colors hover:bg-paw-danger-soft"
                       >
                         <PawIcon name="logout" className="h-4 w-4" />
                         {t("navSignOut")}
@@ -235,7 +235,7 @@ export default function Navbar() {
             ) : (
               <Link
                 href={path("/auth")}
-                className={`inline-flex h-11 items-center justify-center rounded-paw-sm border px-5 text-sm font-bold transition ${
+                className={`inline-flex h-11 items-center justify-center rounded-paw-sm border px-5 text-paw-type-body font-bold transition ${
                   normalizedPathname === "/auth"
                     ? "border-paw-primary bg-paw-primary text-paw-accent-ink"
                     : "border-paw-border-strong bg-paw-panel text-paw-ink hover:border-paw-primary hover:text-paw-primary"
@@ -278,7 +278,7 @@ export default function Navbar() {
                   <Link
                     key={link.href}
                     href={path(link.href)}
-                    className={`block rounded-paw-sm px-3 py-3 text-base font-bold ${
+                    className={`block rounded-paw-sm px-3 py-3 text-paw-type-body font-bold ${
                       isActive ? "bg-paw-primary-soft text-paw-on-primary-soft" : "text-paw-ink hover:bg-paw-panel-subtle"
                     }`}
                     onClick={() => setIsOpen(false)}
@@ -297,8 +297,8 @@ export default function Navbar() {
                   />
                 ) : user ? (
                   <>
-                    <div className="flex items-center gap-3 px-3 py-2 text-sm text-paw-ink">
-                      <span className="flex h-9 w-9 items-center justify-center rounded-full bg-paw-primary text-xs font-black text-paw-on-primary">
+                    <div className="flex items-center gap-3 px-3 py-2 text-paw-type-body text-paw-ink">
+                      <span className="flex h-9 w-9 items-center justify-center rounded-full bg-paw-primary text-paw-type-caption font-black text-paw-on-primary">
                         {displayName.charAt(0).toUpperCase()}
                       </span>
                       <span className="truncate font-extrabold">{displayName}</span>
@@ -309,7 +309,7 @@ export default function Navbar() {
                         setIsOpen(false);
                         handleSignOut();
                       }}
-                      className="flex w-full items-center gap-2 rounded-paw-sm px-3 py-3 text-sm font-bold text-paw-danger hover:bg-paw-danger-soft"
+                      className="flex w-full items-center gap-2 rounded-paw-sm px-3 py-3 text-paw-type-body font-bold text-paw-danger hover:bg-paw-danger-soft"
                     >
                       <PawIcon name="logout" className="h-4 w-4" />
                       {t("navSignOut")}
@@ -318,7 +318,7 @@ export default function Navbar() {
                 ) : (
                   <Link
                     href={path("/auth")}
-                    className="mt-2 inline-flex h-11 w-full items-center justify-center rounded-paw-sm bg-paw-primary px-5 text-sm font-bold text-paw-accent-ink"
+                    className="mt-2 inline-flex h-11 w-full items-center justify-center rounded-paw-sm bg-paw-primary px-5 text-paw-type-body font-bold text-paw-accent-ink"
                     onClick={() => setIsOpen(false)}
                   >
                     {t("navLogin")}

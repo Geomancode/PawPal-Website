@@ -121,12 +121,12 @@ export default function PwaRuntime() {
       {offline && (
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <div>
-            <p className="text-sm font-extrabold">{t("pwaOfflineTitle")}</p>
-            <p className="mt-1 text-xs leading-5 text-paw-muted">
+            <p className="text-paw-type-body font-extrabold">{t("pwaOfflineTitle")}</p>
+            <p className="mt-1 text-paw-type-caption leading-5 text-paw-muted">
               {t("pwaOfflineDescription")}
             </p>
           </div>
-          <span className="inline-flex h-9 items-center justify-center rounded-paw-sm bg-paw-warning-soft px-3 text-xs font-extrabold text-paw-warning">
+          <span className="inline-flex h-9 items-center justify-center rounded-paw-sm bg-paw-warning-soft px-3 text-paw-type-caption font-extrabold text-paw-warning">
             {t("pwaReconnecting")}
           </span>
         </div>
@@ -135,15 +135,15 @@ export default function PwaRuntime() {
       {!offline && updateReady && (
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <div>
-            <p className="text-sm font-extrabold">{t("pwaUpdateReadyTitle")}</p>
-            <p className="mt-1 text-xs leading-5 text-paw-muted">
+            <p className="text-paw-type-body font-extrabold">{t("pwaUpdateReadyTitle")}</p>
+            <p className="mt-1 text-paw-type-caption leading-5 text-paw-muted">
               {t("pwaUpdateReadyDescription")}
             </p>
           </div>
           <button
             type="button"
             onClick={applyUpdate}
-            className="inline-flex h-11 items-center justify-center rounded-paw-md bg-paw-primary px-4 text-sm font-extrabold text-paw-accent-ink shadow-paw-action transition hover:bg-paw-primary-hover"
+            className="inline-flex h-11 items-center justify-center rounded-paw-md bg-paw-primary px-4 text-paw-type-body font-extrabold text-paw-accent-ink shadow-paw-action transition hover:bg-paw-primary-hover"
           >
             {t("pwaUpdateNow")}
           </button>

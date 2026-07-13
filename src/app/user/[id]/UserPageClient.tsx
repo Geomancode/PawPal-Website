@@ -63,10 +63,10 @@ export default function UserPageClient({
               <PawIcon name="paw" className="m-7 h-10 w-10" />
             )}
           </div>
-          <h1 className="mt-4 font-brand text-3xl font-extrabold">{name}</h1>
-          <p className="public-profile-username mt-1 text-sm font-extrabold text-paw-on-primary">{username}</p>
+          <h1 className="mt-4 font-brand text-paw-type-h1 font-extrabold">{name}</h1>
+          <p className="public-profile-username mt-1 text-paw-type-body font-extrabold text-paw-on-primary">{username}</p>
           {profile.bio && (
-            <p className="public-profile-bio mx-auto mt-4 max-w-xl text-sm font-medium leading-6 text-paw-on-primary">
+            <p className="public-profile-bio mx-auto mt-4 max-w-xl text-paw-type-body font-medium leading-6 text-paw-on-primary">
               {profile.bio}
             </p>
           )}
@@ -81,10 +81,10 @@ export default function UserPageClient({
             </div>
 
             <div>
-              <h2 className="font-brand text-xl font-extrabold">{t("userPagePetsLabel")}</h2>
+              <h2 className="font-brand text-paw-type-h2 font-extrabold">{t("userPagePetsLabel")}</h2>
               <div className="mt-3 grid gap-3 sm:grid-cols-2">
                 {pets.length === 0 ? (
-                  <p className="rounded-paw-md bg-paw-panel-subtle p-4 text-sm text-paw-muted">
+                  <p className="rounded-paw-md bg-paw-panel-subtle p-4 text-paw-type-body text-paw-muted">
                     {t("userPageNoPublicPets")}
                   </p>
                 ) : (
@@ -111,7 +111,7 @@ export default function UserPageClient({
                       </div>
                       <div>
                         <p className="font-extrabold">{pet.name}</p>
-                        <p className="text-xs text-paw-muted">
+                        <p className="text-paw-type-caption text-paw-muted">
                           {pet.breed ?? pet.species_group ?? t("userPagePetFallback")}
                         </p>
                       </div>
@@ -123,23 +123,23 @@ export default function UserPageClient({
           </div>
 
           <aside className="rounded-paw-lg border border-paw-border bg-paw-panel-subtle p-5">
-            <div className="flex items-center gap-2 text-sm font-extrabold text-paw-primary">
+            <div className="flex items-center gap-2 text-paw-type-body font-extrabold text-paw-primary">
               <PawIcon name="appLink" className="h-4 w-4" />
               {t("userPageOpenInPawPal")}
             </div>
-            <p className="mt-3 text-sm leading-6 text-paw-body">
+            <p className="mt-3 text-paw-type-body leading-6 text-paw-body">
               {t("userPageOpenDescription")}
             </p>
             <div className="mt-5 flex flex-col gap-3">
               <AppDeepLinkButton href={`pawpal://user/${id}`} fallbackHref={`/user/${id}`} />
               <Link
                 href="/"
-                className="inline-flex h-11 items-center justify-center rounded-paw-md border border-paw-border bg-paw-panel px-4 text-sm font-extrabold"
+                className="inline-flex h-11 items-center justify-center rounded-paw-md border border-paw-border bg-paw-panel px-4 text-paw-type-body font-extrabold"
               >
                 {t("userPageInstallPawPal")}
               </Link>
             </div>
-            <div className="mt-5 space-y-2 text-xs text-paw-muted">
+            <div className="mt-5 space-y-2 text-paw-type-caption text-paw-muted">
               {profile.location_city && (
                 <p className="flex items-center gap-1.5">
                   <PawIcon name="location" className="h-3.5 w-3.5" />
@@ -163,8 +163,8 @@ export default function UserPageClient({
 function Stat({ label, value }: { label: string; value: number }) {
   return (
     <div className="rounded-paw-md bg-paw-primary-soft px-3 py-4 text-center">
-      <p className="text-xl font-extrabold text-paw-primary">{value}</p>
-      <p className="text-xs font-bold text-paw-muted">{label}</p>
+      <p className="text-paw-type-h2 font-extrabold text-paw-primary">{value}</p>
+      <p className="text-paw-type-caption font-bold text-paw-muted">{label}</p>
     </div>
   );
 }

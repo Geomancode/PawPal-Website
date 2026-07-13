@@ -568,12 +568,12 @@ export default function ChatBottomSheet({ mapRef, t }: ChatBottomSheetProps) {
             <div className="flex items-center gap-2">
               <div className="w-6 h-6 rounded-full bg-gradient-to-br from-paw-trust to-paw-primary flex items-center justify-center">
                 {activePetSpecies ? (
-                  <span className="text-sm">{SPECIES_EMOJI[activePetSpecies] ?? "🐾"}</span>
+                  <span className="text-paw-type-body">{SPECIES_EMOJI[activePetSpecies] ?? "🐾"}</span>
                 ) : (
                   <PawIcon name="sparkle" className="w-3 h-3 text-paw-on-primary" />
                 )}
               </div>
-              <span className="text-sm font-bold text-paw-ink">
+              <span className="text-paw-type-body font-bold text-paw-ink">
                 {activePetName ?? t("globeChatAiName")}
               </span>
             </div>
@@ -612,10 +612,10 @@ export default function ChatBottomSheet({ mapRef, t }: ChatBottomSheetProps) {
                 <div className="w-12 h-12 rounded-full bg-gradient-to-br from-paw-trust-soft to-paw-primary-soft flex items-center justify-center mb-3">
                   <PawIcon name="sparkle" className="w-5 h-5 text-paw-trust" />
                 </div>
-                <p className="text-sm font-medium text-paw-body mb-1">
+                <p className="text-paw-type-body font-medium text-paw-body mb-1">
                   {t("globeChatIntroTitle")}
                 </p>
-                <p className="text-xs text-paw-muted max-w-[260px] mb-4">
+                <p className="text-paw-type-caption text-paw-muted max-w-[260px] mb-4">
                   {t("globeChatIntroDescription")}
                 </p>
                 {/* Quick suggestion chips */}
@@ -697,12 +697,12 @@ export default function ChatBottomSheet({ mapRef, t }: ChatBottomSheetProps) {
             aria-label={t("globeChatSearchAria")}
             placeholder={t("globeChatSearchPlaceholder")}
             disabled={isStreaming}
-            className="flex-1 bg-transparent text-paw-body placeholder-paw-muted outline-none text-sm font-light min-w-0 disabled:opacity-50"
+            className="flex-1 bg-transparent text-paw-body placeholder-paw-muted outline-none text-paw-type-body font-light min-w-0 disabled:opacity-50"
           />
           <button
             onClick={() => sendMessage(input)}
             disabled={!input.trim() || isStreaming}
-            className="bg-paw-primary hover:bg-paw-primary-hover disabled:opacity-40 disabled:hover:bg-paw-primary text-paw-accent-ink px-4 py-2 rounded-full text-xs font-semibold transition-all shadow-paw-action flex items-center gap-1.5 shrink-0"
+            className="bg-paw-primary hover:bg-paw-primary-hover disabled:opacity-40 disabled:hover:bg-paw-primary text-paw-accent-ink px-4 py-2 rounded-full text-paw-type-caption font-semibold transition-all shadow-paw-action flex items-center gap-1.5 shrink-0"
           >
             {isStreaming ? (
               <div className="w-3.5 h-3.5 border-2 border-paw-on-primary/30 border-t-paw-on-primary rounded-full animate-spin" />
