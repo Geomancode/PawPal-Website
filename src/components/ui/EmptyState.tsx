@@ -1,10 +1,10 @@
 import type { ReactNode } from "react";
-import type { LucideIcon } from "lucide-react";
+import type { PawIconComponent } from "@/components/icons/PawIcon";
 import { cn } from "@/lib/ui";
 import { Card } from "./Card";
 
 type EmptyStateProps = {
-  icon?: LucideIcon;
+  icon?: PawIconComponent;
   title: string;
   description?: string;
   action?: ReactNode;

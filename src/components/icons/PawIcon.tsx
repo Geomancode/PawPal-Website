@@ -51,6 +51,32 @@ import {
   ChevronUp,
   ChevronRight,
   ChevronDown,
+  Navigation,
+  Droplets,
+  Wind,
+  Dog,
+  WifiOff,
+  CloudSnow,
+  Users,
+  CloudRain,
+  Thermometer,
+  CloudLightning,
+  Sun,
+  CloudFog,
+  Store,
+  Cloud,
+  Route,
+  ChevronLeft,
+  PawPrint,
+  CheckCircle,
+  MessageCircle,
+  Bot,
+  LockKeyhole,
+  BookOpen,
+  LifeBuoy,
+  HeartHandshake,
+  Languages,
+  Footprints,
   type LucideIcon,
 } from "lucide-react";
 
@@ -115,7 +141,35 @@ export type PawIconName =
   | "bone"
   | "chevronUp"
   | "chevronRight"
-  | "chevronDown";
+  | "chevronDown"
+  | "navigate"
+  | "humidity"
+  | "wind"
+  | "dog"
+  | "offline"
+  | "snow"
+  | "community"
+  | "rain"
+  | "temperature"
+  | "storm"
+  | "sun"
+  | "fog"
+  | "shop"
+  | "cloud"
+  | "route"
+  | "chevronLeft"
+  | "paw"
+  | "confirm"
+  | "chat"
+  | "assistant"
+  | "privacy"
+  | "guide"
+  | "support"
+  | "care"
+  | "language"
+  | "footprints";
+
+export type PawIconComponent = LucideIcon;
 
 const semanticIconMap = {
   info: Info,
@@ -169,6 +223,32 @@ const semanticIconMap = {
   chevronUp: ChevronUp,
   chevronRight: ChevronRight,
   chevronDown: ChevronDown,
+  navigate: Navigation,
+  humidity: Droplets,
+  wind: Wind,
+  dog: Dog,
+  offline: WifiOff,
+  snow: CloudSnow,
+  community: Users,
+  rain: CloudRain,
+  temperature: Thermometer,
+  storm: CloudLightning,
+  sun: Sun,
+  fog: CloudFog,
+  shop: Store,
+  cloud: Cloud,
+  route: Route,
+  chevronLeft: ChevronLeft,
+  paw: PawPrint,
+  confirm: CheckCircle,
+  chat: MessageCircle,
+  assistant: Bot,
+  privacy: LockKeyhole,
+  guide: BookOpen,
+  support: LifeBuoy,
+  care: HeartHandshake,
+  language: Languages,
+  footprints: Footprints,
 } satisfies Record<PawIconName, LucideIcon>;
 
 type PawIconProps = {

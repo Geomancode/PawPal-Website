@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import { RotateCcw } from "lucide-react";
+import PawIcon from "@/components/icons/PawIcon";
 
 import { Button, StatusMessage } from "@/components/ui";
 import { reportError } from "@/lib/errorReporting";
@@ -59,7 +59,7 @@ export default function PublicRouteError({
           data-testid="public-route-retry"
           onClick={reset}
         >
-          <RotateCcw className="h-4 w-4" aria-hidden="true" />
+          <PawIcon name="retry" className="h-4 w-4" aria-hidden="true" />
           {t("publicRouteErrorRetry")}
         </Button>
       </div>

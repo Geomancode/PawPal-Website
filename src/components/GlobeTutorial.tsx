@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, ChevronRight, ChevronLeft, Sparkles } from "lucide-react";
+import PawIcon from "@/components/icons/PawIcon";
 import { useAuth } from "./AuthProvider";
 import { useReducedMotionPreference } from "@/lib/useReducedMotionPreference";
 import type { MessageKey } from "@/i18n/messages/en";
@@ -201,7 +201,7 @@ export default function GlobeTutorial({ t }: { t: GlobeTranslation }) {
                   ))}
                 </div>
                 <button onClick={dismiss} aria-label={t("globeTutorialClose")} className="text-paw-muted hover:text-paw-body transition-colors">
-                  <X className="w-4 h-4" />
+                  <PawIcon name="close" className="w-4 h-4" />
                 </button>
               </div>
 
@@ -222,14 +222,14 @@ export default function GlobeTutorial({ t }: { t: GlobeTranslation }) {
                 <div className="flex items-center gap-2">
                   {step > 0 && (
                     <button onClick={prev} className="flex items-center gap-1 px-3 py-1.5 text-xs font-semibold text-paw-muted bg-paw-panel-subtle hover:bg-paw-primary-soft rounded-paw-sm transition-all">
-                      <ChevronLeft className="w-3 h-3" /> {t("globeTutorialBack")}
+                      <PawIcon name="chevronLeft" className="w-3 h-3" /> {t("globeTutorialBack")}
                     </button>
                   )}
                   <button onClick={next} className="flex items-center gap-1 px-4 py-1.5 text-xs font-bold text-paw-accent-ink bg-paw-primary hover:bg-paw-primary-hover rounded-paw-sm transition-all shadow-paw-action">
                     {isLast ? (
-                      <><Sparkles className="w-3 h-3" /> {t("globeTutorialDone")}</>
+                      <><PawIcon name="sparkle" className="w-3 h-3" /> {t("globeTutorialDone")}</>
                     ) : (
-                      <>{t("globeTutorialNext")} <ChevronRight className="w-3 h-3" /></>
+                      <>{t("globeTutorialNext")} <PawIcon name="chevronRight" className="w-3 h-3" /></>
                     )}
                   </button>
                 </div>
