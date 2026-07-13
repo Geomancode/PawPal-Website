@@ -1,5 +1,23 @@
 /* Owner: /about and legal secondary route styles. */
 
+:root {
+  --legal-about-metric-padding-block: 0.9rem;
+  --legal-about-hero-copy-padding-range: clamp(1.5rem, 4vw, 2.5rem);
+  --legal-about-text-band-padding-range: clamp(1.75rem, 5vw, 3.25rem);
+  --legal-about-context-panel-padding-range: clamp(1.4rem, 4vw, 2.5rem);
+  --legal-about-market-grid-gap: 0.65rem;
+  --legal-about-section-nav-gap: 0.65rem;
+  --legal-about-section-nav-max-width: 60rem;
+  --legal-about-section-nav-padding-block: 0.55rem;
+  --legal-about-section-nav-padding-inline: 0.8rem;
+  --legal-about-info-card-scroll-margin: 6.5rem;
+  --legal-about-system-panel-min-height: 31rem;
+  --legal-about-system-panel-padding-range: clamp(1.5rem, 4vw, 2.5rem);
+  --legal-about-system-row-gap: 0.85rem;
+  --legal-about-system-row-padding: 0.9rem;
+  --legal-about-system-icon-size: 2.75rem;
+}
+
 .about-hero {
   background:
     linear-gradient(180deg, var(--color-paw-inverse-ink) 0%, color-mix(in srgb, var(--color-paw-panel-subtle) 92%, transparent) 100%);
@@ -9,7 +27,7 @@
   border: 1px solid color-mix(in srgb, var(--color-paw-border) 82%, transparent);
   border-radius: var(--radius-paw-md);
   background: color-mix(in srgb, var(--color-paw-inverse-ink) 74%, transparent);
-  padding: 0.9rem 0.75rem;
+  padding: var(--legal-about-metric-padding-block) var(--spacing-paw-sm);
 }
 
 .about-hero-copy {
@@ -17,11 +35,11 @@
   min-height: 100%;
   flex-direction: column;
   justify-content: center;
-  padding-block: clamp(1.5rem, 4vw, 2.5rem);
+  padding-block: var(--legal-about-hero-copy-padding-range);
 }
 
 .about-text-band {
-  padding-block: clamp(1.75rem, 5vw, 3.25rem);
+  padding-block: var(--legal-about-text-band-padding-range);
 }
 
 .about-inline-contact {
@@ -40,20 +58,20 @@
   background:
     linear-gradient(145deg, color-mix(in srgb, var(--color-paw-inverse-ink) 94%, transparent), color-mix(in srgb, var(--color-paw-panel-subtle) 90%, transparent));
   box-shadow: 0 20px 52px color-mix(in srgb, var(--color-paw-ink) 10%, transparent);
-  padding: clamp(1.4rem, 4vw, 2.5rem);
+  padding: var(--legal-about-context-panel-padding-range);
 }
 
 .about-market-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0.65rem;
+  gap: var(--legal-about-market-grid-gap);
 }
 
 .legal-section-nav {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.65rem;
-  max-width: 60rem;
+  gap: var(--legal-about-section-nav-gap);
+  max-width: var(--legal-about-section-nav-max-width);
 }
 
 .legal-section-nav a {
@@ -64,7 +82,7 @@
   border-radius: var(--radius-paw-sm);
   background: color-mix(in srgb, var(--color-paw-inverse-ink) 82%, transparent);
   color: var(--color-paw-body);
-  padding: 0.55rem 0.8rem;
+  padding: var(--legal-about-section-nav-padding-block) var(--legal-about-section-nav-padding-inline);
   font-size: var(--text-paw-type-caption);
   font-weight: 900;
   transition: border-color 180ms ease, color 180ms ease, background 180ms ease;
@@ -77,28 +95,28 @@
 }
 
 .legal-info-card {
-  scroll-margin-top: 6.5rem;
+  scroll-margin-top: var(--legal-about-info-card-scroll-margin);
 }
 
 .about-system-panel {
-  min-height: 31rem;
-  padding: clamp(1.5rem, 4vw, 2.5rem);
+  min-height: var(--legal-about-system-panel-min-height);
+  padding: var(--legal-about-system-panel-padding-range);
 }
 
 .about-system-row {
   display: grid;
   grid-template-columns: auto minmax(0, 1fr);
-  gap: 0.85rem;
+  gap: var(--legal-about-system-row-gap);
   border: 1px solid color-mix(in srgb, var(--color-paw-border) 76%, transparent);
   border-radius: var(--radius-paw-md);
   background: color-mix(in srgb, var(--color-paw-inverse-ink) 76%, transparent);
-  padding: 0.9rem;
+  padding: var(--legal-about-system-row-padding);
 }
 
 .about-system-icon {
   display: flex;
-  width: 2.75rem;
-  height: 2.75rem;
+  width: var(--legal-about-system-icon-size);
+  height: var(--legal-about-system-icon-size);
   align-items: center;
   justify-content: center;
   border-radius: var(--radius-paw-sm);

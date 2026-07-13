@@ -1,5 +1,15 @@
 /* Owner: /loading, /not-found, and globe loading states. */
 
+:root {
+  --loading-globe-card-width: min(100%, 24rem);
+  --loading-globe-card-backdrop-blur: 18px;
+  --loading-not-found-panel-min-height: 26rem;
+  --loading-not-found-row-gap: 0.9rem;
+  --loading-not-found-icon-size: 2.75rem;
+  --loading-panel-width: min(100%, 25rem);
+  --loading-panel-mark-size: 3.25rem;
+}
+
 .globe-loading-shell {
   background:
     radial-gradient(circle at 50% 46%, color-mix(in srgb, var(--color-paw-primary) 30%, transparent), transparent 18rem),
@@ -8,15 +18,15 @@
 }
 
 .globe-loading-card {
-  width: min(100%, 24rem);
+  width: var(--loading-globe-card-width);
   border: 1px solid color-mix(in srgb, var(--color-paw-inverse-ink) 10%, transparent);
   border-radius: var(--radius-paw-lg);
   background: color-mix(in srgb, var(--color-paw-inverse-ink) 6%, transparent);
   box-shadow: 0 24px 72px color-mix(in srgb, var(--color-paw-shadow-ink) 28%, transparent);
-  padding: 1.5rem;
+  padding: var(--spacing-paw-xl);
   text-align: center;
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
+  backdrop-filter: blur(var(--loading-globe-card-backdrop-blur));
+  -webkit-backdrop-filter: blur(var(--loading-globe-card-backdrop-blur));
 }
 
 .not-found-panel,
@@ -30,17 +40,17 @@
 }
 
 .not-found-panel {
-  min-height: 26rem;
-  padding: 1.25rem;
+  min-height: var(--loading-not-found-panel-min-height);
+  padding: var(--spacing-paw-lg);
 }
 
 .not-found-row {
   display: flex;
-  gap: 0.9rem;
+  gap: var(--loading-not-found-row-gap);
   border: 1px solid color-mix(in srgb, var(--color-paw-border) 74%, transparent);
   border-radius: var(--radius-paw-md);
   background: color-mix(in srgb, var(--color-paw-inverse-ink) 86%, transparent);
-  padding: 1rem;
+  padding: var(--spacing-paw-md);
 }
 
 .not-found-icon,
@@ -54,19 +64,19 @@
 }
 
 .not-found-icon {
-  width: 2.75rem;
-  height: 2.75rem;
+  width: var(--loading-not-found-icon-size);
+  height: var(--loading-not-found-icon-size);
   flex: 0 0 auto;
 }
 
 .loading-panel {
-  width: min(100%, 25rem);
-  padding: 2rem;
+  width: var(--loading-panel-width);
+  padding: var(--spacing-paw-xxl);
 }
 
 .loading-panel-mark {
-  width: 3.25rem;
-  height: 3.25rem;
+  width: var(--loading-panel-mark-size);
+  height: var(--loading-panel-mark-size);
 }
 
 .globe-loading-bar {

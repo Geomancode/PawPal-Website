@@ -1,5 +1,20 @@
 /* Owner: /privacy, /terms, /guidelines, and legal hero styles. */
 
+:root {
+  --legal-hero-padding-range: clamp(1.5rem, 4vw, 2.75rem);
+  --legal-hero-grid-size: 3.5rem;
+  --legal-trust-row-gap: 0.8rem;
+  --legal-trust-row-padding: 0.8rem;
+  --legal-info-card-orb-offset: -2.5rem;
+  --legal-info-card-orb-size: 8rem;
+  --legal-info-card-hover-offset: -3px;
+  --legal-info-icon-size: 2.8rem;
+  --legal-prose-grid-gap-range: clamp(1.4rem, 3vw, 2rem);
+  --legal-prose-grid-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr));
+  --legal-prose-grid-compact-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr));
+  --legal-prose-section-scroll-margin: 7rem;
+}
+
 .legal-hero-panel,
 .orders-hero-panel {
   position: relative;
@@ -12,7 +27,7 @@
 .legal-hero-panel {
   display: block;
   border-block: 1px solid color-mix(in srgb, var(--color-paw-border) 74%, transparent);
-  padding-block: clamp(1.5rem, 4vw, 2.75rem);
+  padding-block: var(--legal-hero-padding-range);
 }
 
 .orders-hero-panel {
@@ -29,7 +44,7 @@
   background:
     linear-gradient(90deg, color-mix(in srgb, var(--color-paw-primary) 8%, transparent) 1px, transparent 1px),
     linear-gradient(0deg, color-mix(in srgb, var(--color-paw-trust) 8%, transparent) 1px, transparent 1px);
-  background-size: 3.5rem 3.5rem;
+  background-size: var(--legal-hero-grid-size) var(--legal-hero-grid-size);
   mask-image: linear-gradient(180deg, var(--color-paw-shadow-ink) 0%, transparent 88%);
   pointer-events: none;
 }
@@ -42,15 +57,15 @@
 
 .legal-trust-panel {
   display: grid;
-  gap: 0.75rem;
+  gap: var(--spacing-paw-sm);
 }
 
 .legal-trust-row {
   display: grid;
   grid-template-columns: auto minmax(0, 1fr);
-  gap: 0.8rem;
+  gap: var(--legal-trust-row-gap);
   border-block-start: 1px solid color-mix(in srgb, var(--color-paw-border) 72%, transparent);
-  padding-block: 0.8rem;
+  padding-block: var(--legal-trust-row-padding);
 }
 
 .legal-info-card {
@@ -62,27 +77,27 @@
 .legal-info-card::after {
   content: "";
   position: absolute;
-  right: -2.5rem;
-  bottom: -2.5rem;
-  width: 8rem;
-  height: 8rem;
+  right: var(--legal-info-card-orb-offset);
+  bottom: var(--legal-info-card-orb-offset);
+  width: var(--legal-info-card-orb-size);
+  height: var(--legal-info-card-orb-size);
   border-radius: var(--radius-paw-pill);
   background: radial-gradient(circle, color-mix(in srgb, var(--color-paw-primary) 10%, transparent), transparent 64%);
 }
 
 .legal-info-card:hover {
-  transform: translateY(-3px);
+  transform: translateY(var(--legal-info-card-hover-offset));
   border-color: color-mix(in srgb, var(--color-paw-primary) 34%, transparent);
   box-shadow: 0 22px 54px color-mix(in srgb, var(--color-paw-ink) 12%, transparent);
 }
 
 .legal-info-icon {
   display: flex;
-  width: 2.8rem;
-  height: 2.8rem;
+  width: var(--legal-info-icon-size);
+  height: var(--legal-info-icon-size);
   align-items: center;
   justify-content: center;
-  margin-bottom: 1rem;
+  margin-bottom: var(--spacing-paw-md);
   border-radius: var(--radius-paw-sm);
   background: var(--color-paw-primary-soft);
   color: var(--color-paw-primary);
@@ -90,17 +105,17 @@
 
 .legal-prose-grid {
   display: grid;
-  gap: clamp(1.4rem, 3vw, 2rem);
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr));
+  gap: var(--legal-prose-grid-gap-range);
+  grid-template-columns: var(--legal-prose-grid-columns);
 }
 
 .legal-prose-grid-compact {
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr));
+  grid-template-columns: var(--legal-prose-grid-compact-columns);
 }
 
 .legal-prose-section {
-  scroll-margin-top: 7rem;
+  scroll-margin-top: var(--legal-prose-section-scroll-margin);
   min-width: 0;
   border-block-start: 1px solid color-mix(in srgb, var(--color-paw-border) 72%, transparent);
-  padding-block-start: 1.25rem;
+  padding-block-start: var(--spacing-paw-lg);
 }
