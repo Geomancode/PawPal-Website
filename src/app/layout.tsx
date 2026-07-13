@@ -137,7 +137,7 @@ export default function RootLayout({
           <Providers>
             <LocalizedSkipLink />
             <Navbar />
-            <main id="main-content" className="relative z-20" tabIndex={-1}>{children}</main>
+            <main id="main-content" className="relative" style={{ zIndex: 20 }} tabIndex={-1}>{children}</main>
             <ConditionalFooter />
             <CookieConsentBanner />
           </Providers>
