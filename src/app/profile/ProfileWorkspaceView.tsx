@@ -244,11 +244,11 @@ export default function ProfileWorkspaceView({
 
         <div className="profile-command-header mb-paw-xl">
           <div>
-            <p className="text-xs font-black uppercase tracking-[0.14em] text-paw-primary">{t("profileWorkspaceEyebrow")}</p>
-            <h1 className="mt-paw-xs text-3xl font-extrabold tracking-tight text-paw-ink sm:text-4xl">
+            <p className="text-paw-type-caption font-black uppercase tracking-[0.14em] text-paw-primary">{t("profileWorkspaceEyebrow")}</p>
+            <h1 className="mt-paw-xs text-paw-type-h1 font-extrabold tracking-tight text-paw-ink sm:text-paw-type-display">
               {t("profileWorkspaceTitle")}
             </h1>
-            <p className="mt-paw-xs max-w-2xl text-sm leading-6 text-paw-body">
+            <p className="mt-paw-xs max-w-2xl text-paw-type-body leading-6 text-paw-body">
               {t("profileWorkspaceDescription")}
             </p>
           </div>
@@ -264,22 +264,22 @@ export default function ProfileWorkspaceView({
             aria-labelledby="profile-owner-heading"
           >
             <div className="profile-owner-topline">
-              <div className={`profile-avatar ${PROFILE_METRIC_CLASSES.ownerAvatarSize} rounded-paw-lg bg-paw-panel border border-paw-border shadow-sm flex items-center justify-center overflow-hidden text-3xl`}>
+              <div className={`profile-avatar ${PROFILE_METRIC_CLASSES.ownerAvatarSize} rounded-paw-lg bg-paw-panel border border-paw-border shadow-sm flex items-center justify-center overflow-hidden text-paw-type-h1`}>
                 {profile.avatar_url ? (
                   // eslint-disable-next-line @next/next/no-img-element
                   <img src={profile.avatar_url} alt="" className="h-full w-full object-cover" />
                 ) : (
-                  <div className="flex h-full w-full items-center justify-center bg-paw-primary text-2xl font-extrabold text-paw-on-primary">
+                  <div className="flex h-full w-full items-center justify-center bg-paw-primary text-paw-type-h2 font-extrabold text-paw-on-primary">
                     {displayName.charAt(0).toUpperCase()}
                   </div>
                 )}
               </div>
               <div className="min-w-0 flex-1">
-                <p className="text-xs font-black uppercase tracking-[0.12em] text-paw-muted">{t("profileOwnerEyebrow")}</p>
-                <h2 id="profile-owner-heading" className="mt-paw-xxs break-words text-2xl font-extrabold text-paw-ink">
+                <p className="text-paw-type-caption font-black uppercase tracking-[0.12em] text-paw-muted">{t("profileOwnerEyebrow")}</p>
+                <h2 id="profile-owner-heading" className="mt-paw-xxs break-words text-paw-type-h2 font-extrabold text-paw-ink">
                   {displayName}
                 </h2>
-                <p className="break-all text-sm text-paw-muted">@{profile.username}</p>
+                <p className="break-all text-paw-type-body text-paw-muted">@{profile.username}</p>
               </div>
               {!editing && (
                 <button
@@ -296,19 +296,19 @@ export default function ProfileWorkspaceView({
             {editing ? (
               <div className="mt-paw-lg space-y-paw-md">
                   <div>
-                    <label htmlFor="profile-edit-name" className="text-xs font-bold text-paw-muted uppercase tracking-wider">{t("profileDisplayNameLabel")}</label>
+                    <label htmlFor="profile-edit-name" className="text-paw-type-caption font-bold text-paw-muted uppercase tracking-wider">{t("profileDisplayNameLabel")}</label>
                     <input id="profile-edit-name" value={editName} onChange={(e) => onEditNameChange(e.target.value)} placeholder={t("profileDisplayNamePlaceholder")}
-                    className={`mt-paw-xxs w-full px-paw-md ${PROFILE_METRIC_CLASSES.fieldPaddingBlock} bg-paw-panel-subtle border border-paw-border rounded-paw-md text-sm text-paw-ink outline-none focus:border-paw-trust focus:ring-4 focus:ring-paw-trust/15 transition-all`} />
+                    className={`mt-paw-xxs w-full px-paw-md ${PROFILE_METRIC_CLASSES.fieldPaddingBlock} bg-paw-panel-subtle border border-paw-border rounded-paw-md text-paw-type-body text-paw-ink outline-none focus:border-paw-trust focus:ring-4 focus:ring-paw-trust/15 transition-all`} />
                   </div>
                   <div>
-                    <label htmlFor="profile-edit-bio" className="text-xs font-bold text-paw-muted uppercase tracking-wider">{t("profileBioLabel")}</label>
+                    <label htmlFor="profile-edit-bio" className="text-paw-type-caption font-bold text-paw-muted uppercase tracking-wider">{t("profileBioLabel")}</label>
                     <textarea id="profile-edit-bio" value={editBio} onChange={(e) => onEditBioChange(e.target.value)} placeholder={t("profileBioPlaceholder")} rows={3}
-                    className={`mt-paw-xxs w-full px-paw-md ${PROFILE_METRIC_CLASSES.fieldPaddingBlock} bg-paw-panel-subtle border border-paw-border rounded-paw-md text-sm text-paw-ink outline-none focus:border-paw-trust focus:ring-4 focus:ring-paw-trust/15 transition-all resize-none`} />
+                    className={`mt-paw-xxs w-full px-paw-md ${PROFILE_METRIC_CLASSES.fieldPaddingBlock} bg-paw-panel-subtle border border-paw-border rounded-paw-md text-paw-type-body text-paw-ink outline-none focus:border-paw-trust focus:ring-4 focus:ring-paw-trust/15 transition-all resize-none`} />
                   </div>
                   <div>
-                    <label htmlFor="profile-edit-city" className="text-xs font-bold text-paw-muted uppercase tracking-wider">{t("profileCityLabel")}</label>
+                    <label htmlFor="profile-edit-city" className="text-paw-type-caption font-bold text-paw-muted uppercase tracking-wider">{t("profileCityLabel")}</label>
                     <input id="profile-edit-city" value={editCity} onChange={(e) => onEditCityChange(e.target.value)} placeholder={t("profileCityPlaceholder")}
-                    className={`mt-paw-xxs w-full px-paw-md ${PROFILE_METRIC_CLASSES.fieldPaddingBlock} bg-paw-panel-subtle border border-paw-border rounded-paw-md text-sm text-paw-ink outline-none focus:border-paw-trust focus:ring-4 focus:ring-paw-trust/15 transition-all`} />
+                    className={`mt-paw-xxs w-full px-paw-md ${PROFILE_METRIC_CLASSES.fieldPaddingBlock} bg-paw-panel-subtle border border-paw-border rounded-paw-md text-paw-type-body text-paw-ink outline-none focus:border-paw-trust focus:ring-4 focus:ring-paw-trust/15 transition-all`} />
                   </div>
                   <div className="flex flex-wrap gap-paw-xs pt-paw-xxs">
                     <button type="button" onClick={onSaveProfile} disabled={saving}
@@ -325,9 +325,9 @@ export default function ProfileWorkspaceView({
             ) : (
               <div className="mt-paw-lg">
                   {profile.bio ? (
-                    <p className="break-words text-sm leading-6 text-paw-body">{profile.bio}</p>
+                    <p className="break-words text-paw-type-body leading-6 text-paw-body">{profile.bio}</p>
                   ) : (
-                    <p className="text-sm leading-6 text-paw-muted">{t("profileBioEmpty")}</p>
+                    <p className="text-paw-type-body leading-6 text-paw-muted">{t("profileBioEmpty")}</p>
                   )}
 
                   <div className="profile-meta-grid mt-paw-lg">
@@ -358,8 +358,8 @@ export default function ProfileWorkspaceView({
           >
             <div className="flex items-start justify-between gap-paw-md">
               <div>
-                <p className="text-xs font-black uppercase tracking-[0.12em] text-paw-primary">{t("profileReadinessEyebrow")}</p>
-                <h2 id="profile-readiness-heading" className="mt-paw-xxs text-xl font-extrabold text-paw-ink">{t("profileReadinessTitle")}</h2>
+                <p className="text-paw-type-caption font-black uppercase tracking-[0.12em] text-paw-primary">{t("profileReadinessEyebrow")}</p>
+                <h2 id="profile-readiness-heading" className="mt-paw-xxs text-paw-type-h2 font-extrabold text-paw-ink">{t("profileReadinessTitle")}</h2>
               </div>
               <div className="flex h-paw-min-tap w-paw-min-tap shrink-0 items-center justify-center rounded-paw-md bg-paw-trust-soft text-paw-on-trust-soft">
                 <PawIcon name="health" className="h-paw-lg w-paw-lg" aria-hidden="true" />
@@ -370,8 +370,8 @@ export default function ProfileWorkspaceView({
               {readinessRows.map((row) => (
                 <div key={row.label} className="profile-readiness-row">
                   <div className="min-w-0">
-                    <p className="text-sm font-extrabold text-paw-ink">{row.label}</p>
-                    <p className="mt-0.5 text-xs leading-5 text-paw-muted">{row.helper}</p>
+                    <p className="text-paw-type-body font-extrabold text-paw-ink">{row.label}</p>
+                    <p className="mt-0.5 text-paw-type-caption leading-5 text-paw-muted">{row.helper}</p>
                   </div>
                   <span className="profile-readiness-value">{row.value}</span>
                 </div>
@@ -384,8 +384,8 @@ export default function ProfileWorkspaceView({
                   {isInstalled ? <PawIcon name="confirm" className="h-paw-lg w-paw-lg" aria-hidden="true" /> : <PawIcon name="appLink" className="h-paw-lg w-paw-lg" aria-hidden="true" />}
                 </div>
                 <div className="min-w-0 flex-1">
-                  <p className="text-sm font-extrabold text-paw-ink">{isInstalled ? t("profilePawPalInstalled") : t("profileInstallPawPal")}</p>
-                  <p className="mt-0.5 text-xs leading-5 text-paw-muted">
+                  <p className="text-paw-type-body font-extrabold text-paw-ink">{isInstalled ? t("profilePawPalInstalled") : t("profileInstallPawPal")}</p>
+                  <p className="mt-0.5 text-paw-type-caption leading-5 text-paw-muted">
                     {installStatus ?? (isInstalled ? t("profileInstalledHelper") : t("profileInstallHelper"))}
                   </p>
                 </div>
@@ -420,8 +420,8 @@ export default function ProfileWorkspaceView({
         >
           <div className="profile-section-heading mb-paw-md">
             <div>
-              <p className="text-xs font-black uppercase tracking-[0.12em] text-paw-primary">{t("profilePetRecordsEyebrow")}</p>
-              <h2 id="profile-pets-heading" className="mt-paw-xxs text-xl font-extrabold text-paw-ink flex items-center gap-paw-xs">
+              <p className="text-paw-type-caption font-black uppercase tracking-[0.12em] text-paw-primary">{t("profilePetRecordsEyebrow")}</p>
+              <h2 id="profile-pets-heading" className="mt-paw-xxs text-paw-type-h2 font-extrabold text-paw-ink flex items-center gap-paw-xs">
                 <PawIcon name="paw" className="h-paw-lg w-paw-lg text-paw-primary" aria-hidden="true" />
                 {t("profileMyPetsTitle")}
               </h2>
@@ -449,18 +449,18 @@ export default function ProfileWorkspaceView({
                   )}
 
                   <div>
-                    <label htmlFor="profile-pet-name" className="text-xs font-bold text-paw-muted uppercase tracking-wider">{t("profilePetNameRequiredLabel")}</label>
+                    <label htmlFor="profile-pet-name" className="text-paw-type-caption font-bold text-paw-muted uppercase tracking-wider">{t("profilePetNameRequiredLabel")}</label>
                     <input id="profile-pet-name" value={petName} onChange={(e) => onPetNameChange(e.target.value)} placeholder={t("profilePetNamePlaceholder")}
-                  className={`mt-paw-xxs w-full px-paw-md ${PROFILE_METRIC_CLASSES.fieldPaddingBlock} bg-paw-panel-subtle border border-paw-border rounded-paw-md text-sm text-paw-ink outline-none focus:border-paw-trust focus:ring-4 focus:ring-paw-trust/15 transition-all`} />
+                  className={`mt-paw-xxs w-full px-paw-md ${PROFILE_METRIC_CLASSES.fieldPaddingBlock} bg-paw-panel-subtle border border-paw-border rounded-paw-md text-paw-type-body text-paw-ink outline-none focus:border-paw-trust focus:ring-4 focus:ring-paw-trust/15 transition-all`} />
                   </div>
 
                   <fieldset>
-                    <legend className="text-xs font-bold text-paw-muted uppercase tracking-wider">{t("profileSpeciesLabel")}</legend>
+                    <legend className="text-paw-type-caption font-bold text-paw-muted uppercase tracking-wider">{t("profileSpeciesLabel")}</legend>
                     <div className="flex flex-wrap gap-paw-xs mt-paw-xs">
                       {SPECIES_OPTIONS.map((s) => (
                         <button key={s.id} type="button" onClick={() => onPetSpeciesChange(s.id)}
                           aria-pressed={petSpecies === s.id}
-                          className={`flex items-center ${PROFILE_METRIC_CLASSES.compactChipSpacing} px-paw-sm rounded-paw-sm text-xs font-medium transition-all border ${
+                          className={`flex items-center ${PROFILE_METRIC_CLASSES.compactChipSpacing} px-paw-sm rounded-paw-sm text-paw-type-caption font-medium transition-all border ${
                             petSpecies === s.id
                               ? "bg-paw-primary text-paw-accent-ink border-paw-primary"
                               : "bg-paw-panel-subtle text-paw-body border-paw-border hover:border-paw-primary/40"
@@ -473,14 +473,14 @@ export default function ProfileWorkspaceView({
 
                   <div className="grid gap-paw-md sm:grid-cols-2">
                     <div>
-                      <label htmlFor="profile-pet-breed" className="text-xs font-bold text-paw-muted uppercase tracking-wider">{t("profileBreedLabel")}</label>
+                      <label htmlFor="profile-pet-breed" className="text-paw-type-caption font-bold text-paw-muted uppercase tracking-wider">{t("profileBreedLabel")}</label>
                       <input id="profile-pet-breed" value={petBreed} onChange={(e) => onPetBreedChange(e.target.value)} placeholder={t("profileBreedPlaceholder")}
-                  className={`mt-paw-xxs w-full px-paw-md ${PROFILE_METRIC_CLASSES.fieldPaddingBlock} bg-paw-panel-subtle border border-paw-border rounded-paw-md text-sm text-paw-ink outline-none focus:border-paw-trust focus:ring-4 focus:ring-paw-trust/15 transition-all`} />
+                  className={`mt-paw-xxs w-full px-paw-md ${PROFILE_METRIC_CLASSES.fieldPaddingBlock} bg-paw-panel-subtle border border-paw-border rounded-paw-md text-paw-type-body text-paw-ink outline-none focus:border-paw-trust focus:ring-4 focus:ring-paw-trust/15 transition-all`} />
                     </div>
                     <div>
-                      <label htmlFor="profile-pet-blood-type" className="text-xs font-bold text-paw-muted uppercase tracking-wider">{t("profileBloodTypeLabel")}</label>
+                      <label htmlFor="profile-pet-blood-type" className="text-paw-type-caption font-bold text-paw-muted uppercase tracking-wider">{t("profileBloodTypeLabel")}</label>
                       <select id="profile-pet-blood-type" value={petBloodType} onChange={(e) => onPetBloodTypeChange(e.target.value)}
-                  className={`mt-paw-xxs w-full px-paw-md ${PROFILE_METRIC_CLASSES.fieldPaddingBlock} bg-paw-panel-subtle border border-paw-border rounded-paw-md text-sm text-paw-ink outline-none focus:border-paw-trust focus:ring-4 focus:ring-paw-trust/15 transition-all`}>
+                  className={`mt-paw-xxs w-full px-paw-md ${PROFILE_METRIC_CLASSES.fieldPaddingBlock} bg-paw-panel-subtle border border-paw-border rounded-paw-md text-paw-type-body text-paw-ink outline-none focus:border-paw-trust focus:ring-4 focus:ring-paw-trust/15 transition-all`}>
                         <option value="">{t("profileSelectPlaceholder")}</option>
                         {BLOOD_TYPES.map((bloodType) => <option key={bloodType} value={bloodType}>{bloodType === "Unknown" ? t("profileBloodUnknown") : bloodType}</option>)}
                       </select>
@@ -488,18 +488,18 @@ export default function ProfileWorkspaceView({
                   </div>
 
                   <div>
-                    <label htmlFor="profile-pet-contact" className="text-xs font-bold text-paw-muted uppercase tracking-wider">{t("profileOwnerContactLabel")}</label>
+                    <label htmlFor="profile-pet-contact" className="text-paw-type-caption font-bold text-paw-muted uppercase tracking-wider">{t("profileOwnerContactLabel")}</label>
                     <input id="profile-pet-contact" value={petContact} onChange={(e) => onPetContactChange(e.target.value)} placeholder={t("profileOwnerContactPlaceholder")}
-                  className={`mt-paw-xxs w-full px-paw-md ${PROFILE_METRIC_CLASSES.fieldPaddingBlock} bg-paw-panel-subtle border border-paw-border rounded-paw-md text-sm text-paw-ink outline-none focus:border-paw-trust focus:ring-4 focus:ring-paw-trust/15 transition-all`} />
+                  className={`mt-paw-xxs w-full px-paw-md ${PROFILE_METRIC_CLASSES.fieldPaddingBlock} bg-paw-panel-subtle border border-paw-border rounded-paw-md text-paw-type-body text-paw-ink outline-none focus:border-paw-trust focus:ring-4 focus:ring-paw-trust/15 transition-all`} />
                   </div>
 
                   <fieldset>
-                    <legend className="text-xs font-bold text-paw-muted uppercase tracking-wider">{t("profilePersonalityTagsLabel")}</legend>
+                    <legend className="text-paw-type-caption font-bold text-paw-muted uppercase tracking-wider">{t("profilePersonalityTagsLabel")}</legend>
                     <div className={`flex flex-wrap ${PROFILE_METRIC_CLASSES.compactGap} mt-paw-xs`}>
                       {SOCIAL_PRESETS.map((tag) => (
                         <button key={tag} type="button" onClick={() => onToggleSocialTag(tag)}
                           aria-pressed={petSocialTags.includes(tag)}
-                          className={`px-paw-sm py-paw-xxs rounded-paw-sm text-xs font-medium transition-all border ${
+                          className={`px-paw-sm py-paw-xxs rounded-paw-sm text-paw-type-caption font-medium transition-all border ${
                             petSocialTags.includes(tag)
                               ? "bg-paw-trust text-paw-accent-ink border-paw-trust"
                               : "bg-paw-trust-soft text-paw-on-trust-soft border-paw-trust/15 hover:border-paw-trust/40"
@@ -511,12 +511,12 @@ export default function ProfileWorkspaceView({
                   </fieldset>
 
                   <fieldset>
-                    <legend className="text-xs font-bold text-paw-muted uppercase tracking-wider">{t("profileHealthCareLabel")}</legend>
+                    <legend className="text-paw-type-caption font-bold text-paw-muted uppercase tracking-wider">{t("profileHealthCareLabel")}</legend>
                     <div className={`flex flex-wrap ${PROFILE_METRIC_CLASSES.compactGap} mt-paw-xs`}>
                       {HEALTH_PRESETS.map((tag) => (
                         <button key={tag} type="button" onClick={() => onToggleHealthBadge(tag)}
                           aria-pressed={petHealthBadges.includes(tag)}
-                          className={`px-paw-sm py-paw-xxs rounded-paw-sm text-xs font-medium transition-all border ${
+                          className={`px-paw-sm py-paw-xxs rounded-paw-sm text-paw-type-caption font-medium transition-all border ${
                             petHealthBadges.includes(tag)
                               ? "bg-paw-success text-paw-accent-ink border-paw-success"
                               : "bg-paw-success-soft text-paw-on-success-soft border-paw-success/15 hover:border-paw-success/40"
@@ -530,8 +530,8 @@ export default function ProfileWorkspaceView({
                   <div className="bg-paw-trust-soft border border-paw-trust/15 rounded-paw-md px-paw-md py-paw-sm flex items-start gap-paw-sm">
                     <PawIcon name="appLink" className="w-paw-lg h-paw-lg text-paw-trust shrink-0 mt-0.5" aria-hidden="true" />
                     <div>
-                      <p className="text-xs font-bold text-paw-trust">{t("profileNfcWriteTitle")}</p>
-                      <p className="text-xs text-paw-body mt-0.5">{t("profileNfcWriteDescription")}</p>
+                      <p className="text-paw-type-caption font-bold text-paw-trust">{t("profileNfcWriteTitle")}</p>
+                      <p className="text-paw-type-caption text-paw-body mt-0.5">{t("profileNfcWriteDescription")}</p>
                     </div>
                   </div>
 
@@ -547,8 +547,8 @@ export default function ProfileWorkspaceView({
           {pets.length === 0 ? (
             <div className="profile-empty-card">
               <PawIcon name="paw" className="w-paw-xxxl h-paw-xxxl text-paw-primary mx-auto mb-paw-sm" aria-hidden="true" />
-              <h3 className="text-lg font-extrabold text-paw-ink">{t("profileEmptyPetsTitle")}</h3>
-              <p className="mx-auto mt-paw-xs max-w-md text-sm leading-6 text-paw-muted">
+              <h3 className="text-paw-type-h3 font-extrabold text-paw-ink">{t("profileEmptyPetsTitle")}</h3>
+              <p className="mx-auto mt-paw-xs max-w-md text-paw-type-body leading-6 text-paw-muted">
                 {t("profileEmptyPetsDescription")}
               </p>
               <button
@@ -575,7 +575,7 @@ export default function ProfileWorkspaceView({
                     className="profile-pet-card"
                   >
                     <div className="flex items-start gap-paw-md">
-                      <div className={`${PROFILE_METRIC_CLASSES.petAvatarSize} rounded-paw-md bg-paw-primary-soft border border-paw-primary/15 flex items-center justify-center text-2xl shrink-0 overflow-hidden`}>
+                      <div className={`${PROFILE_METRIC_CLASSES.petAvatarSize} rounded-paw-md bg-paw-primary-soft border border-paw-primary/15 flex items-center justify-center text-paw-type-h2 shrink-0 overflow-hidden`}>
                         {pet.avatar_url ? (
                           // eslint-disable-next-line @next/next/no-img-element
                           <img src={pet.avatar_url} alt={pet.name} className="w-full h-full object-cover" />
@@ -584,7 +584,7 @@ export default function ProfileWorkspaceView({
 
                       <div className="min-w-0 flex-1">
                         <div className="flex flex-wrap items-center gap-paw-xs">
-                          <h3 className="break-words text-base font-bold text-paw-ink">{pet.name}</h3>
+                          <h3 className="break-words text-paw-type-body font-bold text-paw-ink">{pet.name}</h3>
                           {pet.nfc_tag_uid ? (
                             <span className="profile-pet-status profile-pet-status-ready">
                               <PawIcon name="nfc" className="w-paw-sm h-paw-sm" aria-hidden="true" /> {t("profileNfcReady")}
@@ -601,7 +601,7 @@ export default function ProfileWorkspaceView({
                           )}
                         </div>
 
-                        {quirk && <p className="text-xs text-paw-muted italic mt-paw-xxs break-words">&ldquo;{quirk}&rdquo;</p>}
+                        {quirk && <p className="text-paw-type-caption text-paw-muted italic mt-paw-xxs break-words">&ldquo;{quirk}&rdquo;</p>}
 
                         <div className="flex flex-wrap items-center gap-paw-xs mt-paw-sm">
                           <span className="profile-pet-fact">{pet.breed || t("profileBreedNotListed")}</span>
@@ -626,7 +626,7 @@ export default function ProfileWorkspaceView({
                             ))}
                           </div>
                         ) : (
-                          <p className="mt-paw-sm text-xs text-paw-muted">{t("profileNoTraitsListed")}</p>
+                          <p className="mt-paw-sm text-paw-type-caption text-paw-muted">{t("profileNoTraitsListed")}</p>
                         )}
                       </div>
 

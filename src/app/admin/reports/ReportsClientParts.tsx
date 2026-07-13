@@ -315,10 +315,10 @@ function SessionGate({
   return (
     <section className="admin-gate-panel">
       <div>
-        <p className="text-lg font-extrabold text-paw-ink">
+        <p className="text-paw-type-h3 font-extrabold text-paw-ink">
           {t("adminReportsSignInRequired")}
         </p>
-        <p className="mt-paw-xs text-sm leading-6 text-paw-body">
+        <p className="mt-paw-xs text-paw-type-body leading-6 text-paw-body">
           {message ??
             t("adminReportsSignInDescription")}
         </p>
@@ -466,10 +466,10 @@ function ReportsQueue({
         <CardContent className="space-y-paw-lg">
           <div className="flex flex-col gap-paw-sm sm:flex-row sm:items-center sm:justify-between">
             <div>
-              <h2 className="text-xl font-extrabold text-paw-ink">
+              <h2 className="text-paw-type-h2 font-extrabold text-paw-ink">
                 {t("adminReportsPendingQueue")}
               </h2>
-              <p className="mt-paw-xxs text-sm leading-6 text-paw-body">
+              <p className="mt-paw-xxs text-paw-type-body leading-6 text-paw-body">
                 {t("adminReportsNewestPrefix")} {payload.pageSize} {t("adminReportsNewestSuffix")}
               </p>
             </div>
@@ -550,14 +550,14 @@ function ReportCard({
               {t(targetTypeLabelKeys[report.targetType])}
             </Badge>
             <Badge tone="warning">{t("adminReportsPending")}</Badge>
-            <span className="text-xs font-bold text-paw-muted">
+            <span className="text-paw-type-caption font-bold text-paw-muted">
               {formatDate(report.createdAt, locale)}
             </span>
           </div>
-          <h3 className="text-lg font-extrabold leading-tight text-paw-ink">
+          <h3 className="text-paw-type-h3 font-extrabold leading-tight text-paw-ink">
             {report.reason}
           </h3>
-          <p className="break-all text-xs font-semibold text-paw-muted">
+          <p className="break-all text-paw-type-caption font-semibold text-paw-muted">
             {t("adminReportsReport")} {report.id}
           </p>
         </div>
@@ -573,7 +573,7 @@ function ReportCard({
       </div>
 
       {!canRemoveContent && report.targetType === "user" && (
-        <p className="mt-paw-sm text-xs font-semibold text-paw-muted">
+        <p className="mt-paw-sm text-paw-type-caption font-semibold text-paw-muted">
           {t("adminReportsUserRemovalHint")}
         </p>
       )}
@@ -644,7 +644,7 @@ function TargetPreview({ target }: { target: ReportTargetSummary }) {
           />
           <div className="min-w-0">
             <p className="font-extrabold text-paw-ink">{target.label}</p>
-            <p className="mt-paw-xxs break-all text-sm leading-6 text-paw-body">
+            <p className="mt-paw-xxs break-all text-paw-type-body leading-6 text-paw-body">
               {t("adminReportsTargetId")} {target.id ?? t("adminReportsNotProvided")}
             </p>
           </div>
@@ -663,7 +663,7 @@ function TargetPreview({ target }: { target: ReportTargetSummary }) {
             title={t("adminReportsReportedPost")}
             removedAt={target.removedAt}
           />
-          <p className="mt-paw-xs text-sm leading-6 text-paw-body">
+          <p className="mt-paw-xs text-paw-type-body leading-6 text-paw-body">
             {target.bodyPreview}
           </p>
           <TargetMeta>
@@ -684,7 +684,7 @@ function TargetPreview({ target }: { target: ReportTargetSummary }) {
           title={t("adminReportsReportedComment")}
           removedAt={target.removedAt}
         />
-        <blockquote className="mt-paw-sm border-l-4 border-paw-primary/30 pl-paw-md text-sm leading-6 text-paw-body">
+        <blockquote className="mt-paw-sm border-l-4 border-paw-primary/30 pl-paw-md text-paw-type-body leading-6 text-paw-body">
           {target.bodyPreview}
         </blockquote>
         <TargetMeta>
@@ -708,7 +708,7 @@ function TargetPreview({ target }: { target: ReportTargetSummary }) {
       <div className="mt-paw-md">
         <ProfileChip label={t("adminReportsAccount")} profile={target.profile} large />
       </div>
-      <p className="mt-paw-sm break-all text-xs font-semibold text-paw-muted">
+      <p className="mt-paw-sm break-all text-paw-type-caption font-semibold text-paw-muted">
         {t("adminReportsTargetUser")} {target.id}
       </p>
     </div>
@@ -759,11 +759,11 @@ function ConfirmationDialog({
             <div>
               <h2
                 id="report-confirm-title"
-                className="text-xl font-extrabold text-paw-ink"
+                className="text-paw-type-h2 font-extrabold text-paw-ink"
               >
                 {copy.title}
               </h2>
-              <p className="mt-paw-xs text-sm leading-6 text-paw-body">
+              <p className="mt-paw-xs text-paw-type-body leading-6 text-paw-body">
                 {copy.text}
               </p>
             </div>
@@ -780,10 +780,10 @@ function ConfirmationDialog({
         </div>
 
         <div className="mt-paw-lg rounded-paw-md border border-paw-border bg-paw-panel-subtle p-paw-sm">
-          <p className="text-xs font-extrabold uppercase tracking-wide text-paw-muted">
+          <p className="text-paw-type-caption font-extrabold uppercase tracking-wide text-paw-muted">
             {t("adminReportsReportReason")}
           </p>
-          <p className="mt-paw-xxs text-sm font-bold text-paw-ink">
+          <p className="mt-paw-xxs text-paw-type-body font-bold text-paw-ink">
             {confirmation.report.reason}
           </p>
         </div>
@@ -835,7 +835,7 @@ function Pagination({
       className="flex flex-col gap-paw-sm border-t border-paw-border pt-paw-md sm:flex-row sm:items-center sm:justify-between"
       aria-label={t("adminReportsPagination")}
     >
-      <p className="text-sm font-semibold text-paw-muted">
+      <p className="text-paw-type-body font-semibold text-paw-muted">
         {t("adminReportsPage")} {payload.page} {t("adminReportsOf")} {payload.totalPages} · {payload.total} {t("adminReportsPendingTotal")}
       </p>
       <div className="flex gap-paw-xs">
@@ -901,16 +901,16 @@ function ProfileChip({
         large && "max-w-md",
       )}
     >
-      <p className="text-xs font-extrabold uppercase tracking-wide text-paw-muted">
+      <p className="text-paw-type-caption font-extrabold uppercase tracking-wide text-paw-muted">
         {label}
       </p>
       <div className="mt-paw-xs flex min-w-0 items-center gap-paw-sm">
         <Avatar profile={profile} size={large ? 44 : 36} />
         <div className="min-w-0">
-          <p className="truncate text-sm font-extrabold text-paw-ink">
+          <p className="truncate text-paw-type-body font-extrabold text-paw-ink">
             {profile?.displayName ?? t("adminReportsUnknownUser")}
           </p>
-          <p className="truncate text-xs font-semibold text-paw-muted">
+          <p className="truncate text-paw-type-caption font-semibold text-paw-muted">
             {profile?.username ? `@${profile.username}` : profile?.id ?? t("adminReportsNoProfile")}
           </p>
         </div>
@@ -999,7 +999,7 @@ function TargetHeader({
   const { t } = useReportsI18n();
   return (
     <div className="flex flex-wrap items-center gap-paw-xs">
-      <span className="inline-flex items-center gap-paw-xs text-sm font-extrabold text-paw-ink">
+      <span className="inline-flex items-center gap-paw-xs text-paw-type-body font-extrabold text-paw-ink">
         {icon}
         {title}
       </span>
@@ -1010,7 +1010,7 @@ function TargetHeader({
 
 function TargetMeta({ children }: { children: ReactNode }) {
   return (
-    <div className="mt-paw-sm flex flex-wrap gap-x-paw-md gap-y-paw-xxs text-xs font-semibold text-paw-muted">
+    <div className="mt-paw-sm flex flex-wrap gap-x-paw-md gap-y-paw-xxs text-paw-type-caption font-semibold text-paw-muted">
       {children}
     </div>
   );
@@ -1027,10 +1027,10 @@ function ErrorPanel({
   return (
     <section className="admin-gate-panel">
       <div>
-        <p className="text-lg font-extrabold text-paw-ink">
+        <p className="text-paw-type-h3 font-extrabold text-paw-ink">
           {t("adminReportsUnableToLoad")}
         </p>
-        <p className="mt-paw-xs text-sm leading-6 text-paw-body">
+        <p className="mt-paw-xs text-paw-type-body leading-6 text-paw-body">
           {message}
         </p>
       </div>
@@ -1056,8 +1056,8 @@ function LoadingState({
         className="h-paw-xxl w-paw-xxl animate-spin text-paw-primary"
         aria-hidden="true"
       />
-      <p className="mt-paw-md text-lg font-extrabold text-paw-ink">{title}</p>
-      <p className="mt-paw-xs max-w-md text-sm leading-6 text-paw-body">
+      <p className="mt-paw-md text-paw-type-h3 font-extrabold text-paw-ink">{title}</p>
+      <p className="mt-paw-xs max-w-md text-paw-type-body leading-6 text-paw-body">
         {description}
       </p>
     </div>
