@@ -223,7 +223,7 @@ function SubscriptionUpgradePanel({
                     <h2 className="text-paw-type-h2 font-black text-paw-ink">
                       {plan.name}
                     </h2>
-                    <p className="mt-paw-sm text-sm leading-6 text-paw-body">
+                    <p className="mt-paw-sm text-paw-type-body leading-6 text-paw-body">
                       {plan.summary}
                     </p>
                   </div>
@@ -238,14 +238,14 @@ function SubscriptionUpgradePanel({
                   <span className="text-paw-type-metric font-black text-paw-ink">
                     €{plan.monthlyPrice.toFixed(2)}
                   </span>
-                  <span className="pb-paw-xxs text-sm font-bold text-paw-muted">
+                  <span className="pb-paw-xxs text-paw-type-body font-bold text-paw-muted">
                     {t("storePricePerMonth")}
                   </span>
                 </div>
 
                 <div className="mb-paw-xl space-y-paw-sm">
                   {plan.features.map((feature) => (
-                    <div key={feature} className="flex items-start gap-paw-xs text-sm text-paw-body">
+                    <div key={feature} className="flex items-start gap-paw-xs text-paw-type-body text-paw-body">
                       <PawIcon name="success" className="mt-0.5 h-paw-md w-paw-md shrink-0 text-paw-on-success-soft" aria-hidden="true" />
                       <span>{feature}</span>
                     </div>
@@ -269,7 +269,7 @@ function SubscriptionUpgradePanel({
         })}
       </div>
 
-      <Card variant="compact" className="p-paw-md text-sm leading-6 text-paw-body">
+      <Card variant="compact" className="p-paw-md text-paw-type-body leading-6 text-paw-body">
         {t("storeFreeFeaturesNote")}
       </Card>
     </PageShell>
@@ -360,10 +360,10 @@ function ProductDetailsDrawer({
         <div className="space-y-paw-lg">
           <Card variant="compact" tone="subtle" elevation="none" className="flex flex-wrap items-center justify-between gap-paw-sm p-paw-md">
             <div>
-              <p className="text-xs font-bold uppercase tracking-[0.16em] text-paw-muted">
+              <p className="text-paw-type-caption font-bold uppercase tracking-[0.16em] text-paw-muted">
                 {t("storeProductDetailsTitle")}
               </p>
-              <p className="mt-paw-xxs text-2xl font-extrabold text-paw-primary">
+              <p className="mt-paw-xxs text-paw-type-h2 font-extrabold text-paw-primary">
                 {formatPrice(product)}
               </p>
             </div>
@@ -431,11 +431,11 @@ function CartDrawer({
       footer={
         items.length > 0 ? (
           <div className="space-y-paw-sm">
-            <div className="flex justify-between text-sm text-paw-body">
+            <div className="flex justify-between text-paw-type-body text-paw-body">
               <span>{t("storeSubtotal")}</span>
               <span>€{subtotal.toFixed(2)}</span>
             </div>
-            <div className="flex justify-between text-sm text-paw-body">
+            <div className="flex justify-between text-paw-type-body text-paw-body">
               <span>{t("storeShipping")}</span>
               <span>
                 {shipping === 0 ? (
@@ -446,11 +446,11 @@ function CartDrawer({
               </span>
             </div>
             {subtotal < 50 && (
-              <p className="rounded-paw-sm bg-paw-warning-soft px-paw-sm py-paw-xs text-xs font-semibold text-paw-body">
+              <p className="rounded-paw-sm bg-paw-warning-soft px-paw-sm py-paw-xs text-paw-type-caption font-semibold text-paw-body">
                 {t("storeAddAmountPrefix")} €{(50 - subtotal).toFixed(2)} {t("storeFreeShippingSuffix")}
               </p>
             )}
-            <div className="flex justify-between border-t border-paw-border pt-paw-sm text-lg font-extrabold text-paw-ink">
+            <div className="flex justify-between border-t border-paw-border pt-paw-sm text-paw-type-h3 font-extrabold text-paw-ink">
               <span>{t("storeTotal")}</span>
               <span>€{total.toFixed(2)}</span>
             </div>
@@ -484,10 +484,10 @@ function CartDrawer({
               >
                 <ProductVisual product={item.product} size="md" />
                 <div className="min-w-0 flex-1">
-                  <h4 className="truncate text-sm font-extrabold text-paw-ink">
+                  <h4 className="truncate text-paw-type-body font-extrabold text-paw-ink">
                     {item.product.name}
                   </h4>
-                  <p className="mt-0.5 text-sm font-bold text-paw-primary">
+                  <p className="mt-0.5 text-paw-type-body font-bold text-paw-primary">
                     €{item.product.price.toFixed(2)}
                   </p>
                   <div className="mt-paw-xs flex items-center gap-paw-xs">
@@ -502,7 +502,7 @@ function CartDrawer({
                     >
                       <PawIcon name="subtract" className="h-paw-sm w-paw-sm" aria-hidden="true" />
                     </Button>
-                    <span className={`${STORE_METRIC_CLASSES.quantityLabelWidth} text-center text-sm font-extrabold text-paw-ink`}>
+                    <span className={`${STORE_METRIC_CLASSES.quantityLabelWidth} text-center text-paw-type-body font-extrabold text-paw-ink`}>
                       {item.quantity}
                     </span>
                     <Button
@@ -529,7 +529,7 @@ function CartDrawer({
                   >
                     <PawIcon name="delete" className="h-paw-md w-paw-md" aria-hidden="true" />
                   </Button>
-                  <span className="text-sm font-extrabold text-paw-ink">
+                  <span className="text-paw-type-body font-extrabold text-paw-ink">
                     €{(item.product.price * item.quantity).toFixed(2)}
                   </span>
                 </div>
@@ -729,7 +729,7 @@ function StorePageContent({ t }: { t: StoreTranslation }) {
             </motion.h1>
             <motion.p
               {...fadeUpMotion(shouldReduceMotion, 16, 0.08)}
-              className="mt-paw-sm max-w-2xl text-paw-type-body text-paw-body sm:text-base"
+              className="mt-paw-sm max-w-2xl text-paw-type-body text-paw-body sm:text-paw-type-body"
             >
               {t("storeHeroCopy")}
             </motion.p>
@@ -742,7 +742,7 @@ function StorePageContent({ t }: { t: StoreTranslation }) {
               >
                 <Card
                   variant="compact"
-                  className="flex flex-wrap items-center gap-paw-xs px-paw-sm py-paw-xs text-sm font-bold"
+                  className="flex flex-wrap items-center gap-paw-xs px-paw-sm py-paw-xs text-paw-type-body font-bold"
                 >
                   <PawIcon name="sparkle" className="h-paw-md w-paw-md text-paw-on-primary-soft" aria-hidden="true" />
                   <span>
@@ -787,10 +787,10 @@ function StorePageContent({ t }: { t: StoreTranslation }) {
                 <PawIcon name={promise.icon} className={`${STORE_METRIC_CLASSES.compactIconSize} sm:h-paw-md sm:w-paw-md`} aria-hidden="true" />
               </span>
               <div>
-                <p className="text-paw-type-caption font-extrabold leading-tight text-paw-ink sm:text-sm">
+                <p className="text-paw-type-caption font-extrabold leading-tight text-paw-ink sm:text-paw-type-body">
                   {promise.label}
                 </p>
-                <p className="mt-0.5 hidden text-xs leading-5 text-paw-body sm:block">
+                <p className="mt-0.5 hidden text-paw-type-caption leading-5 text-paw-body sm:block">
                   {promise.copy}
                 </p>
               </div>
@@ -804,7 +804,7 @@ function StorePageContent({ t }: { t: StoreTranslation }) {
         <div className="mx-auto max-w-7xl px-paw-md sm:px-paw-xl lg:px-paw-xxl">
         <div className="mb-paw-sm flex items-center gap-paw-xs">
           <PawIcon name="filters" className="h-paw-md w-paw-md text-paw-muted" />
-          <span className="text-sm font-bold text-paw-muted">{t("storeFilterByCategory")}</span>
+          <span className="text-paw-type-body font-bold text-paw-muted">{t("storeFilterByCategory")}</span>
         </div>
         <div className="-mx-paw-md mb-paw-sm flex gap-paw-sm overflow-x-auto px-paw-md pb-paw-xs sm:mx-0 sm:flex-wrap sm:overflow-visible sm:px-0 sm:pb-0">
           {CATEGORIES.map((cat) => (
@@ -831,7 +831,7 @@ function StorePageContent({ t }: { t: StoreTranslation }) {
         </div>
         <div className="mb-paw-md flex flex-wrap items-center justify-between gap-paw-sm">
           <div className="flex flex-wrap items-center gap-paw-sm">
-            <p className="text-sm font-semibold text-paw-muted">
+            <p className="text-paw-type-body font-semibold text-paw-muted">
               {filtered.length} {filtered.length === 1 ? t("storeProductCountSingular") : t("storeProductCountPlural")}
             </p>
             {catalogLoading && (
@@ -850,7 +850,7 @@ function StorePageContent({ t }: { t: StoreTranslation }) {
             <button
               type="button"
               onClick={() => setCartOpen(true)}
-              className="store-toolbar-action inline-flex cursor-pointer items-center gap-paw-xxs text-sm font-bold text-paw-muted transition-colors hover:text-paw-primary"
+              className="store-toolbar-action inline-flex cursor-pointer items-center gap-paw-xxs text-paw-type-body font-bold text-paw-muted transition-colors hover:text-paw-primary"
             >
               <PawIcon name="basket" className="h-paw-md w-paw-md" aria-hidden="true" />
               {t("storeCartButton")} {totalItems > 0 ? `(${totalItems})` : ""}
@@ -858,7 +858,7 @@ function StorePageContent({ t }: { t: StoreTranslation }) {
             {isAdmin && (
               <button
                 onClick={() => router.push(path("/store/admin"))}
-                className="store-toolbar-action flex cursor-pointer items-center gap-paw-xxs text-sm font-bold text-paw-trust transition-colors hover:text-paw-trust-hover"
+                className="store-toolbar-action flex cursor-pointer items-center gap-paw-xxs text-paw-type-body font-bold text-paw-trust transition-colors hover:text-paw-trust-hover"
               >
                 <PawIcon name="shield" className="h-paw-md w-paw-md" aria-hidden="true" />
                 {t("storeManageCatalog")}
@@ -866,7 +866,7 @@ function StorePageContent({ t }: { t: StoreTranslation }) {
             )}
             <button
               onClick={() => router.push(path("/store/orders"))}
-              className="store-toolbar-action flex cursor-pointer items-center gap-paw-xxs text-sm font-bold text-paw-primary transition-colors hover:text-paw-primary-hover"
+              className="store-toolbar-action flex cursor-pointer items-center gap-paw-xxs text-paw-type-body font-bold text-paw-primary transition-colors hover:text-paw-primary-hover"
             >
               {t("storeMyOrders")} <PawIcon name="chevronRight" className="h-paw-md w-paw-md" />
             </button>
@@ -920,7 +920,7 @@ function StorePageContent({ t }: { t: StoreTranslation }) {
               <motion.span
                 initial={false}
                 animate={{ scale: 1 }}
-                className="absolute -right-paw-xxs -top-paw-xxs flex h-paw-xl w-paw-xl items-center justify-center rounded-paw-pill bg-paw-critical text-xs font-extrabold text-paw-on-critical"
+                className="absolute -right-paw-xxs -top-paw-xxs flex h-paw-xl w-paw-xl items-center justify-center rounded-paw-pill bg-paw-critical text-paw-type-caption font-extrabold text-paw-on-critical"
               >
                 {totalItems}
               </motion.span>
@@ -952,7 +952,7 @@ function StorePageContent({ t }: { t: StoreTranslation }) {
             initial={false}
             animate={{ opacity: 1, y: 0 }}
             exit={shouldReduceMotion ? undefined : { opacity: 0, y: 40 }}
-            className={`fixed ${STORE_METRIC_CLASSES.toastBottomOffset} left-1/2 z-50 flex -translate-x-1/2 items-center gap-paw-xs rounded-paw-panel border border-paw-outline-variant bg-paw-panel-low px-paw-lg py-paw-sm text-sm font-bold text-paw-ink shadow-paw-panel`}
+            className={`fixed ${STORE_METRIC_CLASSES.toastBottomOffset} left-1/2 z-50 flex -translate-x-1/2 items-center gap-paw-xs rounded-paw-panel border border-paw-outline-variant bg-paw-panel-low px-paw-lg py-paw-sm text-paw-type-body font-bold text-paw-ink shadow-paw-panel`}
           >
             <PawIcon name="success" className="h-paw-md w-paw-md text-paw-on-success-soft" aria-hidden="true" />
             {toast}
@@ -971,7 +971,7 @@ export default function StorePage() {
       {loader}
       <Suspense
         fallback={
-          <div className={`min-h-screen bg-paw-page ${STORE_METRIC_CLASSES.loadingShellTopSpacing} text-center text-sm font-bold text-paw-muted`}>
+          <div className={`min-h-screen bg-paw-page ${STORE_METRIC_CLASSES.loadingShellTopSpacing} text-center text-paw-type-body font-bold text-paw-muted`}>
             {t("storeLoading")}
           </div>
         }

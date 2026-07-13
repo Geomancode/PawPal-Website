@@ -150,24 +150,24 @@ function OrderSummary({ items, t }: { items: CartItem[]; t: CheckoutTranslation 
           <div key={item.product.id} className="flex items-center gap-paw-sm">
             <ProductVisual product={item.product} size="sm" />
             <div className="flex-1 min-w-0">
-              <p className="truncate text-sm font-bold text-paw-ink">{item.product.name}</p>
-              <p className="text-xs text-paw-muted">{t("checkoutQuantityPrefix")} {item.quantity}</p>
+              <p className="truncate text-paw-type-body font-bold text-paw-ink">{item.product.name}</p>
+              <p className="text-paw-type-caption text-paw-muted">{t("checkoutQuantityPrefix")} {item.quantity}</p>
             </div>
-            <span className="text-sm font-extrabold text-paw-ink">€{(item.product.price * item.quantity).toFixed(2)}</span>
+            <span className="text-paw-type-body font-extrabold text-paw-ink">€{(item.product.price * item.quantity).toFixed(2)}</span>
           </div>
         ))}
       </div>
       <div className="space-y-paw-xs border-t border-paw-border pt-paw-sm">
-        <div className="flex justify-between text-sm text-paw-body"><span>{t("checkoutSubtotal")}</span><span>€{subtotal.toFixed(2)}</span></div>
-        <div className="flex justify-between text-sm text-paw-body">
+        <div className="flex justify-between text-paw-type-body text-paw-body"><span>{t("checkoutSubtotal")}</span><span>€{subtotal.toFixed(2)}</span></div>
+        <div className="flex justify-between text-paw-type-body text-paw-body">
           <span>{t("checkoutShipping")}</span>
           <span className="font-bold text-paw-on-success-soft">{t("checkoutFree")}</span>
         </div>
-        <div className="flex justify-between border-t border-paw-border pt-paw-xs text-lg font-extrabold text-paw-ink"><span>{t("checkoutTotal")}</span><span>€{subtotal.toFixed(2)}</span></div>
+        <div className="flex justify-between border-t border-paw-border pt-paw-xs text-paw-type-h3 font-extrabold text-paw-ink"><span>{t("checkoutTotal")}</span><span>€{subtotal.toFixed(2)}</span></div>
       </div>
       <div className="mt-paw-md flex items-center gap-paw-xs rounded-paw-sm border border-paw-trust/20 bg-paw-trust-soft p-paw-sm">
         <PawIcon name="shield" className="h-paw-md w-paw-md shrink-0 text-paw-on-trust-soft" />
-        <p className="text-xs text-paw-on-trust-soft">{t("checkoutSecuredByStripe")}</p>
+        <p className="text-paw-type-caption text-paw-on-trust-soft">{t("checkoutSecuredByStripe")}</p>
       </div>
       </CardContent>
     </Card>
@@ -275,9 +275,9 @@ export default function CheckoutPage() {
           className="mb-paw-xxl flex flex-col items-start justify-between gap-paw-lg p-paw-xl sm:flex-row sm:items-end"
         >
           <div>
-            <p className="text-sm font-bold uppercase tracking-[0.18em] text-paw-primary">{t("checkoutShopEyebrow")}</p>
-            <h1 className="mt-paw-xs text-3xl font-extrabold text-paw-ink sm:text-5xl">{t("checkoutTitle")}</h1>
-            <p className="mt-paw-sm max-w-2xl text-sm leading-6 text-paw-body sm:text-base">
+            <p className="text-paw-type-body font-bold uppercase tracking-[0.18em] text-paw-primary">{t("checkoutShopEyebrow")}</p>
+            <h1 className="mt-paw-xs text-paw-type-h1 font-extrabold text-paw-ink sm:text-paw-type-display">{t("checkoutTitle")}</h1>
+            <p className="mt-paw-sm max-w-2xl text-paw-type-body leading-6 text-paw-body sm:text-paw-type-body">
               {t("checkoutDescription")}
             </p>
           </div>
@@ -291,7 +291,7 @@ export default function CheckoutPage() {
                 key={item.label}
                 variant="compact"
                 elevation="none"
-                className="flex items-center gap-paw-sm p-paw-sm text-sm font-black text-paw-body"
+                className="flex items-center gap-paw-sm p-paw-sm text-paw-type-body font-black text-paw-body"
               >
                 <PawIcon name={item.icon} className="h-paw-md w-paw-md" aria-hidden="true" />
                 {item.label}
@@ -314,7 +314,7 @@ export default function CheckoutPage() {
                 >
                   <Card variant="panel">
                     <CardContent className="p-paw-xxl">
-                  <h2 className="mb-paw-xl flex items-center gap-paw-xs text-2xl font-extrabold text-paw-ink">
+                  <h2 className="mb-paw-xl flex items-center gap-paw-xs text-paw-type-h2 font-extrabold text-paw-ink">
                     <PawIcon name="location" className="h-paw-lg w-paw-lg text-paw-primary" /> {t("checkoutShippingInformation")}
                   </h2>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-paw-md">
@@ -341,14 +341,14 @@ export default function CheckoutPage() {
 
                   <div className="mt-paw-xl flex items-center gap-paw-sm rounded-paw-md border border-paw-success/20 bg-paw-success-soft p-paw-md">
                     <PawIcon name="shipping" className="h-paw-lg w-paw-lg shrink-0 text-paw-on-success-soft" />
-                    <p className="text-sm text-paw-on-success-soft">{t("checkoutDeliveryEstimate")}</p>
+                    <p className="text-paw-type-body text-paw-on-success-soft">{t("checkoutDeliveryEstimate")}</p>
                   </div>
 
                   <motion.button
                     whileTap={shouldReduceMotion ? undefined : { scale: 0.97 }}
                     disabled={!canProceedShipping}
                     onClick={() => setStep(2)}
-                    className={buttonClassName({ size: "lg", className: "mt-paw-xl w-full text-lg" })}
+                    className={buttonClassName({ size: "lg", className: "mt-paw-xl w-full text-paw-type-h3" })}
                   >
                     {t("checkoutReviewOrderButton")} <PawIcon name="forward" className="w-paw-lg h-paw-lg" />
                   </motion.button>
@@ -365,17 +365,17 @@ export default function CheckoutPage() {
                 >
                   <Card variant="panel">
                     <CardContent className="p-paw-xxl">
-                  <h2 className="mb-paw-xl flex items-center gap-paw-xs text-2xl font-extrabold text-paw-ink">
+                  <h2 className="mb-paw-xl flex items-center gap-paw-xs text-paw-type-h2 font-extrabold text-paw-ink">
                     <PawIcon name="package" className="h-paw-lg w-paw-lg text-paw-primary" /> {t("checkoutReviewTitle")}
                   </h2>
 
                   {/* Shipping summary */}
                   <div className="mb-paw-xl rounded-paw-md border border-paw-border bg-paw-panel-subtle p-paw-md">
                     <h4 className="mb-paw-xs flex items-center gap-paw-xs font-bold text-paw-ink"><PawIcon name="location" className="h-paw-md w-paw-md text-paw-primary" /> {t("checkoutShippingTo")}</h4>
-                    <p className="text-sm text-paw-body">{shipping.fullName}</p>
-                    <p className="text-sm text-paw-muted">{shipping.address}</p>
-                    <p className="text-sm text-paw-muted">{shipping.city}, {shipping.zipCode}, {shipping.country}</p>
-                    <p className="text-sm text-paw-muted">{shipping.email} · {shipping.phone}</p>
+                    <p className="text-paw-type-body text-paw-body">{shipping.fullName}</p>
+                    <p className="text-paw-type-body text-paw-muted">{shipping.address}</p>
+                    <p className="text-paw-type-body text-paw-muted">{shipping.city}, {shipping.zipCode}, {shipping.country}</p>
+                    <p className="text-paw-type-body text-paw-muted">{shipping.email} · {shipping.phone}</p>
                   </div>
 
                   {/* Items */}
@@ -386,10 +386,10 @@ export default function CheckoutPage() {
                         <div key={item.product.id} className="flex items-center gap-paw-sm rounded-paw-sm bg-paw-panel-subtle p-paw-sm">
                           <ProductVisual product={item.product} size="sm" />
                           <div className="flex-1">
-                            <p className="text-sm font-bold text-paw-ink">{item.product.name}</p>
-                            <p className="text-xs text-paw-muted">{t("checkoutQuantityPrefix")} {item.quantity}</p>
+                            <p className="text-paw-type-body font-bold text-paw-ink">{item.product.name}</p>
+                            <p className="text-paw-type-caption text-paw-muted">{t("checkoutQuantityPrefix")} {item.quantity}</p>
                           </div>
-                          <span className="font-bold text-sm">€{(item.product.price * item.quantity).toFixed(2)}</span>
+                          <span className="font-bold text-paw-type-body">€{(item.product.price * item.quantity).toFixed(2)}</span>
                         </div>
                       ))}
                     </div>
@@ -397,9 +397,9 @@ export default function CheckoutPage() {
 
                   {/* Total */}
                   <div className="mb-paw-xl space-y-paw-xs border-t border-paw-border pt-paw-md">
-                    <div className="flex justify-between text-sm text-paw-body"><span>{t("checkoutSubtotal")}</span><span>€{subtotal.toFixed(2)}</span></div>
-                    <div className="flex justify-between text-sm text-paw-body"><span>{t("checkoutShipping")}</span><span className="font-bold text-paw-on-success-soft">{t("checkoutFree")}</span></div>
-                    <div className="flex justify-between border-t border-paw-border pt-paw-xs text-xl font-extrabold text-paw-ink"><span>{t("checkoutTotal")}</span><span>€{subtotal.toFixed(2)}</span></div>
+                    <div className="flex justify-between text-paw-type-body text-paw-body"><span>{t("checkoutSubtotal")}</span><span>€{subtotal.toFixed(2)}</span></div>
+                    <div className="flex justify-between text-paw-type-body text-paw-body"><span>{t("checkoutShipping")}</span><span className="font-bold text-paw-on-success-soft">{t("checkoutFree")}</span></div>
+                    <div className="flex justify-between border-t border-paw-border pt-paw-xs text-paw-type-h2 font-extrabold text-paw-ink"><span>{t("checkoutTotal")}</span><span>€{subtotal.toFixed(2)}</span></div>
                   </div>
 
                   {/* Stripe Pay Button */}
@@ -414,7 +414,7 @@ export default function CheckoutPage() {
                       whileTap={shouldReduceMotion ? undefined : { scale: 0.97 }}
                       onClick={handleStripeCheckout}
                       disabled={redirecting}
-                      className={buttonClassName({ size: "lg", className: "w-full text-lg" })}
+                      className={buttonClassName({ size: "lg", className: "w-full text-paw-type-h3" })}
                     >
                       {redirecting ? (
                         <>
@@ -435,7 +435,7 @@ export default function CheckoutPage() {
                       )}
                     </motion.button>
 
-                    <div className="flex items-center justify-center gap-paw-xs text-xs text-paw-muted">
+                    <div className="flex items-center justify-center gap-paw-xs text-paw-type-caption text-paw-muted">
                       <PawIcon name="shield" className={CHECKOUT_METRIC_CLASSES.secureIconSize} />
                       <span>{t("checkoutSecurePaymentNote")}</span>
                     </div>
@@ -443,7 +443,7 @@ export default function CheckoutPage() {
                     {/* Stripe badge */}
                     <div className="flex items-center justify-center gap-paw-md pt-paw-xs">
                       {["Visa", "Mastercard", "Amex", "Apple Pay"].map((brand) => (
-                        <span key={brand} className="rounded-paw-sm border border-paw-outline-variant bg-paw-panel-subtle px-paw-xs py-paw-xxs text-xs font-bold text-paw-muted">{brand}</span>
+                        <span key={brand} className="rounded-paw-sm border border-paw-outline-variant bg-paw-panel-subtle px-paw-xs py-paw-xxs text-paw-type-caption font-bold text-paw-muted">{brand}</span>
                       ))}
                     </div>
                   </div>

@@ -4,6 +4,13 @@ import path from "node:path";
 const repoRoot = path.resolve(new URL("..", import.meta.url).pathname);
 const uiRoot = path.join(repoRoot, "src", "components", "ui");
 const defaultSizeUtility = /(^|[^A-Za-z0-9_-])text-(xs|sm|base|lg|xl|[2-9]xl)(?=[^A-Za-z0-9_-]|$)/g;
+const migratedRouteFiles = [
+  "src/app/profile/ProfileWorkspaceView.tsx",
+  "src/app/admin/park-risks/page.tsx",
+  "src/app/store/checkout/page.tsx",
+  "src/app/store/page.tsx",
+  "src/app/admin/reports/ReportsClientParts.tsx",
+];
 
 function assert(condition, message) {
   if (!condition) throw new Error(message);
@@ -40,6 +47,29 @@ async function assertUiUtilities() {
   console.log("PASS ui typography: no default Tailwind font-size utilities in src/components/ui/*.tsx");
 }
 
+async function assertMigratedRouteUtilities() {
+  assert(
+    migratedRouteFiles.length >= 5,
+    "migratedRouteFiles lost required coverage; removing a migrated route entry is stale.",
+  );
+  const offenders = [];
+  for (const relativeFilePath of migratedRouteFiles) {
+    const source = await readFile(path.join(repoRoot, relativeFilePath), "utf8");
+    for (const match of source.matchAll(defaultSizeUtility)) {
+      offenders.push(
+        `${relativeFilePath}:${lineNumber(source, match.index)} (${match[0].trim()})`,
+      );
+    }
+  }
+  assert(
+    offenders.length === 0,
+    `Default Tailwind font-size utilities remain in migrated routes:\n${offenders.join("\n")}`,
+  );
+  console.log(
+    `PASS migrated route typography: ${migratedRouteFiles.length} files contain no default Tailwind font-size utilities`,
+  );
+}
+
 async function assertFontLoader() {
   const layout = await readFile(path.join(repoRoot, "src", "app", "layout.tsx"), "utf8");
   assert(
@@ -69,6 +99,7 @@ async function assertTokenBinding() {
   console.log("PASS font token: --font-sans references --font-nunito-sans");
 }
 
+await assertMigratedRouteUtilities();
 await assertUiUtilities();
 await assertFontLoader();
 await assertTokenBinding();
