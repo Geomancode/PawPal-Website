@@ -150,11 +150,11 @@ function GlobeFallbackView({
   return (
     <div className="globe-fallback-stage">
       <section className="globe-fallback-copy" aria-labelledby="globe-fallback-title">
-        <p className="globe-fallback-eyebrow text-xs font-black uppercase tracking-[0.18em]">{t("globeBrandLabel")}</p>
-        <h2 id="globe-fallback-title" className="globe-fallback-title mt-3 text-4xl font-black leading-tight sm:text-5xl">
+        <p className="globe-fallback-eyebrow text-paw-type-caption font-black uppercase tracking-[0.18em]">{t("globeBrandLabel")}</p>
+        <h2 id="globe-fallback-title" className="globe-fallback-title mt-3 text-paw-type-display font-black leading-tight">
           {t("globeFallbackTitle")}
         </h2>
-        <p className="globe-fallback-body mt-4 max-w-xl text-sm font-medium leading-6 sm:text-base">
+        <p className="globe-fallback-body mt-4 max-w-xl text-paw-type-body font-medium leading-6">
           {t(reason)} {t("globeFallbackBody")}
         </p>
         <div className="globe-fallback-actions mt-6 flex flex-wrap gap-3">
@@ -684,7 +684,7 @@ export default function MapGlobeComponent({ t }: { t: GlobeTranslation }) {
           <div className="globe-hud-panel globe-nearby-panel absolute z-40 w-[min(320px,calc(100vw-2rem))] rounded-paw-lg border border-paw-border bg-paw-panel/90 p-3 shadow-paw-panel backdrop-blur-md">
             <div className="mb-2 flex items-center justify-between gap-3">
               <div>
-                <p className="text-xs font-black uppercase tracking-[0.16em] text-paw-accent">{t("globeNearbyNeeds")}</p>
+                <p className="text-paw-type-caption font-black uppercase tracking-[0.16em] text-paw-accent">{t("globeNearbyNeeds")}</p>
                 <p className="text-paw-type-caption font-medium text-paw-muted">
                   {formatMessage(t("globeNearbyCoordinates"), {
                     coordinates: `${nearbyCenter.lat.toFixed(3)}, ${nearbyCenter.lng.toFixed(3)}`,
@@ -729,7 +729,7 @@ export default function MapGlobeComponent({ t }: { t: GlobeTranslation }) {
                 ))}
               </div>
             ) : (
-              <p className="text-xs font-medium text-paw-muted">
+              <p className="text-paw-type-caption font-medium text-paw-muted">
                 {nearbyLoading ? t("globeLoadingNearbyNeeds") : t("globeNoOpenNeeds")}
               </p>
             )}
@@ -737,15 +737,15 @@ export default function MapGlobeComponent({ t }: { t: GlobeTranslation }) {
 
           {/* Layer Toggle */}
           <div id="globe-layers" className="globe-layer-stack absolute z-40 flex gap-1.5">
-            <button onClick={() => setShowQuests(!showQuests)} className={`globe-layer-button flex items-center gap-2 rounded-paw-pill border px-3 py-2 text-xs font-bold transition-all ${showQuests ? "is-active-mission bg-paw-accent text-paw-on-accent border-paw-accent" : "bg-paw-panel/80 text-paw-muted border-paw-border"}`}>
+            <button onClick={() => setShowQuests(!showQuests)} className={`globe-layer-button flex items-center gap-2 rounded-paw-pill border px-3 py-2 text-paw-type-caption font-bold transition-all ${showQuests ? "is-active-mission bg-paw-accent text-paw-on-accent border-paw-accent" : "bg-paw-panel/80 text-paw-muted border-paw-border"}`}>
               <PawIcon name="paw" className="h-3.5 w-3.5" aria-hidden="true" />
               {t("globeLayerMissions")} {quests.length > 0 && <span className="rounded-paw-pill bg-paw-panel/30 px-1.5 py-0.5 text-paw-type-caption">{quests.length}</span>}
             </button>
-            <button onClick={() => setShowPlaces(!showPlaces)} className={`globe-layer-button flex items-center gap-2 rounded-paw-pill border px-3 py-2 text-xs font-bold transition-all ${showPlaces ? "is-active-place bg-paw-trust text-paw-on-trust border-paw-trust" : "bg-paw-panel/80 text-paw-muted border-paw-border"}`}>
+            <button onClick={() => setShowPlaces(!showPlaces)} className={`globe-layer-button flex items-center gap-2 rounded-paw-pill border px-3 py-2 text-paw-type-caption font-bold transition-all ${showPlaces ? "is-active-place bg-paw-trust text-paw-on-trust border-paw-trust" : "bg-paw-panel/80 text-paw-muted border-paw-border"}`}>
               <PawIcon name="location" className="h-3.5 w-3.5" aria-hidden="true" />
               {t("globeLayerPlaces")} {places.length > 0 && <span className="rounded-paw-pill bg-paw-panel/30 px-1.5 py-0.5 text-paw-type-caption">{places.length}</span>}
             </button>
-            <button onClick={() => setShowPosts(!showPosts)} className={`globe-layer-button flex items-center gap-2 rounded-paw-pill border px-3 py-2 text-xs font-bold transition-all ${showPosts ? "is-active-post bg-paw-primary text-paw-on-primary border-paw-primary" : "bg-paw-panel/80 text-paw-muted border-paw-border"}`}>
+            <button onClick={() => setShowPosts(!showPosts)} className={`globe-layer-button flex items-center gap-2 rounded-paw-pill border px-3 py-2 text-paw-type-caption font-bold transition-all ${showPosts ? "is-active-post bg-paw-primary text-paw-on-primary border-paw-primary" : "bg-paw-panel/80 text-paw-muted border-paw-border"}`}>
               <PawIcon name="chat" className="h-3.5 w-3.5" aria-hidden="true" />
               {t("globeLayerPosts")} {posts.length > 0 && <span className="rounded-paw-pill bg-paw-panel/30 px-1.5 py-0.5 text-paw-type-caption">{posts.length}</span>}
             </button>

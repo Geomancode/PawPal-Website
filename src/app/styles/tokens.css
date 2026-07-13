@@ -145,6 +145,8 @@
   --text-paw-type-caption--line-height: 1.4;
   --text-paw-type-metric: 32px;
   --text-paw-type-metric--line-height: 1;
+  --text-paw-web-marketing-hero: 2.75rem;
+  --text-paw-web-marketing-hero--line-height: 1.03;
 
   --duration-paw-fast: 120ms;
   --duration-paw-normal: 180ms;
@@ -155,6 +157,27 @@
   --shadow-paw-floating: 0 8px 18px rgba(74, 144, 217, 0.24);
   --shadow-paw-action: 0 14px 28px rgba(74, 144, 217, 0.22);
   --shadow-paw-trust-action: 0 12px 28px rgba(118, 199, 184, 0.26);
+}
+
+@media (min-width: 640px) {
+  :root {
+    --text-paw-web-marketing-hero: 3.75rem;
+    --text-paw-web-marketing-hero--line-height: 1.02;
+  }
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --text-paw-web-marketing-hero: 4.45rem;
+    --text-paw-web-marketing-hero--line-height: 1.02;
+  }
+}
+
+@media (min-width: 1280px) {
+  :root {
+    --text-paw-web-marketing-hero: 4.65rem;
+    --text-paw-web-marketing-hero--line-height: 1.02;
+  }
 }
 
 :root {

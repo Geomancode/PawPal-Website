@@ -114,7 +114,7 @@ export function AnimatedHeadline() {
   return (
     <h1
       aria-label={t("homeHeroAriaLabel")}
-      className="homepage-hero-headline max-w-3xl font-brand text-[3.15rem] font-extrabold leading-[1.02] tracking-normal text-paw-ink sm:text-6xl lg:text-[4.45rem] xl:text-[4.65rem]"
+      className="homepage-hero-headline max-w-3xl font-brand text-paw-web-marketing-hero font-extrabold tracking-normal text-paw-ink"
     >
       <span className="block sm:whitespace-nowrap">{t("homeHeroLineOne")}</span>
       {" "}
@@ -129,7 +129,7 @@ export function HeroDescription() {
 
   return (
     <motion.p
-      className="max-w-xl break-words text-base leading-7 text-paw-body sm:text-lg sm:leading-8"
+      className="max-w-xl break-words text-paw-type-body leading-7 text-paw-body sm:text-paw-type-h3 sm:leading-8"
       {...enterMotion(shouldReduceMotion, 18, 0.18)}
     >
       {t("homeHeroDescription")}
@@ -189,7 +189,7 @@ export function HeroSignalRail() {
             <PawIcon name={signal.icon} className="h-4 w-4" aria-hidden="true" />
           </span>
           <span>
-            <span className="block text-xs font-black text-paw-ink">{signal.value}</span>
+            <span className="block text-paw-type-caption font-black text-paw-ink">{signal.value}</span>
             <span className="block text-paw-type-caption font-semibold text-paw-muted">{signal.label}</span>
           </span>
         </div>
@@ -238,8 +238,8 @@ export function HeroBadges() {
             <PawIcon name={badge.icon} className="h-5 w-5" aria-hidden="true" />
           </span>
           <div className="min-w-0">
-            <p className="truncate text-sm font-extrabold text-paw-ink">{badge.label}</p>
-            <p className="truncate text-xs font-semibold text-paw-muted">{badge.copy}</p>
+            <p className="truncate text-paw-type-body font-extrabold text-paw-ink">{badge.label}</p>
+            <p className="truncate text-paw-type-caption font-semibold text-paw-muted">{badge.copy}</p>
           </div>
         </div>
       ))}
@@ -268,7 +268,7 @@ export function GlobeSection() {
         <span className="hero-product-tag-mark">
           <PawIcon name="nfcScan" className="h-5 w-5" />
         </span>
-        <span className="mt-1 font-brand text-sm font-black text-paw-primary">PawPal</span>
+        <span className="mt-1 font-brand text-paw-type-body font-black text-paw-primary">PawPal</span>
       </div>
     </motion.div>
   );
@@ -308,8 +308,8 @@ export function TrustMarquee() {
             <PawIcon name={item.icon} className="h-6 w-6" />
           </span>
           <div>
-            <h3 className="text-sm font-extrabold text-paw-ink">{item.title}</h3>
-            <p className="mt-1 text-xs leading-5 text-paw-muted">{item.copy}</p>
+            <h3 className="text-paw-type-body font-extrabold text-paw-ink">{item.title}</h3>
+            <p className="mt-1 text-paw-type-caption leading-5 text-paw-muted">{item.copy}</p>
           </div>
         </Card>
       ))}
@@ -363,10 +363,10 @@ export function LaunchReadinessPanel() {
                   <span className="flex h-11 w-11 items-center justify-center rounded-paw-sm bg-paw-primary-soft text-paw-on-primary-soft">
                     <PawIcon name={item.icon} className="h-5 w-5" aria-hidden="true" />
                   </span>
-                  <span className="font-brand text-2xl font-black text-paw-primary">{item.value}</span>
+                  <span className="font-brand text-paw-type-h2 font-black text-paw-primary">{item.value}</span>
                 </div>
-                <h2 className="text-base font-extrabold text-paw-ink">{item.label}</h2>
-                <p className="mt-2 text-sm leading-6 text-paw-body">{item.copy}</p>
+                <h2 className="text-paw-type-body font-extrabold text-paw-ink">{item.label}</h2>
+                <p className="mt-2 text-paw-type-body leading-6 text-paw-body">{item.copy}</p>
               </article>
             </FadeInView>
           ))}
@@ -427,10 +427,10 @@ export function AnimatedCounter({ value, label, delay = 0 }: { value: string; la
       viewport={{ once: true }}
       transition={shouldReduceMotion ? { duration: 0 } : { delay, duration: 0.45, ease }}
     >
-      <div className="font-brand text-3xl font-black text-paw-primary md:text-4xl">
+      <div className="font-brand text-paw-type-metric font-black text-paw-primary">
         {isInView ? `${prefix}${displayedValue}${suffix}` : `${prefix}0${suffix}`}
       </div>
-      <p className="mt-1 text-sm font-semibold text-paw-muted">{label}</p>
+      <p className="mt-1 text-paw-type-body font-semibold text-paw-muted">{label}</p>
     </motion.div>
   );
 }
@@ -474,7 +474,7 @@ export function ProductFlow() {
           <Card className="h-full shadow-paw-panel">
             <CardContent className="grid h-full grid-cols-[auto_minmax(0,1fr)] items-start gap-paw-md">
               <div className="grid justify-items-center gap-paw-sm">
-              <span className="flex h-9 w-9 items-center justify-center rounded-paw-pill bg-paw-primary-soft text-sm font-black text-paw-on-primary-soft">
+              <span className="flex h-9 w-9 items-center justify-center rounded-paw-pill bg-paw-primary-soft text-paw-type-body font-black text-paw-on-primary-soft">
                 {index + 1}
               </span>
               <span className={`flex h-14 w-14 items-center justify-center rounded-paw-pill ${step.surface} ${step.color}`}>
@@ -482,8 +482,8 @@ export function ProductFlow() {
               </span>
             </div>
             <div>
-              <h3 className="text-base font-extrabold text-paw-ink">{step.title}</h3>
-              <p className="mt-2 max-w-sm text-sm leading-6 text-paw-body">{step.copy}</p>
+              <h3 className="text-paw-type-body font-extrabold text-paw-ink">{step.title}</h3>
+              <p className="mt-2 max-w-sm text-paw-type-body leading-6 text-paw-body">{step.copy}</p>
             </div>
             </CardContent>
           </Card>
@@ -537,7 +537,7 @@ export function BentoFeatureGrid() {
     <div className="grid items-center gap-12 lg:grid-cols-[0.8fr_1.2fr]">
       <FadeInView>
         <div>
-          <h2 className="font-brand text-3xl font-extrabold leading-tight text-paw-ink md:text-5xl">
+          <h2 className="font-brand text-paw-type-h1 font-extrabold leading-tight text-paw-ink md:text-paw-type-display">
             {t("homeBentoTitle")}
           </h2>
           <div className="mt-8 space-y-6">
@@ -547,8 +547,8 @@ export function BentoFeatureGrid() {
                   <PawIcon name={feature.icon} className="h-5 w-5" />
                 </div>
                 <div>
-                  <h3 className="text-base font-extrabold text-paw-ink">{feature.title}</h3>
-                  <p className="mt-1 text-sm leading-6 text-paw-body">{feature.copy}</p>
+                  <h3 className="text-paw-type-body font-extrabold text-paw-ink">{feature.title}</h3>
+                  <p className="mt-1 text-paw-type-body leading-6 text-paw-body">{feature.copy}</p>
                 </div>
               </div>
             ))}
@@ -627,10 +627,10 @@ export function AppShowcase() {
 
       <FadeInView>
         <div className="homepage-showcase-copy">
-          <h2 className="font-brand text-3xl font-extrabold leading-tight text-paw-ink md:text-5xl">
+          <h2 className="font-brand text-paw-type-h1 font-extrabold leading-tight text-paw-ink md:text-paw-type-display">
             {t("homeShowcaseTitle")}
           </h2>
-          <p className="mt-4 max-w-lg text-base leading-7 text-paw-body md:text-lg md:leading-8">
+          <p className="mt-4 max-w-lg text-paw-type-body leading-7 text-paw-body md:text-paw-type-h3 md:leading-8">
             {t("homeShowcaseCopy")}
           </p>
           <div className="homepage-showcase-list">
@@ -638,8 +638,8 @@ export function AppShowcase() {
               <div key={item.title} className="homepage-showcase-row">
                 <PawIcon name={item.icon} className={`h-6 w-6 ${item.color}`} aria-hidden="true" />
                 <div>
-                  <h3 className="text-sm font-extrabold text-paw-ink">{item.title}</h3>
-                  <p className="mt-1 text-sm leading-6 text-paw-body">{item.copy}</p>
+                  <h3 className="text-paw-type-body font-extrabold text-paw-ink">{item.title}</h3>
+                  <p className="mt-1 text-paw-type-body leading-6 text-paw-body">{item.copy}</p>
                 </div>
               </div>
             ))}

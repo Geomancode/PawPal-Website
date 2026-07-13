@@ -80,10 +80,10 @@ export default function AuthPage() {
               <PawIcon name="sparkle" className="h-4 w-4" aria-hidden="true" />
               {t("authBadge")}
             </Badge>
-            <h1 className="mt-5 max-w-xl text-5xl font-extrabold leading-tight text-paw-ink">
+            <h1 className="mt-5 max-w-xl text-paw-type-display font-extrabold leading-tight text-paw-ink">
               {t("authHeroTitle")}
             </h1>
-            <p className="mt-5 max-w-lg text-base leading-7 text-paw-body">
+            <p className="mt-5 max-w-lg text-paw-type-body leading-7 text-paw-body">
               {t("authHeroCopy")}
             </p>
           </div>
@@ -96,8 +96,8 @@ export default function AuthPage() {
               <div key={item.title} className="auth-signal-card">
                 <PawIcon name={item.icon} className="h-5 w-5 text-paw-on-primary-soft" aria-hidden="true" />
                 <div>
-                  <p className="text-sm font-extrabold text-paw-ink">{item.title}</p>
-                  <p className="mt-1 text-xs leading-5 text-paw-body">{item.copy}</p>
+                  <p className="text-paw-type-body font-extrabold text-paw-ink">{item.title}</p>
+                  <p className="mt-1 text-paw-type-caption leading-5 text-paw-body">{item.copy}</p>
                 </div>
               </div>
             ))}
@@ -115,10 +115,10 @@ export default function AuthPage() {
             <div className="mb-3 flex justify-center">
               <PawPalLogo iconOnly iconSize={56} variant="light" priority />
             </div>
-            <h2 className="text-2xl font-bold text-paw-ink">
+            <h2 className="text-paw-type-h2 font-bold text-paw-ink">
               {isLogin ? t("authWelcomeBackTitle") : t("authJoinTitle")}
             </h2>
-            <p className="text-paw-muted text-sm mt-1">
+            <p className="text-paw-muted text-paw-type-body mt-1">
               {isLogin ? t("authWelcomeBackCopy") : t("authJoinCopy")}
             </p>
           </div>
@@ -128,7 +128,7 @@ export default function AuthPage() {
             <button
               onClick={() => { setIsLogin(true); setError(null); }}
               aria-pressed={isLogin}
-              className={`auth-mode-tab flex-1 py-2 rounded-paw-sm text-sm font-semibold transition-all ${
+              className={`auth-mode-tab flex-1 py-2 rounded-paw-sm text-paw-type-body font-semibold transition-all ${
                 isLogin ? "bg-paw-panel text-paw-ink shadow-sm" : "text-paw-muted hover:text-paw-body"
               }`}
             >
@@ -137,7 +137,7 @@ export default function AuthPage() {
             <button
               onClick={() => { setIsLogin(false); setError(null); }}
               aria-pressed={!isLogin}
-              className={`auth-mode-tab flex-1 py-2 rounded-paw-sm text-sm font-semibold transition-all ${
+              className={`auth-mode-tab flex-1 py-2 rounded-paw-sm text-paw-type-body font-semibold transition-all ${
                 !isLogin ? "bg-paw-panel text-paw-ink shadow-sm" : "text-paw-muted hover:text-paw-body"
               }`}
             >
@@ -257,8 +257,8 @@ export default function AuthPage() {
                 <PawIcon name="shield" className="h-4 w-4" aria-hidden="true" />
               </span>
               <div>
-                <p className="text-sm font-extrabold text-paw-ink">{t("authTrustTitle")}</p>
-                <p className="mt-1 text-xs leading-5 text-paw-body">
+                <p className="text-paw-type-body font-extrabold text-paw-ink">{t("authTrustTitle")}</p>
+                <p className="mt-1 text-paw-type-caption leading-5 text-paw-body">
                   {t("authTrustCopy")}
                 </p>
               </div>
@@ -272,7 +272,7 @@ export default function AuthPage() {
         </Card>
 
         {/* Footer text */}
-        <p className="text-center text-xs text-paw-muted mt-6">
+        <p className="text-center text-paw-type-caption text-paw-muted mt-6">
           {t("authContinuePrefix")}{" "}
           <a href={path("/terms")} className="auth-legal-link text-paw-primary hover:underline">{t("authTerms")}</a>{" "}
           {t("authAnd")}{" "}
