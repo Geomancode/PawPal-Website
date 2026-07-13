@@ -25,6 +25,7 @@ import {
   Card,
   CardContent,
   EmptyState,
+  MetricTile,
   PageShell,
   StatusMessage,
   buttonClassName,
@@ -449,10 +450,10 @@ function ReportsQueue({
   return (
     <div className="space-y-paw-xl">
       <div className="grid grid-cols-2 gap-paw-sm lg:grid-cols-4">
-        <QueueMetric label={t("adminReportsPending")} value={displayPayload.total} tone="warning" />
-        <QueueMetric label={t("adminReportsPosts")} value={counts.post} tone="primary" />
-        <QueueMetric label={t("adminReportsComments")} value={counts.comment} tone="trust" />
-        <QueueMetric label={t("adminReportsUsers")} value={counts.user} tone="danger" />
+        <MetricTile className="admin-card-upgraded" label={t("adminReportsPending")} value={displayPayload.total} tone="warning" />
+        <MetricTile className="admin-card-upgraded" label={t("adminReportsPosts")} value={counts.post} tone="primary" />
+        <MetricTile className="admin-card-upgraded" label={t("adminReportsComments")} value={counts.comment} tone="trust" />
+        <MetricTile className="admin-card-upgraded" label={t("adminReportsUsers")} value={counts.user} tone="critical" />
       </div>
 
       {toast && (
@@ -812,30 +813,6 @@ function ConfirmationDialog({
         </div>
       </div>
     </div>
-  );
-}
-
-function QueueMetric({
-  label,
-  value,
-  tone,
-}: {
-  label: string;
-  value: number;
-  tone: "primary" | "trust" | "warning" | "danger";
-}) {
-  return (
-    <Card className="admin-card-upgraded">
-      <CardContent className="p-paw-md">
-        <p className="text-xs font-extrabold uppercase tracking-wide text-paw-muted">
-          {label}
-        </p>
-        <div className="mt-paw-xs flex items-center justify-between gap-paw-sm">
-          <p className="text-2xl font-extrabold text-paw-ink">{value}</p>
-          <Badge tone={tone === "danger" ? "critical" : tone}>{label}</Badge>
-        </div>
-      </CardContent>
-    </Card>
   );
 }
 

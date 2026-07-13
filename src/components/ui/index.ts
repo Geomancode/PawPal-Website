@@ -8,6 +8,7 @@ export type { CardElevation, CardTone, CardVariant } from "./Card";
 export { default as CheckoutStep } from "./CheckoutStep";
 export { default as EmptyState } from "./EmptyState";
 export { default as Input } from "./Input";
+export { default as MetricTile } from "./MetricTile";
 export type { InputVariant } from "./Input";
 export { default as NfcIdentityCard } from "./NfcIdentityCard";
 export { default as PageShell } from "./PageShell";

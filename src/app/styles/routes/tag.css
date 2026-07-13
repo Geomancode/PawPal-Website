@@ -34,7 +34,7 @@
   color: var(--color-paw-primary);
 }
 
-.tag-info-tile-danger {
+.tag-info-tile-critical {
   border-color: color-mix(in srgb, var(--color-paw-danger) 16%, transparent);
   background: color-mix(in srgb, var(--color-paw-danger-soft) 78%, transparent);
   color: var(--color-paw-danger);

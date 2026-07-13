@@ -13,21 +13,6 @@ const sharedComponentFiles = [
 ];
 
 const literalAllowlist = [
-  {
-    file: "src/app/admin/park-risks/page.tsx",
-    line: '<QueueMetric label={t("adminParkRisksReadyMetric")} value={counts.ready_for_review} tone="danger" />',
-    reason: "QueueMetric keeps its local tone vocabulary until the E1j closeout batch.",
-  },
-  {
-    file: "src/app/admin/reports/ReportsClientParts.tsx",
-    line: '<QueueMetric label={t("adminReportsUsers")} value={counts.user} tone="danger" />',
-    reason: "QueueMetric keeps its local tone vocabulary until the E1j closeout batch.",
-  },
-  {
-    file: "src/app/tag/[id]/TagPageClient.tsx",
-    line: '<InfoTile label={t("tagPageBloodLabel")} value={pet.blood_type ?? t("tagPageNotListed")} icon={Droplets} tone="danger" />',
-    reason: "InfoTile keeps its local tone vocabulary until the E1j closeout batch.",
-  },
 ];
 
 function tsxFiles(directory) {
