@@ -117,7 +117,7 @@ export default function About() {
 
           <motion.p
             {...fadeUp(shouldReduceMotion, 0.2)}
-            className="mt-paw-md max-w-2xl text-paw-type-body text-paw-body sm:text-base"
+            className="mt-paw-md max-w-2xl text-paw-type-body text-paw-body sm:text-paw-type-body"
           >
             {t("aboutHeroCopy")}
           </motion.p>
@@ -160,8 +160,8 @@ export default function About() {
                       <PawIcon name={item.icon} className="h-5 w-5" aria-hidden="true" />
                     </span>
                     <div>
-                      <p className="text-sm font-extrabold text-paw-ink">{item.label}</p>
-                      <p className="mt-paw-xxs text-xs leading-5 text-paw-body">{item.copy}</p>
+                      <p className="text-paw-type-body font-extrabold text-paw-ink">{item.label}</p>
+                      <p className="mt-paw-xxs text-paw-type-caption leading-5 text-paw-body">{item.copy}</p>
                     </div>
                   </div>
                 ))}
@@ -174,10 +174,10 @@ export default function About() {
                   { value: t("aboutMetricGlobeValue"), label: t("aboutMetricGlobeLabel") },
                 ].map((s) => (
                   <div key={s.value} className="about-metric-tile text-center">
-                    <div className="text-base font-black leading-tight text-paw-on-primary-soft">
+                    <div className="text-paw-type-body font-black leading-tight text-paw-on-primary-soft">
                       {s.value}
                     </div>
-                    <div className="mt-paw-xxs text-xs font-semibold text-paw-muted">
+                    <div className="mt-paw-xxs text-paw-type-caption font-semibold text-paw-muted">
                       {s.label}
                     </div>
                   </div>
@@ -192,12 +192,12 @@ export default function About() {
       <section className="about-text-band">
         <div className="mx-auto max-w-3xl text-center">
           <motion.div {...fadeUp(shouldReduceMotion)}>
-            <p className="text-paw-type-h2 font-black leading-snug text-paw-ink sm:text-3xl">
+            <p className="text-paw-type-h2 font-black leading-snug text-paw-ink sm:text-paw-type-h1">
               {t("aboutMissionPrefix")}
               <span className="text-paw-on-primary-soft">{t("aboutMissionHighlight")}</span>
               {t("aboutMissionSuffix")}
             </p>
-            <p className="mt-paw-md text-sm font-semibold text-paw-muted">{t("aboutMissionAttribution")}</p>
+            <p className="mt-paw-md text-paw-type-body font-semibold text-paw-muted">{t("aboutMissionAttribution")}</p>
           </motion.div>
         </div>
       </section>
@@ -218,7 +218,7 @@ export default function About() {
                     <PawIcon name={item.icon} className="h-7 w-7" />
                   </div>
                   <h3 className="text-paw-type-h3 font-black text-paw-ink">{t(item.titleKey)}</h3>
-                  <p className="mt-paw-sm text-sm leading-6 text-paw-body">{t(item.descKey)}</p>
+                  <p className="mt-paw-sm text-paw-type-body leading-6 text-paw-body">{t(item.descKey)}</p>
                 </CardContent>
               </Card>
             </motion.div>
@@ -241,8 +241,8 @@ export default function About() {
                   <span className="mb-paw-md flex h-11 w-11 items-center justify-center rounded-paw-control bg-paw-primary-soft text-paw-on-primary-soft">
                     <PawIcon name={v.icon} className="h-5 w-5" />
                   </span>
-                  <h3 className="text-base font-black text-paw-ink">{t(v.titleKey)}</h3>
-                  <p className="mt-paw-xs text-sm leading-6 text-paw-body">{t(v.descKey)}</p>
+                  <h3 className="text-paw-type-body font-black text-paw-ink">{t(v.titleKey)}</h3>
+                  <p className="mt-paw-xs text-paw-type-body leading-6 text-paw-body">{t(v.descKey)}</p>
                 </CardContent>
               </Card>
             </motion.div>
@@ -262,12 +262,12 @@ export default function About() {
             <motion.div key={member.name} {...fadeUp(shouldReduceMotion, i * 0.1)}>
               <Card className="h-full text-center transition hover:-translate-y-1 hover:border-paw-primary/30 hover:shadow-paw-floating">
                 <CardContent>
-                  <div className="mx-auto mb-paw-md flex h-20 w-20 items-center justify-center rounded-paw-pill border border-paw-outline-variant bg-paw-primary-soft text-2xl font-black text-paw-on-primary-soft shadow-paw-panel">
+                  <div className="mx-auto mb-paw-md flex h-20 w-20 items-center justify-center rounded-paw-pill border border-paw-outline-variant bg-paw-primary-soft text-paw-type-h2 font-black text-paw-on-primary-soft shadow-paw-panel">
                     {member.name.slice(0, 1)}
                   </div>
-                  <h3 className="text-lg font-black text-paw-ink">{member.name}</h3>
-                  <p className="mb-paw-sm text-xs font-black uppercase text-paw-on-primary-soft">{t(member.roleKey)}</p>
-                  <p className="text-sm leading-6 text-paw-body">{t(member.descKey)}</p>
+                  <h3 className="text-paw-type-h3 font-black text-paw-ink">{member.name}</h3>
+                  <p className="mb-paw-sm text-paw-type-caption font-black uppercase text-paw-on-primary-soft">{t(member.roleKey)}</p>
+                  <p className="text-paw-type-body leading-6 text-paw-body">{t(member.descKey)}</p>
                 </CardContent>
               </Card>
             </motion.div>
@@ -282,7 +282,7 @@ export default function About() {
                 <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-paw-control bg-paw-primary-soft text-paw-on-primary-soft">
                   <PawIcon name={s.icon} className="h-4 w-4" aria-hidden="true" />
                 </span>
-                <span className="text-xs font-bold text-paw-body">{t(s.textKey)}</span>
+                <span className="text-paw-type-caption font-bold text-paw-body">{t(s.textKey)}</span>
               </CardContent>
             </Card>
           ))}
@@ -312,8 +312,8 @@ export default function About() {
               </div>
               {/* Card */}
               <Card className={`flex-1 p-paw-md shadow-paw-panel md:max-w-[45%] ${i % 2 === 0 ? "md:mr-auto" : "md:ml-auto"}`}>
-                <span className="text-xs font-black uppercase text-paw-on-primary-soft">{item.year}</span>
-                <p className="mt-paw-xxs text-sm leading-6 text-paw-body">{t(item.eventKey)}</p>
+                <span className="text-paw-type-caption font-black uppercase text-paw-on-primary-soft">{item.year}</span>
+                <p className="mt-paw-xxs text-paw-type-body leading-6 text-paw-body">{t(item.eventKey)}</p>
               </Card>
             </motion.div>
           ))}
@@ -327,7 +327,7 @@ export default function About() {
             <h2 className="font-brand text-paw-type-h1 font-black text-paw-ink sm:text-paw-type-display">
               {t("aboutCtaTitle")}
             </h2>
-            <p className="mx-auto mb-paw-xl mt-paw-md max-w-lg text-base leading-7 text-paw-body">
+            <p className="mx-auto mb-paw-xl mt-paw-md max-w-lg text-paw-type-body leading-7 text-paw-body">
               {t("aboutCtaCopy")}
             </p>
             <div className="flex flex-wrap justify-center gap-paw-sm">
@@ -349,7 +349,7 @@ export default function About() {
           {/* Contact line */}
           <motion.div {...fadeUp(shouldReduceMotion, 0.2)} className="mt-paw-xl flex items-center justify-center gap-paw-xs text-paw-muted">
             <PawIcon name="mail" className="h-4 w-4" />
-            <span className="text-sm">{t("aboutContactPrompt")}<a href={`mailto:${siteConfig.email}`} className="about-inline-contact font-semibold text-paw-on-primary-soft hover:underline">{siteConfig.email}</a></span>
+            <span className="text-paw-type-body">{t("aboutContactPrompt")}<a href={`mailto:${siteConfig.email}`} className="about-inline-contact font-semibold text-paw-on-primary-soft hover:underline">{siteConfig.email}</a></span>
           </motion.div>
         </div>
       </section>

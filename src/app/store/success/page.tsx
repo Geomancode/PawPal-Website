@@ -31,7 +31,7 @@ function LoadingState() {
       {loader}
       <div className="flex flex-col items-center gap-4">
         <PawIcon name="spinner" className="h-8 w-8 animate-spin text-paw-primary" aria-hidden="true" />
-        <p className="text-sm font-bold text-paw-muted">{t("successConfirmingPayment")}</p>
+        <p className="text-paw-type-body font-bold text-paw-muted">{t("successConfirmingPayment")}</p>
       </div>
     </div>
   );
@@ -130,11 +130,11 @@ function SuccessContent() {
             <PawIcon name="warning" className="h-7 w-7" aria-hidden="true" />
           </div>
           <Badge tone="critical" className="mb-3">{t("successCheckoutStatus")}</Badge>
-          <h1 className="text-2xl font-extrabold text-paw-ink">{t("successVerificationFailedTitle")}</h1>
-          <p className="mt-3 text-sm leading-6 text-paw-body">{error === MISSING_SESSION_ERROR ? t("successNoSessionId") : error}</p>
+          <h1 className="text-paw-type-h2 font-extrabold text-paw-ink">{t("successVerificationFailedTitle")}</h1>
+          <p className="mt-3 text-paw-type-body leading-6 text-paw-body">{error === MISSING_SESSION_ERROR ? t("successNoSessionId") : error}</p>
           <div className="mt-5 rounded-paw-md border border-paw-border bg-paw-panel-subtle p-4 text-left">
-            <p className="text-xs font-black uppercase tracking-[0.14em] text-paw-muted">{t("successWhatThisMeans")}</p>
-            <p className="mt-2 text-sm leading-6 text-paw-body">
+            <p className="text-paw-type-caption font-black uppercase tracking-[0.14em] text-paw-muted">{t("successWhatThisMeans")}</p>
+            <p className="mt-2 text-paw-type-body leading-6 text-paw-body">
               {t("successVerificationExplanation")}
             </p>
           </div>
@@ -161,7 +161,7 @@ function SuccessContent() {
           </div>
 
           <Badge tone="success" className="mb-3">{t("successPaymentConfirmed")}</Badge>
-          <h1 className="text-3xl font-extrabold text-paw-ink">
+          <h1 className="text-paw-type-h1 font-extrabold text-paw-ink">
             {isSubscription ? t("successPlanActivated") : t("successPaymentSuccessful")}
           </h1>
           <p className="mx-auto mt-2 max-w-md text-paw-body">
@@ -171,12 +171,12 @@ function SuccessContent() {
           </p>
 
           {isSubscription ? (
-            <div className="mt-5 inline-flex items-center gap-2 rounded-paw-pill border border-paw-primary/20 bg-paw-primary-soft px-4 py-2 text-sm font-extrabold text-paw-on-primary-soft">
+            <div className="mt-5 inline-flex items-center gap-2 rounded-paw-pill border border-paw-primary/20 bg-paw-primary-soft px-4 py-2 text-paw-type-body font-extrabold text-paw-on-primary-soft">
               <PawIcon name="sparkle" className="h-4 w-4" aria-hidden="true" />
               {session?.metadata?.tier === "pro" ? t("successPlanProLabel") : t("successPlanBasicLabel")}
             </div>
           ) : (
-            <div className="mt-5 inline-flex items-center gap-2 rounded-paw-pill border border-paw-primary/20 bg-paw-primary-soft px-4 py-2 font-mono text-sm font-extrabold text-paw-on-primary-soft">
+            <div className="mt-5 inline-flex items-center gap-2 rounded-paw-pill border border-paw-primary/20 bg-paw-primary-soft px-4 py-2 font-mono text-paw-type-body font-extrabold text-paw-on-primary-soft">
               <PawIcon name="receipt" className="h-4 w-4" aria-hidden="true" />
               {t("successOrderNumberPrefix")}#{orderId}
             </div>
@@ -185,20 +185,20 @@ function SuccessContent() {
           {session && (
             <div className="mt-7 space-y-4 text-left">
               <div className="rounded-paw-md border border-paw-success/20 bg-paw-success-soft p-4 text-center">
-                <p className="text-sm text-paw-on-success-soft">
+                <p className="text-paw-type-body text-paw-on-success-soft">
                   {t("successPaidPrefix")} <strong>€{((session.amount_total || 0) / 100).toFixed(2)}</strong> {t("successViaStripeSuffix")}
                 </p>
               </div>
 
               {session.line_items && session.line_items.length > 0 && (
                 <div className="rounded-paw-md border border-paw-border bg-paw-panel-subtle p-4">
-                  <h2 className="mb-3 flex items-center gap-2 text-sm font-extrabold text-paw-ink">
+                  <h2 className="mb-3 flex items-center gap-2 text-paw-type-body font-extrabold text-paw-ink">
                     <PawIcon name="package" className="h-4 w-4 text-paw-primary" aria-hidden="true" />
                     {t("successItemsTitle")}
                   </h2>
                   <div className="space-y-2">
                     {session.line_items.map((item, index) => (
-                      <div key={`${item.name}-${index}`} className="flex justify-between gap-3 text-sm">
+                      <div key={`${item.name}-${index}`} className="flex justify-between gap-3 text-paw-type-body">
                         <span className="text-paw-body">{item.name} × {item.quantity}</span>
                         <span className="font-extrabold text-paw-ink">€{(item.amount / 100).toFixed(2)}</span>
                       </div>
@@ -209,13 +209,13 @@ function SuccessContent() {
 
               {isSubscription ? (
                 <div className="rounded-paw-md border border-paw-trust/20 bg-paw-trust-soft p-4">
-                  <p className="text-sm leading-6 text-paw-on-trust-soft">
+                  <p className="text-paw-type-body leading-6 text-paw-on-trust-soft">
                     {t("successRefreshPlanPrefix")} <strong>{t("successRefreshPlanAction")}</strong> {t("successRefreshPlanSuffix")}
                   </p>
                 </div>
               ) : (
                 <div className="rounded-paw-md border border-paw-warning/20 bg-paw-warning-soft p-4">
-                  <p className="text-sm leading-6 text-paw-on-warning-soft">
+                  <p className="text-paw-type-body leading-6 text-paw-on-warning-soft">
                     {t("successReceiptSentPrefix")} <strong>{session.customer_email}</strong>{t("successShippingEstimateSuffix")}
                   </p>
                 </div>

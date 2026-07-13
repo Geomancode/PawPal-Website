@@ -70,7 +70,7 @@ export default function TagPageClient({ pet, owner }: TagPageClientProps) {
       <main className="mx-auto grid max-w-6xl gap-5 lg:grid-cols-[0.82fr_1.18fr] lg:items-start">
         <section className="tag-rescue-panel">
           <div className="relative z-10 flex h-full flex-col">
-            <p className="inline-flex w-fit items-center gap-2 rounded-paw-sm border border-paw-primary/20 bg-paw-primary-soft px-3 py-2 text-xs font-black uppercase tracking-[0.16em] text-paw-primary">
+            <p className="inline-flex w-fit items-center gap-2 rounded-paw-sm border border-paw-primary/20 bg-paw-primary-soft px-3 py-2 text-paw-type-caption font-black uppercase tracking-[0.16em] text-paw-primary">
               <PawIcon name="nfcScan" className="h-4 w-4" aria-hidden="true" />
               {t("tagPageScannedBadge")}
             </p>
@@ -92,10 +92,10 @@ export default function TagPageClient({ pet, owner }: TagPageClientProps) {
                 )}
               </div>
               <div className="min-w-0">
-                <h1 className="break-words font-brand text-3xl font-extrabold leading-tight text-paw-ink sm:text-4xl">
+                <h1 className="break-words font-brand text-paw-type-h1 font-extrabold leading-tight text-paw-ink sm:text-paw-type-display">
                   {t("tagPageHelpPetGetHome").replace("{petName}", pet.name)}
                 </h1>
-                <p className="mt-2 text-sm font-bold leading-6 text-paw-body">
+                <p className="mt-2 text-paw-type-body font-bold leading-6 text-paw-body">
                   {t("tagPageSafetyProfileManagedBy").replace(
                     "{ownerLabel}",
                     ownerLabel,
@@ -108,12 +108,12 @@ export default function TagPageClient({ pet, owner }: TagPageClientProps) {
               <div className="mt-5">
                 <a
                   href={contactHref}
-                  className="inline-flex h-14 w-full items-center justify-center gap-2 rounded-paw-md bg-paw-primary px-5 text-base font-extrabold text-paw-accent-ink shadow-paw-action transition hover:bg-paw-primary-hover"
+                  className="inline-flex h-14 w-full items-center justify-center gap-2 rounded-paw-md bg-paw-primary px-5 text-paw-type-body font-extrabold text-paw-accent-ink shadow-paw-action transition hover:bg-paw-primary-hover"
                 >
                   <PawIcon name={contactIcon} className="h-5 w-5" aria-hidden="true" />
                   {t("tagPageContactOwnerNow")}
                 </a>
-                <p className="mt-2 text-xs font-bold uppercase tracking-[0.12em] text-paw-muted">
+                <p className="mt-2 text-paw-type-caption font-bold uppercase tracking-[0.12em] text-paw-muted">
                   {t(
                     contactIsEmail
                       ? "tagPageOwnerSharedPublicEmail"
@@ -149,10 +149,10 @@ export default function TagPageClient({ pet, owner }: TagPageClientProps) {
           <Card variant="panel" className="p-4">
             <div className="flex items-start justify-between gap-4">
               <div className="min-w-0">
-                <p className="text-xs font-black uppercase tracking-[0.16em] text-paw-muted">
+                <p className="text-paw-type-caption font-black uppercase tracking-[0.16em] text-paw-muted">
                   {t("tagPageCriticalDetails")}
                 </p>
-                <h2 className="mt-1 break-words text-2xl font-extrabold text-paw-ink">
+                <h2 className="mt-1 break-words text-paw-type-h2 font-extrabold text-paw-ink">
                   {t("tagPageBeforeMovingPet").replace("{petName}", pet.name)}
                 </h2>
               </div>
@@ -188,10 +188,10 @@ export default function TagPageClient({ pet, owner }: TagPageClientProps) {
 
           {quirk && (
             <Card variant="panel" className="p-4">
-              <p className="text-xs font-black uppercase tracking-[0.14em] text-paw-muted">
+              <p className="text-paw-type-caption font-black uppercase tracking-[0.14em] text-paw-muted">
                 {t("tagPageBehaviorNote")}
               </p>
-              <p className="mt-2 text-sm italic leading-6 text-paw-body">
+              <p className="mt-2 text-paw-type-body italic leading-6 text-paw-body">
                 &ldquo;{quirk}&rdquo;
               </p>
             </Card>
@@ -203,13 +203,13 @@ export default function TagPageClient({ pet, owner }: TagPageClientProps) {
                 <PawIcon name="person" className="h-5 w-5" aria-hidden="true" />
               </span>
               <div className="min-w-0">
-                <p className="text-xs font-black uppercase tracking-[0.16em] text-paw-muted">
+                <p className="text-paw-type-caption font-black uppercase tracking-[0.16em] text-paw-muted">
                   {t("tagPageOwnerAndNextSteps")}
                 </p>
-                <p className="mt-1 break-words text-sm font-extrabold text-paw-ink">
+                <p className="mt-1 break-words text-paw-type-body font-extrabold text-paw-ink">
                   {ownerLabel}
                 </p>
-                <p className="mt-1 text-sm leading-6 text-paw-body">
+                <p className="mt-1 text-paw-type-body leading-6 text-paw-body">
                   {t("tagPageSecondaryActions")}
                 </p>
               </div>
@@ -224,12 +224,12 @@ export default function TagPageClient({ pet, owner }: TagPageClientProps) {
               </AppDeepLinkButton>
               <Link
                 href="/store"
-                className="inline-flex h-12 items-center justify-center rounded-paw-md border border-paw-border bg-paw-panel px-4 text-sm font-extrabold text-paw-ink transition hover:border-paw-primary hover:text-paw-primary sm:h-full"
+                className="inline-flex h-12 items-center justify-center rounded-paw-md border border-paw-border bg-paw-panel px-4 text-paw-type-body font-extrabold text-paw-ink transition hover:border-paw-primary hover:text-paw-primary sm:h-full"
               >
                 {t("tagPageGetTag")}
               </Link>
             </div>
-            <p className="mt-4 text-xs leading-5 text-paw-muted">
+            <p className="mt-4 text-paw-type-caption leading-5 text-paw-muted">
               {t("tagPageDownloadApp")}
             </p>
           </Card>
@@ -253,7 +253,7 @@ function MiniFact({ label, value }: { label: string; value: string }) {
       <span className="block text-paw-type-caption font-black uppercase tracking-[0.12em] text-paw-muted">
         {label}
       </span>
-      <span className="mt-0.5 block break-words text-xs font-extrabold leading-5 text-paw-ink">
+      <span className="mt-0.5 block break-words text-paw-type-caption font-extrabold leading-5 text-paw-ink">
         {value}
       </span>
     </div>
@@ -278,7 +278,7 @@ function InfoTile({
         <span className="block text-paw-type-caption font-black uppercase tracking-[0.12em] text-paw-muted">
           {label}
         </span>
-        <span className="mt-0.5 block break-words text-sm font-extrabold text-paw-ink">
+        <span className="mt-0.5 block break-words text-paw-type-body font-extrabold text-paw-ink">
           {value}
         </span>
       </span>
@@ -301,7 +301,7 @@ function TagSection({
 }) {
   return (
     <Card variant="panel" className="p-4">
-      <p className="mb-2 flex items-center gap-1.5 text-xs font-black uppercase tracking-[0.14em] text-paw-muted">
+      <p className="mb-2 flex items-center gap-1.5 text-paw-type-caption font-black uppercase tracking-[0.14em] text-paw-muted">
         <PawIcon name={icon} className="h-3.5 w-3.5" aria-hidden="true" />
         {title}
       </p>
@@ -320,7 +320,7 @@ function TagSection({
           ))}
         </div>
       ) : (
-        <p className="rounded-paw-sm border border-dashed border-paw-border bg-paw-panel-subtle px-3 py-2 text-sm leading-6 text-paw-body">
+        <p className="rounded-paw-sm border border-dashed border-paw-border bg-paw-panel-subtle px-3 py-2 text-paw-type-body leading-6 text-paw-body">
           {emptyText}
         </p>
       )}

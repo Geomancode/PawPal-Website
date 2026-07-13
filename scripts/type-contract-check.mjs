@@ -10,6 +10,12 @@ const migratedRouteFiles = [
   "src/app/store/checkout/page.tsx",
   "src/app/store/page.tsx",
   "src/app/admin/reports/ReportsClientParts.tsx",
+  "src/app/store/orders/page.tsx",
+  "src/app/tag/[id]/TagPageClient.tsx",
+  "src/app/about/page.tsx",
+  "src/app/store/admin/page.tsx",
+  "src/components/ChatBubble.tsx",
+  "src/app/store/success/page.tsx",
 ];
 
 function assert(condition, message) {
@@ -49,7 +55,7 @@ async function assertUiUtilities() {
 
 async function assertMigratedRouteUtilities() {
   assert(
-    migratedRouteFiles.length >= 5,
+    migratedRouteFiles.length >= 11,
     "migratedRouteFiles lost required coverage; removing a migrated route entry is stale.",
   );
   const offenders = [];
