@@ -1,11 +1,7 @@
 "use client";
 
 import type { ReactNode } from "react";
-import {
-  MapPin, Shield, PawPrint, Edit3, Save,
-  X, Plus, Calendar, Droplets, Nfc, Loader2, Smartphone,
-  Download, CheckCircle, ExternalLink, HeartPulse,
-} from "lucide-react";
+import PawIcon from "@/components/icons/PawIcon";
 import { StatusMessage } from "@/components/ui";
 import type { MessageKey } from "@/i18n/messages/en";
 
@@ -257,7 +253,7 @@ export default function ProfileWorkspaceView({
             </p>
           </div>
           <div className="profile-command-chip">
-            <Shield className="h-paw-md w-paw-md" aria-hidden="true" />
+            <PawIcon name="safety" className="h-paw-md w-paw-md" aria-hidden="true" />
             {t("profileTrustLevelPrefix")} {profile.trust_level}/5
           </div>
         </div>
@@ -291,7 +287,7 @@ export default function ProfileWorkspaceView({
                   onClick={onStartEditing}
                   className="profile-action-button profile-action-button-secondary"
                 >
-                  <Edit3 className="h-paw-md w-paw-md" aria-hidden="true" />
+                  <PawIcon name="edit" className="h-paw-md w-paw-md" aria-hidden="true" />
                   {t("profileEditButton")}
                 </button>
               )}
@@ -317,11 +313,11 @@ export default function ProfileWorkspaceView({
                   <div className="flex flex-wrap gap-paw-xs pt-paw-xxs">
                     <button type="button" onClick={onSaveProfile} disabled={saving}
                       className="profile-action-button profile-action-button-primary">
-                      {saving ? <Loader2 className="h-paw-md w-paw-md animate-spin" aria-hidden="true" /> : <Save className="h-paw-md w-paw-md" aria-hidden="true" />}
+                      {saving ? <PawIcon name="spinner" className="h-paw-md w-paw-md animate-spin" aria-hidden="true" /> : <PawIcon name="save" className="h-paw-md w-paw-md" aria-hidden="true" />}
                       {t("profileSaveButton")}
                     </button>
                     <button type="button" onClick={onCancelEditing} className="profile-action-button profile-action-button-secondary">
-                      <X className="h-paw-md w-paw-md" aria-hidden="true" />
+                      <PawIcon name="close" className="h-paw-md w-paw-md" aria-hidden="true" />
                       {t("profileCancelButton")}
                     </button>
                   </div>
@@ -336,19 +332,19 @@ export default function ProfileWorkspaceView({
 
                   <div className="profile-meta-grid mt-paw-lg">
                     <span className="profile-meta-chip">
-                      <MapPin className={PROFILE_METRIC_CLASSES.metadataIconSize} aria-hidden="true" />
+                      <PawIcon name="location" className={PROFILE_METRIC_CLASSES.metadataIconSize} aria-hidden="true" />
                       <span className="break-words">{profile.location_city || t("profileCityNotListed")}</span>
                     </span>
                     <span className={`profile-meta-chip ${trustColor}`}>
-                      <Shield className={PROFILE_METRIC_CLASSES.metadataIconSize} aria-hidden="true" />
+                      <PawIcon name="safety" className={PROFILE_METRIC_CLASSES.metadataIconSize} aria-hidden="true" />
                       {trustLabel}
                     </span>
                     <span className="profile-meta-chip text-paw-primary bg-paw-primary-soft">
-                      <PawPrint className={PROFILE_METRIC_CLASSES.metadataIconSize} aria-hidden="true" />
+                      <PawIcon name="paw" className={PROFILE_METRIC_CLASSES.metadataIconSize} aria-hidden="true" />
                       {profile.paw_points} {t("profilePawPoints")}
                     </span>
                     <span className="profile-meta-chip">
-                      <Calendar className={PROFILE_METRIC_CLASSES.metadataIconSize} aria-hidden="true" />
+                      <PawIcon name="calendar" className={PROFILE_METRIC_CLASSES.metadataIconSize} aria-hidden="true" />
                       {t("profileSincePrefix")} {memberSince}
                     </span>
                   </div>
@@ -366,7 +362,7 @@ export default function ProfileWorkspaceView({
                 <h2 id="profile-readiness-heading" className="mt-paw-xxs text-xl font-extrabold text-paw-ink">{t("profileReadinessTitle")}</h2>
               </div>
               <div className="flex h-paw-min-tap w-paw-min-tap shrink-0 items-center justify-center rounded-paw-md bg-paw-trust-soft text-paw-on-trust-soft">
-                <HeartPulse className="h-paw-lg w-paw-lg" aria-hidden="true" />
+                <PawIcon name="health" className="h-paw-lg w-paw-lg" aria-hidden="true" />
               </div>
             </div>
 
@@ -385,7 +381,7 @@ export default function ProfileWorkspaceView({
             <div className="profile-install-compact mt-paw-md">
               <div className="flex items-start gap-paw-sm">
                 <div className="flex h-paw-xxxl w-paw-xxxl shrink-0 items-center justify-center rounded-paw-md bg-paw-primary-soft text-paw-on-primary-soft">
-                  {isInstalled ? <CheckCircle className="h-paw-lg w-paw-lg" aria-hidden="true" /> : <Smartphone className="h-paw-lg w-paw-lg" aria-hidden="true" />}
+                  {isInstalled ? <PawIcon name="confirm" className="h-paw-lg w-paw-lg" aria-hidden="true" /> : <PawIcon name="appLink" className="h-paw-lg w-paw-lg" aria-hidden="true" />}
                 </div>
                 <div className="min-w-0 flex-1">
                   <p className="text-sm font-extrabold text-paw-ink">{isInstalled ? t("profilePawPalInstalled") : t("profileInstallPawPal")}</p>
@@ -400,7 +396,7 @@ export default function ProfileWorkspaceView({
                 disabled={isInstalled}
                 className="profile-action-button profile-action-button-primary w-full"
               >
-                {isInstalled ? <CheckCircle className="h-paw-md w-paw-md" aria-hidden="true" /> : <Download className="h-paw-md w-paw-md" aria-hidden="true" />}
+                {isInstalled ? <PawIcon name="confirm" className="h-paw-md w-paw-md" aria-hidden="true" /> : <PawIcon name="download" className="h-paw-md w-paw-md" aria-hidden="true" />}
                 {isInstalled ? t("profileInstalledButton") : t("profileInstallButton")}
               </button>
             </div>
@@ -411,7 +407,7 @@ export default function ProfileWorkspaceView({
               className="profile-action-button profile-action-button-secondary mt-paw-md w-full"
               aria-expanded={showAddPet}
             >
-              <Plus className="h-paw-md w-paw-md" aria-hidden="true" />
+              <PawIcon name="add" className="h-paw-md w-paw-md" aria-hidden="true" />
               {pets.length === 0 ? t("profileAddFirstPet") : t("profileAddAnotherPet")}
             </button>
           </aside>
@@ -426,7 +422,7 @@ export default function ProfileWorkspaceView({
             <div>
               <p className="text-xs font-black uppercase tracking-[0.12em] text-paw-primary">{t("profilePetRecordsEyebrow")}</p>
               <h2 id="profile-pets-heading" className="mt-paw-xxs text-xl font-extrabold text-paw-ink flex items-center gap-paw-xs">
-                <PawPrint className="h-paw-lg w-paw-lg text-paw-primary" aria-hidden="true" />
+                <PawIcon name="paw" className="h-paw-lg w-paw-lg text-paw-primary" aria-hidden="true" />
                 {t("profileMyPetsTitle")}
               </h2>
             </div>
@@ -438,7 +434,7 @@ export default function ProfileWorkspaceView({
               }`}
               aria-expanded={showAddPet}
             >
-              {showAddPet ? <X className="h-paw-md w-paw-md" aria-hidden="true" /> : <Plus className="h-paw-md w-paw-md" aria-hidden="true" />}
+              {showAddPet ? <PawIcon name="close" className="h-paw-md w-paw-md" aria-hidden="true" /> : <PawIcon name="add" className="h-paw-md w-paw-md" aria-hidden="true" />}
               {showAddPet ? t("profileCancelButton") : t("profileAddPetButton")}
             </button>
           </div>
@@ -532,7 +528,7 @@ export default function ProfileWorkspaceView({
                   </fieldset>
 
                   <div className="bg-paw-trust-soft border border-paw-trust/15 rounded-paw-md px-paw-md py-paw-sm flex items-start gap-paw-sm">
-                    <Smartphone className="w-paw-lg h-paw-lg text-paw-trust shrink-0 mt-0.5" aria-hidden="true" />
+                    <PawIcon name="appLink" className="w-paw-lg h-paw-lg text-paw-trust shrink-0 mt-0.5" aria-hidden="true" />
                     <div>
                       <p className="text-xs font-bold text-paw-trust">{t("profileNfcWriteTitle")}</p>
                       <p className="text-xs text-paw-body mt-0.5">{t("profileNfcWriteDescription")}</p>
@@ -541,7 +537,7 @@ export default function ProfileWorkspaceView({
 
                   <button type="button" onClick={onAddPet} disabled={addingPet || !petName.trim()}
                     className="profile-action-button profile-action-button-primary w-full">
-                    {addingPet ? <Loader2 className="w-paw-md h-paw-md animate-spin" aria-hidden="true" /> : <PawPrint className="w-paw-md h-paw-md" aria-hidden="true" />}
+                    {addingPet ? <PawIcon name="spinner" className="w-paw-md h-paw-md animate-spin" aria-hidden="true" /> : <PawIcon name="paw" className="w-paw-md h-paw-md" aria-hidden="true" />}
                     {addingPet ? t("profileSaving") : t("profileAddPetButton")}
                   </button>
                 </div>
@@ -550,7 +546,7 @@ export default function ProfileWorkspaceView({
 
           {pets.length === 0 ? (
             <div className="profile-empty-card">
-              <PawPrint className="w-paw-xxxl h-paw-xxxl text-paw-primary mx-auto mb-paw-sm" aria-hidden="true" />
+              <PawIcon name="paw" className="w-paw-xxxl h-paw-xxxl text-paw-primary mx-auto mb-paw-sm" aria-hidden="true" />
               <h3 className="text-lg font-extrabold text-paw-ink">{t("profileEmptyPetsTitle")}</h3>
               <p className="mx-auto mt-paw-xs max-w-md text-sm leading-6 text-paw-muted">
                 {t("profileEmptyPetsDescription")}
@@ -561,7 +557,7 @@ export default function ProfileWorkspaceView({
                 className="profile-action-button profile-action-button-primary mx-auto mt-paw-lg"
                 aria-expanded={showAddPet}
               >
-                <Plus className="h-paw-md w-paw-md" aria-hidden="true" />
+                <PawIcon name="add" className="h-paw-md w-paw-md" aria-hidden="true" />
                 {t("profileAddFirstPet")}
               </button>
             </div>
@@ -583,7 +579,7 @@ export default function ProfileWorkspaceView({
                         {pet.avatar_url ? (
                           // eslint-disable-next-line @next/next/no-img-element
                           <img src={pet.avatar_url} alt={pet.name} className="w-full h-full object-cover" />
-                        ) : <PawPrint className="h-paw-xl w-paw-xl text-paw-primary" aria-hidden="true" />}
+                        ) : <PawIcon name="paw" className="h-paw-xl w-paw-xl text-paw-primary" aria-hidden="true" />}
                       </div>
 
                       <div className="min-w-0 flex-1">
@@ -591,11 +587,11 @@ export default function ProfileWorkspaceView({
                           <h3 className="break-words text-base font-bold text-paw-ink">{pet.name}</h3>
                           {pet.nfc_tag_uid ? (
                             <span className="profile-pet-status profile-pet-status-ready">
-                              <Nfc className="w-paw-sm h-paw-sm" aria-hidden="true" /> {t("profileNfcReady")}
+                              <PawIcon name="nfc" className="w-paw-sm h-paw-sm" aria-hidden="true" /> {t("profileNfcReady")}
                             </span>
                           ) : (
                             <span className="profile-pet-status">
-                              <Nfc className="w-paw-sm h-paw-sm" aria-hidden="true" /> {t("profileNoNfc")}
+                              <PawIcon name="nfc" className="w-paw-sm h-paw-sm" aria-hidden="true" /> {t("profileNoNfc")}
                             </span>
                           )}
                           {pet.owner_contact ? (
@@ -615,7 +611,7 @@ export default function ProfileWorkspaceView({
                               : t("profileAgeNotListed")}
                           </span>
                           <span className="profile-pet-fact profile-pet-fact-care">
-                            <Droplets className="w-paw-sm h-paw-sm" aria-hidden="true" />
+                            <PawIcon name="humidity" className="w-paw-sm h-paw-sm" aria-hidden="true" />
                             {pet.blood_type || t("profileBloodNotListed")}
                           </span>
                         </div>
@@ -642,7 +638,7 @@ export default function ProfileWorkspaceView({
                         aria-label={`${t("profileViewPublicTagForPrefix")} ${pet.name}`}
                         title={t("profileViewPublicTagTitle")}
                       >
-                        <ExternalLink className="w-paw-md h-paw-md" aria-hidden="true" />
+                        <PawIcon name="externalLink" className="w-paw-md h-paw-md" aria-hidden="true" />
                       </a>
                     </div>
                   </article>

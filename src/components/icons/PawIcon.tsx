@@ -77,6 +77,24 @@ import {
   HeartHandshake,
   Languages,
   Footprints,
+  FileCheck2,
+  FileText,
+  XCircle,
+  Edit3,
+  UserCircle2,
+  Download,
+  ShieldAlert,
+  ClipboardList,
+  Shield,
+  Calendar,
+  PlusCircle,
+  BellRing,
+  Nfc,
+  BellOff,
+  MessageSquare,
+  Bell,
+  Globe2,
+  Ban,
   type LucideIcon,
 } from "lucide-react";
 
@@ -167,7 +185,25 @@ export type PawIconName =
   | "support"
   | "care"
   | "language"
-  | "footprints";
+  | "footprints"
+  | "fileApproved"
+  | "document"
+  | "dismiss"
+  | "edit"
+  | "profile"
+  | "download"
+  | "safetyAlert"
+  | "checklist"
+  | "safety"
+  | "calendar"
+  | "addCircle"
+  | "notifyActive"
+  | "nfc"
+  | "notifyOff"
+  | "comment"
+  | "notify"
+  | "globe"
+  | "ban";
 
 export type PawIconComponent = LucideIcon;
 
@@ -249,6 +285,24 @@ const semanticIconMap = {
   care: HeartHandshake,
   language: Languages,
   footprints: Footprints,
+  fileApproved: FileCheck2,
+  document: FileText,
+  dismiss: XCircle,
+  edit: Edit3,
+  profile: UserCircle2,
+  download: Download,
+  safetyAlert: ShieldAlert,
+  checklist: ClipboardList,
+  safety: Shield,
+  calendar: Calendar,
+  addCircle: PlusCircle,
+  notifyActive: BellRing,
+  nfc: Nfc,
+  notifyOff: BellOff,
+  comment: MessageSquare,
+  notify: Bell,
+  globe: Globe2,
+  ban: Ban,
 } satisfies Record<PawIconName, LucideIcon>;
 
 type PawIconProps = {

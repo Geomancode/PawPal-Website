@@ -1,7 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { Globe2 } from "lucide-react";
+import PawIcon from "@/components/icons/PawIcon";
 import { useRouteTranslations } from "@/i18n/useRouteTranslations";
 import type { MessageKey } from "@/i18n/messages/en";
 
@@ -15,7 +15,7 @@ function GlobeLoading() {
       {loader}
       <div className="globe-loading-card">
         <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-paw-lg bg-paw-panel/10 text-paw-trust">
-          <Globe2 className="h-8 w-8 animate-pulse" aria-hidden="true" />
+          <PawIcon name="globe" className="h-8 w-8 animate-pulse" aria-hidden="true" />
         </div>
         <div className="mt-5 h-1.5 overflow-hidden rounded-full bg-paw-panel/10">
           <div className="globe-loading-bar h-full rounded-full" />

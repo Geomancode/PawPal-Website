@@ -1,27 +1,18 @@
 "use client";
 
 import {
+  forwardRef,
   useCallback,
   useEffect,
   useMemo,
   useState,
+  type ComponentProps,
+  type ComponentPropsWithoutRef,
   type FormEvent,
   type ReactNode,
 } from "react";
 import { usePathname, useRouter } from "next/navigation";
-import {
-  ArrowLeft,
-  CheckCircle2,
-  ClipboardList,
-  ExternalLink,
-  FileCheck2,
-  Loader2,
-  MapPin,
-  PlusCircle,
-  RefreshCw,
-  ShieldCheck,
-  XCircle,
-} from "lucide-react";
+import PawIcon, { type PawIconName } from "@/components/icons/PawIcon";
 import { supabase } from "@/lib/supabase";
 import { loadP3B1g2hAdminFixtures } from "@/lib/p3b1g2hAdminFixtures";
 import { useAuth } from "@/components/AuthProvider";
@@ -39,6 +30,22 @@ import {
   PageShell,
   StatusMessage,
 } from "@/components/ui";
+
+type EmptyStateIconProps = ComponentPropsWithoutRef<
+  NonNullable<ComponentProps<typeof EmptyState>["icon"]>
+>;
+
+function createEmptyStateIcon(name: PawIconName) {
+  return forwardRef<SVGSVGElement, EmptyStateIconProps>(function EmptyStatePawIcon({
+    className,
+    "aria-hidden": ariaHidden,
+  }, ref) {
+    void ref;
+    return <PawIcon name={name} className={className} aria-hidden={ariaHidden} />;
+  });
+}
+
+const FileApprovedEmptyStateIcon = createEmptyStateIcon("fileApproved");
 
 type RiskStatus =
   | "pending_confirmation"
@@ -577,7 +584,7 @@ export default function ParkRiskAdminPage() {
       <>
         {loader}
         <div className={`flex min-h-screen items-center justify-center bg-paw-page ${PARK_RISK_METRIC_CLASSES.loadingShellTopSpacing} text-paw-ink`}>
-          <Loader2 className="h-paw-xxl w-paw-xxl animate-spin text-paw-primary" aria-hidden="true" />
+          <PawIcon name="spinner" className="h-paw-xxl w-paw-xxl animate-spin text-paw-primary" aria-hidden="true" />
         </div>
       </>
     );
@@ -600,7 +607,7 @@ export default function ParkRiskAdminPage() {
       >
         <section className="admin-gate-panel text-center">
           <div className={`mx-auto flex ${PARK_RISK_METRIC_CLASSES.gateIconSize} items-center justify-center rounded-paw-pill bg-paw-primary-soft text-paw-on-primary-soft`}>
-            <ShieldCheck className="h-paw-lg w-paw-lg" aria-hidden="true" />
+            <PawIcon name="shield" className="h-paw-lg w-paw-lg" aria-hidden="true" />
           </div>
           <div>
             <p className="text-lg font-extrabold text-paw-ink">
@@ -627,14 +634,14 @@ export default function ParkRiskAdminPage() {
         description={t("adminParkRisksAccessRestrictedDescription")}
         actions={
           <Button type="button" variant="secondary" onClick={() => router.push(path("/"))}>
-            <ArrowLeft className="h-paw-md w-paw-md" aria-hidden="true" />
+            <PawIcon name="back" className="h-paw-md w-paw-md" aria-hidden="true" />
             {t("adminParkRisksHome")}
           </Button>
         }
       >
         <section className="admin-gate-panel text-center">
           <div className={`mx-auto flex ${PARK_RISK_METRIC_CLASSES.gateIconSize} items-center justify-center rounded-paw-pill bg-paw-primary-soft text-paw-on-primary-soft`}>
-            <ShieldCheck className="h-paw-lg w-paw-lg" aria-hidden="true" />
+            <PawIcon name="shield" className="h-paw-lg w-paw-lg" aria-hidden="true" />
           </div>
           <div>
             <p className="text-lg font-extrabold text-paw-ink">
@@ -661,11 +668,11 @@ export default function ParkRiskAdminPage() {
       actions={
         <>
           <Button type="button" variant="secondary" onClick={() => router.push(path("/"))}>
-            <ArrowLeft className="h-paw-md w-paw-md" aria-hidden="true" />
+            <PawIcon name="back" className="h-paw-md w-paw-md" aria-hidden="true" />
             {t("adminParkRisksHome")}
           </Button>
           <Button type="button" variant="trust" onClick={refreshReports} disabled={loadingReports}>
-            <RefreshCw className={loadingReports ? "h-paw-md w-paw-md animate-spin" : "h-paw-md w-paw-md"} aria-hidden="true" />
+            <PawIcon name="refresh" className={loadingReports ? "h-paw-md w-paw-md animate-spin" : "h-paw-md w-paw-md"} aria-hidden="true" />
             {t("adminParkRisksRefresh")}
           </Button>
         </>
@@ -697,7 +704,7 @@ export default function ParkRiskAdminPage() {
             <CardContent className="space-y-paw-md">
               <div className="flex flex-col gap-paw-sm md:flex-row md:items-center md:justify-between">
                 <div className="flex items-center gap-paw-xs">
-                  <ClipboardList className="h-paw-lg w-paw-lg text-paw-primary" aria-hidden="true" />
+                  <PawIcon name="checklist" className="h-paw-lg w-paw-lg text-paw-primary" aria-hidden="true" />
                   <h2 className="text-xl font-extrabold text-paw-ink">{t("adminParkRisksReports")}</h2>
                 </div>
                 <div className="flex flex-wrap gap-paw-xs">
@@ -721,11 +728,11 @@ export default function ParkRiskAdminPage() {
 
               {loadingReports ? (
                 <div className={`flex ${PARK_RISK_METRIC_CLASSES.loadingPanelMinHeight} items-center justify-center`}>
-                  <Loader2 className={`${PARK_RISK_METRIC_CLASSES.loadingSpinnerSize} animate-spin text-paw-primary`} aria-hidden="true" />
+                  <PawIcon name="spinner" className={`${PARK_RISK_METRIC_CLASSES.loadingSpinnerSize} animate-spin text-paw-primary`} aria-hidden="true" />
                 </div>
               ) : filteredReports.length === 0 ? (
                 <EmptyState
-                  icon={FileCheck2}
+                  icon={FileApprovedEmptyStateIcon}
                   title={t("adminParkRisksEmptyTitle")}
                   description={t("adminParkRisksEmptyDescription")}
                 />
@@ -757,7 +764,7 @@ export default function ParkRiskAdminPage() {
           <CardContent>
             <form onSubmit={handleCreateOfficialRisk} className="space-y-paw-lg">
               <div className="flex items-center gap-paw-xs">
-                <PlusCircle className="h-paw-lg w-paw-lg text-paw-trust" aria-hidden="true" />
+                <PawIcon name="addCircle" className="h-paw-lg w-paw-lg text-paw-trust" aria-hidden="true" />
                 <h2 className="text-xl font-extrabold text-paw-ink">{t("adminParkRisksOfficialSource")}</h2>
               </div>
               <p className="text-sm leading-6 text-paw-body">
@@ -860,9 +867,9 @@ export default function ParkRiskAdminPage() {
                 className="w-full"
               >
                 {creatingOfficial ? (
-                  <Loader2 className="h-paw-lg w-paw-lg animate-spin" aria-hidden="true" />
+                  <PawIcon name="spinner" className="h-paw-lg w-paw-lg animate-spin" aria-hidden="true" />
                 ) : (
-                  <ShieldCheck className="h-paw-lg w-paw-lg" aria-hidden="true" />
+                  <PawIcon name="shield" className="h-paw-lg w-paw-lg" aria-hidden="true" />
                 )}
                 {queueReadOnly
                   ? t("adminParkRisksPreviewOnly")
@@ -994,7 +1001,7 @@ function RiskReportCard({
                 rel="noreferrer"
                 className={`inline-flex items-center ${PARK_RISK_METRIC_CLASSES.inlineLinkGap} text-xs font-extrabold text-paw-trust hover:underline`}
               >
-                <ExternalLink className={PARK_RISK_METRIC_CLASSES.inlineLinkIconSize} aria-hidden="true" />
+                <PawIcon name="externalLink" className={PARK_RISK_METRIC_CLASSES.inlineLinkIconSize} aria-hidden="true" />
                 {t("adminParkRisksEvidence")}
               </a>
             )}
@@ -1005,7 +1012,7 @@ function RiskReportCard({
                 rel="noreferrer"
                 className={`inline-flex items-center ${PARK_RISK_METRIC_CLASSES.inlineLinkGap} text-xs font-extrabold text-paw-success hover:underline`}
               >
-                <ExternalLink className={PARK_RISK_METRIC_CLASSES.inlineLinkIconSize} aria-hidden="true" />
+                <PawIcon name="externalLink" className={PARK_RISK_METRIC_CLASSES.inlineLinkIconSize} aria-hidden="true" />
                 {report.official_source_name || t("adminParkRisksOfficialSource")}
               </a>
             )}
@@ -1014,7 +1021,7 @@ function RiskReportCard({
 
         <div className="rounded-paw-sm border border-paw-border bg-paw-panel p-paw-sm">
           <div className="flex items-start gap-paw-xs">
-            <MapPin className="mt-0.5 h-paw-md w-paw-md flex-none text-paw-primary" aria-hidden="true" />
+            <PawIcon name="location" className="mt-0.5 h-paw-md w-paw-md flex-none text-paw-primary" aria-hidden="true" />
             <div className="min-w-0">
               <p className="truncate text-sm font-extrabold text-paw-ink">
                 {report.place_name}
@@ -1047,17 +1054,17 @@ function RiskReportCard({
           <div className="flex flex-wrap gap-paw-xs">
             <Button type="button" variant="trust" onClick={onApprove} disabled={busy}>
               {busy ? (
-                <Loader2 className="h-paw-md w-paw-md animate-spin" aria-hidden="true" />
+                <PawIcon name="spinner" className="h-paw-md w-paw-md animate-spin" aria-hidden="true" />
               ) : (
-                <CheckCircle2 className="h-paw-md w-paw-md" aria-hidden="true" />
+                <PawIcon name="success" className="h-paw-md w-paw-md" aria-hidden="true" />
               )}
               {t("adminParkRisksApprove")}
             </Button>
             <Button type="button" variant="critical" onClick={onReject} disabled={busy}>
               {busy ? (
-                <Loader2 className="h-paw-md w-paw-md animate-spin" aria-hidden="true" />
+                <PawIcon name="spinner" className="h-paw-md w-paw-md animate-spin" aria-hidden="true" />
               ) : (
-                <XCircle className="h-paw-md w-paw-md" aria-hidden="true" />
+                <PawIcon name="dismiss" className="h-paw-md w-paw-md" aria-hidden="true" />
               )}
               {t("adminParkRisksReject")}
             </Button>

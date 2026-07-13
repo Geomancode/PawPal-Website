@@ -84,6 +84,24 @@ const semanticIconMap = {
   care: "HeartHandshake",
   language: "Languages",
   footprints: "Footprints",
+  fileApproved: "FileCheck2",
+  document: "FileText",
+  dismiss: "XCircle",
+  edit: "Edit3",
+  profile: "UserCircle2",
+  download: "Download",
+  safetyAlert: "ShieldAlert",
+  checklist: "ClipboardList",
+  safety: "Shield",
+  calendar: "Calendar",
+  addCircle: "PlusCircle",
+  notifyActive: "BellRing",
+  nfc: "Nfc",
+  notifyOff: "BellOff",
+  comment: "MessageSquare",
+  notify: "Bell",
+  globe: "Globe2",
+  ban: "Ban",
 };
 
 const migratedFiles = [
@@ -113,25 +131,25 @@ const migratedFiles = [
   "src/components/GlobeFullPage.tsx",
   "src/components/WeatherTicker.tsx",
   "src/components/ui/EmptyState.tsx",
+  "src/app/admin/park-risks/page.tsx",
+  "src/app/admin/reports/ReportsClientParts.tsx",
+  "src/app/profile/ProfileWorkspaceView.tsx",
+  "src/app/profile/PushSubscriptionSettings.tsx",
+  "src/app/globe/page.tsx",
+  "src/app/dev/state-panel/page.tsx",
 ];
 
 // Explicit migration debt. This set is bidirectional: adding or removing a direct
 // lucide-react import requires updating the list in the same governance change.
 const pendingFiles = [
   "src/app/about/page.tsx",
-  "src/app/admin/park-risks/page.tsx",
-  "src/app/admin/reports/ReportsClientParts.tsx",
   "src/app/auth/page.tsx",
-  "src/app/dev/state-panel/page.tsx",
   "src/app/global-error.tsx",
-  "src/app/globe/page.tsx",
   "src/app/group/[id]/GroupPageClient.tsx",
   "src/app/guidelines/page.tsx",
   "src/app/help/page.tsx",
   "src/app/post/[id]/PostPageClient.tsx",
   "src/app/privacy/page.tsx",
-  "src/app/profile/ProfileWorkspaceView.tsx",
-  "src/app/profile/PushSubscriptionSettings.tsx",
   "src/app/tag/[id]/TagPageClient.tsx",
   "src/app/terms/page.tsx",
   "src/app/user/[id]/UserPageClient.tsx",
@@ -227,6 +245,6 @@ if (mapStart === -1 || mapEnd === -1) {
 
 if (process.exitCode) process.exit(process.exitCode);
 console.log(
-  `icon contract PASS: 77 fixed semantic mappings; 26 migrated files; ` +
+  `icon contract PASS: 95 fixed semantic mappings; 32 migrated files; ` +
     `${pendingFiles.length} exact pending files; ${directImportFiles.length} total direct-import files.`,
 );

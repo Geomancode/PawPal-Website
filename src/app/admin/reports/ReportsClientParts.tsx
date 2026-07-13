@@ -3,31 +3,18 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import {
-  AlertTriangle,
-  ArrowLeft,
-  Ban,
-  CheckCircle2,
-  ChevronLeft,
-  ChevronRight,
-  FileCheck2,
-  FileText,
-  Loader2,
-  MessageSquare,
-  RefreshCw,
-  ShieldCheck,
-  Trash2,
-  UserCircle2,
-  X,
-} from "lucide-react";
+import PawIcon, { type PawIconName } from "@/components/icons/PawIcon";
 import {
   createContext,
+  forwardRef,
   useEffect,
   useContext,
   useMemo,
   useRef,
   useState,
   useTransition,
+  type ComponentProps,
+  type ComponentPropsWithoutRef,
   type ReactNode,
 } from "react";
 
@@ -62,6 +49,22 @@ import type {
   ReportsClientState,
   ReportsPagePayload,
 } from "./types";
+
+type EmptyStateIconProps = ComponentPropsWithoutRef<
+  NonNullable<ComponentProps<typeof EmptyState>["icon"]>
+>;
+
+function createEmptyStateIcon(name: PawIconName) {
+  return forwardRef<SVGSVGElement, EmptyStateIconProps>(function EmptyStatePawIcon({
+    className,
+    "aria-hidden": ariaHidden,
+  }, ref) {
+    void ref;
+    return <PawIcon name={name} className={className} aria-hidden={ariaHidden} />;
+  });
+}
+
+const FileApprovedEmptyStateIcon = createEmptyStateIcon("fileApproved");
 
 type Toast = {
   tone: "success" | "critical" | "warning";
@@ -129,7 +132,7 @@ export default function ReportsClientParts({
         headerClassName="admin-shell-header"
         eyebrow={
           <span className="inline-flex items-center gap-paw-xs">
-            <ShieldCheck className="h-paw-md w-paw-md" aria-hidden="true" />
+            <PawIcon name="shield" className="h-paw-md w-paw-md" aria-hidden="true" />
             {t("adminReportsEyebrow")}
           </span>
         }
@@ -141,7 +144,7 @@ export default function ReportsClientParts({
               href={i18nValue.path("/")}
               className={buttonClassName({ variant: "secondary" })}
             >
-              <ArrowLeft className="h-paw-md w-paw-md" aria-hidden="true" />
+              <PawIcon name="back" className="h-paw-md w-paw-md" aria-hidden="true" />
               {t("adminReportsHome")}
             </Link>
             <Link
@@ -474,14 +477,14 @@ function ReportsQueue({
               variant="secondary"
               onClick={() => router.refresh()}
             >
-              <RefreshCw className="h-paw-md w-paw-md" aria-hidden="true" />
+              <PawIcon name="refresh" className="h-paw-md w-paw-md" aria-hidden="true" />
               {t("adminReportsRefresh")}
             </Button>
           </div>
 
           {reports.length === 0 ? (
             <EmptyState
-              icon={FileCheck2}
+              icon={FileApprovedEmptyStateIcon}
               title={t("adminReportsEmptyTitle")}
               description={t("adminReportsEmptyDescription")}
             />
@@ -583,9 +586,9 @@ function ReportCard({
           disabled={disabled}
         >
           {busy === "dismissed" ? (
-            <Loader2 className="h-paw-md w-paw-md animate-spin" aria-hidden="true" />
+            <PawIcon name="spinner" className="h-paw-md w-paw-md animate-spin" aria-hidden="true" />
           ) : (
-            <CheckCircle2 className="h-paw-md w-paw-md" aria-hidden="true" />
+            <PawIcon name="success" className="h-paw-md w-paw-md" aria-hidden="true" />
           )}
           {t("adminReportsDismiss")}
         </Button>
@@ -602,9 +605,9 @@ function ReportCard({
           }
         >
           {busy === "content_removed" ? (
-            <Loader2 className="h-paw-md w-paw-md animate-spin" aria-hidden="true" />
+            <PawIcon name="spinner" className="h-paw-md w-paw-md animate-spin" aria-hidden="true" />
           ) : (
-            <Trash2 className="h-paw-md w-paw-md" aria-hidden="true" />
+            <PawIcon name="delete" className="h-paw-md w-paw-md" aria-hidden="true" />
           )}
           {t("adminReportsRemoveContent")}
         </Button>
@@ -616,9 +619,9 @@ function ReportCard({
           disabled={disabled}
         >
           {busy === "user_banned" ? (
-            <Loader2 className="h-paw-md w-paw-md animate-spin" aria-hidden="true" />
+            <PawIcon name="spinner" className="h-paw-md w-paw-md animate-spin" aria-hidden="true" />
           ) : (
-            <Ban className="h-paw-md w-paw-md" aria-hidden="true" />
+            <PawIcon name="ban" className="h-paw-md w-paw-md" aria-hidden="true" />
           )}
           {t("adminReportsBanUser")}
         </Button>
@@ -633,7 +636,8 @@ function TargetPreview({ target }: { target: ReportTargetSummary }) {
     return (
       <div className="rounded-paw-md border border-paw-warning/20 bg-paw-warning-soft p-paw-md">
         <div className="flex items-start gap-paw-sm">
-          <AlertTriangle
+          <PawIcon
+            name="warning"
             className="mt-0.5 h-paw-lg w-paw-lg flex-none text-paw-warning"
             aria-hidden="true"
           />
@@ -654,7 +658,7 @@ function TargetPreview({ target }: { target: ReportTargetSummary }) {
         <MediaThumb imageUrl={target.imageUrl} label={t("adminReportsReportedPostImage")} />
         <div className="min-w-0">
           <TargetHeader
-            icon={<FileText className="h-paw-md w-paw-md" aria-hidden="true" />}
+            icon={<PawIcon name="document" className="h-paw-md w-paw-md" aria-hidden="true" />}
             title={t("adminReportsReportedPost")}
             removedAt={target.removedAt}
           />
@@ -675,7 +679,7 @@ function TargetPreview({ target }: { target: ReportTargetSummary }) {
     return (
       <div className="rounded-paw-md border border-paw-border bg-paw-panel p-paw-md">
         <TargetHeader
-          icon={<MessageSquare className="h-paw-md w-paw-md" aria-hidden="true" />}
+          icon={<PawIcon name="comment" className="h-paw-md w-paw-md" aria-hidden="true" />}
           title={t("adminReportsReportedComment")}
           removedAt={target.removedAt}
         />
@@ -697,7 +701,7 @@ function TargetPreview({ target }: { target: ReportTargetSummary }) {
   return (
     <div className="rounded-paw-md border border-paw-border bg-paw-panel p-paw-md">
       <TargetHeader
-        icon={<UserCircle2 className="h-paw-md w-paw-md" aria-hidden="true" />}
+        icon={<PawIcon name="profile" className="h-paw-md w-paw-md" aria-hidden="true" />}
         title={t("adminReportsReportedUser")}
       />
       <div className="mt-paw-md">
@@ -728,15 +732,14 @@ function ConfirmationDialog({
           title: t("adminReportsRemoveDialogTitle"),
           text: t("adminReportsRemoveDialogDescription"),
           button: t("adminReportsRemoveContent"),
-          icon: Trash2,
+          icon: "delete" as const,
         }
       : {
           title: t("adminReportsBanDialogTitle"),
           text: t("adminReportsBanDialogDescription"),
           button: t("adminReportsBanUser"),
-          icon: Ban,
+          icon: "ban" as const,
         };
-  const Icon = copy.icon;
   const isBusy = busy === confirmation.action;
 
   return (
@@ -750,7 +753,7 @@ function ConfirmationDialog({
         <div className="flex items-start justify-between gap-paw-md">
           <div className="flex items-start gap-paw-sm">
             <span className="flex h-paw-xxxl w-paw-xxxl flex-none items-center justify-center rounded-paw-md bg-paw-critical-soft text-paw-on-critical-soft">
-              <Icon className="h-paw-lg w-paw-lg" aria-hidden="true" />
+              <PawIcon name={copy.icon} className="h-paw-lg w-paw-lg" aria-hidden="true" />
             </span>
             <div>
               <h2
@@ -771,7 +774,7 @@ function ConfirmationDialog({
             aria-label={t("adminReportsCloseConfirmation")}
             disabled={isBusy}
           >
-            <X className="h-paw-lg w-paw-lg" aria-hidden="true" />
+            <PawIcon name="close" className="h-paw-lg w-paw-lg" aria-hidden="true" />
           </button>
         </div>
 
@@ -800,9 +803,9 @@ function ConfirmationDialog({
             disabled={isBusy}
           >
             {isBusy ? (
-              <Loader2 className="h-paw-md w-paw-md animate-spin" aria-hidden="true" />
+              <PawIcon name="spinner" className="h-paw-md w-paw-md animate-spin" aria-hidden="true" />
             ) : (
-              <Icon className="h-paw-md w-paw-md" aria-hidden="true" />
+              <PawIcon name={copy.icon} className="h-paw-md w-paw-md" aria-hidden="true" />
             )}
             {copy.button}
           </Button>
@@ -864,7 +867,7 @@ function Pagination({
             href={previousHref}
             className={buttonClassName({ variant: "secondary", size: "sm" })}
           >
-            <ChevronLeft className="h-paw-md w-paw-md" aria-hidden="true" />
+            <PawIcon name="chevronLeft" className="h-paw-md w-paw-md" aria-hidden="true" />
             {t("adminReportsPrevious")}
           </Link>
         ) : (
@@ -875,7 +878,7 @@ function Pagination({
               className: "pointer-events-none opacity-50",
             })}
           >
-            <ChevronLeft className="h-paw-md w-paw-md" aria-hidden="true" />
+            <PawIcon name="chevronLeft" className="h-paw-md w-paw-md" aria-hidden="true" />
             {t("adminReportsPrevious")}
           </span>
         )}
@@ -885,7 +888,7 @@ function Pagination({
             className={buttonClassName({ variant: "secondary", size: "sm" })}
           >
             {t("adminReportsNext")}
-            <ChevronRight className="h-paw-md w-paw-md" aria-hidden="true" />
+            <PawIcon name="chevronRight" className="h-paw-md w-paw-md" aria-hidden="true" />
           </Link>
         ) : (
           <span
@@ -896,7 +899,7 @@ function Pagination({
             })}
           >
             {t("adminReportsNext")}
-            <ChevronRight className="h-paw-md w-paw-md" aria-hidden="true" />
+            <PawIcon name="chevronRight" className="h-paw-md w-paw-md" aria-hidden="true" />
           </span>
         )}
       </div>
@@ -967,7 +970,8 @@ function Avatar({
           className="object-cover"
         />
       ) : (
-        <UserCircle2
+        <PawIcon
+          name="profile"
           className="absolute inset-1/2 h-paw-lg w-paw-lg -translate-x-1/2 -translate-y-1/2"
           aria-hidden="true"
         />
@@ -996,7 +1000,8 @@ function MediaThumb({
           className="object-cover"
         />
       ) : (
-        <FileText
+        <PawIcon
+          name="document"
           className="absolute inset-1/2 h-paw-xxl w-paw-xxl -translate-x-1/2 -translate-y-1/2 text-paw-primary"
           aria-hidden="true"
         />
@@ -1053,7 +1058,7 @@ function ErrorPanel({
         </p>
       </div>
         <Button type="button" variant="secondary" onClick={onRetry}>
-          <RefreshCw className="h-paw-md w-paw-md" aria-hidden="true" />
+          <PawIcon name="refresh" className="h-paw-md w-paw-md" aria-hidden="true" />
           {t("adminReportsRetry")}
         </Button>
     </section>
@@ -1069,7 +1074,8 @@ function LoadingState({
 }) {
   return (
     <div className={`flex ${REPORT_METRIC_CLASSES.emptyStateMinHeight} flex-col items-center justify-center text-center`}>
-      <Loader2
+      <PawIcon
+        name="spinner"
         className="h-paw-xxl w-paw-xxl animate-spin text-paw-primary"
         aria-hidden="true"
       />
