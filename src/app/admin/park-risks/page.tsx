@@ -27,6 +27,7 @@ import {
   CardContent,
   EmptyState,
   Input,
+  MetricTile,
   PageShell,
   StatusMessage,
 } from "@/components/ui";
@@ -681,11 +682,11 @@ export default function ParkRiskAdminPage() {
       <div className="grid grid-cols-1 gap-paw-xl xl:grid-cols-[minmax(0,1.35fr)_minmax(360px,0.65fr)]">
         <div className="space-y-paw-xl">
           <div className="grid grid-cols-2 gap-paw-sm md:grid-cols-5">
-            <QueueMetric label={t("adminParkRisksQueueMetric")} value={counts.queue} tone="warning" />
-            <QueueMetric label={t("adminParkRisksReadyMetric")} value={counts.ready_for_review} tone="danger" />
-            <QueueMetric label={t("adminParkRisksWaitingMetric")} value={counts.pending_confirmation} tone="trust" />
-            <QueueMetric label={t("adminParkRisksHighlightedMetric")} value={counts.approved} tone="success" />
-            <QueueMetric label={t("adminParkRisksRejectedMetric")} value={counts.rejected} tone="neutral" />
+            <MetricTile label={t("adminParkRisksQueueMetric")} value={counts.queue} tone="warning" />
+            <MetricTile label={t("adminParkRisksReadyMetric")} value={counts.ready_for_review} tone="critical" />
+            <MetricTile label={t("adminParkRisksWaitingMetric")} value={counts.pending_confirmation} tone="trust" />
+            <MetricTile label={t("adminParkRisksHighlightedMetric")} value={counts.approved} tone="success" />
+            <MetricTile label={t("adminParkRisksRejectedMetric")} value={counts.rejected} tone="neutral" />
           </div>
 
           {message && (
@@ -881,30 +882,6 @@ export default function ParkRiskAdminPage() {
       </div>
       </PageShell>
     </>
-  );
-}
-
-function QueueMetric({
-  label,
-  value,
-  tone,
-}: {
-  label: string;
-  value: number;
-  tone: "trust" | "warning" | "danger" | "success" | "neutral";
-}) {
-  return (
-    <Card>
-      <CardContent className="p-paw-md">
-        <p className="text-xs font-extrabold uppercase tracking-wide text-paw-muted">
-          {label}
-        </p>
-        <div className="mt-paw-xs flex items-center justify-between gap-paw-sm">
-          <p className="text-2xl font-extrabold text-paw-ink">{value}</p>
-          <Badge tone={tone === "danger" ? "critical" : tone}>{label}</Badge>
-        </div>
-      </CardContent>
-    </Card>
   );
 }
 

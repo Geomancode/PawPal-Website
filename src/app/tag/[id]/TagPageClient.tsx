@@ -165,7 +165,7 @@ export default function TagPageClient({ pet, owner }: TagPageClientProps) {
               <InfoTile label={t("tagPageContactLabel")} value={contactType} icon={contactIcon} />
               <InfoTile label={t("tagPageBreedLabel")} value={pet.breed ?? t("tagPageNotListed")} icon="paw" />
               <InfoTile label={t("tagPageAgeLabel")} value={ageLabel} icon="calendar" />
-              <InfoTile label={t("tagPageBloodLabel")} value={pet.blood_type ?? t("tagPageNotListed")} icon={Droplets} tone="danger" />
+              <InfoTile label={t("tagPageBloodLabel")} value={pet.blood_type ?? t("tagPageNotListed")} icon={Droplets} tone="critical" />
             </div>
           </Card>
 
@@ -269,10 +269,10 @@ function InfoTile({
   label: string;
   value: string;
   icon: PawIconName;
-  tone?: "primary" | "danger";
+  tone?: "primary" | "critical";
 }) {
   return (
-    <div className={tone === "danger" ? "tag-info-tile tag-info-tile-danger" : "tag-info-tile"}>
+    <div className={tone === "critical" ? "tag-info-tile tag-info-tile-critical" : "tag-info-tile"}>
       <PawIcon name={icon} className="h-4 w-4" aria-hidden="true" />
       <span className="min-w-0">
         <span className="block text-paw-type-caption font-black uppercase tracking-[0.12em] text-paw-muted">
