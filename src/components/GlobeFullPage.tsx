@@ -241,6 +241,7 @@ export default function MapGlobeComponent({ t }: { t: GlobeTranslation }) {
   /* ── Map center state for WeatherTicker ── */
   const [mapCenter, setMapCenter] = useState<{ lat: number; lng: number } | null>(null);
   const [userLocation, setUserLocation] = useState<{ lat: number; lng: number } | null>(DEFAULT_USER_LOCATION);
+  const [searchCenter, setSearchCenter] = useState<{ lat: number; lng: number } | null>(null);
   const isDraggingRef = useRef(false);
 
   const nearbyQuestTags = useMemo(() => {
@@ -300,12 +301,13 @@ export default function MapGlobeComponent({ t }: { t: GlobeTranslation }) {
   }, [loadNearbyData]);
 
   /* ── Update map center on drag end (debounced via ticker) ── */
-  const updateMapCenter = useCallback(() => {
+  const updateMapCenter = useCallback((confirmForSearch = false) => {
     const map = mapRef.current;
     if (!map) return;
     const center = map.getCenter();
     const nextCenter = { lat: center.lat, lng: center.lng };
     setMapCenter(nextCenter);
+    if (confirmForSearch) setSearchCenter(nextCenter);
     scheduleNearbyRefresh(nextCenter);
   }, [scheduleNearbyRefresh]);
 
@@ -429,12 +431,14 @@ export default function MapGlobeComponent({ t }: { t: GlobeTranslation }) {
           setLocationIssue(null);
           setUserLocation(coords);
           setMapCenter(coords);
+          setSearchCenter(coords);
           void loadNearbyData(coords);
           map.flyTo({ center: [coords.lng, coords.lat], zoom: 11, duration: 1000 });
         },
         () => {
           if (!isCurrentMap()) return;
           setUserLocation(DEFAULT_USER_LOCATION);
+          setSearchCenter(null);
           setLocationIssue("globeLocationFallback");
         },
         { timeout: 8000 }
@@ -499,7 +503,7 @@ export default function MapGlobeComponent({ t }: { t: GlobeTranslation }) {
         isInteracting = false;
         isDraggingRef.current = false;
         // Update weather for new center position
-        updateMapCenter();
+        updateMapCenter(true);
 
         const friction = 0.94;
         function decelerate() {
@@ -762,7 +766,7 @@ export default function MapGlobeComponent({ t }: { t: GlobeTranslation }) {
           </div>
 
           {/* AI Chat Bottom Sheet */}
-          <ChatBottomSheet mapRef={mapRef} t={t} />
+          <ChatBottomSheet mapRef={mapRef} searchCenter={searchCenter} t={t} />
 
           {/* Tutorial overlay for first-time visitors */}
           <GlobeTutorial t={t} />
