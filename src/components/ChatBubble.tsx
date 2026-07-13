@@ -66,7 +66,7 @@ function UserBubble({ text }: { text: string }) {
   return (
     <div className="flex justify-end mb-3">
       <div
-        className="max-w-[80%] px-4 py-2.5 rounded-paw-panel [border-bottom-right-radius:var(--radius-paw-xs)] bg-paw-primary text-sm text-paw-on-primary leading-relaxed shadow-paw-action"
+        className="max-w-[80%] px-4 py-2.5 rounded-paw-panel [border-bottom-right-radius:var(--radius-paw-xs)] bg-paw-primary text-paw-type-body text-paw-on-primary leading-relaxed shadow-paw-action"
       >
         {text}
       </div>
@@ -83,7 +83,7 @@ function AssistantBubble({ text }: { text: string }) {
         <div className="w-6 h-6 rounded-full bg-gradient-to-br from-paw-trust to-paw-primary flex items-center justify-center shrink-0 mt-0.5">
           <PawIcon name="sparkle" className="w-3 h-3 text-paw-on-primary" />
         </div>
-        <div className="px-4 py-2.5 rounded-paw-panel [border-bottom-left-radius:var(--radius-paw-xs)] bg-paw-panel/90 border border-paw-border shadow-sm text-sm text-paw-body leading-relaxed whitespace-pre-wrap">
+        <div className="px-4 py-2.5 rounded-paw-panel [border-bottom-left-radius:var(--radius-paw-xs)] bg-paw-panel/90 border border-paw-border shadow-sm text-paw-type-body text-paw-body leading-relaxed whitespace-pre-wrap">
           {text}
         </div>
       </div>
@@ -96,7 +96,7 @@ function AssistantBubble({ text }: { text: string }) {
 function ToolBadge({ label }: { label: string }) {
   return (
     <div className="flex justify-start mb-2 pl-8">
-      <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-paw-trust-soft border border-paw-trust/15 text-xs text-paw-trust font-medium">
+      <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-paw-trust-soft border border-paw-trust/15 text-paw-type-caption text-paw-trust font-medium">
         <div className="w-2 h-2 rounded-full bg-paw-trust animate-pulse" />
         {label}
       </div>
@@ -164,14 +164,14 @@ function PlaceResults({
               onClick={() => p.lat && p.lng && onLocate?.(p.lat, p.lng)}
               className="w-full flex items-center gap-3 px-3 py-2.5 rounded-paw-md bg-paw-panel/90 border border-paw-border shadow-sm hover:border-paw-trust/35 hover:shadow-paw-panel transition-all text-left group"
             >
-              <div className="w-9 h-9 rounded-paw-sm bg-paw-trust-soft flex items-center justify-center text-base shrink-0">
+              <div className="w-9 h-9 rounded-paw-sm bg-paw-trust-soft flex items-center justify-center text-paw-type-body shrink-0">
                 {emoji}
               </div>
               <div className="min-w-0 flex-1">
-                <p className="text-sm font-semibold text-paw-ink truncate">
+                <p className="text-paw-type-body font-semibold text-paw-ink truncate">
                   {p.name}
                 </p>
-                <p className="text-xs text-paw-muted truncate">
+                <p className="text-paw-type-caption text-paw-muted truncate">
                   {p.place_type?.replace(/_/g, " ")}
                   {p.city ? ` · ${p.city}` : ""}
                   {rating ? ` · ${rating}` : ""}
@@ -223,14 +223,14 @@ function MissionResults({
               onClick={() => m.lat && m.lng && onLocate?.(m.lat, m.lng)}
               className="w-full flex items-center gap-3 px-3 py-2.5 rounded-paw-md bg-paw-panel/90 border border-paw-border shadow-sm hover:border-paw-accent/35 hover:shadow-paw-panel transition-all text-left group"
             >
-              <div className="w-9 h-9 rounded-paw-sm bg-paw-accent-soft flex items-center justify-center text-base shrink-0">
+              <div className="w-9 h-9 rounded-paw-sm bg-paw-accent-soft flex items-center justify-center text-paw-type-body shrink-0">
                 {emoji}
               </div>
               <div className="min-w-0 flex-1">
-                <p className="text-sm font-semibold text-paw-ink truncate">
+                <p className="text-paw-type-body font-semibold text-paw-ink truncate">
                   {m.title || t("globeChatMissionFallback")}
                 </p>
-                <p className="text-xs text-paw-muted truncate">
+                <p className="text-paw-type-caption text-paw-muted truncate">
                   {m.quest_type} · {m.status}
                   {m.reward_type ? ` · 🎁 ${m.reward_type}` : ""}
                 </p>
@@ -256,7 +256,7 @@ function FoodSafetyCard({ data, t }: { data: Record<string, unknown>; t: GlobeTr
   if (!found || results.length === 0) {
     return (
       <div className="flex justify-start mb-3 pl-8">
-        <div className="px-4 py-3 rounded-paw-md bg-paw-panel-subtle border border-paw-border text-sm text-paw-muted">
+        <div className="px-4 py-3 rounded-paw-md bg-paw-panel-subtle border border-paw-border text-paw-type-body text-paw-muted">
           {t("globeChatNoToxicityData").replace("{item}", itemSearched)}
         </div>
       </div>
@@ -276,7 +276,7 @@ function FoodSafetyCard({ data, t }: { data: Record<string, unknown>; t: GlobeTr
           return (
             <div
               key={i}
-              className={`px-4 py-3 rounded-paw-card border text-sm ${
+              className={`px-4 py-3 rounded-paw-card border text-paw-type-body ${
                 isDangerous
                   ? "bg-paw-danger-soft border-paw-danger/25"
                   : "bg-paw-success-soft border-paw-success/25"
@@ -298,7 +298,7 @@ function FoodSafetyCard({ data, t }: { data: Record<string, unknown>; t: GlobeTr
               </div>
               {typeof r.description === "string" && r.description && (
                 <p
-                  className={`text-xs leading-relaxed ${
+                  className={`text-paw-type-caption leading-relaxed ${
                     isDangerous ? "text-paw-danger" : "text-paw-success"
                   }`}
                 >
@@ -325,7 +325,7 @@ function BreedCard({ data, t }: { data: Record<string, unknown>; t: GlobeTransla
         {breeds.map((b, i) => (
           <div
             key={i}
-            className="px-4 py-3 rounded-paw-md bg-paw-trust-soft border border-paw-trust/20 text-sm"
+            className="px-4 py-3 rounded-paw-md bg-paw-trust-soft border border-paw-trust/20 text-paw-type-body"
           >
             <div className="flex items-center gap-2 mb-2">
               <PawIcon name="guide" className="w-4 h-4 text-paw-trust" />
@@ -338,7 +338,7 @@ function BreedCard({ data, t }: { data: Record<string, unknown>; t: GlobeTransla
                 </span>
               )}
             </div>
-            <div className="grid grid-cols-2 gap-x-4 gap-y-1 text-xs text-paw-body">
+            <div className="grid grid-cols-2 gap-x-4 gap-y-1 text-paw-type-caption text-paw-body">
               {typeof b.origin === "string" && b.origin && (
                 <p>
                   🌍 <span className="text-paw-trust">{t("globeChatBreedOrigin")}</span>{" "}

@@ -469,7 +469,7 @@ export default function StoreAdminPage() {
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="flex items-center gap-2">
                 <PawIcon name="packageAdd" className="h-5 w-5 text-paw-primary" aria-hidden="true" />
-                <h2 className="text-xl font-extrabold text-paw-ink">{t("storeAdminProductInformation")}</h2>
+                <h2 className="text-paw-type-h2 font-extrabold text-paw-ink">{t("storeAdminProductInformation")}</h2>
               </div>
 
               {message && (
@@ -484,22 +484,22 @@ export default function StoreAdminPage() {
                 <Input label={t("storeAdminName")} value={form.name} onChange={(e) => updateForm("name", e.target.value)} placeholder={t("storeAdminNamePlaceholder")} required containerClassName="md:col-span-2" />
                 <Input label={t("storeAdminShortDescription")} value={form.description} onChange={(e) => updateForm("description", e.target.value)} placeholder={t("storeAdminShortDescriptionPlaceholder")} required containerClassName="md:col-span-2" />
                 <div className="md:col-span-2">
-                  <label className="mb-1.5 block text-sm font-bold text-paw-ink" htmlFor="details">{t("storeAdminDetails")}</label>
+                  <label className="mb-1.5 block text-paw-type-body font-bold text-paw-ink" htmlFor="details">{t("storeAdminDetails")}</label>
                   <textarea
                     id="details"
                     value={form.details}
                     onChange={(e) => updateForm("details", e.target.value)}
                     rows={4}
-                    className="w-full rounded-paw-md border border-paw-border bg-paw-panel px-3 py-3 text-sm text-paw-ink shadow-sm transition placeholder:text-paw-muted focus-visible:border-paw-trust focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-paw-trust/20"
+                    className="w-full rounded-paw-md border border-paw-border bg-paw-panel px-3 py-3 text-paw-type-body text-paw-ink shadow-sm transition placeholder:text-paw-muted focus-visible:border-paw-trust focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-paw-trust/20"
                     placeholder={t("storeAdminDetailsPlaceholder")}
                   />
                 </div>
                 <label className="block space-y-1.5">
-                  <span className="block text-sm font-bold text-paw-ink">{t("storeAdminCategory")}</span>
+                  <span className="block text-paw-type-body font-bold text-paw-ink">{t("storeAdminCategory")}</span>
                   <select
                     value={form.category}
                     onChange={(e) => updateForm("category", e.target.value as ProductForm["category"])}
-                    className="h-11 w-full rounded-paw-md border border-paw-border bg-paw-panel px-3 text-sm font-bold text-paw-ink shadow-sm focus-visible:border-paw-trust focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-paw-trust/20"
+                    className="h-11 w-full rounded-paw-md border border-paw-border bg-paw-panel px-3 text-paw-type-body font-bold text-paw-ink shadow-sm focus-visible:border-paw-trust focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-paw-trust/20"
                   >
                     {storeCategories.map((category) => (
                       <option key={category.key} value={category.key}>{category.icon} {t(categoryLabelKeys[category.key])}</option>
@@ -507,11 +507,11 @@ export default function StoreAdminPage() {
                   </select>
                 </label>
                 <label className="block space-y-1.5">
-                  <span className="block text-sm font-bold text-paw-ink">{t("storeAdminBadge")}</span>
+                  <span className="block text-paw-type-body font-bold text-paw-ink">{t("storeAdminBadge")}</span>
                   <select
                     value={form.badge}
                     onChange={(e) => updateForm("badge", e.target.value as ProductForm["badge"])}
-                    className="h-11 w-full rounded-paw-md border border-paw-border bg-paw-panel px-3 text-sm font-bold text-paw-ink shadow-sm focus-visible:border-paw-trust focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-paw-trust/20"
+                    className="h-11 w-full rounded-paw-md border border-paw-border bg-paw-panel px-3 text-paw-type-body font-bold text-paw-ink shadow-sm focus-visible:border-paw-trust focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-paw-trust/20"
                   >
                     <option value="">{t("storeAdminBadgeNone")}</option>
                     <option value="New">{t("storeAdminBadgeNew")}</option>
@@ -528,11 +528,11 @@ export default function StoreAdminPage() {
               </div>
 
               <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-                <label className="flex items-center gap-3 rounded-paw-md border border-paw-border bg-paw-panel-subtle px-4 py-3 text-sm font-bold text-paw-ink">
+                <label className="flex items-center gap-3 rounded-paw-md border border-paw-border bg-paw-panel-subtle px-4 py-3 text-paw-type-body font-bold text-paw-ink">
                   <input type="checkbox" checked={form.inStock} onChange={(e) => updateForm("inStock", e.target.checked)} className="h-4 w-4 accent-paw-primary" />
                   {t("storeAdminInStock")}
                 </label>
-                <label className="flex items-center gap-3 rounded-paw-md border border-paw-border bg-paw-panel-subtle px-4 py-3 text-sm font-bold text-paw-ink">
+                <label className="flex items-center gap-3 rounded-paw-md border border-paw-border bg-paw-panel-subtle px-4 py-3 text-paw-type-body font-bold text-paw-ink">
                   <input type="checkbox" checked={form.published} onChange={(e) => updateForm("published", e.target.checked)} className="h-4 w-4 accent-paw-primary" />
                   {t("storeAdminPublished")}
                 </label>
@@ -549,10 +549,10 @@ export default function StoreAdminPage() {
                 </div>
                 <label className="flex cursor-pointer flex-col items-center justify-center gap-2 rounded-paw-md border border-dashed border-paw-border bg-paw-panel px-4 py-8 text-center transition hover:border-paw-trust hover:bg-paw-trust-soft/40">
                   <PawIcon name="upload" className="h-8 w-8 text-paw-trust" aria-hidden="true" />
-                  <span className="text-sm font-extrabold text-paw-ink">
+                  <span className="text-paw-type-body font-extrabold text-paw-ink">
                     {file ? file.name : t("storeAdminUploadMainImage")}
                   </span>
-                  <span className="text-xs font-semibold text-paw-muted">{t("storeAdminUploadFormats")}</span>
+                  <span className="text-paw-type-caption font-semibold text-paw-muted">{t("storeAdminUploadFormats")}</span>
                   <input
                     type="file"
                     accept="image/png,image/jpeg,image/webp,image/gif"
@@ -574,16 +574,16 @@ export default function StoreAdminPage() {
           <Card className="admin-preview-card">
             <CardContent className="space-y-4">
               <div className="flex items-center justify-between gap-3">
-                <h2 className="text-lg font-extrabold text-paw-ink">{t("storeAdminPreview")}</h2>
+                <h2 className="text-paw-type-h3 font-extrabold text-paw-ink">{t("storeAdminPreview")}</h2>
                 {previewProduct.badge && <Badge tone="accent">{t(badgeLabelKeys[previewProduct.badge])}</Badge>}
               </div>
               <div className="admin-preview-media flex justify-center rounded-paw-md bg-paw-primary-soft p-6">
                 <ProductVisual product={previewProduct} size="lg" />
               </div>
               <div>
-                <p className="text-lg font-extrabold text-paw-ink">{previewProduct.name}</p>
-                <p className="mt-1 text-sm leading-6 text-paw-body">{previewProduct.description || t("storeAdminProductDescriptionPreview")}</p>
-                <p className="mt-3 text-xl font-extrabold text-paw-primary">€{previewProduct.price.toFixed(2)}</p>
+                <p className="text-paw-type-h3 font-extrabold text-paw-ink">{previewProduct.name}</p>
+                <p className="mt-1 text-paw-type-body leading-6 text-paw-body">{previewProduct.description || t("storeAdminProductDescriptionPreview")}</p>
+                <p className="mt-3 text-paw-type-h2 font-extrabold text-paw-primary">€{previewProduct.price.toFixed(2)}</p>
               </div>
             </CardContent>
           </Card>
@@ -591,7 +591,7 @@ export default function StoreAdminPage() {
           <Card className="admin-card-upgraded">
             <CardContent>
               <div className="mb-4 flex items-center justify-between">
-                <h2 className="text-lg font-extrabold text-paw-ink">{t("storeAdminCatalog")}</h2>
+                <h2 className="text-paw-type-h3 font-extrabold text-paw-ink">{t("storeAdminCatalog")}</h2>
                 <Badge tone="trust">{products.length}</Badge>
               </div>
               {products.length === 0 ? (
@@ -607,8 +607,8 @@ export default function StoreAdminPage() {
                     >
                       <ProductVisual product={product} size="sm" />
                       <div className="min-w-0 flex-1">
-                        <p className="truncate text-sm font-extrabold text-paw-ink">{product.name}</p>
-                        <p className="text-xs font-semibold text-paw-muted">€{product.price.toFixed(2)} · {t(categoryValueKeys[product.category])}</p>
+                        <p className="truncate text-paw-type-body font-extrabold text-paw-ink">{product.name}</p>
+                        <p className="text-paw-type-caption font-semibold text-paw-muted">€{product.price.toFixed(2)} · {t(categoryValueKeys[product.category])}</p>
                       </div>
                       <Badge tone={product.published === false ? "warning" : "success"}>
                         {product.published === false ? t("storeAdminDraft") : t("storeAdminLive")}

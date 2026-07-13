@@ -92,13 +92,13 @@ function OrderCard({ order, t }: { order: Order; t: OrdersTranslation }) {
 
           <div className="min-w-0 flex-1">
             <div className="flex flex-wrap items-center gap-2">
-              <p className="font-mono text-sm font-bold text-paw-ink">{order.id}</p>
+              <p className="font-mono text-paw-type-body font-bold text-paw-ink">{order.id}</p>
               <Badge tone={status.tone}>
                 <PawIcon name={status.icon} className="h-3 w-3" aria-hidden="true" />
                 {statusLabel}
               </Badge>
             </div>
-            <p className="mt-1 text-sm text-paw-muted">
+            <p className="mt-1 text-paw-type-body text-paw-muted">
               {dateStr} {t("ordersAt")} {timeStr} · {itemCount} {itemCount === 1 ? t("ordersItemSingular") : t("ordersItemPlural")}
             </p>
           </div>
@@ -130,7 +130,7 @@ function OrderCard({ order, t }: { order: Order; t: OrdersTranslation }) {
                     return (
                       <div key={label} className="flex items-center gap-2">
                         <div className={`h-3 w-3 rounded-full ${done ? "bg-paw-success" : "bg-paw-border"}`} />
-                        <span className={`text-xs font-bold ${done ? "text-paw-success" : "text-paw-muted"}`}>
+                        <span className={`text-paw-type-caption font-bold ${done ? "text-paw-success" : "text-paw-muted"}`}>
                           {label}
                         </span>
                         {index < progressSteps.length - 1 && (
@@ -142,7 +142,7 @@ function OrderCard({ order, t }: { order: Order; t: OrdersTranslation }) {
                 </div>
 
                 <div>
-                  <h4 className="mb-2 flex items-center gap-1.5 text-sm font-bold text-paw-ink">
+                  <h4 className="mb-2 flex items-center gap-1.5 text-paw-type-body font-bold text-paw-ink">
                     <PawIcon name="cart" className="h-4 w-4 text-paw-primary" aria-hidden="true" />
                     {t("ordersItemsTitle")}
                   </h4>
@@ -151,10 +151,10 @@ function OrderCard({ order, t }: { order: Order; t: OrdersTranslation }) {
                       <div key={item.product.id} className="flex items-center gap-3 rounded-paw-sm bg-paw-panel-subtle p-3">
                         <ProductVisual product={item.product} size="sm" />
                         <div className="min-w-0 flex-1">
-                          <p className="truncate text-sm font-bold text-paw-ink">{item.product.name}</p>
-                          <p className="text-xs text-paw-muted">€{item.product.price.toFixed(2)} × {item.quantity}</p>
+                          <p className="truncate text-paw-type-body font-bold text-paw-ink">{item.product.name}</p>
+                          <p className="text-paw-type-caption text-paw-muted">€{item.product.price.toFixed(2)} × {item.quantity}</p>
                         </div>
-                        <span className="text-sm font-extrabold text-paw-ink">
+                        <span className="text-paw-type-body font-extrabold text-paw-ink">
                           €{(item.product.price * item.quantity).toFixed(2)}
                         </span>
                       </div>
@@ -164,28 +164,28 @@ function OrderCard({ order, t }: { order: Order; t: OrdersTranslation }) {
 
                 <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                   <div className="rounded-paw-md border border-paw-border bg-paw-panel-subtle p-4">
-                    <h4 className="mb-2 flex items-center gap-1.5 text-sm font-bold text-paw-ink">
+                    <h4 className="mb-2 flex items-center gap-1.5 text-paw-type-body font-bold text-paw-ink">
                       <PawIcon name="location" className="h-4 w-4 text-paw-primary" aria-hidden="true" />
                       {t("ordersShippingTitle")}
                     </h4>
-                    <p className="text-xs font-bold text-paw-body">{order.shipping.fullName}</p>
-                    <p className="text-xs text-paw-muted">{order.shipping.address}</p>
-                    <p className="text-xs text-paw-muted">{order.shipping.city}, {order.shipping.zipCode}</p>
-                    <p className="text-xs text-paw-muted">{order.shipping.country}</p>
+                    <p className="text-paw-type-caption font-bold text-paw-body">{order.shipping.fullName}</p>
+                    <p className="text-paw-type-caption text-paw-muted">{order.shipping.address}</p>
+                    <p className="text-paw-type-caption text-paw-muted">{order.shipping.city}, {order.shipping.zipCode}</p>
+                    <p className="text-paw-type-caption text-paw-muted">{order.shipping.country}</p>
                   </div>
                   <div className="rounded-paw-md border border-paw-border bg-paw-panel-subtle p-4">
-                    <h4 className="mb-2 flex items-center gap-1.5 text-sm font-bold text-paw-ink">
+                    <h4 className="mb-2 flex items-center gap-1.5 text-paw-type-body font-bold text-paw-ink">
                       <PawIcon name="payment" className="h-4 w-4 text-paw-primary" aria-hidden="true" />
                       {t("ordersPaymentTitle")}
                     </h4>
-                    <p className="text-xs font-bold text-paw-body">
+                    <p className="text-paw-type-caption font-bold text-paw-body">
                       {order.payment.brand} {t("ordersCardEndingIn")} ****{order.payment.last4}
                     </p>
                     <div className="mt-3 space-y-1.5">
-                      <p className="flex justify-between text-xs text-paw-muted"><span>{t("ordersSubtotal")}</span><span>€{order.subtotal.toFixed(2)}</span></p>
-                      <p className="flex justify-between text-xs text-paw-muted"><span>{t("ordersShippingTitle")}</span><span>{order.shippingCost === 0 ? t("ordersFree") : `€${order.shippingCost.toFixed(2)}`}</span></p>
-                      <p className="flex justify-between text-xs text-paw-muted"><span>{t("ordersTax")}</span><span>€{order.tax.toFixed(2)}</span></p>
-                      <p className="flex justify-between border-t border-paw-border pt-2 text-xs font-extrabold text-paw-ink">
+                      <p className="flex justify-between text-paw-type-caption text-paw-muted"><span>{t("ordersSubtotal")}</span><span>€{order.subtotal.toFixed(2)}</span></p>
+                      <p className="flex justify-between text-paw-type-caption text-paw-muted"><span>{t("ordersShippingTitle")}</span><span>{order.shippingCost === 0 ? t("ordersFree") : `€${order.shippingCost.toFixed(2)}`}</span></p>
+                      <p className="flex justify-between text-paw-type-caption text-paw-muted"><span>{t("ordersTax")}</span><span>€{order.tax.toFixed(2)}</span></p>
+                      <p className="flex justify-between border-t border-paw-border pt-2 text-paw-type-caption font-extrabold text-paw-ink">
                         <span>{t("ordersTotal")}</span><span>€{order.total.toFixed(2)}</span>
                       </p>
                     </div>
@@ -237,15 +237,15 @@ export default function OrdersPage() {
         <div className="orders-hero-panel mb-8 flex items-end justify-between gap-4">
           <div>
             <Badge tone="primary" className="mb-3">{t("ordersPurchaseHistory")}</Badge>
-            <h1 className="flex items-center gap-3 text-3xl font-extrabold text-paw-ink sm:text-4xl">
+            <h1 className="flex items-center gap-3 text-paw-type-h1 font-extrabold text-paw-ink sm:text-paw-type-display">
               <PawIcon name="package" className="h-7 w-7 text-paw-primary" aria-hidden="true" />
               {t("ordersTitle")}
             </h1>
-            <p className="mt-3 max-w-xl text-sm leading-6 text-paw-body">
+            <p className="mt-3 max-w-xl text-paw-type-body leading-6 text-paw-body">
               {t("ordersDescription")}
             </p>
           </div>
-          <span className="orders-count-pill text-sm font-bold text-paw-muted">
+          <span className="orders-count-pill text-paw-type-body font-bold text-paw-muted">
             {orders.length} {orders.length === 1 ? t("ordersCountSingular") : t("ordersCountPlural")}
           </span>
         </div>
