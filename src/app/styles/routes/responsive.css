@@ -324,12 +324,10 @@
 
   .globe-fallback-title {
     max-width: var(--responsive-fallback-title-max-width);
-    font-size: var(--text-paw-type-display);
   }
 
   .globe-fallback-body {
     max-width: var(--responsive-fallback-body-max-width);
-    font-size: var(--text-paw-type-body);
     line-height: 1.6;
   }
 

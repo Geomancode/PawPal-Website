@@ -15,7 +15,6 @@
   --home-responsive-hero-product-tag-width-range: clamp(4.4rem, 20vw, 5.2rem);
   --home-responsive-hero-product-tag-before-right: -0.9rem;
   --home-responsive-hero-product-tag-before-height: 2.15rem;
-  --home-responsive-homepage-hero-headline-font-size: 2.75rem;
   --home-responsive-homepage-proof-item-padding-block: 1.15rem;
   --home-responsive-homepage-flow-step-padding: 0.65rem;
   --home-responsive-homepage-showcase-visual-min-height: 22rem;
@@ -106,8 +105,6 @@
   .homepage-hero-headline {
     max-width: 100%;
     overflow-wrap: break-word;
-    font-size: var(--home-responsive-homepage-hero-headline-font-size);
-    line-height: 1.03;
   }
 
   .homepage-proof-grid,

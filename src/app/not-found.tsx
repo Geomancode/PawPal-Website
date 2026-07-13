@@ -15,13 +15,13 @@ export default function NotFound() {
       <div className="mx-auto grid max-w-5xl gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
         <div>
           <PawPalLogo iconSize={44} fontSize={28} variant="light" />
-          <p className="mt-8 text-sm font-black uppercase tracking-[0.18em] text-paw-on-primary-soft">
+          <p className="mt-8 text-paw-type-caption font-black uppercase tracking-[0.18em] text-paw-on-primary-soft">
             {t("notFoundEyebrow")}
           </p>
-          <h1 className="mt-3 max-w-xl font-brand text-4xl font-extrabold leading-tight text-paw-ink sm:text-6xl">
+          <h1 className="mt-3 max-w-xl font-brand text-paw-type-display font-extrabold leading-tight text-paw-ink">
             {t("notFoundTitle")}
           </h1>
-          <p className="mt-5 max-w-lg text-base leading-8 text-paw-body">
+          <p className="mt-5 max-w-lg text-paw-type-body leading-8 text-paw-body">
             {t("notFoundDescription")}
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
@@ -62,10 +62,10 @@ export default function NotFound() {
                   <PawIcon name={item.icon} className="h-5 w-5" aria-hidden="true" />
                 </span>
                 <span>
-                  <span className="block text-sm font-extrabold text-paw-ink">
+                  <span className="block text-paw-type-body font-extrabold text-paw-ink">
                     {item.title}
                   </span>
-                  <span className="mt-1 block text-sm leading-6 text-paw-body">
+                  <span className="mt-1 block text-paw-type-body leading-6 text-paw-body">
                     {item.copy}
                   </span>
                 </span>

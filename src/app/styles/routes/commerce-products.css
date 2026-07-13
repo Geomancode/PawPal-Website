@@ -23,6 +23,23 @@
   filter: saturate(1.05) contrast(1.04);
 }
 
+.product-visual[data-size="sm"] {
+  --product-visual-glyph-size: 24px;
+}
+
+.product-visual[data-size="md"] {
+  --product-visual-glyph-size: 30px;
+}
+
+.product-visual[data-size="lg"] {
+  --product-visual-glyph-size: 72px;
+}
+
+.product-visual-glyph {
+  font-size: var(--product-visual-glyph-size);
+  line-height: 1;
+}
+
 .store-product-media::after {
   content: "";
   position: absolute;

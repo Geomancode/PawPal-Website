@@ -9,11 +9,11 @@ type ProductVisualProps = {
   className?: string;
 };
 
-const sizeClasses = {
-  sm: "h-12 w-12 text-2xl",
-  md: "h-16 w-16 text-3xl",
-  lg: "h-40 w-40 text-7xl",
-};
+const frameClasses = {
+  sm: "h-12 w-12",
+  md: "h-16 w-16",
+  lg: "h-40 w-40",
+} as const;
 
 export default function ProductVisual({
   product,
@@ -21,15 +21,15 @@ export default function ProductVisual({
   className,
 }: ProductVisualProps) {
   const boxClassName = cn(
-    "relative flex shrink-0 items-center justify-center overflow-hidden rounded-paw-sm bg-paw-panel",
-    sizeClasses[size],
+    "product-visual relative flex shrink-0 items-center justify-center overflow-hidden rounded-paw-sm bg-paw-panel",
+    frameClasses[size],
     className,
   );
 
   if (product.imageUrl) {
     const safeImageUrl = product.imageUrl.replace(/"/g, '\\"');
     return (
-      <span className={boxClassName} role="img" aria-label={product.name}>
+      <span className={boxClassName} data-size={size} role="img" aria-label={product.name}>
         <span
           className={cn(
             "absolute inset-0 bg-center bg-no-repeat",
@@ -42,8 +42,8 @@ export default function ProductVisual({
   }
 
   return (
-    <span className={boxClassName} aria-hidden="true">
-      <span className="drop-shadow-sm">{product.image}</span>
+    <span className={boxClassName} data-size={size} aria-hidden="true">
+      <span className="product-visual-glyph drop-shadow-sm">{product.image}</span>
     </span>
   );
 }
