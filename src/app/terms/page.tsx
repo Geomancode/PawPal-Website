@@ -1,14 +1,6 @@
 "use client";
 
-import {
-  CheckCircle2,
-  FileText,
-  Handshake,
-  MessageSquareWarning,
-  ReceiptText,
-  ShieldCheck,
-  ShoppingBag,
-} from "lucide-react";
+import PawIcon from "@/components/icons/PawIcon";
 import {
   Badge,
   PageShell,
@@ -19,21 +11,21 @@ import { useRouteTranslations } from "@/i18n/useRouteTranslations";
 const TERMS = [
   {
     id: "terms-responsible-use",
-    icon: Handshake,
+    icon: "partnership",
     titleKey: "termsResponsibleTitle",
     textKey: "termsResponsibleText",
     signalKey: "termsResponsibleSignal",
   },
   {
     id: "terms-store",
-    icon: ShoppingBag,
+    icon: "cart",
     titleKey: "termsStoreTitle",
     textKey: "termsStoreText",
     signalKey: "termsStoreSignal",
   },
   {
     id: "terms-community",
-    icon: MessageSquareWarning,
+    icon: "commentWarning",
     titleKey: "termsCommunityTitle",
     textKey: "termsCommunityText",
     signalKey: "termsCommunitySignal",
@@ -50,7 +42,7 @@ export default function TermsPage() {
         <div className="grid gap-paw-xl lg:grid-cols-[minmax(0,1fr)_minmax(18rem,24rem)] lg:items-center">
           <div>
             <Badge tone="primary" className="mb-paw-lg">
-              <FileText className="h-4 w-4" aria-hidden="true" />
+              <PawIcon name="document" className="h-4 w-4" aria-hidden="true" />
               {t("termsBadge")}
             </Badge>
             <h1 className="max-w-3xl font-brand text-paw-type-h1 font-black text-paw-ink sm:text-paw-type-display">
@@ -63,15 +55,15 @@ export default function TermsPage() {
 
           <aside className="grid gap-paw-sm">
             {[
-              { icon: ShieldCheck, label: t("termsTrustSafetyLabel"), value: t("termsTrustSafetyValue") },
-              { icon: ReceiptText, label: t("termsTrustPurchaseLabel"), value: t("termsTrustPurchaseValue") },
-              { icon: CheckCircle2, label: t("termsTrustRespectLabel"), value: t("termsTrustRespectValue") },
+              { icon: "shield" as const, label: t("termsTrustSafetyLabel"), value: t("termsTrustSafetyValue") },
+              { icon: "receiptDetail" as const, label: t("termsTrustPurchaseLabel"), value: t("termsTrustPurchaseValue") },
+              { icon: "success" as const, label: t("termsTrustRespectLabel"), value: t("termsTrustRespectValue") },
             ].map((item) => (
               <div
                 key={item.label}
                 className="legal-trust-row"
               >
-                <item.icon className="h-4 w-4 text-paw-on-primary-soft" aria-hidden="true" />
+                <PawIcon name={item.icon} className="h-4 w-4 text-paw-on-primary-soft" aria-hidden="true" />
                 <div>
                   <p className="text-sm font-extrabold text-paw-ink">{item.label}</p>
                   <p className="mt-paw-xxs text-xs leading-5 text-paw-body">{item.value}</p>
@@ -98,7 +90,7 @@ export default function TermsPage() {
         {TERMS.map((section) => (
           <section key={section.titleKey} id={section.id} className="legal-prose-section">
               <div className="legal-info-icon">
-                <section.icon className="h-5 w-5" aria-hidden="true" />
+                <PawIcon name={section.icon} className="h-5 w-5" aria-hidden="true" />
               </div>
               <h2 className="text-paw-type-h2 font-black text-paw-ink">
                 {t(section.titleKey)}

@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { MessageCircle, PawPrint, Share2, ThumbsUp } from "lucide-react";
+import PawIcon from "@/components/icons/PawIcon";
 
 import { AppDeepLinkButton } from "@/components/ui";
 import { useRouteTranslations } from "@/i18n/useRouteTranslations";
@@ -64,7 +64,7 @@ export default function PostPageClient({
             </div>
           ) : (
             <div className="flex aspect-[4/3] items-center justify-center bg-paw-primary-soft">
-              <PawPrint className="h-16 w-16 text-paw-primary" />
+              <PawIcon name="paw" className="h-16 w-16 text-paw-primary" />
             </div>
           )}
           <div className="space-y-5 p-5 sm:p-6">
@@ -81,7 +81,7 @@ export default function PostPageClient({
                     className="object-cover"
                   />
                 ) : (
-                  <PawPrint className="m-2.5 h-6 w-6 text-paw-primary" />
+                  <PawIcon name="paw" className="m-2.5 h-6 w-6 text-paw-primary" />
                 )}
               </div>
               <div>
@@ -94,15 +94,15 @@ export default function PostPageClient({
             </p>
             <div className="flex gap-5 border-t border-paw-border pt-4 text-sm font-bold text-paw-muted">
               <span className="inline-flex items-center gap-1.5">
-                <ThumbsUp className="h-4 w-4" />
+                <PawIcon name="thumbsUp" className="h-4 w-4" />
                 {post.likes_count ?? post.like_count ?? 0}
               </span>
               <span className="inline-flex items-center gap-1.5">
-                <MessageCircle className="h-4 w-4" />
+                <PawIcon name="chat" className="h-4 w-4" />
                 {post.comments_count ?? post.comment_count ?? 0}
               </span>
               <span className="inline-flex items-center gap-1.5">
-                <Share2 className="h-4 w-4" />
+                <PawIcon name="share" className="h-4 w-4" />
                 {t("postPageShare")}
               </span>
             </div>

@@ -1,16 +1,6 @@
 "use client";
 
-import {
-  CheckCircle2,
-  Cookie,
-  Database,
-  Eye,
-  LockKeyhole,
-  MapPinned,
-  ShieldCheck,
-  SlidersHorizontal,
-} from "lucide-react";
-import type { LucideIcon } from "lucide-react";
+import PawIcon, { type PawIconName } from "@/components/icons/PawIcon";
 import {
   Badge,
   PageShell,
@@ -21,7 +11,7 @@ import { useRouteTranslations } from "@/i18n/useRouteTranslations";
 
 type PrivacySection = {
   id: string;
-  icon: LucideIcon;
+  icon: PawIconName;
   titleKey: MessageKey;
   textKey: MessageKey;
   signalKey: MessageKey;
@@ -34,28 +24,28 @@ type PrivacySection = {
 const PRIVACY_DEFINITIONS: PrivacySection[] = [
   {
     id: "privacy-data",
-    icon: Database,
+    icon: "database",
     titleKey: "privacyDataTitle",
     textKey: "privacyDataText",
     signalKey: "privacyDataSignal",
   },
   {
     id: "privacy-location",
-    icon: MapPinned,
+    icon: "locationPinned",
     titleKey: "privacyLocationTitle",
     textKey: "privacyLocationText",
     signalKey: "privacyLocationSignal",
   },
   {
     id: "privacy-choices",
-    icon: SlidersHorizontal,
+    icon: "filters",
     titleKey: "privacyChoicesTitle",
     textKey: "privacyChoicesText",
     signalKey: "privacyChoicesSignal",
   },
   {
     id: "privacy-cookies",
-    icon: Cookie,
+    icon: "cookie",
     titleKey: "privacyCookiesTitle",
     textKey: "privacyCookiesText",
     signalKey: "privacyCookiesSignal",
@@ -86,7 +76,7 @@ export default function PrivacyPage() {
         <div className="grid gap-paw-xl lg:grid-cols-[minmax(0,1fr)_minmax(18rem,24rem)] lg:items-center">
           <div>
             <Badge tone="primary" className="mb-paw-lg">
-              <ShieldCheck className="h-4 w-4" aria-hidden="true" />
+              <PawIcon name="shield" className="h-4 w-4" aria-hidden="true" />
               {t("privacyBadge")}
             </Badge>
             <h1 className="max-w-3xl font-brand text-paw-type-h1 font-black text-paw-ink sm:text-paw-type-display">
@@ -99,15 +89,15 @@ export default function PrivacyPage() {
 
           <aside className="grid gap-paw-sm">
             {[
-              { icon: LockKeyhole, label: t("privacyTrustOwnerLabel"), value: t("privacyTrustOwnerValue") },
-              { icon: Eye, label: t("privacyTrustFinderLabel"), value: t("privacyTrustFinderValue") },
-              { icon: CheckCircle2, label: t("privacyTrustRequestsLabel"), value: t("privacyTrustRequestsValue") },
+              { icon: "privacy" as const, label: t("privacyTrustOwnerLabel"), value: t("privacyTrustOwnerValue") },
+              { icon: "show" as const, label: t("privacyTrustFinderLabel"), value: t("privacyTrustFinderValue") },
+              { icon: "success" as const, label: t("privacyTrustRequestsLabel"), value: t("privacyTrustRequestsValue") },
             ].map((item) => (
               <div
                 key={item.label}
                 className="legal-trust-row"
               >
-                <item.icon className="h-4 w-4 text-paw-on-primary-soft" aria-hidden="true" />
+                <PawIcon name={item.icon} className="h-4 w-4 text-paw-on-primary-soft" aria-hidden="true" />
                 <div>
                   <p className="text-sm font-extrabold text-paw-ink">{item.label}</p>
                   <p className="mt-paw-xxs text-xs leading-5 text-paw-body">{item.value}</p>
@@ -134,7 +124,7 @@ export default function PrivacyPage() {
         {PRIVACY_DEFINITIONS.map((section) => (
           <section key={section.titleKey} id={section.id} className="legal-prose-section">
               <div className="legal-info-icon">
-                <section.icon className="h-5 w-5" aria-hidden="true" />
+                <PawIcon name={section.icon} className="h-5 w-5" aria-hidden="true" />
               </div>
               <h2 className="text-paw-type-h2 font-black text-paw-ink">
                 {t(section.titleKey)}

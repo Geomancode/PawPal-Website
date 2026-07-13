@@ -2,19 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import {
-  Award,
-  Calendar,
-  Droplets,
-  Heart,
-  Mail,
-  PawPrint,
-  Phone,
-  ScanLine,
-  ShieldCheck,
-  UserRound,
-} from "lucide-react";
-import type { LucideIcon } from "lucide-react";
+import PawIcon, { type PawIconName } from "@/components/icons/PawIcon";
 import { AppDeepLinkButton, Badge, Card, StatusMessage } from "@/components/ui";
 import { useRouteTranslations } from "@/i18n/useRouteTranslations";
 
@@ -25,6 +13,8 @@ type PetSocialTraits = {
   achievements?: string[];
   [key: string]: unknown;
 };
+
+const Droplets = "humidity" satisfies PawIconName;
 
 interface TagPageClientProps {
   pet: {
@@ -59,7 +49,7 @@ export default function TagPageClient({ pet, owner }: TagPageClientProps) {
       : `tel:${pet.owner_contact}`
     : null;
   const contactIsEmail = pet.owner_contact?.includes("@") ?? false;
-  const ContactIcon = contactIsEmail ? Mail : Phone;
+  const contactIcon: PawIconName = contactIsEmail ? "mail" : "phone";
   const contactType = contactHref
     ? contactIsEmail
       ? t("tagPagePublicEmail")
@@ -81,7 +71,7 @@ export default function TagPageClient({ pet, owner }: TagPageClientProps) {
         <section className="tag-rescue-panel">
           <div className="relative z-10 flex h-full flex-col">
             <p className="inline-flex w-fit items-center gap-2 rounded-paw-sm border border-paw-primary/20 bg-paw-primary-soft px-3 py-2 text-xs font-black uppercase tracking-[0.16em] text-paw-primary">
-              <ScanLine className="h-4 w-4" aria-hidden="true" />
+              <PawIcon name="nfcScan" className="h-4 w-4" aria-hidden="true" />
               {t("tagPageScannedBadge")}
             </p>
 
@@ -98,7 +88,7 @@ export default function TagPageClient({ pet, owner }: TagPageClientProps) {
                     className="object-cover"
                   />
                 ) : (
-                  <PawPrint className="h-10 w-10" aria-hidden="true" />
+                  <PawIcon name="paw" className="h-10 w-10" aria-hidden="true" />
                 )}
               </div>
               <div className="min-w-0">
@@ -120,7 +110,7 @@ export default function TagPageClient({ pet, owner }: TagPageClientProps) {
                   href={contactHref}
                   className="inline-flex h-14 w-full items-center justify-center gap-2 rounded-paw-md bg-paw-primary px-5 text-base font-extrabold text-paw-accent-ink shadow-paw-action transition hover:bg-paw-primary-hover"
                 >
-                  <ContactIcon className="h-5 w-5" aria-hidden="true" />
+                  <PawIcon name={contactIcon} className="h-5 w-5" aria-hidden="true" />
                   {t("tagPageContactOwnerNow")}
                 </a>
                 <p className="mt-2 text-xs font-bold uppercase tracking-[0.12em] text-paw-muted">
@@ -167,28 +157,28 @@ export default function TagPageClient({ pet, owner }: TagPageClientProps) {
                 </h2>
               </div>
               <span className="inline-flex h-11 w-11 items-center justify-center rounded-paw-sm bg-paw-primary-soft text-paw-on-primary-soft">
-                <ShieldCheck className="h-5 w-5" aria-hidden="true" />
+                <PawIcon name="shield" className="h-5 w-5" aria-hidden="true" />
               </span>
             </div>
 
             <div className="mt-5 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
-              <InfoTile label={t("tagPageContactLabel")} value={contactType} icon={ContactIcon} />
-              <InfoTile label={t("tagPageBreedLabel")} value={pet.breed ?? t("tagPageNotListed")} icon={PawPrint} />
-              <InfoTile label={t("tagPageAgeLabel")} value={ageLabel} icon={Calendar} />
+              <InfoTile label={t("tagPageContactLabel")} value={contactType} icon={contactIcon} />
+              <InfoTile label={t("tagPageBreedLabel")} value={pet.breed ?? t("tagPageNotListed")} icon="paw" />
+              <InfoTile label={t("tagPageAgeLabel")} value={ageLabel} icon="calendar" />
               <InfoTile label={t("tagPageBloodLabel")} value={pet.blood_type ?? t("tagPageNotListed")} icon={Droplets} tone="danger" />
             </div>
           </Card>
 
           <div className="grid gap-4 lg:grid-cols-2">
             <TagSection
-              icon={ShieldCheck}
+              icon="shield"
               title={t("tagPageHealthAndCare")}
               values={healthBadges}
               tone="success"
               emptyText={t("tagPageHealthEmpty")}
             />
             <TagSection
-              icon={Heart}
+              icon="heart"
               title={t("tagPagePersonality")}
               values={socialTags}
               tone="trust"
@@ -210,7 +200,7 @@ export default function TagPageClient({ pet, owner }: TagPageClientProps) {
           <Card variant="panel" className="p-4">
             <div className="flex items-start gap-3">
               <span className="inline-flex h-10 w-10 items-center justify-center rounded-paw-sm bg-paw-primary-soft text-paw-on-primary-soft">
-                <UserRound className="h-5 w-5" aria-hidden="true" />
+                <PawIcon name="person" className="h-5 w-5" aria-hidden="true" />
               </span>
               <div className="min-w-0">
                 <p className="text-xs font-black uppercase tracking-[0.16em] text-paw-muted">
@@ -245,7 +235,7 @@ export default function TagPageClient({ pet, owner }: TagPageClientProps) {
           </Card>
 
           <TagSection
-            icon={Award}
+            icon="award"
             title={t("tagPageAchievements")}
             values={achievements}
             tone="primary"
@@ -273,17 +263,17 @@ function MiniFact({ label, value }: { label: string; value: string }) {
 function InfoTile({
   label,
   value,
-  icon: Icon,
+  icon,
   tone = "primary",
 }: {
   label: string;
   value: string;
-  icon: LucideIcon;
+  icon: PawIconName;
   tone?: "primary" | "danger";
 }) {
   return (
     <div className={tone === "danger" ? "tag-info-tile tag-info-tile-danger" : "tag-info-tile"}>
-      <Icon className="h-4 w-4" aria-hidden="true" />
+      <PawIcon name={icon} className="h-4 w-4" aria-hidden="true" />
       <span className="min-w-0">
         <span className="block text-paw-type-caption font-black uppercase tracking-[0.12em] text-paw-muted">
           {label}
@@ -297,13 +287,13 @@ function InfoTile({
 }
 
 function TagSection({
-  icon: Icon,
+  icon,
   title,
   values,
   tone,
   emptyText,
 }: {
-  icon: LucideIcon;
+  icon: PawIconName;
   title: string;
   values: string[];
   tone: "primary" | "success" | "trust";
@@ -312,7 +302,7 @@ function TagSection({
   return (
     <Card variant="panel" className="p-4">
       <p className="mb-2 flex items-center gap-1.5 text-xs font-black uppercase tracking-[0.14em] text-paw-muted">
-        <Icon className="h-3.5 w-3.5" aria-hidden="true" />
+        <PawIcon name={icon} className="h-3.5 w-3.5" aria-hidden="true" />
         {title}
       </p>
       {values.length > 0 ? (

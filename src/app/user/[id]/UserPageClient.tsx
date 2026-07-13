@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { BadgeCheck, MapPin, PawPrint, Smartphone } from "lucide-react";
+import PawIcon from "@/components/icons/PawIcon";
 
 import { AppDeepLinkButton } from "@/components/ui";
 import { useRouteTranslations } from "@/i18n/useRouteTranslations";
@@ -60,7 +60,7 @@ export default function UserPageClient({
                 className="object-cover"
               />
             ) : (
-              <PawPrint className="m-7 h-10 w-10" />
+              <PawIcon name="paw" className="m-7 h-10 w-10" />
             )}
           </div>
           <h1 className="mt-4 font-brand text-3xl font-extrabold">{name}</h1>
@@ -106,7 +106,7 @@ export default function UserPageClient({
                             className="object-cover"
                           />
                         ) : (
-                          <PawPrint className="m-3 h-6 w-6 text-paw-primary" />
+                          <PawIcon name="paw" className="m-3 h-6 w-6 text-paw-primary" />
                         )}
                       </div>
                       <div>
@@ -124,7 +124,7 @@ export default function UserPageClient({
 
           <aside className="rounded-paw-lg border border-paw-border bg-paw-panel-subtle p-5">
             <div className="flex items-center gap-2 text-sm font-extrabold text-paw-primary">
-              <Smartphone className="h-4 w-4" />
+              <PawIcon name="appLink" className="h-4 w-4" />
               {t("userPageOpenInPawPal")}
             </div>
             <p className="mt-3 text-sm leading-6 text-paw-body">
@@ -142,13 +142,13 @@ export default function UserPageClient({
             <div className="mt-5 space-y-2 text-xs text-paw-muted">
               {profile.location_city && (
                 <p className="flex items-center gap-1.5">
-                  <MapPin className="h-3.5 w-3.5" />
+                  <PawIcon name="location" className="h-3.5 w-3.5" />
                   {profile.location_city}
                 </p>
               )}
               {profile.is_verified && (
                 <p className="flex items-center gap-1.5">
-                  <BadgeCheck className="h-3.5 w-3.5" />
+                  <PawIcon name="verified" className="h-3.5 w-3.5" />
                   {t("userPageVerifiedProfile")}
                 </p>
               )}

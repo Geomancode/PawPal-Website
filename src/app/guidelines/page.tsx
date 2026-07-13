@@ -1,15 +1,6 @@
 "use client";
 
-import {
-  Ban,
-  EyeOff,
-  Flag,
-  Handshake,
-  Mail,
-  MessageSquareWarning,
-  Scale,
-  ShieldCheck,
-} from "lucide-react";
+import PawIcon from "@/components/icons/PawIcon";
 import {
   Badge,
   PageShell,
@@ -20,35 +11,35 @@ import { useRouteTranslations } from "@/i18n/useRouteTranslations";
 const GUIDELINE_DEFINITIONS = [
   {
     id: "guidelines-respect",
-    icon: Handshake,
+    icon: "partnership",
     titleKey: "guidelinesRespectTitle",
     textKey: "guidelinesRespectText",
     signalKey: "guidelinesRespectSignal",
   },
   {
     id: "guidelines-prohibited-content",
-    icon: Ban,
+    icon: "ban",
     titleKey: "guidelinesContentTitle",
     textKey: "guidelinesContentText",
     signalKey: "guidelinesContentSignal",
   },
   {
     id: "guidelines-location-privacy",
-    icon: EyeOff,
+    icon: "hide",
     titleKey: "guidelinesPrivacyTitle",
     textKey: "guidelinesPrivacyText",
     signalKey: "guidelinesPrivacySignal",
   },
   {
     id: "guidelines-reporting",
-    icon: Flag,
+    icon: "flag",
     titleKey: "guidelinesModerationTitle",
     textKey: "guidelinesModerationText",
     signalKey: "guidelinesModerationSignal",
   },
   {
     id: "guidelines-appeals",
-    icon: Mail,
+    icon: "mail",
     titleKey: "guidelinesAppealsTitle",
     textKey: "guidelinesAppealsText",
     signalKey: "guidelinesAppealsSignal",
@@ -65,7 +56,7 @@ export default function GuidelinesPage() {
         <div className="grid gap-paw-xl lg:grid-cols-[minmax(0,1fr)_minmax(18rem,24rem)] lg:items-center">
           <div>
             <Badge tone="primary" className="mb-paw-lg">
-              <MessageSquareWarning className="h-4 w-4" aria-hidden="true" />
+              <PawIcon name="commentWarning" className="h-4 w-4" aria-hidden="true" />
               {t("guidelinesBadge")}
             </Badge>
             <h1 className="max-w-3xl font-brand text-paw-type-h1 font-black text-paw-ink sm:text-paw-type-display">
@@ -78,15 +69,15 @@ export default function GuidelinesPage() {
 
           <aside className="grid gap-paw-sm">
             {[
-              { icon: ShieldCheck, label: t("guidelinesTrustRespectLabel"), value: t("guidelinesTrustRespectValue") },
-              { icon: Flag, label: t("guidelinesTrustReportLabel"), value: t("guidelinesTrustReportValue") },
-              { icon: Scale, label: t("guidelinesTrustModerationLabel"), value: t("guidelinesTrustModerationValue") },
+              { icon: "shield" as const, label: t("guidelinesTrustRespectLabel"), value: t("guidelinesTrustRespectValue") },
+              { icon: "flag" as const, label: t("guidelinesTrustReportLabel"), value: t("guidelinesTrustReportValue") },
+              { icon: "legal" as const, label: t("guidelinesTrustModerationLabel"), value: t("guidelinesTrustModerationValue") },
             ].map((item) => (
               <div
                 key={item.label}
                 className="legal-trust-row"
               >
-                <item.icon className="h-4 w-4 text-paw-on-primary-soft" aria-hidden="true" />
+                <PawIcon name={item.icon} className="h-4 w-4 text-paw-on-primary-soft" aria-hidden="true" />
                 <div>
                   <p className="text-sm font-extrabold text-paw-ink">{item.label}</p>
                   <p className="mt-paw-xxs text-xs leading-5 text-paw-body">{item.value}</p>
@@ -113,7 +104,7 @@ export default function GuidelinesPage() {
         {GUIDELINE_DEFINITIONS.map((section) => (
           <section key={section.titleKey} id={section.id} className="legal-prose-section">
               <div className="legal-info-icon">
-                <section.icon className="h-5 w-5" aria-hidden="true" />
+                <PawIcon name={section.icon} className="h-5 w-5" aria-hidden="true" />
               </div>
               <h2 className="text-paw-type-h2 font-black text-paw-ink">
                 {t(section.titleKey)}

@@ -1,25 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import {
-  ArrowRight,
-  Globe,
-  GraduationCap,
-  Heart,
-  Languages,
-  Mail,
-  Map,
-  MapPin,
-  Nfc,
-  PawPrint,
-  Shield,
-  Smartphone,
-  Sparkles,
-  Users,
-  Zap,
-} from "lucide-react";
-import type { LucideIcon } from "lucide-react";
 import Link from "next/link";
+import PawIcon, { type PawIconName } from "@/components/icons/PawIcon";
 import {
   Badge,
   Card,
@@ -63,19 +46,19 @@ const TEAM = [
 /* ── Product Ecosystem ── */
 const ECOSYSTEM = [
   {
-    icon: Smartphone,
+    icon: "appLink",
     titleKey: "aboutEcosystemAppTitle",
     descKey: "aboutEcosystemAppDescription",
     tone: "bg-paw-primary-soft text-paw-on-primary-soft",
   },
   {
-    icon: Globe,
+    icon: "world",
     titleKey: "aboutEcosystemWebTitle",
     descKey: "aboutEcosystemWebDescription",
     tone: "bg-paw-trust-soft text-paw-on-trust-soft",
   },
   {
-    icon: Nfc,
+    icon: "nfc",
     titleKey: "aboutEcosystemTagsTitle",
     descKey: "aboutEcosystemTagsDescription",
     tone: "bg-paw-green-soft text-paw-on-green-soft",
@@ -84,12 +67,12 @@ const ECOSYSTEM = [
 
 /* ── Values ── */
 const VALUES = [
-  { icon: Heart, titleKey: "aboutValueEnhanceTitle", descKey: "aboutValueEnhanceDescription" },
-  { icon: Shield, titleKey: "aboutValuePrivacyTitle", descKey: "aboutValuePrivacyDescription" },
-  { icon: Users, titleKey: "aboutValueCommunityTitle", descKey: "aboutValueCommunityDescription" },
-  { icon: Sparkles, titleKey: "aboutValueAiCareTitle", descKey: "aboutValueAiCareDescription" },
-  { icon: MapPin, titleKey: "aboutValueBelgiumTitle", descKey: "aboutValueBelgiumDescription" },
-  { icon: Map, titleKey: "aboutValueExplorationTitle", descKey: "aboutValueExplorationDescription" },
+  { icon: "heart", titleKey: "aboutValueEnhanceTitle", descKey: "aboutValueEnhanceDescription" },
+  { icon: "safety", titleKey: "aboutValuePrivacyTitle", descKey: "aboutValuePrivacyDescription" },
+  { icon: "community", titleKey: "aboutValueCommunityTitle", descKey: "aboutValueCommunityDescription" },
+  { icon: "sparkle", titleKey: "aboutValueAiCareTitle", descKey: "aboutValueAiCareDescription" },
+  { icon: "location", titleKey: "aboutValueBelgiumTitle", descKey: "aboutValueBelgiumDescription" },
+  { icon: "map", titleKey: "aboutValueExplorationTitle", descKey: "aboutValueExplorationDescription" },
 ] as const;
 
 /* ── Real Timeline ── */
@@ -101,11 +84,11 @@ const TIMELINE = [
   { year: "2026", eventKey: "aboutTimeline2026" },
 ] as const;
 
-const TEAM_STRENGTHS: ReadonlyArray<{ icon: LucideIcon; textKey: "aboutStrengthGis" | "aboutStrengthMigrations" | "aboutStrengthLocales" | "aboutStrengthGhent" }> = [
-  { icon: GraduationCap, textKey: "aboutStrengthGis" },
-  { icon: Zap, textKey: "aboutStrengthMigrations" },
-  { icon: Languages, textKey: "aboutStrengthLocales" },
-  { icon: MapPin, textKey: "aboutStrengthGhent" },
+const TEAM_STRENGTHS: ReadonlyArray<{ icon: PawIconName; textKey: "aboutStrengthGis" | "aboutStrengthMigrations" | "aboutStrengthLocales" | "aboutStrengthGhent" }> = [
+  { icon: "education", textKey: "aboutStrengthGis" },
+  { icon: "energy", textKey: "aboutStrengthMigrations" },
+  { icon: "language", textKey: "aboutStrengthLocales" },
+  { icon: "location", textKey: "aboutStrengthGhent" },
 ];
 
 export default function About() {
@@ -120,7 +103,7 @@ export default function About() {
         <div className="about-hero-copy">
           <motion.div {...fadeUp(shouldReduceMotion)}>
             <Badge tone="primary" className="mb-paw-lg">
-              <PawPrint className="h-4 w-4" aria-hidden="true" />
+              <PawIcon name="paw" className="h-4 w-4" aria-hidden="true" />
               {t("aboutBadge")}
             </Badge>
           </motion.div>
@@ -142,7 +125,7 @@ export default function About() {
           <motion.div {...fadeUp(shouldReduceMotion, 0.3)} className="mt-paw-xl flex flex-wrap gap-paw-sm">
             <Link href="/globe" className={buttonClassName({ size: "lg" })}>
               {t("aboutExploreGlobe")}
-              <ArrowRight className="h-4 w-4" aria-hidden="true" />
+              <PawIcon name="forward" className="h-4 w-4" aria-hidden="true" />
             </Link>
             <Link
               href="/store"
@@ -165,16 +148,16 @@ export default function About() {
               </h2>
               <div className="mt-paw-lg space-y-paw-sm">
                 {[
-                  { icon: Smartphone, label: t("aboutSystemDailyLabel"), copy: t("aboutSystemDailyCopy") },
-                  { icon: Nfc, label: t("aboutSystemPhysicalLabel"), copy: t("aboutSystemPhysicalCopy") },
-                  { icon: Globe, label: t("aboutSystemLocalLabel"), copy: t("aboutSystemLocalCopy") },
+                  { icon: "appLink" as const, label: t("aboutSystemDailyLabel"), copy: t("aboutSystemDailyCopy") },
+                  { icon: "nfc" as const, label: t("aboutSystemPhysicalLabel"), copy: t("aboutSystemPhysicalCopy") },
+                  { icon: "world" as const, label: t("aboutSystemLocalLabel"), copy: t("aboutSystemLocalCopy") },
                 ].map((item) => (
                   <div
                     key={item.label}
                     className="about-system-row"
                   >
                     <span className="about-system-icon">
-                      <item.icon className="h-5 w-5" aria-hidden="true" />
+                      <PawIcon name={item.icon} className="h-5 w-5" aria-hidden="true" />
                     </span>
                     <div>
                       <p className="text-sm font-extrabold text-paw-ink">{item.label}</p>
@@ -232,7 +215,7 @@ export default function About() {
               <Card className="h-full transition hover:-translate-y-1 hover:border-paw-primary/30 hover:shadow-paw-floating">
                 <CardContent>
                   <div className={`mb-paw-lg flex h-14 w-14 items-center justify-center rounded-paw-panel ${item.tone}`}>
-                    <item.icon className="h-7 w-7" />
+                    <PawIcon name={item.icon} className="h-7 w-7" />
                   </div>
                   <h3 className="text-paw-type-h3 font-black text-paw-ink">{t(item.titleKey)}</h3>
                   <p className="mt-paw-sm text-sm leading-6 text-paw-body">{t(item.descKey)}</p>
@@ -256,7 +239,7 @@ export default function About() {
               <Card className="h-full transition hover:border-paw-primary/30 hover:shadow-paw-floating">
                 <CardContent>
                   <span className="mb-paw-md flex h-11 w-11 items-center justify-center rounded-paw-control bg-paw-primary-soft text-paw-on-primary-soft">
-                    <v.icon className="h-5 w-5" />
+                    <PawIcon name={v.icon} className="h-5 w-5" />
                   </span>
                   <h3 className="text-base font-black text-paw-ink">{t(v.titleKey)}</h3>
                   <p className="mt-paw-xs text-sm leading-6 text-paw-body">{t(v.descKey)}</p>
@@ -297,7 +280,7 @@ export default function About() {
             <Card key={s.textKey} className="shadow-paw-panel">
               <CardContent className="flex items-center gap-paw-sm p-paw-md">
                 <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-paw-control bg-paw-primary-soft text-paw-on-primary-soft">
-                  <s.icon className="h-4 w-4" aria-hidden="true" />
+                  <PawIcon name={s.icon} className="h-4 w-4" aria-hidden="true" />
                 </span>
                 <span className="text-xs font-bold text-paw-body">{t(s.textKey)}</span>
               </CardContent>
@@ -325,7 +308,7 @@ export default function About() {
             >
               {/* Dot */}
               <div className="z-10 flex h-9 w-9 shrink-0 items-center justify-center rounded-paw-pill border-4 border-paw-primary-soft bg-paw-primary md:absolute md:left-1/2 md:-translate-x-1/2">
-                <PawPrint className="h-3.5 w-3.5 text-paw-on-primary" />
+                <PawIcon name="paw" className="h-3.5 w-3.5 text-paw-on-primary" />
               </div>
               {/* Card */}
               <Card className={`flex-1 p-paw-md shadow-paw-panel md:max-w-[45%] ${i % 2 === 0 ? "md:mr-auto" : "md:ml-auto"}`}>
@@ -352,7 +335,7 @@ export default function About() {
                 href="mailto:hello@pawpal.be"
                 className={buttonClassName({ variant: "primary", size: "lg" })}
               >
-                {t("aboutContactTeam")} <Mail className="h-5 w-5" />
+                {t("aboutContactTeam")} <PawIcon name="mail" className="h-5 w-5" />
               </a>
               <Link
                 href="/globe"
@@ -365,7 +348,7 @@ export default function About() {
 
           {/* Contact line */}
           <motion.div {...fadeUp(shouldReduceMotion, 0.2)} className="mt-paw-xl flex items-center justify-center gap-paw-xs text-paw-muted">
-            <Mail className="h-4 w-4" />
+            <PawIcon name="mail" className="h-4 w-4" />
             <span className="text-sm">{t("aboutContactPrompt")}<a href={`mailto:${siteConfig.email}`} className="about-inline-contact font-semibold text-paw-on-primary-soft hover:underline">{siteConfig.email}</a></span>
           </motion.div>
         </div>

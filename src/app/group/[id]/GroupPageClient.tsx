@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { PawPrint, UsersRound } from "lucide-react";
+import PawIcon from "@/components/icons/PawIcon";
 
 import {
   AppDeepLinkButton,
@@ -49,7 +49,7 @@ export default function GroupPageClient({
               className="object-cover"
             />
           ) : (
-            <UsersRound className="m-7 h-10 w-10" />
+            <PawIcon name="people" className="m-7 h-10 w-10" />
           )}
         </div>
         <Badge tone="primary" className="mt-6">{t("groupPageInviteBadge")}</Badge>
@@ -61,7 +61,7 @@ export default function GroupPageClient({
         </p>
 
         <div className="mx-auto mt-6 flex max-w-sm items-center justify-center gap-3 rounded-paw-xl border border-paw-outline-variant bg-paw-panel-subtle px-paw-md py-paw-sm text-sm font-bold text-paw-body shadow-paw-panel">
-          <PawPrint className="h-4 w-4 text-paw-on-primary-soft" />
+          <PawIcon name="paw" className="h-4 w-4 text-paw-on-primary-soft" />
           {memberLabel}
         </div>
 
