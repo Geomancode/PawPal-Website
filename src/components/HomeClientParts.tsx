@@ -569,8 +569,7 @@ export function BentoFeatureGrid() {
             {showcaseImages.map((image, index) => (
               <motion.div
                 key={image.src}
-                className="phone-screen-card relative aspect-[9/16] overflow-hidden rounded-paw-sheet border border-paw-outline-variant bg-paw-panel-low shadow-paw-strong sm:w-[135px] lg:w-[158px]"
-                style={{ marginTop: index % 2 === 0 ? 0 : 36 }}
+                className={`phone-screen-card relative aspect-[9/16] overflow-hidden rounded-paw-sheet border border-paw-outline-variant bg-paw-panel-low shadow-paw-strong sm:w-[135px] lg:w-[158px] ${index % 2 === 0 ? "" : "mt-9"}`}
                 whileHover={shouldReduceMotion ? undefined : { y: -8 }}
                 transition={shouldReduceMotion ? { duration: 0 } : { type: "spring", stiffness: 180, damping: 18 }}
               >

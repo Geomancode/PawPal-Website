@@ -60,11 +60,11 @@ const REDUCED_MOTION_QUERY = "(prefers-reduced-motion: reduce)";
 const ACCOUNT_FIXTURES_ENABLED =
   process.env.NEXT_PUBLIC_P3B1G1_ACCOUNT_FIXTURES === "1";
 const STORE_METRIC_CLASSES = {
-  shellTopSpacing: "pt-[112px] sm:pt-[128px]",
-  loadingShellTopSpacing: "pt-[112px]",
+  shellTopSpacing: "pt-paw-web-shell-top sm:pt-[128px]",
+  loadingShellTopSpacing: "pt-paw-web-shell-top",
   quantityControlSize: "h-[28px] w-[28px]",
   quantityLabelWidth: "w-[28px]",
-  compactIconSize: "h-[14px] w-[14px]",
+  compactIconSize: "h-paw-web-icon-compact w-paw-web-icon-compact",
   floatingCartSize: "h-[64px] w-[64px]",
   toastBottomOffset: "bottom-[112px]",
 } as const;

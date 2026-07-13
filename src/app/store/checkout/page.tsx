@@ -38,8 +38,8 @@ const ACCOUNT_FIXTURES_ENABLED =
   process.env.NEXT_PUBLIC_P3B1G1_ACCOUNT_FIXTURES === "1";
 const CHECKOUT_METRIC_CLASSES = {
   cartListMaxHeight: "max-h-[192px]",
-  shellSpacing: "pt-[112px] pb-[80px]",
-  secureIconSize: "h-[14px] w-[14px]",
+  shellSpacing: "pt-paw-web-shell-top pb-[80px]",
+  secureIconSize: "h-paw-web-icon-compact w-paw-web-icon-compact",
 } as const;
 
 type CheckoutTranslation = (key: MessageKey) => string;

@@ -116,6 +116,9 @@
   --spacing-paw-xxl: 32px;
   --spacing-paw-xxxl: 40px;
   --spacing-paw-min-tap: 44px;
+  --spacing-paw-web-shell-top: 112px;    /* 固定导航下页面顶部偏移（web 专用） */
+  --spacing-paw-web-icon-compact: 14px;  /* 紧凑图标盒（metric/骨架行内 icon） */
+  --spacing-paw-web-micro: 6px;          /* 微间距（gap/py/space-y 6px 族） */
 
   --radius-paw-xs: 6px;
   --radius-paw-sm: 8px;
@@ -290,6 +293,9 @@
   --spacing-paw-xxl: 32px;
   --spacing-paw-xxxl: 40px;
   --spacing-paw-min-tap: 44px;
+  --spacing-paw-web-shell-top: 112px;    /* 固定导航下页面顶部偏移（web 专用） */
+  --spacing-paw-web-icon-compact: 14px;  /* 紧凑图标盒（metric/骨架行内 icon） */
+  --spacing-paw-web-micro: 6px;          /* 微间距（gap/py/space-y 6px 族） */
 
   --radius-paw-xs: 6px;
   --radius-paw-sm: 8px;
