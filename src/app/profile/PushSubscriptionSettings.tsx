@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useState } from "react";
-import { Bell, BellOff, BellRing, CheckCircle, Loader2, ShieldAlert, WifiOff } from "lucide-react";
+import PawIcon from "@/components/icons/PawIcon";
 import type { ProfileTranslation } from "./ProfileWorkspaceView";
 
 type PushStatus = "checking" | "unsupported" | "available" | "denied" | "enabled" | "error";
@@ -88,7 +88,7 @@ export default function PushSubscriptionSettings({ accessToken, t }: PushSubscri
     switch (status) {
       case "unsupported":
         return {
-          icon: <WifiOff className="h-5 w-5" aria-hidden="true" />,
+          icon: <PawIcon name="offline" className="h-5 w-5" aria-hidden="true" />,
           eyebrow: t("pushUnsupportedEyebrow"),
           title: t("pushUnsupportedTitle"),
           tone: "bg-paw-danger-soft text-paw-on-danger-soft",
@@ -97,7 +97,7 @@ export default function PushSubscriptionSettings({ accessToken, t }: PushSubscri
         };
       case "denied":
         return {
-          icon: <ShieldAlert className="h-5 w-5" aria-hidden="true" />,
+          icon: <PawIcon name="safetyAlert" className="h-5 w-5" aria-hidden="true" />,
           eyebrow: t("pushBlockedEyebrow"),
           title: t("pushBlockedTitle"),
           tone: "bg-paw-warning-soft text-paw-on-warning-soft",
@@ -106,7 +106,7 @@ export default function PushSubscriptionSettings({ accessToken, t }: PushSubscri
         };
       case "enabled":
         return {
-          icon: <CheckCircle className="h-5 w-5" aria-hidden="true" />,
+          icon: <PawIcon name="confirm" className="h-5 w-5" aria-hidden="true" />,
           eyebrow: t("pushEnabledEyebrow"),
           title: t("pushEnabledTitle"),
           tone: "bg-paw-success-soft text-paw-on-success-soft",
@@ -115,7 +115,7 @@ export default function PushSubscriptionSettings({ accessToken, t }: PushSubscri
         };
       case "error":
         return {
-          icon: <BellOff className="h-5 w-5" aria-hidden="true" />,
+          icon: <PawIcon name="notifyOff" className="h-5 w-5" aria-hidden="true" />,
           eyebrow: t("pushErrorEyebrow"),
           title: t("pushErrorTitle"),
           tone: "bg-paw-danger-soft text-paw-on-danger-soft",
@@ -124,7 +124,7 @@ export default function PushSubscriptionSettings({ accessToken, t }: PushSubscri
         };
       case "checking":
         return {
-          icon: <Loader2 className="h-5 w-5 animate-spin" aria-hidden="true" />,
+          icon: <PawIcon name="spinner" className="h-5 w-5 animate-spin" aria-hidden="true" />,
           eyebrow: t("pushCheckingEyebrow"),
           title: t("pushCheckingTitle"),
           tone: "bg-paw-primary-soft text-paw-on-primary-soft",
@@ -133,7 +133,7 @@ export default function PushSubscriptionSettings({ accessToken, t }: PushSubscri
         };
       default:
         return {
-          icon: <BellRing className="h-5 w-5" aria-hidden="true" />,
+          icon: <PawIcon name="notifyActive" className="h-5 w-5" aria-hidden="true" />,
           eyebrow: t("pushAvailableEyebrow"),
           title: t("pushAvailableTitle"),
           tone: "bg-paw-primary-soft text-paw-on-primary-soft",
@@ -280,7 +280,7 @@ export default function PushSubscriptionSettings({ accessToken, t }: PushSubscri
               : "profile-action-button-primary"
           } shrink-0`}
         >
-          {busy ? <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" /> : <Bell className="h-4 w-4" aria-hidden="true" />}
+          {busy ? <PawIcon name="spinner" className="h-4 w-4 animate-spin" aria-hidden="true" /> : <PawIcon name="notify" className="h-4 w-4" aria-hidden="true" />}
           {busy ? t("profileSaving") : viewModel.action}
         </button>
       </div>

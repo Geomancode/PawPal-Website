@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { RotateCcw } from "lucide-react";
+import PawIcon from "@/components/icons/PawIcon";
 import { Button, StatePanel, StatusMessage } from "@/components/ui";
 export const metadata: Metadata = {
   title: "State panel development harness",
@@ -38,7 +38,7 @@ export default function StatePanelHarness() {
           body="We could not load this page. Your data is safe, so please try again."
           action={
             <Button type="button" variant="critical">
-              <RotateCcw className="h-4 w-4" aria-hidden="true" />
+              <PawIcon name="retry" className="h-4 w-4" aria-hidden="true" />
               Try again
             </Button>
           }
