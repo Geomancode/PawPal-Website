@@ -1,132 +1,15 @@
+import { execFile as execFileCallback } from "node:child_process";
 import { readdir, readFile } from "node:fs/promises";
 import path from "node:path";
+import { promisify } from "node:util";
 import { fileURLToPath } from "node:url";
 
+const execFile = promisify(execFileCallback);
 const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const srcRoot = path.join(repoRoot, "src");
 const iconModulePath = "src/components/icons/PawIcon.tsx";
-
-const semanticIconMap = {
-  info: "Info",
-  success: "CheckCircle2",
-  warning: "TriangleAlert",
-  critical: "AlertCircle",
-  empty: "Inbox",
-  live: "Radio",
-  close: "X",
-  menu: "Menu",
-  forward: "ArrowRight",
-  home: "Home",
-  map: "Map",
-  account: "UserCircle",
-  logout: "LogOut",
-  retry: "RotateCcw",
-  mail: "Mail",
-  nfcScan: "ScanLine",
-  appLink: "Smartphone",
-  check: "Check",
-  cart: "ShoppingBag",
-  star: "Star",
-  health: "HeartPulse",
-  shield: "ShieldCheck",
-  spinner: "Loader2",
-  search: "Search",
-  shipping: "Truck",
-  save: "Save",
-  package: "Package",
-  receipt: "Receipt",
-  back: "ArrowLeft",
-  add: "Plus",
-  sparkle: "Sparkles",
-  subtract: "Minus",
-  refresh: "RefreshCw",
-  packageAdd: "PackagePlus",
-  location: "MapPin",
-  secure: "Lock",
-  payment: "CreditCard",
-  imageAdd: "ImagePlus",
-  upload: "UploadCloud",
-  externalLink: "ExternalLink",
-  delete: "Trash2",
-  dumbbell: "Dumbbell",
-  tags: "Tags",
-  crown: "Crown",
-  filters: "SlidersHorizontal",
-  clock: "Clock",
-  basket: "ShoppingCart",
-  bone: "Bone",
-  chevronUp: "ChevronUp",
-  chevronRight: "ChevronRight",
-  chevronDown: "ChevronDown",
-  navigate: "Navigation",
-  humidity: "Droplets",
-  wind: "Wind",
-  dog: "Dog",
-  offline: "WifiOff",
-  snow: "CloudSnow",
-  community: "Users",
-  rain: "CloudRain",
-  temperature: "Thermometer",
-  storm: "CloudLightning",
-  sun: "Sun",
-  fog: "CloudFog",
-  shop: "Store",
-  cloud: "Cloud",
-  route: "Route",
-  chevronLeft: "ChevronLeft",
-  paw: "PawPrint",
-  confirm: "CheckCircle",
-  chat: "MessageCircle",
-  assistant: "Bot",
-  privacy: "LockKeyhole",
-  guide: "BookOpen",
-  support: "LifeBuoy",
-  care: "HeartHandshake",
-  language: "Languages",
-  footprints: "Footprints",
-  fileApproved: "FileCheck2",
-  document: "FileText",
-  dismiss: "XCircle",
-  edit: "Edit3",
-  profile: "UserCircle2",
-  download: "Download",
-  safetyAlert: "ShieldAlert",
-  checklist: "ClipboardList",
-  safety: "Shield",
-  calendar: "Calendar",
-  addCircle: "PlusCircle",
-  notifyActive: "BellRing",
-  nfc: "Nfc",
-  notifyOff: "BellOff",
-  comment: "MessageSquare",
-  notify: "Bell",
-  globe: "Globe2",
-  ban: "Ban",
-  award: "Award",
-  locationPinned: "MapPinned",
-  verified: "BadgeCheck",
-  commentWarning: "MessageSquareWarning",
-  schedule: "Clock3",
-  phone: "Phone",
-  cookie: "Cookie",
-  receiptDetail: "ReceiptText",
-  database: "Database",
-  legal: "Scale",
-  show: "Eye",
-  share: "Share2",
-  hide: "EyeOff",
-  emergency: "Siren",
-  flag: "Flag",
-  thumbsUp: "ThumbsUp",
-  world: "Globe",
-  user: "User",
-  education: "GraduationCap",
-  person: "UserRound",
-  partnership: "Handshake",
-  people: "UsersRound",
-  heart: "Heart",
-  energy: "Zap",
-};
+const generatedModulePath = "src/components/icons/material-glyphs.generated.tsx";
+const generatorPath = "scripts/generate-material-glyphs.mjs";
 
 const migratedFiles = [
   "src/app/error.tsx",
@@ -174,12 +57,7 @@ const migratedFiles = [
   "src/app/user/[id]/UserPageClient.tsx",
 ];
 
-// Explicit migration debt. This set is bidirectional: adding or removing a direct
-// lucide-react import requires updating the list in the same governance change.
-const pendingFiles = [];
-
 const sourceExtensions = new Set([".js", ".jsx", ".mjs", ".cjs", ".ts", ".tsx"]);
-const directLucideImport = /\bfrom\s*["']lucide-react["']/;
 
 function fail(message) {
   console.error(`icon contract FAIL: ${message}`);
@@ -207,67 +85,133 @@ function compareExactSet(label, actualValues, expectedValues) {
   const expected = new Set(expectedValues);
   const unexpected = [...actual].filter((value) => !expected.has(value)).sort();
   const missing = [...expected].filter((value) => !actual.has(value)).sort();
-  if (unexpected.length > 0 || missing.length > 0) {
+  if (unexpected.length > 0 || missing.length > 0 || actual.size !== actualValues.length) {
     fail(
       `${label} differs from its contract` +
         `${unexpected.length ? `\n  unexpected: ${unexpected.join(", ")}` : ""}` +
-        `${missing.length ? `\n  missing: ${missing.join(", ")}` : ""}`,
+        `${missing.length ? `\n  missing: ${missing.join(", ")}` : ""}` +
+        `${actual.size !== actualValues.length ? "\n  duplicate values found" : ""}`,
     );
   }
 }
 
-const sourceFiles = await walk(srcRoot);
-const directImportFiles = [];
-for (const filePath of sourceFiles) {
-  const source = await readFile(filePath, "utf8");
-  if (directLucideImport.test(source)) directImportFiles.push(relativePath(filePath));
+const generatedAbsolutePath = path.join(repoRoot, generatedModulePath);
+let generatedBefore;
+try {
+  generatedBefore = await readFile(generatedAbsolutePath, "utf8");
+  await execFile(process.execPath, [path.join(repoRoot, generatorPath)], { cwd: repoRoot });
+  const generatedAfter = await readFile(generatedAbsolutePath, "utf8");
+  if (generatedAfter !== generatedBefore) {
+    fail(`${generatedModulePath} drifted when ${generatorPath} was rerun`);
+  }
+} catch (error) {
+  const details = [error?.message, error?.stdout, error?.stderr].filter(Boolean).join("\n");
+  fail(`could not run deterministic glyph generation\n${details}`);
 }
-directImportFiles.sort();
 
-const iconLayerImports = directImportFiles.filter((filePath) =>
-  filePath.startsWith("src/components/icons/"),
-);
-const actualPendingFiles = directImportFiles.filter(
-  (filePath) => !filePath.startsWith("src/components/icons/"),
-);
+const sourceFiles = await walk(srcRoot);
+const noLegacyGlyphScanPaths = [
+  ...sourceFiles,
+  path.join(repoRoot, "package.json"),
+  path.join(repoRoot, "package-lock.json"),
+];
+const legacyGlyphMatches = [];
+for (const filePath of noLegacyGlyphScanPaths) {
+  const source = await readFile(filePath, "utf8");
+  if (/lucide/i.test(source)) legacyGlyphMatches.push(relativePath(filePath));
+}
+if (legacyGlyphMatches.length > 0) {
+  fail(`legacy glyph dependency remains in: ${legacyGlyphMatches.sort().join(", ")}`);
+}
 
-compareExactSet("semantic icon layer imports", iconLayerImports, [iconModulePath]);
-compareExactSet("pending direct-import files", actualPendingFiles, pendingFiles);
-
-const migratedRegressions = migratedFiles.filter((filePath) => directImportFiles.includes(filePath));
-if (migratedRegressions.length > 0) {
-  fail(`migrated files import lucide-react directly: ${migratedRegressions.join(", ")}`);
+const missingMigratedFiles = [];
+for (const migratedFile of migratedFiles) {
+  try {
+    await readFile(path.join(repoRoot, migratedFile), "utf8");
+  } catch (error) {
+    if (error?.code === "ENOENT") missingMigratedFiles.push(migratedFile);
+    else throw error;
+  }
+}
+if (missingMigratedFiles.length > 0) {
+  fail(`migrated icon files disappeared: ${missingMigratedFiles.join(", ")}`);
 }
 
 const iconModuleSource = await readFile(path.join(repoRoot, iconModulePath), "utf8");
-const mapStart = iconModuleSource.indexOf("const semanticIconMap = {");
-const mapEndMarker = "} satisfies Record<PawIconName, LucideIcon>;";
-const mapEnd = iconModuleSource.indexOf(mapEndMarker, mapStart);
-if (mapStart === -1 || mapEnd === -1) {
-  fail("could not locate semanticIconMap in PawIcon.tsx");
-} else {
-  const mapSource = iconModuleSource.slice(mapStart, mapEnd);
-  const actualSemanticMap = Object.fromEntries(
-    [...mapSource.matchAll(/^\s{2}([A-Za-z][A-Za-z0-9]*):\s*([A-Za-z][A-Za-z0-9]*),$/gm)].map(
-      ([, semanticName, glyphName]) => [semanticName, glyphName],
-    ),
-  );
-  compareExactSet(
-    "semantic icon names",
-    Object.keys(actualSemanticMap),
-    Object.keys(semanticIconMap),
-  );
-  for (const [semanticName, glyphName] of Object.entries(semanticIconMap)) {
-    if (actualSemanticMap[semanticName] !== glyphName) {
-      fail(
-        `semantic mapping ${semanticName} must use ${glyphName}, got ${String(actualSemanticMap[semanticName])}`,
-      );
-    }
+const generatedModuleSource = await readFile(generatedAbsolutePath, "utf8");
+const iconImports = [...iconModuleSource.matchAll(/\bfrom\s+["']([^"']+)["']/g)].map(
+  ([, moduleName]) => moduleName,
+);
+compareExactSet("PawIcon imports", iconImports, ["react", "./material-glyphs.generated"]);
+if (
+  !iconModuleSource.includes(
+    'import type { MaterialGlyphComponent } from "./material-glyphs.generated";',
+  )
+) {
+  fail("PawIcon must import its glyph component type from material-glyphs.generated");
+}
+if (!iconModuleSource.includes("export type PawIconComponent = MaterialGlyphComponent;")) {
+  fail("PawIconComponent must use the generated component type");
+}
+if (
+  !iconModuleSource.includes(
+    'const materialGlyphModule = import("./material-glyphs.generated");',
+  ) ||
+  !iconModuleSource.includes("default: materialGlyphs[name]") ||
+  !iconModuleSource.includes("const semanticIconMap = new Proxy(")
+) {
+  fail("PawIcon semantic map must be backed only by deferred generated materialGlyphs");
+}
+
+const generatedConsumers = [];
+for (const filePath of sourceFiles) {
+  if (filePath === generatedAbsolutePath) continue;
+  const source = await readFile(filePath, "utf8");
+  if (source.includes("material-glyphs.generated")) {
+    generatedConsumers.push(relativePath(filePath));
   }
+}
+compareExactSet("generated glyph consumers", generatedConsumers, [iconModulePath]);
+
+const unionStart = iconModuleSource.indexOf("export type PawIconName =");
+const unionEnd = iconModuleSource.indexOf(";", unionStart);
+if (unionStart === -1 || unionEnd === -1) {
+  fail("could not locate PawIconName union");
+}
+const unionNames = [...iconModuleSource.slice(unionStart, unionEnd).matchAll(/\|\s*"([^"]+)"/g)].map(
+  ([, semanticName]) => semanticName,
+);
+
+const generatedMapStart = generatedModuleSource.indexOf("export const materialGlyphs = {");
+const generatedMapEnd = generatedModuleSource.indexOf(
+  "} satisfies Record<string, MaterialGlyphComponent>;",
+  generatedMapStart,
+);
+if (generatedMapStart === -1 || generatedMapEnd === -1) {
+  fail("could not locate generated materialGlyphs map");
+}
+const generatedNames = [
+  ...generatedModuleSource
+    .slice(generatedMapStart, generatedMapEnd)
+    .matchAll(/^\s{2}([A-Za-z][A-Za-z0-9]*):\s*glyphComponents\[\d+\],$/gm),
+].map(([, semanticName]) => semanticName);
+
+compareExactSet("semantic icon names", generatedNames, unionNames);
+if (unionNames.length !== 119) {
+  fail(`expected 119 semantic icon names, found ${unionNames.length}`);
+}
+
+const packageJson = JSON.parse(await readFile(path.join(repoRoot, "package.json"), "utf8"));
+const materialVersion = packageJson.devDependencies?.["@material-symbols/svg-400"];
+if (!/^\d+\.\d+\.\d+$/.test(materialVersion ?? "")) {
+  fail("@material-symbols/svg-400 must be an exact pinned devDependency");
+}
+if (packageJson.scripts?.["generate:glyphs"] !== "node scripts/generate-material-glyphs.mjs") {
+  fail("generate:glyphs script is missing or incorrect");
 }
 
 if (process.exitCode) process.exit(process.exitCode);
 console.log(
-  `icon contract PASS: 119 fixed semantic mappings; 43 migrated files; ` +
-    `${pendingFiles.length} exact pending files; ${directImportFiles.length} total direct-import files.`,
+  `icon contract PASS: 119 fixed semantic mappings; ${migratedFiles.length} migrated files; ` +
+    "0 legacy glyph matches; deterministic rounded fill generation.",
 );
