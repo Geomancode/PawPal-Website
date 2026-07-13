@@ -1,29 +1,53 @@
 /* Owner: /profile workspace route styles. */
 
+:root {
+  --profile-command-chip-gap: 0.45rem;
+  --profile-command-chip-padding-inline: 0.8rem;
+  --profile-command-chip-padding-block: 0.65rem;
+  --profile-readiness-card-padding-range: clamp(1rem, 2vw, 1.35rem);
+  --profile-action-button-min-height: 2.65rem;
+  --profile-action-button-gap: 0.45rem;
+  --profile-action-button-padding-inline: 0.95rem;
+  --profile-action-button-padding-block: 0.7rem;
+  --profile-meta-grid-gap: 0.55rem;
+  --profile-tag-gap: 0.35rem;
+  --profile-tag-padding-inline: 0.55rem;
+  --profile-tag-padding-block: 0.38rem;
+  --profile-readiness-row-gap: 0.85rem;
+  --profile-readiness-row-padding: 0.8rem;
+  --profile-readiness-value-min-width: 3rem;
+  --profile-readiness-value-padding-inline: 0.55rem;
+  --profile-readiness-value-padding-block: 0.42rem;
+  --profile-install-compact-gap: 0.8rem;
+  --profile-install-compact-padding: 0.9rem;
+  --profile-pet-card-hover-transform: -2px;
+  --profile-tag-link-padding: 0.65rem;
+}
+
 .profile-command-header {
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
-  gap: 1rem;
+  gap: var(--spacing-paw-md);
 }
 
 .profile-command-chip {
   display: inline-flex;
   flex: 0 0 auto;
   align-items: center;
-  gap: 0.45rem;
+  gap: var(--profile-command-chip-gap);
   border: 1px solid color-mix(in srgb, var(--color-paw-primary) 18%, transparent);
   border-radius: var(--radius-paw-md);
   background: var(--color-paw-primary-soft);
   color: var(--color-paw-primary);
-  padding: 0.65rem 0.8rem;
+  padding: var(--profile-command-chip-padding-block) var(--profile-command-chip-padding-inline);
   font-size: var(--text-paw-type-caption);
   font-weight: 900;
 }
 
 .profile-workspace-grid {
   display: grid;
-  gap: 1rem;
+  gap: var(--spacing-paw-md);
   grid-template-columns: minmax(0, 1fr);
 }
 
@@ -31,7 +55,7 @@
 .profile-readiness-card {
   min-width: 0;
   border-radius: var(--radius-paw-lg);
-  padding: clamp(1rem, 2vw, 1.35rem);
+  padding: var(--profile-readiness-card-padding-range);
 }
 
 .profile-owner-topline,
@@ -39,17 +63,17 @@
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  gap: 1rem;
+  gap: var(--spacing-paw-md);
 }
 
 .profile-action-button {
   display: inline-flex;
-  min-height: 2.65rem;
+  min-height: var(--profile-action-button-min-height);
   align-items: center;
   justify-content: center;
-  gap: 0.45rem;
+  gap: var(--profile-action-button-gap);
   border-radius: var(--radius-paw-md);
-  padding: 0.7rem 0.95rem;
+  padding: var(--profile-action-button-padding-block) var(--profile-action-button-padding-inline);
   font-size: var(--text-paw-type-body);
   font-weight: 900;
   line-height: 1;
@@ -90,7 +114,7 @@
 .profile-meta-grid {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.55rem;
+  gap: var(--profile-meta-grid-gap);
 }
 
 .profile-meta-chip,
@@ -101,13 +125,13 @@
   max-width: 100%;
   min-width: 0;
   align-items: center;
-  gap: 0.35rem;
+  gap: var(--profile-tag-gap);
   border: 1px solid var(--color-paw-border);
   border-radius: var(--radius-paw-sm);
   background: var(--color-paw-panel-subtle);
   color: var(--color-paw-body);
   overflow-wrap: anywhere;
-  padding: 0.38rem 0.55rem;
+  padding: var(--profile-tag-padding-block) var(--profile-tag-padding-inline);
   text-align: left;
 }
 
@@ -119,33 +143,33 @@
 .profile-readiness-row {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
-  gap: 0.85rem;
+  gap: var(--profile-readiness-row-gap);
   align-items: center;
   border: 1px solid color-mix(in srgb, var(--color-paw-border) 72%, transparent);
   border-radius: var(--radius-paw-md);
   background: color-mix(in srgb, var(--color-paw-inverse-ink) 66%, transparent);
-  padding: 0.8rem;
+  padding: var(--profile-readiness-row-padding);
 }
 
 .profile-readiness-value {
   display: inline-flex;
-  min-width: 3rem;
+  min-width: var(--profile-readiness-value-min-width);
   justify-content: center;
   border-radius: var(--radius-paw-sm);
   background: var(--color-paw-primary-soft);
   color: var(--color-paw-primary);
-  padding: 0.42rem 0.55rem;
+  padding: var(--profile-readiness-value-padding-block) var(--profile-readiness-value-padding-inline);
   font-size: var(--text-paw-type-body);
   font-weight: 950;
 }
 
 .profile-install-compact {
   display: grid;
-  gap: 0.8rem;
+  gap: var(--profile-install-compact-gap);
   border: 1px solid color-mix(in srgb, var(--color-paw-primary) 14%, transparent);
   border-radius: var(--radius-paw-md);
   background: color-mix(in srgb, var(--color-paw-primary-soft) 64%, transparent);
-  padding: 0.9rem;
+  padding: var(--profile-install-compact-padding);
 }
 
 .profile-empty-card,
@@ -157,17 +181,17 @@
 }
 
 .profile-empty-card {
-  padding: 2rem 1.25rem;
+  padding: var(--spacing-paw-xxl) var(--spacing-paw-lg);
   text-align: center;
 }
 
 .profile-pet-card {
-  padding: 1rem;
+  padding: var(--spacing-paw-md);
   transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
 }
 
 .profile-pet-card:hover {
-  transform: translateY(-2px);
+  transform: translateY(var(--profile-pet-card-hover-transform));
   border-color: color-mix(in srgb, var(--color-paw-primary) 30%, transparent);
   box-shadow: var(--shadow-paw-panel);
 }
@@ -211,7 +235,7 @@
   border-radius: var(--radius-paw-sm);
   background: var(--color-paw-panel-subtle);
   color: var(--color-paw-muted);
-  padding: 0.65rem;
+  padding: var(--profile-tag-link-padding);
   transition: border-color 180ms ease, background 180ms ease, color 180ms ease;
 }
 

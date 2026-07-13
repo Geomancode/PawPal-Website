@@ -1,8 +1,87 @@
 /* Owner: responsive overrides for profile, commerce, legal, and globe routes. */
 
+:root {
+  --responsive-workspace-grid-grid-template-columns: 20rem;
+  --responsive-page-shell-padding-top: 5rem;
+  --responsive-command-header-gap: 0.6rem;
+  --responsive-command-header-h-one-p-margin-top: 0.42rem;
+  --responsive-command-chip-min-height: 2.35rem;
+  --responsive-command-chip-padding-inline: 0.65rem;
+  --responsive-workspace-grid-gap: 0.65rem;
+  --responsive-workspace-grid-margin-bottom: 0.85rem;
+  --responsive-form-card-padding: 0.85rem;
+  --responsive-owner-topline-grid-template-columns: 3.25rem;
+  --responsive-owner-topline-gap: 0.7rem;
+  --responsive-owner-topline-profile-avatar-width: 3.25rem;
+  --responsive-owner-topline-profile-avatar-height: 3.25rem;
+  --responsive-owner-topline-h-two-margin-top: 0.1rem;
+  --responsive-owner-topline-profile-action-button-min-height: 2.25rem;
+  --responsive-owner-topline-profile-action-button-padding-inline: 0.7rem;
+  --responsive-owner-topline-profile-action-button-padding-block: 0.55rem;
+  --responsive-owner-card-margin-group-margin-top: 0.65rem;
+  --responsive-meta-grid-gap: 0.35rem;
+  --responsive-meta-grid-margin-top: 0.6rem;
+  --responsive-meta-chip-padding-inline: 0.45rem;
+  --responsive-meta-chip-padding-block: 0.3rem;
+  --responsive-readiness-card-margin-group-margin-top: 0.65rem;
+  --responsive-readiness-row-padding-inline: 0.6rem;
+  --responsive-readiness-row-padding-block: 0.52rem;
+  --responsive-readiness-value-min-width: 2.35rem;
+  --responsive-readiness-value-padding-inline: 0.42rem;
+  --responsive-readiness-value-padding-block: 0.3rem;
+  --responsive-install-compact-gap: 0.55rem;
+  --responsive-install-compact-margin-top: 0.65rem;
+  --responsive-install-compact-padding: 0.65rem;
+  --responsive-install-compact-profile-action-button-min-width: 6.75rem;
+  --responsive-install-compact-profile-action-button-min-height: 2.35rem;
+  --responsive-install-compact-profile-action-button-padding-inline: 0.7rem;
+  --responsive-install-compact-profile-action-button-padding-block: 0.58rem;
+  --responsive-readiness-card-profile-action-button-min-height: 2.35rem;
+  --responsive-readiness-card-profile-action-button-padding-inline: 0.7rem;
+  --responsive-readiness-card-profile-action-button-padding-block: 0.58rem;
+  --responsive-readiness-card-profile-action-button-margin-top: 0.65rem;
+  --responsive-section-heading-gap: 0.65rem;
+  --responsive-section-heading-margin-bottom: 0.65rem;
+  --responsive-section-heading-profile-action-button-min-height: 2.25rem;
+  --responsive-section-heading-profile-action-button-padding-inline: 0.7rem;
+  --responsive-section-heading-profile-action-button-padding-block: 0.55rem;
+  --responsive-empty-card-padding-inline: 0.9rem;
+  --responsive-empty-card-padding-block: 1.15rem;
+  --responsive-page-shell-add-mode-profile-readiness-row-padding-inline: 0.55rem;
+  --responsive-page-shell-add-mode-profile-readiness-row-padding-block: 0.44rem;
+  --responsive-fallback-stage-padding-calculation: calc(env(safe-area-inset-top, 0px) + 5.25rem);
+  --responsive-fallback-title-max-width: 20rem;
+  --responsive-fallback-body-max-width: 22rem;
+  --responsive-fallback-actions-gap: 0.65rem;
+  --responsive-fallback-action-padding-inline: 0.82rem;
+  --responsive-fallback-action-padding-block: 0.72rem;
+  --responsive-fallback-preview-width: 22rem;
+  --responsive-fallback-preview-min-height: 21rem;
+  --responsive-fallback-preview-globe-static-preview-earth-width-calculation: calc(100vw - 4rem);
+  --responsive-fallback-preview-globe-static-preview-earth-width: 18rem;
+  --responsive-fallback-preview-globe-static-preview-card-padding-inline: 0.65rem;
+  --responsive-fallback-preview-globe-static-preview-card-padding-block: 0.58rem;
+  --responsive-weather-bar-top-calculation: calc(env(safe-area-inset-top, 0px) + 4.45rem);
+  --responsive-weather-bar-padding-inline: 0.66rem;
+  --responsive-weather-bar-padding-block: 0.62rem;
+  --responsive-weather-items-gap: 0.38rem;
+  --responsive-weather-item-min-height: 1.55rem;
+  --responsive-weather-item-padding-inline: 0.42rem;
+  --responsive-weather-item-padding-block: 0.28rem;
+  --responsive-weather-suffix-padding-inline: 0.32rem;
+  --responsive-layer-stack-top-calculation: calc(env(safe-area-inset-top, 0px) + 13.2rem);
+  --responsive-nearby-panel-top-calculation: calc(env(safe-area-inset-top, 0px) + 21.75rem);
+  --responsive-nearby-panel-width-calculation: calc(100vw - 1.5rem);
+  --responsive-nearby-panel-width: 20rem;
+  --responsive-nearby-panel-max-height-calculation: calc(100dvh - 25.8rem);
+  --responsive-nearby-panel-max-height: 13rem;
+  --responsive-chat-sheet-peek-right: 4.65rem;
+  --responsive-page-shell-maplibregl-ctrl-bottom-right-bottom-calculation: calc(env(safe-area-inset-bottom, 0px) + 5.5rem);
+}
+
 @media (min-width: 900px) {
   .profile-workspace-grid {
-    grid-template-columns: minmax(0, 1.5fr) minmax(20rem, 0.85fr);
+    grid-template-columns: minmax(0, 1.5fr) minmax(var(--responsive-workspace-grid-grid-template-columns), 0.85fr);
     align-items: stretch;
   }
 }
@@ -26,13 +105,13 @@
   }
 
   .profile-page-shell {
-    padding-top: 5rem;
-    padding-bottom: 2.75rem;
+    padding-top: var(--responsive-page-shell-padding-top);
+    padding-bottom: var(--spacing-paw-min-tap);
   }
 
   .profile-command-header {
-    gap: 0.6rem;
-    margin-bottom: 0.75rem;
+    gap: var(--responsive-command-header-gap);
+    margin-bottom: var(--spacing-paw-sm);
   }
 
   .profile-command-header h1 {
@@ -42,7 +121,7 @@
 
   .profile-command-header h1 + p {
     display: -webkit-box;
-    margin-top: 0.42rem;
+    margin-top: var(--responsive-command-header-h-one-p-margin-top);
     overflow: hidden;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
@@ -51,33 +130,33 @@
   }
 
   .profile-command-chip {
-    min-height: 2.35rem;
-    padding: 0.5rem 0.65rem;
+    min-height: var(--responsive-command-chip-min-height);
+    padding: var(--spacing-paw-xs) var(--responsive-command-chip-padding-inline);
     font-size: var(--text-paw-type-caption);
   }
 
   .profile-workspace-grid {
-    gap: 0.65rem;
-    margin-bottom: 0.85rem;
+    gap: var(--responsive-workspace-grid-gap);
+    margin-bottom: var(--responsive-workspace-grid-margin-bottom);
   }
 
   .profile-owner-card,
   .profile-readiness-card,
   .profile-form-card {
     border-radius: var(--radius-paw-md);
-    padding: 0.85rem;
+    padding: var(--responsive-form-card-padding);
   }
 
   .profile-owner-topline {
     display: grid;
-    grid-template-columns: 3.25rem minmax(0, 1fr);
+    grid-template-columns: var(--responsive-owner-topline-grid-template-columns) minmax(0, 1fr);
     align-items: center;
-    gap: 0.7rem;
+    gap: var(--responsive-owner-topline-gap);
   }
 
   .profile-owner-topline .profile-avatar {
-    width: 3.25rem;
-    height: 3.25rem;
+    width: var(--responsive-owner-topline-profile-avatar-width);
+    height: var(--responsive-owner-topline-profile-avatar-height);
     border-radius: var(--radius-paw-md);
     font-size: var(--text-paw-type-h3);
   }
@@ -87,20 +166,20 @@
   }
 
   .profile-owner-topline h2 {
-    margin-top: 0.1rem;
+    margin-top: var(--responsive-owner-topline-h-two-margin-top);
     font-size: var(--text-paw-type-h3);
     line-height: 1.12;
   }
 
   .profile-owner-topline .profile-action-button {
     grid-column: 1 / -1;
-    min-height: 2.25rem;
-    padding: 0.55rem 0.7rem;
+    min-height: var(--responsive-owner-topline-profile-action-button-min-height);
+    padding: var(--responsive-owner-topline-profile-action-button-padding-block) var(--responsive-owner-topline-profile-action-button-padding-inline);
     font-size: var(--text-paw-type-caption);
   }
 
   .profile-owner-card > .mt-5 {
-    margin-top: 0.65rem;
+    margin-top: var(--responsive-owner-card-margin-group-margin-top);
   }
 
   .profile-owner-card > .mt-5 > p {
@@ -113,12 +192,12 @@
   }
 
   .profile-meta-grid {
-    gap: 0.35rem;
-    margin-top: 0.6rem;
+    gap: var(--responsive-meta-grid-gap);
+    margin-top: var(--responsive-meta-grid-margin-top);
   }
 
   .profile-meta-chip {
-    padding: 0.3rem 0.45rem;
+    padding: var(--responsive-meta-chip-padding-block) var(--responsive-meta-chip-padding-inline);
     font-size: var(--text-paw-type-caption);
   }
 
@@ -136,14 +215,14 @@
   }
 
   .profile-readiness-card > .mt-5 {
-    margin-top: 0.65rem;
+    margin-top: var(--responsive-readiness-card-margin-group-margin-top);
   }
 
   .profile-readiness-row {
     align-items: center;
-    gap: 0.5rem;
+    gap: var(--spacing-paw-xs);
     border-radius: var(--radius-paw-sm);
-    padding: 0.52rem 0.6rem;
+    padding: var(--responsive-readiness-row-padding-block) var(--responsive-readiness-row-padding-inline);
   }
 
   .profile-readiness-row p + p {
@@ -151,24 +230,24 @@
   }
 
   .profile-readiness-value {
-    min-width: 2.35rem;
-    padding: 0.3rem 0.42rem;
+    min-width: var(--responsive-readiness-value-min-width);
+    padding: var(--responsive-readiness-value-padding-block) var(--responsive-readiness-value-padding-inline);
     font-size: var(--text-paw-type-caption);
   }
 
   .profile-install-compact {
     grid-template-columns: minmax(0, 1fr) auto;
     align-items: center;
-    gap: 0.55rem;
-    margin-top: 0.65rem;
-    padding: 0.65rem;
+    gap: var(--responsive-install-compact-gap);
+    margin-top: var(--responsive-install-compact-margin-top);
+    padding: var(--responsive-install-compact-padding);
   }
 
   .profile-install-compact .profile-action-button {
     width: auto;
-    min-width: 6.75rem;
-    min-height: 2.35rem;
-    padding: 0.58rem 0.7rem;
+    min-width: var(--responsive-install-compact-profile-action-button-min-width);
+    min-height: var(--responsive-install-compact-profile-action-button-min-height);
+    padding: var(--responsive-install-compact-profile-action-button-padding-block) var(--responsive-install-compact-profile-action-button-padding-inline);
   }
 
   .profile-install-compact p + p {
@@ -177,19 +256,19 @@
 
   .profile-readiness-card > .profile-action-button {
     width: 100%;
-    min-height: 2.35rem;
-    padding: 0.58rem 0.7rem;
+    min-height: var(--responsive-readiness-card-profile-action-button-min-height);
+    padding: var(--responsive-readiness-card-profile-action-button-padding-block) var(--responsive-readiness-card-profile-action-button-padding-inline);
   }
 
   .profile-readiness-card > .profile-action-button {
-    margin-top: 0.65rem;
+    margin-top: var(--responsive-readiness-card-profile-action-button-margin-top);
   }
 
   .profile-section-heading {
     flex-direction: row;
     align-items: center;
-    gap: 0.65rem;
-    margin-bottom: 0.65rem;
+    gap: var(--responsive-section-heading-gap);
+    margin-bottom: var(--responsive-section-heading-margin-bottom);
   }
 
   .profile-section-heading h2 {
@@ -198,13 +277,13 @@
 
   .profile-section-heading .profile-action-button {
     width: auto;
-    min-height: 2.25rem;
-    padding: 0.55rem 0.7rem;
+    min-height: var(--responsive-section-heading-profile-action-button-min-height);
+    padding: var(--responsive-section-heading-profile-action-button-padding-block) var(--responsive-section-heading-profile-action-button-padding-inline);
     white-space: nowrap;
   }
 
   .profile-empty-card {
-    padding: 1.15rem 0.9rem;
+    padding: var(--responsive-empty-card-padding-block) var(--responsive-empty-card-padding-inline);
   }
 
   .profile-page-shell-add-mode .profile-owner-card > .mt-5 > p,
@@ -214,7 +293,7 @@
   }
 
   .profile-page-shell-add-mode .profile-readiness-row {
-    padding: 0.44rem 0.55rem;
+    padding: var(--responsive-page-shell-add-mode-profile-readiness-row-padding-block) var(--responsive-page-shell-add-mode-profile-readiness-row-padding-inline);
   }
 
   .legal-hero-panel {
@@ -234,7 +313,7 @@
     align-content: start;
     gap: var(--spacing-paw-xl);
     padding:
-      calc(env(safe-area-inset-top, 0px) + 5.25rem)
+      var(--responsive-fallback-stage-padding-calculation)
       var(--spacing-paw-md)
       calc(env(safe-area-inset-bottom, 0px) + var(--spacing-paw-xxl));
   }
@@ -244,60 +323,60 @@
   }
 
   .globe-fallback-title {
-    max-width: 20rem;
+    max-width: var(--responsive-fallback-title-max-width);
     font-size: var(--text-paw-type-display);
   }
 
   .globe-fallback-body {
-    max-width: 22rem;
+    max-width: var(--responsive-fallback-body-max-width);
     font-size: var(--text-paw-type-body);
     line-height: 1.6;
   }
 
   .globe-fallback-actions {
-    gap: 0.65rem;
+    gap: var(--responsive-fallback-actions-gap);
   }
 
   .globe-fallback-action {
-    min-height: 2.75rem;
-    padding: 0.72rem 0.82rem;
+    min-height: var(--spacing-paw-min-tap);
+    padding: var(--responsive-fallback-action-padding-block) var(--responsive-fallback-action-padding-inline);
     font-size: var(--text-paw-type-caption);
   }
 
   .globe-fallback-preview {
-    width: min(100%, 22rem);
-    min-height: 21rem;
+    width: min(100%, var(--responsive-fallback-preview-width));
+    min-height: var(--responsive-fallback-preview-min-height);
   }
 
   .globe-fallback-preview .globe-static-preview-earth {
-    width: min(calc(100vw - 4rem), 18rem);
+    width: min(var(--responsive-fallback-preview-globe-static-preview-earth-width-calculation), var(--responsive-fallback-preview-globe-static-preview-earth-width));
   }
 
   .globe-fallback-preview .globe-static-preview-card {
-    padding: 0.58rem 0.65rem;
+    padding: var(--responsive-fallback-preview-globe-static-preview-card-padding-block) var(--responsive-fallback-preview-globe-static-preview-card-padding-inline);
     font-size: var(--text-paw-type-caption);
   }
 
   .globe-weather-bar {
-    top: calc(env(safe-area-inset-top, 0px) + 4.45rem);
-    left: 0.75rem;
-    right: 0.75rem;
+    top: var(--responsive-weather-bar-top-calculation);
+    left: var(--spacing-paw-sm);
+    right: var(--spacing-paw-sm);
     width: auto;
-    padding: 0.62rem 0.66rem;
+    padding: var(--responsive-weather-bar-padding-block) var(--responsive-weather-bar-padding-inline);
     transform: none;
   }
 
   .globe-weather-items {
     align-items: flex-start;
     justify-content: flex-start;
-    gap: 0.38rem;
+    gap: var(--responsive-weather-items-gap);
     font-size: var(--text-paw-type-caption);
   }
 
   .globe-weather-item {
-    min-height: 1.55rem;
+    min-height: var(--responsive-weather-item-min-height);
     max-width: none;
-    padding: 0.28rem 0.42rem;
+    padding: var(--responsive-weather-item-padding-block) var(--responsive-weather-item-padding-inline);
   }
 
   .globe-weather-item-advice {
@@ -307,33 +386,33 @@
   }
 
   .globe-weather-suffix {
-    padding-inline: 0.32rem;
+    padding-inline: var(--responsive-weather-suffix-padding-inline);
     font-size: var(--text-paw-type-caption);
   }
 
   .globe-layer-stack {
-    top: calc(env(safe-area-inset-top, 0px) + 13.2rem);
-    right: 0.75rem;
+    top: var(--responsive-layer-stack-top-calculation);
+    right: var(--spacing-paw-sm);
     flex-direction: column;
     align-items: stretch;
   }
 
   .globe-nearby-panel {
-    top: calc(env(safe-area-inset-top, 0px) + 21.75rem);
-    left: 0.75rem;
-    width: min(20rem, calc(100vw - 1.5rem));
-    max-height: min(13rem, calc(100dvh - 25.8rem));
+    top: var(--responsive-nearby-panel-top-calculation);
+    left: var(--spacing-paw-sm);
+    width: min(var(--responsive-nearby-panel-width), var(--responsive-nearby-panel-width-calculation));
+    max-height: min(var(--responsive-nearby-panel-max-height), var(--responsive-nearby-panel-max-height-calculation));
   }
 
   .globe-chat-sheet-peek {
-    left: 0.75rem;
-    right: 4.65rem;
+    left: var(--spacing-paw-sm);
+    right: var(--responsive-chat-sheet-peek-right);
     width: auto;
     transform: none;
   }
 
   .globe-page-shell .maplibregl-ctrl-bottom-right {
-    right: 0.75rem !important;
-    bottom: calc(env(safe-area-inset-bottom, 0px) + 5.5rem) !important;
+    right: var(--spacing-paw-sm) !important;
+    bottom: var(--responsive-page-shell-maplibregl-ctrl-bottom-right-bottom-calculation) !important;
   }
 }

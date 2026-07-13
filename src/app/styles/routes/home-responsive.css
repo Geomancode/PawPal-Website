@@ -1,12 +1,39 @@
 /* Owner: responsive overrides for / route workflow and homepage sections. */
 
+:root {
+  --home-responsive-workflow-step-after-right: -2rem;
+  --home-responsive-workflow-step-after-top: 4.75rem;
+  --home-responsive-workflow-step-after-width: 4rem;
+  --home-responsive-hero-globe-upgrade-min-height: 315px;
+  --home-responsive-hero-map-panel-height: 330px;
+  --home-responsive-hero-globe-card-gap: 0.55rem;
+  --home-responsive-hero-globe-card-max-width-calculation: calc(100vw - 3rem);
+  --home-responsive-hero-globe-card-padding: 0.62rem;
+  --home-responsive-hero-globe-card-route-bottom: 1.2rem;
+  --home-responsive-hero-globe-hint-upgraded-bottom: 0.35rem;
+  --home-responsive-hero-product-tag-right: 0.35rem;
+  --home-responsive-hero-product-tag-width-range: clamp(4.4rem, 20vw, 5.2rem);
+  --home-responsive-hero-product-tag-before-right: -0.9rem;
+  --home-responsive-hero-product-tag-before-height: 2.15rem;
+  --home-responsive-homepage-hero-headline-font-size: 2.75rem;
+  --home-responsive-homepage-proof-item-padding-block: 1.15rem;
+  --home-responsive-homepage-flow-step-padding: 0.65rem;
+  --home-responsive-homepage-showcase-visual-min-height: 22rem;
+  --home-responsive-homepage-phone-frame-left: 1.15rem;
+  --home-responsive-homepage-phone-frame-width-secondary: 14.5rem;
+  --home-responsive-homepage-phone-frame-width-primary: 62vw;
+  --home-responsive-homepage-tag-disc-bottom: 2.4rem;
+  --home-responsive-homepage-tag-disc-width-secondary: 6.2rem;
+  --home-responsive-homepage-tag-disc-width-primary: 28vw;
+}
+
 .workflow-step::after {
   content: "";
   position: absolute;
-  right: -2rem;
-  top: 4.75rem;
+  right: var(--home-responsive-workflow-step-after-right);
+  top: var(--home-responsive-workflow-step-after-top);
   display: none;
-  width: 4rem;
+  width: var(--home-responsive-workflow-step-after-width);
   border-top: 1px dashed var(--color-paw-border-strong);
 }
 
@@ -33,53 +60,53 @@
 
   .hero-globe-upgrade {
     --hero-upgrade-globe-size: min(calc(100vw - 4rem), 300px);
-    min-height: 315px;
+    min-height: var(--home-responsive-hero-globe-upgrade-min-height);
   }
 
   .hero-map-panel {
-    height: 330px;
+    height: var(--home-responsive-hero-map-panel-height);
     width: 92%;
   }
 
   .hero-globe-card {
-    gap: 0.55rem;
-    max-width: calc(100vw - 3rem);
-    padding: 0.62rem;
+    gap: var(--home-responsive-hero-globe-card-gap);
+    max-width: var(--home-responsive-hero-globe-card-max-width-calculation);
+    padding: var(--home-responsive-hero-globe-card-padding);
   }
 
   .hero-globe-card-live {
-    left: 0.25rem;
+    left: var(--spacing-paw-xxs);
     right: auto;
-    top: 0.5rem;
+    top: var(--spacing-paw-xs);
   }
 
   .hero-globe-card-route {
-    bottom: 1.2rem;
-    left: 0.25rem;
+    bottom: var(--home-responsive-hero-globe-card-route-bottom);
+    left: var(--spacing-paw-xxs);
   }
 
   .hero-globe-hint-upgraded {
-    bottom: 0.35rem;
+    bottom: var(--home-responsive-hero-globe-hint-upgraded-bottom);
     left: auto;
-    right: 0.25rem;
+    right: var(--spacing-paw-xxs);
     transform: none;
   }
 
   .hero-product-tag {
-    right: 0.35rem;
-    bottom: 1rem;
-    width: clamp(4.4rem, 20vw, 5.2rem);
+    right: var(--home-responsive-hero-product-tag-right);
+    bottom: var(--spacing-paw-md);
+    width: var(--home-responsive-hero-product-tag-width-range);
   }
 
   .hero-product-tag::before {
-    right: -0.9rem;
-    height: 2.15rem;
+    right: var(--home-responsive-hero-product-tag-before-right);
+    height: var(--home-responsive-hero-product-tag-before-height);
   }
 
   .homepage-hero-headline {
     max-width: 100%;
     overflow-wrap: break-word;
-    font-size: 2.75rem;
+    font-size: var(--home-responsive-homepage-hero-headline-font-size);
     line-height: 1.03;
   }
 
@@ -93,7 +120,7 @@
     min-height: 0;
     border-left: 0;
     border-top: 1px solid var(--color-paw-border);
-    padding: 1.15rem 1.25rem;
+    padding: var(--home-responsive-homepage-proof-item-padding-block) var(--spacing-paw-lg);
   }
 
   .homepage-proof-item:first-child {
@@ -102,7 +129,7 @@
 
   .homepage-flow-step {
     min-height: 0;
-    padding: 0.65rem 0;
+    padding: var(--home-responsive-homepage-flow-step-padding) 0;
   }
 
   .homepage-flow-step:not(:last-child)::after {
@@ -110,21 +137,21 @@
   }
 
   .homepage-showcase {
-    gap: 2rem;
+    gap: var(--spacing-paw-xxl);
   }
 
   .homepage-showcase-visual {
-    min-height: 22rem;
+    min-height: var(--home-responsive-homepage-showcase-visual-min-height);
   }
 
   .homepage-phone-frame {
-    left: 1.15rem;
-    width: min(62vw, 14.5rem);
+    left: var(--home-responsive-homepage-phone-frame-left);
+    width: min(var(--home-responsive-homepage-phone-frame-width-primary), var(--home-responsive-homepage-phone-frame-width-secondary));
   }
 
   .homepage-tag-disc {
-    right: 1rem;
-    bottom: 2.4rem;
-    width: min(28vw, 6.2rem);
+    right: var(--spacing-paw-md);
+    bottom: var(--home-responsive-homepage-tag-disc-bottom);
+    width: min(var(--home-responsive-homepage-tag-disc-width-primary), var(--home-responsive-homepage-tag-disc-width-secondary));
   }
 }
