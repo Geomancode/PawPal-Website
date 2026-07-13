@@ -39,6 +39,11 @@ const STEPS = [
 const REDUCED_MOTION_QUERY = "(prefers-reduced-motion: reduce)";
 const ACCOUNT_FIXTURES_ENABLED =
   process.env.NEXT_PUBLIC_P3B1G1_ACCOUNT_FIXTURES === "1";
+const CHECKOUT_METRIC_CLASSES = {
+  cartListMaxHeight: "max-h-[192px]",
+  shellSpacing: "pt-[112px] pb-[80px]",
+  secureIconSize: "h-[14px] w-[14px]",
+} as const;
 
 type CheckoutTranslation = (key: MessageKey) => string;
 
@@ -79,7 +84,7 @@ function StepIndicator({ current, t }: { current: number; t: CheckoutTranslation
   return (
     <Card
       variant="panel"
-      className="mb-10 flex items-center justify-center gap-2 overflow-x-auto p-paw-sm"
+      className="mb-paw-xxxl flex items-center justify-center gap-paw-xs overflow-x-auto p-paw-sm"
       aria-label={t("checkoutStepsAriaLabel")}
     >
       {STEPS.map((step, i) => {
@@ -92,7 +97,7 @@ function StepIndicator({ current, t }: { current: number; t: CheckoutTranslation
               ? t("checkoutStepReview")
               : t("checkoutStepPayment");
         return (
-          <div key={step.id} className="flex items-center gap-2">
+          <div key={step.id} className="flex items-center gap-paw-xs">
             <Badge
               tone={done ? "success" : active ? "primary" : "neutral"}
               variant="filter"
@@ -103,11 +108,11 @@ function StepIndicator({ current, t }: { current: number; t: CheckoutTranslation
               }
               aria-current={active ? "step" : undefined}
             >
-              <step.icon className="h-4 w-4" aria-hidden="true" />
+              <step.icon className="h-paw-md w-paw-md" aria-hidden="true" />
               <span className="hidden sm:inline">{label}</span>
             </Badge>
             {i < STEPS.length - 1 && (
-              <div className={`h-0.5 w-8 ${done ? "bg-paw-success" : "bg-paw-border"}`} />
+              <div className={`h-0.5 w-paw-xxl ${done ? "bg-paw-success" : "bg-paw-border"}`} />
             )}
           </div>
         );
@@ -140,12 +145,12 @@ function OrderSummary({ items, t }: { items: CartItem[]; t: CheckoutTranslation 
   return (
     <Card variant="panel">
       <CardContent>
-      <h3 className="mb-4 flex items-center gap-2 font-extrabold text-paw-ink">
-        <Package className="h-4 w-4 text-paw-primary" /> {t("checkoutOrderSummaryTitle")}
+      <h3 className="mb-paw-md flex items-center gap-paw-xs font-extrabold text-paw-ink">
+        <Package className="h-paw-md w-paw-md text-paw-primary" /> {t("checkoutOrderSummaryTitle")}
       </h3>
-      <div className="space-y-3 mb-4 max-h-48 overflow-y-auto">
+      <div className={`space-y-paw-sm mb-paw-md ${CHECKOUT_METRIC_CLASSES.cartListMaxHeight} overflow-y-auto`}>
         {items.map((item) => (
-          <div key={item.product.id} className="flex items-center gap-3">
+          <div key={item.product.id} className="flex items-center gap-paw-sm">
             <ProductVisual product={item.product} size="sm" />
             <div className="flex-1 min-w-0">
               <p className="truncate text-sm font-bold text-paw-ink">{item.product.name}</p>
@@ -155,16 +160,16 @@ function OrderSummary({ items, t }: { items: CartItem[]; t: CheckoutTranslation 
           </div>
         ))}
       </div>
-      <div className="space-y-2 border-t border-paw-border pt-3">
+      <div className="space-y-paw-xs border-t border-paw-border pt-paw-sm">
         <div className="flex justify-between text-sm text-paw-body"><span>{t("checkoutSubtotal")}</span><span>€{subtotal.toFixed(2)}</span></div>
         <div className="flex justify-between text-sm text-paw-body">
           <span>{t("checkoutShipping")}</span>
           <span className="font-bold text-paw-on-success-soft">{t("checkoutFree")}</span>
         </div>
-        <div className="flex justify-between border-t border-paw-border pt-2 text-lg font-extrabold text-paw-ink"><span>{t("checkoutTotal")}</span><span>€{subtotal.toFixed(2)}</span></div>
+        <div className="flex justify-between border-t border-paw-border pt-paw-xs text-lg font-extrabold text-paw-ink"><span>{t("checkoutTotal")}</span><span>€{subtotal.toFixed(2)}</span></div>
       </div>
-      <div className="mt-4 flex items-center gap-2 rounded-paw-sm border border-paw-trust/20 bg-paw-trust-soft p-3">
-        <ShieldCheck className="h-4 w-4 shrink-0 text-paw-on-trust-soft" />
+      <div className="mt-paw-md flex items-center gap-paw-xs rounded-paw-sm border border-paw-trust/20 bg-paw-trust-soft p-paw-sm">
+        <ShieldCheck className="h-paw-md w-paw-md shrink-0 text-paw-on-trust-soft" />
         <p className="text-xs text-paw-on-trust-soft">{t("checkoutSecuredByStripe")}</p>
       </div>
       </CardContent>
@@ -254,28 +259,28 @@ export default function CheckoutPage() {
   };
 
   return (
-    <div className="commerce-page-shell min-h-screen bg-paw-page pt-28 pb-20 text-paw-ink">
+    <div className={`commerce-page-shell min-h-screen bg-paw-page ${CHECKOUT_METRIC_CLASSES.shellSpacing} text-paw-ink`}>
       {loader}
-      <div className="max-w-5xl mx-auto px-4">
+      <div className="max-w-5xl mx-auto px-paw-md">
         {/* Back button */}
         <Button
           type="button"
           variant="ghost"
           size="sm"
           onClick={() => step === 1 ? router.push("/store") : setStep(step - 1)}
-          className="mb-6 -ml-2 text-paw-muted hover:text-paw-primary"
+          className="mb-paw-xl -ml-paw-xs text-paw-muted hover:text-paw-primary"
         >
-          <ArrowLeft className="w-4 h-4" /> {step === 1 ? t("checkoutBackToStore") : t("checkoutBack")}
+          <ArrowLeft className="w-paw-md h-paw-md" /> {step === 1 ? t("checkoutBackToStore") : t("checkoutBack")}
         </Button>
 
         <Card
           variant="hero"
-          className="mb-8 flex flex-col items-start justify-between gap-5 p-paw-xl sm:flex-row sm:items-end"
+          className="mb-paw-xxl flex flex-col items-start justify-between gap-paw-lg p-paw-xl sm:flex-row sm:items-end"
         >
           <div>
             <p className="text-sm font-bold uppercase tracking-[0.18em] text-paw-primary">{t("checkoutShopEyebrow")}</p>
-            <h1 className="mt-2 text-3xl font-extrabold text-paw-ink sm:text-5xl">{t("checkoutTitle")}</h1>
-            <p className="mt-3 max-w-2xl text-sm leading-6 text-paw-body sm:text-base">
+            <h1 className="mt-paw-xs text-3xl font-extrabold text-paw-ink sm:text-5xl">{t("checkoutTitle")}</h1>
+            <p className="mt-paw-sm max-w-2xl text-sm leading-6 text-paw-body sm:text-base">
               {t("checkoutDescription")}
             </p>
           </div>
@@ -291,7 +296,7 @@ export default function CheckoutPage() {
                 elevation="none"
                 className="flex items-center gap-paw-sm p-paw-sm text-sm font-black text-paw-body"
               >
-                <item.icon className="h-4 w-4" aria-hidden="true" />
+                <item.icon className="h-paw-md w-paw-md" aria-hidden="true" />
                 {item.label}
               </Card>
             ))}
@@ -300,7 +305,7 @@ export default function CheckoutPage() {
 
         <StepIndicator current={step} t={t} />
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-paw-xxl">
           {/* ── Main Content ── */}
           <div className="lg:col-span-2">
             <>
@@ -311,11 +316,11 @@ export default function CheckoutPage() {
                   {...checkoutStepMotion(shouldReduceMotion)}
                 >
                   <Card variant="panel">
-                    <CardContent className="p-8">
-                  <h2 className="mb-6 flex items-center gap-2 text-2xl font-extrabold text-paw-ink">
-                    <MapPin className="h-5 w-5 text-paw-primary" /> {t("checkoutShippingInformation")}
+                    <CardContent className="p-paw-xxl">
+                  <h2 className="mb-paw-xl flex items-center gap-paw-xs text-2xl font-extrabold text-paw-ink">
+                    <MapPin className="h-paw-lg w-paw-lg text-paw-primary" /> {t("checkoutShippingInformation")}
                   </h2>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-paw-md">
                     <div className="sm:col-span-2">
                       <Field label={t("checkoutFullNameLabel")} value={shipping.fullName} onChange={(v) => setShipping({ ...shipping, fullName: v })} placeholder={t("checkoutFullNamePlaceholder")} />
                     </div>
@@ -332,13 +337,13 @@ export default function CheckoutPage() {
                   </div>
 
                   {!emailLooksValid && shipping.email && (
-                    <StatusMessage tone="warning" variant="compact" className="mt-5" title={t("checkoutEmailWarningTitle")}>
+                    <StatusMessage tone="warning" variant="compact" className="mt-paw-lg" title={t("checkoutEmailWarningTitle")}>
                       {t("checkoutEmailWarningDescription")}
                     </StatusMessage>
                   )}
 
-                  <div className="mt-6 flex items-center gap-3 rounded-paw-md border border-paw-success/20 bg-paw-success-soft p-4">
-                    <Truck className="h-5 w-5 shrink-0 text-paw-on-success-soft" />
+                  <div className="mt-paw-xl flex items-center gap-paw-sm rounded-paw-md border border-paw-success/20 bg-paw-success-soft p-paw-md">
+                    <Truck className="h-paw-lg w-paw-lg shrink-0 text-paw-on-success-soft" />
                     <p className="text-sm text-paw-on-success-soft">{t("checkoutDeliveryEstimate")}</p>
                   </div>
 
@@ -346,9 +351,9 @@ export default function CheckoutPage() {
                     whileTap={shouldReduceMotion ? undefined : { scale: 0.97 }}
                     disabled={!canProceedShipping}
                     onClick={() => setStep(2)}
-                    className={buttonClassName({ size: "lg", className: "mt-6 w-full text-lg" })}
+                    className={buttonClassName({ size: "lg", className: "mt-paw-xl w-full text-lg" })}
                   >
-                    {t("checkoutReviewOrderButton")} <ArrowRight className="w-5 h-5" />
+                    {t("checkoutReviewOrderButton")} <ArrowRight className="w-paw-lg h-paw-lg" />
                   </motion.button>
                     </CardContent>
                   </Card>
@@ -362,14 +367,14 @@ export default function CheckoutPage() {
                   {...checkoutStepMotion(shouldReduceMotion)}
                 >
                   <Card variant="panel">
-                    <CardContent className="p-8">
-                  <h2 className="mb-6 flex items-center gap-2 text-2xl font-extrabold text-paw-ink">
-                    <Package className="h-5 w-5 text-paw-primary" /> {t("checkoutReviewTitle")}
+                    <CardContent className="p-paw-xxl">
+                  <h2 className="mb-paw-xl flex items-center gap-paw-xs text-2xl font-extrabold text-paw-ink">
+                    <Package className="h-paw-lg w-paw-lg text-paw-primary" /> {t("checkoutReviewTitle")}
                   </h2>
 
                   {/* Shipping summary */}
-                  <div className="mb-6 rounded-paw-md border border-paw-border bg-paw-panel-subtle p-4">
-                    <h4 className="mb-2 flex items-center gap-2 font-bold text-paw-ink"><MapPin className="h-4 w-4 text-paw-primary" /> {t("checkoutShippingTo")}</h4>
+                  <div className="mb-paw-xl rounded-paw-md border border-paw-border bg-paw-panel-subtle p-paw-md">
+                    <h4 className="mb-paw-xs flex items-center gap-paw-xs font-bold text-paw-ink"><MapPin className="h-paw-md w-paw-md text-paw-primary" /> {t("checkoutShippingTo")}</h4>
                     <p className="text-sm text-paw-body">{shipping.fullName}</p>
                     <p className="text-sm text-paw-muted">{shipping.address}</p>
                     <p className="text-sm text-paw-muted">{shipping.city}, {shipping.zipCode}, {shipping.country}</p>
@@ -377,11 +382,11 @@ export default function CheckoutPage() {
                   </div>
 
                   {/* Items */}
-                  <div className="mb-6">
-                    <h4 className="mb-3 flex items-center gap-2 font-bold text-paw-ink"><Package className="h-4 w-4 text-paw-primary" /> {t("checkoutItems")} ({cart.length})</h4>
-                    <div className="space-y-2">
+                  <div className="mb-paw-xl">
+                    <h4 className="mb-paw-sm flex items-center gap-paw-xs font-bold text-paw-ink"><Package className="h-paw-md w-paw-md text-paw-primary" /> {t("checkoutItems")} ({cart.length})</h4>
+                    <div className="space-y-paw-xs">
                       {cart.map((item) => (
-                        <div key={item.product.id} className="flex items-center gap-3 rounded-paw-sm bg-paw-panel-subtle p-3">
+                        <div key={item.product.id} className="flex items-center gap-paw-sm rounded-paw-sm bg-paw-panel-subtle p-paw-sm">
                           <ProductVisual product={item.product} size="sm" />
                           <div className="flex-1">
                             <p className="text-sm font-bold text-paw-ink">{item.product.name}</p>
@@ -394,14 +399,14 @@ export default function CheckoutPage() {
                   </div>
 
                   {/* Total */}
-                  <div className="mb-6 space-y-2 border-t border-paw-border pt-4">
+                  <div className="mb-paw-xl space-y-paw-xs border-t border-paw-border pt-paw-md">
                     <div className="flex justify-between text-sm text-paw-body"><span>{t("checkoutSubtotal")}</span><span>€{subtotal.toFixed(2)}</span></div>
                     <div className="flex justify-between text-sm text-paw-body"><span>{t("checkoutShipping")}</span><span className="font-bold text-paw-on-success-soft">{t("checkoutFree")}</span></div>
-                    <div className="flex justify-between border-t border-paw-border pt-2 text-xl font-extrabold text-paw-ink"><span>{t("checkoutTotal")}</span><span>€{subtotal.toFixed(2)}</span></div>
+                    <div className="flex justify-between border-t border-paw-border pt-paw-xs text-xl font-extrabold text-paw-ink"><span>{t("checkoutTotal")}</span><span>€{subtotal.toFixed(2)}</span></div>
                   </div>
 
                   {/* Stripe Pay Button */}
-                  <div className="space-y-3">
+                  <div className="space-y-paw-sm">
                     {checkoutError && (
                       <StatusMessage tone="critical" title={t("checkoutPaymentStartErrorTitle")}>
                         {checkoutError}
@@ -420,28 +425,28 @@ export default function CheckoutPage() {
                             animate={shouldReduceMotion ? { rotate: 0 } : { rotate: 360 }}
                             transition={shouldReduceMotion ? { duration: 0 } : { repeat: Infinity, duration: 1, ease: "linear" }}
                           >
-                            <Loader2 className="w-5 h-5" />
+                            <Loader2 className="w-paw-lg h-paw-lg" />
                           </motion.div>
                           {t("checkoutRedirectingToStripe")}
                         </>
                       ) : (
                         <>
-                          <Lock className="w-5 h-5" />
+                          <Lock className="w-paw-lg h-paw-lg" />
                           {t("checkoutPayPrefix")} €{subtotal.toFixed(2)} {t("checkoutWithStripeSuffix")}
-                          <ExternalLink className="w-4 h-4 opacity-60" />
+                          <ExternalLink className="w-paw-md h-paw-md opacity-60" />
                         </>
                       )}
                     </motion.button>
 
-                    <div className="flex items-center justify-center gap-2 text-xs text-paw-muted">
-                      <ShieldCheck className="w-3.5 h-3.5" />
+                    <div className="flex items-center justify-center gap-paw-xs text-xs text-paw-muted">
+                      <ShieldCheck className={CHECKOUT_METRIC_CLASSES.secureIconSize} />
                       <span>{t("checkoutSecurePaymentNote")}</span>
                     </div>
 
                     {/* Stripe badge */}
-                    <div className="flex items-center justify-center gap-4 pt-2">
+                    <div className="flex items-center justify-center gap-paw-md pt-paw-xs">
                       {["Visa", "Mastercard", "Amex", "Apple Pay"].map((brand) => (
-                        <span key={brand} className="rounded-paw-sm border border-paw-outline-variant bg-paw-panel-subtle px-2 py-1 text-xs font-bold text-paw-muted">{brand}</span>
+                        <span key={brand} className="rounded-paw-sm border border-paw-outline-variant bg-paw-panel-subtle px-paw-xs py-paw-xxs text-xs font-bold text-paw-muted">{brand}</span>
                       ))}
                     </div>
                   </div>

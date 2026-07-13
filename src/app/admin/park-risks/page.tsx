@@ -163,6 +163,17 @@ const statusLabelKeys: Record<RiskStatus, MessageKey> = {
 
 const riskTypeOptions = Object.entries(riskTypeLabelKeys) as [RiskType, MessageKey][];
 const severityOptions = Object.entries(severityLabelKeys) as [Severity, MessageKey][];
+const PARK_RISK_METRIC_CLASSES = {
+  loadingShellTopSpacing: "pt-[96px]",
+  adminShellTopSpacing: "pt-[112px]",
+  gateIconSize: "h-[48px] w-[48px]",
+  loadingPanelMinHeight: "min-h-[288px]",
+  loadingSpinnerSize: "h-[28px] w-[28px]",
+  fieldStackSpacing: "space-y-[6px]",
+  filterPaddingBlock: "py-[6px]",
+  inlineLinkGap: "gap-[6px]",
+  inlineLinkIconSize: "h-[14px] w-[14px]",
+} as const;
 
 const initialOfficialForm: OfficialRiskForm = {
   placeId: "",
@@ -565,8 +576,8 @@ export default function ParkRiskAdminPage() {
     return (
       <>
         {loader}
-        <div className="flex min-h-screen items-center justify-center bg-paw-page pt-24 text-paw-ink">
-          <Loader2 className="h-8 w-8 animate-spin text-paw-primary" aria-hidden="true" />
+        <div className={`flex min-h-screen items-center justify-center bg-paw-page ${PARK_RISK_METRIC_CLASSES.loadingShellTopSpacing} text-paw-ink`}>
+          <Loader2 className="h-paw-xxl w-paw-xxl animate-spin text-paw-primary" aria-hidden="true" />
         </div>
       </>
     );
@@ -577,7 +588,7 @@ export default function ParkRiskAdminPage() {
       <>
         {loader}
         <PageShell
-        className="admin-page-shell admin-gate-shell min-h-screen pt-28"
+        className={`admin-page-shell admin-gate-shell min-h-screen ${PARK_RISK_METRIC_CLASSES.adminShellTopSpacing}`}
         eyebrow={t("adminParkRisksEyebrow")}
         title={t("adminParkRisksSignInRequired")}
         description={t("adminParkRisksSignInDescription")}
@@ -588,14 +599,14 @@ export default function ParkRiskAdminPage() {
         }
       >
         <section className="admin-gate-panel text-center">
-          <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-paw-pill bg-paw-primary-soft text-paw-on-primary-soft">
-            <ShieldCheck className="h-5 w-5" aria-hidden="true" />
+          <div className={`mx-auto flex ${PARK_RISK_METRIC_CLASSES.gateIconSize} items-center justify-center rounded-paw-pill bg-paw-primary-soft text-paw-on-primary-soft`}>
+            <ShieldCheck className="h-paw-lg w-paw-lg" aria-hidden="true" />
           </div>
           <div>
             <p className="text-lg font-extrabold text-paw-ink">
               {t("adminParkRisksNoActiveSession")}
             </p>
-            <p className="mt-2 text-sm leading-6 text-paw-body">
+            <p className="mt-paw-xs text-sm leading-6 text-paw-body">
               {t("adminParkRisksReturnAfterSignIn")}
             </p>
           </div>
@@ -610,26 +621,26 @@ export default function ParkRiskAdminPage() {
       <>
         {loader}
         <PageShell
-        className="admin-page-shell admin-gate-shell min-h-screen pt-28"
+        className={`admin-page-shell admin-gate-shell min-h-screen ${PARK_RISK_METRIC_CLASSES.adminShellTopSpacing}`}
         eyebrow={t("adminParkRisksEyebrow")}
         title={t("adminParkRisksAccessRestricted")}
         description={t("adminParkRisksAccessRestrictedDescription")}
         actions={
           <Button type="button" variant="secondary" onClick={() => router.push(path("/"))}>
-            <ArrowLeft className="h-4 w-4" aria-hidden="true" />
+            <ArrowLeft className="h-paw-md w-paw-md" aria-hidden="true" />
             {t("adminParkRisksHome")}
           </Button>
         }
       >
         <section className="admin-gate-panel text-center">
-          <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-paw-pill bg-paw-primary-soft text-paw-on-primary-soft">
-            <ShieldCheck className="h-5 w-5" aria-hidden="true" />
+          <div className={`mx-auto flex ${PARK_RISK_METRIC_CLASSES.gateIconSize} items-center justify-center rounded-paw-pill bg-paw-primary-soft text-paw-on-primary-soft`}>
+            <ShieldCheck className="h-paw-lg w-paw-lg" aria-hidden="true" />
           </div>
           <div>
             <p className="text-lg font-extrabold text-paw-ink">
               {t("adminParkRisksNotAdmin")}
             </p>
-            <p className="mt-2 text-sm leading-6 text-paw-body">
+            <p className="mt-paw-xs text-sm leading-6 text-paw-body">
               {user?.email || t("adminParkRisksNotAuthorized")}
             </p>
           </div>
@@ -643,26 +654,26 @@ export default function ParkRiskAdminPage() {
     <>
       {loader}
       <PageShell
-      className="admin-page-shell min-h-screen pt-28"
+      className={`admin-page-shell min-h-screen ${PARK_RISK_METRIC_CLASSES.adminShellTopSpacing}`}
       eyebrow={t("adminParkRisksEyebrow")}
       title={t("adminParkRisksQueueTitle")}
       description={t("adminParkRisksQueueDescription")}
       actions={
         <>
           <Button type="button" variant="secondary" onClick={() => router.push(path("/"))}>
-            <ArrowLeft className="h-4 w-4" aria-hidden="true" />
+            <ArrowLeft className="h-paw-md w-paw-md" aria-hidden="true" />
             {t("adminParkRisksHome")}
           </Button>
           <Button type="button" variant="trust" onClick={refreshReports} disabled={loadingReports}>
-            <RefreshCw className={loadingReports ? "h-4 w-4 animate-spin" : "h-4 w-4"} aria-hidden="true" />
+            <RefreshCw className={loadingReports ? "h-paw-md w-paw-md animate-spin" : "h-paw-md w-paw-md"} aria-hidden="true" />
             {t("adminParkRisksRefresh")}
           </Button>
         </>
       }
     >
-      <div className="grid grid-cols-1 gap-6 xl:grid-cols-[minmax(0,1.35fr)_minmax(360px,0.65fr)]">
-        <div className="space-y-6">
-          <div className="grid grid-cols-2 gap-3 md:grid-cols-5">
+      <div className="grid grid-cols-1 gap-paw-xl xl:grid-cols-[minmax(0,1.35fr)_minmax(360px,0.65fr)]">
+        <div className="space-y-paw-xl">
+          <div className="grid grid-cols-2 gap-paw-sm md:grid-cols-5">
             <QueueMetric label={t("adminParkRisksQueueMetric")} value={counts.queue} tone="warning" />
             <QueueMetric label={t("adminParkRisksReadyMetric")} value={counts.ready_for_review} tone="danger" />
             <QueueMetric label={t("adminParkRisksWaitingMetric")} value={counts.pending_confirmation} tone="trust" />
@@ -677,19 +688,19 @@ export default function ParkRiskAdminPage() {
           )}
 
           {queueFallbackReason && (
-            <div className="rounded-paw-md border border-paw-warning/20 bg-paw-warning-soft px-4 py-3 text-sm font-bold leading-6 text-paw-on-warning-soft">
+            <div className="rounded-paw-md border border-paw-warning/20 bg-paw-warning-soft px-paw-md py-paw-sm text-sm font-bold leading-6 text-paw-on-warning-soft">
               {t("adminParkRisksFallbackPrefix")} {queueFallbackReason}
             </div>
           )}
 
           <Card>
-            <CardContent className="space-y-4">
-              <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
-                <div className="flex items-center gap-2">
-                  <ClipboardList className="h-5 w-5 text-paw-primary" aria-hidden="true" />
+            <CardContent className="space-y-paw-md">
+              <div className="flex flex-col gap-paw-sm md:flex-row md:items-center md:justify-between">
+                <div className="flex items-center gap-paw-xs">
+                  <ClipboardList className="h-paw-lg w-paw-lg text-paw-primary" aria-hidden="true" />
                   <h2 className="text-xl font-extrabold text-paw-ink">{t("adminParkRisksReports")}</h2>
                 </div>
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-paw-xs">
                   <FilterButton active={statusFilter === "queue"} onClick={() => setStatusFilter("queue")}>
                     {t("adminParkRisksQueueMetric")}
                   </FilterButton>
@@ -709,8 +720,8 @@ export default function ParkRiskAdminPage() {
               </div>
 
               {loadingReports ? (
-                <div className="flex min-h-72 items-center justify-center">
-                  <Loader2 className="h-7 w-7 animate-spin text-paw-primary" aria-hidden="true" />
+                <div className={`flex ${PARK_RISK_METRIC_CLASSES.loadingPanelMinHeight} items-center justify-center`}>
+                  <Loader2 className={`${PARK_RISK_METRIC_CLASSES.loadingSpinnerSize} animate-spin text-paw-primary`} aria-hidden="true" />
                 </div>
               ) : filteredReports.length === 0 ? (
                 <EmptyState
@@ -719,7 +730,7 @@ export default function ParkRiskAdminPage() {
                   description={t("adminParkRisksEmptyDescription")}
                 />
               ) : (
-                <div className="space-y-4">
+                <div className="space-y-paw-md">
                   {filteredReports.map((report) => (
                     <RiskReportCard
                       key={report.id}
@@ -744,9 +755,9 @@ export default function ParkRiskAdminPage() {
 
         <Card>
           <CardContent>
-            <form onSubmit={handleCreateOfficialRisk} className="space-y-5">
-              <div className="flex items-center gap-2">
-                <PlusCircle className="h-5 w-5 text-paw-trust" aria-hidden="true" />
+            <form onSubmit={handleCreateOfficialRisk} className="space-y-paw-lg">
+              <div className="flex items-center gap-paw-xs">
+                <PlusCircle className="h-paw-lg w-paw-lg text-paw-trust" aria-hidden="true" />
                 <h2 className="text-xl font-extrabold text-paw-ink">{t("adminParkRisksOfficialSource")}</h2>
               </div>
               <p className="text-sm leading-6 text-paw-body">
@@ -774,25 +785,25 @@ export default function ParkRiskAdminPage() {
                 placeholder={t("adminParkRisksAddressPlaceholder")}
               />
 
-              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                <label className="block space-y-1.5">
+              <div className="grid grid-cols-1 gap-paw-md sm:grid-cols-2">
+                <label className={`block ${PARK_RISK_METRIC_CLASSES.fieldStackSpacing}`}>
                   <span className="block text-sm font-bold text-paw-ink">{t("adminParkRisksRiskType")}</span>
                   <select
                     value={officialForm.riskType}
                     onChange={(event) => updateOfficialForm("riskType", event.target.value as RiskType)}
-                    className="h-11 w-full rounded-paw-md border border-paw-border bg-paw-panel px-3 text-sm font-bold text-paw-ink shadow-sm focus-visible:border-paw-trust focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-paw-trust/20"
+                    className="h-paw-min-tap w-full rounded-paw-md border border-paw-border bg-paw-panel px-paw-sm text-sm font-bold text-paw-ink shadow-sm focus-visible:border-paw-trust focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-paw-trust/20"
                   >
                     {riskTypeOptions.map(([value, labelKey]) => (
                       <option key={value} value={value}>{t(labelKey)}</option>
                     ))}
                   </select>
                 </label>
-                <label className="block space-y-1.5">
+                <label className={`block ${PARK_RISK_METRIC_CLASSES.fieldStackSpacing}`}>
                   <span className="block text-sm font-bold text-paw-ink">{t("adminParkRisksSeverity")}</span>
                   <select
                     value={officialForm.severity}
                     onChange={(event) => updateOfficialForm("severity", event.target.value as Severity)}
-                    className="h-11 w-full rounded-paw-md border border-paw-border bg-paw-panel px-3 text-sm font-bold text-paw-ink shadow-sm focus-visible:border-paw-trust focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-paw-trust/20"
+                    className="h-paw-min-tap w-full rounded-paw-md border border-paw-border bg-paw-panel px-paw-sm text-sm font-bold text-paw-ink shadow-sm focus-visible:border-paw-trust focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-paw-trust/20"
                   >
                     {severityOptions.map(([value, labelKey]) => (
                       <option key={value} value={value}>{t(labelKey)}</option>
@@ -808,13 +819,13 @@ export default function ParkRiskAdminPage() {
                 placeholder={t("adminParkRisksTitlePlaceholder")}
                 required
               />
-              <label className="block space-y-1.5">
+              <label className={`block ${PARK_RISK_METRIC_CLASSES.fieldStackSpacing}`}>
                 <span className="block text-sm font-bold text-paw-ink">{t("adminParkRisksDescriptionLabel")}</span>
                 <textarea
                   value={officialForm.description}
                   onChange={(event) => updateOfficialForm("description", event.target.value)}
                   rows={5}
-                  className="w-full rounded-paw-md border border-paw-border bg-paw-panel px-3 py-3 text-sm text-paw-ink shadow-sm transition placeholder:text-paw-muted focus-visible:border-paw-trust focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-paw-trust/20"
+                  className="w-full rounded-paw-md border border-paw-border bg-paw-panel px-paw-sm py-paw-sm text-sm text-paw-ink shadow-sm transition placeholder:text-paw-muted focus-visible:border-paw-trust focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-paw-trust/20"
                   placeholder={t("adminParkRisksDescriptionPlaceholder")}
                   required
                 />
@@ -849,9 +860,9 @@ export default function ParkRiskAdminPage() {
                 className="w-full"
               >
                 {creatingOfficial ? (
-                  <Loader2 className="h-5 w-5 animate-spin" aria-hidden="true" />
+                  <Loader2 className="h-paw-lg w-paw-lg animate-spin" aria-hidden="true" />
                 ) : (
-                  <ShieldCheck className="h-5 w-5" aria-hidden="true" />
+                  <ShieldCheck className="h-paw-lg w-paw-lg" aria-hidden="true" />
                 )}
                 {queueReadOnly
                   ? t("adminParkRisksPreviewOnly")
@@ -877,11 +888,11 @@ function QueueMetric({
 }) {
   return (
     <Card>
-      <CardContent className="p-4">
+      <CardContent className="p-paw-md">
         <p className="text-xs font-extrabold uppercase tracking-wide text-paw-muted">
           {label}
         </p>
-        <div className="mt-2 flex items-center justify-between gap-3">
+        <div className="mt-paw-xs flex items-center justify-between gap-paw-sm">
           <p className="text-2xl font-extrabold text-paw-ink">{value}</p>
           <Badge tone={tone === "danger" ? "critical" : tone}>{label}</Badge>
         </div>
@@ -903,7 +914,7 @@ function FilterButton({
     <button
       type="button"
       onClick={onClick}
-      className={`rounded-paw-sm border px-3 py-1.5 text-xs font-extrabold transition ${
+      className={`rounded-paw-sm border px-paw-sm ${PARK_RISK_METRIC_CLASSES.filterPaddingBlock} text-xs font-extrabold transition ${
         active
           ? "border-paw-primary/30 bg-paw-primary-soft text-paw-on-primary-soft"
           : "border-paw-border bg-paw-panel-subtle text-paw-body hover:border-paw-primary/30"
@@ -941,10 +952,10 @@ function RiskReportCard({
       report.status === "pending_confirmation");
 
   return (
-    <div className="rounded-paw-md border border-paw-border bg-paw-panel-subtle p-4">
-      <div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
-        <div className="min-w-0 space-y-2">
-          <div className="flex flex-wrap items-center gap-2">
+    <div className="rounded-paw-md border border-paw-border bg-paw-panel-subtle p-paw-md">
+      <div className="flex flex-col gap-paw-sm md:flex-row md:items-start md:justify-between">
+        <div className="min-w-0 space-y-paw-xs">
+          <div className="flex flex-wrap items-center gap-paw-xs">
             <Badge tone={statusTone(report.status)}>{t(statusLabelKeys[report.status])}</Badge>
             <Badge tone={severityTone(report.severity)}>{t(severityLabelKeys[report.severity])}</Badge>
             <Badge tone={report.source_type === "official" ? "success" : "trust"}>
@@ -967,23 +978,23 @@ function RiskReportCard({
         </div>
       </div>
 
-      <div className="mt-4 grid grid-cols-1 gap-4 lg:grid-cols-[minmax(0,1fr)_280px]">
-        <div className="space-y-3">
+      <div className="mt-paw-md grid grid-cols-1 gap-paw-md lg:grid-cols-[minmax(0,1fr)_280px]">
+        <div className="space-y-paw-sm">
           <p className="text-sm leading-6 text-paw-body">{report.description}</p>
           {report.review_note && (
-            <div className="rounded-paw-sm border border-paw-border bg-paw-panel px-3 py-2 text-sm font-semibold text-paw-body">
+            <div className="rounded-paw-sm border border-paw-border bg-paw-panel px-paw-sm py-paw-xs text-sm font-semibold text-paw-body">
               {t("adminParkRisksReviewNoteColon")} {report.review_note}
             </div>
           )}
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-paw-xs">
             {report.evidence_url && (
               <a
                 href={report.evidence_url}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center gap-1.5 text-xs font-extrabold text-paw-trust hover:underline"
+                className={`inline-flex items-center ${PARK_RISK_METRIC_CLASSES.inlineLinkGap} text-xs font-extrabold text-paw-trust hover:underline`}
               >
-                <ExternalLink className="h-3.5 w-3.5" aria-hidden="true" />
+                <ExternalLink className={PARK_RISK_METRIC_CLASSES.inlineLinkIconSize} aria-hidden="true" />
                 {t("adminParkRisksEvidence")}
               </a>
             )}
@@ -992,28 +1003,28 @@ function RiskReportCard({
                 href={report.official_source_url}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center gap-1.5 text-xs font-extrabold text-paw-success hover:underline"
+                className={`inline-flex items-center ${PARK_RISK_METRIC_CLASSES.inlineLinkGap} text-xs font-extrabold text-paw-success hover:underline`}
               >
-                <ExternalLink className="h-3.5 w-3.5" aria-hidden="true" />
+                <ExternalLink className={PARK_RISK_METRIC_CLASSES.inlineLinkIconSize} aria-hidden="true" />
                 {report.official_source_name || t("adminParkRisksOfficialSource")}
               </a>
             )}
           </div>
         </div>
 
-        <div className="rounded-paw-sm border border-paw-border bg-paw-panel p-3">
-          <div className="flex items-start gap-2">
-            <MapPin className="mt-0.5 h-4 w-4 flex-none text-paw-primary" aria-hidden="true" />
+        <div className="rounded-paw-sm border border-paw-border bg-paw-panel p-paw-sm">
+          <div className="flex items-start gap-paw-xs">
+            <MapPin className="mt-0.5 h-paw-md w-paw-md flex-none text-paw-primary" aria-hidden="true" />
             <div className="min-w-0">
               <p className="truncate text-sm font-extrabold text-paw-ink">
                 {report.place_name}
               </p>
               {report.place_address && (
-                <p className="mt-1 text-xs leading-5 text-paw-muted">
+                <p className="mt-paw-xxs text-xs leading-5 text-paw-muted">
                   {report.place_address}
                 </p>
               )}
-              <p className="mt-2 break-all text-xs font-semibold text-paw-muted">
+              <p className="mt-paw-xs break-all text-xs font-semibold text-paw-muted">
                 {report.place_id}
               </p>
             </div>
@@ -1022,31 +1033,31 @@ function RiskReportCard({
       </div>
 
       {canReview && (
-        <div className="mt-4 space-y-3 border-t border-paw-border pt-4">
-          <label className="block space-y-1.5">
+        <div className="mt-paw-md space-y-paw-sm border-t border-paw-border pt-paw-md">
+          <label className={`block ${PARK_RISK_METRIC_CLASSES.fieldStackSpacing}`}>
             <span className="block text-sm font-bold text-paw-ink">{t("adminParkRisksReviewNote")}</span>
             <textarea
               value={note}
               onChange={(event) => onNoteChange(event.target.value)}
               rows={2}
-              className="w-full rounded-paw-md border border-paw-border bg-paw-panel px-3 py-2 text-sm text-paw-ink shadow-sm transition placeholder:text-paw-muted focus-visible:border-paw-trust focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-paw-trust/20"
+              className="w-full rounded-paw-md border border-paw-border bg-paw-panel px-paw-sm py-paw-xs text-sm text-paw-ink shadow-sm transition placeholder:text-paw-muted focus-visible:border-paw-trust focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-paw-trust/20"
               placeholder={t("adminParkRisksReviewNotePlaceholder")}
             />
           </label>
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-paw-xs">
             <Button type="button" variant="trust" onClick={onApprove} disabled={busy}>
               {busy ? (
-                <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />
+                <Loader2 className="h-paw-md w-paw-md animate-spin" aria-hidden="true" />
               ) : (
-                <CheckCircle2 className="h-4 w-4" aria-hidden="true" />
+                <CheckCircle2 className="h-paw-md w-paw-md" aria-hidden="true" />
               )}
               {t("adminParkRisksApprove")}
             </Button>
             <Button type="button" variant="critical" onClick={onReject} disabled={busy}>
               {busy ? (
-                <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />
+                <Loader2 className="h-paw-md w-paw-md animate-spin" aria-hidden="true" />
               ) : (
-                <XCircle className="h-4 w-4" aria-hidden="true" />
+                <XCircle className="h-paw-md w-paw-md" aria-hidden="true" />
               )}
               {t("adminParkRisksReject")}
             </Button>
@@ -1056,7 +1067,7 @@ function RiskReportCard({
       {readOnly &&
         (report.status === "ready_for_review" ||
           report.status === "pending_confirmation") && (
-          <div className="mt-4 rounded-paw-sm border border-paw-warning/20 bg-paw-warning-soft px-3 py-2 text-sm font-bold text-paw-on-warning-soft">
+          <div className="mt-paw-md rounded-paw-sm border border-paw-warning/20 bg-paw-warning-soft px-paw-sm py-paw-xs text-sm font-bold text-paw-on-warning-soft">
             {t("adminParkRisksReviewActionsReadOnly")}
           </div>
         )}

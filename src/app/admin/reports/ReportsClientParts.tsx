@@ -101,6 +101,11 @@ const actionLabelKeys: Record<ReportResolutionAction, MessageKey> = {
 
 const ACTION_REFRESH_DELAY_MS = 600;
 const SESSION_REDIRECT_DELAY_MS = 1200;
+const REPORT_METRIC_CLASSES = {
+  shellTopSpacing: "pt-[112px]",
+  previewMediaSize: "h-[112px] md:h-[112px] md:w-[112px]",
+  emptyStateMinHeight: "min-h-[256px]",
+} as const;
 const ADMIN_FIXTURES_ENABLED =
   process.env.NEXT_PUBLIC_P3B1G2H_ADMIN_FIXTURES === "1";
 
@@ -120,11 +125,11 @@ export default function ReportsClientParts({
     <ReportsI18nContext.Provider value={i18nValue}>
       {loader}
       <PageShell
-        className={`admin-page-shell min-h-screen pt-28 ${state.kind === "ready" ? "" : "admin-gate-shell"}`}
+        className={`admin-page-shell min-h-screen ${REPORT_METRIC_CLASSES.shellTopSpacing} ${state.kind === "ready" ? "" : "admin-gate-shell"}`}
         headerClassName="admin-shell-header"
         eyebrow={
-          <span className="inline-flex items-center gap-2">
-            <ShieldCheck className="h-4 w-4" aria-hidden="true" />
+          <span className="inline-flex items-center gap-paw-xs">
+            <ShieldCheck className="h-paw-md w-paw-md" aria-hidden="true" />
             {t("adminReportsEyebrow")}
           </span>
         }
@@ -136,7 +141,7 @@ export default function ReportsClientParts({
               href={i18nValue.path("/")}
               className={buttonClassName({ variant: "secondary" })}
             >
-              <ArrowLeft className="h-4 w-4" aria-hidden="true" />
+              <ArrowLeft className="h-paw-md w-paw-md" aria-hidden="true" />
               {t("adminReportsHome")}
             </Link>
             <Link
@@ -309,7 +314,7 @@ function SessionGate({
         <p className="text-lg font-extrabold text-paw-ink">
           {t("adminReportsSignInRequired")}
         </p>
-        <p className="mt-2 text-sm leading-6 text-paw-body">
+        <p className="mt-paw-xs text-sm leading-6 text-paw-body">
           {message ??
             t("adminReportsSignInDescription")}
         </p>
@@ -439,8 +444,8 @@ function ReportsQueue({
   }
 
   return (
-    <div className="space-y-6">
-      <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
+    <div className="space-y-paw-xl">
+      <div className="grid grid-cols-2 gap-paw-sm lg:grid-cols-4">
         <QueueMetric label={t("adminReportsPending")} value={displayPayload.total} tone="warning" />
         <QueueMetric label={t("adminReportsPosts")} value={counts.post} tone="primary" />
         <QueueMetric label={t("adminReportsComments")} value={counts.comment} tone="trust" />
@@ -454,13 +459,13 @@ function ReportsQueue({
       )}
 
       <Card className="admin-card-upgraded">
-        <CardContent className="space-y-5">
-          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+        <CardContent className="space-y-paw-lg">
+          <div className="flex flex-col gap-paw-sm sm:flex-row sm:items-center sm:justify-between">
             <div>
               <h2 className="text-xl font-extrabold text-paw-ink">
                 {t("adminReportsPendingQueue")}
               </h2>
-              <p className="mt-1 text-sm leading-6 text-paw-body">
+              <p className="mt-paw-xxs text-sm leading-6 text-paw-body">
                 {t("adminReportsNewestPrefix")} {payload.pageSize} {t("adminReportsNewestSuffix")}
               </p>
             </div>
@@ -469,7 +474,7 @@ function ReportsQueue({
               variant="secondary"
               onClick={() => router.refresh()}
             >
-              <RefreshCw className="h-4 w-4" aria-hidden="true" />
+              <RefreshCw className="h-paw-md w-paw-md" aria-hidden="true" />
               {t("adminReportsRefresh")}
             </Button>
           </div>
@@ -481,7 +486,7 @@ function ReportsQueue({
               description={t("adminReportsEmptyDescription")}
             />
           ) : (
-            <div className="space-y-4">
+            <div className="space-y-paw-md">
               {reports.map((report) => (
                 <ReportCard
                   key={report.id}
@@ -533,10 +538,10 @@ function ReportCard({
   const disabled = Boolean(busy);
 
   return (
-    <article className="rounded-paw-md border border-paw-border bg-paw-panel-subtle p-4">
-      <div className="flex flex-col gap-3 lg:flex-row lg:items-start lg:justify-between">
-        <div className="min-w-0 space-y-2">
-          <div className="flex flex-wrap items-center gap-2">
+    <article className="rounded-paw-md border border-paw-border bg-paw-panel-subtle p-paw-md">
+      <div className="flex flex-col gap-paw-sm lg:flex-row lg:items-start lg:justify-between">
+        <div className="min-w-0 space-y-paw-xs">
+          <div className="flex flex-wrap items-center gap-paw-xs">
             <Badge tone={targetBadgeTone(report.targetType)}>
               {t(targetTypeLabelKeys[report.targetType])}
             </Badge>
@@ -553,23 +558,23 @@ function ReportCard({
           </p>
         </div>
 
-        <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 lg:min-w-[340px]">
+        <div className="grid grid-cols-1 gap-paw-xs sm:grid-cols-2 lg:min-w-[340px]">
           <ProfileChip label={t("adminReportsReporter")} profile={report.reporter} />
           <ProfileChip label={t("adminReportsReportedUser")} profile={report.reportedUser} />
         </div>
       </div>
 
-      <div className="mt-4">
+      <div className="mt-paw-md">
         <TargetPreview target={report.target} />
       </div>
 
       {!canRemoveContent && report.targetType === "user" && (
-        <p className="mt-3 text-xs font-semibold text-paw-muted">
+        <p className="mt-paw-sm text-xs font-semibold text-paw-muted">
           {t("adminReportsUserRemovalHint")}
         </p>
       )}
 
-      <div className="mt-4 flex flex-col gap-2 border-t border-paw-border pt-4 sm:flex-row sm:flex-wrap">
+      <div className="mt-paw-md flex flex-col gap-paw-xs border-t border-paw-border pt-paw-md sm:flex-row sm:flex-wrap">
         <Button
           type="button"
           variant="secondary"
@@ -578,9 +583,9 @@ function ReportCard({
           disabled={disabled}
         >
           {busy === "dismissed" ? (
-            <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />
+            <Loader2 className="h-paw-md w-paw-md animate-spin" aria-hidden="true" />
           ) : (
-            <CheckCircle2 className="h-4 w-4" aria-hidden="true" />
+            <CheckCircle2 className="h-paw-md w-paw-md" aria-hidden="true" />
           )}
           {t("adminReportsDismiss")}
         </Button>
@@ -597,9 +602,9 @@ function ReportCard({
           }
         >
           {busy === "content_removed" ? (
-            <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />
+            <Loader2 className="h-paw-md w-paw-md animate-spin" aria-hidden="true" />
           ) : (
-            <Trash2 className="h-4 w-4" aria-hidden="true" />
+            <Trash2 className="h-paw-md w-paw-md" aria-hidden="true" />
           )}
           {t("adminReportsRemoveContent")}
         </Button>
@@ -611,9 +616,9 @@ function ReportCard({
           disabled={disabled}
         >
           {busy === "user_banned" ? (
-            <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />
+            <Loader2 className="h-paw-md w-paw-md animate-spin" aria-hidden="true" />
           ) : (
-            <Ban className="h-4 w-4" aria-hidden="true" />
+            <Ban className="h-paw-md w-paw-md" aria-hidden="true" />
           )}
           {t("adminReportsBanUser")}
         </Button>
@@ -626,15 +631,15 @@ function TargetPreview({ target }: { target: ReportTargetSummary }) {
   const { locale, t } = useReportsI18n();
   if (target.type === "missing") {
     return (
-      <div className="rounded-paw-md border border-paw-warning/20 bg-paw-warning-soft p-4">
-        <div className="flex items-start gap-3">
+      <div className="rounded-paw-md border border-paw-warning/20 bg-paw-warning-soft p-paw-md">
+        <div className="flex items-start gap-paw-sm">
           <AlertTriangle
-            className="mt-0.5 h-5 w-5 flex-none text-paw-warning"
+            className="mt-0.5 h-paw-lg w-paw-lg flex-none text-paw-warning"
             aria-hidden="true"
           />
           <div className="min-w-0">
             <p className="font-extrabold text-paw-ink">{target.label}</p>
-            <p className="mt-1 break-all text-sm leading-6 text-paw-body">
+            <p className="mt-paw-xxs break-all text-sm leading-6 text-paw-body">
               {t("adminReportsTargetId")} {target.id ?? t("adminReportsNotProvided")}
             </p>
           </div>
@@ -645,15 +650,15 @@ function TargetPreview({ target }: { target: ReportTargetSummary }) {
 
   if (target.type === "post") {
     return (
-      <div className="grid gap-4 rounded-paw-md border border-paw-border bg-paw-panel p-4 md:grid-cols-[112px_minmax(0,1fr)]">
+      <div className="grid gap-paw-md rounded-paw-md border border-paw-border bg-paw-panel p-paw-md md:grid-cols-[112px_minmax(0,1fr)]">
         <MediaThumb imageUrl={target.imageUrl} label={t("adminReportsReportedPostImage")} />
         <div className="min-w-0">
           <TargetHeader
-            icon={<FileText className="h-4 w-4" aria-hidden="true" />}
+            icon={<FileText className="h-paw-md w-paw-md" aria-hidden="true" />}
             title={t("adminReportsReportedPost")}
             removedAt={target.removedAt}
           />
-          <p className="mt-2 text-sm leading-6 text-paw-body">
+          <p className="mt-paw-xs text-sm leading-6 text-paw-body">
             {target.bodyPreview}
           </p>
           <TargetMeta>
@@ -668,13 +673,13 @@ function TargetPreview({ target }: { target: ReportTargetSummary }) {
 
   if (target.type === "comment") {
     return (
-      <div className="rounded-paw-md border border-paw-border bg-paw-panel p-4">
+      <div className="rounded-paw-md border border-paw-border bg-paw-panel p-paw-md">
         <TargetHeader
-          icon={<MessageSquare className="h-4 w-4" aria-hidden="true" />}
+          icon={<MessageSquare className="h-paw-md w-paw-md" aria-hidden="true" />}
           title={t("adminReportsReportedComment")}
           removedAt={target.removedAt}
         />
-        <blockquote className="mt-3 border-l-4 border-paw-primary/30 pl-4 text-sm leading-6 text-paw-body">
+        <blockquote className="mt-paw-sm border-l-4 border-paw-primary/30 pl-paw-md text-sm leading-6 text-paw-body">
           {target.bodyPreview}
         </blockquote>
         <TargetMeta>
@@ -690,15 +695,15 @@ function TargetPreview({ target }: { target: ReportTargetSummary }) {
   }
 
   return (
-    <div className="rounded-paw-md border border-paw-border bg-paw-panel p-4">
+    <div className="rounded-paw-md border border-paw-border bg-paw-panel p-paw-md">
       <TargetHeader
-        icon={<UserCircle2 className="h-4 w-4" aria-hidden="true" />}
+        icon={<UserCircle2 className="h-paw-md w-paw-md" aria-hidden="true" />}
         title={t("adminReportsReportedUser")}
       />
-      <div className="mt-4">
+      <div className="mt-paw-md">
         <ProfileChip label={t("adminReportsAccount")} profile={target.profile} large />
       </div>
-      <p className="mt-3 break-all text-xs font-semibold text-paw-muted">
+      <p className="mt-paw-sm break-all text-xs font-semibold text-paw-muted">
         {t("adminReportsTargetUser")} {target.id}
       </p>
     </div>
@@ -735,17 +740,17 @@ function ConfirmationDialog({
   const isBusy = busy === confirmation.action;
 
   return (
-    <div className="fixed inset-0 z-[10020] flex items-center justify-center bg-paw-ink/45 px-4 py-6">
+    <div className="fixed inset-0 z-[10020] flex items-center justify-center bg-paw-ink/45 px-paw-md py-paw-xl">
       <div
         role="dialog"
         aria-modal="true"
         aria-labelledby="report-confirm-title"
-        className="w-full max-w-lg rounded-paw-lg border border-paw-border bg-paw-panel p-5 shadow-paw-panel"
+        className="w-full max-w-lg rounded-paw-lg border border-paw-border bg-paw-panel p-paw-lg shadow-paw-panel"
       >
-        <div className="flex items-start justify-between gap-4">
-          <div className="flex items-start gap-3">
-            <span className="flex h-10 w-10 flex-none items-center justify-center rounded-paw-md bg-paw-critical-soft text-paw-on-critical-soft">
-              <Icon className="h-5 w-5" aria-hidden="true" />
+        <div className="flex items-start justify-between gap-paw-md">
+          <div className="flex items-start gap-paw-sm">
+            <span className="flex h-paw-xxxl w-paw-xxxl flex-none items-center justify-center rounded-paw-md bg-paw-critical-soft text-paw-on-critical-soft">
+              <Icon className="h-paw-lg w-paw-lg" aria-hidden="true" />
             </span>
             <div>
               <h2
@@ -754,7 +759,7 @@ function ConfirmationDialog({
               >
                 {copy.title}
               </h2>
-              <p className="mt-2 text-sm leading-6 text-paw-body">
+              <p className="mt-paw-xs text-sm leading-6 text-paw-body">
                 {copy.text}
               </p>
             </div>
@@ -762,24 +767,24 @@ function ConfirmationDialog({
           <button
             type="button"
             onClick={onCancel}
-            className="rounded-paw-sm p-2 text-paw-muted transition hover:bg-paw-panel-subtle hover:text-paw-ink"
+            className="rounded-paw-sm p-paw-xs text-paw-muted transition hover:bg-paw-panel-subtle hover:text-paw-ink"
             aria-label={t("adminReportsCloseConfirmation")}
             disabled={isBusy}
           >
-            <X className="h-5 w-5" aria-hidden="true" />
+            <X className="h-paw-lg w-paw-lg" aria-hidden="true" />
           </button>
         </div>
 
-        <div className="mt-5 rounded-paw-md border border-paw-border bg-paw-panel-subtle p-3">
+        <div className="mt-paw-lg rounded-paw-md border border-paw-border bg-paw-panel-subtle p-paw-sm">
           <p className="text-xs font-extrabold uppercase tracking-wide text-paw-muted">
             {t("adminReportsReportReason")}
           </p>
-          <p className="mt-1 text-sm font-bold text-paw-ink">
+          <p className="mt-paw-xxs text-sm font-bold text-paw-ink">
             {confirmation.report.reason}
           </p>
         </div>
 
-        <div className="mt-5 flex flex-col-reverse gap-2 sm:flex-row sm:justify-end">
+        <div className="mt-paw-lg flex flex-col-reverse gap-paw-xs sm:flex-row sm:justify-end">
           <Button
             type="button"
             variant="secondary"
@@ -795,9 +800,9 @@ function ConfirmationDialog({
             disabled={isBusy}
           >
             {isBusy ? (
-              <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />
+              <Loader2 className="h-paw-md w-paw-md animate-spin" aria-hidden="true" />
             ) : (
-              <Icon className="h-4 w-4" aria-hidden="true" />
+              <Icon className="h-paw-md w-paw-md" aria-hidden="true" />
             )}
             {copy.button}
           </Button>
@@ -818,11 +823,11 @@ function QueueMetric({
 }) {
   return (
     <Card className="admin-card-upgraded">
-      <CardContent className="p-4">
+      <CardContent className="p-paw-md">
         <p className="text-xs font-extrabold uppercase tracking-wide text-paw-muted">
           {label}
         </p>
-        <div className="mt-2 flex items-center justify-between gap-3">
+        <div className="mt-paw-xs flex items-center justify-between gap-paw-sm">
           <p className="text-2xl font-extrabold text-paw-ink">{value}</p>
           <Badge tone={tone === "danger" ? "critical" : tone}>{label}</Badge>
         </div>
@@ -847,19 +852,19 @@ function Pagination({
 
   return (
     <nav
-      className="flex flex-col gap-3 border-t border-paw-border pt-4 sm:flex-row sm:items-center sm:justify-between"
+      className="flex flex-col gap-paw-sm border-t border-paw-border pt-paw-md sm:flex-row sm:items-center sm:justify-between"
       aria-label={t("adminReportsPagination")}
     >
       <p className="text-sm font-semibold text-paw-muted">
         {t("adminReportsPage")} {payload.page} {t("adminReportsOf")} {payload.totalPages} · {payload.total} {t("adminReportsPendingTotal")}
       </p>
-      <div className="flex gap-2">
+      <div className="flex gap-paw-xs">
         {payload.hasPrevious ? (
           <Link
             href={previousHref}
             className={buttonClassName({ variant: "secondary", size: "sm" })}
           >
-            <ChevronLeft className="h-4 w-4" aria-hidden="true" />
+            <ChevronLeft className="h-paw-md w-paw-md" aria-hidden="true" />
             {t("adminReportsPrevious")}
           </Link>
         ) : (
@@ -870,7 +875,7 @@ function Pagination({
               className: "pointer-events-none opacity-50",
             })}
           >
-            <ChevronLeft className="h-4 w-4" aria-hidden="true" />
+            <ChevronLeft className="h-paw-md w-paw-md" aria-hidden="true" />
             {t("adminReportsPrevious")}
           </span>
         )}
@@ -880,7 +885,7 @@ function Pagination({
             className={buttonClassName({ variant: "secondary", size: "sm" })}
           >
             {t("adminReportsNext")}
-            <ChevronRight className="h-4 w-4" aria-hidden="true" />
+            <ChevronRight className="h-paw-md w-paw-md" aria-hidden="true" />
           </Link>
         ) : (
           <span
@@ -891,7 +896,7 @@ function Pagination({
             })}
           >
             {t("adminReportsNext")}
-            <ChevronRight className="h-4 w-4" aria-hidden="true" />
+            <ChevronRight className="h-paw-md w-paw-md" aria-hidden="true" />
           </span>
         )}
       </div>
@@ -912,14 +917,14 @@ function ProfileChip({
   return (
     <div
       className={cn(
-        "min-w-0 rounded-paw-md border border-paw-border bg-paw-panel p-3",
+        "min-w-0 rounded-paw-md border border-paw-border bg-paw-panel p-paw-sm",
         large && "max-w-md",
       )}
     >
       <p className="text-xs font-extrabold uppercase tracking-wide text-paw-muted">
         {label}
       </p>
-      <div className="mt-2 flex min-w-0 items-center gap-3">
+      <div className="mt-paw-xs flex min-w-0 items-center gap-paw-sm">
         <Avatar profile={profile} size={large ? 44 : 36} />
         <div className="min-w-0">
           <p className="truncate text-sm font-extrabold text-paw-ink">
@@ -963,7 +968,7 @@ function Avatar({
         />
       ) : (
         <UserCircle2
-          className="absolute inset-1/2 h-5 w-5 -translate-x-1/2 -translate-y-1/2"
+          className="absolute inset-1/2 h-paw-lg w-paw-lg -translate-x-1/2 -translate-y-1/2"
           aria-hidden="true"
         />
       )}
@@ -979,7 +984,7 @@ function MediaThumb({
   label: string;
 }) {
   return (
-    <div className="relative h-28 w-full overflow-hidden rounded-paw-md bg-paw-primary-soft md:h-28 md:w-28">
+    <div className={`relative ${REPORT_METRIC_CLASSES.previewMediaSize} w-full overflow-hidden rounded-paw-md bg-paw-primary-soft`}>
       {imageUrl ? (
         <Image
           src={imageUrl}
@@ -992,7 +997,7 @@ function MediaThumb({
         />
       ) : (
         <FileText
-          className="absolute inset-1/2 h-8 w-8 -translate-x-1/2 -translate-y-1/2 text-paw-primary"
+          className="absolute inset-1/2 h-paw-xxl w-paw-xxl -translate-x-1/2 -translate-y-1/2 text-paw-primary"
           aria-hidden="true"
         />
       )}
@@ -1011,8 +1016,8 @@ function TargetHeader({
 }) {
   const { t } = useReportsI18n();
   return (
-    <div className="flex flex-wrap items-center gap-2">
-      <span className="inline-flex items-center gap-2 text-sm font-extrabold text-paw-ink">
+    <div className="flex flex-wrap items-center gap-paw-xs">
+      <span className="inline-flex items-center gap-paw-xs text-sm font-extrabold text-paw-ink">
         {icon}
         {title}
       </span>
@@ -1023,7 +1028,7 @@ function TargetHeader({
 
 function TargetMeta({ children }: { children: ReactNode }) {
   return (
-    <div className="mt-3 flex flex-wrap gap-x-4 gap-y-1 text-xs font-semibold text-paw-muted">
+    <div className="mt-paw-sm flex flex-wrap gap-x-paw-md gap-y-paw-xxs text-xs font-semibold text-paw-muted">
       {children}
     </div>
   );
@@ -1043,12 +1048,12 @@ function ErrorPanel({
         <p className="text-lg font-extrabold text-paw-ink">
           {t("adminReportsUnableToLoad")}
         </p>
-        <p className="mt-2 text-sm leading-6 text-paw-body">
+        <p className="mt-paw-xs text-sm leading-6 text-paw-body">
           {message}
         </p>
       </div>
         <Button type="button" variant="secondary" onClick={onRetry}>
-          <RefreshCw className="h-4 w-4" aria-hidden="true" />
+          <RefreshCw className="h-paw-md w-paw-md" aria-hidden="true" />
           {t("adminReportsRetry")}
         </Button>
     </section>
@@ -1063,13 +1068,13 @@ function LoadingState({
   description: string;
 }) {
   return (
-    <div className="flex min-h-64 flex-col items-center justify-center text-center">
+    <div className={`flex ${REPORT_METRIC_CLASSES.emptyStateMinHeight} flex-col items-center justify-center text-center`}>
       <Loader2
-        className="h-8 w-8 animate-spin text-paw-primary"
+        className="h-paw-xxl w-paw-xxl animate-spin text-paw-primary"
         aria-hidden="true"
       />
-      <p className="mt-4 text-lg font-extrabold text-paw-ink">{title}</p>
-      <p className="mt-2 max-w-md text-sm leading-6 text-paw-body">
+      <p className="mt-paw-md text-lg font-extrabold text-paw-ink">{title}</p>
+      <p className="mt-paw-xs max-w-md text-sm leading-6 text-paw-body">
         {description}
       </p>
     </div>
