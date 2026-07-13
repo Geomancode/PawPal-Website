@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import { RotateCcw } from "lucide-react";
+import PawIcon from "@/components/icons/PawIcon";
 import { Button, StatePanel } from "@/components/ui";
 import { reportError } from "@/lib/errorReporting";
 import { useRouteTranslations } from "@/i18n/useRouteTranslations";
@@ -31,7 +31,7 @@ export default function Error({
         body={error.message || t("rootErrorFallbackDescription")}
         action={
           <Button type="button" size="lg" onClick={reset}>
-            <RotateCcw className="h-4 w-4" aria-hidden="true" />
+            <PawIcon name="retry" className="h-4 w-4" aria-hidden="true" />
             {t("rootErrorTryAgain")}
           </Button>
         }

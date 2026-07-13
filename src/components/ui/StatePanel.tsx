@@ -1,10 +1,5 @@
 import type { ReactNode } from "react";
-import {
-  AlertCircle,
-  Inbox,
-  Radio,
-  type LucideIcon,
-} from "lucide-react";
+import PawIcon, { type PawIconName } from "@/components/icons/PawIcon";
 import { cn } from "@/lib/ui";
 import type { StatusTone } from "./StatusMessage";
 
@@ -24,10 +19,10 @@ export type StatePanelProps = {
   className?: string;
 };
 
-const defaultIcons: Record<StatePanelState, LucideIcon> = {
-  loading: Radio,
-  empty: Inbox,
-  error: AlertCircle,
+const defaultIcons: Record<StatePanelState, PawIconName> = {
+  loading: "live",
+  empty: "empty",
+  error: "critical",
 };
 
 const toneStyles: Record<StatusTone, { panel: string; icon: string }> = {
@@ -61,10 +56,11 @@ export default function StatePanel({
   titleLevel = layout === "fullscreen" ? 1 : 2,
   className,
 }: StatePanelProps) {
-  const DefaultIcon = defaultIcons[state];
+  const defaultIcon = defaultIcons[state];
   const role = state === "error" ? "alert" : state === "loading" ? "status" : undefined;
   const visual = illustration ?? icon ?? (
-    <DefaultIcon
+    <PawIcon
+      name={defaultIcon}
       className={cn("h-6 w-6", state === "loading" ? "animate-pulse" : undefined)}
       aria-hidden="true"
     />

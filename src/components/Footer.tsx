@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowRight, Mail } from "lucide-react";
+import PawIcon from "./icons/PawIcon";
 import PawPalLogo from "./PawPalLogo";
 import styles from "./Footer.module.css";
 import { siteConfig } from "@/lib/site";
@@ -48,7 +48,7 @@ export default function Footer() {
             href={`mailto:${siteConfig.email}`}
             className={`${styles.emailLink} mt-6 inline-flex items-center gap-2 rounded-paw-sm border border-paw-border bg-paw-panel px-4 text-sm font-bold text-paw-ink shadow-paw-control transition hover:border-paw-primary hover:text-paw-primary`}
           >
-            <Mail className="h-4 w-4" aria-hidden="true" />
+            <PawIcon name="mail" className="h-4 w-4" aria-hidden="true" />
             {siteConfig.email}
           </a>
         </div>
@@ -80,7 +80,7 @@ export default function Footer() {
             className={`${styles.actionLink} mt-5 inline-flex items-center gap-2 rounded-paw-sm bg-paw-primary px-4 text-xs font-bold text-paw-on-primary transition hover:bg-paw-primary-hover`}
           >
             {t("footerContactPawPal")}
-            <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
+            <PawIcon name="forward" className="h-3.5 w-3.5" aria-hidden="true" />
           </a>
         </div>
       </div>

@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { X } from "lucide-react";
+import PawIcon from "@/components/icons/PawIcon";
 import { cn } from "@/lib/ui";
 import Button from "./Button";
 
@@ -79,7 +79,7 @@ export default function Sheet({
               onClick={onClose}
               className="-mr-2 -mt-1 shrink-0"
             >
-              <X className="h-5 w-5" aria-hidden="true" />
+              <PawIcon name="close" className="h-5 w-5" aria-hidden="true" />
             </Button>
           </header>
         )}

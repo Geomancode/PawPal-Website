@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { Info, ShoppingBag, Star } from "lucide-react";
+import PawIcon from "@/components/icons/PawIcon";
 import { cn } from "@/lib/ui";
 import Badge from "./Badge";
 import Button from "./Button";
@@ -87,7 +87,7 @@ export default function ProductCard({
         <div className="flex items-center gap-paw-sm">
           {typeof rating === "number" ? (
             <span className="inline-flex min-w-0 flex-1 items-center gap-1 overflow-hidden text-paw-type-body font-bold text-paw-on-warning-soft">
-              <Star className="h-4 w-4 shrink-0 fill-current" aria-hidden="true" />
+              <PawIcon name="star" className="h-4 w-4 shrink-0 fill-current" aria-hidden="true" />
               <span className="shrink-0">{rating.toFixed(1)}</span>
               {ratingDetail && (
                 <span className="min-w-0 truncate font-semibold text-paw-muted">
@@ -101,12 +101,12 @@ export default function ProductCard({
           <div className="flex shrink-0 items-center gap-paw-xs">
             {onDetails && (
               <Button type="button" variant="secondary" size="sm" onClick={onDetails}>
-                <Info className="h-3.5 w-3.5" aria-hidden="true" />
+                <PawIcon name="info" className="h-3.5 w-3.5" aria-hidden="true" />
                 {detailsLabel}
               </Button>
             )}
             <Button type="button" size="sm" onClick={onAction}>
-              <ShoppingBag className="h-3.5 w-3.5" aria-hidden="true" />
+              <PawIcon name="cart" className="h-3.5 w-3.5" aria-hidden="true" />
               {actionLabel}
             </Button>
           </div>

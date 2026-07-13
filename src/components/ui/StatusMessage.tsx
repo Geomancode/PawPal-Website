@@ -1,11 +1,5 @@
 import type { HTMLAttributes, ReactNode } from "react";
-import {
-  AlertCircle,
-  CheckCircle2,
-  Info,
-  TriangleAlert,
-  type LucideIcon,
-} from "lucide-react";
+import PawIcon, { type PawIconName } from "@/components/icons/PawIcon";
 import { cn } from "@/lib/ui";
 
 export type StatusTone = "info" | "success" | "warning" | "critical";
@@ -13,29 +7,29 @@ export type StatusVariant = "compact" | "panel" | "hero";
 
 const toneStyles: Record<
   StatusTone,
-  { container: string; icon: string; Icon: LucideIcon }
+  { container: string; icon: string; iconName: PawIconName }
 > = {
   info: {
     container:
       "border-paw-primary/20 bg-paw-primary-soft text-paw-on-primary-soft",
     icon: "bg-paw-primary text-paw-on-primary",
-    Icon: Info,
+    iconName: "info",
   },
   success: {
     container:
       "border-paw-success/20 bg-paw-success-soft text-paw-on-success-soft",
     icon: "bg-paw-success text-paw-on-success",
-    Icon: CheckCircle2,
+    iconName: "success",
   },
   warning: {
     container: "border-paw-warning/20 bg-paw-warning-soft text-paw-on-warning-soft",
     icon: "bg-paw-warning text-paw-on-warning",
-    Icon: TriangleAlert,
+    iconName: "warning",
   },
   critical: {
     container: "border-paw-critical/20 bg-paw-critical-soft text-paw-on-critical-soft",
     icon: "bg-paw-critical text-paw-on-critical",
-    Icon: AlertCircle,
+    iconName: "critical",
   },
 };
 
@@ -71,7 +65,7 @@ export default function StatusMessage({
 }: StatusMessageProps) {
   const styles = toneStyles[tone];
   const variantStyle = variantStyles[variant];
-  const Icon = styles.Icon;
+  const iconName = styles.iconName;
 
   return (
     <div
@@ -91,7 +85,7 @@ export default function StatusMessage({
           styles.icon,
         )}
       >
-        <Icon className="h-4 w-4" aria-hidden="true" />
+        <PawIcon name={iconName} className="h-4 w-4" aria-hidden="true" />
       </span>
       <span className="min-w-0">
         {title && (

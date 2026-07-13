@@ -3,8 +3,8 @@
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
-import { LogOut, Menu, UserCircle, X } from "lucide-react";
 import { useEffect, useRef, useState, useSyncExternalStore } from "react";
+import PawIcon from "./icons/PawIcon";
 import { useAuth } from "./AuthProvider";
 import PawPalLogo from "./PawPalLogo";
 import styles from "./Navbar.module.css";
@@ -217,7 +217,7 @@ export default function Navbar() {
                         onClick={() => setShowDropdown(false)}
                         className="flex w-full items-center gap-2 px-4 py-3 text-sm font-semibold text-paw-ink transition-colors hover:bg-paw-primary-soft"
                       >
-                        <UserCircle className="h-4 w-4" />
+                        <PawIcon name="account" className="h-4 w-4" />
                         {t("navMyProfile")}
                       </Link>
                       <button
@@ -225,7 +225,7 @@ export default function Navbar() {
                         onClick={handleSignOut}
                         className="flex w-full items-center gap-2 px-4 py-3 text-sm font-semibold text-paw-danger transition-colors hover:bg-paw-danger-soft"
                       >
-                        <LogOut className="h-4 w-4" />
+                        <PawIcon name="logout" className="h-4 w-4" />
                         {t("navSignOut")}
                       </button>
                     </motion.div>
@@ -255,7 +255,7 @@ export default function Navbar() {
             onClick={() => setIsOpen((value) => !value)}
             className="inline-flex h-paw-min-tap w-paw-min-tap items-center justify-center rounded-paw-sm border border-paw-border bg-paw-panel text-paw-ink md:hidden"
           >
-            {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            {isOpen ? <PawIcon name="close" className="h-5 w-5" /> : <PawIcon name="menu" className="h-5 w-5" />}
           </button>
         </div>
       </div>
@@ -311,7 +311,7 @@ export default function Navbar() {
                       }}
                       className="flex w-full items-center gap-2 rounded-paw-sm px-3 py-3 text-sm font-bold text-paw-danger hover:bg-paw-danger-soft"
                     >
-                      <LogOut className="h-4 w-4" />
+                      <PawIcon name="logout" className="h-4 w-4" />
                       {t("navSignOut")}
                     </button>
                   </>
