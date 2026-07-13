@@ -185,7 +185,7 @@ async function assertCriticalInfoTile(page, definition) {
     throw new Error(`${definition.name} expected exactly one critical tag info tile.`);
   }
   const text = (await tile.innerText()).trim();
-  if (!text.includes("Blood") || !text.includes("DEA 1.1+")) {
+  if (!text.toUpperCase().includes("BLOOD") || !text.includes("DEA 1.1+")) {
     throw new Error(`${definition.name} critical tag info tile has unexpected copy: ${text}`);
   }
 }
