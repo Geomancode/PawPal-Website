@@ -1,5 +1,57 @@
 /* Owner: /globe map, fallback, weather, and HUD styles. */
 
+:root {
+  --globe-fallback-stage-grid-template-columns: 19rem;
+  --globe-fallback-stage-padding-calculation: calc(env(safe-area-inset-top, 0px) + 6.35rem);
+  --globe-fallback-copy-max-width: 39rem;
+  --globe-fallback-action-focus-visible-transform: -1px;
+  --globe-fallback-preview-width: 34rem;
+  --globe-fallback-preview-min-height-calculation: calc(100dvh - 10rem);
+  --globe-fallback-preview-min-height: 31rem;
+  --globe-weather-bar-top-calculation: calc(env(safe-area-inset-top, 0px) + 4.75rem);
+  --globe-weather-bar-width-calculation: calc(100vw - 2rem);
+  --globe-weather-bar-width: 58rem;
+  --globe-weather-bar-min-height: 3rem;
+  --globe-weather-bar-padding-inline: 0.85rem;
+  --globe-weather-bar-padding-block: 0.7rem;
+  --globe-weather-bar-backdrop-filter: 22px;
+  --globe-weather-bar-webkit-backdrop-filter: 22px;
+  --globe-weather-content-gap: 0.55rem;
+  --globe-weather-items-gap-column: 0.55rem;
+  --globe-weather-items-gap-row: 0.45rem;
+  --globe-weather-item-gap: 0.35rem;
+  --globe-weather-item-min-height: 1.72rem;
+  --globe-weather-item-padding-inline: 0.52rem;
+  --globe-weather-item-padding-block: 0.32rem;
+  --globe-weather-suffix-padding-inline: 0.38rem;
+  --globe-weather-suffix-padding-block: 0.12rem;
+  --globe-status-strip-backdrop-filter: 18px;
+  --globe-status-strip-webkit-backdrop-filter: 18px;
+  --globe-nearby-panel-top-calculation: calc(env(safe-area-inset-top, 0px) + 10.8rem);
+  --globe-nearby-panel-max-height-calculation: calc(100dvh - 17.5rem);
+  --globe-nearby-panel-max-height: 14.5rem;
+  --globe-layer-stack-top-calculation: calc(env(safe-area-inset-top, 0px) + 10.8rem);
+  --globe-layer-stack-padding: 0.35rem;
+  --globe-layer-stack-backdrop-filter: 18px;
+  --globe-layer-stack-webkit-backdrop-filter: 18px;
+  --globe-popup-card-min-width: 11rem;
+  --globe-popup-card-max-width-calculation: calc(100vw - 3rem);
+  --globe-popup-card-max-width: 16rem;
+  --globe-popup-row-globe-popup-row-margin-top: 0.15rem;
+  --globe-inline-issue-gap: 0.4rem;
+  --globe-inline-issue-padding-inline: 0.55rem;
+  --globe-inline-issue-padding-block: 0.45rem;
+  --globe-status-strip-bottom-calculation: calc(env(safe-area-inset-bottom, 0px) + 5.4rem);
+  --globe-status-strip-max-width-calculation: calc(100vw - 2rem);
+  --globe-status-strip-gap: 0.55rem;
+  --globe-status-strip-padding-inline: 0.85rem;
+  --globe-status-strip-padding-block: 0.65rem;
+  --globe-chat-sheet-peek-bottom-secondary: 0px;
+  --globe-chat-sheet-peek-width-calculation: calc(100vw - 7rem);
+  --globe-chat-sheet-peek-width: 30rem;
+  --globe-page-shell-maplibregl-ctrl-bottom-right-bottom-calculation: calc(env(safe-area-inset-bottom, 0px) + 5.25rem);
+}
+
 .globe-page-shell::after {
   content: "";
   position: absolute;
@@ -16,12 +68,12 @@
   inset: 0;
   z-index: 2;
   display: grid;
-  grid-template-columns: minmax(0, 0.9fr) minmax(19rem, 0.75fr);
+  grid-template-columns: minmax(0, 0.9fr) minmax(var(--globe-fallback-stage-grid-template-columns), 0.75fr);
   gap: var(--spacing-paw-xxxl);
   align-items: center;
   overflow-y: auto;
   padding:
-    calc(env(safe-area-inset-top, 0px) + 6.35rem)
+    var(--globe-fallback-stage-padding-calculation)
     clamp(var(--spacing-paw-md), 5vw, calc(var(--spacing-paw-xxxl) * 2))
     calc(env(safe-area-inset-bottom, 0px) + var(--spacing-paw-xxxl));
   background:
@@ -31,7 +83,7 @@
 }
 
 .globe-fallback-copy {
-  max-width: 39rem;
+  max-width: var(--globe-fallback-copy-max-width);
   border: 1px solid var(--color-paw-border);
   border-radius: var(--radius-paw-panel);
   background: var(--color-paw-panel);
@@ -57,14 +109,14 @@
 
 .globe-fallback-action {
   display: inline-flex;
-  min-height: 2.75rem;
+  min-height: var(--spacing-paw-min-tap);
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
+  gap: var(--spacing-paw-xs);
   border: 1px solid var(--color-paw-border);
   border-radius: var(--radius-paw-sm);
   background: var(--color-paw-panel-subtle);
-  padding: 0.75rem 1rem;
+  padding: var(--spacing-paw-sm) var(--spacing-paw-md);
   color: var(--color-paw-ink);
   font-size: var(--text-paw-type-body);
   font-weight: 900;
@@ -82,7 +134,7 @@
   border-color: var(--color-paw-primary);
   background: var(--color-paw-primary-soft);
   color: var(--color-paw-on-primary-soft);
-  transform: translateY(-1px);
+  transform: translateY(var(--globe-fallback-action-focus-visible-transform));
 }
 
 .globe-fallback-action-primary {
@@ -100,8 +152,8 @@
 
 .globe-fallback-preview {
   justify-self: center;
-  width: min(100%, 34rem);
-  min-height: min(31rem, calc(100dvh - 10rem));
+  width: min(100%, var(--globe-fallback-preview-width));
+  min-height: min(var(--globe-fallback-preview-min-height), var(--globe-fallback-preview-min-height-calculation));
 }
 
 .globe-fallback-preview .globe-static-preview-card {
@@ -113,10 +165,10 @@
 }
 
 .globe-weather-bar {
-  top: calc(env(safe-area-inset-top, 0px) + 4.75rem);
+  top: var(--globe-weather-bar-top-calculation);
   left: 50%;
-  width: min(calc(100vw - 2rem), 58rem);
-  min-height: 3rem;
+  width: min(var(--globe-weather-bar-width-calculation), var(--globe-weather-bar-width));
+  min-height: var(--globe-weather-bar-min-height);
   transform: translateX(-50%);
   overflow: visible;
   border: 1px solid color-mix(in srgb, var(--color-paw-inverse-ink) 34%, transparent);
@@ -126,16 +178,16 @@
   box-shadow:
     0 22px 48px color-mix(in srgb, var(--color-paw-shadow-ink) 24%, transparent),
     inset 0 1px 0 color-mix(in srgb, var(--color-paw-inverse-ink) 18%, transparent);
-  padding: 0.7rem 0.85rem;
+  padding: var(--globe-weather-bar-padding-block) var(--globe-weather-bar-padding-inline);
   color: var(--color-paw-inverse-ink);
-  backdrop-filter: blur(22px) saturate(1.08);
-  -webkit-backdrop-filter: blur(22px) saturate(1.08);
+  backdrop-filter: blur(var(--globe-weather-bar-backdrop-filter)) saturate(1.08);
+  -webkit-backdrop-filter: blur(var(--globe-weather-bar-webkit-backdrop-filter)) saturate(1.08);
 }
 
 .globe-weather-content {
   align-items: center;
   min-width: 0;
-  gap: 0.55rem;
+  gap: var(--globe-weather-content-gap);
 }
 
 .globe-weather-items {
@@ -145,7 +197,7 @@
   flex: 1 1 auto;
   align-items: center;
   justify-content: center;
-  gap: 0.45rem 0.55rem;
+  gap: var(--globe-weather-items-gap-row) var(--globe-weather-items-gap-column);
   overflow: visible;
   color: color-mix(in srgb, var(--color-paw-inverse-ink) 96%, transparent);
   font-size: var(--text-paw-type-caption);
@@ -159,12 +211,12 @@
   max-width: none;
   flex: 0 1 auto;
   align-items: center;
-  gap: 0.35rem;
-  min-height: 1.72rem;
+  gap: var(--globe-weather-item-gap);
+  min-height: var(--globe-weather-item-min-height);
   border: 1px solid color-mix(in srgb, var(--color-paw-inverse-ink) 18%, transparent);
   border-radius: var(--radius-paw-pill);
   background: color-mix(in srgb, var(--color-paw-inverse-ink) 10%, transparent);
-  padding: 0.32rem 0.52rem;
+  padding: var(--globe-weather-item-padding-block) var(--globe-weather-item-padding-inline);
   color: color-mix(in srgb, var(--color-paw-inverse-ink) 96%, transparent);
   text-shadow: 0 1px 1px color-mix(in srgb, var(--color-paw-shadow-ink) 24%, transparent);
   white-space: nowrap;
@@ -202,7 +254,7 @@
   flex: 0 0 auto;
   border-radius: var(--radius-paw-pill);
   background: color-mix(in srgb, var(--color-paw-inverse-ink) 18%, transparent);
-  padding: 0.12rem 0.38rem;
+  padding: var(--globe-weather-suffix-padding-block) var(--globe-weather-suffix-padding-inline);
   color: color-mix(in srgb, var(--color-paw-inverse-ink) 88%, transparent);
   font-size: var(--text-paw-type-caption);
   font-weight: 900;
@@ -214,29 +266,29 @@
   border-color: color-mix(in srgb, var(--color-paw-border) 86%, transparent);
   background: color-mix(in srgb, var(--color-paw-inverse-ink) 86%, transparent);
   box-shadow: 0 18px 42px color-mix(in srgb, var(--color-paw-ink) 14%, transparent);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
+  backdrop-filter: blur(var(--globe-status-strip-backdrop-filter));
+  -webkit-backdrop-filter: blur(var(--globe-status-strip-webkit-backdrop-filter));
 }
 
 .globe-nearby-panel {
-  top: calc(env(safe-area-inset-top, 0px) + 10.8rem);
-  left: 1rem;
-  max-height: min(14.5rem, calc(100dvh - 17.5rem));
+  top: var(--globe-nearby-panel-top-calculation);
+  left: var(--spacing-paw-md);
+  max-height: min(var(--globe-nearby-panel-max-height), var(--globe-nearby-panel-max-height-calculation));
   overflow: auto;
   border-radius: var(--radius-paw-md);
 }
 
 .globe-layer-stack {
-  top: calc(env(safe-area-inset-top, 0px) + 10.8rem);
-  right: 1rem;
+  top: var(--globe-layer-stack-top-calculation);
+  right: var(--spacing-paw-md);
   align-items: center;
   border: 1px solid color-mix(in srgb, var(--color-paw-border) 86%, transparent);
   border-radius: var(--radius-paw-md);
   background: color-mix(in srgb, var(--color-paw-inverse-ink) 86%, transparent);
   box-shadow: 0 18px 42px color-mix(in srgb, var(--color-paw-ink) 14%, transparent);
-  padding: 0.35rem;
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
+  padding: var(--globe-layer-stack-padding);
+  backdrop-filter: blur(var(--globe-layer-stack-backdrop-filter));
+  -webkit-backdrop-filter: blur(var(--globe-layer-stack-webkit-backdrop-filter));
 }
 
 .globe-layer-button {
@@ -280,8 +332,8 @@
 }
 
 .globe-popup-card {
-  min-width: 11rem;
-  max-width: min(16rem, calc(100vw - 3rem));
+  min-width: var(--globe-popup-card-min-width);
+  max-width: min(var(--globe-popup-card-max-width), var(--globe-popup-card-max-width-calculation));
   background: var(--color-paw-panel-low);
   color: var(--color-paw-ink);
   padding: var(--spacing-paw-sm);
@@ -304,7 +356,7 @@
 }
 
 .globe-popup-row + .globe-popup-row {
-  margin-top: 0.15rem;
+  margin-top: var(--globe-popup-row-globe-popup-row-margin-top);
 }
 
 .globe-popup-label {
@@ -319,12 +371,12 @@
 .globe-inline-issue {
   display: flex;
   align-items: flex-start;
-  gap: 0.4rem;
+  gap: var(--globe-inline-issue-gap);
   border: 1px solid color-mix(in srgb, var(--color-paw-accent) 22%, transparent);
   border-radius: var(--radius-paw-sm);
   background: var(--color-paw-warning-soft);
   color: var(--color-paw-on-warning-soft);
-  padding: 0.45rem 0.55rem;
+  padding: var(--globe-inline-issue-padding-block) var(--globe-inline-issue-padding-inline);
   font-size: var(--text-paw-type-caption);
   font-weight: 800;
   line-height: 1.35;
@@ -332,16 +384,16 @@
 
 .globe-status-strip {
   position: absolute;
-  left: 1rem;
-  bottom: calc(env(safe-area-inset-bottom, 0px) + 5.4rem);
+  left: var(--spacing-paw-md);
+  bottom: var(--globe-status-strip-bottom-calculation);
   z-index: 40;
   display: flex;
-  max-width: calc(100vw - 2rem);
+  max-width: var(--globe-status-strip-max-width-calculation);
   align-items: center;
-  gap: 0.55rem;
+  gap: var(--globe-status-strip-gap);
   border: 1px solid color-mix(in srgb, var(--color-paw-border) 86%, transparent);
   border-radius: var(--radius-paw-md);
-  padding: 0.65rem 0.85rem;
+  padding: var(--globe-status-strip-padding-block) var(--globe-status-strip-padding-inline);
   color: var(--color-paw-body);
   font-size: var(--text-paw-type-caption);
   font-weight: 800;
@@ -358,8 +410,8 @@
 
 .globe-chat-sheet-peek {
   left: 50%;
-  bottom: max(1rem, env(safe-area-inset-bottom, 0px));
-  width: min(30rem, calc(100vw - 7rem));
+  bottom: max(var(--spacing-paw-md), env(safe-area-inset-bottom, var(--globe-chat-sheet-peek-bottom-secondary)));
+  width: min(var(--globe-chat-sheet-peek-width), var(--globe-chat-sheet-peek-width-calculation));
   transform: translateX(-50%);
 }
 
@@ -375,6 +427,6 @@
 }
 
 .globe-page-shell .maplibregl-ctrl-bottom-right {
-  right: 0.75rem !important;
-  bottom: calc(env(safe-area-inset-bottom, 0px) + 5.25rem) !important;
+  right: var(--spacing-paw-sm) !important;
+  bottom: var(--globe-page-shell-maplibregl-ctrl-bottom-right-bottom-calculation) !important;
 }

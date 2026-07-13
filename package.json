@@ -25,6 +25,7 @@
     "capture:p4e1d": "node scripts/p4e1d-capture-type.mjs",
     "test:shell-gutter": "node scripts/shell-gutter-check.mjs",
     "test:token-hotspot": "node scripts/token-hotspot-check.mjs",
+    "test:route-css-token": "node scripts/route-css-token-check.mjs",
     "capture:p4e1e": "node scripts/p4e1e-capture-shells.mjs",
     "probe:search-injection": "node scripts/search-injection-probe.mjs"
   },
