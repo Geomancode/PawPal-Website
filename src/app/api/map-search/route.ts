@@ -33,6 +33,53 @@ const MAX_QUERY_CHARS = 240;
 const SEARCH_RATE_WINDOW_MS = 60_000;
 const SEARCH_RATE_LIMIT = 12;
 
+export interface SearchCenter {
+  readonly lat: number;
+  readonly lng: number;
+}
+
+export const FALLBACK_CENTER_GHENT: SearchCenter = { lat: 51.0543, lng: 3.7174 };
+
+function hasValidCoordinatePair(lat: unknown, lng: unknown): lat is number {
+  return (
+    typeof lat === "number" &&
+    Number.isFinite(lat) &&
+    lat >= -90 &&
+    lat <= 90 &&
+    typeof lng === "number" &&
+    Number.isFinite(lng) &&
+    lng >= -180 &&
+    lng <= 180
+  );
+}
+
+function parseGeoHeader(value: string | null): number | null {
+  if (value == null || value.trim() === "") return null;
+  const parsed = Number(value);
+  return Number.isFinite(parsed) ? parsed : null;
+}
+
+export function resolveSearchCenter(
+  body: unknown,
+  headers: Pick<Headers, "get">,
+): SearchCenter {
+  const payload = body && typeof body === "object"
+    ? body as Record<string, unknown>
+    : {};
+
+  if (hasValidCoordinatePair(payload.lat, payload.lng)) {
+    return { lat: payload.lat, lng: payload.lng as number };
+  }
+
+  const headerLat = parseGeoHeader(headers.get("x-vercel-ip-latitude"));
+  const headerLng = parseGeoHeader(headers.get("x-vercel-ip-longitude"));
+  if (hasValidCoordinatePair(headerLat, headerLng)) {
+    return { lat: headerLat, lng: headerLng };
+  }
+
+  return FALLBACK_CENTER_GHENT;
+}
+
 interface SearchRateBucket {
   count: number;
   resetAt: number;
@@ -115,8 +162,7 @@ export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
     const query = typeof body.query === "string" ? body.query.trim() : "";
-    const userLat: number | null = body.lat ?? null;
-    const userLng: number | null = body.lng ?? null;
+    const searchCenter = resolveSearchCenter(body, req.headers);
 
     if (!query) {
       return NextResponse.json({ results: [] });
@@ -137,15 +183,15 @@ export async function POST(req: NextRequest) {
     }
 
     // Phase 1: Intent extraction
-    const intent = await extractIntent(query, userLat, userLng);
+    const intent = await extractIntent(query, searchCenter);
 
     let candidates: SearchResult[] = [];
 
     // Phase 2a + 2b: Places search
     if (intent.searchType === "places" || intent.searchType === "both") {
       const [googleResults, osmResults] = await Promise.all([
-        googlePlacesSearch(intent, userLat, userLng),
-        overpassSearch(intent, userLat, userLng),
+        googlePlacesSearch(intent, searchCenter),
+        overpassSearch(intent, searchCenter),
       ]);
       candidates = mergeResults(googleResults, osmResults);
 
@@ -157,13 +203,13 @@ export async function POST(req: NextRequest) {
 
     // Phase 2c: Quest search
     if (intent.searchType === "missions" || intent.searchType === "both") {
-      const quests = await questSearch(intent, userLat, userLng);
+      const quests = await questSearch(intent, searchCenter);
       candidates = [...candidates, ...quests];
     }
 
     // Phase 3: Semantic ranking
     if (candidates.length > 0 && intent.specificFilter) {
-      candidates = await rankResults(candidates, intent.specificFilter);
+      candidates = await rankResults(candidates, intent.specificFilter, searchCenter);
       candidates.sort((a, b) => {
         const order = { specialist: 3, likely: 2, general: 1, low: 0 };
         return (order[b.relevance] ?? 0) - (order[a.relevance] ?? 0);
@@ -186,10 +232,8 @@ export async function POST(req: NextRequest) {
 // Phase 1: Intent extraction (Gemini)
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-async function extractIntent(query: string, lat: number | null, lng: number | null): Promise<Intent> {
-  const locHint = lat != null && lng != null
-    ? `User GPS: ${lat.toFixed(4)}, ${lng.toFixed(4)} (Ghent / Flanders, Belgium).`
-    : "Location not available (assume Ghent area, Belgium).";
+async function extractIntent(query: string, center: SearchCenter): Promise<Intent> {
+  const locHint = `Nearby-search center: ${center.lat.toFixed(4)}, ${center.lng.toFixed(4)}. Use these coordinates unless the query names a different area.`;
 
   const prompt = `You are a semantic map search engine for PawPal, a pet community app in Belgium.
 ${locHint}
@@ -226,7 +270,7 @@ Users often express needs indirectly. Map their intent:
 - Nature reserve → leisure=nature_reserve
 
 Return ONLY compact JSON (no markdown):
-{"user_language":"cs","search_type":"places","quest_type":"","city":"","osm_key":"tourism","osm_value":"hotel","specific_filter":"pet-friendly","google_text_query":"pet-friendly hotel Ghent Belgium","fallback_query":"pet hotel Gent","zoom":14}`;
+{"user_language":"cs","search_type":"places","quest_type":"","city":"","osm_key":"tourism","osm_value":"hotel","specific_filter":"pet-friendly","google_text_query":"pet-friendly hotel near the search center","fallback_query":"pet hotel nearby","zoom":14}`;
 
   try {
     const json = await geminiPost(prompt, 280);
@@ -294,7 +338,7 @@ function fallbackIntent(query: string): Intent {
 // Phase 2a: Google Places API (New)
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-async function googlePlacesSearch(intent: Intent, lat: number | null, lng: number | null): Promise<SearchResult[]> {
+async function googlePlacesSearch(intent: Intent, center: SearchCenter): Promise<SearchResult[]> {
   if (!GOOGLE_PLACES_KEY) return [];
 
   try {
@@ -304,15 +348,12 @@ async function googlePlacesSearch(intent: Intent, lat: number | null, lng: numbe
       languageCode: "nl",
     };
 
-    if (lat != null && lng != null) {
-      body.locationBias = {
-        circle: { center: { latitude: lat, longitude: lng }, radius: 8000 },
-      };
-    } else {
-      body.locationBias = {
-        circle: { center: { latitude: 51.0543, longitude: 3.7174 }, radius: 20000 },
-      };
-    }
+    body.locationBias = {
+      circle: {
+        center: { latitude: center.lat, longitude: center.lng },
+        radius: 8000,
+      },
+    };
 
     const resp = await fetch(PLACES_URL, {
       method: "POST",
@@ -355,12 +396,12 @@ async function googlePlacesSearch(intent: Intent, lat: number | null, lng: numbe
 // Phase 2b: Overpass / OSM
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-async function overpassSearch(intent: Intent, lat: number | null, lng: number | null): Promise<SearchResult[]> {
+async function overpassSearch(intent: Intent, center: SearchCenter): Promise<SearchResult[]> {
   if (!intent.osmKey || !intent.osmValue) return [];
 
-  // Build bounding box (~7km around user or Ghent center)
-  const cLat = lat ?? 51.0543;
-  const cLng = lng ?? 3.7174;
+  // Build bounding box (~7km around the resolved search center)
+  const cLat = center.lat;
+  const cLng = center.lng;
   const d = 0.07;
   const s = cLat - d, w = cLng - d, n = cLat + d, e = cLng + d;
 
@@ -402,7 +443,7 @@ async function overpassSearch(intent: Intent, lat: number | null, lng: number | 
 // Phase 2c: Quest / mission search (Supabase)
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-async function questSearch(intent: Intent, lat: number | null, lng: number | null): Promise<SearchResult[]> {
+async function questSearch(intent: Intent, center: SearchCenter): Promise<SearchResult[]> {
   try {
     let query = supabaseServer
       .from("quests")
@@ -421,9 +462,7 @@ async function questSearch(intent: Intent, lat: number | null, lng: number | nul
       .filter((q) => {
         if (q.lat == null || q.lng == null) return false;
         // Skip if > 15km away
-        if (lat != null && lng != null) {
-          if (Math.abs(q.lat - lat) > 0.15 || Math.abs(q.lng - lng) > 0.15) return false;
-        }
+        if (Math.abs(q.lat - center.lat) > 0.15 || Math.abs(q.lng - center.lng) > 0.15) return false;
         return true;
       })
       .map((q) => ({
@@ -460,7 +499,11 @@ function mergeResults(google: SearchResult[], osm: SearchResult[]): SearchResult
 // Phase 4: Gemini semantic ranking
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-async function rankResults(candidates: SearchResult[], filter: string): Promise<SearchResult[]> {
+async function rankResults(
+  candidates: SearchResult[],
+  filter: string,
+  center: SearchCenter,
+): Promise<SearchResult[]> {
   const items = candidates
     .map((r, i) => {
       const src = r.source === "google" ? "[G]" : r.source === "quest" ? "[Q]" : "[OSM]";
@@ -470,7 +513,7 @@ async function rankResults(candidates: SearchResult[], filter: string): Promise<
     })
     .join("\n");
 
-  const prompt = `These are pet-related places found nearby in Ghent, Belgium:
+  const prompt = `These are pet-related places found near ${center.lat.toFixed(4)}, ${center.lng.toFixed(4)}:
 ${items}
 
 The user specifically needs: "${filter}"
@@ -514,7 +557,7 @@ async function translateBatch(results: SearchResult[], targetLang: string): Prom
   const targetLangName = LANG_NAMES[targetLang] ?? targetLang;
   const nameList = results.map((r, i) => `${i}: "${r.originalName}"`).join("\n");
 
-  const prompt = `Translate Belgian / Dutch place names to ${targetLangName}.
+  const prompt = `Translate place names to ${targetLangName}.
 
 Rules:
 - Use the well-known name in ${targetLangName} if it exists (e.g. "Gent" → "根特" in Chinese).
