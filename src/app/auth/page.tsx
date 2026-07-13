@@ -1,20 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import {
-  ArrowRight,
-  Mail,
-  Lock,
-  User,
-  Eye,
-  EyeOff,
-  Loader2,
-  Map,
-  Nfc,
-  ShieldCheck,
-  Sparkles,
-} from "lucide-react";
 import { useAuth } from "@/components/AuthProvider";
+import PawIcon from "@/components/icons/PawIcon";
 import PawPalLogo from "@/components/PawPalLogo";
 import { useRouter } from "next/navigation";
 import {
@@ -89,7 +77,7 @@ export default function AuthPage() {
         <aside className="auth-visual-panel hidden lg:block">
           <div className="relative z-10">
             <Badge tone="primary" variant="semantic">
-              <Sparkles className="h-4 w-4" aria-hidden="true" />
+              <PawIcon name="sparkle" className="h-4 w-4" aria-hidden="true" />
               {t("authBadge")}
             </Badge>
             <h1 className="mt-5 max-w-xl text-5xl font-extrabold leading-tight text-paw-ink">
@@ -101,12 +89,12 @@ export default function AuthPage() {
           </div>
           <div className="auth-signal-grid relative z-10 mt-8">
             {[
-              { icon: Nfc, title: t("authSignalNfcTitle"), copy: t("authSignalNfcCopy") },
-              { icon: Map, title: t("authSignalMapTitle"), copy: t("authSignalMapCopy") },
-              { icon: ShieldCheck, title: t("authSignalPrivacyTitle"), copy: t("authSignalPrivacyCopy") },
+              { icon: "nfc" as const, title: t("authSignalNfcTitle"), copy: t("authSignalNfcCopy") },
+              { icon: "map" as const, title: t("authSignalMapTitle"), copy: t("authSignalMapCopy") },
+              { icon: "shield" as const, title: t("authSignalPrivacyTitle"), copy: t("authSignalPrivacyCopy") },
             ].map((item) => (
               <div key={item.title} className="auth-signal-card">
-                <item.icon className="h-5 w-5 text-paw-on-primary-soft" aria-hidden="true" />
+                <PawIcon name={item.icon} className="h-5 w-5 text-paw-on-primary-soft" aria-hidden="true" />
                 <div>
                   <p className="text-sm font-extrabold text-paw-ink">{item.title}</p>
                   <p className="mt-1 text-xs leading-5 text-paw-body">{item.copy}</p>
@@ -193,7 +181,7 @@ export default function AuthPage() {
                 value={fullName}
                 onChange={(e) => setFullName(e.target.value)}
                 placeholder={t("authDisplayNamePlaceholder")}
-                leftSlot={<User className="h-4 w-4" aria-hidden="true" />}
+                leftSlot={<PawIcon name="user" className="h-4 w-4" aria-hidden="true" />}
               />
             )}
 
@@ -206,7 +194,7 @@ export default function AuthPage() {
               placeholder={t("authEmailPlaceholder")}
               required
               aria-invalid={Boolean(error && !email.includes("@"))}
-              leftSlot={<Mail className="h-4 w-4" aria-hidden="true" />}
+              leftSlot={<PawIcon name="mail" className="h-4 w-4" aria-hidden="true" />}
             />
 
             <Input
@@ -219,7 +207,7 @@ export default function AuthPage() {
               required
               aria-invalid={Boolean(error && password.length > 0 && password.length < 6)}
               className="pr-16"
-              leftSlot={<Lock className="h-4 w-4" aria-hidden="true" />}
+              leftSlot={<PawIcon name="secure" className="h-4 w-4" aria-hidden="true" />}
               rightSlot={
                 <button
                   type="button"
@@ -227,7 +215,7 @@ export default function AuthPage() {
                   onClick={() => setShowPassword(!showPassword)}
                   className="auth-password-toggle rounded-paw-sm p-1 text-paw-muted transition hover:bg-paw-panel-subtle hover:text-paw-ink"
                 >
-                  {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                  {showPassword ? <PawIcon name="hide" className="h-4 w-4" /> : <PawIcon name="show" className="h-4 w-4" />}
                 </button>
               }
             />
@@ -242,7 +230,7 @@ export default function AuthPage() {
                 placeholder={t("authConfirmPasswordPlaceholder")}
                 required
                 aria-invalid={Boolean(error && !isLogin && confirmPassword.length > 0 && password !== confirmPassword)}
-                leftSlot={<Lock className="h-4 w-4" aria-hidden="true" />}
+                leftSlot={<PawIcon name="secure" className="h-4 w-4" aria-hidden="true" />}
               />
             )}
 
@@ -253,11 +241,11 @@ export default function AuthPage() {
               className="w-full"
             >
               {loading ? (
-                <Loader2 className="h-5 w-5 animate-spin" aria-hidden="true" />
+                <PawIcon name="spinner" className="h-5 w-5 animate-spin" aria-hidden="true" />
               ) : (
                 <>
                   {isLogin ? t("authSignInTab") : t("authCreateAccountButton")}
-                  <ArrowRight className="w-4 h-4" />
+                  <PawIcon name="forward" className="w-4 h-4" />
                 </>
               )}
             </Button>
@@ -266,7 +254,7 @@ export default function AuthPage() {
           <div className="auth-trust-panel mt-6">
             <div className="flex items-start gap-3">
               <span className="auth-trust-icon">
-                <ShieldCheck className="h-4 w-4" aria-hidden="true" />
+                <PawIcon name="shield" className="h-4 w-4" aria-hidden="true" />
               </span>
               <div>
                 <p className="text-sm font-extrabold text-paw-ink">{t("authTrustTitle")}</p>
@@ -276,8 +264,8 @@ export default function AuthPage() {
               </div>
             </div>
             <div className="auth-trust-list" aria-label={t("authTrustChecksLabel")}>
-              <span><Nfc className="h-3.5 w-3.5" aria-hidden="true" /> {t("authTagControls")}</span>
-              <span><Lock className="h-3.5 w-3.5" aria-hidden="true" /> {t("authPrivateOwnerDetails")}</span>
+              <span><PawIcon name="nfc" className="h-3.5 w-3.5" aria-hidden="true" /> {t("authTagControls")}</span>
+              <span><PawIcon name="secure" className="h-3.5 w-3.5" aria-hidden="true" /> {t("authPrivateOwnerDetails")}</span>
             </div>
           </div>
           </CardContent>

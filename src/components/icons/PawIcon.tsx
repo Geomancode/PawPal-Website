@@ -95,6 +95,30 @@ import {
   Bell,
   Globe2,
   Ban,
+  Award,
+  MapPinned,
+  BadgeCheck,
+  MessageSquareWarning,
+  Clock3,
+  Phone,
+  Cookie,
+  ReceiptText,
+  Database,
+  Scale,
+  Eye,
+  Share2,
+  EyeOff,
+  Siren,
+  Flag,
+  ThumbsUp,
+  Globe,
+  User,
+  GraduationCap,
+  UserRound,
+  Handshake,
+  UsersRound,
+  Heart,
+  Zap,
   type LucideIcon,
 } from "lucide-react";
 
@@ -203,7 +227,31 @@ export type PawIconName =
   | "comment"
   | "notify"
   | "globe"
-  | "ban";
+  | "ban"
+  | "award"
+  | "locationPinned"
+  | "verified"
+  | "commentWarning"
+  | "schedule"
+  | "phone"
+  | "cookie"
+  | "receiptDetail"
+  | "database"
+  | "legal"
+  | "show"
+  | "share"
+  | "hide"
+  | "emergency"
+  | "flag"
+  | "thumbsUp"
+  | "world"
+  | "user"
+  | "education"
+  | "person"
+  | "partnership"
+  | "people"
+  | "heart"
+  | "energy";
 
 export type PawIconComponent = LucideIcon;
 
@@ -303,6 +351,30 @@ const semanticIconMap = {
   notify: Bell,
   globe: Globe2,
   ban: Ban,
+  award: Award,
+  locationPinned: MapPinned,
+  verified: BadgeCheck,
+  commentWarning: MessageSquareWarning,
+  schedule: Clock3,
+  phone: Phone,
+  cookie: Cookie,
+  receiptDetail: ReceiptText,
+  database: Database,
+  legal: Scale,
+  show: Eye,
+  share: Share2,
+  hide: EyeOff,
+  emergency: Siren,
+  flag: Flag,
+  thumbsUp: ThumbsUp,
+  world: Globe,
+  user: User,
+  education: GraduationCap,
+  person: UserRound,
+  partnership: Handshake,
+  people: UsersRound,
+  heart: Heart,
+  energy: Zap,
 } satisfies Record<PawIconName, LucideIcon>;
 
 type PawIconProps = {

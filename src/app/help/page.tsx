@@ -1,19 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import {
-  ArrowRight,
-  Clock3,
-  LifeBuoy,
-  Mail,
-  MapPin,
-  MessageCircle,
-  ScanLine,
-  ShieldCheck,
-  Siren,
-  ShoppingBag,
-  UserRound,
-} from "lucide-react";
+import PawIcon from "@/components/icons/PawIcon";
 import {
   Badge,
   Card,
@@ -25,7 +13,7 @@ import { useRouteTranslations } from "@/i18n/useRouteTranslations";
 
 const LANE_DEFINITIONS = [
   {
-    icon: ScanLine,
+    icon: "nfcScan",
     titleKey: "helpNfcTitle",
     routeKey: "helpNfcRoute",
     textKey: "helpNfcText",
@@ -33,7 +21,7 @@ const LANE_DEFINITIONS = [
     href: "/store",
   },
   {
-    icon: ShoppingBag,
+    icon: "cart",
     titleKey: "helpStoreTitle",
     routeKey: "helpStoreRoute",
     textKey: "helpStoreText",
@@ -41,7 +29,7 @@ const LANE_DEFINITIONS = [
     href: "/store",
   },
   {
-    icon: UserRound,
+    icon: "person",
     titleKey: "helpAccountTitle",
     routeKey: "helpAccountRoute",
     textKey: "helpAccountText",
@@ -49,7 +37,7 @@ const LANE_DEFINITIONS = [
     href: "mailto:hello@pawpal.be",
   },
   {
-    icon: Siren,
+    icon: "emergency",
     titleKey: "helpUrgentTitle",
     routeKey: "helpUrgentRoute",
     textKey: "helpUrgentText",
@@ -59,10 +47,10 @@ const LANE_DEFINITIONS = [
 ] as const;
 
 const ROUTE_DEFINITIONS = [
-  { labelKey: "helpStepTagLabel", valueKey: "helpStepTagValue", icon: ScanLine },
-  { labelKey: "helpStepStoreLabel", valueKey: "helpStepStoreValue", icon: ShoppingBag },
-  { labelKey: "helpStepAccountLabel", valueKey: "helpStepAccountValue", icon: MessageCircle },
-  { labelKey: "helpStepUrgentLabel", valueKey: "helpStepUrgentValue", icon: ShieldCheck },
+  { labelKey: "helpStepTagLabel", valueKey: "helpStepTagValue", icon: "nfcScan" },
+  { labelKey: "helpStepStoreLabel", valueKey: "helpStepStoreValue", icon: "cart" },
+  { labelKey: "helpStepAccountLabel", valueKey: "helpStepAccountValue", icon: "chat" },
+  { labelKey: "helpStepUrgentLabel", valueKey: "helpStepUrgentValue", icon: "shield" },
 ] as const;
 
 export default function HelpPage() {
@@ -74,7 +62,7 @@ export default function HelpPage() {
       <section className="grid gap-paw-xl lg:grid-cols-[minmax(0,1fr)_390px] lg:items-center">
         <div className="support-hero-copy">
           <Badge tone="primary" variant="semantic" className="mb-paw-lg">
-            <LifeBuoy className="h-4 w-4" aria-hidden="true" />
+            <PawIcon name="support" className="h-4 w-4" aria-hidden="true" />
             {t("helpBadge")}
           </Badge>
           <h1 className="max-w-3xl font-brand text-paw-type-h1 font-black text-paw-ink sm:text-paw-type-display">
@@ -88,7 +76,7 @@ export default function HelpPage() {
               href="mailto:hello@pawpal.be"
               className={buttonClassName({ size: "lg" })}
             >
-              <Mail className="h-4 w-4" aria-hidden="true" />
+              <PawIcon name="mail" className="h-4 w-4" aria-hidden="true" />
               {t("helpContactSupport")}
             </a>
             <Link
@@ -96,7 +84,7 @@ export default function HelpPage() {
               className={buttonClassName({ variant: "secondary", size: "lg" })}
             >
               {t("helpOpenGlobe")}
-              <ArrowRight className="h-4 w-4" aria-hidden="true" />
+              <PawIcon name="forward" className="h-4 w-4" aria-hidden="true" />
             </Link>
           </div>
         </div>
@@ -112,7 +100,7 @@ export default function HelpPage() {
               </h2>
             </div>
             <span className="inline-flex h-11 w-11 items-center justify-center rounded-paw-control bg-paw-primary-soft text-paw-on-primary-soft">
-              <Clock3 className="h-5 w-5" aria-hidden="true" />
+              <PawIcon name="schedule" className="h-5 w-5" aria-hidden="true" />
             </span>
           </div>
           <div className="mt-paw-lg grid gap-paw-sm sm:grid-cols-2 lg:grid-cols-1">
@@ -121,7 +109,7 @@ export default function HelpPage() {
                 key={step.labelKey}
                 className="support-route-step"
               >
-                <step.icon className="h-4 w-4 text-paw-on-primary-soft" aria-hidden="true" />
+                <PawIcon name={step.icon} className="h-4 w-4 text-paw-on-primary-soft" aria-hidden="true" />
                 <div className="min-w-0">
                   <p className="text-xs font-black uppercase text-paw-muted">
                     {t(step.labelKey)}
@@ -146,7 +134,7 @@ export default function HelpPage() {
             >
               <CardContent className="flex h-full flex-col">
                 <div className="mb-paw-md flex h-11 w-11 items-center justify-center rounded-paw-control bg-paw-primary-soft text-paw-on-primary-soft">
-                  <item.icon className="h-5 w-5" aria-hidden="true" />
+                  <PawIcon name={item.icon} className="h-5 w-5" aria-hidden="true" />
                 </div>
                 <h2 className="text-paw-type-h3 font-black text-paw-ink">
                   {t(item.titleKey)}
@@ -158,7 +146,7 @@ export default function HelpPage() {
                   className="support-lane-action mt-auto inline-flex items-center gap-paw-xs pt-paw-md text-sm font-extrabold text-paw-on-primary-soft transition hover:text-paw-primary-hover focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-paw-trust/20"
                 >
                   {t(item.actionKey)}
-                  <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
+                  <PawIcon name="forward" className="h-3.5 w-3.5" aria-hidden="true" />
                 </a>
               </CardContent>
             </Card>
@@ -176,7 +164,7 @@ export default function HelpPage() {
             </p>
           </div>
           <div className="flex items-center gap-paw-xs text-sm font-bold text-paw-on-primary-soft">
-            <MapPin className="h-4 w-4" aria-hidden="true" />
+            <PawIcon name="location" className="h-4 w-4" aria-hidden="true" />
             {t("helpBelgiumSupport")}
           </div>
           </div>

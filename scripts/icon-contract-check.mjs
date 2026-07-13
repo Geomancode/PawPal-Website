@@ -102,6 +102,30 @@ const semanticIconMap = {
   notify: "Bell",
   globe: "Globe2",
   ban: "Ban",
+  award: "Award",
+  locationPinned: "MapPinned",
+  verified: "BadgeCheck",
+  commentWarning: "MessageSquareWarning",
+  schedule: "Clock3",
+  phone: "Phone",
+  cookie: "Cookie",
+  receiptDetail: "ReceiptText",
+  database: "Database",
+  legal: "Scale",
+  show: "Eye",
+  share: "Share2",
+  hide: "EyeOff",
+  emergency: "Siren",
+  flag: "Flag",
+  thumbsUp: "ThumbsUp",
+  world: "Globe",
+  user: "User",
+  education: "GraduationCap",
+  person: "UserRound",
+  partnership: "Handshake",
+  people: "UsersRound",
+  heart: "Heart",
+  energy: "Zap",
 };
 
 const migratedFiles = [
@@ -137,11 +161,6 @@ const migratedFiles = [
   "src/app/profile/PushSubscriptionSettings.tsx",
   "src/app/globe/page.tsx",
   "src/app/dev/state-panel/page.tsx",
-];
-
-// Explicit migration debt. This set is bidirectional: adding or removing a direct
-// lucide-react import requires updating the list in the same governance change.
-const pendingFiles = [
   "src/app/about/page.tsx",
   "src/app/auth/page.tsx",
   "src/app/global-error.tsx",
@@ -154,6 +173,10 @@ const pendingFiles = [
   "src/app/terms/page.tsx",
   "src/app/user/[id]/UserPageClient.tsx",
 ];
+
+// Explicit migration debt. This set is bidirectional: adding or removing a direct
+// lucide-react import requires updating the list in the same governance change.
+const pendingFiles = [];
 
 const sourceExtensions = new Set([".js", ".jsx", ".mjs", ".cjs", ".ts", ".tsx"]);
 const directLucideImport = /\bfrom\s*["']lucide-react["']/;
@@ -245,6 +268,6 @@ if (mapStart === -1 || mapEnd === -1) {
 
 if (process.exitCode) process.exit(process.exitCode);
 console.log(
-  `icon contract PASS: 95 fixed semantic mappings; 32 migrated files; ` +
+  `icon contract PASS: 119 fixed semantic mappings; 43 migrated files; ` +
     `${pendingFiles.length} exact pending files; ${directImportFiles.length} total direct-import files.`,
 );
