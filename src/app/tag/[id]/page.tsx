@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import TagPageClient from "./TagPageClient";
 import { publicPageMetadata } from "@/app/metadata";
 import { loadP2W2TagFixture } from "@/lib/p2w2DynamicRouteFixtures";
+import { getPetAgeYears } from "@/lib/petAge";
 
 interface PageProps {
   params: Promise<{ id: string }>;
@@ -16,7 +17,7 @@ async function loadTagPet(id: string) {
   // Fetch pet data (public, no auth required)
   const { data: pet, error } = await supabase
     .from("pets")
-    .select("id, name, breed, age, avatar_url, social_traits, blood_type, owner_contact, created_at, owner_id")
+    .select("id, name, breed, birth_date, avatar_url, social_traits, blood_type, owner_contact, created_at, owner_id")
     .eq("id", id)
     .maybeSingle();
 
@@ -32,7 +33,7 @@ async function loadTagPet(id: string) {
 
   if (ownerError) throw ownerError;
 
-  return { pet, owner };
+  return { pet: { ...pet, age: getPetAgeYears(pet.birth_date) }, owner };
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {

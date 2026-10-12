@@ -12,7 +12,6 @@ interface PageProps {
 
 type ProfileRow = {
   display_name?: string | null;
-  full_name?: string | null;
   username?: string | null;
   avatar_url?: string | null;
 };
@@ -36,7 +35,7 @@ async function loadPost(id: string) {
   ] = await Promise.all([
     supabase
       .from("profiles")
-      .select("display_name, full_name, username, avatar_url")
+      .select("display_name, username, avatar_url")
       .eq("id", post.user_id ?? post.author_id)
       .maybeSingle(),
     supabase

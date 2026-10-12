@@ -21,7 +21,6 @@ type PostPageClientProps = {
   };
   profile: {
     display_name?: string | null;
-    full_name?: string | null;
     username?: string | null;
     avatar_url?: string | null;
   } | null;
@@ -38,7 +37,6 @@ export default function PostPageClient({
   const heroUrl = images[0]?.url ?? post.image_url ?? post.walk_map_image_url ?? null;
   const authorName =
     profile?.display_name ??
-    profile?.full_name ??
     profile?.username ??
     t("postPageMemberFallback");
   const category = post.category
