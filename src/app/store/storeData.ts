@@ -407,21 +407,8 @@ export function formatOptionalPrice(product: Product): string | undefined {
 }
 
 // ── localStorage helpers ─────────────────────────────────
-const CART_KEY = "pawpal_cart";
 const ORDERS_KEY = "pawpal_orders";
-
-export function loadCart(): CartItem[] {
-  if (typeof window === "undefined") return [];
-  try {
-    const raw = localStorage.getItem(CART_KEY);
-    return raw ? JSON.parse(raw) : [];
-  } catch { return []; }
-}
-
-export function saveCart(items: CartItem[]) {
-  if (typeof window === "undefined") return;
-  localStorage.setItem(CART_KEY, JSON.stringify(items));
-}
+export { loadCart, saveCart } from "@/lib/cartStorage";
 
 export function loadOrders(): Order[] {
   if (typeof window === "undefined") return [];

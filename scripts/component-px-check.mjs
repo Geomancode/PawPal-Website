@@ -44,7 +44,7 @@ const allowlistEntries = [
   ["src/app/store/page.tsx:68:1:[64px]", "A3 floating-cart geometry: the mobile cart trigger keeps its dedicated 64px height."],
   ["src/app/store/page.tsx:68:2:[64px]", "A3 floating-cart geometry: the mobile cart trigger keeps its dedicated 64px width."],
   ["src/app/store/page.tsx:69:1:[112px]", "A3 floating-cart geometry: the toast keeps 112px bottom clearance; the numeric match with shell-top is coincidental and semantically unrelated."],
-  ["src/app/store/page.tsx:721:1:[minmax(0,1fr)_minmax(360px,0.72fr)]", "A6 grid track geometry: the store content/cart split preserves its 360px secondary-track floor."],
+  ["src/app/store/page.tsx:712:1:[minmax(0,1fr)_minmax(360px,0.72fr)]", "A6 grid track geometry: the store content/cart split preserves its 360px secondary-track floor."],
   ["src/app/user/[id]/UserPageClient.tsx:75:1:[1fr_280px]", "A6 grid track geometry: the user profile layout preserves its fixed 280px side track."],
   ["src/components/ChatBottomSheet.tsx:562:1:[5px]", "A7 component one-off geometry: the chat-sheet drag handle keeps its dedicated 5px height."],
   ["src/components/ChatBottomSheet.tsx:618:1:[260px]", "A7 component one-off geometry: the chat attachment bubble keeps its local 260px maximum width."],

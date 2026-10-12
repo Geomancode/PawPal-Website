@@ -22,10 +22,10 @@ import {
   fetchCatalogProducts,
   formatOptionalPrice,
   formatPrice,
-  loadCart, saveCart,
   withProductAssetOverrides,
 } from "./storeData";
 import ProductVisual from "./ProductVisual";
+import { useCart } from "./useCart";
 import { useAuth } from "@/components/AuthProvider";
 import {
   paidTierFromValue,
@@ -550,7 +550,7 @@ function StorePageContent({ t }: { t: StoreTranslation }) {
   const shouldReduceMotion = useHydratedReducedMotion();
   const { user, session } = useAuth();
   const [products, setProducts] = useState<Product[]>(() => PRODUCTS.map(withProductAssetOverrides));
-  const [cart, setCart] = useState<CartItem[]>([]);
+  const [cart, setCart] = useCart();
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [category, setCategory] = useState<Category>("all");
   const [search, setSearch] = useState(() => searchParams.get("search") ?? "");
@@ -579,15 +579,6 @@ function StorePageContent({ t }: { t: StoreTranslation }) {
     () => new Set(recommendedProductIds),
     [recommendedProductIds],
   );
-
-  useEffect(() => {
-    let cancelled = false;
-    queueMicrotask(() => {
-      if (!cancelled) setCart(loadCart());
-    });
-    return () => { cancelled = true; };
-  }, []);
-  useEffect(() => { saveCart(cart); }, [cart]);
 
   useEffect(() => {
     let cancelled = false;
@@ -644,7 +635,7 @@ function StorePageContent({ t }: { t: StoreTranslation }) {
     });
     setToast(`✓ ${product.name} ${t("storeAddedToCartSuffix")}`);
     setTimeout(() => setToast(null), 2500);
-  }, [t]);
+  }, [setCart, t]);
 
   const updateQuantity = useCallback((id: string, qty: number) => {
     if (qty <= 0) {
@@ -652,11 +643,11 @@ function StorePageContent({ t }: { t: StoreTranslation }) {
     } else {
       setCart((prev) => prev.map((i) => i.product.id === id ? { ...i, quantity: qty } : i));
     }
-  }, []);
+  }, [setCart]);
 
   const removeItem = useCallback((id: string) => {
     setCart((prev) => prev.filter((i) => i.product.id !== id));
-  }, []);
+  }, [setCart]);
 
   const filtered = products.filter((p) => {
     const matchCat = category === "all" || p.category === category;

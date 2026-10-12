@@ -11,9 +11,9 @@ import { useRouter } from "next/navigation";
 import PawIcon from "@/components/icons/PawIcon";
 import {
   CartItem, ShippingInfo,
-  loadCart,
 } from "../storeData";
 import ProductVisual from "../ProductVisual";
+import { useCart } from "../useCart";
 import {
   Badge,
   Button,
@@ -180,7 +180,9 @@ export default function CheckoutPage() {
   const router = useRouter();
   const shouldReduceMotion = useHydratedReducedMotion();
   const [step, setStep] = useState(1);
-  const [cart, setCart] = useState<CartItem[]>([]);
+  const [storedCart, , cartReady] = useCart();
+  const [fixtureCart, setFixtureCart] = useState<CartItem[]>([]);
+  const cart = ACCOUNT_FIXTURES_ENABLED ? fixtureCart : storedCart;
   const [redirecting, setRedirecting] = useState(false);
   const [checkoutError, setCheckoutError] = useState<string | null>(null);
 
@@ -194,21 +196,18 @@ export default function CheckoutPage() {
       queueMicrotask(() => {
         if (cancelled) return;
         const fixture = loadP3B1g1AccountFixtures().checkout;
-        setCart(fixture.cart);
+        setFixtureCart(fixture.cart);
         setShipping(fixture.shipping);
-      });
-    } else {
-      queueMicrotask(() => {
-        const loaded = loadCart();
-        if (cancelled) return;
-        if (loaded.length === 0) {
-          router.push("/store");
-        }
-        setCart(loaded);
       });
     }
     return () => { cancelled = true; };
-  }, [router]);
+  }, []);
+
+  useEffect(() => {
+    if (!ACCOUNT_FIXTURES_ENABLED && cartReady && cart.length === 0) {
+      router.push("/store");
+    }
+  }, [cart, cartReady, router]);
 
   const subtotal = cart.reduce((s, i) => s + i.product.price * i.quantity, 0);
   const emailLooksValid = /^\S+@\S+\.\S+$/.test(shipping.email.trim());
