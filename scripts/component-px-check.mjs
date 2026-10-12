@@ -51,12 +51,12 @@ const allowlistEntries = [
   ["src/components/ChatBottomSheet.tsx:622:1:[320px]", "A7 component one-off geometry: the chat message bubble keeps its local 320px maximum width."],
   ["src/components/GlobeFullPage.tsx:684:1:[min(320px,calc(100vw-2rem))]", "A7 component one-off geometry: the globe overlay keeps its viewport-bounded 320px width expression."],
   ["src/components/GlobeTutorial.tsx:183:1:[340px]", "A7 component one-off geometry: the globe tutorial callout keeps its local 340px width."],
-  ["src/components/HomeClientParts.tsx:255:1:[680px]", "A7 component one-off geometry: the home hero copy keeps its local 680px maximum width."],
-  ["src/components/HomeClientParts.tsx:545:1:[48px_1fr]", "A6 grid track geometry: each home feature row preserves its 48px icon track."],
-  ["src/components/HomeClientParts.tsx:560:1:[430px]", "A7 component one-off geometry: the globe hero showcase keeps its 430px base minimum height for layout stability; this value must not change."],
-  ["src/components/HomeClientParts.tsx:560:2:[540px]", "A7 component one-off geometry: the globe hero showcase keeps its 540px small-screen minimum height for layout stability; this value must not change."],
-  ["src/components/HomeClientParts.tsx:572:1:[135px]", "A7 component one-off geometry: the showcase phone card keeps its local 135px small-screen width."],
-  ["src/components/HomeClientParts.tsx:572:2:[158px]", "A7 component one-off geometry: the showcase phone card keeps its local 158px large-screen width."],
+  ["src/components/HomeClientParts.tsx:306:1:[680px]", "A7 component one-off geometry: the home hero copy keeps its local 680px maximum width."],
+  ["src/components/HomeClientParts.tsx:596:1:[48px_1fr]", "A6 grid track geometry: each home feature row preserves its 48px icon track."],
+  ["src/components/HomeClientParts.tsx:611:1:[430px]", "A7 component one-off geometry: the globe hero showcase keeps its 430px base minimum height for layout stability; this value must not change."],
+  ["src/components/HomeClientParts.tsx:611:2:[540px]", "A7 component one-off geometry: the globe hero showcase keeps its 540px small-screen minimum height for layout stability; this value must not change."],
+  ["src/components/HomeClientParts.tsx:623:1:[135px]", "A7 component one-off geometry: the showcase phone card keeps its local 135px small-screen width."],
+  ["src/components/HomeClientParts.tsx:623:2:[158px]", "A7 component one-off geometry: the showcase phone card keeps its local 158px large-screen width."],
   ["src/components/ui/Badge.tsx:44:1:[38px]", "A7 component one-off geometry: the badge keeps its dedicated 38px minimum tap-target height."],
 ];
 

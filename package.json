@@ -40,7 +40,8 @@
     "test:maplibre-security": "node scripts/maplibre-security-check.mjs",
     "test:persona-auth": "node scripts/persona-auth-check.mjs",
     "test:checkout-flow": "node scripts/checkout-flow-check.mjs",
-    "test:subscription-webhook": "node scripts/subscription-webhook-check.mjs"
+    "test:subscription-webhook": "node scripts/subscription-webhook-check.mjs",
+    "test:home-progress-runtime": "node scripts/home-progress-runtime-check.mjs"
   },
   "dependencies": {
     "@google/genai": "^1.50.1",

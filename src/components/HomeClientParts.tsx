@@ -1,6 +1,7 @@
 "use client";
 
-import { motion, useInView, useScroll, useSpring } from "framer-motion";
+import { motion, useInView } from "framer-motion";
+import { createPortal } from "react-dom";
 import Globe from "@/components/Globe";
 import Image from "next/image";
 import Link from "next/link";
@@ -90,12 +91,62 @@ export function FadeInView({
   );
 }
 
-export function ScrollProgress() {
-  const shouldReduceMotion = useHydratedReducedMotion();
-  const { scrollYProgress } = useScroll();
-  const scaleX = useSpring(scrollYProgress, { stiffness: 120, damping: 30 });
+function subscribeToDocumentBody() {
+  return () => {};
+}
 
-  return <motion.div className="scroll-progress" style={{ scaleX: shouldReduceMotion ? scrollYProgress : scaleX }} />;
+function getDocumentBodySnapshot() {
+  return document.body;
+}
+
+function getServerDocumentBodySnapshot() {
+  return null;
+}
+
+export function ScrollProgress() {
+  // The server and first hydration render omit this decoration. Only mount the
+  // portal after hydration, above the main stacking context and fixed Navbar.
+  const body = useSyncExternalStore<HTMLElement | null>(
+    subscribeToDocumentBody,
+    getDocumentBodySnapshot,
+    getServerDocumentBodySnapshot,
+  );
+  const progressRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!body) return;
+    let frame: number | null = null;
+    const update = () => {
+      frame = null;
+      const range = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = range > 0 ? Math.min(1, Math.max(0, window.scrollY / range)) : 0;
+      if (progressRef.current) {
+        progressRef.current.style.transform = `scaleX(${progress})`;
+      }
+    };
+    const scheduleUpdate = () => {
+      if (frame === null) frame = window.requestAnimationFrame(update);
+    };
+    // A decorative position indicator needs no spring or scroll-animation
+    // engine. Coalesce input into one frame without React renders or easing,
+    // including when the visitor prefers reduced motion.
+    window.addEventListener("scroll", scheduleUpdate, { passive: true });
+    window.addEventListener("resize", scheduleUpdate);
+    const observer = new ResizeObserver(scheduleUpdate);
+    observer.observe(body);
+    update();
+    return () => {
+      window.removeEventListener("scroll", scheduleUpdate);
+      window.removeEventListener("resize", scheduleUpdate);
+      observer.disconnect();
+      if (frame !== null) window.cancelAnimationFrame(frame);
+    };
+  }, [body]);
+
+  return body ? createPortal(
+    <div ref={progressRef} aria-hidden="true" className="scroll-progress" style={{ transform: "scaleX(0)" }} />,
+    body,
+  ) : null;
 }
 
 export function HeroBlobs() {
