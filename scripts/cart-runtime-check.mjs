@@ -46,11 +46,12 @@ async function add(page) {
   await cart(page);
 }
 async function run(name, width, execute, expectedWarning) {
-  const context = await browser.newContext({ viewport: { width, height: 900 }, locale: "en-US", reducedMotion: "reduce", serviceWorkers: "block" });
+  const context = await browser.newContext({ viewport: { width, height: 900 }, locale: "en-US", reducedMotion: "reduce", serviceWorkers: "allow" });
   const errors = [], blocked = [], mutations = [], catalogReads = [];
   await context.route("**/*", async (route) => {
     const request = route.request(); const url = new URL(request.url());
     if (fixture && url.pathname === "/rest/v1/products") {
+      catalogReads.push(url.pathname);
       return route.fulfill({ status: 200, contentType: "application/json", body: "[]" });
     }
     if (!["GET", "HEAD"].includes(request.method())) {
@@ -95,6 +96,8 @@ async function run(name, width, execute, expectedWarning) {
   };
   try {
     await execute(page, context, check, capture);
+    check("catalogue fixture was exercised", !fixture || catalogReads.length > 0);
+    check("actual service worker registered", await page.evaluate(async () => (await navigator.serviceWorker.getRegistrations()).length > 0));
     check("no write/payment requests", mutations.length === 0);
     const unexpected = errors.filter((error) => !(expectedWarning && error.type === "warning" && error.text.includes(expectedWarning)));
     check("no unexplained runtime/console errors", unexpected.length === 0);

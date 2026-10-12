@@ -35,7 +35,12 @@
     "test:component-px": "node scripts/component-px-check.mjs",
     "capture:p4e1e": "node scripts/p4e1e-capture-shells.mjs",
     "probe:search-injection": "node scripts/search-injection-probe.mjs",
-    "generate:glyphs": "node scripts/generate-material-glyphs.mjs"
+    "generate:glyphs": "node scripts/generate-material-glyphs.mjs",
+    "test:service-worker-security": "node scripts/service-worker-security-check.mjs",
+    "test:maplibre-security": "node scripts/maplibre-security-check.mjs",
+    "test:persona-auth": "node scripts/persona-auth-check.mjs",
+    "test:checkout-flow": "node scripts/checkout-flow-check.mjs",
+    "test:subscription-webhook": "node scripts/subscription-webhook-check.mjs"
   },
   "dependencies": {
     "@google/genai": "^1.50.1",
@@ -43,8 +48,8 @@
     "@stripe/stripe-js": "^9.0.1",
     "@supabase/supabase-js": "^2.101.1",
     "framer-motion": "^12.36.0",
-    "maplibre-gl": "^5.20.1",
-    "next": "16.2.10",
+    "maplibre-gl": "6.4.1",
+    "next": "16.3.8",
     "react": "19.2.3",
     "react-dom": "19.2.3",
     "react-globe.gl": "^2.37.0",
@@ -59,7 +64,7 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
-    "eslint-config-next": "16.2.10",
+    "eslint-config-next": "16.3.8",
     "playwright": "^1.61.1",
     "postcss": "^8.5.18",
     "tailwindcss": "^4",

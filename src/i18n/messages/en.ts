@@ -327,6 +327,12 @@ export const enMessages = {
   ordersEmptyDescription:
     "Stripe-confirmed PawPal purchases will appear here with delivery and payment status.",
   ordersBrowseProducts: "Browse Products",
+  storeSoldOut: "Sold out",
+  storeStockLimit: "Stock limit",
+  checkoutCartChanged: "Your cart has changed or contains an unavailable product. Return to the store to review it before paying.",
+  successPaymentUnconfirmedTitle: "Payment is not confirmed",
+  successPaymentUnconfirmedCopy: "Your cart is unchanged. Wait for payment confirmation before trying again.",
+  successReceiptStorageWarning: "Payment is confirmed, but this browser could not save the receipt. Your cart has been kept.",
   successConfirmingPayment: "Confirming your payment...",
   successNoSessionId: "No session ID found",
   successCheckoutStatus: "Checkout status",

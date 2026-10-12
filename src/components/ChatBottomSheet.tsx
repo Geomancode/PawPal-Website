@@ -12,7 +12,7 @@ import PawIcon from "@/components/icons/PawIcon";
 import ChatBubble, { type ChatMessageData } from "./ChatBubble";
 import { useAuth } from "./AuthProvider";
 import { createPawPalMapMarkerElement } from "@/lib/createPawPalMapMarkerElement";
-import type maplibregl from "maplibre-gl";
+import type * as maplibregl from "maplibre-gl";
 import type { MessageKey } from "@/i18n/messages/en";
 
 type GlobeTranslation = (key: MessageKey) => string;

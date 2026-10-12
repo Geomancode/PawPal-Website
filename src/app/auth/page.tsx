@@ -13,10 +13,12 @@ import {
   Input,
   StatusMessage,
 } from "@/components/ui";
+import { useRouteTranslations } from "@/i18n/useRouteTranslations";
 import { useI18n } from "@/i18n/I18nProvider";
 
 export default function AuthPage() {
-  const { path, t } = useI18n();
+  const { path } = useI18n();
+  const { loader, t } = useRouteTranslations();
   const { signIn, signUp, user } = useAuth();
   const router = useRouter();
   const [isLogin, setIsLogin] = useState(true);
@@ -73,6 +75,7 @@ export default function AuthPage() {
 
   return (
     <div className="auth-page-shell min-h-screen px-paw-md pt-24 pb-12 bg-paw-page sm:px-paw-xl lg:px-paw-xxl">
+      {loader}
       <div className="auth-layout mx-auto grid w-full max-w-6xl gap-6 lg:grid-cols-[minmax(0,1fr)_440px] lg:items-center">
         <aside className="auth-visual-panel hidden lg:block">
           <div className="relative z-10">

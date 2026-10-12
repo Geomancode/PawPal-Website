@@ -3,25 +3,18 @@
 import { useState, useEffect, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import PawIcon from "@/components/icons/PawIcon";
-import { saveOrder, saveCart, generateOrderId, loadCart } from "../storeData";
+import { saveOrder, saveCart, loadOrders, loadCart } from "../storeData";
+import { checkoutOrderId, isPaidSession, recordPaidCheckout, type CheckoutSession } from "@/lib/checkoutCompletion";
 import { Badge, Button, Card } from "@/components/ui";
+import { useI18n } from "@/i18n/I18nProvider";
 import { useRouteTranslations } from "@/i18n/useRouteTranslations";
 import { loadP3B1g1AccountFixtures } from "@/lib/p3b1g1AccountFixtures";
 
 const ACCOUNT_FIXTURES_ENABLED =
   process.env.NEXT_PUBLIC_P3B1G1_ACCOUNT_FIXTURES === "1";
 const MISSING_SESSION_ERROR = "missing-session-id";
+const UNCONFIRMED_PAYMENT = "payment-not-confirmed";
 
-interface StripeSession {
-  id: string;
-  mode: string | null;
-  status: string;
-  customer_email: string;
-  amount_total: number;
-  currency: string;
-  metadata: Record<string, string>;
-  line_items: { name: string; quantity: number; amount: number }[];
-}
 
 function LoadingState() {
   const { loader, t } = useRouteTranslations();
@@ -40,16 +33,16 @@ function LoadingState() {
 function SuccessContent() {
   const { loader, t } = useRouteTranslations();
   const router = useRouter();
+  const { path } = useI18n();
   const searchParams = useSearchParams();
   const sessionId = searchParams.get("session_id");
-  const intent = searchParams.get("intent");
-  const requestedSubscription = intent === "subscription";
-  const [session, setSession] = useState<StripeSession | null>(null);
+  const [session, setSession] = useState<CheckoutSession | null>(null);
   const [loading, setLoading] = useState(() => Boolean(sessionId) || ACCOUNT_FIXTURES_ENABLED);
   const [error, setError] = useState(() => sessionId || ACCOUNT_FIXTURES_ENABLED ? "" : MISSING_SESSION_ERROR);
-  const [orderId, setOrderId] = useState(() => generateOrderId());
+  const [orderId, setOrderId] = useState(() => sessionId ? checkoutOrderId(sessionId) : "");
+  const [receiptWarning, setReceiptWarning] = useState(false);
+  const [resolvedSessionId, setResolvedSessionId] = useState<string | null>(null);
   const isSubscription =
-    requestedSubscription ||
     session?.mode === "subscription" ||
     session?.metadata?.intent === "ai-upgrade";
 
@@ -70,58 +63,48 @@ function SuccessContent() {
       return;
     }
 
-    fetch(`/api/checkout/session?session_id=${sessionId}`)
-      .then((res) => res.json())
+    const controller = new AbortController();
+    fetch(`/api/checkout/session?session_id=${encodeURIComponent(sessionId)}`, { signal: controller.signal })
+      .then(async (res) => {
+        const data = await res.json();
+        if (!res.ok || data.error) throw new Error("session-verification-failed");
+        return data as CheckoutSession;
+      })
       .then((data) => {
-        if (data.error) {
-          setError(data.error);
+        if (controller.signal.aborted) return;
+        setResolvedSessionId(sessionId);
+        setReceiptWarning(false);
+        if (!isPaidSession(data, sessionId)) {
+          setError(UNCONFIRMED_PAYMENT);
         } else {
           setSession(data);
-
-          const cart = loadCart();
-          const completedSubscription =
-            data.mode === "subscription" || data.metadata?.intent === "ai-upgrade";
-          if (!completedSubscription && cart.length > 0) {
-            const subtotal = cart.reduce((s, i) => s + i.product.price * i.quantity, 0);
-            saveOrder({
-              id: orderId,
-              items: cart,
-              shipping: {
-                fullName: data.metadata?.shipping_name || "",
-                email: data.customer_email || "",
-                address: data.metadata?.shipping_address || "",
-                city: data.metadata?.shipping_city || "",
-                zipCode: data.metadata?.shipping_zip || "",
-                country: data.metadata?.shipping_country || "",
-                phone: data.metadata?.shipping_phone || "",
-              },
-              payment: {
-                last4: "Stripe",
-                brand: "Stripe Checkout",
-              },
-              subtotal,
-              shippingCost: 0,
-              tax: subtotal * 0.21,
-              total: (data.amount_total || 0) / 100,
-              status: "processing",
-              createdAt: new Date().toISOString(),
-            });
-            saveCart([]);
+          setError("");
+          setOrderId(checkoutOrderId(data.id));
+          try {
+            recordPaidCheckout(data, sessionId, { loadCart, loadOrders, saveOrder, saveCart });
+          } catch {
+            // Payment is verified independently of local receipt storage.
+            setReceiptWarning(true);
           }
         }
         setLoading(false);
       })
-      .catch((err) => {
-        setError(err.message);
-        setLoading(false);
+      .catch(() => {
+        if (!controller.signal.aborted) {
+          setResolvedSessionId(sessionId);
+          setError("session-verification-failed");
+          setLoading(false);
+        }
       });
-  }, [sessionId, orderId, requestedSubscription]);
+    return () => controller.abort();
+  }, [sessionId]);
 
-  if (loading) {
+  if ((ACCOUNT_FIXTURES_ENABLED && loading) || (!ACCOUNT_FIXTURES_ENABLED && sessionId && resolvedSessionId !== sessionId)) {
     return <LoadingState />;
   }
 
-  if (error) {
+  const displayError = !sessionId && !ACCOUNT_FIXTURES_ENABLED ? MISSING_SESSION_ERROR : error;
+  if (displayError) {
     return (
       <div className="commerce-page-shell success-status-shell flex min-h-[100dvh] items-start justify-center bg-paw-page px-paw-md pb-16 pt-28 text-paw-ink sm:px-paw-xl lg:px-paw-xxl">
         {loader}
@@ -130,8 +113,8 @@ function SuccessContent() {
             <PawIcon name="warning" className="h-7 w-7" aria-hidden="true" />
           </div>
           <Badge tone="critical" className="mb-3">{t("successCheckoutStatus")}</Badge>
-          <h1 className="text-paw-type-h2 font-extrabold text-paw-ink">{t("successVerificationFailedTitle")}</h1>
-          <p className="mt-3 text-paw-type-body leading-6 text-paw-body">{error === MISSING_SESSION_ERROR ? t("successNoSessionId") : error}</p>
+          <h1 className="text-paw-type-h2 font-extrabold text-paw-ink">{displayError === UNCONFIRMED_PAYMENT ? t("successPaymentUnconfirmedTitle") : t("successVerificationFailedTitle")}</h1>
+          <p className="mt-3 text-paw-type-body leading-6 text-paw-body">{displayError === MISSING_SESSION_ERROR ? t("successNoSessionId") : displayError === UNCONFIRMED_PAYMENT ? t("successPaymentUnconfirmedCopy") : t("successVerificationExplanation")}</p>
           <div className="mt-5 rounded-paw-md border border-paw-border bg-paw-panel-subtle p-4 text-left">
             <p className="text-paw-type-caption font-black uppercase tracking-[0.14em] text-paw-muted">{t("successWhatThisMeans")}</p>
             <p className="mt-2 text-paw-type-body leading-6 text-paw-body">
@@ -139,10 +122,10 @@ function SuccessContent() {
             </p>
           </div>
           <div className="success-action-row mt-6">
-            <Button type="button" onClick={() => router.push("/store")}>
+            <Button type="button" onClick={() => router.push(path("/store"))}>
               {t("successBackToStore")}
             </Button>
-            <Button type="button" variant="secondary" onClick={() => router.push("/store/orders")}>
+            <Button type="button" variant="secondary" onClick={() => router.push(path("/store/orders"))}>
               {t("successViewOrders")}
             </Button>
           </div>
@@ -170,13 +153,15 @@ function SuccessContent() {
               : t("successPurchaseThanks")}
           </p>
 
+          {receiptWarning && <p role="status" className="mt-4 text-paw-body">{t("successReceiptStorageWarning")}</p>}
+
           {isSubscription ? (
             <div className="mt-5 inline-flex items-center gap-2 rounded-paw-pill border border-paw-primary/20 bg-paw-primary-soft px-4 py-2 text-paw-type-body font-extrabold text-paw-on-primary-soft">
               <PawIcon name="sparkle" className="h-4 w-4" aria-hidden="true" />
               {session?.metadata?.tier === "pro" ? t("successPlanProLabel") : t("successPlanBasicLabel")}
             </div>
           ) : (
-            <div className="mt-5 inline-flex items-center gap-2 rounded-paw-pill border border-paw-primary/20 bg-paw-primary-soft px-4 py-2 font-mono text-paw-type-body font-extrabold text-paw-on-primary-soft">
+            <div className="mt-5 inline-flex items-center gap-2 rounded-paw-pill border border-paw-primary/20 bg-paw-primary-soft px-4 py-2 break-all font-mono text-paw-type-body font-extrabold text-paw-on-primary-soft">
               <PawIcon name="receipt" className="h-4 w-4" aria-hidden="true" />
               {t("successOrderNumberPrefix")}#{orderId}
             </div>
@@ -225,17 +210,17 @@ function SuccessContent() {
 
           <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
             {isSubscription ? (
-              <Button type="button" onClick={() => router.push("/store?intent=ai-upgrade")}>
+              <Button type="button" onClick={() => router.push(path("/store?intent=ai-upgrade"))}>
                 {t("successManagePlans")}
                 <PawIcon name="forward" className="h-4 w-4" aria-hidden="true" />
               </Button>
             ) : (
-              <Button type="button" onClick={() => router.push("/store/orders")}>
+              <Button type="button" onClick={() => router.push(path("/store/orders"))}>
                 {t("successViewMyOrders")}
                 <PawIcon name="forward" className="h-4 w-4" aria-hidden="true" />
               </Button>
             )}
-            <Button type="button" variant="secondary" onClick={() => router.push("/store")}>
+            <Button type="button" variant="secondary" onClick={() => router.push(path("/store"))}>
               {t("successContinueShopping")}
             </Button>
           </div>

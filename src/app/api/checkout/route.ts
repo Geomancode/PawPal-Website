@@ -1,5 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
+import { supabaseServer } from "@/lib/supabaseServer";
+import { checkoutQuantities, catalogLineItems, CheckoutCatalogError, type CatalogProduct } from "@/lib/checkoutCatalog";
+import { normalizeShipping } from "@/lib/checkoutShipping";
+import { isLocale, defaultLocale } from "@/i18n/locales";
+import { localizedPath } from "@/i18n/routing";
 import { reportError } from "@/lib/errorReporting";
 import {
   assertStripeTestMode,
@@ -13,40 +18,23 @@ function getStripe() {
 
 export async function POST(req: NextRequest) {
   try {
-    assertStripeTestMode();
-    const { items, shipping } = await req.json();
-    if (!Array.isArray(items) || items.length === 0) {
-      return NextResponse.json({ error: "Cart is empty" }, { status: 400 });
+    const { items, shipping: rawShipping, locale: requestedLocale } = await req.json();
+    const shipping = normalizeShipping(rawShipping);
+    if (!shipping) {
+      return NextResponse.json({ error: "Valid shipping details are required" }, { status: 400 });
     }
-
-    // Build line items for Stripe Checkout
-    const lineItems: Stripe.Checkout.SessionCreateParams.LineItem[] = items.map(
-      (item: {
-        name: string;
-        price: number;
-        quantity: number;
-        image?: string;
-        imageUrl?: string;
-        currency?: string;
-      }) => {
-        const imageUrl =
-          typeof item.imageUrl === "string" && /^https?:\/\//.test(item.imageUrl)
-            ? item.imageUrl
-            : undefined;
-
-        return {
-          price_data: {
-            currency: (item.currency || "eur").toLowerCase(),
-            product_data: {
-              name: item.name,
-              images: imageUrl ? [imageUrl] : undefined,
-            },
-            unit_amount: Math.round(item.price * 100), // Stripe uses cents
-          },
-          quantity: item.quantity,
-        };
-      },
-    );
+    const locale = isLocale(requestedLocale) ? requestedLocale : defaultLocale;
+    assertStripeTestMode();
+    const requestedItems = checkoutQuantities(items);
+    const { data: products, error: catalogError } = await supabaseServer
+      .from("products")
+      .select("id,name,price,currency,published,in_stock,stock_quantity")
+      .eq("published", true)
+      .in("id", requestedItems.map((item) => item.id));
+    if (catalogError || !products) {
+      throw new CheckoutCatalogError("Product catalog is unavailable", 503, "catalog_unavailable");
+    }
+    const lineItems = catalogLineItems(requestedItems, products as CatalogProduct[]);
 
     const stripe = getStripe();
     const baseUrl =
@@ -68,6 +56,7 @@ export async function POST(req: NextRequest) {
       customerEmail: shipping?.email || null,
       metadata,
       mode: "payment",
+      locale,
     });
 
     const session = await stripe.checkout.sessions.create(
@@ -84,8 +73,8 @@ export async function POST(req: NextRequest) {
         ],
         line_items: lineItems,
         mode: "payment",
-        success_url: `${baseUrl}/store/success?session_id={CHECKOUT_SESSION_ID}`,
-        cancel_url: `${baseUrl}/store/checkout`,
+        success_url: `${baseUrl}${localizedPath("/store/success", locale)}?session_id={CHECKOUT_SESSION_ID}`,
+        cancel_url: `${baseUrl}${localizedPath("/store/checkout", locale)}`,
         customer_email: shipping?.email || undefined,
         metadata,
         shipping_options: [
@@ -110,6 +99,9 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json({ url: session.url, sessionId: session.id });
   } catch (err) {
+    if (err instanceof CheckoutCatalogError) {
+      return NextResponse.json({ error: err.message, code: err.code }, { status: err.status });
+    }
     reportError(err, { route: "/api/checkout", method: "POST" });
     const message = err instanceof Error ? err.message : "Unknown error";
     return NextResponse.json({ error: message }, { status: 500 });

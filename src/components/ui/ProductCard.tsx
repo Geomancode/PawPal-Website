@@ -17,6 +17,7 @@ type ProductCardProps = {
   ratingDetail?: string;
   actionLabel?: string;
   onAction?: () => void;
+  actionDisabled?: boolean;
   detailsLabel?: string;
   onDetails?: () => void;
   className?: string;
@@ -34,6 +35,7 @@ export default function ProductCard({
   ratingDetail,
   actionLabel = "Add to cart",
   onAction,
+  actionDisabled = false,
   detailsLabel = "Details",
   onDetails,
   className,
@@ -105,7 +107,7 @@ export default function ProductCard({
                 {detailsLabel}
               </Button>
             )}
-            <Button type="button" size="sm" onClick={onAction}>
+            <Button type="button" size="sm" onClick={onAction} disabled={actionDisabled}>
               <PawIcon name="cart" className="h-3.5 w-3.5" aria-hidden="true" />
               {actionLabel}
             </Button>

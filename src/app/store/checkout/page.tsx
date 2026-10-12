@@ -7,6 +7,8 @@ import {
   type HTMLInputTypeAttribute,
 } from "react";
 import { motion } from "framer-motion";
+import { normalizeShipping } from "@/lib/checkoutShipping";
+import { useI18n } from "@/i18n/I18nProvider";
 import { useRouter } from "next/navigation";
 import PawIcon from "@/components/icons/PawIcon";
 import {
@@ -119,12 +121,15 @@ function StepIndicator({ current, t }: { current: number; t: CheckoutTranslation
 }
 
 // ─── Input Field ───────────────────────────────────────
-function Field({ label, value, onChange, placeholder, type = "text", required = true }: {
-  label: string; value: string; onChange: (v: string) => void;
+function Field({ name, label, value, onChange, placeholder, error, type = "text", required = true }: {
+  name: keyof ShippingInfo; label: string; value: string; onChange: (v: string) => void; error?: string;
   placeholder: string; type?: HTMLInputTypeAttribute; required?: boolean;
 }) {
   return (
     <Input
+      id={`checkout-${name}`}
+      name={name}
+      error={error}
       label={required ? `${label} *` : label}
       type={type}
       value={value}
@@ -177,6 +182,7 @@ function OrderSummary({ items, t }: { items: CartItem[]; t: CheckoutTranslation 
 // ─── Main Checkout Page ────────────────────────────────
 export default function CheckoutPage() {
   const { loader, t } = useRouteTranslations();
+  const { path, locale } = useI18n();
   const router = useRouter();
   const shouldReduceMotion = useHydratedReducedMotion();
   const [step, setStep] = useState(1);
@@ -205,23 +211,18 @@ export default function CheckoutPage() {
 
   useEffect(() => {
     if (!ACCOUNT_FIXTURES_ENABLED && cartReady && cart.length === 0) {
-      router.push("/store");
+      router.push(path("/store"));
     }
-  }, [cart, cartReady, router]);
+  }, [cart, cartReady, router, path]);
 
   const subtotal = cart.reduce((s, i) => s + i.product.price * i.quantity, 0);
   const emailLooksValid = /^\S+@\S+\.\S+$/.test(shipping.email.trim());
-  const canProceedShipping = Boolean(
-    shipping.fullName &&
-    emailLooksValid &&
-    shipping.address &&
-    shipping.city &&
-    shipping.zipCode &&
-    shipping.country,
-  );
+  const normalizedShipping = normalizeShipping(shipping);
+  const canProceedShipping = normalizedShipping !== null;
 
   // Redirect to Stripe Checkout
   const handleStripeCheckout = async () => {
+    if (!normalizedShipping || redirecting) return;
     setRedirecting(true);
     setCheckoutError(null);
     try {
@@ -229,23 +230,19 @@ export default function CheckoutPage() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          items: cart.map((i) => ({
-            name: i.product.name,
-            price: i.product.price,
-            quantity: i.quantity,
-            image: i.product.image,
-            imageUrl: i.product.imageUrl,
-            currency: i.product.currency,
-          })),
-          shipping,
+          items: cart.map((i) => ({ id: i.product.id, quantity: i.quantity })),
+          shipping: normalizedShipping,
+          locale,
         }),
       });
 
-      const data = (await res.json().catch(() => ({}))) as { url?: string; error?: string };
+      const data = (await res.json().catch(() => ({}))) as { url?: string; error?: string; code?: string };
       if (res.ok && data.url) {
         window.location.href = data.url;
       } else {
-        setCheckoutError(data.error || t("checkoutStartError"));
+        setCheckoutError(data.code === "catalog_unavailable" ? t("storeCatalogUnavailable")
+          : data.code === "cart_changed" || data.code === "invalid_cart" ? t("checkoutCartChanged")
+          : data.error || t("checkoutStartError"));
         setRedirecting(false);
       }
     } catch (err) {
@@ -263,7 +260,7 @@ export default function CheckoutPage() {
           type="button"
           variant="ghost"
           size="sm"
-          onClick={() => step === 1 ? router.push("/store") : setStep(step - 1)}
+          onClick={() => step === 1 ? router.push(path("/store")) : setStep(step - 1)}
           className="mb-paw-xl -ml-paw-xs text-paw-muted hover:text-paw-primary"
         >
             <PawIcon name="back" className="w-paw-md h-paw-md" /> {step === 1 ? t("checkoutBackToStore") : t("checkoutBack")}
@@ -318,17 +315,17 @@ export default function CheckoutPage() {
                   </h2>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-paw-md">
                     <div className="sm:col-span-2">
-                      <Field label={t("checkoutFullNameLabel")} value={shipping.fullName} onChange={(v) => setShipping({ ...shipping, fullName: v })} placeholder={t("checkoutFullNamePlaceholder")} />
+                      <Field name="fullName" label={t("checkoutFullNameLabel")} value={shipping.fullName} onChange={(v) => setShipping({ ...shipping, fullName: v })} placeholder={t("checkoutFullNamePlaceholder")} />
                     </div>
-                    <Field label={t("checkoutEmailLabel")} value={shipping.email} onChange={(v) => setShipping({ ...shipping, email: v })} placeholder={t("checkoutEmailPlaceholder")} type="email" />
-                    <Field label={t("checkoutPhoneLabel")} value={shipping.phone} onChange={(v) => setShipping({ ...shipping, phone: v })} placeholder={t("checkoutPhonePlaceholder")} type="tel" />
+                    <Field name="email" error={shipping.email && !emailLooksValid ? t("checkoutEmailWarningDescription") : undefined} label={t("checkoutEmailLabel")} value={shipping.email} onChange={(v) => setShipping({ ...shipping, email: v })} placeholder={t("checkoutEmailPlaceholder")} type="email" />
+                    <Field name="phone" label={t("checkoutPhoneLabel")} value={shipping.phone} onChange={(v) => setShipping({ ...shipping, phone: v })} placeholder={t("checkoutPhonePlaceholder")} type="tel" />
                     <div className="sm:col-span-2">
-                      <Field label={t("checkoutStreetAddressLabel")} value={shipping.address} onChange={(v) => setShipping({ ...shipping, address: v })} placeholder={t("checkoutStreetAddressPlaceholder")} />
+                      <Field name="address" label={t("checkoutStreetAddressLabel")} value={shipping.address} onChange={(v) => setShipping({ ...shipping, address: v })} placeholder={t("checkoutStreetAddressPlaceholder")} />
                     </div>
-                    <Field label={t("checkoutCityLabel")} value={shipping.city} onChange={(v) => setShipping({ ...shipping, city: v })} placeholder={t("checkoutCityPlaceholder")} />
-                    <Field label={t("checkoutZipCodeLabel")} value={shipping.zipCode} onChange={(v) => setShipping({ ...shipping, zipCode: v })} placeholder={t("checkoutZipCodePlaceholder")} />
+                    <Field name="city" label={t("checkoutCityLabel")} value={shipping.city} onChange={(v) => setShipping({ ...shipping, city: v })} placeholder={t("checkoutCityPlaceholder")} />
+                    <Field name="zipCode" label={t("checkoutZipCodeLabel")} value={shipping.zipCode} onChange={(v) => setShipping({ ...shipping, zipCode: v })} placeholder={t("checkoutZipCodePlaceholder")} />
                     <div className="sm:col-span-2">
-                      <Field label={t("checkoutCountryLabel")} value={shipping.country} onChange={(v) => setShipping({ ...shipping, country: v })} placeholder={t("checkoutCountryPlaceholder")} />
+                      <Field name="country" label={t("checkoutCountryLabel")} value={shipping.country} onChange={(v) => setShipping({ ...shipping, country: v })} placeholder={t("checkoutCountryPlaceholder")} />
                     </div>
                   </div>
 
@@ -346,7 +343,7 @@ export default function CheckoutPage() {
                   <motion.button
                     whileTap={shouldReduceMotion ? undefined : { scale: 0.97 }}
                     disabled={!canProceedShipping}
-                    onClick={() => setStep(2)}
+                    onClick={() => { if (normalizedShipping) { setShipping(normalizedShipping); setStep(2); } }}
                     className={buttonClassName({ size: "lg", className: "mt-paw-xl w-full text-paw-type-h3" })}
                   >
                     {t("checkoutReviewOrderButton")} <PawIcon name="forward" className="w-paw-lg h-paw-lg" />

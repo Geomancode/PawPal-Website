@@ -14,7 +14,7 @@
 
 import { NextRequest } from "next/server";
 import { GoogleGenAI, createPartFromFunctionResponse } from "@google/genai";
-import { supabaseServer } from "@/lib/supabaseServer";
+import { supabaseServer, createUserScopedSupabaseClient } from "@/lib/supabaseServer";
 import { hasAiAccess } from "@/lib/subscriptions";
 import { PLATFORM_KNOWLEDGE_PROMPT, FALLBACK_IDENTITY_PROMPT } from "./systemPrompt";
 import { loadUserPets, pickRandom, recallMemories, buildPersonaPrompt } from "./personaEngine";
@@ -92,12 +92,12 @@ function takeRateLimit(key: string, limit: number): boolean {
   return true;
 }
 
-async function resolveUserId(req: NextRequest): Promise<{ userId: string | null; invalidToken: boolean }> {
+async function resolveUserId(req: NextRequest): Promise<{ userId: string | null; accessToken: string | null; invalidToken: boolean }> {
   const token = getBearerToken(req);
-  if (!token) return { userId: null, invalidToken: false };
+  if (!token) return { userId: null, accessToken: null, invalidToken: false };
   const { data, error } = await supabaseServer.auth.getUser(token);
-  if (error) return { userId: null, invalidToken: true };
-  return { userId: data.user?.id ?? null, invalidToken: false };
+  if (error || !data.user) return { userId: null, accessToken: null, invalidToken: true };
+  return { userId: data.user.id, accessToken: token, invalidToken: false };
 }
 
 export async function POST(req: NextRequest) {
@@ -120,7 +120,7 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const { userId, invalidToken } = await resolveUserId(req);
+    const { userId, accessToken, invalidToken } = await resolveUserId(req);
     if (invalidToken) {
       return new Response(
         JSON.stringify({ error: "Invalid session" }),
@@ -136,7 +136,7 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    if (!userId) {
+    if (!userId || !accessToken) {
       return new Response(
         JSON.stringify({
           error: "Sign in and upgrade to Basic or Pro to use PawPal AI.",
@@ -146,7 +146,8 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const { data: entitlement, error: entitlementError } = await supabaseServer
+    const userClient = createUserScopedSupabaseClient(accessToken);
+    const { data: entitlement, error: entitlementError } = await userClient
       .from("profiles")
       .select("subscription_tier, subscription_expires_at")
       .eq("id", userId)
@@ -176,11 +177,11 @@ export async function POST(req: NextRequest) {
           // ── Build system prompt (persona or fallback) ──────────────
           let systemPrompt: string;
 
-          const pets = await loadUserPets(userId);
+          const pets = await loadUserPets(userClient, userId);
           if (pets.length > 0) {
             const activePet = pickRandom(pets);
 
-            const memories = await recallMemories(activePet.petId);
+            const memories = await recallMemories(userClient, userId, activePet.petId);
             const personaPrompt = buildPersonaPrompt(activePet, pets, memories);
             systemPrompt = `${personaPrompt}\n\n${PLATFORM_KNOWLEDGE_PROMPT}`;
 

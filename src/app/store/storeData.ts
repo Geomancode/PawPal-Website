@@ -420,8 +420,10 @@ export function loadOrders(): Order[] {
 
 export function saveOrder(order: Order) {
   const orders = loadOrders();
+  if (orders.some((existing) => existing.id === order.id)) return false;
   orders.unshift(order);
   localStorage.setItem(ORDERS_KEY, JSON.stringify(orders));
+  return true;
 }
 
 export function generateOrderId(): string {

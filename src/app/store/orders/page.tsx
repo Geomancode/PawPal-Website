@@ -15,6 +15,7 @@ import ProductVisual from "../ProductVisual";
 import { Badge, Button, Card, EmptyState } from "@/components/ui";
 import { useReducedMotionPreference } from "@/lib/useReducedMotionPreference";
 import type { MessageKey } from "@/i18n/messages/en";
+import { useI18n } from "@/i18n/I18nProvider";
 import { useRouteTranslations } from "@/i18n/useRouteTranslations";
 import { loadP3B1g1AccountFixtures } from "@/lib/p3b1g1AccountFixtures";
 
@@ -203,6 +204,7 @@ function OrderCard({ order, t }: { order: Order; t: OrdersTranslation }) {
 export default function OrdersPage() {
   const { loader, t } = useRouteTranslations();
   const router = useRouter();
+  const { path } = useI18n();
   const [orders, setOrders] = useState<Order[]>([]);
 
   useEffect(() => {
@@ -227,7 +229,7 @@ export default function OrdersPage() {
           type="button"
           variant="ghost"
           size="sm"
-          onClick={() => router.push("/store")}
+          onClick={() => router.push(path("/store"))}
           className="mb-6 -ml-2 text-paw-muted hover:text-paw-primary"
         >
           <PawIcon name="back" className="h-4 w-4" aria-hidden="true" />
@@ -257,7 +259,7 @@ export default function OrdersPage() {
             description={t("ordersEmptyDescription")}
             className="orders-empty-state"
             action={
-              <Button type="button" onClick={() => router.push("/store")}>
+              <Button type="button" onClick={() => router.push(path("/store"))}>
                 {t("ordersBrowseProducts")}
               </Button>
             }

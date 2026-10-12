@@ -1,8 +1,11 @@
 "use client";
 
-import { createContext, useContext, useMemo, type ReactNode } from "react";
+import { createContext, useContext, useEffect, useMemo, useSyncExternalStore, type ReactNode } from "react";
+import { usePathname } from "next/navigation";
 import { defaultLocale, type Locale } from "./locales";
-import { localizedPath } from "./routing";
+import { localizedPath, localeFromPath } from "./routing";
+
+const subscribe = () => () => {};
 import type { MessageKey, WebsiteMessages } from "./messages";
 
 type I18nContextValue = {
@@ -23,14 +26,18 @@ export function I18nProvider({
   locale?: Locale;
   messages: WebsiteMessages;
 }) {
+  const pathname = usePathname();
+  const hydrated = useSyncExternalStore(subscribe, () => true, () => false);
+  const routeLocale = hydrated ? localeFromPath(pathname || "/") : locale;
+  useEffect(() => { document.documentElement.lang = routeLocale; }, [routeLocale]);
   const value = useMemo<I18nContextValue>(
     () => ({
-      locale,
+      locale: routeLocale,
       messages,
       t: (key) => messages[key],
-      path: (href) => localizedPath(href, locale),
+      path: (href) => localizedPath(href, routeLocale),
     }),
-    [locale, messages],
+    [routeLocale, messages],
   );
 
   return <I18nContext.Provider value={value}>{children}</I18nContext.Provider>;

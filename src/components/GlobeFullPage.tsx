@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState, useCallback, useMemo } from "react";
 import Link from "next/link";
-import maplibregl from "maplibre-gl";
+import * as maplibregl from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
 import PawIcon from "@/components/icons/PawIcon";
 import WeatherTicker from "./WeatherTicker";
@@ -126,9 +126,9 @@ function truncatePostContent(content: string | null, maxLength = 74): string {
 function hasUsableWebGL(): boolean {
   try {
     const canvas = document.createElement("canvas");
-    const context =
-      canvas.getContext("webgl2", { failIfMajorPerformanceCaveat: true }) ||
-      canvas.getContext("webgl", { failIfMajorPerformanceCaveat: true });
+    // MapLibre 6 requires WebGL2. Older devices use the existing fallback
+    // instead of passing a WebGL1 check and then failing during map creation.
+    const context = canvas.getContext("webgl2", { failIfMajorPerformanceCaveat: true });
 
     if (!context) return false;
     context.getExtension("WEBGL_lose_context")?.loseContext();

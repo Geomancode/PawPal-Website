@@ -44,6 +44,7 @@ import {
   Sheet,
   StatusMessage,
 } from "@/components/ui";
+import { cartQuantityLimit } from "@/lib/cartAvailability";
 import { useI18n } from "@/i18n/I18nProvider";
 import type { MessageKey } from "@/i18n/messages/en";
 import { useRouteTranslations } from "@/i18n/useRouteTranslations";
@@ -278,9 +279,11 @@ function SubscriptionUpgradePanel({
 
 // ─── Product Card ──────────────────────────────────────
 function ProductCard({
-  product, onAdd, onDetails, t, recommended = false,
+  product, onAdd, onDetails, t, quantity = 0, disabled = false, recommended = false,
 }: {
   product: Product;
+  quantity?: number;
+  disabled?: boolean;
   onAdd: (p: Product) => void;
   onDetails: (p: Product) => void;
   t: StoreTranslation;
@@ -325,7 +328,8 @@ function ProductCard({
         ratingDetail={`(${product.reviewCount})`}
         detailsLabel={t("storeProductDetailsButton")}
         onDetails={() => onDetails(product)}
-        actionLabel={t("storeAddButton")}
+        actionLabel={cartQuantityLimit(product) === 0 ? t("storeSoldOut") : quantity >= cartQuantityLimit(product) ? t("storeStockLimit") : t("storeAddButton")}
+        actionDisabled={disabled || quantity >= cartQuantityLimit(product)}
         onAction={() => onAdd(product)}
         className={
           recommended
@@ -511,6 +515,7 @@ function CartDrawer({
                       size="icon"
                       shape="compact"
                       className={STORE_METRIC_CLASSES.quantityControlSize}
+                      disabled={item.quantity >= cartQuantityLimit(item.product)}
                       onClick={() => onUpdate(item.product.id, item.quantity + 1)}
                       aria-label={`${t("storeIncreasePrefix")} ${item.product.name}`}
                     >
@@ -626,24 +631,30 @@ function StorePageContent({ t }: { t: StoreTranslation }) {
   }, [user]);
 
   const addToCart = useCallback((product: Product) => {
+    if (catalogLoading) return;
+    let added = false;
     setCart((prev) => {
       const existing = prev.find((i) => i.product.id === product.id);
+      if ((existing?.quantity || 0) >= cartQuantityLimit(product)) return prev;
+      added = true;
       if (existing) {
         return prev.map((i) => i.product.id === product.id ? { ...i, quantity: i.quantity + 1 } : i);
       }
       return [...prev, { product, quantity: 1 }];
     });
+    if (!added) return;
     setToast(`✓ ${product.name} ${t("storeAddedToCartSuffix")}`);
     setTimeout(() => setToast(null), 2500);
-  }, [setCart, t]);
+  }, [setCart, t, catalogLoading]);
 
   const updateQuantity = useCallback((id: string, qty: number) => {
+    if (!Number.isSafeInteger(qty)) return;
     if (qty <= 0) {
       setCart((prev) => prev.filter((i) => i.product.id !== id));
     } else {
-      setCart((prev) => prev.map((i) => i.product.id === id ? { ...i, quantity: qty } : i));
+      setCart((prev) => prev.map((i) => i.product.id === id && qty <= cartQuantityLimit(products.find((p) => p.id === id) || i.product) ? { ...i, quantity: qty } : i));
     }
-  }, [setCart]);
+  }, [setCart, products]);
 
   const removeItem = useCallback((id: string) => {
     setCart((prev) => prev.filter((i) => i.product.id !== id));
@@ -870,6 +881,8 @@ function StorePageContent({ t }: { t: StoreTranslation }) {
               <ProductCard
                 key={product.id}
                 product={product}
+                quantity={cart.find((item) => item.product.id === product.id)?.quantity || 0}
+                disabled={catalogLoading}
                 onAdd={addToCart}
                 onDetails={setSelectedProduct}
                 t={t}
@@ -924,7 +937,7 @@ function StorePageContent({ t }: { t: StoreTranslation }) {
       <CartDrawer
         isOpen={cartOpen}
         onClose={() => setCartOpen(false)}
-        items={cart}
+        items={cart.map((item) => ({ ...item, product: products.find((p) => p.id === item.product.id) || item.product }))}
         onUpdate={updateQuantity}
         onRemove={removeItem}
         t={t}

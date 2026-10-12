@@ -50,6 +50,12 @@ jobs:
       - name: Cart persistence regression gate
         run: npm run test:cart-storage
 
+      - name: Checkout, subscription and private persona regression gates
+        run: |
+          npm run test:checkout-flow
+          npm run test:subscription-webhook
+          npm run test:persona-auth
+
       - name: Globe facing gate
         run: npm run test:globe-facing
 
@@ -95,10 +101,16 @@ jobs:
             exit "$STATUS"
           fi
 
+      - name: Service worker privacy and MapLibre security runtime gates
+        if: steps.runtime-browser.outcome == 'success'
+        run: |
+          npm run test:service-worker-security
+          npm run test:maplibre-security
+
       - name: Explicit runtime skip when Chromium is unavailable
         if: steps.runtime-browser.outcome != 'success'
         run: |
-          echo "::warning::SKIP test:home-runtime and test:cart-runtime — Playwright Chromium installation failed in this CI environment."
+          echo "::warning::SKIP home/cart/service-worker/MapLibre runtime gates — Playwright Chromium installation failed in this CI environment."
           echo "The skip is explicit; lint, contracts, build, and bundle gates still ran."
 
       - name: Dependency audit (high and critical)
