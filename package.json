@@ -10,6 +10,7 @@
     "build": "next build --webpack",
     "start": "next start",
     "lint": "eslint",
+    "test:not-found-contract": "node scripts/not-found-route-contract.mjs && node scripts/not-found-document-contract.mjs",
     "test:home-contract": "node scripts/homepage-contract-check.mjs",
     "test:home-globe-contract": "node scripts/home-globe-contract-check.mjs",
     "test:globe-facing": "node scripts/globe-facing-check.mjs",

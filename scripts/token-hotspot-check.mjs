@@ -6,9 +6,9 @@ const repoRoot = path.resolve(new URL("..", import.meta.url).pathname);
 const targets = [
   "src/app/profile/ProfileWorkspaceView.tsx",
   "src/app/admin/reports/ReportsClientParts.tsx",
-  "src/app/admin/park-risks/page.tsx",
-  "src/app/store/page.tsx",
-  "src/app/store/checkout/page.tsx",
+  "src/app/[locale]/admin/park-risks/page.tsx",
+  "src/app/[locale]/store/page.tsx",
+  "src/app/[locale]/store/checkout/page.tsx",
 ];
 
 // Every allowlist item must carry a local, line-specific reason. This batch

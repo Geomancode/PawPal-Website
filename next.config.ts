@@ -1,20 +1,23 @@
 import type { NextConfig } from "next";
 import { withSentryConfig } from "@sentry/nextjs";
-import { nonDefaultLocales } from "./src/i18n/locales";
+import { sitePageRoutes as defaultUiRoutes } from "./src/lib/siteRouteRegistry";
 
 const nextConfig: NextConfig = {
-  async rewrites() {
-    const localePattern = nonDefaultLocales.join("|");
+  async redirects() {
     return [
-      {
-        source: `/:locale(${localePattern})`,
-        destination: "/",
-      },
-      {
-        source: `/:locale(${localePattern})/:path*`,
-        destination: "/:path*",
-      },
+      { source: "/en", destination: "/", permanent: true },
+      { source: "/en/:path+", destination: "/:path+", permanent: true },
     ];
+  },
+  async rewrites() {
+    return {
+      beforeFiles: defaultUiRoutes.map((source) => ({
+        source,
+        destination: source === "/" ? "/en" : `/en${source}`,
+      })),
+      afterFiles: [],
+      fallback: [],
+    };
   },
 };
 

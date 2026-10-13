@@ -8,7 +8,7 @@ export function localeFromPath(pathname: string): Locale {
 export function stripLocalePrefix(pathname: string) {
   const segments = pathname.split("/");
   const maybeLocale = segments[1];
-  if (!isLocale(maybeLocale) || maybeLocale === defaultLocale) {
+  if (!isLocale(maybeLocale)) {
     return pathname;
   }
 

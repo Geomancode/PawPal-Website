@@ -73,9 +73,9 @@ expect(
   routing.includes("locale === defaultLocale") &&
     routing.includes("return path") &&
     nextConfig.includes("async rewrites()") &&
-    nextConfig.includes("nonDefaultLocales") &&
-    nextConfig.includes("destination: \"/:path*\""),
-  "Locale routing keeps default-locale links unprefixed and rewrites prefixed non-default locales.",
+    nextConfig.includes("defaultUiRoutes") &&
+    nextConfig.includes('destination: source === "/" ? "/en" : `/en${source}`'),
+  "Locale routing keeps default-locale links unprefixed and rewrites only explicit unprefixed UI routes; non-default locales retain their segment.",
 );
 expect(manifest.start_url === "/", "PWA manifest keeps homepage start_url.");
 expect(shortcutUrls.has("/globe"), "PWA manifest keeps globe shortcut.");
@@ -118,14 +118,14 @@ expect(
 );
 
 const routeFiles = [
-  "../src/app/page.tsx",
-  "../src/app/globe/page.tsx",
-  "../src/app/store/page.tsx",
-  "../src/app/about/page.tsx",
-  "../src/app/auth/page.tsx",
-  "../src/app/help/page.tsx",
-  "../src/app/privacy/page.tsx",
-  "../src/app/terms/page.tsx",
+  "../src/app/[locale]/page.tsx",
+  "../src/app/[locale]/globe/page.tsx",
+  "../src/app/[locale]/store/page.tsx",
+  "../src/app/[locale]/about/page.tsx",
+  "../src/app/[locale]/auth/page.tsx",
+  "../src/app/[locale]/help/page.tsx",
+  "../src/app/[locale]/privacy/page.tsx",
+  "../src/app/[locale]/terms/page.tsx",
 ];
 
 await Promise.all(

@@ -14,19 +14,19 @@ const checks = [
     ],
   },
   {
-    file: "src/app/tag/[id]/page.tsx",
+    file: "src/app/[locale]/tag/[id]/page.tsx",
     patterns: ["loadP2W2TagFixture", "if (fixture) return fixture"],
   },
   {
-    file: "src/app/post/[id]/page.tsx",
+    file: "src/app/[locale]/post/[id]/page.tsx",
     patterns: ["loadP2W2PostFixture", "if (fixture) return fixture"],
   },
   {
-    file: "src/app/group/[id]/page.tsx",
+    file: "src/app/[locale]/group/[id]/page.tsx",
     patterns: ["loadP2W2GroupFixture", "if (fixture) return fixture"],
   },
   {
-    file: "src/app/user/[id]/page.tsx",
+    file: "src/app/[locale]/user/[id]/page.tsx",
     patterns: ["loadP2W2UserFixture", "if (fixture) return fixture"],
   },
   {
@@ -57,11 +57,11 @@ for (const check of checks) {
 }
 
 const routeFiles = [
-  "src/app/tag/[id]/page.tsx",
-  "src/app/post/[id]/page.tsx",
-  "src/app/group/[id]/page.tsx",
-  "src/app/user/[id]/page.tsx",
-  "src/app/pet/[id]/page.tsx",
+  "src/app/[locale]/tag/[id]/page.tsx",
+  "src/app/[locale]/post/[id]/page.tsx",
+  "src/app/[locale]/group/[id]/page.tsx",
+  "src/app/[locale]/user/[id]/page.tsx",
+  "src/app/[locale]/pet/[id]/page.tsx",
 ];
 
 for (const routeFile of routeFiles) {

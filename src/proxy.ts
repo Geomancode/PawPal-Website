@@ -1,13 +1,13 @@
-import { NextResponse } from "next/server";
+import { NextResponse, type NextRequest } from "next/server";
+import { classifyPageRequest } from "./lib/pageRequestPolicy";
+import { getNotFoundDocument, notFoundHeaders } from "./lib/notFoundDocument";
 
-export function proxy() {
-  if (process.env.NODE_ENV !== "development") {
-    return new NextResponse(null, { status: 404 });
-  }
+export async function proxy(request: NextRequest) {
+  const policy = classifyPageRequest(request.nextUrl.pathname, process.env.NODE_ENV === "development");
+  if (policy.kind === "pass") return NextResponse.next();
 
-  return NextResponse.next();
+  const body = request.method === "HEAD" ? null : await getNotFoundDocument(policy.locale);
+  return new NextResponse(body, { status: 404, headers: notFoundHeaders });
 }
 
-export const config = {
-  matcher: ["/dev/state-panel", "/dev/state-panel/:path*"],
-};
+export const config = { matcher: "/:path*" };

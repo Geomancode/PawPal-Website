@@ -9,39 +9,39 @@ const arbitraryFontSizeUtility = /text-\[[^\]]*(?:rem|px|clamp)[^\]]*\]/g;
 const marketingHeroUtility = /\btext-paw-web-marketing-hero\b/g;
 const closureRouteFiles = [
   "src/components/HomeClientParts.tsx",
-  "src/app/auth/page.tsx",
-  "src/app/not-found.tsx",
+  "src/app/[locale]/auth/page.tsx",
+  "src/app/[locale]/not-found.tsx",
   "src/components/GlobeFullPage.tsx",
   "src/app/store/ProductVisual.tsx",
 ];
 const migratedRouteFiles = [
   "src/app/profile/ProfileWorkspaceView.tsx",
-  "src/app/admin/park-risks/page.tsx",
-  "src/app/store/checkout/page.tsx",
-  "src/app/store/page.tsx",
+  "src/app/[locale]/admin/park-risks/page.tsx",
+  "src/app/[locale]/store/checkout/page.tsx",
+  "src/app/[locale]/store/page.tsx",
   "src/app/admin/reports/ReportsClientParts.tsx",
-  "src/app/store/orders/page.tsx",
+  "src/app/[locale]/store/orders/page.tsx",
   "src/app/tag/[id]/TagPageClient.tsx",
-  "src/app/about/page.tsx",
-  "src/app/store/admin/page.tsx",
+  "src/app/[locale]/about/page.tsx",
+  "src/app/[locale]/store/admin/page.tsx",
   "src/components/ChatBubble.tsx",
-  "src/app/store/success/page.tsx",
+  "src/app/[locale]/store/success/page.tsx",
   "src/components/Navbar.tsx",
   "src/app/user/[id]/UserPageClient.tsx",
-  "src/app/help/page.tsx",
+  "src/app/[locale]/help/page.tsx",
   "src/components/Footer.tsx",
   "src/app/post/[id]/PostPageClient.tsx",
   "src/components/PwaRuntime.tsx",
   "src/components/GlobeTutorial.tsx",
   "src/components/ChatBottomSheet.tsx",
-  "src/app/privacy/page.tsx",
-  "src/app/terms/page.tsx",
-  "src/app/guidelines/page.tsx",
+  "src/app/[locale]/privacy/page.tsx",
+  "src/app/[locale]/terms/page.tsx",
+  "src/app/[locale]/guidelines/page.tsx",
   "src/app/group/[id]/GroupPageClient.tsx",
   "src/components/CookieConsentBanner.tsx",
   "src/app/profile/PushSubscriptionSettings.tsx",
   "src/components/PublicRouteError.tsx",
-  "src/app/globe/page.tsx",
+  "src/app/[locale]/globe/page.tsx",
   "src/app/global-error.tsx",
   "src/components/WeatherTicker.tsx",
   ...closureRouteFiles,
@@ -199,8 +199,8 @@ async function assertMarketingHeroContract() {
 
 async function assertSemanticBindings() {
   const home = await readFile(path.join(repoRoot, "src/components/HomeClientParts.tsx"), "utf8");
-  const auth = await readFile(path.join(repoRoot, "src/app/auth/page.tsx"), "utf8");
-  const notFound = await readFile(path.join(repoRoot, "src/app/not-found.tsx"), "utf8");
+  const auth = await readFile(path.join(repoRoot, "src/app/[locale]/auth/page.tsx"), "utf8");
+  const notFound = await readFile(path.join(repoRoot, "src/app/[locale]/not-found.tsx"), "utf8");
   const globe = await readFile(path.join(repoRoot, "src/components/GlobeFullPage.tsx"), "utf8");
 
   const counter = home.match(/export function AnimatedCounter[\s\S]*?export function ProductFlow/)?.[0] ?? "";
@@ -281,13 +281,13 @@ async function assertProductVisualContract() {
 }
 
 async function assertFontLoader() {
-  const layout = await readFile(path.join(repoRoot, "src", "app", "layout.tsx"), "utf8");
+  const layout = await readFile(path.join(repoRoot, "src", "app", "[locale]", "layout.tsx"), "utf8");
   assert(
     /import\s+\{\s*Nunito_Sans\s*\}\s+from\s+["']next\/font\/google["']/.test(layout),
-    "src/app/layout.tsx must import Nunito_Sans from next/font/google.",
+    "src/app/[locale]/layout.tsx must import Nunito_Sans from next/font/google.",
   );
   const binding = layout.match(/const\s+([A-Za-z_$][\w$]*)\s*=\s*Nunito_Sans\s*\(/)?.[1];
-  assert(binding, "src/app/layout.tsx must instantiate Nunito_Sans.");
+  assert(binding, "src/app/[locale]/layout.tsx must instantiate Nunito_Sans.");
   assert(
     /variable:\s*["']--font-nunito-sans["']/.test(layout),
     "Nunito_Sans must expose --font-nunito-sans.",

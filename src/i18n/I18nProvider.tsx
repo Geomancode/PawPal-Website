@@ -11,6 +11,7 @@ import type { MessageKey, WebsiteMessages } from "./messages";
 type I18nContextValue = {
   locale: Locale;
   messages: WebsiteMessages;
+  messagesLocale: Locale;
   t: (key: MessageKey) => string;
   path: (href: string) => string;
 };
@@ -34,10 +35,11 @@ export function I18nProvider({
     () => ({
       locale: routeLocale,
       messages,
+      messagesLocale: locale,
       t: (key) => messages[key],
       path: (href) => localizedPath(href, routeLocale),
     }),
-    [routeLocale, messages],
+    [routeLocale, messages, locale],
   );
 
   return <I18nContext.Provider value={value}>{children}</I18nContext.Provider>;

@@ -59,8 +59,8 @@ function load(relativePath) {
 }
 
 const props = { params: Promise.resolve({ id: "contract-id" }) };
-const postPage = load("src/app/post/[id]/page.tsx");
-const tagPage = load("src/app/tag/[id]/page.tsx");
+const postPage = load("src/app/[locale]/post/[id]/page.tsx");
+const tagPage = load("src/app/[locale]/tag/[id]/page.tsx");
 rows = {
   posts: { id: "contract-id", author_id: "owner", content: "Public post content" },
   profiles: { display_name: "Public author", username: "author", avatar_url: null },

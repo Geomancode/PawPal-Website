@@ -44,6 +44,9 @@ jobs:
       - name: Homepage contract gate
         run: npm run test:home-contract
 
+      - name: Unknown-page status and registry drift contract gates
+        run: npm run test:not-found-contract
+
       - name: Shared post and pet data contract gate
         run: npm run test:shared-page-data
 

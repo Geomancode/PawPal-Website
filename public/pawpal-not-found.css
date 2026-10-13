@@ -1,0 +1,24 @@
+/* Standalone error document: brand values mirror app/styles/tokens.css. */
+:root { color-scheme: light; font-family: "Avenir Next", "Nunito Sans", "Segoe UI", system-ui, sans-serif; color: #3a2f2a; background: #fff8ea; }
+* { box-sizing: border-box; }
+body { margin: 0; }
+.error-page { min-height: 100dvh; max-width: 1152px; margin: auto; padding: 80px 24px; display: grid; align-items: center; gap: 40px; }
+.error-copy { min-width: 0; }
+.brand { width: 164px; height: 44px; display: block; }
+.eyebrow { margin: 32px 0 12px; color: #5f514a; font-size: 13px; font-weight: 800; letter-spacing: .13em; text-transform: uppercase; }
+h1 { margin: 0; max-width: 560px; font-size: clamp(32px, 6vw, 52px); font-weight: 800; line-height: 1.12; overflow-wrap: anywhere; }
+.description, .help-panel p { color: #5f514a; line-height: 1.8; overflow-wrap: anywhere; }
+.description { max-width: 560px; margin: 24px 0 0; }
+.actions { display: flex; flex-direction: column; gap: 16px; margin-top: 32px; }
+.button { min-height: 48px; padding: 16px 24px; border: 1px solid #eadfd1; border-radius: 16px; text-decoration: none; text-align: center; font-weight: 800; line-height: 1.4; overflow-wrap: anywhere; }
+.primary { color: #102d46; background: #4c94df; border-color: transparent; box-shadow: 0 4px 0 #367dc8; }
+.primary:hover { background: #367dc8; color: white; }
+.secondary { color: #3a2f2a; background: #fffdf9; box-shadow: 0 3px 8px #3a2f2a12; }
+.secondary:hover { background: #eaf4ff; }
+.button:focus-visible { outline: 4px solid #367dc8; outline-offset: 5px; }
+.help-panel { min-width: 0; padding: 24px; border: 1px solid #eadfd1; border-radius: 24px; background: #fffdf9; box-shadow: 0 12px 40px #3a2f2a0a; }
+.help-panel section + section { margin-top: 24px; padding-top: 24px; border-top: 1px solid #eadfd1; }
+.help-panel h2 { margin: 0; font-size: 18px; line-height: 1.4; }
+.help-panel p { margin: 8px 0 0; }
+@media (min-width: 640px) { .error-page { padding: 112px 40px; } .actions { flex-direction: row; flex-wrap: wrap; } }
+@media (min-width: 1024px) { .error-page { grid-template-columns: 1.1fr .9fr; } }
