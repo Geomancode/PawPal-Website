@@ -262,6 +262,10 @@ export const enMessages = {
   checkoutStartError:
     "Could not start Stripe checkout. Please review your cart and try again.",
   checkoutNetworkError: "Network error. Please try again.",
+  checkoutReservationNotice: "When you proceed to payment, items are reserved for about 30 minutes. Payments already processing keep their reservation until the result is confirmed.",
+  checkoutReservationInProgress: "This checkout is still being prepared. Please wait a moment and try again.",
+  checkoutReservationEnded: "This checkout has ended or expired. Check your orders and cart before starting again.",
+  checkoutReservationPending: "We could not confirm whether checkout is ready. Your cart is saved. Please retry this checkout shortly.",
   checkoutBackToStore: "Back to Store",
   checkoutBack: "Back",
   checkoutShopEyebrow: "PawPal Shop",
@@ -1124,6 +1128,7 @@ export const enMessages = {
     "Product ID, name, and price are required.",
   storeAdminProductSavedMessage: "Product saved and catalog synced.",
   storeAdminSaveFailedMessage: "Failed to save product.",
+  storeAdminStockConflict: "This product or its stock has just changed. Reopen the product, check the latest details, and save again.",
   storeAdminEyebrow: "Store admin",
   storeAdminSignInRequired: "Sign in required",
   storeAdminSignInDescription:

@@ -247,6 +247,10 @@ export const deMessages = {
   checkoutSecuredByStripe: "Gesichert durch Stripe",
   checkoutStartError: "Stripe-Checkout konnte nicht gestartet werden. Warenkorb prüfen und erneut versuchen.",
   checkoutNetworkError: "Netzwerkfehler. Erneut versuchen.",
+  checkoutReservationNotice: "Wenn du zur Zahlung weitergehst, werden die Artikel etwa 30 Minuten reserviert. Wird eine Zahlung bereits verarbeitet, bleibt die Reservierung bestehen, bis das Ergebnis bestätigt ist.",
+  checkoutReservationInProgress: "Dieser Bezahlvorgang wird noch vorbereitet. Warte einen Moment und versuche es erneut.",
+  checkoutReservationEnded: "Dieser Bezahlvorgang ist beendet oder abgelaufen. Prüfe deine Bestellungen und deinen Warenkorb, bevor du neu beginnst.",
+  checkoutReservationPending: "Es ist noch nicht bestätigt, ob die Zahlung bereit ist. Dein Warenkorb bleibt gespeichert. Versuche diesen Bezahlvorgang gleich noch einmal.",
   checkoutBackToStore: "Zurück zum Store",
   checkoutBack: "Zurück",
   checkoutShopEyebrow: "PawPal-Shop",
@@ -1087,6 +1091,7 @@ export const deMessages = {
     "Produkt-ID, Name und Preis sind erforderlich.",
   storeAdminProductSavedMessage: "Produkt gespeichert und Katalog synchronisiert.",
   storeAdminSaveFailedMessage: "Produkt konnte nicht gespeichert werden.",
+  storeAdminStockConflict: "Dieses Produkt oder sein Bestand wurde gerade geändert. Öffne das Produkt erneut, prüfe die aktuellen Angaben und speichere noch einmal.",
   storeAdminEyebrow: "Shop-Administration",
   storeAdminSignInRequired: "Anmeldung erforderlich",
   storeAdminSignInDescription:

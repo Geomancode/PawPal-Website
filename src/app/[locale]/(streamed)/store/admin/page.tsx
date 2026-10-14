@@ -55,6 +55,8 @@ type ProductForm = {
   reviewCount: string;
   badge: "" | ProductBadge;
   stockQuantity: string;
+  stockVersion: number | null;
+  existingProduct: boolean;
   inStock: boolean;
   published: boolean;
   tags: string;
@@ -92,6 +94,8 @@ const initialForm: ProductForm = {
   reviewCount: "0",
   badge: "",
   stockQuantity: "10",
+  stockVersion: null,
+  existingProduct: false,
   inStock: true,
   published: true,
   tags: "",
@@ -270,8 +274,10 @@ export default function StoreAdminPage() {
       rating: String(product.rating),
       reviewCount: String(product.reviewCount),
       badge: product.badge || "",
-      stockQuantity: String(product.stockQuantity ?? 0),
-      inStock: product.inStock,
+      stockQuantity: String(product.physicalStockQuantity ?? product.stockQuantity ?? 0),
+      stockVersion: product.stockVersion ?? null,
+      existingProduct: true,
+      inStock: product.inventoryEnabled ?? product.inStock,
       published: product.published ?? true,
       tags: product.tags?.join(", ") || "",
     });
@@ -320,6 +326,11 @@ export default function StoreAdminPage() {
     setMessage(null);
 
     try {
+      if (form.existingProduct && (!Number.isSafeInteger(form.stockVersion) || (form.stockVersion ?? -1) < 0)) {
+        throw new Error(t("storeAdminStockConflict"));
+      }
+      const stockQuantity = Number(form.stockQuantity);
+      if (!Number.isSafeInteger(stockQuantity) || stockQuantity < 0) throw new Error(t("storeAdminRequiredFieldsMessage"));
       const uploaded = await uploadAsset(productId);
       const imageUrl = uploaded?.publicUrl || form.imageUrl.trim() || form.imageEmoji.trim() || "📦";
       const originalPrice = numberOrNull(form.originalPrice);
@@ -340,18 +351,23 @@ export default function StoreAdminPage() {
         review_count: Number(form.reviewCount) || 0,
         badge: form.badge || null,
         in_stock: form.inStock,
-        stock_quantity: Number(form.stockQuantity) || 0,
+        stock_quantity: stockQuantity,
         published: form.published,
         tags: splitTags(form.tags),
         updated_by: user.id,
         created_by: user.id,
       };
 
-      const { error } = await supabase
-        .from("products")
-        .upsert(payload, { onConflict: "id" });
+      const { error } = await supabase.rpc("admin_save_store_product", {
+        p_payload: payload,
+        p_expected_stock_version: form.stockVersion,
+        p_create: !form.existingProduct,
+      });
 
-      if (error) throw error;
+      if (error) {
+        if (error.message.includes("stock_version_conflict") || error.message.includes("stock_below_reserved")) throw new Error(t("storeAdminStockConflict"));
+        throw new Error(t("storeAdminSaveFailedMessage"));
+      }
 
       if (uploaded) {
         const { error: assetError } = await supabase.from("product_assets").insert({
@@ -479,7 +495,7 @@ export default function StoreAdminPage() {
               )}
 
               <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-                <Input label={t("storeAdminProductId")} value={form.id} onChange={(e) => updateForm("id", slugify(e.target.value))} placeholder={t("storeAdminProductIdPlaceholder")} required />
+                <Input label={t("storeAdminProductId")} value={form.id} onChange={(e) => updateForm("id", slugify(e.target.value))} placeholder={t("storeAdminProductIdPlaceholder")} disabled={form.existingProduct} required />
                 <Input label={t("storeAdminSku")} value={form.sku} onChange={(e) => updateForm("sku", e.target.value.toUpperCase())} placeholder={t("storeAdminSkuPlaceholder")} required />
                 <Input label={t("storeAdminName")} value={form.name} onChange={(e) => updateForm("name", e.target.value)} placeholder={t("storeAdminNamePlaceholder")} required containerClassName="md:col-span-2" />
                 <Input label={t("storeAdminShortDescription")} value={form.description} onChange={(e) => updateForm("description", e.target.value)} placeholder={t("storeAdminShortDescriptionPlaceholder")} required containerClassName="md:col-span-2" />

@@ -4,6 +4,7 @@ import { reportError } from "@/lib/errorReporting";
 import { assertStripeTestMode, getStripeSecretKey } from "@/lib/stripeGuard";
 import { getSupabaseAdmin } from "@/lib/supabaseAdmin";
 import { normalizeTier, tierFromStripePrice } from "@/lib/subscriptions";
+import { reconcileStoreCheckout } from "@/lib/storeCheckout";
 
 function getStripe() {
   // Matches the installed Stripe 21 SDK. Webhook payloads may have older versions;
@@ -72,6 +73,20 @@ export async function POST(req: NextRequest) {
   }
 
   const object = event.data.object;
+  const storeEvent = ["checkout.session.completed", "checkout.session.expired", "checkout.session.async_payment_succeeded", "checkout.session.async_payment_failed"].includes(event.type);
+  const eventSession = storeEvent ? object as Stripe.Checkout.Session : undefined;
+  if (eventSession?.mode === "payment" && eventSession.metadata?.checkout_attempt_id) {
+    try {
+      // Only the verified event ID/resource ID are used. Fresh Stripe state is
+      // checked against the reservation before any stock/order mutation.
+      const checked = await reconcileStoreCheckout(stripe, getSupabaseAdmin(), eventSession.id, { id: event.id, type: event.type });
+      if (!checked) throw new Error("Store checkout mapping is missing");
+      return NextResponse.json({ received: true });
+    } catch (err) {
+      reportError(err, { route: "/api/stripe/webhook", method: "POST" });
+      return NextResponse.json({ error: "Store payment processing failed; retry" }, { status: 500 });
+    }
+  }
   const session = event.type === "checkout.session.completed" ? object as Stripe.Checkout.Session : undefined;
   const subscriptionEvent = ["customer.subscription.created", "customer.subscription.updated", "customer.subscription.deleted"].includes(event.type);
   if ((!session || session.mode !== "subscription") && !subscriptionEvent) {

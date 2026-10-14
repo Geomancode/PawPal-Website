@@ -56,6 +56,7 @@ jobs:
       - name: Checkout, subscription and private persona regression gates
         run: |
           npm run test:checkout-flow
+          npm run test:checkout-stock
           npm run test:subscription-webhook
           npm run test:persona-auth
 

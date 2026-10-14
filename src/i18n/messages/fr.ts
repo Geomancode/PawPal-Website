@@ -248,6 +248,10 @@ export const frMessages = {
   checkoutSecuredByStripe: "Sécurisé par Stripe",
   checkoutStartError: "Impossible de démarrer le paiement Stripe. Veuillez vérifier votre panier et réessayer.",
   checkoutNetworkError: "Erreur réseau. Veuillez réessayer.",
+  checkoutReservationNotice: "Lorsque vous passez au paiement, les articles sont réservés pendant environ 30 minutes. Si le paiement est déjà en cours de traitement, la réservation est maintenue jusqu’à confirmation du résultat.",
+  checkoutReservationInProgress: "Cette session de paiement est encore en préparation. Patientez un instant, puis réessayez.",
+  checkoutReservationEnded: "Cette session de paiement est terminée ou a expiré. Vérifiez vos commandes et votre panier avant de recommencer.",
+  checkoutReservationPending: "Nous ne pouvons pas encore confirmer que le paiement est prêt. Votre panier est conservé. Réessayez ce paiement dans un instant.",
   checkoutBackToStore: "Retour au magasin",
   checkoutBack: "Retour",
   checkoutShopEyebrow: "Boutique PawPal",
@@ -1092,6 +1096,7 @@ export const frMessages = {
     "L’identifiant du produit, le nom et le prix sont obligatoires.",
   storeAdminProductSavedMessage: "Produit enregistré et catalogue synchronisé.",
   storeAdminSaveFailedMessage: "Impossible d’enregistrer le produit.",
+  storeAdminStockConflict: "Ce produit ou son stock vient de changer. Rouvrez le produit, vérifiez les dernières informations, puis enregistrez à nouveau.",
   storeAdminEyebrow: "Administration de la boutique",
   storeAdminSignInRequired: "Connexion requise",
   storeAdminSignInDescription:

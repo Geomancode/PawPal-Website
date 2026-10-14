@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import vm from 'node:vm';
 import ts from 'typescript';
+import { checkoutFixture } from './lib/store-checkout-fixture.mjs';
 function moduleAt(file, require = () => { throw new Error('Unexpected dependency'); }) {
   const code = ts.transpileModule(fs.readFileSync(file,'utf8'), {compilerOptions:{module:ts.ModuleKind.CommonJS,target:ts.ScriptTarget.ES2017,esModuleInterop:true}}).outputText;
   const context={exports:{},require,process:{env:{}},console}; vm.runInNewContext(code,context); return context.exports;
@@ -27,24 +28,19 @@ await check('mismatched session id, cart, currency, and subscription do not cons
 await check('receipt replay detected at write time preserves cart',()=>{const p=ports();p.saveOrder=()=>false;assert.equal(completion.recordPaidCheckout(paid,paid.id,p),false);assert.equal(p.clears(),0);});
 await check('receipt persistence failure does not clear cart',()=>{const p=ports();p.saveOrder=()=>{throw Error('full');};assert.throws(()=>completion.recordPaidCheckout(paid,paid.id,p));assert.equal(p.clears(),0);});
 for(const locale of locales.locales)await check(`${locale} routing keeps query/hash without duplicate locale`,()=>{const expected=locale==='en'?'/store/checkout?x=1#form':`/${locale}/store/checkout?x=1#form`;assert.equal(routing.localizedPath('/store/checkout?x=1#form',locale),expected);if(locale!=='en')assert.equal(routing.localizedPath(expected,locale),expected);});
-// Execute actual route code with only the Stripe SDK transport replaced. No network.
+// Execute the actual route and stock helper. Each legacy validation case owns
+// fresh transport state; concurrent/idempotent sequences have their own suite.
 let calls=0,lastParams;
-const catalogProduct={id:'synthetic',name:'Trusted Catalog Item',price:'10.25',currency:'EUR',published:true,in_stock:true,stock_quantity:2};
+const catalogProduct={id:'synthetic',name:'Trusted Catalog Item',price:'10.25',currency:'EUR',published:true,in_stock:true,stock_quantity:2,stock_reserved:0,stock_version:0};
 let dbRows=[catalogProduct],dbError=null;
-const db={from:()=>({select:()=>({eq:()=>({in:async()=>({data:dbRows,error:dbError})})})})};
-class Stripe {checkout={sessions:{create:async(params)=>{calls++;lastParams=params;return {url:'https://checkout.example.invalid/session',id:'synthetic'};}}};}
-const route=moduleAt('src/app/api/checkout/route.ts',(name)=>{
- if(name==='next/server')return {NextResponse:{json:(data,{status=200}={})=>({data,status})}};
- if(name==='stripe')return Stripe;
- if(name.includes('checkoutShipping'))return shipping;
- if(name.includes('checkoutCatalog'))return catalog;
- if(name.includes('supabaseServer'))return {supabaseServer:db};
- if(name.includes('i18n/locales'))return locales;
- if(name.includes('i18n/routing'))return routing;
- if(name.includes('stripeGuard'))return {assertStripeTestMode:()=>{},getStripeSecretKey:()=>'',createStripeIdempotencyKey:()=> 'synthetic'};
- if(name.includes('errorReporting'))return {reportError:()=>{}};
- throw Error(name);
-});
+const route={async POST(req){
+ const fixture=checkoutFixture({rows:structuredClone(dbRows),dbError});
+ const payload=await req.json();
+ const result=await fixture.post(fixture.body(payload));
+ calls+=fixture.state.stripeCreates.length;
+ if(fixture.state.stripeCreates.length)lastParams=fixture.state.stripeCreates.at(-1).params;
+ return result;
+}};
 const request=(ship,locale='zh')=>({json:async()=>({items:[{id:'synthetic',name:'Forged',price:0.01,currency:'INVALID',quantity:1}],shipping:ship,locale}),headers:{get:()=> 'http://127.0.0.1:3224'}});
 await check('actual server route rejects whitespace and missing phone before Stripe',async()=>{for(const field of shipping.shippingFields){const result=await route.POST(request({...valid,[field]:' '}));assert.equal(result.status,400);}assert.equal(calls,0);});
 await check('actual server route trims fields and preserves return/cancel locale',async()=>{const result=await route.POST(request(valid));assert.equal(result.status,200);assert.equal(calls,1);assert.equal(lastParams.metadata.shipping_name,'Synthetic Owner');assert.equal(lastParams.customer_email,'qa@example.invalid');assert.equal(lastParams.success_url,'http://127.0.0.1:3224/zh/store/success?session_id={CHECKOUT_SESSION_ID}');assert.equal(lastParams.cancel_url,'http://127.0.0.1:3224/zh/store/checkout');});

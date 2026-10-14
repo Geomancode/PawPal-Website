@@ -85,6 +85,7 @@ const route=moduleAt('src/app/api/stripe/webhook/route.ts',{
   'next/server':{NextResponse:{json:(value,init)=>json(value,init?.status??200)}},stripe:LocalStripe,'@/lib/errorReporting':{reportError:()=>{}},
   '@/lib/stripeGuard':{assertStripeTestMode:()=>{},getStripeSecretKey:()=>environment.STRIPE_SECRET_KEY},
   '@/lib/supabaseAdmin':{getSupabaseAdmin:()=>admin},'@/lib/subscriptions':subscriptions,
+  '@/lib/storeCheckout':{reconcileStoreCheckout:()=>{throw new Error('Store checkout must not run in subscription cases');}},
 });
 const signer=new Stripe(environment.STRIPE_SECRET_KEY);
 const event=(id,type='customer.subscription.updated',object={id:'sub_batch4_main',object:'subscription',status:'active'})=>({id,object:'event',type,created:100,api_version:'2024-06-20',data:{object}});

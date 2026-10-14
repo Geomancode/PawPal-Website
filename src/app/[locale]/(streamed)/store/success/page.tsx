@@ -9,6 +9,7 @@ import { Badge, Button, Card } from "@/components/ui";
 import { useI18n } from "@/i18n/I18nProvider";
 import { useRouteTranslations } from "@/i18n/useRouteTranslations";
 import { loadP3B1g1AccountFixtures } from "@/lib/p3b1g1AccountFixtures";
+import { finishCheckoutAttempt } from "@/lib/checkoutAttempt";
 
 const ACCOUNT_FIXTURES_ENABLED =
   process.env.NEXT_PUBLIC_P3B1G1_ACCOUNT_FIXTURES === "1";
@@ -82,6 +83,7 @@ function SuccessContent() {
           setOrderId(checkoutOrderId(data.id));
           try {
             recordPaidCheckout(data, sessionId, { loadCart, loadOrders, saveOrder, saveCart });
+            finishCheckoutAttempt(data.metadata?.checkout_attempt_id);
           } catch {
             // Payment is verified independently of local receipt storage.
             setReceiptWarning(true);

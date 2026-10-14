@@ -2,6 +2,8 @@ import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
 import { reportError } from "@/lib/errorReporting";
 import { assertStripeTestMode, getStripeSecretKey } from "@/lib/stripeGuard";
+import { getSupabaseAdmin } from "@/lib/supabaseAdmin";
+import { reconcileStoreCheckout } from "@/lib/storeCheckout";
 
 function getStripe() {
   return new Stripe(getStripeSecretKey());
@@ -17,9 +19,14 @@ export async function GET(req: NextRequest) {
     }
 
     const stripe = getStripe();
-    const session = await stripe.checkout.sessions.retrieve(sessionId, {
+    let session = await stripe.checkout.sessions.retrieve(sessionId, {
       expand: ["line_items", "payment_intent"],
     });
+    if (session.mode === "payment" && session.metadata?.checkout_attempt_id) {
+      const checked = await reconcileStoreCheckout(stripe, getSupabaseAdmin(), session.id);
+      if (!checked) throw new Error("Store payment could not be reconciled");
+      session = { ...session, ...checked.session };
+    }
 
     return NextResponse.json({
       id: session.id,

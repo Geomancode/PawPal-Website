@@ -27,6 +27,9 @@ export interface Product {
   badge?: ProductBadge;
   inStock: boolean;
   stockQuantity?: number;
+  physicalStockQuantity?: number;
+  stockVersion?: number;
+  inventoryEnabled?: boolean;
   published?: boolean;
   tags?: string[];
 }
@@ -248,6 +251,8 @@ export type ProductRow = {
   badge?: ProductBadge | null;
   in_stock?: boolean | null;
   stock_quantity?: number | null;
+  stock_reserved?: number | null;
+  stock_version?: number | null;
   published?: boolean | null;
   tags?: string[] | null;
 };
@@ -269,6 +274,8 @@ export const PRODUCT_SELECT = [
   "badge",
   "in_stock",
   "stock_quantity",
+  "stock_reserved",
+  "stock_version",
   "published",
   "tags",
   "sort_order",
@@ -306,8 +313,11 @@ export function productFromRow(row: ProductRow): Product {
     rating: Number(row.rating ?? 0),
     reviewCount: Number(row.review_count ?? 0),
     badge: row.badge ?? undefined,
-    inStock: row.in_stock ?? true,
-    stockQuantity: row.stock_quantity ?? undefined,
+    inStock: (row.in_stock ?? true) && (row.stock_quantity === null || row.stock_quantity === undefined || row.stock_quantity - (row.stock_reserved ?? 0) > 0),
+    stockQuantity: row.stock_quantity === null || row.stock_quantity === undefined ? undefined : Math.max(0, row.stock_quantity - (row.stock_reserved ?? 0)),
+    physicalStockQuantity: row.stock_quantity ?? undefined,
+    stockVersion: row.stock_version ?? undefined,
+    inventoryEnabled: row.in_stock ?? true,
     published: row.published ?? true,
     tags: row.tags ?? [],
   });

@@ -226,6 +226,10 @@ export const zhMessages = {
   checkoutSecuredByStripe: "由 Stripe 保护",
   checkoutStartError: "无法启动 Stripe 结账。请检查购物车后重试。",
   checkoutNetworkError: "网络错误。请再试一次。",
+  checkoutReservationNotice: "前往付款后，商品会暂留约30分钟。已进入处理中的付款会保留到结果确认。",
+  checkoutReservationInProgress: "这次结账仍在准备中。请稍等片刻后重试。",
+  checkoutReservationEnded: "这次结账已结束或失效。请先核对订单和购物车，再重新开始。",
+  checkoutReservationPending: "付款准备结果尚未确认。购物车已保留，请稍后重试当前结账。",
   checkoutBackToStore: "返回商店",
   checkoutBack: "返回",
   checkoutShopEyebrow: "PawPal 商店",
@@ -1024,6 +1028,7 @@ export const zhMessages = {
   storeAdminRequiredFieldsMessage: "产品 ID、名称和价格均为必填项。",
   storeAdminProductSavedMessage: "产品已保存，目录已同步。",
   storeAdminSaveFailedMessage: "产品保存失败。",
+  storeAdminStockConflict: "商品或库存刚刚发生变化。请重新打开商品，核对最新信息后再保存。",
   storeAdminEyebrow: "商店管理",
   storeAdminSignInRequired: "需要登录",
   storeAdminSignInDescription:

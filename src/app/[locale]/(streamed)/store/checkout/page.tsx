@@ -2,12 +2,14 @@
 
 import {
   useState,
+  useRef,
   useEffect,
   useSyncExternalStore,
   type HTMLInputTypeAttribute,
 } from "react";
 import { motion } from "framer-motion";
 import { normalizeShipping } from "@/lib/checkoutShipping";
+import { checkoutAttemptId, finishCheckoutAttempt } from "@/lib/checkoutAttempt";
 import { useI18n } from "@/i18n/I18nProvider";
 import { useRouter } from "next/navigation";
 import PawIcon from "@/components/icons/PawIcon";
@@ -190,6 +192,7 @@ export default function CheckoutPage() {
   const [fixtureCart, setFixtureCart] = useState<CartItem[]>([]);
   const cart = ACCOUNT_FIXTURES_ENABLED ? fixtureCart : storedCart;
   const [redirecting, setRedirecting] = useState(false);
+  const checkoutInFlight = useRef(false);
   const [checkoutError, setCheckoutError] = useState<string | null>(null);
 
   const [shipping, setShipping] = useState<ShippingInfo>({
@@ -222,17 +225,22 @@ export default function CheckoutPage() {
 
   // Redirect to Stripe Checkout
   const handleStripeCheckout = async () => {
-    if (!normalizedShipping || redirecting) return;
+    if (!normalizedShipping || redirecting || checkoutInFlight.current) return;
+    checkoutInFlight.current = true;
     setRedirecting(true);
     setCheckoutError(null);
     try {
+      const payload = {
+        items: cart.map((i) => ({ id: i.product.id, quantity: i.quantity })),
+        shipping: normalizedShipping,
+        locale,
+      };
+      const attemptId = await checkoutAttemptId(payload);
       const res = await fetch("/api/checkout", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          items: cart.map((i) => ({ id: i.product.id, quantity: i.quantity })),
-          shipping: normalizedShipping,
-          locale,
+          ...payload, attemptId,
         }),
       });
 
@@ -240,14 +248,20 @@ export default function CheckoutPage() {
       if (res.ok && data.url) {
         window.location.href = data.url;
       } else {
+        if (data.code === "reservation_ended") finishCheckoutAttempt(attemptId);
         setCheckoutError(data.code === "catalog_unavailable" ? t("storeCatalogUnavailable")
           : data.code === "cart_changed" || data.code === "invalid_cart" ? t("checkoutCartChanged")
-          : data.error || t("checkoutStartError"));
+          : data.code === "reservation_ended" ? t("checkoutReservationEnded")
+          : data.code === "reservation_in_progress" ? t("checkoutReservationInProgress")
+          : data.code === "reservation_pending" ? t("checkoutReservationPending")
+          : t("checkoutStartError"));
         setRedirecting(false);
       }
-    } catch (err) {
-      setCheckoutError(err instanceof Error ? err.message : t("checkoutNetworkError"));
+    } catch {
+      setCheckoutError(t("checkoutReservationPending"));
       setRedirecting(false);
+    } finally {
+      checkoutInFlight.current = false;
     }
   };
 
@@ -400,6 +414,7 @@ export default function CheckoutPage() {
 
                   {/* Stripe Pay Button */}
                   <div className="space-y-paw-sm">
+                    <p className="text-paw-type-caption text-paw-muted">{t("checkoutReservationNotice")}</p>
                     {checkoutError && (
                       <StatusMessage tone="critical" title={t("checkoutPaymentStartErrorTitle")}>
                         {checkoutError}

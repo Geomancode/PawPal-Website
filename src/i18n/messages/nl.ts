@@ -247,6 +247,10 @@ export const nlMessages = {
   checkoutSecuredByStripe: "Beveiligd door Stripe",
   checkoutStartError: "Kon Stripe-checkout niet starten. Controleer je winkelmand en probeer opnieuw.",
   checkoutNetworkError: "Netwerkfout. Probeer het opnieuw.",
+  checkoutReservationNotice: "Als je doorgaat naar betalen, worden de artikelen ongeveer 30 minuten gereserveerd. Bij een betaling die al wordt verwerkt, blijft de reservering staan tot de uitkomst bevestigd is.",
+  checkoutReservationInProgress: "Deze betaling wordt nog voorbereid. Wacht even en probeer het opnieuw.",
+  checkoutReservationEnded: "Deze betaalsessie is beëindigd of verlopen. Controleer je bestellingen en winkelmand voordat je opnieuw begint.",
+  checkoutReservationPending: "We kunnen nog niet bevestigen of de betaling klaarstaat. Je winkelmand is bewaard. Probeer deze betaling over een moment opnieuw.",
   checkoutBackToStore: "Terug naar winkel",
   checkoutBack: "Terug",
   checkoutShopEyebrow: "PawPal-winkel",
@@ -1090,6 +1094,7 @@ export const nlMessages = {
     "Product-ID, naam en prijs zijn verplicht.",
   storeAdminProductSavedMessage: "Product opgeslagen en catalogus gesynchroniseerd.",
   storeAdminSaveFailedMessage: "Product opslaan is mislukt.",
+  storeAdminStockConflict: "Dit product of de voorraad is zojuist gewijzigd. Open het product opnieuw, controleer de laatste gegevens en sla opnieuw op.",
   storeAdminEyebrow: "Winkelbeheer",
   storeAdminSignInRequired: "Aanmelden vereist",
   storeAdminSignInDescription:
