@@ -12,11 +12,11 @@ function source(file) {
 const files = {
   panel: source("src/components/ui/StatePanel.tsx"),
   barrel: source("src/components/ui/index.ts"),
-  loading: source("src/app/[locale]/loading.tsx"),
+  loading: source("src/app/[locale]/(streamed)/loading.tsx"),
   error: source("src/app/[locale]/error.tsx"),
-  profile: source("src/app/[locale]/profile/page.tsx"),
-  store: source("src/app/[locale]/store/page.tsx"),
-  harness: source("src/app/[locale]/dev/state-panel/page.tsx"),
+  profile: source("src/app/[locale]/(streamed)/profile/page.tsx"),
+  store: source("src/app/[locale]/(streamed)/store/page.tsx"),
+  harness: source("src/app/[locale]/(streamed)/dev/state-panel/page.tsx"),
   proxy: source("src/proxy.ts"),
 };
 

@@ -61,7 +61,7 @@ const routeFiles = [
   "src/app/[locale]/post/[id]/page.tsx",
   "src/app/[locale]/group/[id]/page.tsx",
   "src/app/[locale]/user/[id]/page.tsx",
-  "src/app/[locale]/pet/[id]/page.tsx",
+  "src/app/[locale]/(streamed)/pet/[id]/page.tsx",
 ];
 
 for (const routeFile of routeFiles) {

@@ -4,6 +4,8 @@ import fs from "node:fs";
 import path from "node:path";
 import vm from "node:vm";
 import ts from "typescript";
+import { createRequire } from "node:module";
+const { resolveTitle } = createRequire(import.meta.url)("next/dist/lib/metadata/resolvers/resolve-title.js");
 const root = path.resolve(import.meta.dirname, "..");
 const cache = new Map();
 const notFound = Symbol("NEXT_NOT_FOUND");
@@ -47,7 +49,7 @@ const redirect = await config.redirects();
 check("internal English aliases canonicalize to existing URLs", () => assert.deepEqual(JSON.parse(JSON.stringify(redirect)), [{ source: "/en", destination: "/", permanent: true }, { source: "/en/:path+", destination: "/:path+", permanent: true }]));
 const server = moduleAt("src/i18n/serverMessages.ts");
 const layout = moduleAt("src/app/[locale]/layout.tsx");
-const targets = { home: moduleAt("src/app/[locale]/page.tsx"), auth: moduleAt("src/app/[locale]/auth/layout.tsx"), store: moduleAt("src/app/[locale]/store/layout.tsx") };
+const targets = { home: moduleAt("src/app/[locale]/(streamed)/page.tsx"), auth: moduleAt("src/app/[locale]/(streamed)/auth/layout.tsx"), store: moduleAt("src/app/[locale]/(streamed)/store/layout.tsx") };
 check("root statically enumerates exactly five languages", () => assert.deepEqual(Array.from(layout.generateStaticParams(), (r) => r.locale).sort(), ["de", "en", "fr", "nl", "zh"]));
 for (const locale of ["en", "de", "fr", "nl", "zh"]) {
   const { messages } = await server.getServerMessages(locale);
@@ -58,7 +60,19 @@ for (const locale of ["en", "de", "fr", "nl", "zh"]) {
   check(`${locale}: root server metadata uses same catalog`, () => { assert.equal(rootMetadata.title.default, messages.siteTitle); assert.equal(rootMetadata.description, messages.siteDescription); });
   for (const [name, page] of Object.entries(targets)) {
     const metadata = await page.generateMetadata(props);
-    check(`${locale}/${name}: exact server title and description`, () => { assert.equal(metadata.title, messages[`${name}MetadataTitle`]); assert.equal(metadata.description, messages[`${name}MetadataDescription`]); });
+    check(`${locale}/${name}: Next title resolution and public social titles avoid duplicate branding`, () => {
+      const expectedTitle = name === "home" ? messages.homeMetadataTitle : `${messages[`${name}MetadataTitle`]} | PawPal`;
+      assert.equal(resolveTitle(metadata.title, rootMetadata.title.template).absolute, expectedTitle);
+      if (name !== "auth") {
+        assert.equal(metadata.openGraph.title, expectedTitle);
+        assert.equal(metadata.twitter.title, expectedTitle);
+      }
+    });
+    check(`${locale}/${name}: exact server title and description`, () => {
+      if (name === "home") assert.equal(metadata.title.absolute, messages.homeMetadataTitle);
+      else assert.equal(metadata.title, messages[`${name}MetadataTitle`]);
+      assert.equal(metadata.description, messages[`${name}MetadataDescription`]);
+    });
     check(`${locale}/${name}: public canonical has exactly one locale`, () => assert.equal(metadata.alternates.canonical, (locale === "en" ? "" : `/${locale}`) + (name === "home" ? (locale === "en" ? "/" : "") : `/${name}`)));
     if (name === "auth") check(`${locale}/auth: private robots preserved`, () => { assert.equal(metadata.robots.index, false); assert.equal(metadata.robots.follow, false); });
   }
@@ -74,7 +88,7 @@ check("server-only dictionaries never collected in client shared barrel", () => 
   assert(fs.readFileSync(path.join(root, "src/i18n/serverMessages.ts"), "utf8").startsWith('import "server-only";'));
 });
 check("admin dynamic and cookie access retained", () => {
-  const s = fs.readFileSync(path.join(root, "src/app/[locale]/admin/reports/page.tsx"), "utf8");
+  const s = fs.readFileSync(path.join(root, "src/app/[locale]/(streamed)/admin/reports/page.tsx"), "utf8");
   assert(s.includes('export const dynamic = "force-dynamic"'));
   assert(s.includes("await cookies()"));
   assert(!fs.readFileSync(path.join(root, "src/app/[locale]/layout.tsx"), "utf8").includes("force-static"));

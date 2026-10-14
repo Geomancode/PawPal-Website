@@ -25,6 +25,7 @@ import {
   withProductAssetOverrides,
 } from "@/app/store/storeData";
 import ProductVisual from "@/app/store/ProductVisual";
+import StoreHero from "@/app/store/StoreHero";
 import { useCart } from "@/app/store/useCart";
 import { useAuth } from "@/components/AuthProvider";
 import {
@@ -721,21 +722,7 @@ function StorePageContent({ t }: { t: StoreTranslation }) {
         contentClassName="space-y-paw-lg"
       >
         <div className="grid gap-paw-lg lg:grid-cols-[minmax(0,1fr)_minmax(360px,0.72fr)] lg:items-end">
-          <div>
-            <motion.h1
-              {...fadeUpMotion(shouldReduceMotion, 18)}
-              className="max-w-3xl font-brand text-paw-type-h1 font-black text-paw-ink sm:text-paw-type-display"
-            >
-              {t("storeHeroTitlePrefix")}{" "}
-              <span className="text-paw-on-primary-soft">{t("storeHeroTitleHighlight")}</span>
-            </motion.h1>
-            <motion.p
-              {...fadeUpMotion(shouldReduceMotion, 16, 0.08)}
-              className="mt-paw-sm max-w-2xl text-paw-type-body text-paw-body sm:text-paw-type-body"
-            >
-              {t("storeHeroCopy")}
-            </motion.p>
-          </div>
+          <StoreHero t={t} shouldReduceMotion={shouldReduceMotion} />
 
           <div className="space-y-paw-sm">
             {recommendedProductIds.length > 0 && (
@@ -975,9 +962,12 @@ export default function StorePage() {
       {loader}
       <Suspense
         fallback={
-          <div className={`min-h-screen bg-paw-page ${STORE_METRIC_CLASSES.loadingShellTopSpacing} text-center text-paw-type-body font-bold text-paw-muted`}>
-            {t("storeLoading")}
-          </div>
+          <PageShell className={`min-h-screen bg-paw-page ${STORE_METRIC_CLASSES.loadingShellTopSpacing}`} contentClassName="space-y-paw-lg">
+            <StoreHero t={t} />
+            <p role="status" aria-busy="true" className="text-paw-type-body font-bold text-paw-muted">
+              {t("storeLoading")}
+            </p>
+          </PageShell>
         }
       >
         <StorePageContent t={t} />

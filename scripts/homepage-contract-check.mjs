@@ -118,14 +118,14 @@ expect(
 );
 
 const routeFiles = [
-  "../src/app/[locale]/page.tsx",
-  "../src/app/[locale]/globe/page.tsx",
-  "../src/app/[locale]/store/page.tsx",
-  "../src/app/[locale]/about/page.tsx",
-  "../src/app/[locale]/auth/page.tsx",
-  "../src/app/[locale]/help/page.tsx",
-  "../src/app/[locale]/privacy/page.tsx",
-  "../src/app/[locale]/terms/page.tsx",
+  "../src/app/[locale]/(streamed)/page.tsx",
+  "../src/app/[locale]/(streamed)/globe/page.tsx",
+  "../src/app/[locale]/(streamed)/store/page.tsx",
+  "../src/app/[locale]/(streamed)/about/page.tsx",
+  "../src/app/[locale]/(streamed)/auth/page.tsx",
+  "../src/app/[locale]/(streamed)/help/page.tsx",
+  "../src/app/[locale]/(streamed)/privacy/page.tsx",
+  "../src/app/[locale]/(streamed)/terms/page.tsx",
 ];
 
 await Promise.all(

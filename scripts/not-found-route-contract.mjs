@@ -39,7 +39,8 @@ const files = (directory) => fs.readdirSync(directory, { withFileTypes: true }).
 });
 const localeRoot = path.join(root, "src/app/[locale]");
 const actualPages = files(localeRoot).filter((p) => /\/page\.[jt]sx?$/.test(p)).map((p) => {
-  const rel = path.relative(localeRoot, path.dirname(p));
+  const rel = path.relative(localeRoot, path.dirname(p)).split(path.sep)
+    .filter((segment) => !/^\([^/]+\)$/.test(segment)).join("/");
   return rel ? `/${rel.replaceAll("[id]", ":id")}` : "/";
 }).sort();
 check("shared registry exactly matches all 22 real page shapes", () => {
@@ -94,7 +95,7 @@ check("query and hash do not influence pathname classification", () => {
 });
 check("existing valid admin pages remain permission-owned", () => {
   for (const route of ["/admin/reports", "/admin/park-risks", "/store/admin"]) assert.equal(classify(route).kind, "pass");
-  const reports = fs.readFileSync(path.join(localeRoot, "admin/reports/page.tsx"), "utf8");
+  const reports = fs.readFileSync(path.join(localeRoot, "(streamed)/admin/reports/page.tsx"), "utf8");
   assert(reports.includes('dynamic = "force-dynamic"'));
   assert(reports.includes("await cookies()"));
 });

@@ -182,6 +182,7 @@ export function HeroDescription() {
     <motion.p
       className="max-w-xl break-words text-paw-type-body leading-7 text-paw-body sm:text-paw-type-h3 sm:leading-8"
       {...enterMotion(shouldReduceMotion, 18, 0.18)}
+      initial={false}
     >
       {t("homeHeroDescription")}
     </motion.p>
@@ -196,6 +197,7 @@ export function HeroCTA() {
     <motion.div
       className="flex w-full max-w-[calc(100vw-2.5rem)] flex-col gap-3 pt-2 sm:max-w-none sm:flex-row"
       {...enterMotion(shouldReduceMotion, 14, 0.28)}
+      initial={false}
     >
       <Link
         href={path("/globe")}

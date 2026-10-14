@@ -65,6 +65,11 @@ jobs:
       - name: Homepage globe contract gate
         run: npm run test:home-globe-contract
 
+      - name: Bundle budget and streaming boundary contract gates
+        run: |
+          npm run test:bundle-budget-contract
+          npm run test:streaming-boundary-contract
+
       - name: Build verification
         run: npm run build
 

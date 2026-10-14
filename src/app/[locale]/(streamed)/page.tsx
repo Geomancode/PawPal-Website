@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { publicPageMetadata } from "@/app/metadata";
 import { getServerMessages } from "@/i18n/serverMessages";
 import {
-  FadeIn,
   FadeInView,
   HeroCTA,
   GlobeSection,
@@ -21,13 +20,16 @@ type LocalePageProps = { params: Promise<{ locale: string }> };
 
 export async function generateMetadata({ params }: LocalePageProps): Promise<Metadata> {
   const { locale, messages } = await getServerMessages((await params).locale);
-  return publicPageMetadata({
-  title: messages.homeMetadataTitle,
-  description: messages.homeMetadataDescription,
-  path: "/",
-  locale,
-  imageAlt: messages.siteOgImageAlt,
-  });
+  return {
+    ...publicPageMetadata({
+      title: messages.homeMetadataTitle,
+      description: messages.homeMetadataDescription,
+      path: "/",
+      locale,
+      imageAlt: messages.siteOgImageAlt,
+    }),
+    title: { absolute: messages.homeMetadataTitle },
+  };
 }
 
 export default async function Home({ params }: LocalePageProps) {
@@ -39,11 +41,11 @@ export default async function Home({ params }: LocalePageProps) {
       <section className="relative isolate overflow-hidden pt-16 lg:pt-20">
         <HeroBlobs />
         <div className="mx-auto grid min-w-0 max-w-7xl items-center gap-5 px-paw-md pb-4 pt-5 sm:px-paw-xl md:gap-8 md:pb-8 lg:min-h-[560px] lg:grid-cols-[0.9fr_1.1fr] lg:gap-8 lg:px-paw-xxl lg:pb-0 lg:pt-0">
-          <FadeIn className="z-10 min-w-0 max-w-2xl space-y-5 lg:space-y-6">
+          <div className="z-10 min-w-0 max-w-2xl space-y-5 lg:space-y-6">
             <AnimatedHeadline />
             <HeroDescription />
             <HeroCTA />
-          </FadeIn>
+          </div>
 
           <GlobeSection />
         </div>

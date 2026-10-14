@@ -8,15 +8,15 @@ const shellMarker = /page-shell|min-h-screen|min-h-\[100dvh\]/;
 const rawHorizontalPadding = /\bpx-[0-9]/;
 
 const targets = [
-  { file: "src/app/[locale]/auth/page.tsx", anchor: "auth-page-shell" },
+  { file: "src/app/[locale]/(streamed)/auth/page.tsx", anchor: "auth-page-shell" },
   { file: "src/app/global-error.tsx", anchor: "deep-page-shell flex min-h-[100dvh]" },
   { file: "src/app/[locale]/not-found.tsx", anchor: "deep-page-shell min-h-[100dvh]" },
   { file: "src/app/group/[id]/GroupPageClient.tsx", anchor: "deep-page-shell bg-paw-page" },
   { file: "src/app/post/[id]/PostPageClient.tsx", anchor: "bg-paw-page px-paw-md pb-10" },
   { file: "src/app/profile/ProfileWorkspaceView.tsx", anchor: "mx-auto max-w-6xl" },
-  { file: "src/app/[locale]/page.tsx", anchor: "grid min-w-0 max-w-7xl" },
-  { file: "src/app/[locale]/dev/state-panel/page.tsx", anchor: "deep-page-shell min-h-[100dvh] bg-paw-page" },
-  { file: "src/app/[locale]/store/success/page.tsx", anchor: "commerce-page-shell success-status-shell" },
+  { file: "src/app/[locale]/(streamed)/page.tsx", anchor: "grid min-w-0 max-w-7xl" },
+  { file: "src/app/[locale]/(streamed)/dev/state-panel/page.tsx", anchor: "deep-page-shell min-h-[100dvh] bg-paw-page" },
+  { file: "src/app/[locale]/(streamed)/store/success/page.tsx", anchor: "commerce-page-shell success-status-shell" },
   { file: "src/app/tag/[id]/TagPageClient.tsx", anchor: "relative min-h-[100dvh] overflow-hidden" },
   { file: "src/components/PublicRouteError.tsx", anchor: "deep-page-shell flex min-h-[100dvh]" },
   { file: "src/components/ui/StatePanel.tsx", anchor: "deep-page-shell flex min-h-[100dvh]" },
@@ -24,7 +24,7 @@ const targets = [
 
 const toolShellAllowlist = new Map([
   [
-    "src/app/[locale]/globe/page.tsx",
+    "src/app/[locale]/(streamed)/globe/page.tsx",
     "The globe loading shell is a fixed-purpose full-screen tool surface, not a content page gutter.",
   ],
   [
