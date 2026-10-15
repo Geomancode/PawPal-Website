@@ -32,7 +32,8 @@
     "test:component-px": "node scripts/component-px-check.mjs",
     "capture:p4e1e": "node scripts/p4e1e-capture-shells.mjs",
     "probe:search-injection": "node scripts/search-injection-probe.mjs",
-    "generate:glyphs": "node scripts/generate-material-glyphs.mjs"
+    "generate:glyphs": "node scripts/generate-material-glyphs.mjs",
+    "test:companion-runtime": "node scripts/companion-runtime-check.mjs"
   },
   "dependencies": {
     "@google/genai": "^1.50.1",
@@ -40,8 +41,8 @@
     "@stripe/stripe-js": "^9.0.1",
     "@supabase/supabase-js": "^2.101.1",
     "framer-motion": "^12.36.0",
-    "maplibre-gl": "^5.20.1",
-    "next": "16.2.10",
+    "maplibre-gl": "6.14.0",
+    "next": "16.4.2",
     "react": "19.2.3",
     "react-dom": "19.2.3",
     "react-globe.gl": "^2.37.0",
@@ -58,7 +59,7 @@
     "eslint": "^9",
     "eslint-config-next": "16.2.10",
     "playwright": "^1.61.1",
-    "postcss": "^8.5.18",
+    "postcss": "^8.5.30",
     "tailwindcss": "^4",
     "typescript": "^5"
   }

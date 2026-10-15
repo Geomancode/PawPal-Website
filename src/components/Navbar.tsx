@@ -9,7 +9,7 @@ import { useAuth } from "./AuthProvider";
 import PawPalLogo from "./PawPalLogo";
 import styles from "./Navbar.module.css";
 import { useI18n } from "@/i18n/I18nProvider";
-import { stripLocalePrefix } from "@/i18n/routing";
+import { localeFromPath, localizedPath, stripLocalePrefix } from "@/i18n/routing";
 import { useRouteTranslations } from "@/i18n/useRouteTranslations";
 
 const REDUCED_MOTION_QUERY = "(prefers-reduced-motion: reduce)";
@@ -56,6 +56,7 @@ export default function Navbar() {
   const navLinks = [
     { href: "/", label: t("navHome") },
     { href: "/globe", label: t("navGlobe") },
+    { href: "/companion", label: t("companionTitle") },
     { href: "/about", label: t("navAboutUs") },
     { href: "/store", label: t("navStore") },
     ...(user ? [{ href: "/profile", label: t("navProfile") }] : []),
@@ -153,13 +154,13 @@ export default function Navbar() {
             />
           </Link>
 
-          <div className={`hidden md:flex md:items-center ${isGlobeRoute ? "md:gap-3" : "md:gap-8"}`}>
+          <div className={`hidden xl:flex xl:items-center ${isGlobeRoute ? "xl:gap-3" : "xl:gap-5"}`}>
             {navLinks.map((link) => {
               const isActive = normalizedPathname === link.href;
               return (
                 <Link
                   key={link.href}
-                  href={path(link.href)}
+                  href={link.href === "/companion" ? localizedPath(link.href, localeFromPath(pathname)) : path(link.href)}
                   className={`${styles.navLinkPill} relative text-paw-type-body font-bold transition-colors ${
                     isActive ? `${styles.isActive} text-paw-primary` : "text-paw-body hover:text-paw-primary"
                   }`}
@@ -177,7 +178,7 @@ export default function Navbar() {
             })}
           </div>
 
-          <div className="hidden md:block">
+          <div className="hidden xl:block">
             {loading ? (
               <div
                 className="h-11 w-24 animate-pulse rounded-paw-sm border border-paw-border bg-paw-panel-subtle"
@@ -253,7 +254,7 @@ export default function Navbar() {
             aria-controls="pawpal-mobile-navigation"
             aria-expanded={isOpen}
             onClick={() => setIsOpen((value) => !value)}
-            className="inline-flex h-paw-min-tap w-paw-min-tap items-center justify-center rounded-paw-sm border border-paw-border bg-paw-panel text-paw-ink md:hidden"
+            className="inline-flex h-paw-min-tap w-paw-min-tap items-center justify-center rounded-paw-sm border border-paw-border bg-paw-panel text-paw-ink xl:hidden"
           >
             {isOpen ? <PawIcon name="close" className="h-5 w-5" /> : <PawIcon name="menu" className="h-5 w-5" />}
           </button>
@@ -269,7 +270,7 @@ export default function Navbar() {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={shouldReduceMotion ? { duration: 0 } : { duration: 0.2 }}
-            className={`${styles.navMobilePanel} overflow-hidden border-t border-paw-border bg-paw-panel md:hidden`}
+            className={`${styles.navMobilePanel} overflow-hidden border-t border-paw-border bg-paw-panel xl:hidden`}
           >
             <div className="space-y-1 px-5 py-4">
               {navLinks.map((link) => {
@@ -277,7 +278,7 @@ export default function Navbar() {
                 return (
                   <Link
                     key={link.href}
-                    href={path(link.href)}
+                    href={link.href === "/companion" ? localizedPath(link.href, localeFromPath(pathname)) : path(link.href)}
                     className={`block rounded-paw-sm px-3 py-3 text-paw-type-body font-bold ${
                       isActive ? "bg-paw-primary-soft text-paw-on-primary-soft" : "text-paw-ink hover:bg-paw-panel-subtle"
                     }`}
