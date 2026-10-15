@@ -1,14 +1,18 @@
-import type { CartItem, Order } from "@/app/store/storeData";
+import type { CartItem } from "@/app/store/storeData";
 
 export interface CheckoutSession {
   id: string;
+  owner_id?: string;
   mode: string | null;
   status: string;
   customer_email: string;
   amount_total: number;
+  amount_subtotal?: number;
+  shipping_cents?: number;
+  tax_cents?: number;
   currency: string;
   metadata: Record<string, string>;
-  line_items: { name: string; quantity: number; amount: number }[];
+  line_items: { product_id?: string; name: string; quantity: number; amount: number }[];
 }
 
 export function isPaidSession(session: CheckoutSession, requestedId: string): boolean {
@@ -21,45 +25,35 @@ export function checkoutOrderId(sessionId: string): string {
   return `PP-${sessionId}`;
 }
 
-// A return URL is repeatable. Only the verified payment's matching current cart
-// may be consumed, and a saved receipt prevents a refresh from consuming a new cart.
+/** The backend owns receipts. A return URL may only consume this account/tab's
+ * still-pending matching attempt; a later identical cart must survive replay. */
 export function recordPaidCheckout(session: CheckoutSession, requestedId: string, ports: {
+  ownerId: string;
+  ownsAttempt: (id: unknown) => boolean;
+  finishAttempt: (id: unknown) => void;
   loadCart: () => CartItem[];
-  loadOrders: () => Order[];
-  saveOrder: (order: Order) => boolean | void;
   saveCart: (cart: CartItem[]) => void;
 }): boolean {
-  if (!isPaidSession(session, requestedId) || session.mode !== "payment" ||
-    session.metadata?.intent === "ai-upgrade") return false;
-  const id = checkoutOrderId(session.id);
-  if (ports.loadOrders().some((order) => order.id === id)) return false;
+  if (!ports.ownerId || session.owner_id !== ports.ownerId ||
+      !isPaidSession(session, requestedId) || session.mode !== "payment" ||
+      session.metadata?.intent === "ai-upgrade" ||
+      !ports.ownsAttempt(session.metadata?.checkout_attempt_id)) return false;
   const cart = ports.loadCart();
   const items = session.line_items;
-  if (!Array.isArray(items) || !cart.length || cart.length !== items.length) return false;
-  const remaining = [...items];
+  const remaining = Array.isArray(items) ? [...items] : [];
+  let matches = cart.length > 0 && cart.length === remaining.length;
   for (const item of cart) {
     const index = remaining.findIndex((paidItem) =>
-      paidItem.name === item.product.name && paidItem.quantity === item.quantity &&
+      paidItem.product_id === item.product.id && paidItem.name === item.product.name && paidItem.quantity === item.quantity &&
       paidItem.amount === Math.round(item.product.price * 100) * item.quantity &&
       (item.product.currency || "eur").toLowerCase() === session.currency.toLowerCase());
-    if (index < 0) return false;
+    if (index < 0) { matches = false; break; }
     remaining.splice(index, 1);
   }
-  const subtotal = cart.reduce((sum, item) => sum + item.product.price * item.quantity, 0);
-  const saved = ports.saveOrder({
-    id, items: cart,
-    shipping: {
-      fullName: session.metadata?.shipping_name || "", email: session.customer_email || "",
-      address: session.metadata?.shipping_address || "", city: session.metadata?.shipping_city || "",
-      zipCode: session.metadata?.shipping_zip || "", country: session.metadata?.shipping_country || "",
-      phone: session.metadata?.shipping_phone || "",
-    },
-    payment: { last4: "Stripe", brand: "Stripe Checkout" }, subtotal,
-    shippingCost: 0, tax: subtotal * 0.21, total: session.amount_total / 100,
-    status: "processing", createdAt: new Date().toISOString(),
-  });
-  if (saved === false) return false;
-  // A failed receipt write throws above; never erase the cart in that case.
+  // Persist the consumed identity first. If storage fails, retain the cart.
+  // A changed cart still consumes the old attempt, never a future same-price cart.
+  ports.finishAttempt(session.metadata?.checkout_attempt_id);
+  if (!matches) return false;
   ports.saveCart([]);
   return true;
 }

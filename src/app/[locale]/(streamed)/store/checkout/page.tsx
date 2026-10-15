@@ -8,6 +8,8 @@ import {
   type HTMLInputTypeAttribute,
 } from "react";
 import { motion } from "framer-motion";
+import { useAuth } from "@/components/AuthProvider";
+import { storeCartTotals } from "@/lib/storePricing";
 import { normalizeShipping } from "@/lib/checkoutShipping";
 import { checkoutAttemptId, finishCheckoutAttempt } from "@/lib/checkoutAttempt";
 import { useI18n } from "@/i18n/I18nProvider";
@@ -144,7 +146,8 @@ function Field({ name, label, value, onChange, placeholder, error, type = "text"
 
 // ─── Order Summary Sidebar ─────────────────────────────
 function OrderSummary({ items, t }: { items: CartItem[]; t: CheckoutTranslation }) {
-  const subtotal = items.reduce((s, i) => s + i.product.price * i.quantity, 0);
+  const totals = storeCartTotals(items);
+  const subtotal = totals.subtotalCents / 100;
 
   return (
     <Card variant="panel">
@@ -164,13 +167,14 @@ function OrderSummary({ items, t }: { items: CartItem[]; t: CheckoutTranslation 
           </div>
         ))}
       </div>
+      {!totals.valid && <p role="alert">{t("checkoutCartChanged")}</p>}
       <div className="space-y-paw-xs border-t border-paw-border pt-paw-sm">
         <div className="flex justify-between text-paw-type-body text-paw-body"><span>{t("checkoutSubtotal")}</span><span>€{subtotal.toFixed(2)}</span></div>
         <div className="flex justify-between text-paw-type-body text-paw-body">
           <span>{t("checkoutShipping")}</span>
-          <span className="font-bold text-paw-on-success-soft">{t("checkoutFree")}</span>
+          <span className="font-bold text-paw-on-success-soft">{totals.shippingCents === 0 ? t("checkoutFree") : `€${(totals.shippingCents / 100).toFixed(2)}`}</span>
         </div>
-        <div className="flex justify-between border-t border-paw-border pt-paw-xs text-paw-type-h3 font-extrabold text-paw-ink"><span>{t("checkoutTotal")}</span><span>€{subtotal.toFixed(2)}</span></div>
+        <div className="flex justify-between border-t border-paw-border pt-paw-xs text-paw-type-h3 font-extrabold text-paw-ink"><span>{t("checkoutTotal")}</span><span>€{(totals.totalCents / 100).toFixed(2)}</span></div>
       </div>
       <div className="mt-paw-md flex items-center gap-paw-xs rounded-paw-sm border border-paw-trust/20 bg-paw-trust-soft p-paw-sm">
         <PawIcon name="shield" className="h-paw-md w-paw-md shrink-0 text-paw-on-trust-soft" />
@@ -181,23 +185,33 @@ function OrderSummary({ items, t }: { items: CartItem[]; t: CheckoutTranslation 
   );
 }
 
+const EMPTY_SHIPPING: ShippingInfo = { fullName: "", email: "", address: "", city: "", zipCode: "", country: "", phone: "" };
+
 // ─── Main Checkout Page ────────────────────────────────
 export default function CheckoutPage() {
   const { loader, t } = useRouteTranslations();
   const { path, locale } = useI18n();
   const router = useRouter();
   const shouldReduceMotion = useHydratedReducedMotion();
-  const [step, setStep] = useState(1);
+  const { user, session, loading: authLoading, authGeneration, getSessionForGeneration } = useAuth();
+  const ownerId = !authLoading ? user?.id ?? null : null;
+  const [stepState, setStepState] = useState({ scope: authGeneration, value: 1 });
+  const step = stepState.scope === authGeneration ? stepState.value : 1;
+  const setStep = (value: number) => setStepState({ scope: authGeneration, value });
   const [storedCart, , cartReady] = useCart();
   const [fixtureCart, setFixtureCart] = useState<CartItem[]>([]);
   const cart = ACCOUNT_FIXTURES_ENABLED ? fixtureCart : storedCart;
-  const [redirecting, setRedirecting] = useState(false);
-  const checkoutInFlight = useRef(false);
-  const [checkoutError, setCheckoutError] = useState<string | null>(null);
+  const [redirectingOwner, setRedirectingOwner] = useState<number | null>(null);
+  const redirecting = Boolean(ownerId && redirectingOwner === authGeneration);
+  const setRedirecting = (active: boolean) => setRedirectingOwner((current) => active ? authGeneration : current === authGeneration ? null : current);
+  const checkoutInFlight = useRef<number | null>(null);
+  const [errorState, setErrorState] = useState<{ scope: number; message: string | null }>({ scope: -1, message: null });
+  const checkoutError = errorState.scope === authGeneration ? errorState.message : null;
+  const setCheckoutError = (message: string | null) => setErrorState({ scope: authGeneration, message });
 
-  const [shipping, setShipping] = useState<ShippingInfo>({
-    fullName: "", email: "", address: "", city: "", zipCode: "", country: "", phone: "",
-  });
+  const [shippingDraft, setShippingDraft] = useState<{ scope: number; value: ShippingInfo }>({ scope: -1, value: EMPTY_SHIPPING });
+  const shipping = ACCOUNT_FIXTURES_ENABLED || shippingDraft.scope === authGeneration ? shippingDraft.value : EMPTY_SHIPPING;
+  const setShipping = (value: ShippingInfo) => setShippingDraft({ scope: authGeneration, value });
 
   useEffect(() => {
     let cancelled = false;
@@ -206,7 +220,7 @@ export default function CheckoutPage() {
         if (cancelled) return;
         const fixture = loadP3B1g1AccountFixtures().checkout;
         setFixtureCart(fixture.cart);
-        setShipping(fixture.shipping);
+        setShippingDraft({ scope: -1, value: fixture.shipping });
       });
     }
     return () => { cancelled = true; };
@@ -218,15 +232,16 @@ export default function CheckoutPage() {
     }
   }, [cart, cartReady, router, path]);
 
-  const subtotal = cart.reduce((s, i) => s + i.product.price * i.quantity, 0);
+  const totals = storeCartTotals(cart);
+  const subtotal = totals.subtotalCents / 100;
   const emailLooksValid = /^\S+@\S+\.\S+$/.test(shipping.email.trim());
   const normalizedShipping = normalizeShipping(shipping);
-  const canProceedShipping = normalizedShipping !== null;
+  const canProceedShipping = normalizedShipping !== null && totals.valid;
 
   // Redirect to Stripe Checkout
   const handleStripeCheckout = async () => {
-    if (!normalizedShipping || redirecting || checkoutInFlight.current) return;
-    checkoutInFlight.current = true;
+    if (!ownerId || !session?.access_token || !totals.valid || !normalizedShipping || redirecting || checkoutInFlight.current === authGeneration) return;
+    checkoutInFlight.current = authGeneration;
     setRedirecting(true);
     setCheckoutError(null);
     try {
@@ -235,20 +250,23 @@ export default function CheckoutPage() {
         shipping: normalizedShipping,
         locale,
       };
-      const attemptId = await checkoutAttemptId(payload);
+      const attemptId = await checkoutAttemptId({ ...payload, ownerId });
+      const activeSession = getSessionForGeneration(authGeneration);
+      if (!activeSession) return;
       const res = await fetch("/api/checkout", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json", Authorization: `Bearer ${activeSession.access_token}` },
         body: JSON.stringify({
           ...payload, attemptId,
         }),
       });
 
       const data = (await res.json().catch(() => ({}))) as { url?: string; error?: string; code?: string };
+      if (!getSessionForGeneration(authGeneration)) return;
       if (res.ok && data.url) {
         window.location.href = data.url;
       } else {
-        if (data.code === "reservation_ended") finishCheckoutAttempt(attemptId);
+        if (data.code === "reservation_ended") finishCheckoutAttempt(attemptId, ownerId);
         setCheckoutError(data.code === "catalog_unavailable" ? t("storeCatalogUnavailable")
           : data.code === "cart_changed" || data.code === "invalid_cart" ? t("checkoutCartChanged")
           : data.code === "reservation_ended" ? t("checkoutReservationEnded")
@@ -258,13 +276,19 @@ export default function CheckoutPage() {
         setRedirecting(false);
       }
     } catch {
+      if (!getSessionForGeneration(authGeneration)) return;
       setCheckoutError(t("checkoutReservationPending"));
       setRedirecting(false);
     } finally {
-      checkoutInFlight.current = false;
+      if (checkoutInFlight.current === authGeneration) checkoutInFlight.current = null;
     }
   };
 
+  if (!ACCOUNT_FIXTURES_ENABLED && (authLoading || !ownerId)) return (
+    <div className="commerce-page-shell min-h-screen bg-paw-page px-paw-md pb-paw-xxl pt-paw-web-shell-top text-paw-ink sm:px-paw-xl lg:px-paw-xxl">{loader}
+      <Card className="mx-auto max-w-lg p-paw-xl"><h1>{t("storeSignInRequiredTitle")}</h1><p>{t("storeSignInRequiredCopy")}</p>
+        {!authLoading && <Button onClick={() => router.push(path("/auth"))}>{t("storeSignInAction")}</Button>}</Card></div>
+  );
   return (
     <div className={`commerce-page-shell min-h-screen bg-paw-page ${CHECKOUT_METRIC_CLASSES.shellSpacing} text-paw-ink`}>
       {loader}
@@ -408,23 +432,23 @@ export default function CheckoutPage() {
                   {/* Total */}
                   <div className="mb-paw-xl space-y-paw-xs border-t border-paw-border pt-paw-md">
                     <div className="flex justify-between text-paw-type-body text-paw-body"><span>{t("checkoutSubtotal")}</span><span>€{subtotal.toFixed(2)}</span></div>
-                    <div className="flex justify-between text-paw-type-body text-paw-body"><span>{t("checkoutShipping")}</span><span className="font-bold text-paw-on-success-soft">{t("checkoutFree")}</span></div>
-                    <div className="flex justify-between border-t border-paw-border pt-paw-xs text-paw-type-h2 font-extrabold text-paw-ink"><span>{t("checkoutTotal")}</span><span>€{subtotal.toFixed(2)}</span></div>
+                    <div className="flex justify-between text-paw-type-body text-paw-body"><span>{t("checkoutShipping")}</span><span className="font-bold text-paw-on-success-soft">{totals.shippingCents === 0 ? t("checkoutFree") : `€${(totals.shippingCents / 100).toFixed(2)}`}</span></div>
+                    <div className="flex justify-between border-t border-paw-border pt-paw-xs text-paw-type-h2 font-extrabold text-paw-ink"><span>{t("checkoutTotal")}</span><span>€{(totals.totalCents / 100).toFixed(2)}</span></div>
                   </div>
 
                   {/* Stripe Pay Button */}
                   <div className="space-y-paw-sm">
                     <p className="text-paw-type-caption text-paw-muted">{t("checkoutReservationNotice")}</p>
-                    {checkoutError && (
+                    {(!totals.valid || checkoutError) && (
                       <StatusMessage tone="critical" title={t("checkoutPaymentStartErrorTitle")}>
-                        {checkoutError}
+                        {!totals.valid ? t("checkoutCartChanged") : checkoutError}
                       </StatusMessage>
                     )}
 
                     <motion.button
                       whileTap={shouldReduceMotion ? undefined : { scale: 0.97 }}
                       onClick={handleStripeCheckout}
-                      disabled={redirecting}
+                      disabled={redirecting || !totals.valid || !canProceedShipping}
                       className={buttonClassName({ size: "lg", className: "w-full text-paw-type-h3" })}
                     >
                       {redirecting ? (
@@ -440,7 +464,7 @@ export default function CheckoutPage() {
                       ) : (
                         <>
                           <PawIcon name="secure" className="w-paw-lg h-paw-lg" />
-                          {t("checkoutPayPrefix")} €{subtotal.toFixed(2)} {t("checkoutWithStripeSuffix")}
+                          {t("checkoutPayPrefix")} €{(totals.totalCents / 100).toFixed(2)} {t("checkoutWithStripeSuffix")}
                           <PawIcon name="externalLink" className="w-paw-md h-paw-md opacity-60" />
                         </>
                       )}

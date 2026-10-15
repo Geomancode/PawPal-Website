@@ -46,6 +46,7 @@ import {
   StatusMessage,
 } from "@/components/ui";
 import { cartQuantityLimit } from "@/lib/cartAvailability";
+import { STORE_FREE_SHIPPING_THRESHOLD_CENTS, storeCartTotals } from "@/lib/storePricing";
 import { useI18n } from "@/i18n/I18nProvider";
 import type { MessageKey } from "@/i18n/messages/en";
 import { useRouteTranslations } from "@/i18n/useRouteTranslations";
@@ -418,9 +419,10 @@ function CartDrawer({
 }) {
   const { path } = useI18n();
   const shouldReduceMotion = useHydratedReducedMotion();
-  const subtotal = items.reduce((s, i) => s + i.product.price * i.quantity, 0);
-  const shipping = subtotal > 50 ? 0 : 5.99;
-  const total = subtotal + shipping;
+  const totals = storeCartTotals(items);
+  const subtotal = totals.subtotalCents / 100;
+  const shipping = totals.shippingCents / 100;
+  const total = totals.totalCents / 100;
 
   return (
     <Sheet
@@ -450,21 +452,22 @@ function CartDrawer({
                 )}
               </span>
             </div>
-            {subtotal < 50 && (
+            {totals.valid && totals.subtotalCents < STORE_FREE_SHIPPING_THRESHOLD_CENTS && (
               <p className="rounded-paw-sm bg-paw-warning-soft px-paw-sm py-paw-xs text-paw-type-caption font-semibold text-paw-body">
-                {t("storeAddAmountPrefix")} €{(50 - subtotal).toFixed(2)} {t("storeFreeShippingSuffix")}
+                {t("storeAddAmountPrefix")} €{((STORE_FREE_SHIPPING_THRESHOLD_CENTS - totals.subtotalCents) / 100).toFixed(2)} {t("storeFreeShippingSuffix")}
               </p>
             )}
             <div className="flex justify-between border-t border-paw-border pt-paw-sm text-paw-type-h3 font-extrabold text-paw-ink">
               <span>{t("storeTotal")}</span>
               <span>€{total.toFixed(2)}</span>
             </div>
-            <Link
+            {!totals.valid && <StatusMessage tone="critical">{t("checkoutCartChanged")}</StatusMessage>}
+            {totals.valid ? <Link
               href={path("/store/checkout")}
               className={buttonClassName({ size: "lg", className: "w-full" })}
             >
               {t("storeProceedToCheckout")} <PawIcon name="forward" className="h-paw-lg w-paw-lg" aria-hidden="true" />
-            </Link>
+            </Link> : <Button disabled className="w-full">{t("storeProceedToCheckout")}</Button>}
           </div>
         ) : undefined
       }

@@ -12,6 +12,10 @@ export type CheckoutPayload = {
 };
 export type StoreCheckout = {
   attempt_id: string;
+  owner_id: string | null;
+  subtotal_cents: number;
+  shipping_cents: number;
+  tax_cents: number;
   request_sha256: string;
   state: "held" | "paid" | "released";
   created_at: string;
@@ -34,8 +38,9 @@ export function validateCheckoutAttempt(value: unknown): string {
   return value.toLowerCase();
 }
 
-export function checkoutRequestHash(items: CheckoutQuantity[], payload: CheckoutPayload) {
+export function checkoutRequestHash(items: CheckoutQuantity[], payload: CheckoutPayload, ownerId: string) {
   return createHash("sha256").update(JSON.stringify({
+    owner_id: ownerId,
     items: items.map(({ id, quantity }) => ({ product_id: id, quantity })).sort((a, b) => a.product_id.localeCompare(b.product_id)),
     shipping: Object.entries(payload.shipping).sort(([a], [b]) => a.localeCompare(b)),
     locale: payload.locale,
@@ -49,7 +54,7 @@ export async function checkoutRpc(admin: Admin, name: string, args: Record<strin
     // Database messages are fixed machine codes, never expose payload/SQL text.
     const code = String(error.message);
     if (code.includes("out_of_stock") || code.includes("catalog_invalid") || code.includes("total_overflow")) throw new CheckoutCatalogError("Product availability changed", 409, "cart_changed");
-    if (code.includes("attempt_conflict")) throw new CheckoutCatalogError("Checkout request changed", 409, "invalid_cart");
+    if (code.includes("attempt_conflict") || code.includes("owner_mismatch")) throw new CheckoutCatalogError("Checkout request changed", 409, "invalid_cart");
     if (code.includes("create_window_elapsed")) throw new CheckoutCatalogError("Checkout has ended", 409, "reservation_ended");
     if (code.includes("recovery_requires_review") || code.includes("provider_request_may_exist")) throw new CheckoutCatalogError("Checkout needs verification", 409, "reservation_pending");
     if (code.includes("invalid_")) throw new CheckoutCatalogError("Invalid checkout request", 400, "invalid_cart");
@@ -59,6 +64,10 @@ export async function checkoutRpc(admin: Admin, name: string, args: Record<strin
       !["held", "paid", "released"].includes(data.state) || !Array.isArray(data.items) || !data.items.length ||
       !Number.isSafeInteger(data.total_cents) || data.total_cents <= 0 || data.currency !== "EUR") {
     throw new CheckoutCatalogError("Invalid checkout reservation", 503, "catalog_unavailable");
+  }
+  if (![data.subtotal_cents, data.shipping_cents, data.tax_cents].every((value) => Number.isSafeInteger(value) && value >= 0) ||
+      data.total_cents !== data.subtotal_cents + data.shipping_cents + data.tax_cents) {
+    throw new CheckoutCatalogError("Invalid frozen checkout amount", 503, "catalog_unavailable");
   }
   return data as StoreCheckout;
 }
@@ -74,7 +83,7 @@ export function reservedLineItems(reservation: StoreCheckout): Stripe.Checkout.S
     total += item.unit_amount * item.quantity;
     return { price_data: { currency: "eur", product_data: { name: item.name, metadata: { product_id: item.product_id } }, unit_amount: item.unit_amount }, quantity: item.quantity };
   });
-  if (lines.length > 100 || !Number.isSafeInteger(total) || total !== reservation.total_cents) throw new Error("Invalid frozen checkout total");
+  if (lines.length > 100 || !Number.isSafeInteger(total) || total !== reservation.subtotal_cents) throw new Error("Invalid frozen checkout total");
   return lines;
 }
 
@@ -89,6 +98,13 @@ export async function reconcileStoreCheckout(stripe: Stripe, admin: Admin, sessi
       session.metadata.checkout_request_sha256 !== reservation.request_sha256 ||
       session.amount_total !== reservation.total_cents || session.currency?.toUpperCase() !== reservation.currency ||
       (reservation.session_id && reservation.session_id !== session.id)) throw new Error("Checkout session binding mismatch");
+  if (session.amount_subtotal !== reservation.subtotal_cents ||
+      session.total_details?.amount_shipping !== reservation.shipping_cents ||
+      session.total_details?.amount_tax !== reservation.tax_cents ||
+      session.total_details?.amount_discount !== 0 ||
+      (session.shipping_cost?.amount_total ?? 0) !== reservation.shipping_cents) {
+    throw new Error("Checkout shipping/tax binding mismatch");
+  }
   const lines = await stripe.checkout.sessions.listLineItems(session.id, { limit: 100, expand: ["data.price.product"] });
   if (lines.has_more || lines.data.length !== reservation.items.length) throw new Error("Checkout item count mismatch");
   const expected = new Map(reservation.items.map((item) => [item.product_id, item]));

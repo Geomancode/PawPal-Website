@@ -57,6 +57,9 @@ jobs:
         run: |
           npm run test:checkout-flow
           npm run test:checkout-stock
+          npm run test:store-pricing
+          npm run test:store-order-ownership
+          npm run test:store-orders-lifecycle
           npm run test:subscription-webhook
           npm run test:persona-auth
 

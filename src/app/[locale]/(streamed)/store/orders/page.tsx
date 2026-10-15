@@ -10,7 +10,9 @@ import {
 import { motion, AnimatePresence } from "framer-motion";
 import { useRouter } from "next/navigation";
 import PawIcon, { type PawIconName } from "@/components/icons/PawIcon";
-import { Order, loadOrders } from "@/app/store/storeData";
+import { Order } from "@/app/store/storeData";
+import { useStoreOrders } from "@/lib/hooks/useStoreOrders";
+import { storeOrderForDisplay } from "@/lib/storeOrders";
 import ProductVisual from "@/app/store/ProductVisual";
 import { Badge, Button, Card, EmptyState } from "@/components/ui";
 import { useReducedMotionPreference } from "@/lib/useReducedMotionPreference";
@@ -93,7 +95,7 @@ function OrderCard({ order, t }: { order: Order; t: OrdersTranslation }) {
 
           <div className="min-w-0 flex-1">
             <div className="flex flex-wrap items-center gap-2">
-              <p className="font-mono text-paw-type-body font-bold text-paw-ink">{order.id}</p>
+              <p className="min-w-0 max-w-full break-all font-mono text-paw-type-body font-bold text-paw-ink">{order.id}</p>
               <Badge tone={status.tone}>
                 <PawIcon name={status.icon} className="h-3 w-3" aria-hidden="true" />
                 {statusLabel}
@@ -180,12 +182,12 @@ function OrderCard({ order, t }: { order: Order; t: OrdersTranslation }) {
                       {t("ordersPaymentTitle")}
                     </h4>
                     <p className="text-paw-type-caption font-bold text-paw-body">
-                      {order.payment.brand} {t("ordersCardEndingIn")} ****{order.payment.last4}
+                      {order.payment.brand}{order.payment.last4 ? ` ${t("ordersCardEndingIn")} ****${order.payment.last4}` : ""}
                     </p>
                     <div className="mt-3 space-y-1.5">
                       <p className="flex justify-between text-paw-type-caption text-paw-muted"><span>{t("ordersSubtotal")}</span><span>€{order.subtotal.toFixed(2)}</span></p>
                       <p className="flex justify-between text-paw-type-caption text-paw-muted"><span>{t("ordersShippingTitle")}</span><span>{order.shippingCost === 0 ? t("ordersFree") : `€${order.shippingCost.toFixed(2)}`}</span></p>
-                      <p className="flex justify-between text-paw-type-caption text-paw-muted"><span>{t("ordersTax")}</span><span>€{order.tax.toFixed(2)}</span></p>
+                      {order.tax > 0 && <p className="flex justify-between text-paw-type-caption text-paw-muted"><span>{t("ordersTax")}</span><span>€{order.tax.toFixed(2)}</span></p>}
                       <p className="flex justify-between border-t border-paw-border pt-2 text-paw-type-caption font-extrabold text-paw-ink">
                         <span>{t("ordersTotal")}</span><span>€{order.total.toFixed(2)}</span>
                       </p>
@@ -205,17 +207,15 @@ export default function OrdersPage() {
   const { loader, t } = useRouteTranslations();
   const router = useRouter();
   const { path } = useI18n();
-  const [orders, setOrders] = useState<Order[]>([]);
+  const remote = useStoreOrders();
+  const [fixtureOrders, setOrders] = useState<Order[]>([]);
+  const orders = ACCOUNT_FIXTURES_ENABLED ? fixtureOrders : remote.orders.map(storeOrderForDisplay);
 
   useEffect(() => {
     let cancelled = false;
     if (ACCOUNT_FIXTURES_ENABLED) {
       queueMicrotask(() => {
         if (!cancelled) setOrders(loadP3B1g1AccountFixtures().orders);
-      });
-    } else {
-      queueMicrotask(() => {
-        if (!cancelled) setOrders(loadOrders());
       });
     }
     return () => { cancelled = true; };
@@ -252,7 +252,13 @@ export default function OrdersPage() {
           </span>
         </div>
 
-        {orders.length === 0 ? (
+        {!ACCOUNT_FIXTURES_ENABLED && (remote.authLoading || remote.loading) && <p role="status">{t("storeOrdersLoading")}</p>}
+        {!ACCOUNT_FIXTURES_ENABLED && !remote.authLoading && !remote.signedIn ? (
+          <Card className="p-6"><h2>{t("storeSignInRequiredTitle")}</h2><p>{t("storeSignInRequiredCopy")}</p>
+            <Button onClick={() => router.push(path("/auth"))}>{t("storeSignInAction")}</Button></Card>
+        ) : !ACCOUNT_FIXTURES_ENABLED && remote.error ? (
+          <Card className="p-6"><p role="alert">{t("storeOrdersLoadFailed")}</p><Button onClick={remote.retry}>{t("storeOrdersRetry")}</Button></Card>
+        ) : orders.length === 0 && (ACCOUNT_FIXTURES_ENABLED || (!remote.loading && !remote.authLoading)) ? (
           <EmptyState
             icon={CartEmptyStateIcon}
             title={t("ordersEmptyTitle")}
@@ -271,6 +277,8 @@ export default function OrdersPage() {
             ))}
           </div>
         )}
+        {!ACCOUNT_FIXTURES_ENABLED && remote.signedIn && <p className="mt-4 text-paw-type-caption text-paw-muted">{t("storeLegacyOrdersNotice")}</p>}
+        {!ACCOUNT_FIXTURES_ENABLED && remote.hasMore && !remote.error && <Button disabled={remote.loading} onClick={remote.loadMore}>{t("storeOrdersLoadMore")}</Button>}
       </div>
     </div>
   );

@@ -416,26 +416,6 @@ export function formatOptionalPrice(product: Product): string | undefined {
   return `${symbol}${product.originalPrice.toFixed(2)}`;
 }
 
-// ── localStorage helpers ─────────────────────────────────
-const ORDERS_KEY = "pawpal_orders";
+// Orders are served from the authenticated backend. Never read/import the
+// legacy unowned pawpal_orders cache or assign it by email to the current user.
 export { loadCart, saveCart } from "@/lib/cartStorage";
-
-export function loadOrders(): Order[] {
-  if (typeof window === "undefined") return [];
-  try {
-    const raw = localStorage.getItem(ORDERS_KEY);
-    return raw ? JSON.parse(raw) : [];
-  } catch { return []; }
-}
-
-export function saveOrder(order: Order) {
-  const orders = loadOrders();
-  if (orders.some((existing) => existing.id === order.id)) return false;
-  orders.unshift(order);
-  localStorage.setItem(ORDERS_KEY, JSON.stringify(orders));
-  return true;
-}
-
-export function generateOrderId(): string {
-  return "PP-" + Date.now().toString(36).toUpperCase() + "-" + Math.random().toString(36).substring(2, 6).toUpperCase();
-}

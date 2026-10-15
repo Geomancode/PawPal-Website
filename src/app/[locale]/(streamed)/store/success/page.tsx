@@ -3,13 +3,15 @@
 import { useState, useEffect, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import PawIcon from "@/components/icons/PawIcon";
-import { saveOrder, saveCart, loadOrders, loadCart } from "@/app/store/storeData";
+import { saveCart, loadCart } from "@/app/store/storeData";
 import { checkoutOrderId, isPaidSession, recordPaidCheckout, type CheckoutSession } from "@/lib/checkoutCompletion";
 import { Badge, Button, Card } from "@/components/ui";
 import { useI18n } from "@/i18n/I18nProvider";
 import { useRouteTranslations } from "@/i18n/useRouteTranslations";
 import { loadP3B1g1AccountFixtures } from "@/lib/p3b1g1AccountFixtures";
-import { finishCheckoutAttempt } from "@/lib/checkoutAttempt";
+import { finishCheckoutAttempt, ownsCheckoutAttempt } from "@/lib/checkoutAttempt";
+
+import { useAuth } from "@/components/AuthProvider";
 
 const ACCOUNT_FIXTURES_ENABLED =
   process.env.NEXT_PUBLIC_P3B1G1_ACCOUNT_FIXTURES === "1";
@@ -35,6 +37,8 @@ function SuccessContent() {
   const { loader, t } = useRouteTranslations();
   const router = useRouter();
   const { path } = useI18n();
+  const { user, loading: authLoading, authGeneration, getSessionForGeneration } = useAuth();
+  const ownerId = !authLoading ? user?.id ?? null : null;
   const searchParams = useSearchParams();
   const sessionId = searchParams.get("session_id");
   const [session, setSession] = useState<CheckoutSession | null>(null);
@@ -43,6 +47,7 @@ function SuccessContent() {
   const [orderId, setOrderId] = useState(() => sessionId ? checkoutOrderId(sessionId) : "");
   const [receiptWarning, setReceiptWarning] = useState(false);
   const [resolvedSessionId, setResolvedSessionId] = useState<string | null>(null);
+  const [resolvedGeneration, setResolvedGeneration] = useState<number | null>(null);
   const isSubscription =
     session?.mode === "subscription" ||
     session?.metadata?.intent === "ai-upgrade";
@@ -60,19 +65,23 @@ function SuccessContent() {
       return () => { cancelled = true; };
     }
 
-    if (!sessionId) {
+    const accessToken = getSessionForGeneration(authGeneration)?.access_token;
+    if (!sessionId || !ownerId || !accessToken) {
       return;
     }
 
     const controller = new AbortController();
-    fetch(`/api/checkout/session?session_id=${encodeURIComponent(sessionId)}`, { signal: controller.signal })
+    fetch(`/api/checkout/session?session_id=${encodeURIComponent(sessionId)}`, { signal: controller.signal, headers: { Authorization: `Bearer ${accessToken}` }, cache: "no-store" })
       .then(async (res) => {
         const data = await res.json();
         if (!res.ok || data.error) throw new Error("session-verification-failed");
         return data as CheckoutSession;
       })
-      .then((data) => {
+      .then(async (data) => {
         if (controller.signal.aborted) return;
+        if (!getSessionForGeneration(authGeneration)) return;
+        if (data.owner_id !== ownerId) throw new Error("session-owner-mismatch");
+        setResolvedGeneration(authGeneration);
         setResolvedSessionId(sessionId);
         setReceiptWarning(false);
         if (!isPaidSession(data, sessionId)) {
@@ -82,26 +91,36 @@ function SuccessContent() {
           setError("");
           setOrderId(checkoutOrderId(data.id));
           try {
-            recordPaidCheckout(data, sessionId, { loadCart, loadOrders, saveOrder, saveCart });
-            finishCheckoutAttempt(data.metadata?.checkout_attempt_id);
+            recordPaidCheckout(data, sessionId, {
+              ownerId, loadCart, saveCart,
+              ownsAttempt: (id) => ownsCheckoutAttempt(id, ownerId),
+              finishAttempt: (id) => finishCheckoutAttempt(id, ownerId),
+            });
           } catch {
-            // Payment is verified independently of local receipt storage.
+            // Payment is verified independently of this browser's cart/attempt storage.
             setReceiptWarning(true);
           }
         }
         setLoading(false);
       })
       .catch(() => {
-        if (!controller.signal.aborted) {
+        if (!controller.signal.aborted && getSessionForGeneration(authGeneration)) {
+          setResolvedGeneration(authGeneration);
           setResolvedSessionId(sessionId);
           setError("session-verification-failed");
           setLoading(false);
         }
       });
     return () => controller.abort();
-  }, [sessionId]);
+  }, [sessionId, ownerId, authGeneration, getSessionForGeneration]);
 
-  if ((ACCOUNT_FIXTURES_ENABLED && loading) || (!ACCOUNT_FIXTURES_ENABLED && sessionId && resolvedSessionId !== sessionId)) {
+  if (!ACCOUNT_FIXTURES_ENABLED && authLoading) return <LoadingState />;
+  if (!ACCOUNT_FIXTURES_ENABLED && !ownerId) return (
+    <div className="commerce-page-shell min-h-screen bg-paw-page px-paw-md pb-paw-xxl pt-paw-web-shell-top text-paw-ink sm:px-paw-xl lg:px-paw-xxl">{loader}
+      <Card className="mx-auto max-w-lg p-paw-xl"><h1>{t("storeSignInRequiredTitle")}</h1><p>{t("storeSignInRequiredCopy")}</p>
+        <Button onClick={() => router.push(path("/auth"))}>{t("storeSignInAction")}</Button></Card></div>
+  );
+  if ((ACCOUNT_FIXTURES_ENABLED && loading) || (!ACCOUNT_FIXTURES_ENABLED && sessionId && (resolvedSessionId !== sessionId || resolvedGeneration !== authGeneration))) {
     return <LoadingState />;
   }
 

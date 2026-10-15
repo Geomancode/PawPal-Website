@@ -1,5 +1,6 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextRequest } from "next/server";
 import Stripe from "stripe";
+import { privateStoreJson, requireStoreUser, StoreIdentityError } from "@/lib/storeIdentity";
 import { getSupabaseAdmin } from "@/lib/supabaseAdmin";
 import { checkoutQuantities, CheckoutCatalogError } from "@/lib/checkoutCatalog";
 import { checkoutRequestHash, checkoutRpc, reconcileDueStoreCheckouts, reconcileStoreCheckout, reservedLineItems, validateCheckoutAttempt } from "@/lib/storeCheckout";
@@ -19,10 +20,11 @@ function getStripe() {
 
 export async function POST(req: NextRequest) {
   try {
+    const { userId } = await requireStoreUser(req);
     const { items, shipping: rawShipping, locale: requestedLocale, attemptId: rawAttemptId } = await req.json();
     const shipping = normalizeShipping(rawShipping);
     if (!shipping) {
-      return NextResponse.json({ error: "Valid shipping details are required" }, { status: 400 });
+      return privateStoreJson({ error: "Valid shipping details are required" }, 400);
     }
     const locale = isLocale(requestedLocale) ? requestedLocale : defaultLocale;
     assertStripeTestMode();
@@ -36,21 +38,21 @@ export async function POST(req: NextRequest) {
     const admin = getSupabaseAdmin();
     await reconcileDueStoreCheckouts(stripe, admin, requestedItems.map((item) => item.id));
     const payload = { shipping, locale, base_url: baseUrl };
-    const requestHash = checkoutRequestHash(requestedItems, payload);
+    const requestHash = checkoutRequestHash(requestedItems, payload, userId);
     let reservation = await checkoutRpc(admin, "reserve_store_checkout", {
-      p_attempt_id: attemptId, p_request_sha256: requestHash,
+      p_owner_id: userId, p_attempt_id: attemptId, p_request_sha256: requestHash,
       p_items: requestedItems.map(({ id, quantity }) => ({ product_id: id, quantity })).sort((a, b) => a.product_id.localeCompare(b.product_id)),
       p_checkout_payload: payload,
     });
     const respond = async (sessionId: string) => {
       const checked = await reconcileStoreCheckout(stripe, admin, sessionId);
-      if (!checked || checked.reservation.attempt_id !== attemptId) throw new Error("Checkout verification failed");
+      if (!checked || checked.reservation.attempt_id !== attemptId || checked.reservation.owner_id !== userId) throw new Error("Checkout verification failed");
       if (checked.reservation.state === "paid") {
-        return NextResponse.json({ sessionId, url: `${baseUrl}${localizedPath("/store/success", locale)}?session_id=${encodeURIComponent(sessionId)}` });
+        return privateStoreJson({ sessionId, url: `${baseUrl}${localizedPath("/store/success", locale)}?session_id=${encodeURIComponent(sessionId)}` });
       }
       if (checked.reservation.state === "released") throw new CheckoutCatalogError("Checkout has ended", 409, "reservation_ended");
       if (checked.session.status !== "open" || !checked.session.url) throw new CheckoutCatalogError("Payment confirmation is pending", 409, "reservation_pending");
-      return NextResponse.json({ url: checked.session.url, sessionId });
+      return privateStoreJson({ url: checked.session.url, sessionId });
     };
     if (reservation.session_id) return await respond(reservation.session_id);
     if (reservation.state !== "held") throw new CheckoutCatalogError("Checkout has ended", 409, "reservation_ended");
@@ -68,6 +70,7 @@ export async function POST(req: NextRequest) {
 
     const metadata = {
       intent: "store-order",
+      user_id: userId,
       checkout_attempt_id: attemptId,
       checkout_request_sha256: reservation.request_sha256,
       shipping_name: frozen.shipping.fullName,
@@ -119,7 +122,7 @@ export async function POST(req: NextRequest) {
             shipping_rate_data: {
               type: "fixed_amount",
               fixed_amount: {
-                amount: 0,
+                amount: reservation.shipping_cents,
                 currency: "eur",
               },
               display_name: "Standard Shipping (3-5 days)",
@@ -138,10 +141,11 @@ export async function POST(req: NextRequest) {
     // binding before exposing a payable URL, even after a lost create response.
     return await respond(session.id);
   } catch (err) {
+    if (err instanceof StoreIdentityError) return privateStoreJson({ error: err.code, code: err.code }, err.status);
     if (err instanceof CheckoutCatalogError) {
-      return NextResponse.json({ error: err.message, code: err.code }, { status: err.status });
+      return privateStoreJson({ error: err.message, code: err.code }, err.status);
     }
     reportError(err, { route: "/api/checkout", method: "POST" });
-    return NextResponse.json({ error: "Checkout is awaiting confirmation", code: "reservation_pending" }, { status: 503 });
+    return privateStoreJson({ error: "Checkout is awaiting confirmation", code: "reservation_pending" }, 503);
   }
 }

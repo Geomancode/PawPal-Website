@@ -2,12 +2,15 @@
 
 import { createContext, useContext, useEffect, useState, ReactNode } from "react";
 import { supabase } from "@/lib/supabase";
+import { createAuthSessionScope } from "@/lib/authSessionScope";
 import type { User, Session } from "@supabase/supabase-js";
 
 interface AuthContextType {
   user: User | null;
   session: Session | null;
   loading: boolean;
+  authGeneration: number;
+  getSessionForGeneration: (generation: number) => Session | null;
   signIn: (email: string, password: string) => Promise<{ error: string | null }>;
   signUp: (email: string, password: string, displayName?: string) => Promise<{ error: string | null; needsConfirm: boolean }>;
   signOut: () => Promise<void>;
@@ -22,26 +25,30 @@ export function useAuth() {
 }
 
 export function AuthProvider({ children }: { children: ReactNode }) {
-  const [user, setUser] = useState<User | null>(null);
-  const [session, setSession] = useState<Session | null>(null);
-  const [loading, setLoading] = useState(true);
+  const [scope] = useState(createAuthSessionScope);
+  const [state, setState] = useState(scope.snapshot);
+  const { session, loading, generation: authGeneration } = state;
+  const user = session?.user ?? null;
 
   useEffect(() => {
-    // Get initial session
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      setSession(session);
-      setUser(session?.user ?? null);
-      setLoading(false);
+    let active = true;
+    let observedEvents = 0;
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, nextSession) => {
+      if (!active) return;
+      observedEvents++;
+      // The synchronous scope update also fences async continuations before
+      // React commits the corresponding account-change render.
+      setState(scope.accept(nextSession, event === "SIGNED_OUT"));
     });
-
-    // Listen for auth state changes
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
-      setSession(session);
-      setUser(session?.user ?? null);
+    const initialVersion = observedEvents;
+    supabase.auth.getSession().then(({ data: { session: initialSession } }) => {
+      if (active && observedEvents === initialVersion) setState(scope.accept(initialSession));
+    }).catch(() => {
+      if (active && observedEvents === initialVersion) setState(scope.accept(null));
+      console.warn("Initial authentication session could not be read");
     });
-
-    return () => subscription.unsubscribe();
-  }, []);
+    return () => { active = false; subscription.unsubscribe(); };
+  }, [scope]);
 
   const signIn = async (email: string, password: string) => {
     const { error } = await supabase.auth.signInWithPassword({
@@ -73,7 +80,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   };
 
   return (
-    <AuthContext.Provider value={{ user, session, loading, signIn, signUp, signOut }}>
+    <AuthContext.Provider value={{ user, session, loading, authGeneration, getSessionForGeneration: scope.getSessionForGeneration, signIn, signUp, signOut }}>
       {children}
     </AuthContext.Provider>
   );

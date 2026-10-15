@@ -45,14 +45,41 @@ async function add(page) {
   await page.getByRole("button", { name: t.storeAddButton, exact: true }).click();
   await cart(page);
 }
-async function run(name, width, execute, expectedWarning) {
+async function run(name, width, execute, expectedWarning, authenticated = true) {
   const context = await browser.newContext({ viewport: { width, height: 900 }, locale: "en-US", reducedMotion: "reduce", serviceWorkers: "allow" });
-  const errors = [], blocked = [], mutations = [], catalogReads = [];
+  // The confirmed product rule now requires sign-in before the shipping form.
+  // This ephemeral browser fixture exercises client auth state only; it cannot
+  // authorize a server purchase (all mutations remain blocked below).
+  const user = { id: "b1500000-0000-4000-8000-000000000099", email: "cart-runtime@example.invalid", app_metadata: {}, user_metadata: {}, aud: "authenticated", created_at: "2026-10-15T00:00:00Z" };
+  let syntheticBearer = null;
+  const fixtureSupabaseOrigin = new URL(process.env.NEXT_PUBLIC_SUPABASE_URL || "https://placeholder.supabase.co").origin;
+  if (authenticated) {
+    const project = new URL(process.env.NEXT_PUBLIC_SUPABASE_URL || "https://placeholder.supabase.co").hostname.split(".")[0];
+    const key = process.env.CART_RUNTIME_AUTH_STORAGE_KEY || `sb-${project}-auth-token`;
+    const exp = Math.floor(Date.now()/1000)+86400;
+    const token = [Buffer.from(JSON.stringify({alg:"HS256",typ:"JWT"})).toString("base64url"),Buffer.from(JSON.stringify({sub:user.id,role:"authenticated",exp})).toString("base64url"),"synthetic-not-valid-signature"].join(".");
+    syntheticBearer = `Bearer ${token}`;
+    await context.addInitScript(({key,session,baseOrigin}) => {
+      if (location.origin !== baseOrigin) return;
+      if (!localStorage.getItem(key)) localStorage.setItem(key,JSON.stringify(session));
+    }, {key,baseOrigin:parsedBase.origin,session:{access_token:token,refresh_token:"synthetic-unused",token_type:"bearer",expires_at:exp,expires_in:86400,user}});
+  }
+  const errors = [], blocked = [], mutations = [], catalogReads = [], readonlyAdminRequests = [];
   await context.route("**/*", async (route) => {
     const request = route.request(); const url = new URL(request.url());
+    if (authenticated && request.method()==="GET" && url.pathname==="/auth/v1/user") {
+      return route.fulfill({status:200,contentType:"application/json",body:JSON.stringify(user)});
+    }
     if (fixture && url.pathname === "/rest/v1/products") {
       catalogReads.push(url.pathname);
       return route.fulfill({ status: 200, contentType: "application/json", body: "[]" });
+    }
+    // This RPC reads membership despite using POST; all other writes stay denied.
+    if (fixture && authenticated && request.method() === "POST" && url.origin === fixtureSupabaseOrigin &&
+        url.pathname === "/rest/v1/rpc/is_store_admin" && request.headers().authorization === syntheticBearer) {
+      assert.deepEqual(request.postDataJSON(), {}, "Membership fixture accepts no caller parameters");
+      readonlyAdminRequests.push({ method: request.method(), origin: url.origin, pathname: url.pathname });
+      return route.fulfill({ status: 200, contentType: "application/json", body: "false" });
     }
     if (!["GET", "HEAD"].includes(request.method())) {
       mutations.push({ method: request.method(), origin: url.origin, pathname: url.pathname });
@@ -98,6 +125,7 @@ async function run(name, width, execute, expectedWarning) {
     await execute(page, context, check, capture);
     check("catalogue fixture was exercised", !fixture || catalogReads.length > 0);
     check("actual service worker registered", await page.evaluate(async () => (await navigator.serviceWorker.getRegistrations()).length > 0));
+    check("read-only membership fixture was exercised", !fixture || !authenticated || readonlyAdminRequests.length > 0);
     check("no write/payment requests", mutations.length === 0);
     const unexpected = errors.filter((error) => !(expectedWarning && error.type === "warning" && error.text.includes(expectedWarning)));
     check("no unexplained runtime/console errors", unexpected.length === 0);
@@ -106,7 +134,7 @@ async function run(name, width, execute, expectedWarning) {
     result.passed = false; result.error = error.message;
     await capture("failure").catch((captureError) => { result.captureError = captureError.message; });
   } finally {
-    result.errors = errors; result.blockedExternalRequests = blocked; result.blockedMutations = mutations; result.catalogReads = catalogReads;
+    result.errors = errors; result.blockedExternalRequests = blocked; result.blockedMutations = mutations; result.catalogReads = catalogReads; result.readonlyAdminRequests = readonlyAdminRequests;
     results.push(result);
     if (output) fs.writeFileSync(path.join(output, "results.json"), JSON.stringify({ base, browser: "Browser plugin not available; existing Playwright Chromium", catalog: fixture ? "CI empty catalogue response fixture; built-in test catalogue" : "Actual local Supabase catalogue request and product fallback", results }, null, 2));
     console.log(JSON.stringify({ name, passed: result.passed, checks: result.checks, error: result.error }));
@@ -149,6 +177,13 @@ try {
       check("new tab retains explicit empty cart", (await persisted(second)).length === 0);
     });
   }
+  await run("guest-checkout-requires-login", 375, async (page, context, check, capture) => {
+    await add(page); await page.goto(base + "/store/checkout");
+    await page.getByRole("heading", {name:t.storeSignInRequiredTitle,exact:true}).waitFor();
+    check("guest cannot access shipping details", await page.getByRole("heading", {name:t.checkoutShippingInformation,exact:true}).count()===0);
+    check("guest cart survives auth gate", (await persisted(page))[0]?.quantity===1);
+    await capture("sign-in-required");
+  }, undefined, false);
   await run("cross-tab-cart", 1440, async (page, context, check, capture) => {
     await add(page); const peer = await context.newPage(); await peer.setViewportSize({ width: 375, height: 900 });
     await peer.goto(base + "/store"); await cart(peer); await quantity(peer, 1);
