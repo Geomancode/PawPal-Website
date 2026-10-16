@@ -39,7 +39,7 @@ export default function Sheet({
 
   return (
     <div
-      className={cn("fixed inset-0 z-50", className)}
+      className={cn("fixed inset-0 z-[10010]", className)}
       role="dialog"
       aria-modal="true"
       aria-label={ariaLabel ?? (typeof title === "string" ? title : undefined)}
