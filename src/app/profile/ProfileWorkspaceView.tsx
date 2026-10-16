@@ -1,5 +1,7 @@
 "use client";
 
+import PetMediaImage from "@/components/PetMediaImage";
+
 import type { ReactNode } from "react";
 import PawIcon from "@/components/icons/PawIcon";
 import { StatusMessage } from "@/components/ui";
@@ -575,10 +577,9 @@ export default function ProfileWorkspaceView({
                     className="profile-pet-card"
                   >
                     <div className="flex items-start gap-paw-md">
-                      <div className={`${PROFILE_METRIC_CLASSES.petAvatarSize} rounded-paw-md bg-paw-primary-soft border border-paw-primary/15 flex items-center justify-center text-paw-type-h2 shrink-0 overflow-hidden`}>
+                      <div className={`relative ${PROFILE_METRIC_CLASSES.petAvatarSize} rounded-paw-md bg-paw-primary-soft border border-paw-primary/15 flex items-center justify-center text-paw-type-h2 shrink-0 overflow-hidden`}>
                         {pet.avatar_url ? (
-                          // eslint-disable-next-line @next/next/no-img-element
-                          <img src={pet.avatar_url} alt={pet.name} className="w-full h-full object-cover" />
+                          <PetMediaImage src={pet.avatar_url} alt={pet.name} fill sizes="56px" unoptimized className="w-full h-full object-cover" />
                         ) : <PawIcon name="paw" className="h-paw-xl w-paw-xl text-paw-primary" aria-hidden="true" />}
                       </div>
 

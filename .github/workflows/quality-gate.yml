@@ -63,6 +63,9 @@ jobs:
           npm run test:subscription-webhook
           npm run test:persona-auth
 
+      - name: Private pet image authorization regression gate
+        run: node scripts/pet-media-access-check.mjs
+
       - name: Globe facing gate
         run: npm run test:globe-facing
 

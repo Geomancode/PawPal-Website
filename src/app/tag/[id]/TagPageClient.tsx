@@ -1,6 +1,7 @@
 "use client";
 
-import Image from "next/image";
+import PetMediaImage from "@/components/PetMediaImage";
+
 import Link from "next/link";
 import PawIcon, { type PawIconName } from "@/components/icons/PawIcon";
 import { AppDeepLinkButton, Badge, Card, StatusMessage } from "@/components/ui";
@@ -80,7 +81,7 @@ export default function TagPageClient({ pet, owner }: TagPageClientProps) {
             <div className="mt-4 flex items-start gap-4">
               <div className="relative flex h-20 w-20 shrink-0 items-center justify-center overflow-hidden rounded-paw-lg border-4 border-paw-panel bg-paw-primary-soft text-paw-on-primary-soft shadow-paw-panel sm:h-24 sm:w-24">
                 {pet.avatar_url ? (
-                  <Image
+                  <PetMediaImage
                     src={pet.avatar_url}
                     alt={pet.name}
                     fill

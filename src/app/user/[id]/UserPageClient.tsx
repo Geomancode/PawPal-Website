@@ -1,5 +1,7 @@
 "use client";
 
+import PetMediaImage from "@/components/PetMediaImage";
+
 import Image from "next/image";
 import Link from "next/link";
 import PawIcon from "@/components/icons/PawIcon";
@@ -99,7 +101,7 @@ export default function UserPageClient({
                     >
                       <div className="relative h-12 w-12 overflow-hidden rounded-paw-md bg-paw-primary-soft">
                         {pet.avatar_url ? (
-                          <Image
+                          <PetMediaImage
                             src={pet.avatar_url}
                             alt={pet.name}
                             fill
