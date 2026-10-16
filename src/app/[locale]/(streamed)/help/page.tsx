@@ -10,6 +10,7 @@ import {
   buttonClassName,
 } from "@/components/ui";
 import { useRouteTranslations } from "@/i18n/useRouteTranslations";
+import { useI18n } from "@/i18n/I18nProvider";
 
 const LANE_DEFINITIONS = [
   {
@@ -55,6 +56,7 @@ const ROUTE_DEFINITIONS = [
 
 export default function HelpPage() {
   const { loader, t } = useRouteTranslations();
+  const { path } = useI18n();
 
   return (
     <PageShell className="pt-28 sm:pt-32" contentClassName="space-y-paw-xl">
@@ -80,7 +82,7 @@ export default function HelpPage() {
               {t("helpContactSupport")}
             </a>
             <Link
-              href="/globe"
+              href={path("/globe")}
               className={buttonClassName({ variant: "secondary", size: "lg" })}
             >
               {t("helpOpenGlobe")}
@@ -142,7 +144,7 @@ export default function HelpPage() {
                 <p className="mt-paw-sm text-paw-type-body leading-6 text-paw-body">{t(item.textKey)}</p>
                 <p className="mt-paw-md text-paw-type-caption font-bold text-paw-muted">{t(item.routeKey)}</p>
                 <a
-                  href={item.href}
+                  href={path(item.href)}
                   className="support-lane-action mt-auto inline-flex items-center gap-paw-xs pt-paw-md text-paw-type-body font-extrabold text-paw-on-primary-soft transition hover:text-paw-primary-hover focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-paw-trust/20"
                 >
                   {t(item.actionKey)}

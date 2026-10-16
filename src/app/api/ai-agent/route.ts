@@ -16,6 +16,7 @@ import { NextRequest } from "next/server";
 import { GoogleGenAI, createPartFromFunctionResponse } from "@google/genai";
 import { supabaseServer, createUserScopedSupabaseClient } from "@/lib/supabaseServer";
 import { hasAiAccess } from "@/lib/subscriptions";
+import { getOwnProfile } from "@/lib/profileViews";
 import { PLATFORM_KNOWLEDGE_PROMPT, FALLBACK_IDENTITY_PROMPT } from "./systemPrompt";
 import { loadUserPets, pickRandom, recallMemories, buildPersonaPrompt } from "./personaEngine";
 import { toolDeclarations, executeTool } from "./tools";
@@ -147,13 +148,16 @@ export async function POST(req: NextRequest) {
     }
 
     const userClient = createUserScopedSupabaseClient(accessToken);
-    const { data: entitlement, error: entitlementError } = await userClient
-      .from("profiles")
-      .select("subscription_tier, subscription_expires_at")
-      .eq("id", userId)
-      .maybeSingle();
+    let aiAccess = false;
+    try {
+      const entitlement = await getOwnProfile(userClient, userId);
+      aiAccess = hasAiAccess(entitlement ?? {});
+    } catch {
+      // A failed or mismatched permission envelope never grants paid AI access.
+      aiAccess = false;
+    }
 
-    if (entitlementError || !hasAiAccess(entitlement ?? {})) {
+    if (!aiAccess) {
       return new Response(
         JSON.stringify({
           error: "PawPal AI requires an active Basic or Pro plan.",

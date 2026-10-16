@@ -27,7 +27,7 @@ const checks = [
   },
   {
     file: "src/app/[locale]/user/[id]/page.tsx",
-    patterns: ["loadP2W2UserFixture", "if (fixture) return fixture"],
+    patterns: ["loadP2W2UserFixture", "if (fixture) return { ...fixture, isPublic: true }"],
   },
   {
     file: "src/lib/fixtures/p2w2-dynamic-route-fixtures.json",

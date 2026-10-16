@@ -23,7 +23,19 @@ globalThis.fetch = async (input, init) => {
   if (url.pathname === '/auth/v1/user') return actor ? json({id:ids[actor],aud:'authenticated',role:'authenticated',email:`${actor}@example.invalid`}) : json({message:'Invalid session'},401);
   const table = url.pathname.split('/').at(-1);
   if (table === denied) return json({message:'Synthetic RLS denial',code:'42501'},403);
-  if (table === 'profiles') return actor && url.searchParams.get('id') === `eq.${ids[actor]}` ? json({subscription_tier:'basic',subscription_expires_at:'2099-01-01T00:00:00Z'}) : json(null);
+  if (table === 'get_profile_view') {
+    assert.equal(req.method, 'POST');
+    assert.equal(url.search, '');
+    const body = await req.json();
+    assert.deepEqual(Object.keys(body), ['p_user_id']);
+    return actor && body.p_user_id === ids[actor] ? json({visibility:'self',profile:{
+      id:ids[actor],display_name:actor,username:actor,avatar_url:null,location_city:null,
+      bio:null,trust_level:1,paw_points:0,is_verified:false,created_at:'2026-01-01T00:00:00Z',
+      custom_badge:null,profile_tags:[],language_pref:'en',updated_at:'2026-01-01T00:00:00Z',
+      home_address:null,pet_preferences:null,subscription_tier:'basic',
+      subscription_expires_at:'2099-01-01T00:00:00Z',quick_actions:[],banned_at:null,
+    }}) : json(null);
+  }
   if (table === 'pets') return json(actor && url.searchParams.get('owner_id') === `eq.${ids[actor]}` ? [{id:pets[actor],name:`Pet ${actor}`,species_group:'canine',status:'alive'}] : []);
   if (table === 'pet_memories') return json(actor && url.searchParams.get('user_id') === `eq.${ids[actor]}` && url.searchParams.get('pet_id') === `eq.${pets[actor]}` ? [{content:`Only ${actor} memory`,memory_type:'preference',confidence:90}] : []);
   throw new Error(`Unexpected fixture path: ${url.pathname}`);
@@ -43,10 +55,11 @@ try {
   const server=moduleAt('src/lib/supabaseServer.ts',{'@supabase/supabase-js':{createClient}});
   const persona=moduleAt('src/app/api/ai-agent/personaEngine.ts');
   const subscriptions=moduleAt('src/lib/subscriptions.ts');
+  const profileViews=moduleAt('src/lib/profileViews.ts');
   class GoogleGenAI { chats={create:({config})=>{prompts.push(config.systemInstruction);return {sendMessage:async()=>({text:'Synthetic response'})};}}; }
   const route=moduleAt('src/app/api/ai-agent/route.ts',{
     '@google/genai':{GoogleGenAI,createPartFromFunctionResponse:()=>{}},
-    '@/lib/supabaseServer':server,'@/lib/subscriptions':subscriptions,
+    '@/lib/supabaseServer':server,'@/lib/subscriptions':subscriptions,'@/lib/profileViews':profileViews,
     './systemPrompt':{PLATFORM_KNOWLEDGE_PROMPT:'Synthetic platform',FALLBACK_IDENTITY_PROMPT:'Synthetic fallback'},
     './personaEngine':persona,'./tools':{toolDeclarations:[],executeTool:()=>{throw Error('No tools expected');}},
   });
@@ -65,7 +78,7 @@ try {
       assert.equal(responses[i].status,200);assert.match(bodies[i],/"memoriesRecalled":1/);
       const prompt=prompts.find(p=>p.includes(`You are Pet ${actor}`));assert.ok(prompt);assert.ok(prompt.includes(`Only ${actor} memory`));
       assert.ok(!prompt.includes(`Only ${actor==='A'?'B':'A'} memory`));
-      for(const table of ['profiles','pets','pet_memories']) assert.equal(calls.filter(c=>c.actor===actor&&c.path===`/rest/v1/${table}`).length,1);
+      for(const path of ['/rest/v1/rpc/get_profile_view','/rest/v1/pets','/rest/v1/pet_memories']) assert.equal(calls.filter(c=>c.actor===actor&&c.path===path).length,1);
     }
   });
   await check('request clients never mutate shared anonymous client',async()=>{
@@ -80,7 +93,7 @@ try {
     assert.equal((await persona.recallMemories(client,ids.B,pets.B)).length,0);
   });
   await check('revoked entitlement stops before persona or AI reads',async()=>{
-    denied='profiles';calls.length=0;const before=prompts.length;
+    denied='get_profile_view';calls.length=0;const before=prompts.length;
     const res=await route.POST(request('synthetic-A'));assert.equal(res.status,402);assert.equal(prompts.length,before);
     assert.equal(calls.filter(c=>['/rest/v1/pets','/rest/v1/pet_memories'].includes(c.path)).length,0);denied=null;
   });

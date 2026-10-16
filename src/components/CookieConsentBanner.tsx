@@ -10,6 +10,7 @@ import {
   setConsent,
   type ConsentChoice,
 } from "@/lib/consent";
+import { useI18n } from "@/i18n/I18nProvider";
 import { useRouteTranslations } from "@/i18n/useRouteTranslations";
 
 function subscribeToConsentStore(onStoreChange: () => void) {
@@ -36,6 +37,7 @@ function getServerBannerSnapshot() {
 
 export default function CookieConsentBanner() {
   const { loader, t } = useRouteTranslations();
+  const { path } = useI18n();
   const shouldShowBanner = useSyncExternalStore(
     subscribeToConsentStore,
     getBannerSnapshot,
@@ -71,7 +73,7 @@ export default function CookieConsentBanner() {
             >
               {t("cookieConsentDescription")} {" "}
               <Link
-                href="/privacy"
+                href={path("/privacy")}
                 className="font-extrabold text-paw-primary underline-offset-4 hover:underline"
               >
                 {t("cookieConsentPrivacyPolicy")}

@@ -1,10 +1,12 @@
 import { redirect } from "next/navigation";
+import { defaultLocale, isLocale } from "@/i18n/locales";
+import { localizedPath } from "@/i18n/routing";
 
 interface PageProps {
-  params: Promise<{ id: string }>;
+  params: Promise<{ locale: string; id: string }>;
 }
 
 export default async function SharedPetAliasPage({ params }: PageProps) {
-  const { id } = await params;
-  redirect(`/tag/${id}`);
+  const { locale, id } = await params;
+  redirect(localizedPath(`/tag/${id}`, isLocale(locale) ? locale : defaultLocale));
 }

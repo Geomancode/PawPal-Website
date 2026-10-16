@@ -6,6 +6,7 @@ import type { User } from "@supabase/supabase-js";
 import { useAuth } from "@/components/AuthProvider";
 import { StatePanel } from "@/components/ui";
 import { supabase } from "@/lib/supabase";
+import { loadOrCreateOwnProfile } from "@/lib/profileViews";
 import ProfileWorkspaceView, { type Pet, type PetSocialTraits, type Profile } from "@/app/profile/ProfileWorkspaceView";
 import PushSubscriptionSettings from "@/app/profile/PushSubscriptionSettings";
 import { useRouteTranslations } from "@/i18n/useRouteTranslations";
@@ -39,36 +40,24 @@ function errorMessage(error: unknown, fallback: string): string {
 }
 
 async function loadOrCreateProfile(user: User): Promise<Profile> {
-  const { data, error } = await supabase
-    .from("profiles")
-    .select("*")
-    .eq("id", user.id)
-    .maybeSingle();
-
-  if (error) throw error;
-  if (data) return data as Profile;
-
-  const fallback = {
+  const profile = await loadOrCreateOwnProfile(supabase, {
     id: user.id,
     username: fallbackUsername(user),
     display_name: profileDisplayName(user),
-    avatar_url: null,
-    bio: null,
-    language_pref: "en",
-    location_city: null,
-    trust_level: 1,
-    paw_points: 0,
-    is_verified: false,
+  });
+  return {
+    id: profile.id,
+    username: profile.username,
+    display_name: profile.display_name,
+    avatar_url: profile.avatar_url,
+    bio: profile.bio,
+    language_pref: profile.language_pref,
+    location_city: profile.location_city,
+    trust_level: profile.trust_level,
+    paw_points: profile.paw_points,
+    is_verified: profile.is_verified,
+    created_at: profile.created_at,
   };
-
-  const { data: created, error: createError } = await supabase
-    .from("profiles")
-    .upsert(fallback, { onConflict: "id" })
-    .select("*")
-    .single();
-
-  if (createError) throw createError;
-  return created as Profile;
 }
 
 export default function ProfilePage() {

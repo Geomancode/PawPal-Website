@@ -5,6 +5,7 @@ import Link from "next/link";
 import PawIcon, { type PawIconName } from "@/components/icons/PawIcon";
 import { AppDeepLinkButton, Badge, Card, StatusMessage } from "@/components/ui";
 import { useRouteTranslations } from "@/i18n/useRouteTranslations";
+import { useI18n } from "@/i18n/I18nProvider";
 
 type PetSocialTraits = {
   health_badges?: string[];
@@ -37,6 +38,7 @@ interface TagPageClientProps {
 
 export default function TagPageClient({ pet, owner }: TagPageClientProps) {
   const { loader, t } = useRouteTranslations();
+  const { path } = useI18n();
   const healthBadges: string[] = pet.social_traits?.health_badges ?? [];
   const socialTags: string[] = pet.social_traits?.social_tags ?? [];
   const quirk: string | undefined = pet.social_traits?.quirk;
@@ -223,7 +225,7 @@ export default function TagPageClient({ pet, owner }: TagPageClientProps) {
                 {t("tagPageOpenInPawPal")}
               </AppDeepLinkButton>
               <Link
-                href="/store"
+                href={path("/store")}
                 className="inline-flex h-12 items-center justify-center rounded-paw-md border border-paw-border bg-paw-panel px-4 text-paw-type-body font-extrabold text-paw-ink transition hover:border-paw-primary hover:text-paw-primary sm:h-full"
               >
                 {t("tagPageGetTag")}

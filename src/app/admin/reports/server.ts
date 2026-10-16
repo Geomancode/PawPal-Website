@@ -1,5 +1,6 @@
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 import { defaultLocale, locales, type Locale } from "@/i18n/locales";
+import { getProfileViews } from "@/lib/profileViews";
 
 import {
   REPORTS_PAGE_SIZE,
@@ -371,13 +372,14 @@ async function fetchProfiles(client: SupabaseClient, ids: string[]) {
   const unique = uniqueIds(ids);
   if (unique.length === 0) return [] as ProfileRow[];
 
-  const { data, error } = await client
-    .from("profiles")
-    .select("id, display_name, username, avatar_url, banned_at")
-    .in("id", unique);
-
-  if (error) throw new Error(error.message);
-  return (data ?? []) as ProfileRow[];
+  const views = await getProfileViews(client, unique);
+  return views.map((view): ProfileRow => {
+    if (view.visibility !== "admin" && view.visibility !== "self") {
+      throw new Error("Admin profile access could not be confirmed");
+    }
+    const { id, display_name, username, avatar_url, banned_at } = view.profile;
+    return { id, display_name, username, avatar_url, banned_at };
+  });
 }
 
 function firstPostImageMap(images: PostImageRow[]) {
