@@ -1,4 +1,5 @@
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
+import { defaultLocale, locales, type Locale } from "@/i18n/locales";
 
 import {
   REPORTS_PAGE_SIZE,
@@ -13,6 +14,24 @@ import {
 } from "./types";
 
 export const ADMIN_REPORTS_SESSION_COOKIE = "pawpal_admin_reports_token";
+
+export function adminReportsSessionCookieName(locale: Locale): string {
+  return locale === defaultLocale
+    ? ADMIN_REPORTS_SESSION_COOKIE
+    : `${ADMIN_REPORTS_SESSION_COOKIE}_${locale}`;
+}
+
+export function readAdminReportsSessionToken(cookieStore: {
+  getAll(): { name: string; value: string }[];
+}): string | undefined {
+  const names = new Set(locales.map(adminReportsSessionCookieName));
+  const candidates = cookieStore.getAll().filter((cookie) => names.has(cookie.name));
+  // Path-scoped cookies should yield exactly one token on a reports request.
+  // Ambiguous or empty credentials never select an arbitrary former identity.
+  return candidates.length === 1 && candidates[0].value
+    ? candidates[0].value
+    : undefined;
+}
 
 type AdminAccessResult =
   | {
@@ -36,6 +55,7 @@ type AdminAccessResult =
 type ReportsLoadResult =
   | {
       kind: "ready";
+      viewerId: string;
       payload: ReportsPagePayload;
     }
   | Exclude<AdminAccessResult, { kind: "authorized"; client: SupabaseClient }>;
@@ -211,6 +231,7 @@ export async function loadPendingReports(
 
   return {
     kind: "ready",
+    viewerId: admin.userId,
     payload: {
       reports,
       page: safePage,

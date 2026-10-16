@@ -11,6 +11,45 @@ if (out) await fs.mkdir(out, { recursive: true });
 const results = [];
 const browser = await chromium.launch({ headless: true });
 
+// Progress tests use a genuinely active same-origin worker, rather than making
+// unrelated network quiescence a prerequisite. First-install behavior is covered
+// by the separate service-worker suite; no product registration is bypassed there.
+async function loadProgressHomepage(page) {
+  const setup = await page.goto(new URL("/offline.html", base).href, { waitUntil: "domcontentloaded", timeout: 15000 });
+  assert.equal(setup.status(), 200, "same-origin static worker setup page responds");
+  await page.evaluate(() => {
+    window.__pawpalProgressWorker = { registered: false, error: null };
+    navigator.serviceWorker.register("/sw.js").then(
+      () => { window.__pawpalProgressWorker.registered = true; },
+      (error) => { window.__pawpalProgressWorker.error = String(error); },
+    );
+  });
+  await page.waitForFunction(() => {
+    const setup = window.__pawpalProgressWorker;
+    const worker = navigator.serviceWorker.controller;
+    return setup.error !== null || (setup.registered && worker?.state === "activated"
+      && worker.scriptURL === new URL("/sw.js", location.origin).href);
+  }, undefined, { timeout: 15000 });
+  const worker = await page.evaluate(async () => {
+    const registration = await navigator.serviceWorker.getRegistration();
+    return { ...window.__pawpalProgressWorker, controller: navigator.serviceWorker.controller?.scriptURL,
+      active: registration?.active?.scriptURL, state: registration?.active?.state, scope: registration?.scope };
+  });
+  assert.equal(worker.error, null, "worker setup must not fail");
+  assert.equal(worker.active, new URL("/sw.js", base).href, "exact same-origin active worker");
+  assert.equal(worker.controller, worker.active, "setup page actually controlled");
+  assert.equal(worker.state, "activated");
+  assert.equal(worker.scope, new URL("/", base).href);
+  const response = await page.goto(base, { waitUntil: "domcontentloaded", timeout: 15000 });
+  await page.waitForFunction(() => document.fonts.status === "loaded"
+    && document.querySelector("h1")?.getBoundingClientRect().height > 0
+    && document.querySelector(".scroll-progress") !== null, undefined, { timeout: 15000 });
+  await page.evaluate(() => new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve))));
+  assert.equal(await page.evaluate(() => navigator.serviceWorker.controller?.scriptURL), worker.controller,
+    "homepage retains the already-active worker");
+  return { response, worker };
+}
+
 async function progressMatches(page, expected) {
   await page.waitForFunction((expected) => {
     const bar = document.querySelector(".scroll-progress");
@@ -74,7 +113,8 @@ try {
         await page.screenshot({ path: path.join(out, filename) }); result.screenshots.push(filename);
       };
       try {
-        const response = await page.goto(base, { waitUntil: "networkidle" });
+        const { response, worker } = await loadProgressHomepage(page);
+        result.readiness = { mode: "real-same-origin-worker-warmed", worker };
         check("homepage HTTP 200 and URL", response.status() === 200 && page.url() === base + "/");
         check("homepage title", (await page.title()).includes("PawPal"));
         check("one visible meaningful headline", await page.locator("h1:visible").count() === 1 && (await page.locator("h1:visible").innerText()).includes("PawPal"));

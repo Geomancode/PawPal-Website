@@ -1,6 +1,6 @@
 // Only deploy-owned static bytes belong in this shared cache. App documents,
 // user media, API responses and URL query variants are always network-only.
-const CACHE_NAME = "pawpal-public-v1";
+const CACHE_NAME = "pawpal-public-v2";
 const LEGACY_CACHE_PREFIX = "pawpal-shell-";
 const PUBLIC_ASSETS = [
   "/offline.html",

@@ -1,10 +1,9 @@
 import type { Metadata } from "next";
 import { cookies } from "next/headers";
-import { notFound } from "next/navigation";
 
 import {
-  ADMIN_REPORTS_SESSION_COOKIE,
-  loadPendingReports,
+  readAdminReportsSessionToken,
+  verifyAdminAccess,
 } from "@/app/admin/reports/server";
 import ReportsClientParts from "@/app/admin/reports/ReportsClientParts";
 import type { ReportsClientState } from "@/app/admin/reports/types";
@@ -30,7 +29,7 @@ export default async function AdminReportsPage({
   const params = await searchParams;
   const page = parsePage(params?.page);
   const cookieStore = await cookies();
-  const accessToken = cookieStore.get(ADMIN_REPORTS_SESSION_COOKIE)?.value;
+  const accessToken = readAdminReportsSessionToken(cookieStore);
   let state: ReportsClientState;
 
   if (!accessToken) {
@@ -39,13 +38,14 @@ export default async function AdminReportsPage({
       page,
     };
   } else {
-    const result = await loadPendingReports(accessToken, page);
+    const result = await verifyAdminAccess(accessToken);
 
     if (result.kind === "forbidden") {
-      notFound();
-    }
-
-    if (result.kind === "unauthenticated") {
+      // A path cookie can belong to an earlier account. Render no private data,
+      // but retain the auth bridge so a new authorized identity can recover.
+      state = { kind: "forbidden", viewerId: result.userId, page,
+        message: "PawPal admin privileges are required." };
+    } else if (result.kind === "unauthenticated") {
       state = {
         kind: "session-expired",
         page,
@@ -60,7 +60,8 @@ export default async function AdminReportsPage({
     } else {
       state = {
         kind: "ready",
-        payload: result.payload,
+        viewerId: result.userId,
+        page,
       };
     }
   }
