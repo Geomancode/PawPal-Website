@@ -207,6 +207,14 @@ export async function loadPendingReports(
     .order("created_at", { ascending: false })
     .range(from, to);
 
+  // Another reviewer may have resolved the last items on this page. Reload
+  // page one instead of presenting an empty queue while earlier items remain.
+  // Range errors can also occur after the queue shrinks; other failures remain
+  // visible. The retry is bounded because page one never takes this branch.
+  if (safePage > 1 && !data?.length && (!error || error.code === "PGRST103")) {
+    return loadPendingReports(accessToken, 1);
+  }
+
   if (error) {
     return {
       kind: "error",

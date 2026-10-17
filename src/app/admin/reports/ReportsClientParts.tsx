@@ -188,6 +188,11 @@ function LiveReportsClientParts({ state }: { state: ReportsClientState }) {
     ((state.kind === "ready" || state.kind === "forbidden") &&
       !authLoading && state.viewerId !== user?.id);
   const bridgePage = state.page;
+  // Cookie-setting actions refresh the server translation object. Depend on
+  // its actual values, not new function identities that restart this request.
+  const signInTarget = path("/auth?next=" + encodeURIComponent(path("/admin/reports")));
+  const bridgeTarget = path(bridgePage > 1 ? `/admin/reports?page=${bridgePage}` : "/admin/reports");
+  const verificationError = t("adminReportsUnableToVerifySession");
 
   useEffect(() => {
     if (!needsSession) return;
@@ -199,9 +204,7 @@ function LiveReportsClientParts({ state }: { state: ReportsClientState }) {
       const timer = window.setTimeout(() => {
         const redirectToSignIn = () => {
           if (!cancelled) {
-            router.replace(
-              path("/auth?next=" + encodeURIComponent(path("/admin/reports"))),
-            );
+            router.replace(signInTarget);
           }
         };
 
@@ -228,16 +231,14 @@ function LiveReportsClientParts({ state }: { state: ReportsClientState }) {
           setSessionError(result.message);
           return;
         }
-        const target =
-          bridgePage > 1 ? `/admin/reports?page=${bridgePage}` : "/admin/reports";
-        window.location.replace(path(target));
+        window.location.replace(bridgeTarget);
       })
       .catch((error: unknown) => {
         if (cancelled || !getSessionForGeneration(authGeneration)) return;
         setSessionError(
           error instanceof Error
             ? error.message
-            : t("adminReportsUnableToVerifySession"),
+            : verificationError,
         );
       });
 
@@ -252,11 +253,10 @@ function LiveReportsClientParts({ state }: { state: ReportsClientState }) {
     needsSession,
     router,
     session?.access_token,
-    bridgePage,
+    bridgeTarget,
     locale,
-    path,
-    state.kind,
-    t,
+    signInTarget,
+    verificationError,
   ]);
 
   if (authLoading || needsSession) {
@@ -299,7 +299,8 @@ function LiveReportsQueue({ viewerId, page, generation }: {
   generation: number;
 }) {
   const { getSessionForGeneration } = useAuth();
-  const { t } = useReportsI18n();
+  const { path, t } = useReportsI18n();
+  const router = useRouter();
   const [revision, setRevision] = useState(0);
   const [loaded, setLoaded] = useState<{
     payload: ReportsPagePayload | null;
@@ -325,6 +326,10 @@ function LiveReportsQueue({ viewerId, page, generation }: {
             ? t("adminReportsUnableToVerifySession") : result.message });
           return;
         }
+        if (result.payload.page !== page) {
+          const query = result.payload.page > 1 ? `?page=${result.payload.page}` : "";
+          router.replace(path(`/admin/reports${query}`), { scroll: false });
+        }
         setLoaded({ payload: result.payload, error: null });
       })
       .catch(() => {
@@ -332,7 +337,7 @@ function LiveReportsQueue({ viewerId, page, generation }: {
         setLoaded({ payload: null, error: t("adminReportsUnableToLoad") });
       });
     return () => { cancelled = true; };
-  }, [account, page, revision, t, viewerId]);
+  }, [account, page, path, revision, router, t, viewerId]);
 
   if (!account.token() || !loaded) {
     return <LoadingState title={t("adminReportsCheckingAccess")}
@@ -546,6 +551,13 @@ function ReportsQueue({
         if (mountedRef.current && account.token()) setBusy(null);
       }
     }
+  }
+
+  // Resolving the final item on a later page does not empty the whole queue.
+  // Keep the refresh interval neutral until the server returns a valid page.
+  if (reports.length === 0 && displayPayload.total > 0) {
+    return <LoadingState title={t("adminReportsCheckingAccess")}
+      description={t("adminReportsLoadingDescription")} />;
   }
 
   return (
