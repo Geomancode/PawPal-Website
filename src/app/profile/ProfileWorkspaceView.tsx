@@ -1,5 +1,6 @@
 "use client";
 
+import { useI18n } from "@/i18n/I18nProvider";
 import PetMediaImage from "@/components/PetMediaImage";
 
 import type { ReactNode } from "react";
@@ -202,6 +203,7 @@ export default function ProfileWorkspaceView({
   onToggleSocialTag,
   onToggleHealthBadge,
 }: ProfileWorkspaceViewProps) {
+  const { path } = useI18n();
   const trustColor = LEVEL_COLORS[profile.trust_level] || LEVEL_COLORS[1];
   const trustLabel =
     profile.trust_level === 2
@@ -632,7 +634,7 @@ export default function ProfileWorkspaceView({
                       </div>
 
                       <a
-                        href={`/tag/${pet.id}`}
+                        href={path(`/tag/${pet.id}`)}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="profile-tag-link"

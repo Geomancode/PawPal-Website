@@ -94,7 +94,7 @@ export default function UserPageClient({
                   </p>
                 ) : (
                   pets.map((pet) => (
-                    <Link
+                    <a
                       key={pet.id}
                       href={path(`/tag/${pet.id}`)}
                       className="flex items-center gap-3 rounded-paw-md border border-paw-border bg-paw-panel-subtle p-3 transition hover:border-paw-primary"
@@ -120,7 +120,7 @@ export default function UserPageClient({
                           {pet.breed ?? pet.species_group ?? t("userPagePetFallback")}
                         </p>
                       </div>
-                    </Link>
+                    </a>
                   ))
                 )}
               </div>

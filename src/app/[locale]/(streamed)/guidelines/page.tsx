@@ -1,5 +1,7 @@
 "use client";
 
+import Link from "next/link";
+
 import PawIcon from "@/components/icons/PawIcon";
 import {
   Badge,
@@ -90,13 +92,13 @@ export default function GuidelinesPage() {
 
       <nav className="legal-section-nav" aria-label={t("guidelinesSectionsAriaLabel")}>
         {GUIDELINE_DEFINITIONS.map((section) => (
-          <a
+          <Link
             key={section.id}
             href={`#${section.id}`}
             className={buttonClassName({ variant: "secondary", size: "sm" })}
           >
             {t(section.titleKey)}
-          </a>
+          </Link>
         ))}
       </nav>
 

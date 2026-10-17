@@ -14,9 +14,12 @@ html {
   scroll-behavior: smooth;
 }
 
-body > * {
-  position: relative;
-  z-index: 1;
+/* Defaults must yield to utilities used by fixed banners and overlays. */
+@layer base {
+  body > * {
+    position: relative;
+    z-index: 1;
+  }
 }
 
 main:focus {

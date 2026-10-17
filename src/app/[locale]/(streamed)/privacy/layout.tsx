@@ -1,12 +1,19 @@
 import type { Metadata } from "next";
+import { getServerMessages } from "@/i18n/serverMessages";
 import { publicPageMetadata } from "@/app/metadata";
 
-export const metadata: Metadata = publicPageMetadata({
-  title: "Privacy Policy",
-  description:
-    "Learn how PawPal handles account, pet profile, location, store, and community data with controlled sharing and privacy-first public safety pages.",
-  path: "/privacy",
-});
+export async function generateMetadata({ params }: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale, messages } = await getServerMessages((await params).locale);
+  return publicPageMetadata({
+    title: messages.footerPrivacyPolicy,
+    description: messages.privacyHeroCopy,
+    path: "/privacy",
+    locale,
+    imageAlt: messages.siteOgImageAlt,
+  });
+}
 
 export default function PrivacyLayout({ children }: { children: React.ReactNode }) {
   return children;

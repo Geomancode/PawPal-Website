@@ -1,5 +1,7 @@
 "use client";
 
+import Link from "next/link";
+
 import PawIcon, { type PawIconName } from "@/components/icons/PawIcon";
 import {
   Badge,
@@ -110,13 +112,13 @@ export default function PrivacyPage() {
 
       <nav className="legal-section-nav" aria-label={t("privacySectionsAriaLabel")}>
         {PRIVACY_DEFINITIONS.map((section) => (
-          <a
+          <Link
             key={section.id}
             href={`#${section.id}`}
             className={buttonClassName({ variant: "secondary", size: "sm" })}
           >
             {t(section.titleKey)}
-          </a>
+          </Link>
         ))}
       </nav>
 

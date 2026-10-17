@@ -10,6 +10,7 @@ import {
   PageShell,
   buttonClassName,
 } from "@/components/ui";
+import { useI18n } from "@/i18n/I18nProvider";
 import { useRouteTranslations } from "@/i18n/useRouteTranslations";
 import { siteConfig } from "@/lib/site";
 import { useReducedMotionPreference } from "@/lib/useReducedMotionPreference";
@@ -93,6 +94,7 @@ const TEAM_STRENGTHS: ReadonlyArray<{ icon: PawIconName; textKey: "aboutStrength
 
 export default function About() {
   const { loader, t } = useRouteTranslations();
+  const { path } = useI18n();
   const shouldReduceMotion = useReducedMotionPreference();
 
   return (
@@ -123,12 +125,12 @@ export default function About() {
           </motion.p>
 
           <motion.div {...fadeUp(shouldReduceMotion, 0.3)} className="mt-paw-xl flex flex-wrap gap-paw-sm">
-            <Link href="/globe" className={buttonClassName({ size: "lg" })}>
+            <Link href={path("/globe")} className={buttonClassName({ size: "lg" })}>
               {t("aboutExploreGlobe")}
               <PawIcon name="forward" className="h-4 w-4" aria-hidden="true" />
             </Link>
             <Link
-              href="/store"
+              href={path("/store")}
               className={buttonClassName({ variant: "secondary", size: "lg" })}
             >
               {t("aboutShopSmartTags")}
@@ -338,7 +340,7 @@ export default function About() {
                 {t("aboutContactTeam")} <PawIcon name="mail" className="h-5 w-5" />
               </a>
               <Link
-                href="/globe"
+                href={path("/globe")}
                 className={buttonClassName({ variant: "secondary", size: "lg" })}
               >
                 {t("aboutExploreGlobe")}

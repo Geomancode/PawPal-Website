@@ -1,11 +1,18 @@
 import type { Metadata } from "next";
+import { getServerMessages } from "@/i18n/serverMessages";
 import { privatePageMetadata } from "@/app/metadata";
 
-export const metadata: Metadata = privatePageMetadata({
-  title: "Orders",
-  description: "Review PawPal store orders and delivery status for the current device.",
-  path: "/store/orders",
-});
+export async function generateMetadata({ params }: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale, messages } = await getServerMessages((await params).locale);
+  return privatePageMetadata({
+    title: messages.ordersTitle,
+    description: messages.ordersDescription,
+    path: "/store/orders",
+    locale,
+  });
+}
 
 export default function OrdersLayout({ children }: { children: React.ReactNode }) {
   return children;

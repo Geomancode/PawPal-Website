@@ -1,12 +1,19 @@
 import type { Metadata } from "next";
+import { getServerMessages } from "@/i18n/serverMessages";
 import { publicPageMetadata } from "@/app/metadata";
 
-export const metadata: Metadata = publicPageMetadata({
-  title: "Community Guidelines",
-  description:
-    "Read PawPal community guidelines for respectful conduct, prohibited content, location privacy, reports, moderation, and appeals.",
-  path: "/guidelines",
-});
+export async function generateMetadata({ params }: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale, messages } = await getServerMessages((await params).locale);
+  return publicPageMetadata({
+    title: messages.footerCommunityGuidelines,
+    description: messages.guidelinesHeroCopy,
+    path: "/guidelines",
+    locale,
+    imageAlt: messages.siteOgImageAlt,
+  });
+}
 
 export default function GuidelinesLayout({ children }: { children: React.ReactNode }) {
   return children;

@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { getServerMessages } from "@/i18n/serverMessages";
+import { privatePageMetadata } from "@/app/metadata";
 import { cookies } from "next/headers";
 
 import {
@@ -14,14 +16,17 @@ type ReportsPageProps = {
 
 export const dynamic = "force-dynamic";
 
-export const metadata: Metadata = {
-  title: "Admin Reports",
-  description: "Review and resolve pending PawPal moderation reports.",
-  robots: {
-    index: false,
-    follow: false,
-  },
-};
+export async function generateMetadata({ params }: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale, messages } = await getServerMessages((await params).locale);
+  return privatePageMetadata({
+    title: messages.adminReportsTitle,
+    description: messages.adminReportsDescription,
+    path: "/admin/reports",
+    locale,
+  });
+}
 
 export default async function AdminReportsPage({
   searchParams,

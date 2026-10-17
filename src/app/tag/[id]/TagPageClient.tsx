@@ -70,7 +70,7 @@ export default function TagPageClient({ pet, owner }: TagPageClientProps) {
   return (
     <div className="relative min-h-[100dvh] overflow-hidden bg-paw-page px-paw-md py-8 pt-24 text-paw-ink sm:px-paw-xl lg:px-paw-xxl">
       {loader}
-      <main className="mx-auto grid max-w-6xl gap-5 lg:grid-cols-[0.82fr_1.18fr] lg:items-start">
+      <div className="mx-auto grid max-w-6xl gap-5 lg:grid-cols-[0.82fr_1.18fr] lg:items-start">
         <section className="tag-rescue-panel">
           <div className="relative z-10 flex h-full flex-col">
             <p className="inline-flex w-fit items-center gap-2 rounded-paw-sm border border-paw-primary/20 bg-paw-primary-soft px-3 py-2 text-paw-type-caption font-black uppercase tracking-[0.16em] text-paw-primary">
@@ -245,7 +245,7 @@ export default function TagPageClient({ pet, owner }: TagPageClientProps) {
             emptyText={t("tagPageAchievementsEmpty")}
           />
         </section>
-      </main>
+      </div>
     </div>
   );
 }
