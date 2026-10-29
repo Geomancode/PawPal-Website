@@ -14,6 +14,8 @@
     "test:home-contract": "node scripts/homepage-contract-check.mjs",
     "test:home-globe-contract": "node scripts/home-globe-contract-check.mjs",
     "test:globe-facing": "node scripts/globe-facing-check.mjs",
+    "test:carto-basemap": "node scripts/carto-basemap-check.mjs",
+    "test:carto-basemap-live": "node scripts/carto-basemap-live-check.mjs",
     "test:bundle-budget": "node scripts/bundle-budget.mjs",
     "test:bundle-budget-contract": "node --test scripts/bundle-budget-fixtures.test.mjs",
     "test:streaming-boundary-contract": "node scripts/streaming-boundary-contract.mjs",

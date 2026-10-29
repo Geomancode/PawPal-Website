@@ -13,9 +13,12 @@ import GlobeTutorial from "./GlobeTutorial";
 import ChatBottomSheet from "./ChatBottomSheet";
 import GlobeStaticPreview from "./GlobeStaticPreview";
 import { createPawPalMapMarkerElement } from "@/lib/createPawPalMapMarkerElement";
+import { getCartoRasterTileUrl } from "@/lib/cartoBasemap";
 import type { MessageKey } from "@/i18n/messages/en";
 
 type GlobeTranslation = (key: MessageKey) => string;
+
+const CARTO_TILE_URL = getCartoRasterTileUrl();
 
 /* ── Quest type → emoji mapping ── */
 const QUEST_EMOJI: Record<string, string> = {
@@ -231,7 +234,9 @@ export default function MapGlobeComponent({ t }: { t: GlobeTranslation }) {
   const [nearbyIssue, setNearbyIssue] = useState<MessageKey | null>(null);
   const [locationIssue, setLocationIssue] = useState<MessageKey | null>(null);
   const [isOffline, setIsOffline] = useState(false);
-  const [mapUnavailableReason, setMapUnavailableReason] = useState<MessageKey | null>(null);
+  const [mapUnavailableReason, setMapUnavailableReason] = useState<MessageKey | null>(
+    CARTO_TILE_URL ? null : "globeLiveMapStartError",
+  );
   const [nearbyCenter, setNearbyCenter] = useState<{ lat: number; lng: number }>(DEFAULT_USER_LOCATION);
   const questMarkersRef = useRef<maplibregl.Marker[]>([]);
   const placeMarkersRef = useRef<maplibregl.Marker[]>([]);
@@ -323,7 +328,7 @@ export default function MapGlobeComponent({ t }: { t: GlobeTranslation }) {
   const handleRetryMap = useCallback(() => {
     setNearbyIssue(null);
     setLocationIssue(null);
-    setMapUnavailableReason(null);
+    setMapUnavailableReason(CARTO_TILE_URL ? null : "globeLiveMapStartError");
   }, []);
 
   const enterMapFallback = useCallback((reason: MessageKey = "globeWebglUnavailable") => {
@@ -348,6 +353,11 @@ export default function MapGlobeComponent({ t }: { t: GlobeTranslation }) {
   useEffect(() => {
     if (!mapContainer.current || mapRef.current || mapUnavailableReason) return;
 
+    if (!CARTO_TILE_URL) {
+      enterMapFallback("globeLiveMapStartError");
+      return;
+    }
+
     if (!hasUsableWebGL()) {
       enterMapFallback();
       return;
@@ -367,7 +377,7 @@ export default function MapGlobeComponent({ t }: { t: GlobeTranslation }) {
           sources: {
             carto: {
               type: "raster",
-              tiles: ["https://basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}@2x.png"],
+              tiles: [CARTO_TILE_URL],
               tileSize: 256,
               attribution: '&copy; <a href="https://carto.com/">CARTO</a> &copy; <a href="https://www.openstreetmap.org/copyright">OSM</a>',
             },

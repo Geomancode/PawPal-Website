@@ -69,6 +69,9 @@ jobs:
       - name: Globe facing gate
         run: npm run test:globe-facing
 
+      - name: CARTO basemap authorization contract gate
+        run: npm run test:carto-basemap
+
       - name: Homepage globe contract gate
         run: npm run test:home-globe-contract
 
