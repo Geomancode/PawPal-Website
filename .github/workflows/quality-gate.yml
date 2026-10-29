@@ -94,7 +94,7 @@ jobs:
         continue-on-error: true
         run: npx playwright install --with-deps chromium
 
-      - name: Next start, homepage five-state, cart and progress runtime gates
+      - name: Next start, homepage five-state, cart, progress and companion runtime gates
         if: steps.runtime-browser.outcome == 'success'
         run: |
           SERVER_LOG="$RUNNER_TEMP/pawpal-next-start.log"
@@ -116,6 +116,10 @@ jobs:
             HOME_PROGRESS_BASE_URL=http://127.0.0.1:3102 npm run test:home-progress-runtime
             STATUS=$?
           fi
+          if [ "$STATUS" -eq 0 ]; then
+            COMPANION_TEST_BASE_URL=http://127.0.0.1:3102 npm run test:companion-runtime
+            STATUS=$?
+          fi
           set -e
           if [ "$STATUS" -ne 0 ]; then
             echo "Next.js production server log:"
@@ -132,7 +136,7 @@ jobs:
       - name: Explicit runtime skip when Chromium is unavailable
         if: steps.runtime-browser.outcome != 'success'
         run: |
-          echo "::warning::SKIP home/cart/progress/service-worker/MapLibre runtime gates — Playwright Chromium installation failed in this CI environment."
+          echo "::warning::SKIP home/cart/progress/companion/service-worker/MapLibre runtime gates — Playwright Chromium installation failed in this CI environment."
           echo "The skip is explicit; lint, contracts, build, and bundle gates still ran."
 
       - name: Dependency audit (high and critical)

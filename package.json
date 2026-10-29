@@ -48,16 +48,17 @@
     "test:store-order-ownership": "node scripts/store-order-ownership-check.mjs",
     "test:store-orders-lifecycle": "node scripts/store-orders-lifecycle-check.mjs",
     "test:subscription-webhook": "node scripts/subscription-webhook-check.mjs",
-    "test:home-progress-runtime": "node scripts/home-progress-runtime-check.mjs"
+    "test:home-progress-runtime": "node scripts/home-progress-runtime-check.mjs",
+    "test:companion-runtime": "node scripts/companion-runtime-check.mjs"
   },
   "dependencies": {
     "@google/genai": "^1.50.1",
-    "@sentry/nextjs": "^10.42.0",
+    "@sentry/nextjs": "^10.75.2",
     "@stripe/stripe-js": "^9.0.1",
     "@supabase/supabase-js": "^2.101.1",
     "framer-motion": "^12.36.0",
-    "maplibre-gl": "6.4.1",
-    "next": "16.3.8",
+    "maplibre-gl": "6.14.0",
+    "next": "16.4.3",
     "react": "19.2.3",
     "react-dom": "19.2.3",
     "react-globe.gl": "^2.37.0",
@@ -74,7 +75,7 @@
     "eslint": "^9",
     "eslint-config-next": "16.3.8",
     "playwright": "^1.61.1",
-    "postcss": "^8.5.18",
+    "postcss": "^8.5.30",
     "tailwindcss": "^4",
     "typescript": "^5"
   }

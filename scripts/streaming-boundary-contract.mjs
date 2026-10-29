@@ -27,9 +27,9 @@ function files(dir) {
 }
 const pages = files(localeRoot).filter((p) => path.basename(p) === "page.tsx");
 const publicPath = (p) => "/" + path.relative(localeRoot, path.dirname(p)).split(path.sep).filter((part) => part && !/^\([^/]+\)$/.test(part)).join("/");
-check("22 unique public page shapes survive physical route grouping", () => {
-  assert.equal(pages.length, 22);
-  assert.equal(new Set(pages.map(publicPath)).size, 22);
+check("23 unique public page shapes survive physical route grouping", () => {
+  assert.equal(pages.length, 23);
+  assert.equal(new Set(pages.map(publicPath)).size, 23);
 });
 check("locale root does not flush a loading fallback before resource existence is known", () => {
   assert(!fs.existsSync(path.join(localeRoot, "loading.tsx")));

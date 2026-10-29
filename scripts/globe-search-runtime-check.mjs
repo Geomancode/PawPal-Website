@@ -10,7 +10,9 @@ const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), ".."
 const rootDir = path.resolve(repoRoot, "..", "..");
 const evidenceDir = process.env.P5_02_EVIDENCE_DIR || path.join(rootDir, "evidence", "P5-02");
 const port = 3131;
-const baseUrl = `http://127.0.0.1:${port}`;
+const externalBaseUrl = process.env.P5_02_TEST_BASE_URL;
+const baseUrl = externalBaseUrl || `http://127.0.0.1:${port}`;
+assert.ok(["127.0.0.1", "localhost"].includes(new URL(baseUrl).hostname), "Fixtures only run against localhost");
 const require = createRequire(import.meta.url);
 const { chromium } = require("playwright");
 
@@ -173,7 +175,23 @@ async function runSearchCase(browser, { name, geolocationGranted }) {
   await installFixtures(page, resolveSearch);
 
   try {
-    await verifyPageShell(page);
+    const [, worker] = await Promise.all([
+      verifyPageShell(page),
+      page.waitForEvent("worker", {
+        predicate: (worker) => worker.url().includes("maplibre-gl-worker"),
+        timeout: 30000,
+      }),
+    ]);
+    await page.locator("#globe-map canvas.maplibregl-canvas").waitFor({ state: "visible" });
+    assert.equal(new URL(worker.url()).origin, new URL(baseUrl).origin, "MapLibre worker must be served by this build");
+    assert.equal(await worker.evaluate(async () => {
+      const deadline = Date.now() + 5000;
+      while (Date.now() < deadline) {
+        if (self.worker?.actor) return true;
+        await new Promise((resolve) => setTimeout(resolve, 25));
+      }
+      return false;
+    }), true, "MapLibre worker must finish initialization");
     if (geolocationGranted) {
       await page.getByText(/50\.850, 4\.350/).waitFor({ timeout: 30000 });
     } else {
@@ -207,8 +225,14 @@ async function runSearchCase(browser, { name, geolocationGranted }) {
     });
 
     assert.deepEqual(pageErrors, [], `page errors in ${name}:\n${pageErrors.join("\n")}`);
+    // Chromium's software renderer emits this diagnostic while screenshots read
+    // pixels. Keep it in evidence, as the existing component capture tests do.
+    const driverDiagnostic = /^warning: \[\.WebGL-[^\]]+\]GL Driver Message .*GPU stall due to ReadPixels(?: \(this message will no longer repeat\))?$/;
+    const driverDiagnostics = consoleProblems.filter((entry) => driverDiagnostic.test(entry));
+    for (const diagnostic of driverDiagnostics) console.log(`GPU diagnostic (${name}): ${diagnostic}`);
     const relevantConsoleProblems = consoleProblems.filter(
       (entry) =>
+        !driverDiagnostic.test(entry) &&
         !(
           entry.includes("was preloaded using link preload but not used") &&
           entry.includes("pawpal_logo_horizontal")
@@ -225,10 +249,40 @@ async function runSearchCase(browser, { name, geolocationGranted }) {
   }
 }
 
-assert.equal(await isPortFree(), true, `Port ${port} must be free; runtime checks never use an alternate port.`);
+async function runWebGL2UnavailableCase(browser) {
+  const context = await browser.newContext({ viewport: { width: 375, height: 812 } });
+  await context.addInitScript(() => {
+    localStorage.setItem("pawpal_globe_tutorial_done", "1");
+    localStorage.setItem("pawpal-consent-v1", "essential");
+    const original = HTMLCanvasElement.prototype.getContext;
+    HTMLCanvasElement.prototype.getContext = function (type, ...args) {
+      if (type === "webgl2") return null;
+      return original.call(this, type, ...args);
+    };
+  });
+  const page = await context.newPage();
+  const errors = [];
+  page.on("pageerror", (error) => errors.push(String(error)));
+  await installFixtures(page, () => {});
+  try {
+    await page.goto(`${baseUrl}/globe`, { waitUntil: "domcontentloaded" });
+    await page.locator("#globe-fallback-title").waitFor({ state: "visible" });
+    assert.equal(await page.locator("canvas.maplibregl-canvas").count(), 0);
+    await page.locator(".globe-fallback-action-primary").click();
+    await page.locator("#globe-fallback-title").waitFor({ state: "visible" });
+    assert.deepEqual(errors, []);
+    assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1), "fallback fits mobile viewport");
+    await page.screenshot({ path: path.join(evidenceDir, "globe-webgl2-unavailable-mobile.png"), fullPage: true });
+    console.log("PASS WebGL2 unavailable: mobile fallback and retry remain usable without initializing MapLibre");
+  } finally {
+    await context.close();
+  }
+}
+
+if (!externalBaseUrl) assert.equal(await isPortFree(), true, `Port ${port} must be free; runtime checks never use an alternate port.`);
 await mkdir(evidenceDir, { recursive: true });
 
-const devServer = startDevServer();
+const devServer = externalBaseUrl ? null : startDevServer();
 let browser;
 try {
   await waitForServer();
@@ -238,6 +292,7 @@ try {
   });
   await runSearchCase(browser, { name: "brussels-granted", geolocationGranted: true });
   await runSearchCase(browser, { name: "location-denied", geolocationGranted: false });
+  await runWebGL2UnavailableCase(browser);
   console.log(`Globe search runtime checks passed at ${baseUrl}`);
 } finally {
   await browser?.close();

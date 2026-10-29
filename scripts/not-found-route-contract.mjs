@@ -43,8 +43,8 @@ const actualPages = files(localeRoot).filter((p) => /\/page\.[jt]sx?$/.test(p)).
     .filter((segment) => !/^\([^/]+\)$/.test(segment)).join("/");
   return rel ? `/${rel.replaceAll("[id]", ":id")}` : "/";
 }).sort();
-check("shared registry exactly matches all 22 real page shapes", () => {
-  assert.equal(actualPages.length, 22);
+check("shared registry exactly matches all 23 real page shapes", () => {
+  assert.equal(actualPages.length, 23);
   assert.equal(new Set(sitePageRoutes).size, sitePageRoutes.length);
   assert.deepEqual(Array.from(sitePageRoutes).sort(), actualPages);
 });

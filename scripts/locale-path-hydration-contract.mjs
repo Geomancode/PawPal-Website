@@ -31,8 +31,11 @@ function load(file){
 const routing=load('src/i18n/routing.ts'),Navbar=load('src/components/Navbar.tsx').default,Footer=load('src/components/ConditionalFooter.tsx').default;
 const checks=[];function check(name,f){try{f();checks.push({name,passed:true});}catch(e){checks.push({name,passed:false,error:e.message.slice(0,350)});}}
 for(const [input,expected]of[['/en','/'],['/en/','/'],['/en/auth','/auth'],['/en/store','/store'],['/en/globe','/globe'],['/fr/globe','/globe'],['/de/auth','/auth'],['/xx/auth','/xx/auth'],['/store','/store']])check('normalize '+input,()=>assert.equal(routing.stripLocalePrefix(input),expected));
-for(const publicPath of ['/','/store','/auth','/globe'])check('actual Navbar SSR/public shape '+publicPath,()=>{
+for(const publicPath of ['/','/store','/auth','/globe','/companion'])check('actual Navbar SSR/public shape '+publicPath,()=>{
  locale='en';pathname=publicPath==='/'?'/en':'/en'+publicPath;const server=renderToStaticMarkup(React.createElement(Navbar));pathname=publicPath;const client=renderToStaticMarkup(React.createElement(Navbar));assert.equal(server,client);
+});
+for(const language of ['en','de','fr','nl','zh'])check('localized companion navigation '+language,()=>{
+ locale=language;pathname=language==='en'?'/companion':'/'+language+'/companion';const html=renderToStaticMarkup(React.createElement(Navbar));assert(html.includes('href="'+routing.localizedPath('/companion',language)+'"'));assert(html.includes('companionTitle'));
 });
 for(const input of ['/en/globe','/fr/globe','/globe'])check('actual Footer hidden '+input,()=>{pathname=input;assert.equal(renderToStaticMarkup(React.createElement(Footer)),'');});
 check('actual Footer retained on localized auth',()=>{pathname='/fr/auth';assert.match(renderToStaticMarkup(React.createElement(Footer)),/footer-fixture/);});
