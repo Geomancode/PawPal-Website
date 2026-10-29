@@ -1,4 +1,5 @@
 import { supabase } from "./supabase";
+import { reportError } from "@/lib/errorReporting";
 
 export type PostCategory =
   | "food"
@@ -82,7 +83,7 @@ export async function fetchPosts(options: NearbyPostQuery = {}): Promise<MapPost
   const { data, error } = await query;
 
   if (error) {
-    console.error("Error fetching posts:", error.message);
+    reportError(new Error(error.message), { service: "fetchPosts", operation: "read_nearby" });
     return [];
   }
 

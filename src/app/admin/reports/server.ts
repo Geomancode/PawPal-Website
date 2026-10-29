@@ -1,6 +1,7 @@
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 import { defaultLocale, locales, type Locale } from "@/i18n/locales";
 import { getProfileViews } from "@/lib/profileViews";
+import { requirePublicSupabaseConfiguration } from "@/lib/supabaseConfiguration";
 
 import {
   REPORTS_PAGE_SIZE,
@@ -103,21 +104,8 @@ type CommentRow = {
   removed_at: string | null;
 };
 
-function requiredSupabaseEnv() {
-  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-  const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
-
-  if (!supabaseUrl || !supabaseAnonKey) {
-    throw new Error(
-      "NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY must be configured.",
-    );
-  }
-
-  return { supabaseUrl, supabaseAnonKey };
-}
-
 export function createReportsSupabaseClient(accessToken: string) {
-  const { supabaseUrl, supabaseAnonKey } = requiredSupabaseEnv();
+  const { url: supabaseUrl, key: supabaseAnonKey } = requirePublicSupabaseConfiguration();
 
   return createClient(supabaseUrl, supabaseAnonKey, {
     auth: {

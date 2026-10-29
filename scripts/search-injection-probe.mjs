@@ -24,8 +24,10 @@ if (baseUrl) {
       body: JSON.stringify({ query: payload, limit: 2, offset: 999999 }),
     });
     const body = await response.text();
-    const acceptedStatus = response.status === 200 || response.status === 400;
-    const ok = acceptedStatus && response.status !== 500;
+    // This live probe is deliberately anonymous: the retained paid-AI route
+    // must reject before model calls. Authenticated injection cases execute the
+    // real route in search-auth-check.mjs without contacting a paid provider.
+    const ok = response.status === 401;
     console.log(`${JSON.stringify(payload)} -> ${response.status}`);
     if (!ok) {
       failed = true;
@@ -33,7 +35,7 @@ if (baseUrl) {
     }
   }
 } else {
-  console.log("SEARCH_PROBE_BASE_URL not set; running offline route contract.");
+  console.log("SEARCH_PROBE_BASE_URL not set; checking the query sanitizer only; search-auth-check covers the actual route.");
   for (const payload of payloads) {
     const raw = payload.trim();
     const safe = sanitizeSearchQuery(raw);
@@ -50,4 +52,4 @@ if (failed) {
   throw new Error("Search injection probe failed");
 }
 
-console.log("search injection probe passed");
+console.log(baseUrl ? "Anonymous search rejection probe passed; successful search latency/injection not measured." : "Search query sanitizer probe passed; actual route coverage is separate.");

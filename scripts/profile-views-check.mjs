@@ -40,7 +40,7 @@ function moduleAt(file, dependencies = {}) {
     fileName: file,
     compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022, jsx: ts.JsxEmit.ReactJSX, esModuleInterop: true },
   }).outputText;
-  const context = { exports: {}, require: (name) => {
+  const context = { exports: {}, URL, require: (name) => {
     assert.ok(Object.hasOwn(dependencies, name), `Unexpected import ${name}`);
     return dependencies[name];
   }, process: { env: { NEXT_PUBLIC_SUPABASE_URL: origin, NEXT_PUBLIC_SUPABASE_ANON_KEY: "synthetic-anon" } } };
@@ -248,6 +248,7 @@ try {
   const admin = moduleAt("src/app/admin/reports/server.ts", {
     "@supabase/supabase-js": { createClient }, "@/i18n/locales": locales, "@/lib/profileViews": views,
     "./types": moduleAt("src/app/admin/reports/types.ts"),
+    "@/lib/supabaseConfiguration": moduleAt("src/lib/supabaseConfiguration.ts"),
   });
   let adminVisibility = "admin";
   handler = (call) => {

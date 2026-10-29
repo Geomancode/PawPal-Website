@@ -1,7 +1,7 @@
 "use client";
 
 import { createContext, useContext, useEffect, useState, ReactNode } from "react";
-import { supabase } from "@/lib/supabase";
+import { getSupabaseConfigurationError, supabase } from "@/lib/supabase";
 import { createAuthSessionScope } from "@/lib/authSessionScope";
 import type { User, Session } from "@supabase/supabase-js";
 
@@ -32,6 +32,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     let active = true;
+    if (getSupabaseConfigurationError()) {
+      // Complete the guest state without reading an old project's local session.
+      queueMicrotask(() => { if (active) setState(scope.accept(null)); });
+      return () => { active = false; };
+    }
     let observedEvents = 0;
     const { data: { subscription } } = supabase.auth.onAuthStateChange((event, nextSession) => {
       if (!active) return;
@@ -51,6 +56,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }, [scope]);
 
   const signIn = async (email: string, password: string) => {
+    const configurationError = getSupabaseConfigurationError();
+    if (configurationError) return { error: configurationError };
     const { error } = await supabase.auth.signInWithPassword({
       email: email.trim(),
       password,
@@ -60,6 +67,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   };
 
   const signUp = async (email: string, password: string, displayName?: string) => {
+    const configurationError = getSupabaseConfigurationError();
+    if (configurationError) return { error: configurationError, needsConfirm: false };
     const { data, error } = await supabase.auth.signUp({
       email: email.trim(),
       password,
@@ -76,6 +85,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   };
 
   const signOut = async () => {
+    if (getSupabaseConfigurationError()) {
+      setState(scope.accept(null, true));
+      return;
+    }
     await supabase.auth.signOut();
   };
 

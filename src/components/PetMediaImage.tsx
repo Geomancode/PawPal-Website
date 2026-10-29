@@ -2,7 +2,7 @@
 
 import Image, { type ImageProps } from "next/image";
 import { useEffect, useRef, useState } from "react";
-import { supabase } from "@/lib/supabase";
+import { getSupabaseConfigurationError, supabase } from "@/lib/supabase";
 import { isPrivatePetMedia, observePetMedia, type PetMediaState } from "@/lib/petMediaAccess";
 
 type Props = Omit<ImageProps, "src"> & { src: string };
@@ -17,6 +17,12 @@ function PrivatePetMediaImage({ src, alt, ...props }: Props) {
   const [state, setState] = useState<PetMediaState>({ source: src, url: null, failed: false });
   useEffect(() => {
     let mounted = true;
+    if (getSupabaseConfigurationError()) {
+      queueMicrotask(() => {
+        if (mounted) setState({ source: src, url: null, failed: true });
+      });
+      return () => { mounted = false; };
+    }
     const resource = observePetMedia(supabase, src, (next) => {
       // Clear pixels immediately at the auth boundary, before React commits.
       if (!next.url) {

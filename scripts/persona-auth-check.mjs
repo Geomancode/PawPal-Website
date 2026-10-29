@@ -45,21 +45,23 @@ function moduleAt(file, dependencies = {}) {
   const context = {exports:{},require:name=>{
     assert.ok(Object.hasOwn(dependencies,name),`Unexpected module ${name}`);
     return dependencies[name];
-  },process:{env:{NEXT_PUBLIC_SUPABASE_URL:'http://persona-fixture.invalid',NEXT_PUBLIC_SUPABASE_ANON_KEY:'synthetic-anon-key',GEMINI_API_KEY:'synthetic-unused'}},console,Response,Headers,ReadableStream,TextEncoder,Date};
+  },process:{env:{NEXT_PUBLIC_SUPABASE_URL:'http://persona-fixture.invalid',NEXT_PUBLIC_SUPABASE_ANON_KEY:'synthetic-anon-key',GEMINI_API_KEY:'synthetic-unused'}},console,Response,Headers,ReadableStream,TextEncoder,Date,URL};
   vm.runInNewContext(code,context,{filename:file});
   return context.exports;
 }
 let count=0;
 async function check(label,fn){await fn();console.log(`PASS ${++count} ${label}`);}
 try {
-  const server=moduleAt('src/lib/supabaseServer.ts',{'@supabase/supabase-js':{createClient}});
+  const configuration=moduleAt('src/lib/supabaseConfiguration.ts');
+  const server=moduleAt('src/lib/supabaseServer.ts',{'@supabase/supabase-js':{createClient},'@/lib/supabaseConfiguration':configuration});
+  const reporting=moduleAt('src/lib/errorReporting.ts',{'@sentry/nextjs':{captureException:()=>{throw new Error('Unexpected Sentry transport');}}});
   const persona=moduleAt('src/app/api/ai-agent/personaEngine.ts');
   const subscriptions=moduleAt('src/lib/subscriptions.ts');
   const profileViews=moduleAt('src/lib/profileViews.ts');
   class GoogleGenAI { chats={create:({config})=>{prompts.push(config.systemInstruction);return {sendMessage:async()=>({text:'Synthetic response'})};}}; }
   const route=moduleAt('src/app/api/ai-agent/route.ts',{
     '@google/genai':{GoogleGenAI,createPartFromFunctionResponse:()=>{}},
-    '@/lib/supabaseServer':server,'@/lib/subscriptions':subscriptions,'@/lib/profileViews':profileViews,
+    '@/lib/supabaseServer':server,'@/lib/subscriptions':subscriptions,'@/lib/profileViews':profileViews,'@/lib/errorReporting':reporting,
     './systemPrompt':{PLATFORM_KNOWLEDGE_PROMPT:'Synthetic platform',FALLBACK_IDENTITY_PROMPT:'Synthetic fallback'},
     './personaEngine':persona,'./tools':{toolDeclarations:[],executeTool:()=>{throw Error('No tools expected');}},
   });

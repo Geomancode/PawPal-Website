@@ -1,4 +1,5 @@
 import { supabase } from "./supabase";
+import { reportError } from "@/lib/errorReporting";
 
 export interface Place {
   id: string;
@@ -60,7 +61,7 @@ export async function fetchPlaces(options: NearbyQuery = {}): Promise<Place[]> {
   const { data, error } = await query;
 
   if (error) {
-    console.error("Error fetching places:", error.message);
+    reportError(new Error(error.message), { service: "fetchPlaces", operation: "read_nearby" });
     return [];
   }
 

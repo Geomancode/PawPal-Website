@@ -3,6 +3,7 @@
 import { useEffect, useState, useSyncExternalStore } from "react";
 import { useRouteTranslations } from "@/i18n/useRouteTranslations";
 import { useAuth } from "@/components/AuthProvider";
+import { reportError } from "@/lib/errorReporting";
 
 function subscribeToOnlineStatus(callback: () => void) {
   if (typeof window === "undefined") return () => undefined;
@@ -42,7 +43,7 @@ export default function PwaRuntime() {
     if (!("caches" in window)) return;
     caches.keys()
       .then((keys) => Promise.all(keys.filter((key) => key.startsWith("pawpal-shell-")).map((key) => caches.delete(key))))
-      .catch((error) => console.warn("PawPal could not clear legacy offline caches", error));
+      .catch((error) => reportError(error, { component: "PwaRuntime", operation: "clear_legacy_cache" }));
     navigator.serviceWorker?.controller?.postMessage({ type: "CLEAR_AUTH_CACHE" });
   }, [user?.id]);
 

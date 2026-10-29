@@ -1,4 +1,5 @@
 import { supabase } from "./supabase";
+import { reportError } from "@/lib/errorReporting";
 
 export interface Quest {
   id: string;
@@ -62,7 +63,7 @@ export async function fetchQuests(options: NearbyQuery = {}): Promise<Quest[]> {
   const { data, error } = await query;
 
   if (error) {
-    console.error("Error fetching quests:", error.message);
+    reportError(new Error(error.message), { service: "fetchQuests", operation: "read_nearby" });
     return [];
   }
 

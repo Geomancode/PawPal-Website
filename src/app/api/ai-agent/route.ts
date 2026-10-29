@@ -13,6 +13,7 @@
 //   → Use fallback PawPal identity
 
 import { NextRequest } from "next/server";
+import { reportError } from "@/lib/errorReporting";
 import { GoogleGenAI, createPartFromFunctionResponse } from "@google/genai";
 import { supabaseServer, createUserScopedSupabaseClient } from "@/lib/supabaseServer";
 import { hasAiAccess } from "@/lib/subscriptions";
@@ -239,7 +240,7 @@ export async function POST(req: NextRequest) {
             } catch (modelErr) {
               lastErr = modelErr;
               const msg = modelErr instanceof Error ? modelErr.message : String(modelErr);
-              console.warn(`[ai-agent] Model ${model} failed:`, msg.substring(0, 120));
+              reportError(new Error(msg.substring(0, 120)), { route: "/api/ai-agent", operation: "model_request" });
               // Only retry on 503/quota/unavailable — not on other errors
               if (!msg.includes("503") && !msg.includes("UNAVAILABLE") && !msg.includes("RESOURCE_EXHAUSTED") && !msg.includes("quota")) {
                 break; // Non-retryable error → stop
@@ -312,9 +313,9 @@ export async function POST(req: NextRequest) {
 
           send("done", {});
         } catch (e) {
-          // Log raw error for debugging
+          // Keep classification local; diagnostic output goes through the safe reporter.
           const rawMsg = e instanceof Error ? e.message : String(e);
-          console.error("[ai-agent] Gemini error:", rawMsg);
+          reportError(new Error(rawMsg), { route: "/api/ai-agent", operation: "stream_response" });
           // Parse user-friendly error message
           let friendlyMsg = "Sorry, I couldn't process that right now. Please try again!";
           if (rawMsg.includes("RESOURCE_EXHAUSTED") || rawMsg.includes("quota")) {
