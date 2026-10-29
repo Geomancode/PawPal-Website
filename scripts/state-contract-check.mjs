@@ -12,11 +12,11 @@ function source(file) {
 const files = {
   panel: source("src/components/ui/StatePanel.tsx"),
   barrel: source("src/components/ui/index.ts"),
-  loading: source("src/app/loading.tsx"),
-  error: source("src/app/error.tsx"),
-  profile: source("src/app/profile/page.tsx"),
-  store: source("src/app/store/page.tsx"),
-  harness: source("src/app/dev/state-panel/page.tsx"),
+  loading: source("src/app/[locale]/(streamed)/loading.tsx"),
+  error: source("src/app/[locale]/error.tsx"),
+  profile: source("src/app/[locale]/(streamed)/profile/page.tsx"),
+  store: source("src/app/[locale]/(streamed)/store/page.tsx"),
+  harness: source("src/app/[locale]/(streamed)/dev/state-panel/page.tsx"),
   proxy: source("src/proxy.ts"),
 };
 
@@ -62,8 +62,8 @@ requireMatch("store", /<StatusMessage\s+tone="critical"\s+variant="compact">\s*\
 requireMatch("harness", /process\.env\.NODE_ENV !== "development"\) notFound\(\)/, "The state panel harness must return notFound outside development.");
 requireMatch(
   "proxy",
-  /matcher:\s*\[\s*"\/dev\/state-panel"\s*,\s*"\/dev\/state-panel\/:path\*"\s*\]/,
-  "Proxy matcher must be limited to the state panel harness and its subpaths.",
+  /matcher:\s*"\/:path\*"/,
+  "Proxy must classify every path before streaming; not-found module contracts verify the production dev boundary and legitimate-route continuation.",
 );
 
 if (failures.length > 0) {

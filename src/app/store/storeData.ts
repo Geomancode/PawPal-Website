@@ -27,6 +27,9 @@ export interface Product {
   badge?: ProductBadge;
   inStock: boolean;
   stockQuantity?: number;
+  physicalStockQuantity?: number;
+  stockVersion?: number;
+  inventoryEnabled?: boolean;
   published?: boolean;
   tags?: string[];
 }
@@ -248,6 +251,8 @@ export type ProductRow = {
   badge?: ProductBadge | null;
   in_stock?: boolean | null;
   stock_quantity?: number | null;
+  stock_reserved?: number | null;
+  stock_version?: number | null;
   published?: boolean | null;
   tags?: string[] | null;
 };
@@ -269,6 +274,8 @@ export const PRODUCT_SELECT = [
   "badge",
   "in_stock",
   "stock_quantity",
+  "stock_reserved",
+  "stock_version",
   "published",
   "tags",
   "sort_order",
@@ -306,8 +313,11 @@ export function productFromRow(row: ProductRow): Product {
     rating: Number(row.rating ?? 0),
     reviewCount: Number(row.review_count ?? 0),
     badge: row.badge ?? undefined,
-    inStock: row.in_stock ?? true,
-    stockQuantity: row.stock_quantity ?? undefined,
+    inStock: (row.in_stock ?? true) && (row.stock_quantity === null || row.stock_quantity === undefined || row.stock_quantity - (row.stock_reserved ?? 0) > 0),
+    stockQuantity: row.stock_quantity === null || row.stock_quantity === undefined ? undefined : Math.max(0, row.stock_quantity - (row.stock_reserved ?? 0)),
+    physicalStockQuantity: row.stock_quantity ?? undefined,
+    stockVersion: row.stock_version ?? undefined,
+    inventoryEnabled: row.in_stock ?? true,
     published: row.published ?? true,
     tags: row.tags ?? [],
   });
@@ -406,37 +416,6 @@ export function formatOptionalPrice(product: Product): string | undefined {
   return `${symbol}${product.originalPrice.toFixed(2)}`;
 }
 
-// ── localStorage helpers ─────────────────────────────────
-const CART_KEY = "pawpal_cart";
-const ORDERS_KEY = "pawpal_orders";
-
-export function loadCart(): CartItem[] {
-  if (typeof window === "undefined") return [];
-  try {
-    const raw = localStorage.getItem(CART_KEY);
-    return raw ? JSON.parse(raw) : [];
-  } catch { return []; }
-}
-
-export function saveCart(items: CartItem[]) {
-  if (typeof window === "undefined") return;
-  localStorage.setItem(CART_KEY, JSON.stringify(items));
-}
-
-export function loadOrders(): Order[] {
-  if (typeof window === "undefined") return [];
-  try {
-    const raw = localStorage.getItem(ORDERS_KEY);
-    return raw ? JSON.parse(raw) : [];
-  } catch { return []; }
-}
-
-export function saveOrder(order: Order) {
-  const orders = loadOrders();
-  orders.unshift(order);
-  localStorage.setItem(ORDERS_KEY, JSON.stringify(orders));
-}
-
-export function generateOrderId(): string {
-  return "PP-" + Date.now().toString(36).toUpperCase() + "-" + Math.random().toString(36).substring(2, 6).toUpperCase();
-}
+// Orders are served from the authenticated backend. Never read/import the
+// legacy unowned pawpal_orders cache or assign it by email to the current user.
+export { loadCart, saveCart } from "@/lib/cartStorage";

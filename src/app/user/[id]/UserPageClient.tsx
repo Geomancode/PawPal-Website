@@ -1,17 +1,20 @@
 "use client";
 
+import PetMediaImage from "@/components/PetMediaImage";
+
 import Image from "next/image";
 import Link from "next/link";
 import PawIcon from "@/components/icons/PawIcon";
 
 import { AppDeepLinkButton } from "@/components/ui";
 import { useRouteTranslations } from "@/i18n/useRouteTranslations";
+import { useI18n } from "@/i18n/I18nProvider";
 
 type UserPageClientProps = {
   id: string;
+  isPublic: boolean;
   profile: {
     display_name?: string | null;
-    full_name?: string | null;
     username?: string | null;
     avatar_url?: string | null;
     bio?: string | null;
@@ -32,13 +35,14 @@ type UserPageClientProps = {
 export default function UserPageClient({
   id,
   profile,
+  isPublic,
   pets,
   postCount,
 }: UserPageClientProps) {
   const { loader, t } = useRouteTranslations();
+  const { path } = useI18n();
   const name =
     profile.display_name ??
-    profile.full_name ??
     profile.username ??
     t("userPageMemberFallback");
   const username = profile.username ? `@${profile.username}` : "PawPal";
@@ -65,7 +69,7 @@ export default function UserPageClient({
           </div>
           <h1 className="mt-4 font-brand text-paw-type-h1 font-extrabold">{name}</h1>
           <p className="public-profile-username mt-1 text-paw-type-body font-extrabold text-paw-on-primary">{username}</p>
-          {profile.bio && (
+          {isPublic && profile.bio && (
             <p className="public-profile-bio mx-auto mt-4 max-w-xl text-paw-type-body font-medium leading-6 text-paw-on-primary">
               {profile.bio}
             </p>
@@ -73,6 +77,7 @@ export default function UserPageClient({
         </div>
 
         <div className="grid gap-6 p-6 lg:grid-cols-[1fr_280px]">
+          {isPublic ? (
           <div className="space-y-6">
             <div className="grid grid-cols-3 gap-3">
               <Stat label={t("userPagePostsLabel")} value={postCount} />
@@ -89,14 +94,14 @@ export default function UserPageClient({
                   </p>
                 ) : (
                   pets.map((pet) => (
-                    <Link
+                    <a
                       key={pet.id}
-                      href={`/tag/${pet.id}`}
+                      href={path(`/tag/${pet.id}`)}
                       className="flex items-center gap-3 rounded-paw-md border border-paw-border bg-paw-panel-subtle p-3 transition hover:border-paw-primary"
                     >
                       <div className="relative h-12 w-12 overflow-hidden rounded-paw-md bg-paw-primary-soft">
                         {pet.avatar_url ? (
-                          <Image
+                          <PetMediaImage
                             src={pet.avatar_url}
                             alt={pet.name}
                             fill
@@ -115,12 +120,17 @@ export default function UserPageClient({
                           {pet.breed ?? pet.species_group ?? t("userPagePetFallback")}
                         </p>
                       </div>
-                    </Link>
+                    </a>
                   ))
                 )}
               </div>
             </div>
           </div>
+          ) : (
+            <p className="rounded-paw-md bg-paw-panel-subtle p-4 text-paw-type-body text-paw-muted">
+              {t("tagPageOwnerNotPublic")}
+            </p>
+          )}
 
           <aside className="rounded-paw-lg border border-paw-border bg-paw-panel-subtle p-5">
             <div className="flex items-center gap-2 text-paw-type-body font-extrabold text-paw-primary">
@@ -146,7 +156,7 @@ export default function UserPageClient({
                   {profile.location_city}
                 </p>
               )}
-              {profile.is_verified && (
+              {isPublic && profile.is_verified && (
                 <p className="flex items-center gap-1.5">
                   <PawIcon name="verified" className="h-3.5 w-3.5" />
                   {t("userPageVerifiedProfile")}

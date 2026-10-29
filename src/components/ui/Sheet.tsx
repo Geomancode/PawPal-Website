@@ -1,4 +1,7 @@
-import type { ReactNode } from "react";
+"use client";
+
+import { useSyncExternalStore, type ReactNode } from "react";
+import { createPortal } from "react-dom";
 import PawIcon from "@/components/icons/PawIcon";
 import { cn } from "@/lib/ui";
 import Button from "./Button";
@@ -23,6 +26,18 @@ const panelBySide: Record<SheetSide, string> = {
   bottom: "bottom-0 left-0 max-h-[86vh] w-full [border-top-left-radius:var(--radius-paw-sheet)] [border-top-right-radius:var(--radius-paw-sheet)] border-t",
 };
 
+function subscribeToDocumentBody() {
+  return () => {};
+}
+
+function getDocumentBodySnapshot() {
+  return document.body;
+}
+
+function getServerDocumentBodySnapshot() {
+  return null;
+}
+
 export default function Sheet({
   open,
   title,
@@ -35,11 +50,19 @@ export default function Sheet({
   className,
   panelClassName,
 }: SheetProps) {
-  if (!open) return null;
+  // Server rendering and the first hydration render stay empty. The portal
+  // then escapes the page stacking context while keeping React ownership.
+  const body = useSyncExternalStore<HTMLElement | null>(
+    subscribeToDocumentBody,
+    getDocumentBodySnapshot,
+    getServerDocumentBodySnapshot,
+  );
+  if (!open || !body) return null;
 
-  return (
+  return createPortal(
     <div
-      className={cn("fixed inset-0 z-50", className)}
+      className={cn("fixed inset-0 z-[10010]", className)}
+      style={{ position: "fixed", zIndex: 10010 }}
       role="dialog"
       aria-modal="true"
       aria-label={ariaLabel ?? (typeof title === "string" ? title : undefined)}
@@ -90,6 +113,7 @@ export default function Sheet({
           </footer>
         )}
       </section>
-    </div>
+    </div>,
+    body,
   );
 }

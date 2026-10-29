@@ -1,10 +1,12 @@
 "use client";
 
-import Image from "next/image";
+import PetMediaImage from "@/components/PetMediaImage";
+
 import Link from "next/link";
 import PawIcon, { type PawIconName } from "@/components/icons/PawIcon";
 import { AppDeepLinkButton, Badge, Card, StatusMessage } from "@/components/ui";
 import { useRouteTranslations } from "@/i18n/useRouteTranslations";
+import { useI18n } from "@/i18n/I18nProvider";
 
 type PetSocialTraits = {
   health_badges?: string[];
@@ -37,6 +39,7 @@ interface TagPageClientProps {
 
 export default function TagPageClient({ pet, owner }: TagPageClientProps) {
   const { loader, t } = useRouteTranslations();
+  const { path } = useI18n();
   const healthBadges: string[] = pet.social_traits?.health_badges ?? [];
   const socialTags: string[] = pet.social_traits?.social_tags ?? [];
   const quirk: string | undefined = pet.social_traits?.quirk;
@@ -67,7 +70,7 @@ export default function TagPageClient({ pet, owner }: TagPageClientProps) {
   return (
     <div className="relative min-h-[100dvh] overflow-hidden bg-paw-page px-paw-md py-8 pt-24 text-paw-ink sm:px-paw-xl lg:px-paw-xxl">
       {loader}
-      <main className="mx-auto grid max-w-6xl gap-5 lg:grid-cols-[0.82fr_1.18fr] lg:items-start">
+      <div className="mx-auto grid max-w-6xl gap-5 lg:grid-cols-[0.82fr_1.18fr] lg:items-start">
         <section className="tag-rescue-panel">
           <div className="relative z-10 flex h-full flex-col">
             <p className="inline-flex w-fit items-center gap-2 rounded-paw-sm border border-paw-primary/20 bg-paw-primary-soft px-3 py-2 text-paw-type-caption font-black uppercase tracking-[0.16em] text-paw-primary">
@@ -78,7 +81,7 @@ export default function TagPageClient({ pet, owner }: TagPageClientProps) {
             <div className="mt-4 flex items-start gap-4">
               <div className="relative flex h-20 w-20 shrink-0 items-center justify-center overflow-hidden rounded-paw-lg border-4 border-paw-panel bg-paw-primary-soft text-paw-on-primary-soft shadow-paw-panel sm:h-24 sm:w-24">
                 {pet.avatar_url ? (
-                  <Image
+                  <PetMediaImage
                     src={pet.avatar_url}
                     alt={pet.name}
                     fill
@@ -223,7 +226,7 @@ export default function TagPageClient({ pet, owner }: TagPageClientProps) {
                 {t("tagPageOpenInPawPal")}
               </AppDeepLinkButton>
               <Link
-                href="/store"
+                href={path("/store")}
                 className="inline-flex h-12 items-center justify-center rounded-paw-md border border-paw-border bg-paw-panel px-4 text-paw-type-body font-extrabold text-paw-ink transition hover:border-paw-primary hover:text-paw-primary sm:h-full"
               >
                 {t("tagPageGetTag")}
@@ -242,7 +245,7 @@ export default function TagPageClient({ pet, owner }: TagPageClientProps) {
             emptyText={t("tagPageAchievementsEmpty")}
           />
         </section>
-      </main>
+      </div>
     </div>
   );
 }

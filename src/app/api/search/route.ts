@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
-import { supabaseServer as supabase } from "@/lib/supabaseServer";
+import { supabaseServer as supabase, createUserScopedSupabaseClient } from "@/lib/supabaseServer";
+import { getOwnProfile } from "@/lib/profileViews";
+import { hasAiAccess } from "@/lib/subscriptions";
 import {
   buildOrIlikeContainsFilter,
   parseSearchPagination,
@@ -7,6 +9,36 @@ import {
   searchRange,
   type SearchPagination,
 } from "@/lib/searchQuery";
+
+// Match the existing paid AI entry: 1200 UTF-16 units and 18 requests/minute.
+// This is an instance-local request limit, not a distributed billing quota.
+const MAX_QUERY_CHARS = 1200;
+const RATE_WINDOW_MS = 60_000;
+const USER_RATE_LIMIT = 18;
+const rateBuckets = new Map<string, { count: number; resetAt: number }>();
+
+function takeRateLimit(userId: string): boolean {
+  const now = Date.now();
+  const bucket = rateBuckets.get(userId);
+  if (!bucket || bucket.resetAt <= now) {
+    // Remove expired entries without evicting another account's active limit.
+    for (const [key, entry] of rateBuckets) {
+      if (entry.resetAt <= now) rateBuckets.delete(key);
+    }
+    rateBuckets.set(userId, { count: 1, resetAt: now + RATE_WINDOW_MS });
+    return true;
+  }
+  if (bucket.count >= USER_RATE_LIMIT) return false;
+  bucket.count += 1;
+  return true;
+}
+
+function searchJson(body: unknown, init?: { status?: number }) {
+  return NextResponse.json(body, {
+    status: init?.status ?? 200,
+    headers: { "Cache-Control": "private, no-store", Vary: "Authorization" },
+  });
+}
 
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
 const GEMINI_URL = GEMINI_API_KEY
@@ -65,23 +97,62 @@ async function searchPlaces(query: string, pagination: SearchPagination) {
 }
 
 export async function POST(req: NextRequest) {
-  let body: { query?: unknown; limit?: unknown; offset?: unknown; page?: unknown };
+  let body: unknown;
   try {
     body = await req.json();
   } catch {
-    return NextResponse.json({ error: "Invalid JSON" }, { status: 400 });
+    return searchJson({ error: "Invalid JSON" }, { status: 400 });
   }
 
-  const { query } = body;
+  if (!body || typeof body !== "object" || Array.isArray(body)) {
+    return searchJson({ error: "Invalid request body" }, { status: 400 });
+  }
+  const payload = body as { query?: unknown; limit?: unknown; offset?: unknown; page?: unknown };
+  const { query } = payload;
   if (!query || typeof query !== "string" || query.trim().length === 0) {
-    return NextResponse.json({ error: "Empty query" }, { status: 400 });
+    return searchJson({ error: "Empty query" }, { status: 400 });
   }
 
   const q = query.trim();
+  if (q.length > MAX_QUERY_CHARS) {
+    return searchJson({ error: `Search query is too long. Keep it under ${MAX_QUERY_CHARS} characters.` }, { status: 413 });
+  }
+
+  const bearer = /^Bearer\s+(\S+)$/i.exec(req.headers.get("authorization") ?? "");
+  if (!bearer) {
+    return searchJson({ error: "Sign in and upgrade to Basic or Pro to use PawPal AI.", upgradeRequired: true }, { status: 401 });
+  }
+  const accessToken = bearer[1];
+  let userId: string;
+  try {
+    const { data, error } = await supabase.auth.getUser(accessToken);
+    if (error || !data.user) {
+      return searchJson({ error: "Invalid session" }, { status: 401 });
+    }
+    userId = data.user.id;
+  } catch {
+    return searchJson({ error: "Unable to verify the session. Please try again later." }, { status: 503 });
+  }
+
+  let aiAccess = false;
+  try {
+    const profile = await getOwnProfile(createUserScopedSupabaseClient(accessToken), userId);
+    aiAccess = hasAiAccess(profile ?? {});
+  } catch {
+    // Missing, failed or mismatched permission envelopes never grant paid AI.
+    aiAccess = false;
+  }
+  if (!aiAccess) {
+    return searchJson({ error: "PawPal AI requires an active Basic or Pro plan.", upgradeRequired: true }, { status: 402 });
+  }
+  if (!takeRateLimit(userId)) {
+    return searchJson({ error: "Too many AI requests. Please wait a minute and try again." }, { status: 429 });
+  }
+
   const safeQuery = sanitizeSearchQuery(q);
-  const pagination = parseSearchPagination(body);
+  const pagination = parseSearchPagination(payload);
   if (!safeQuery) {
-    return NextResponse.json({
+    return searchJson({
       intent: "empty",
       results: [],
       aiMessage: EMPTY_SEARCH_MESSAGE,
@@ -126,14 +197,14 @@ Reply ONLY as compact JSON:
     // Also try broader text search with original query
     const quests2 = keywords !== q ? await searchSupabase(q, pagination) : [];
     const all = dedup([...quests, ...quests2]).slice(0, pagination.limit);
-    return NextResponse.json({ intent, results: all, aiMessage: all.length > 0 ? `Found ${all.length} mission(s) matching "${q}".` : `No missions found for "${q}". Try a broader search!`, pagination });
+    return searchJson({ intent, results: all, aiMessage: all.length > 0 ? `Found ${all.length} mission(s) matching "${q}".` : `No missions found for "${q}". Try a broader search!`, pagination });
   }
 
   if (intent === "search_places") {
     const places = await searchPlaces(keywords, pagination);
     const places2 = keywords !== q ? await searchPlaces(q, pagination) : [];
     const all = dedup([...places, ...places2]).slice(0, pagination.limit);
-    return NextResponse.json({ intent, results: all, aiMessage: all.length > 0 ? `Found ${all.length} place(s) matching "${q}".` : `No places found for "${q}". Try a different keyword!`, pagination });
+    return searchJson({ intent, results: all, aiMessage: all.length > 0 ? `Found ${all.length} place(s) matching "${q}".` : `No places found for "${q}". Try a different keyword!`, pagination });
   }
 
   if (intent === "pet_question") {
@@ -146,7 +217,7 @@ User question: "${q}"
 
 Answer in the same language the user used:`
     );
-    return NextResponse.json({ intent, results: [], aiMessage: aiAnswer || "Sorry, I couldn't process that question right now. Please try again!" });
+    return searchJson({ intent, results: [], aiMessage: aiAnswer || "Sorry, I couldn't process that question right now. Please try again!" });
   }
 
   // General / fallback
@@ -156,7 +227,7 @@ The user typed: "${q}"
 Respond briefly and helpfully (2-3 sentences). If they're greeting you, greet back warmly and suggest what they can search for (missions, places, pet questions).
 Answer in the same language the user used:`
   );
-  return NextResponse.json({ intent, results: [], aiMessage: aiAnswer || "Hi! 🐾 Try searching for pet missions, places, or ask me any pet question!" });
+  return searchJson({ intent, results: [], aiMessage: aiAnswer || "Hi! 🐾 Try searching for pet missions, places, or ask me any pet question!" });
 }
 
 function dedup<T extends { id: string | number }>(arr: T[]): T[] {

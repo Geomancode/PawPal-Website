@@ -294,7 +294,7 @@ Return ONLY compact JSON (no markdown):
       };
     }
   } catch (e) {
-    console.error("[map-search] Intent extraction failed:", e);
+    reportError(e, { route: "/api/map-search", operation: "intent_extraction" });
   }
 
   return fallbackIntent(query);
@@ -392,7 +392,7 @@ async function googlePlacesSearch(intent: Intent, center: SearchCenter): Promise
         .filter(Boolean) as SearchResult[];
     }
   } catch (e) {
-    console.error("[map-search] Google Places error:", e);
+    reportError(e, { route: "/api/map-search", operation: "google_places" });
   }
   return [];
 }
@@ -439,7 +439,7 @@ async function overpassSearch(intent: Intent, center: SearchCenter): Promise<Sea
         .filter(Boolean) as SearchResult[];
     }
   } catch (err) {
-    console.error("[map-search] Overpass error:", err);
+    reportError(err, { route: "/api/map-search", operation: "overpass" });
   }
   return [];
 }
@@ -480,7 +480,7 @@ async function questSearch(intent: Intent, center: SearchCenter): Promise<Search
         questType: q.quest_type,
       }));
   } catch (e) {
-    console.error("[map-search] Quest search error:", e);
+    reportError(e, { route: "/api/map-search", operation: "quest_search" });
   }
   return [];
 }
@@ -549,7 +549,7 @@ Reply ONLY compact JSON array, no markdown:
       }
     }
   } catch (e) {
-    console.error("[map-search] Ranking error:", e);
+    reportError(e, { route: "/api/map-search", operation: "ranking" });
   }
   return candidates;
 }
@@ -592,7 +592,7 @@ Reply ONLY as a JSON array of strings in the same order as input, no markdown:
       }
     }
   } catch (e) {
-    console.error("[map-search] Translation error:", e);
+    reportError(e, { route: "/api/map-search", operation: "translation" });
   }
   return results;
 }
@@ -623,7 +623,7 @@ async function nominatimSearch(query: string, zoom: number): Promise<SearchResul
       }));
     }
   } catch (e) {
-    console.error("[map-search] Nominatim error:", e);
+    reportError(e, { route: "/api/map-search", operation: "nominatim" });
   }
   return [];
 }
@@ -649,7 +649,7 @@ async function geminiPostRaw(prompt: string, maxTokens: number): Promise<string 
       return data?.candidates?.[0]?.content?.parts?.[0]?.text ?? null;
     }
   } catch (e) {
-    console.error("[map-search] Gemini raw error:", e);
+    reportError(e, { route: "/api/map-search", operation: "gemini_request" });
   }
   return null;
 }

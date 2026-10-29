@@ -2,7 +2,7 @@
 // PawPal Web — Persona Engine (mirrors Flutter persona_engine.dart)
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-import { supabaseServer } from "@/lib/supabaseServer";
+import type { SupabaseClient } from "@supabase/supabase-js";
 
 export interface PetPersona {
   petId: string;
@@ -52,9 +52,9 @@ const DEFAULT_PERSONALITY = {
 
 // ── Load user pets ─────────────────────────────────────────────────────────
 
-export async function loadUserPets(userId: string): Promise<PetPersona[]> {
+export async function loadUserPets(client: SupabaseClient, userId: string): Promise<PetPersona[]> {
   try {
-    const { data, error } = await supabaseServer
+    const { data, error } = await client
       .from("pets")
       .select("id, name, species_group, breed_id, birth_date, color_desc, bio, status")
       .eq("owner_id", userId)
@@ -99,12 +99,13 @@ export function pickRandom(pets: PetPersona[]): PetPersona {
 
 // ── Recall memories for prompt injection ───────────────────────────────────
 
-export async function recallMemories(petId: string): Promise<string[]> {
+export async function recallMemories(client: SupabaseClient, userId: string, petId: string): Promise<string[]> {
   try {
-    const { data, error } = await supabaseServer
+    const { data, error } = await client
       .from("pet_memories")
       .select("content, memory_type, confidence")
       .eq("pet_id", petId)
+      .eq("user_id", userId)
       .gte("confidence", 30)
       .order("confidence", { ascending: false })
       .limit(20);

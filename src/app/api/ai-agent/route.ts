@@ -13,9 +13,11 @@
 //   → Use fallback PawPal identity
 
 import { NextRequest } from "next/server";
+import { reportError } from "@/lib/errorReporting";
 import { GoogleGenAI, createPartFromFunctionResponse } from "@google/genai";
-import { supabaseServer } from "@/lib/supabaseServer";
+import { supabaseServer, createUserScopedSupabaseClient } from "@/lib/supabaseServer";
 import { hasAiAccess } from "@/lib/subscriptions";
+import { getOwnProfile } from "@/lib/profileViews";
 import { PLATFORM_KNOWLEDGE_PROMPT, FALLBACK_IDENTITY_PROMPT } from "./systemPrompt";
 import { loadUserPets, pickRandom, recallMemories, buildPersonaPrompt } from "./personaEngine";
 import { toolDeclarations, executeTool } from "./tools";
@@ -92,12 +94,12 @@ function takeRateLimit(key: string, limit: number): boolean {
   return true;
 }
 
-async function resolveUserId(req: NextRequest): Promise<{ userId: string | null; invalidToken: boolean }> {
+async function resolveUserId(req: NextRequest): Promise<{ userId: string | null; accessToken: string | null; invalidToken: boolean }> {
   const token = getBearerToken(req);
-  if (!token) return { userId: null, invalidToken: false };
+  if (!token) return { userId: null, accessToken: null, invalidToken: false };
   const { data, error } = await supabaseServer.auth.getUser(token);
-  if (error) return { userId: null, invalidToken: true };
-  return { userId: data.user?.id ?? null, invalidToken: false };
+  if (error || !data.user) return { userId: null, accessToken: null, invalidToken: true };
+  return { userId: data.user.id, accessToken: token, invalidToken: false };
 }
 
 export async function POST(req: NextRequest) {
@@ -120,7 +122,7 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const { userId, invalidToken } = await resolveUserId(req);
+    const { userId, accessToken, invalidToken } = await resolveUserId(req);
     if (invalidToken) {
       return new Response(
         JSON.stringify({ error: "Invalid session" }),
@@ -136,7 +138,7 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    if (!userId) {
+    if (!userId || !accessToken) {
       return new Response(
         JSON.stringify({
           error: "Sign in and upgrade to Basic or Pro to use PawPal AI.",
@@ -146,13 +148,17 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const { data: entitlement, error: entitlementError } = await supabaseServer
-      .from("profiles")
-      .select("subscription_tier, subscription_expires_at")
-      .eq("id", userId)
-      .maybeSingle();
+    const userClient = createUserScopedSupabaseClient(accessToken);
+    let aiAccess = false;
+    try {
+      const entitlement = await getOwnProfile(userClient, userId);
+      aiAccess = hasAiAccess(entitlement ?? {});
+    } catch {
+      // A failed or mismatched permission envelope never grants paid AI access.
+      aiAccess = false;
+    }
 
-    if (entitlementError || !hasAiAccess(entitlement ?? {})) {
+    if (!aiAccess) {
       return new Response(
         JSON.stringify({
           error: "PawPal AI requires an active Basic or Pro plan.",
@@ -176,11 +182,11 @@ export async function POST(req: NextRequest) {
           // ── Build system prompt (persona or fallback) ──────────────
           let systemPrompt: string;
 
-          const pets = await loadUserPets(userId);
+          const pets = await loadUserPets(userClient, userId);
           if (pets.length > 0) {
             const activePet = pickRandom(pets);
 
-            const memories = await recallMemories(activePet.petId);
+            const memories = await recallMemories(userClient, userId, activePet.petId);
             const personaPrompt = buildPersonaPrompt(activePet, pets, memories);
             systemPrompt = `${personaPrompt}\n\n${PLATFORM_KNOWLEDGE_PROMPT}`;
 
@@ -234,7 +240,7 @@ export async function POST(req: NextRequest) {
             } catch (modelErr) {
               lastErr = modelErr;
               const msg = modelErr instanceof Error ? modelErr.message : String(modelErr);
-              console.warn(`[ai-agent] Model ${model} failed:`, msg.substring(0, 120));
+              reportError(new Error(msg.substring(0, 120)), { route: "/api/ai-agent", operation: "model_request" });
               // Only retry on 503/quota/unavailable — not on other errors
               if (!msg.includes("503") && !msg.includes("UNAVAILABLE") && !msg.includes("RESOURCE_EXHAUSTED") && !msg.includes("quota")) {
                 break; // Non-retryable error → stop
@@ -307,9 +313,9 @@ export async function POST(req: NextRequest) {
 
           send("done", {});
         } catch (e) {
-          // Log raw error for debugging
+          // Keep classification local; diagnostic output goes through the safe reporter.
           const rawMsg = e instanceof Error ? e.message : String(e);
-          console.error("[ai-agent] Gemini error:", rawMsg);
+          reportError(new Error(rawMsg), { route: "/api/ai-agent", operation: "stream_response" });
           // Parse user-friendly error message
           let friendlyMsg = "Sorry, I couldn't process that right now. Please try again!";
           if (rawMsg.includes("RESOURCE_EXHAUSTED") || rawMsg.includes("quota")) {

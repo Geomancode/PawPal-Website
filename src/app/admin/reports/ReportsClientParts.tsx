@@ -39,6 +39,7 @@ import type { MessageKey } from "@/i18n/messages/en";
 import {
   clearAdminReportsSession,
   resolveReportAction,
+  loadReportsAction,
   syncAdminReportsSession,
 } from "./actions";
 import type {
@@ -169,6 +170,7 @@ function ReportsClientBody({ state }: { state: ReportsClientState }) {
       <ReportsQueue
         payload={loadP3B1g2hAdminFixtures().reports}
         fixtureMode
+        account={null}
       />
     );
   }
@@ -178,12 +180,19 @@ function ReportsClientBody({ state }: { state: ReportsClientState }) {
 
 function LiveReportsClientParts({ state }: { state: ReportsClientState }) {
   const router = useRouter();
-  const { t } = useReportsI18n();
-  const { loading: authLoading, session, user } = useAuth();
+  const { t, locale, path } = useReportsI18n();
+  const { loading: authLoading, session, user, authGeneration, getSessionForGeneration } = useAuth();
   const [sessionError, setSessionError] = useState<string | null>(null);
   const needsSession =
-    state.kind === "needs-session" || state.kind === "session-expired";
-  const bridgePage = needsSession ? state.page : 1;
+    state.kind === "needs-session" || state.kind === "session-expired" ||
+    ((state.kind === "ready" || state.kind === "forbidden") &&
+      !authLoading && state.viewerId !== user?.id);
+  const bridgePage = state.page;
+  // Cookie-setting actions refresh the server translation object. Depend on
+  // its actual values, not new function identities that restart this request.
+  const signInTarget = path("/auth?next=" + encodeURIComponent(path("/admin/reports")));
+  const bridgeTarget = path(bridgePage > 1 ? `/admin/reports?page=${bridgePage}` : "/admin/reports");
+  const verificationError = t("adminReportsUnableToVerifySession");
 
   useEffect(() => {
     if (!needsSession) return;
@@ -194,13 +203,10 @@ function LiveReportsClientParts({ state }: { state: ReportsClientState }) {
     if (!session?.access_token) {
       const timer = window.setTimeout(() => {
         const redirectToSignIn = () => {
-          if (!cancelled) router.replace("/auth?next=/admin/reports");
+          if (!cancelled) {
+            router.replace(signInTarget);
+          }
         };
-
-        if (state.kind !== "session-expired") {
-          redirectToSignIn();
-          return;
-        }
 
         clearAdminReportsSession()
           .catch(() => undefined)
@@ -213,26 +219,26 @@ function LiveReportsClientParts({ state }: { state: ReportsClientState }) {
       };
     }
 
+    const current = getSessionForGeneration(authGeneration);
+    if (!current) return;
     const resetErrorTimer = window.setTimeout(() => {
       if (!cancelled) setSessionError(null);
     }, 0);
-    syncAdminReportsSession(session.access_token)
+    syncAdminReportsSession(current.access_token, locale)
       .then((result) => {
-        if (cancelled) return;
-        if (!result.ok) {
+        if (cancelled || !getSessionForGeneration(authGeneration)) return;
+        if (!result.ok || !result.allowed) {
           setSessionError(result.message);
           return;
         }
-        const target =
-          bridgePage > 1 ? `/admin/reports?page=${bridgePage}` : "/admin/reports";
-        window.location.replace(target);
+        window.location.replace(bridgeTarget);
       })
       .catch((error: unknown) => {
-        if (cancelled) return;
+        if (cancelled || !getSessionForGeneration(authGeneration)) return;
         setSessionError(
           error instanceof Error
             ? error.message
-            : t("adminReportsUnableToVerifySession"),
+            : verificationError,
         );
       });
 
@@ -242,15 +248,18 @@ function LiveReportsClientParts({ state }: { state: ReportsClientState }) {
     };
   }, [
     authLoading,
+    authGeneration,
+    getSessionForGeneration,
     needsSession,
     router,
     session?.access_token,
-    bridgePage,
-    state.kind,
-    t,
+    bridgeTarget,
+    locale,
+    signInTarget,
+    verificationError,
   ]);
 
-  if (needsSession) {
+  if (authLoading || needsSession) {
     return (
       <SessionGate
         authLoading={authLoading}
@@ -262,7 +271,7 @@ function LiveReportsClientParts({ state }: { state: ReportsClientState }) {
     );
   }
 
-  if (state.kind === "error") {
+  if (state.kind === "error" || state.kind === "forbidden") {
     return (
       <ErrorPanel
         message={state.message}
@@ -271,8 +280,86 @@ function LiveReportsClientParts({ state }: { state: ReportsClientState }) {
     );
   }
 
-  return <ReportsQueue payload={state.payload} fixtureMode={false} />;
+  return (
+    <LiveReportsQueue
+      key={`${authGeneration}:${state.viewerId}:${state.page}`}
+      viewerId={state.viewerId}
+      page={state.page}
+      generation={authGeneration}
+    />
+  );
 }
+
+// A page cookie may outlive a browser account transition. The server shell
+// contains no report payload; only this explicit, generation-bound read can
+// obtain it, and old reads cannot populate a later account or an A-B-A page.
+function LiveReportsQueue({ viewerId, page, generation }: {
+  viewerId: string;
+  page: number;
+  generation: number;
+}) {
+  const { getSessionForGeneration } = useAuth();
+  const { path, t } = useReportsI18n();
+  const router = useRouter();
+  const [revision, setRevision] = useState(0);
+  const [loaded, setLoaded] = useState<{
+    payload: ReportsPagePayload | null;
+    error: string | null;
+  } | null>(null);
+  const account = useMemo(() => ({
+    ownerId: viewerId,
+    token: () => {
+      const current = getSessionForGeneration(generation);
+      return current?.user.id === viewerId ? current.access_token : null;
+    },
+  }), [viewerId, generation, getSessionForGeneration]);
+
+  useEffect(() => {
+    let cancelled = false;
+    const token = account.token();
+    if (!token) return;
+    loadReportsAction(token, page)
+      .then((result) => {
+        if (cancelled || !account.token()) return;
+        if (!result.ok || result.viewerId !== viewerId) {
+          setLoaded({ payload: null, error: result.ok
+            ? t("adminReportsUnableToVerifySession") : result.message });
+          return;
+        }
+        if (result.payload.page !== page) {
+          const query = result.payload.page > 1 ? `?page=${result.payload.page}` : "";
+          router.replace(path(`/admin/reports${query}`), { scroll: false });
+        }
+        setLoaded({ payload: result.payload, error: null });
+      })
+      .catch(() => {
+        if (cancelled || !account.token()) return;
+        setLoaded({ payload: null, error: t("adminReportsUnableToLoad") });
+      });
+    return () => { cancelled = true; };
+  }, [account, page, path, revision, router, t, viewerId]);
+
+  if (!account.token() || !loaded) {
+    return <LoadingState title={t("adminReportsCheckingAccess")}
+      description={t("adminReportsLoadingDescription")} />;
+  }
+  if (!loaded.payload) {
+    return <ErrorPanel message={loaded.error ?? t("adminReportsUnableToLoad")}
+      onRetry={() => {
+        if (!account.token()) return;
+        setLoaded(null);
+        setRevision((value) => value + 1);
+      }} />;
+  }
+  return <ReportsQueue payload={loaded.payload} fixtureMode={false} account={account}
+    onRefresh={() => {
+      if (!account.token()) return;
+      setLoaded(null);
+      setRevision((value) => value + 1);
+    }} />;
+}
+
+type ReportsAccountScope = { ownerId: string; token: () => string | null };
 
 function SessionGate({
   authLoading,
@@ -324,7 +411,7 @@ function SessionGate({
         </p>
       </div>
         <Link
-          href={path("/auth?next=/admin/reports")}
+          href={path("/auth?next=" + encodeURIComponent(path("/admin/reports")))}
           className={buttonClassName({ variant: "primary" })}
         >
           {t("adminReportsSignIn")}
@@ -336,9 +423,13 @@ function SessionGate({
 function ReportsQueue({
   payload,
   fixtureMode,
+  account,
+  onRefresh,
 }: {
   payload: ReportsPagePayload;
   fixtureMode: boolean;
+  account: ReportsAccountScope | null;
+  onRefresh?: () => void;
 }) {
   const router = useRouter();
   const { t } = useReportsI18n();
@@ -353,9 +444,14 @@ function ReportsQueue({
   const [confirmation, setConfirmation] = useState<Confirmation | null>(null);
   const [, startTransition] = useTransition();
   const refreshTimerRef = useRef<number | null>(null);
+  const mountedRef = useRef(false);
+  const flightRef = useRef<symbol | null>(null);
 
   useEffect(() => {
+    mountedRef.current = true;
     return () => {
+      mountedRef.current = false;
+      flightRef.current = null;
       if (refreshTimerRef.current !== null) {
         window.clearTimeout(refreshTimerRef.current);
       }
@@ -407,8 +503,10 @@ function ReportsQueue({
 
     refreshTimerRef.current = window.setTimeout(() => {
       refreshTimerRef.current = null;
+      if (!mountedRef.current || !account?.token()) return;
       startTransition(() => {
-        router.refresh();
+        if (onRefresh) onRefresh();
+        else router.refresh();
       });
     }, ACTION_REFRESH_DELAY_MS);
   }
@@ -417,34 +515,49 @@ function ReportsQueue({
     report: PendingReportView,
     action: ReportResolutionAction,
   ) {
-    if (fixtureMode) return;
+    if (fixtureMode || !account || flightRef.current) return;
+    const token = account.token();
+    if (!token) return;
+    const attempt = Symbol("report-action");
+    flightRef.current = attempt;
+    const isCurrent = () => mountedRef.current &&
+      flightRef.current === attempt && Boolean(account.token());
     setBusy({ reportId: report.id, action });
     setToast(null);
 
-    const result = await resolveReportAction(report.id, action);
-
-    if (result.ok) {
-      setResolvedReportIds((current) => {
-        const next = new Set(current);
-        next.add(report.id);
-        return next;
-      });
-      setToast({
-        tone: "success",
-        title: t(actionLabelKeys[action]),
-        text: result.message,
-      });
-      setConfirmation(null);
-      scheduleRefresh();
-    } else {
-      setToast({
-        tone: "critical",
-        title: t("adminReportsActionFailed"),
-        text: result.message,
-      });
+    try {
+      const result = await resolveReportAction(report.id, action, token, account.ownerId);
+      if (!isCurrent()) return;
+      if (result.ok) {
+        setResolvedReportIds((current) => {
+          const next = new Set(current);
+          next.add(report.id);
+          return next;
+        });
+        setToast({ tone: "success", title: t(actionLabelKeys[action]), text: result.message });
+        setConfirmation(null);
+        scheduleRefresh();
+      } else {
+        setToast({ tone: "critical", title: t("adminReportsActionFailed"), text: result.message });
+      }
+    } catch {
+      if (!isCurrent()) return;
+      // A rejected/unknown Server Action keeps the item available for explicit
+      // retry. Never optimistically remove it or automatically submit again.
+      setToast({ tone: "critical", title: t("adminReportsActionFailed"), text: t("adminReportsRetry") });
+    } finally {
+      if (flightRef.current === attempt) {
+        flightRef.current = null;
+        if (mountedRef.current && account.token()) setBusy(null);
+      }
     }
+  }
 
-    setBusy(null);
+  // Resolving the final item on a later page does not empty the whole queue.
+  // Keep the refresh interval neutral until the server returns a valid page.
+  if (reports.length === 0 && displayPayload.total > 0) {
+    return <LoadingState title={t("adminReportsCheckingAccess")}
+      description={t("adminReportsLoadingDescription")} />;
   }
 
   return (
@@ -476,7 +589,10 @@ function ReportsQueue({
             <Button
               type="button"
               variant="secondary"
-              onClick={() => router.refresh()}
+              onClick={() => {
+                if (fixtureMode) router.refresh();
+                else if (account?.token()) onRefresh?.();
+              }}
             >
               <PawIcon name="refresh" className="h-paw-md w-paw-md" aria-hidden="true" />
               {t("adminReportsRefresh")}
@@ -497,7 +613,10 @@ function ReportsQueue({
                   report={report}
                   busy={busy?.reportId === report.id ? busy.action : null}
                   onDismiss={() => resolveReport(report, "dismissed")}
-                  onConfirm={(action) => setConfirmation({ report, action })}
+                  onConfirm={(action) => {
+                    if (!fixtureMode && !account?.token()) return;
+                    setConfirmation({ report, action });
+                  }}
                 />
               ))}
             </div>

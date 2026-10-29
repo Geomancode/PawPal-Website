@@ -57,7 +57,7 @@ export function paidTierFromValue(
 }
 
 export function isEntitlementActive(expiresAt: string | null | undefined) {
-  if (!expiresAt) return true;
+  if (!expiresAt) return false;
   return new Date(expiresAt).getTime() > Date.now();
 }
 

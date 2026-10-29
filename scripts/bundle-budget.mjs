@@ -1,6 +1,7 @@
 import { spawn } from "node:child_process";
+import { createHash } from "node:crypto";
 import { constants as zlibConstants, gzipSync } from "node:zlib";
-import { mkdtemp, mkdir, readFile, rm } from "node:fs/promises";
+import { mkdtemp, mkdir, readFile, rm, realpath } from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -113,8 +114,8 @@ async function measureChunkSet(nextDir, files) {
     if (!file.startsWith("static/chunks/") || !file.endsWith(".js") || file.includes("..")) {
       throw new Error(`Unexpected JavaScript chunk path: ${file}`);
     }
-    const buffer = await readFile(path.join(nextDir, file));
-    chunks.push({ file, rawBytes: buffer.length, gzipBytes: gzipBytes(buffer) });
+    const buffer = await safeRead(nextDir, file);
+    chunks.push({ file, sha256: digest(buffer), rawBytes: buffer.length, gzipBytes: gzipBytes(buffer) });
   }
 
   return {
@@ -125,15 +126,16 @@ async function measureChunkSet(nextDir, files) {
 }
 
 async function homepageInitialChunks(nextDir) {
-  const htmlPath = path.join(nextDir, "server", "app", "index.html");
-  const html = await readFile(htmlPath, "utf8");
+  const homepage = await resolveHomepage(nextDir);
+  const htmlPath = path.join(nextDir, homepage.htmlFile);
+  const html = (await safeRead(nextDir, homepage.htmlFile)).toString("utf8");
   const files = [...html.matchAll(/<script[^>]+src="\/_next\/(static\/chunks\/[^"?]+\.js)(?:\?[^\"]*)?"/g)].map(
-    (match) => match[1],
+    (match) => decodeChunkUrl(match[1]),
   );
   if (files.length === 0) {
     throw new Error(`No homepage initial JavaScript chunks found in ${htmlPath}.`);
   }
-  return measureChunkSet(nextDir, files);
+  return { ...(await measureChunkSet(nextDir, files)), homepage };
 }
 
 function requireManifestEntry(manifest, description, matcher) {
@@ -147,8 +149,8 @@ function requireManifestEntry(manifest, description, matcher) {
 }
 
 async function globeDeferredChunks(nextDir) {
-  const manifestPath = path.join(nextDir, "react-loadable-manifest.json");
-  const manifest = JSON.parse(await readFile(manifestPath, "utf8"));
+  const manifestBuffer = await safeRead(nextDir, "react-loadable-manifest.json");
+  const manifest = JSON.parse(manifestBuffer.toString("utf8"));
   const globeComponent = requireManifestEntry(
     manifest,
     "Globe -> GlobeComponent",
@@ -165,12 +167,94 @@ async function globeDeferredChunks(nextDir) {
   return {
     ...(await measureChunkSet(nextDir, files)),
     manifestEntries: [globeComponent.key, reactGlobe.key],
+    manifestInput: { file: "react-loadable-manifest.json", sha256: digest(manifestBuffer) },
+  };
+}
+
+function decodeChunkUrl(value) {
+  if (/%(?:2f|5c)/i.test(value)) throw new Error(`Encoded path separator in chunk URL: ${value}`);
+  const decoded = decodeURIComponent(value);
+  if (decoded.includes("%") || decoded.includes("\\") || decoded.split("/").some((part) => part === "." || part === "..")) throw new Error(`Unsafe encoded chunk URL: ${value}`);
+  return decoded;
+}
+
+function digest(buffer) { return createHash("sha256").update(buffer).digest("hex"); }
+async function safeRead(root, relative) {
+  if (!relative || path.isAbsolute(relative) || relative.includes("\\") || relative.split("/").some((part) => part === ".." || part === "." || part === "")) throw new Error(`Unsafe artifact path: ${relative}`);
+  const base = await realpath(root);
+  const filename = await realpath(path.join(base, relative));
+  if (!filename.startsWith(base + path.sep)) throw new Error(`Artifact leaves build directory: ${relative}`);
+  return readFile(filename);
+}
+async function jsonArtifact(root, file) {
+  const buffer = await safeRead(root, file);
+  return { value: JSON.parse(buffer.toString("utf8")), input: { file, sha256: digest(buffer) } };
+}
+function matches(rule, pathname) {
+  if (typeof rule.regex !== "string") throw new Error("Route rule lacks compiled regex.");
+  return new RegExp(rule.regex).test(pathname);
+}
+function staticDocument(route, record) {
+  if (!record || typeof record.srcRoute !== "string" || typeof record.dataRoute !== "string" || (record.compute && record.compute !== "static") || (record.response && record.response !== "complete") || (record.initialRevalidateSeconds !== false && !(typeof record.initialRevalidateSeconds === "number" && record.initialRevalidateSeconds > 0))) throw new Error(`Missing or non-static prerendered route: ${route}`);
+  const data = record.dataRoute;
+  if (!data.startsWith("/") || !data.endsWith(".rsc") || /[\\?#%]/.test(data) || data.slice(1).split("/").some((v) => !v || v === "." || v === "..")) throw new Error(`Unsafe or unknown static data route: ${data}`);
+  if (data !== (route === "/" ? "/index.rsc" : `${route}.rsc`)) throw new Error(`Static data route does not belong to ${route}.`);
+  return { htmlFile: `server/app${data.slice(0, -4)}.html`, rscFile: `server/app${data}` };
+}
+async function resolveHomepage(nextDir) {
+  const routes = await jsonArtifact(nextDir, "routes-manifest.json");
+  const prerender = await jsonArtifact(nextDir, "prerender-manifest.json");
+  const appRoutes = await jsonArtifact(nextDir, "app-path-routes-manifest.json");
+  const appPaths = await jsonArtifact(nextDir, "server/app-paths-manifest.json");
+  const rewrites = routes.value.rewrites;
+  const phases = Array.isArray(rewrites) ? { beforeFiles: [], afterFiles: rewrites, fallback: [] } : rewrites;
+  if (!phases || !["beforeFiles", "afterFiles", "fallback"].every((k) => Array.isArray(phases[k]))) throw new Error("Unknown rewrite manifest shape.");
+  const matching = Object.entries(phases).flatMap(([phase, rules]) => rules.filter((r) => matches(r, "/")).map((r) => ({ ...r, phase })));
+  if ((routes.value.redirects || []).some((r) => matches(r, "/"))) throw new Error("Public homepage redirects instead of selecting a static document.");
+  let route = "/";
+  if (matching.length) {
+    const [rule] = matching;
+    if (matching.length !== 1 || rule.phase !== "beforeFiles" || rule.source !== "/" || rule.destination !== "/en" || rule.has?.length || rule.missing?.length) throw new Error("Ambiguous or unsupported public homepage rewrite; expected only unconditional / -> /en.");
+    route = "/en";
+    if (Object.values(phases).flat().some((r) => matches(r, route))) throw new Error("Chained internal homepage rewrite is unsupported.");
+  }
+  const record = prerender.value.routes?.[route];
+  const document = staticDocument(route, record);
+  const owners = Object.entries(appRoutes.value).filter(([key, value]) => key.endsWith("/page") && value === record.srcRoute);
+  const compiledRoutes = [...(routes.value.staticRoutes || []), ...(routes.value.dynamicRoutes || [])].filter((r) => r.page === record.srcRoute && matches(r, route));
+  if (owners.length !== 1 || compiledRoutes.length !== 1) throw new Error("Static homepage has missing or ambiguous page owner.");
+  const pageFile = appPaths.value[owners[0][0]];
+  if (typeof pageFile !== "string" || !pageFile.startsWith("app/") || !pageFile.endsWith(".js")) throw new Error("Missing homepage server page mapping.");
+  const pageBuffer = await safeRead(nextDir, `server/${pageFile}`);
+  const html = await safeRead(nextDir, document.htmlFile);
+  if (typeof record.htmlSize === "number" && record.htmlSize !== html.length) throw new Error("Homepage HTML size differs from prerender record.");
+  return { publicPath: "/", internalRoute: route, sourceRoute: record.srcRoute, pageKey: owners[0][0], ...document, htmlSha256: digest(html), mappingInputs: [...[routes, prerender, appRoutes, appPaths].map((x) => x.input), { file: `server/${pageFile}`, sha256: digest(pageBuffer) }] };
+}
+function budgetDelta(base, head) {
+  const initialDelta = head.initial.gzipBytes - base.initial.gzipBytes;
+  const deferredDelta = head.deferred.gzipBytes - base.deferred.gzipBytes;
+  return { initialDelta, deferredDelta, initialPassed: initialDelta <= INITIAL_BUDGET_BYTES, deferredPassed: deferredDelta <= DEFERRED_BUDGET_BYTES };
+}
+
+function structuredBudgetResult(base, head, nodeVersion, npmVersion) {
+  const delta = budgetDelta(base, head);
+  return {
+    schemaVersion: 1,
+    node: nodeVersion,
+    npm: npmVersion,
+    base,
+    head,
+    budgets: { initialBytes: INITIAL_BUDGET_BYTES, deferredBytes: DEFERRED_BUDGET_BYTES, gzipLevel: 9 },
+    ...delta,
+    passed: delta.initialPassed && delta.deferredPassed,
   };
 }
 
 async function buildAndMeasure(label, ref, commit, workspace, buildEnvironment) {
   console.error(`\n[${label}] Exporting ${ref} (${commit.slice(0, 12)}) with git archive...`);
   await exportRef(commit, workspace);
+  const packageLockPath = path.join(workspace, "package-lock.json");
+  const packageLockSha256 = digest(await readFile(packageLockPath));
   console.error(`[${label}] Installing locked dependencies...`);
   await runStreaming("npm", ["ci", "--prefer-offline", "--no-audit", "--no-fund"], {
     cwd: workspace,
@@ -179,11 +263,15 @@ async function buildAndMeasure(label, ref, commit, workspace, buildEnvironment) 
   console.error(`[${label}] Building production bundle...`);
   await runStreaming("npm", ["run", "build"], { cwd: workspace, env: buildEnvironment });
 
+  if (digest(await readFile(packageLockPath)) !== packageLockSha256) {
+    throw new Error(`${label} package-lock.json changed during installation or build.`);
+  }
   const nextDir = path.join(workspace, ".next");
   return {
     label,
     ref,
     commit,
+    packageLockSha256,
     initial: await homepageInitialChunks(nextDir),
     deferred: await globeDeferredChunks(nextDir),
   };
@@ -253,10 +341,8 @@ async function main() {
       buildEnvironment,
     );
 
-    const initialDelta = head.initial.gzipBytes - base.initial.gzipBytes;
-    const deferredDelta = head.deferred.gzipBytes - base.deferred.gzipBytes;
-    const initialPassed = initialDelta <= INITIAL_BUDGET_BYTES;
-    const deferredPassed = deferredDelta <= DEFERRED_BUDGET_BYTES;
+    const { initialDelta, deferredDelta, initialPassed, deferredPassed } = budgetDelta(base, head);
+    console.log(`PAWPAL_BUNDLE_BUDGET_JSON ${JSON.stringify(structuredBudgetResult(base, head, process.version, npmVersion))}`);
 
     console.log("P3GB3 BUNDLE BUDGET (Node built-in zlib, gzip level 9)");
     console.log(`Node: ${process.version}`);
@@ -303,9 +389,13 @@ async function main() {
   }
 }
 
-try {
-  await main();
-} catch (error) {
-  console.error(error?.stack || error);
-  process.exitCode = 1;
+export { homepageInitialChunks, globeDeferredChunks, gzipBytes, parseArguments, resolveHomepage, budgetDelta, structuredBudgetResult };
+
+if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
+  try {
+    await main();
+  } catch (error) {
+    console.error(error?.stack || error);
+    process.exitCode = 1;
+  }
 }

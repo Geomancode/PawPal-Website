@@ -12,7 +12,7 @@ import PawIcon from "@/components/icons/PawIcon";
 import ChatBubble, { type ChatMessageData } from "./ChatBubble";
 import { useAuth } from "./AuthProvider";
 import { createPawPalMapMarkerElement } from "@/lib/createPawPalMapMarkerElement";
-import type maplibregl from "maplibre-gl";
+import type * as maplibregl from "maplibre-gl";
 import type { MessageKey } from "@/i18n/messages/en";
 
 type GlobeTranslation = (key: MessageKey) => string;
@@ -92,7 +92,7 @@ const SNAP_HEIGHTS: Record<SnapPoint, string> = {
 // ── Marker helpers ───────────────────────────────────────────────────────────
 
 function createSearchMarker(
-  maplibre: typeof maplibregl,
+  maplibre: Pick<typeof maplibregl, "Marker" | "Popup">,
   emoji: string,
   color: string,
   map: maplibregl.Map,
@@ -184,7 +184,7 @@ export default function ChatBottomSheet({ mapRef, searchCenter, t }: ChatBottomS
       if (!map) return;
 
       // Dynamic import maplibre for marker creation
-      const maplibre = await import("maplibre-gl");
+      const maplibre = await import("@/lib/maplibre");
       if (mapRef.current !== map) return;
 
       const items: { lat: number; lng: number; name: string; type: string }[] =
@@ -278,7 +278,7 @@ export default function ChatBottomSheet({ mapRef, searchCenter, t }: ChatBottomS
             // Add pins to map
             const map = mapRef.current;
             if (map) {
-              const maplibre = await import("maplibre-gl");
+              const maplibre = await import("@/lib/maplibre");
               if (mapRef.current !== map) return;
               clearSearchMarkers();
               if (mapRef.current !== map) return;

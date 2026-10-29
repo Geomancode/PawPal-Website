@@ -81,4 +81,5 @@ export type ReportsClientState =
   | { kind: "needs-session"; page: number }
   | { kind: "session-expired"; page: number; message: string }
   | { kind: "error"; page: number; message: string }
-  | { kind: "ready"; payload: ReportsPagePayload };
+  | { kind: "forbidden"; viewerId: string; page: number; message: string }
+  | { kind: "ready"; viewerId: string; page: number };

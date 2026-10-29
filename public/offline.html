@@ -20,6 +20,9 @@
         --border: #eadfd1;
         --panel: #ffffff;
         --subtle: #fffdf4;
+        --mark-primary: #4a90d9;
+        --mark-accent: #f28c44;
+        --mark-dot: #2d3748;
         --accent-ink: #0f172a;
       }
 
@@ -99,6 +102,9 @@
           --border: #42635d;
           --panel: #1b232a;
           --subtle: #243139;
+          --mark-primary: #ffffff;
+          --mark-accent: #ffcd38;
+          --mark-dot: #76c7b8;
         }
 
         body {
@@ -117,10 +123,14 @@
   <body>
     <main>
       <section>
-        <picture>
-          <source media="(prefers-color-scheme: dark)" srcset="/assets/logos/pawpal-logo-dark.svg" />
-          <img class="mark" src="/assets/logos/pawpal-logo-light.svg" alt="PawPal" width="48" height="48" />
-        </picture>
+        <svg class="mark" width="48" height="48" viewBox="0 0 140 140" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="offline-mark-title">
+          <title id="offline-mark-title">PawPal</title>
+          <g transform="translate(-4 2) scale(0.145)">
+            <path fill="var(--mark-primary)" fill-rule="evenodd" d="M328 829c-28.2 0-51-22.8-51-51V329c0-119.3 96.7-216 216-216h39c118.7 0 215 96.3 215 215v82c0 118.7-96.3 215-215 215H379v153c0 28.2-22.8 51-51 51Zm51-307h153c62.4 0 113-50.6 113-113v-80c0-63-51-114-114-114h-38c-63 0-114 51-114 114v193Z"/>
+            <circle cx="328" cy="574" r="51" fill="var(--mark-accent)"/>
+            <circle cx="328" cy="778" r="51" fill="var(--mark-dot)"/>
+          </g>
+        </svg>
         <h1>You are offline</h1>
         <p>
           PawPal needs a connection for live maps, checkout, account data, and

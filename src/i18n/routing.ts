@@ -8,7 +8,7 @@ export function localeFromPath(pathname: string): Locale {
 export function stripLocalePrefix(pathname: string) {
   const segments = pathname.split("/");
   const maybeLocale = segments[1];
-  if (!isLocale(maybeLocale) || maybeLocale === defaultLocale) {
+  if (!isLocale(maybeLocale)) {
     return pathname;
   }
 
@@ -29,7 +29,8 @@ export function localizedPath(path: string, locale: Locale) {
 
   const [pathnameWithSearch, hash = ""] = path.split("#");
   const [pathname, search = ""] = pathnameWithSearch.split("?");
-  const normalizedPathname = pathname === "/" ? "" : pathname;
+  const unprefixed = stripLocalePrefix(pathname);
+  const normalizedPathname = unprefixed === "/" ? "" : unprefixed;
   const localized = `/${locale}${normalizedPathname}`;
   return `${localized}${search ? `?${search}` : ""}${hash ? `#${hash}` : ""}`;
 }

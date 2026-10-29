@@ -1,5 +1,6 @@
 import {
   forwardRef,
+  useId,
   type InputHTMLAttributes,
   type ReactNode,
 } from "react";
@@ -26,7 +27,7 @@ const variants: Record<InputVariant, string> = {
 
 const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
   {
-    id,
+    id: providedId,
     label,
     helperText,
     error,
@@ -39,7 +40,9 @@ const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
   },
   ref,
 ) {
-  const helperId = id && (error || helperText) ? `${id}-helper` : undefined;
+  const generatedId = useId();
+  const id = providedId || generatedId;
+  const helperId = error || helperText ? `${id}-helper` : undefined;
 
   return (
     <div className={cn("block space-y-1.5", containerClassName)}>

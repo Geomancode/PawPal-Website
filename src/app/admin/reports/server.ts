@@ -1,4 +1,7 @@
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
+import { defaultLocale, locales, type Locale } from "@/i18n/locales";
+import { getProfileViews } from "@/lib/profileViews";
+import { requirePublicSupabaseConfiguration } from "@/lib/supabaseConfiguration";
 
 import {
   REPORTS_PAGE_SIZE,
@@ -13,6 +16,24 @@ import {
 } from "./types";
 
 export const ADMIN_REPORTS_SESSION_COOKIE = "pawpal_admin_reports_token";
+
+export function adminReportsSessionCookieName(locale: Locale): string {
+  return locale === defaultLocale
+    ? ADMIN_REPORTS_SESSION_COOKIE
+    : `${ADMIN_REPORTS_SESSION_COOKIE}_${locale}`;
+}
+
+export function readAdminReportsSessionToken(cookieStore: {
+  getAll(): { name: string; value: string }[];
+}): string | undefined {
+  const names = new Set(locales.map(adminReportsSessionCookieName));
+  const candidates = cookieStore.getAll().filter((cookie) => names.has(cookie.name));
+  // Path-scoped cookies should yield exactly one token on a reports request.
+  // Ambiguous or empty credentials never select an arbitrary former identity.
+  return candidates.length === 1 && candidates[0].value
+    ? candidates[0].value
+    : undefined;
+}
 
 type AdminAccessResult =
   | {
@@ -36,6 +57,7 @@ type AdminAccessResult =
 type ReportsLoadResult =
   | {
       kind: "ready";
+      viewerId: string;
       payload: ReportsPagePayload;
     }
   | Exclude<AdminAccessResult, { kind: "authorized"; client: SupabaseClient }>;
@@ -82,21 +104,8 @@ type CommentRow = {
   removed_at: string | null;
 };
 
-function requiredSupabaseEnv() {
-  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-  const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
-
-  if (!supabaseUrl || !supabaseAnonKey) {
-    throw new Error(
-      "NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY must be configured.",
-    );
-  }
-
-  return { supabaseUrl, supabaseAnonKey };
-}
-
 export function createReportsSupabaseClient(accessToken: string) {
-  const { supabaseUrl, supabaseAnonKey } = requiredSupabaseEnv();
+  const { url: supabaseUrl, key: supabaseAnonKey } = requirePublicSupabaseConfiguration();
 
   return createClient(supabaseUrl, supabaseAnonKey, {
     auth: {
@@ -186,6 +195,14 @@ export async function loadPendingReports(
     .order("created_at", { ascending: false })
     .range(from, to);
 
+  // Another reviewer may have resolved the last items on this page. Reload
+  // page one instead of presenting an empty queue while earlier items remain.
+  // Range errors can also occur after the queue shrinks; other failures remain
+  // visible. The retry is bounded because page one never takes this branch.
+  if (safePage > 1 && !data?.length && (!error || error.code === "PGRST103")) {
+    return loadPendingReports(accessToken, 1);
+  }
+
   if (error) {
     return {
       kind: "error",
@@ -211,6 +228,7 @@ export async function loadPendingReports(
 
   return {
     kind: "ready",
+    viewerId: admin.userId,
     payload: {
       reports,
       page: safePage,
@@ -350,13 +368,14 @@ async function fetchProfiles(client: SupabaseClient, ids: string[]) {
   const unique = uniqueIds(ids);
   if (unique.length === 0) return [] as ProfileRow[];
 
-  const { data, error } = await client
-    .from("profiles")
-    .select("id, display_name, username, avatar_url, banned_at")
-    .in("id", unique);
-
-  if (error) throw new Error(error.message);
-  return (data ?? []) as ProfileRow[];
+  const views = await getProfileViews(client, unique);
+  return views.map((view): ProfileRow => {
+    if (view.visibility !== "admin" && view.visibility !== "self") {
+      throw new Error("Admin profile access could not be confirmed");
+    }
+    const { id, display_name, username, avatar_url, banned_at } = view.profile;
+    return { id, display_name, username, avatar_url, banned_at };
+  });
 }
 
 function firstPostImageMap(images: PostImageRow[]) {

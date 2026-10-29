@@ -10,7 +10,8 @@ const endpoints = [
     path: "/api/health",
   },
   {
-    name: "search",
+    name: "search-auth-rejection",
+    expectedStatus: 401,
     method: "POST",
     path: "/api/search",
     headers: { "content-type": "application/json" },
@@ -64,7 +65,7 @@ async function timedFetch(endpoint) {
 
 const failures = [];
 
-console.log(`PawPal website perf probe`);
+console.log(`PawPal website perf probe (search measures anonymous auth rejection, not successful AI latency)`);
 console.log(`Base URL: ${baseUrl}`);
 console.log(`Samples: ${samples}`);
 console.log(`Budget: P95 < ${formatMs(budgetMs)}`);
@@ -110,6 +111,10 @@ for (const endpoint of endpoints) {
 
   if (results.some((result) => result.status === 0)) {
     failures.push(`${endpoint.name} had one or more request failures before a response`);
+  }
+
+  if (endpoint.expectedStatus && results.some((result) => result.status !== endpoint.expectedStatus)) {
+    failures.push(`${endpoint.name} did not return the expected anonymous ${endpoint.expectedStatus} rejection`);
   }
 
   if (results.some((result) => result.status >= 500)) {

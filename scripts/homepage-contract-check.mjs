@@ -73,18 +73,18 @@ expect(
   routing.includes("locale === defaultLocale") &&
     routing.includes("return path") &&
     nextConfig.includes("async rewrites()") &&
-    nextConfig.includes("nonDefaultLocales") &&
-    nextConfig.includes("destination: \"/:path*\""),
-  "Locale routing keeps default-locale links unprefixed and rewrites prefixed non-default locales.",
+    nextConfig.includes("defaultUiRoutes") &&
+    nextConfig.includes('destination: source === "/" ? "/en" : `/en${source}`'),
+  "Locale routing keeps default-locale links unprefixed and rewrites only explicit unprefixed UI routes; non-default locales retain their segment.",
 );
 expect(manifest.start_url === "/", "PWA manifest keeps homepage start_url.");
 expect(shortcutUrls.has("/globe"), "PWA manifest keeps globe shortcut.");
 expect(shortcutUrls.has("/store"), "PWA manifest keeps store shortcut.");
 expect(shortcutUrls.has("/profile"), "PWA manifest keeps profile shortcut.");
-expect(serviceWorker.includes("pawpal-shell-v7-next-primitives"), "Service worker cache name was bumped for the homepage upgrade.");
+expect(serviceWorker.includes("pawpal-public-v2") && serviceWorker.includes("LEGACY_CACHE_PREFIX"), "Service worker uses the public-only cache and migrates legacy shell caches.");
 expect(
-  serviceWorker.includes("navigationPreload") && serviceWorker.includes("preloadResponse"),
-  "Service worker uses navigation preload for fresher document responses.",
+  serviceWorker.includes("navigationPreload.disable()") && serviceWorker.includes('fetch(request, { cache: "no-store" })'),
+  "Service worker bypasses HTTP preload caching for document responses.",
 );
 expect(
   pwaRuntime.includes('process.env.NODE_ENV === "development"') &&
@@ -118,14 +118,14 @@ expect(
 );
 
 const routeFiles = [
-  "../src/app/page.tsx",
-  "../src/app/globe/page.tsx",
-  "../src/app/store/page.tsx",
-  "../src/app/about/page.tsx",
-  "../src/app/auth/page.tsx",
-  "../src/app/help/page.tsx",
-  "../src/app/privacy/page.tsx",
-  "../src/app/terms/page.tsx",
+  "../src/app/[locale]/(streamed)/page.tsx",
+  "../src/app/[locale]/(streamed)/globe/page.tsx",
+  "../src/app/[locale]/(streamed)/store/page.tsx",
+  "../src/app/[locale]/(streamed)/about/page.tsx",
+  "../src/app/[locale]/(streamed)/auth/page.tsx",
+  "../src/app/[locale]/(streamed)/help/page.tsx",
+  "../src/app/[locale]/(streamed)/privacy/page.tsx",
+  "../src/app/[locale]/(streamed)/terms/page.tsx",
 ];
 
 await Promise.all(

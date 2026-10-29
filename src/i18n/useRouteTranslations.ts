@@ -7,12 +7,10 @@ import {
   useSyncExternalStore,
 } from "react";
 import dynamic from "next/dynamic";
-import { usePathname } from "next/navigation";
 import { useI18n } from "./I18nProvider";
 import type { Locale } from "./locales";
 import type { MessageKey, WebsiteMessages } from "./messages/en";
 import type { TranslatedLocale } from "./RouteCatalogLoader";
-import { localeFromPath } from "./routing";
 
 type RouteCatalogLoaderProps = {
   locale: TranslatedLocale;
@@ -32,9 +30,7 @@ const getClientHydrationSnapshot = () => true;
 const getServerHydrationSnapshot = () => false;
 
 export function useRouteTranslations() {
-  const pathname = usePathname();
-  const { messages: englishMessages } = useI18n();
-  const locale = localeFromPath(pathname);
+  const { locale, messages: serverMessages, messagesLocale } = useI18n();
   const hydrated = useSyncExternalStore(
     subscribeToHydration,
     getClientHydrationSnapshot,
@@ -53,10 +49,12 @@ export function useRouteTranslations() {
   );
 
   const messages =
-    loadedCatalog?.locale === locale ? loadedCatalog.messages : englishMessages;
+    messagesLocale === locale
+      ? serverMessages
+      : loadedCatalog?.locale === locale ? loadedCatalog.messages : serverMessages;
   const t = useCallback((key: MessageKey) => messages[key], [messages]);
   const loader =
-    !hydrated || locale === "en"
+    !hydrated || locale === "en" || messagesLocale === locale
       ? null
       : createElement(DeferredRouteCatalogLoader, {
           locale,

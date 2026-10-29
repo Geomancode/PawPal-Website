@@ -2,6 +2,8 @@
 
 import { useEffect, useState, useSyncExternalStore } from "react";
 import { useRouteTranslations } from "@/i18n/useRouteTranslations";
+import { useAuth } from "@/components/AuthProvider";
+import { reportError } from "@/lib/errorReporting";
 
 function subscribeToOnlineStatus(callback: () => void) {
   if (typeof window === "undefined") return () => undefined;
@@ -24,6 +26,7 @@ function getServerOnlineStatus() {
 
 export default function PwaRuntime() {
   const { loader, t } = useRouteTranslations();
+  const { user } = useAuth();
   const isDevelopment = process.env.NODE_ENV === "development";
   const online = useSyncExternalStore(
     subscribeToOnlineStatus,
@@ -33,6 +36,16 @@ export default function PwaRuntime() {
   const [updateReady, setUpdateReady] = useState(false);
   const [registration, setRegistration] = useState<ServiceWorkerRegistration | null>(null);
   const offline = !online;
+
+  // Also remove old document caches at session changes, including offline
+  // sign-out. The new worker caches only deploy-owned public static assets.
+  useEffect(() => {
+    if (!("caches" in window)) return;
+    caches.keys()
+      .then((keys) => Promise.all(keys.filter((key) => key.startsWith("pawpal-shell-")).map((key) => caches.delete(key))))
+      .catch((error) => reportError(error, { component: "PwaRuntime", operation: "clear_legacy_cache" }));
+    navigator.serviceWorker?.controller?.postMessage({ type: "CLEAR_AUTH_CACHE" });
+  }, [user?.id]);
 
   useEffect(() => {
     const handleBeforeInstallPrompt = (event: Event) => {
@@ -55,14 +68,14 @@ export default function PwaRuntime() {
         caches
           .keys()
           .then((keys) =>
-            Promise.all(keys.filter((key) => key.startsWith("pawpal-shell-")).map((key) => caches.delete(key))),
+            Promise.all(keys.filter((key) => key.startsWith("pawpal-shell-") || key.startsWith("pawpal-public-")).map((key) => caches.delete(key))),
           )
           .catch(() => undefined);
       }
       return removeWindowListeners;
     }
 
-    const canRegister = window.location.protocol === "https:" || window.location.hostname === "localhost";
+    const canRegister = window.location.protocol === "https:" || ["localhost", "127.0.0.1", "[::1]"].includes(window.location.hostname);
     if (!canRegister) {
       return removeWindowListeners;
     }

@@ -44,11 +44,41 @@ jobs:
       - name: Homepage contract gate
         run: npm run test:home-contract
 
+      - name: Unknown-page status and registry drift contract gates
+        run: npm run test:not-found-contract
+
+      - name: Shared post and pet data contract gate
+        run: npm run test:shared-page-data
+
+      - name: Cart persistence regression gate
+        run: npm run test:cart-storage
+
+      - name: Checkout, subscription and private persona regression gates
+        run: |
+          npm run test:checkout-flow
+          npm run test:checkout-stock
+          npm run test:store-pricing
+          npm run test:store-order-ownership
+          npm run test:store-orders-lifecycle
+          npm run test:subscription-webhook
+          npm run test:persona-auth
+
+      - name: Private pet image authorization regression gate
+        run: node scripts/pet-media-access-check.mjs
+
       - name: Globe facing gate
         run: npm run test:globe-facing
 
       - name: Homepage globe contract gate
         run: npm run test:home-globe-contract
+
+      - name: Bundle budget and streaming boundary contract gates
+        run: |
+          npm run test:bundle-budget-contract
+          npm run test:streaming-boundary-contract
+
+      - name: Environment refusal, health recovery and log privacy gates
+        run: node scripts/environment-safety-check.mjs
 
       - name: Build verification
         run: npm run build
@@ -64,7 +94,7 @@ jobs:
         continue-on-error: true
         run: npx playwright install --with-deps chromium
 
-      - name: Next start and homepage five-state runtime gate
+      - name: Next start, homepage five-state, cart, progress and companion runtime gates
         if: steps.runtime-browser.outcome == 'success'
         run: |
           SERVER_LOG="$RUNNER_TEMP/pawpal-next-start.log"
@@ -78,6 +108,18 @@ jobs:
           set +e
           P3GB3_HOME_RUNTIME_BASE_URL=http://127.0.0.1:3102 npm run test:home-runtime
           STATUS=$?
+          if [ "$STATUS" -eq 0 ]; then
+            CART_RUNTIME_BASE_URL=http://127.0.0.1:3102 CART_RUNTIME_FIXTURE=1 npm run test:cart-runtime
+            STATUS=$?
+          fi
+          if [ "$STATUS" -eq 0 ]; then
+            HOME_PROGRESS_BASE_URL=http://127.0.0.1:3102 npm run test:home-progress-runtime
+            STATUS=$?
+          fi
+          if [ "$STATUS" -eq 0 ]; then
+            COMPANION_TEST_BASE_URL=http://127.0.0.1:3102 npm run test:companion-runtime
+            STATUS=$?
+          fi
           set -e
           if [ "$STATUS" -ne 0 ]; then
             echo "Next.js production server log:"
@@ -85,31 +127,20 @@ jobs:
             exit "$STATUS"
           fi
 
+      - name: Service worker privacy and MapLibre security runtime gates
+        if: steps.runtime-browser.outcome == 'success'
+        run: |
+          npm run test:service-worker-security
+          npm run test:maplibre-security
+
       - name: Explicit runtime skip when Chromium is unavailable
         if: steps.runtime-browser.outcome != 'success'
         run: |
-          echo "::warning::SKIP test:home-runtime — Playwright Chromium installation failed in this CI environment."
+          echo "::warning::SKIP home/cart/progress/companion/service-worker/MapLibre runtime gates — Playwright Chromium installation failed in this CI environment."
           echo "The skip is explicit; lint, contracts, build, and bundle gates still ran."
 
       - name: Dependency audit (high and critical)
         run: npm audit --audit-level=high
 
-      - name: Check for raw REST URL usage
-        run: |
-          VIOLATIONS=$(grep -rn 'supabase\.co/rest/v1' src/ --include="*.ts" --include="*.tsx" || true)
-          if [ -n "$VIOLATIONS" ]; then
-            echo "❌ BLOCKED: Raw Supabase REST URL found. Use supabase-js client instead."
-            echo "$VIOLATIONS"
-            exit 1
-          fi
-          echo "✅ No raw REST URL usage."
-
-      - name: Check for exposed secrets
-        run: |
-          SECRETS=$(grep -Ern 'sk_live_[A-Za-z0-9_]+|sk_test_[A-Za-z0-9_]+|sb_secret_[A-Za-z0-9_-]+|eyJ[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+' src/ --include="*.ts" --include="*.tsx" || true)
-          if [ -n "$SECRETS" ]; then
-            echo "❌ BLOCKED: Possible server secret exposed in client code."
-            echo "$SECRETS"
-            exit 1
-          fi
-          echo "✅ No exposed secrets."
+      - name: Source safety scan (metadata only)
+        run: node scripts/source-safety-scan.mjs

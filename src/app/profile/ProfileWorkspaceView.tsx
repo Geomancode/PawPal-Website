@@ -1,5 +1,8 @@
 "use client";
 
+import { useI18n } from "@/i18n/I18nProvider";
+import PetMediaImage from "@/components/PetMediaImage";
+
 import type { ReactNode } from "react";
 import PawIcon from "@/components/icons/PawIcon";
 import { StatusMessage } from "@/components/ui";
@@ -200,6 +203,7 @@ export default function ProfileWorkspaceView({
   onToggleSocialTag,
   onToggleHealthBadge,
 }: ProfileWorkspaceViewProps) {
+  const { path } = useI18n();
   const trustColor = LEVEL_COLORS[profile.trust_level] || LEVEL_COLORS[1];
   const trustLabel =
     profile.trust_level === 2
@@ -575,10 +579,9 @@ export default function ProfileWorkspaceView({
                     className="profile-pet-card"
                   >
                     <div className="flex items-start gap-paw-md">
-                      <div className={`${PROFILE_METRIC_CLASSES.petAvatarSize} rounded-paw-md bg-paw-primary-soft border border-paw-primary/15 flex items-center justify-center text-paw-type-h2 shrink-0 overflow-hidden`}>
+                      <div className={`relative ${PROFILE_METRIC_CLASSES.petAvatarSize} rounded-paw-md bg-paw-primary-soft border border-paw-primary/15 flex items-center justify-center text-paw-type-h2 shrink-0 overflow-hidden`}>
                         {pet.avatar_url ? (
-                          // eslint-disable-next-line @next/next/no-img-element
-                          <img src={pet.avatar_url} alt={pet.name} className="w-full h-full object-cover" />
+                          <PetMediaImage src={pet.avatar_url} alt={pet.name} fill sizes="56px" unoptimized className="w-full h-full object-cover" />
                         ) : <PawIcon name="paw" className="h-paw-xl w-paw-xl text-paw-primary" aria-hidden="true" />}
                       </div>
 
@@ -631,7 +634,7 @@ export default function ProfileWorkspaceView({
                       </div>
 
                       <a
-                        href={`/tag/${pet.id}`}
+                        href={path(`/tag/${pet.id}`)}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="profile-tag-link"
