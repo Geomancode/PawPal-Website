@@ -49,7 +49,7 @@ const allowlistEntries = [
   ["src/components/ChatBottomSheet.tsx:562:1:[5px]", "A7 component one-off geometry: the chat-sheet drag handle keeps its dedicated 5px height."],
   ["src/components/ChatBottomSheet.tsx:618:1:[260px]", "A7 component one-off geometry: the chat attachment bubble keeps its local 260px maximum width."],
   ["src/components/ChatBottomSheet.tsx:622:1:[320px]", "A7 component one-off geometry: the chat message bubble keeps its local 320px maximum width."],
-  ["src/components/GlobeFullPage.tsx:684:1:[min(320px,calc(100vw-2rem))]", "A7 component one-off geometry: the globe overlay keeps its viewport-bounded 320px width expression."],
+  ["src/components/GlobeFullPage.tsx:694:1:[min(320px,calc(100vw-2rem))]", "A7 component one-off geometry: the globe overlay keeps its viewport-bounded 320px width expression."],
   ["src/components/GlobeTutorial.tsx:183:1:[340px]", "A7 component one-off geometry: the globe tutorial callout keeps its local 340px width."],
   ["src/components/HomeClientParts.tsx:308:1:[680px]", "A7 component one-off geometry: the home hero copy keeps its local 680px maximum width."],
   ["src/components/HomeClientParts.tsx:598:1:[48px_1fr]", "A6 grid track geometry: each home feature row preserves its 48px icon track."],
