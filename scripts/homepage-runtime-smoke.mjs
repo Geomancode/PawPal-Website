@@ -563,7 +563,18 @@ async function runCase(browser, baseUrl, runtimeCase, viewport) {
     const globe = page.locator("[data-testid='home-globe']");
     await page.locator("h1").first().waitFor({ state: "visible", timeout: 15000 });
     await globe.waitFor({ state: "attached", timeout: 30000 });
-    await globe.scrollIntoViewIfNeeded({ timeout: 15000 });
+    // This surface intentionally keeps rendering under normal motion. On busy
+    // software-rendered CI workers, Playwright's stability wait can time out
+    // before scrolling. Scroll without pausing animation, then require the real
+    // intersection observer to confirm that the globe entered the viewport.
+    await globe.evaluate((element) => {
+      element.scrollIntoView({ block: "nearest", inline: "nearest", behavior: "instant" });
+    });
+    await page.waitForFunction(
+      () => document.querySelector("[data-testid='home-globe']")?.getAttribute("data-in-view") === "true",
+      undefined,
+      { timeout: 30000 },
+    );
 
     if (runtimeCase.disableWebGL) {
       await page.waitForFunction(
