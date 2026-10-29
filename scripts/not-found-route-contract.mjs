@@ -18,7 +18,7 @@ function moduleAt(relative) {
     compilerOptions: { target: ts.ScriptTarget.ES2020, module: ts.ModuleKind.CommonJS, esModuleInterop: true },
   }).outputText;
   function localRequire(id) {
-    if (id === "@sentry/nextjs") return { withSentryConfig: (config) => config };
+    if (id === "@sentry/nextjs/config") return { withSentryConfig: (config) => config };
     assert(id.startsWith("."), `Unexpected import: ${id}`);
     const base = path.resolve(path.dirname(filename), id);
     const resolved = [base, `${base}.ts`, `${base}.json`].find((p) => fs.existsSync(p) && fs.statSync(p).isFile());
